@@ -2,11 +2,11 @@
 
 ## Purpose
 
-Distill raw task evidence into durable repo knowledge.
+Distill raw task evidence into durable repo knowledge for `.agents/agents/learning-agent.md`.
 
 ## Responsibilities
 
-- read one completed task bundle
+- read one completed session bundle from `.agents/sessions/`
 - classify candidate lessons
 - update the correct file under `.agents/`
 - keep `.agents/AGENTS.md` concise

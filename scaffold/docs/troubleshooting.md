@@ -1,5 +1,7 @@
 # Troubleshooting
 
+This template belongs in `.agents/docs/troubleshooting.md`.
+
 Use this file for recurring issue patterns and validated recoveries.
 
 ## Entry template

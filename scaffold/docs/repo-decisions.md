@@ -1,5 +1,7 @@
 # Repository Decisions
 
+This template belongs in `.agents/docs/repo-decisions.md`.
+
 Use this file for durable rationale and architectural choices.
 
 ## Entry template

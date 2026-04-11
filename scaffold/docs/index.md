@@ -1,19 +1,21 @@
 # Knowledge Index
 
-## AGENTS.md
+This file belongs in `.agents/docs/`.
+
+## ../AGENTS.md
 Compact instructions for future agents. Consult first for repo-wide operational guidance.
 
-## repo-decisions.md
+## docs/repo-decisions.md
 Durable rationale, tradeoffs, and architectural choices. Consult when a rule needs explanation.
 
-## troubleshooting.md
+## docs/troubleshooting.md
 Recurring issue patterns, causes, fixes, and validation steps. Consult when debugging known classes of problems.
 
-## playbooks/
+## ../playbooks/
 Durable procedures for recurring workflows.
 
-## MAINTENANCE.md
+## docs/MAINTENANCE.md
 Maintenance schema and rules for this knowledge layer.
 
-## log.md
+## docs/log.md
 Append-only record of distillation and maintenance activity.

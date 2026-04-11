@@ -1,6 +1,6 @@
 ---
 name: knowledge-lint
-description: Check the .agents knowledge layer for duplication, contradiction, staleness, oversized guidance, missing links, and uncategorized knowledge. Use as a periodic maintenance pass.
+description: Check the `.agents/` knowledge layer for duplication, contradiction, staleness, oversized guidance, missing links, and uncategorized knowledge. Use as a periodic maintenance pass.
 ---
 
 # Knowledge Lint
@@ -9,13 +9,13 @@ description: Check the .agents knowledge layer for duplication, contradiction, s
 Keep the compiled repo knowledge layer coherent, minimal, and current.
 
 ## Inputs
-- .agents/AGENTS.md
-- .agents/MAINTENANCE.md
-- .agents/index.md
-- .agents/log.md
-- .agents/repo-decisions.md
-- .agents/troubleshooting.md
-- .agents/playbooks/
+- consumer repo `.agents/AGENTS.md`
+- consumer repo `.agents/docs/MAINTENANCE.md`
+- consumer repo `.agents/docs/index.md`
+- consumer repo `.agents/docs/log.md`
+- consumer repo `.agents/docs/repo-decisions.md`
+- consumer repo `.agents/docs/troubleshooting.md`
+- consumer repo `.agents/docs/playbooks/`
 
 ## Checks
 - duplicate guidance
@@ -30,7 +30,7 @@ Keep the compiled repo knowledge layer coherent, minimal, and current.
 Produce:
 - a lint report
 - optional minimal edits
-- a log entry in `.agents/log.md`
+- a log entry in the consumer repo's `.agents/docs/log.md`
 
 ## Constraints
 - Prefer reclassification and compression over adding more text.

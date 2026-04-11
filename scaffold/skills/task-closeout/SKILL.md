@@ -1,6 +1,6 @@
 ---
 name: task-closeout
-description: Capture the current task into a structured temporary task bundle outside the workspace so a learning agent can later distill durable repo knowledge. Use for completed, blocked, or abandoned tasks with meaningful changes, debugging, validation, or reusable lessons.
+description: Capture the current task into a structured temporary session bundle under `.agents/sessions/` so a learning agent can later distill durable repo knowledge. Use for completed, blocked, or abandoned tasks with meaningful changes, debugging, validation, or reusable lessons.
 ---
 
 # Task Closeout
@@ -9,7 +9,7 @@ description: Capture the current task into a structured temporary task bundle ou
 Create a temporary handoff packet for later learning extraction.
 
 ## Output location
-Write outside the workspace to the configured task-bundle store.
+Write inside the repo to `.agents/sessions/<session-folder>/`.
 
 ## Required outputs
 - summary.json
@@ -29,12 +29,19 @@ Write outside the workspace to the configured task-bundle store.
 ## Procedure
 1. Determine or create `repo_id`.
 2. Determine or create `task_id`.
-3. Collect changed files.
-4. Collect commands run and validation results.
-5. Write active-task.md.
-6. Write learning-candidate.md.
-7. Write summary.json with status and metadata.
-8. Mark the task bundle ready for distillation.
+3. Create a session folder using the pattern `YYYYMMDD-HHMMSS-short-topic`.
+4. Keep one task-closeout bundle per session folder.
+5. Collect changed files.
+6. Collect commands run and validation results.
+7. Write active-task.md.
+8. Write learning-candidate.md.
+9. Write summary.json with status and metadata.
+10. Mark the session bundle ready for distillation.
+
+## Session folder naming
+- Use a deterministic, sortable folder name such as `YYYYMMDD-HHMMSS-short-topic`.
+- Keep the slug short, lowercase, and tied to the task goal.
+- Reuse the same session folder only for the single task-closeout bundle it was created for.
 
 ## active-task.md sections
 - Task ID

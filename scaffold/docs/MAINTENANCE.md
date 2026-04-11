@@ -1,12 +1,12 @@
-# .agents Maintenance Rules
+# Template .agents Maintenance Rules
 
 ## Purpose
 
-This directory contains the compiled knowledge layer for agents working in this repository.
+This file belongs in `.agents/docs/`, alongside `.agents/AGENTS.md`.
 
 ## Knowledge model
 
-- External task bundles are raw evidence.
+- Session bundles under `.agents/sessions/` are raw evidence.
 - Files in `.agents/` are synthesized durable knowledge.
 - Durable knowledge should be incremental, concise, and reviewable.
 
@@ -15,19 +15,19 @@ This directory contains the compiled knowledge layer for agents working in this 
 ### `AGENTS.md`
 Compact, high-signal operational guidance.
 
-### `repo-decisions.md`
+### `docs/repo-decisions.md`
 Durable rationale, tradeoffs, and architectural choices.
 
-### `troubleshooting.md`
+### `docs/troubleshooting.md`
 Recurring issue patterns, causes, fixes, and validations.
 
-### `playbooks/`
+### `../playbooks/`
 Durable multi-step procedures.
 
-### `index.md`
+### `docs/index.md`
 Catalog of durable knowledge assets.
 
-### `log.md`
+### `docs/log.md`
 Append-only maintenance log.
 
 ## Distillation policy
@@ -42,13 +42,17 @@ A lesson belongs in `AGENTS.md` only if it is:
 
 ## Task bundle policy
 
-Task bundles are external and temporary.
+Task bundles live in `.agents/sessions/` and are temporary.
 
 After closeout, treat them as immutable except for status fields in `summary.json`.
 
+Keep `.agents/sessions/` in the repo but ignored by git so temporary working-memory artifacts do not become committed durable knowledge.
+
+Use one session folder per task-closeout bundle and name folders with a sortable pattern such as `YYYYMMDD-HHMMSS-short-topic`.
+
 ## Logging policy
 
-Each successful distillation should append a concise entry to `.agents/log.md`.
+Each successful distillation should append a concise entry to `.agents/docs/log.md`.
 
 ## Lint policy
 

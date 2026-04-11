@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Maintain the quality of the compiled knowledge layer.
+Maintain the quality of the compiled knowledge layer for `.agents/agents/lint-agent.md`.
 
 ## Responsibilities
 
