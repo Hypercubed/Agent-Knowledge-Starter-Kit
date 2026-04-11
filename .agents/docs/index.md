@@ -23,3 +23,6 @@ Maintenance schema and rules for this knowledge layer.
 
 ## `.agents/docs/log.md`
 Append-only record of distillation and maintenance activity.
+
+## Root install docs
+[`INSTALL.md`](../../INSTALL.md) — agent-facing installation and merge checklist for adopting this starter kit into a target repository.

@@ -1,5 +1,26 @@
 # Knowledge Maintenance Log
 
+### [2026-04-11] learning-distill | t-20260411-existing-agents-adoption-feedback, t-20260411-quickstart-install-docs
+Outcome: updated  
+Files: `.agents/docs/repo-decisions.md`; `.agents/docs/index.md`; `.agents/docs/log.md`; `.agents/sessions/20260411-145015-existing-agents-adoption/summary.json`; `.agents/sessions/20260411-145937-quickstart-install-docs/summary.json`  
+Accepted: 2 (root docs are the home for kit installation guidance; index pointer to root `INSTALL.md`)  
+Rejected: 4 (extra `.agents/AGENTS.md`, troubleshooting, and playbook updates; README/plan content was already present from the source tasks)  
+Notes: Distilled two installation-doc bundles; kept copied `scaffold/` content unchanged because setup guidance is about consuming the starter repo.
+
+### [2026-04-11] docs | quickstart-agent-install
+Outcome: updated  
+Files: `README.md`; `INSTALL.md`; `.agents/plans/consumer-upgrade-path.md`; `.agents/docs/log.md`  
+Accepted: 3 (human quick start; agent prompt; detailed agent install guide)  
+Rejected: 0  
+Notes: Split README quick start by audience and moved detailed install mechanics into a root install guide.
+
+### [2026-04-11] docs | existing-agents-adoption-feedback
+Outcome: updated  
+Files: `README.md`; `.agents/plans/consumer-upgrade-path.md`; `.agents/docs/log.md`  
+Accepted: 5 (existing `.agents/` merge checklist; `.agents/.gitignore` as sufficient default with root `.gitignore` fallback; root `AGENTS.md` vs `.agents/AGENTS.md` relationship; adoption log/decision recommendation; index update reminder for pre-existing rules/playbooks/skills)  
+Rejected: 0  
+Notes: Incorporated adopter feedback directly in README and kept the broader consumer upgrade plan open for a possible dedicated scaffold doc.
+
 ### [2026-04-11] learning-distill | t-20260411-203100-scaffold-sync
 Outcome: updated  
 Files: `.agents/docs/repo-decisions.md`; `.agents/docs/troubleshooting.md`; `.agents/playbooks/maintainer-adoption-closeout-distill.md`; `.agents/docs/index.md`; `.agents/docs/log.md`; `.agents/sessions/20260411-203100-scaffold-sync-closeout/summary.json`  

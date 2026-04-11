@@ -1,4 +1,4 @@
-# Agent Knowledge Starter Kit
+# Agent Knowledge Starter Kit vNext
 
 A shareable, tool-agnostic starter kit for maintaining a compiled repo knowledge layer for coding agents.
 
@@ -18,10 +18,42 @@ This repository and the kit under `scaffold/` were produced with the help of AI 
 
 ## Quick start
 
-1. Copy the full `scaffold/` directory into your project as `.agents/` (merge carefully if `.agents/` already exists).
-2. Keep session bundles out of version control: after copying, `.agents/.gitignore` ignores `sessions/*` (paths relative to `.agents/`). If your workflow requires it, mirror the same patterns in the repo root `.gitignore`.
+### For humans
+
+You can install the kit manually or ask an agent to do it.
+
+Manual install:
+
+1. Copy `scaffold/` into your project as `.agents/`.
+2. If the project already has `.agents/`, merge instead of replacing; preserve repo-specific `rules/`, `playbooks/`, and `skills/`.
 3. Edit `.agents/AGENTS.md` with real build, test, and project conventions.
-4. Wire **skills** and **agent** markdown files into your editor or agent product (names and paths differ by tool; see below).
+4. Wire `.agents/skills/*/SKILL.md` and `.agents/agents/*.md` into your editor or agent product.
+
+Agent-assisted install:
+
+```text
+Install the Agent Knowledge Starter Kit into this repo. Follow INSTALL.md from the starter kit. Preserve any existing repo-specific `.agents/rules/`, `.agents/playbooks/`, and `.agents/skills/`; merge missing kit pieces instead of replacing `.agents/` wholesale. After installing, summarize changed files and any manual tool-integration steps I still need to do.
+```
+
+### For agents
+
+Follow [INSTALL.md](INSTALL.md). Treat `scaffold/` as the source tree that becomes `.agents/` in the target repo. If `.agents/` already exists, merge conservatively and preserve existing repo-specific knowledge.
+
+## Adopting into an existing `.agents/`
+
+Do not replace an existing `.agents/` tree wholesale unless it is already disposable template content. Preserve repo-specific knowledge first, especially existing `rules/`, `playbooks/`, and `skills/`, then merge in the missing starter-kit pieces.
+
+Use this checklist:
+
+1. Inventory existing `.agents/` content and mark domain-specific files to keep.
+2. Add missing starter-kit directories from `scaffold/`: `docs/`, `agents/`, and `sessions/`.
+3. Add the portable maintenance skills if they are not already present: `task-closeout`, `learning-distill`, and `knowledge-lint`.
+4. Merge `.agents/AGENTS.md` by hand so stable repo guidance stays concise and temporary history stays out.
+5. Confirm session ignore rules. Prefer the kit default in `.agents/.gitignore`: `sessions/*` and `!sessions/README.md`. Use repo-root `.gitignore` patterns only as an alternative: `.agents/sessions/*` and `!.agents/sessions/README.md`.
+6. Record the adoption in `.agents/docs/log.md` and any durable rationale in `.agents/docs/repo-decisions.md`.
+7. Update `.agents/docs/index.md` so pre-existing repo-specific `rules/`, `playbooks/`, and `skills/` are discoverable.
+
+If both root `AGENTS.md` and `.agents/AGENTS.md` exist, treat root `AGENTS.md` as the agent entrypoint for that checkout and `.agents/AGENTS.md` as the portable knowledge-layer file. Keep one source of truth for each instruction: root `AGENTS.md` should point agents into `.agents/` or contain only bootstrap guidance, while durable repo conventions live in `.agents/AGENTS.md`.
 
 ## Tool integration
 

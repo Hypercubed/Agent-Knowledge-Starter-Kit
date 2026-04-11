@@ -74,6 +74,22 @@ Putting a maintainer skill in `scaffold/` ships it to consumers, who often have 
 - Maintainer-only skills and any helper scripts stay under this repo’s `.agents/skills/<skill-name>/` beside `SKILL.md`.
 - Portable skills and agent role files remain under `scaffold/skills/` and `scaffold/agents/` and are merged into `.agents/` when maintainers run the documented sync.
 
+### Kit installation guidance lives in root docs
+
+### Status
+Accepted
+
+### Context
+Adopter-facing setup instructions need to explain how to copy or merge the starter kit into a target repository, including cases where `.agents/` already exists.
+
+### Rationale
+Installation guidance is about consuming this starter repository, not durable knowledge that every consumer should inherit inside its copied `.agents/` tree. Keeping setup guidance in root docs such as `README.md` and `INSTALL.md` lets `scaffold/` remain a clean consumer `.agents/` template.
+
+### Consequences
+- Put human quick-start guidance, agent install prompts, and detailed install checklists in root docs.
+- Add content to `scaffold/` only when every adopter should receive it inside their `.agents/` tree.
+- If installation guidance creates a durable local policy, record the rationale here rather than duplicating the full checklist.
+
 ## Entry template
 
 ### Decision
