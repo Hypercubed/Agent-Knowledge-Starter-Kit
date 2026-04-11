@@ -6,11 +6,22 @@ This pattern separates three concerns:
 
 1. **Temporary session outputs** live inside the repo under `.agents/sessions/`, with one folder per task-closeout bundle.
 2. **Durable repo knowledge** lives under `.agents/`.
-3. **Agent roles and skills** live inside that same `.agents/` folder and define how coding, learning, and maintenance passes operate.
+3. **Agent roles and skills** live in that same `.agents/` tree and describe how coding, learning, and maintenance workflows run.
 
-In this starter repository, `scaffold/` represents the full contents of `.agents/`. When adopting the kit, copy everything under `scaffold/` into the real `.agents/` directory.
+In this repository, `scaffold/` is the template for that tree. Copy everything under `scaffold/` into `.agents/` at the root of a project that adopts the kit.
 
-The goal is to avoid bloating a single `AGENTS.md` file with temporary notes, while still preserving useful lessons from completed work.
+The goal is to avoid bloating a single `AGENTS.md` with temporary notes, while still preserving useful lessons from completed work.
+
+## Quick start
+
+1. Copy the full `scaffold/` directory into your project as `.agents/` (merge carefully if `.agents/` already exists).
+2. Keep session bundles out of version control: after copying, `.agents/.gitignore` ignores `sessions/*` under that folder. If your workflow requires it, mirror the same patterns in the repo root `.gitignore`.
+3. Edit `.agents/AGENTS.md` with real build, test, and project conventions.
+4. Wire **skills** and **agent** markdown files into your editor or agent product (names and paths differ by tool; see below).
+
+## Tool integration
+
+This kit ships **content** (markdown, layout, and conventions), not a single vendor-specific config. You still need to register `skills/*/SKILL.md` and `agents/*.md` (or equivalent) however your stack expects. Keep the on-disk layout under `.agents/` stable so the knowledge layer stays portable when you change tools.
 
 ---
 
@@ -27,12 +38,7 @@ This starter kit introduces a small maintenance system:
 - a **learning agent** distills only the durable parts into `.agents/`
 - an optional **lint agent** keeps the knowledge layer coherent over time
 
-This is intentionally generic. It should work with any system that supports:
-
-- user-defined agents, modes, or personas
-- reusable skill/instruction files
-- access to repo files
-- access to repo files, including a gitignored `.agents/sessions/` area for temporary task artifacts
+This is intentionally generic. It should work with any system that supports user-defined agents or personas, reusable skill or instruction files, full repo file access, and a **gitignored** `.agents/sessions/` area for temporary task artifacts.
 
 ---
 
@@ -97,18 +103,18 @@ starter repo
 │   │   └── .gitkeep
 │   └── skills/
 │       ├── task-closeout/
-│       │   └── SKILL.md
+│       │   ├── SKILL.md
+│       │   └── example/
+│       │       └── task-bundle/
+│       │           ├── summary.json
+│       │           ├── active-task.md
+│       │           ├── learning-candidate.md
+│       │           ├── changed-files.txt
+│       │           └── validation.txt
 │       ├── learning-distill/
 │       │   └── SKILL.md
 │       └── knowledge-lint/
 │           └── SKILL.md
-└── examples/
-    └── task-bundle/
-        ├── summary.json
-        ├── active-task.md
-        ├── learning-candidate.md
-        ├── changed-files.txt
-        └── validation.txt
 
 consumer repo after adoption
 .
@@ -130,7 +136,14 @@ consumer repo after adoption
     │   └── .gitkeep
     └── skills/
         ├── task-closeout/
-        │   └── SKILL.md
+        │   ├── SKILL.md
+        │   └── example/
+        │       └── task-bundle/
+        │           ├── summary.json
+        │           ├── active-task.md
+        │           ├── learning-candidate.md
+        │           ├── changed-files.txt
+        │           └── validation.txt
         ├── learning-distill/
         │   └── SKILL.md
         └── knowledge-lint/
@@ -141,12 +154,9 @@ consumer repo after adoption
 
 ## Scaffold vs consumer layout
 
-- `scaffold/` is this starter repo's representation of the full contents of `.agents/`.
-- `scaffold/AGENTS.md`, `scaffold/docs/`, `scaffold/playbooks/`, `scaffold/agents/`, and `scaffold/skills/` should be treated as template paths in the starter repo.
-- `scaffold/sessions/` maps to `.agents/sessions/`.
-- `.agents/` is still the contract for a real repository using this pattern.
-- Treat `scaffold/` as copyable template content, not as this starter repo's active durable knowledge layer.
-- Update agent wiring for your tool as needed, but keep the durable knowledge destination as `.agents/`.
+- In **this** repo, `scaffold/` holds the same files a consumer will have under `.agents/`; it is template-only, not live project knowledge.
+- Paths under `scaffold/` mirror `.agents/` one-to-one (including `sessions/` and `skills/`).
+- After adoption, treat `.agents/` as the contract; adjust only wiring in your tool, not the overall layout, when possible.
 
 ## In-repo session output location
 
@@ -310,13 +320,10 @@ Otherwise it probably belongs in:
 
 ## Sharing this starter kit
 
-This kit is structured so it can be uploaded directly to:
+This kit is structured so it can live as a GitHub repository, a multi-file gist, a **Use this template** repo, or an internal docs tree.
 
-- a GitHub repository
-- a GitHub gist (multi-file)
-- a template repo
-- an internal engineering docs repo
+When adapting for a specific tool, keep the `.agents/` layout stable and change only wiring or light packaging under `agents/` and `skills/` inside that tree.
 
-When adapting it for a specific tool, keep the `.agents/` contract stable and change only the wiring or packaging inside `scaffold/agents/` and `scaffold/skills/`.
+## License
 
-That keeps the knowledge layer portable across editors and agent platforms.
+Released under the [MIT License](LICENSE).

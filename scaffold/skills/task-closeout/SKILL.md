@@ -18,6 +18,9 @@ Write inside the repo to `.agents/sessions/<session-folder>/`.
 - changed-files.txt
 - validation.txt
 
+## Example bundle
+Filled-in reference files live next to this skill under `example/task-bundle/`.
+
 ## Rules
 - Record only observable facts in active-task.md.
 - Record only candidate lessons in learning-candidate.md.
