@@ -34,21 +34,21 @@ Two or more folders under `.agents/sessions/` describe related work, or `summary
 #### Validation
 - Durable doc updates reference the right bundle IDs; raw session trees remain unchanged aside from allowed `summary.json` status fields.
 
-### Unexpected files under `sessions/` in git status
+### Unexpected files under `.agents/sessions/` in git status
 
 #### Symptom
-`git status` shows unwanted tracked files, or bundles appear tracked, under `sessions/`.
+`git status` shows unwanted tracked files, or bundles appear tracked, under `.agents/sessions/`.
 
 #### Likely causes
-- `.gitignore` negation rules do not match the tracked `README` path or filename (including case).
+- `.agents/.gitignore` negation rules do not match the tracked `README` path or filename (including case).
 - A local `.gitignore` differs from the kit after a partial copy.
 
 #### Fix
-- Confirm the pattern pair: ignore `sessions/*` (or equivalent) and a single negated path such as `!sessions/README.md` that exactly matches the file you intend to track.
+- Confirm the pattern pair in `.agents/.gitignore`: ignore `sessions/*` (or equivalent) and a single negated path such as `!sessions/README.md` (relative to `.agents/`) that exactly matches the file you intend to track.
 - Remove accidental `git add` of bundle paths; keep bundles untracked.
 
 #### Validation
-- Only the intended `sessions/README.md` (if any) is tracked; bundle directories stay ignored.
+- Only the intended `.agents/sessions/README.md` (if any) is tracked; bundle directories stay ignored.
 
 ### Maintainer skill lives under `scaffold/skills/` by mistake
 

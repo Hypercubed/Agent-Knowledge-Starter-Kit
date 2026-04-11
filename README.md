@@ -2,6 +2,10 @@
 
 A shareable, tool-agnostic starter kit for maintaining a compiled repo knowledge layer for coding agents.
 
+## Disclaimer
+
+This repository and the kit under `scaffold/` were produced with the help of AI tools. Everything here is **as-is**; **use at your own risk**. Validate instructions, commands, and policies for your environment before relying on them.
+
 This pattern separates three concerns:
 
 1. **Temporary session outputs** live inside the repo under `.agents/sessions/`, with one folder per task-closeout bundle.
@@ -10,18 +14,18 @@ This pattern separates three concerns:
 
 In this repository, `scaffold/` is the template for that tree. Copy everything under `scaffold/` into `.agents/` at the root of a project that adopts the kit.
 
-The goal is to avoid bloating a single `AGENTS.md` with temporary notes, while still preserving useful lessons from completed work.
+The goal is to avoid bloating a single `.agents/AGENTS.md` with temporary notes, while still preserving useful lessons from completed work.
 
 ## Quick start
 
 1. Copy the full `scaffold/` directory into your project as `.agents/` (merge carefully if `.agents/` already exists).
-2. Keep session bundles out of version control: after copying, `.agents/.gitignore` ignores `sessions/*` under that folder. If your workflow requires it, mirror the same patterns in the repo root `.gitignore`.
+2. Keep session bundles out of version control: after copying, `.agents/.gitignore` ignores `sessions/*` (paths relative to `.agents/`). If your workflow requires it, mirror the same patterns in the repo root `.gitignore`.
 3. Edit `.agents/AGENTS.md` with real build, test, and project conventions.
 4. Wire **skills** and **agent** markdown files into your editor or agent product (names and paths differ by tool; see below).
 
 ## Tool integration
 
-This kit ships **content** (markdown, layout, and conventions), not a single vendor-specific config. You still need to register `skills/*/SKILL.md` and `agents/*.md` (or equivalent) however your stack expects. Keep the on-disk layout under `.agents/` stable so the knowledge layer stays portable when you change tools.
+This kit ships **content** (markdown, layout, and conventions), not a single vendor-specific config. You still need to register `.agents/skills/*/SKILL.md` and `.agents/agents/*.md` (or equivalent) however your stack expects. Keep the on-disk layout under `.agents/` stable so the knowledge layer stays portable when you change tools.
 
 ---
 
@@ -50,9 +54,9 @@ Task packets are evidence. They capture what happened during one task.
 
 The `.agents/` directory is a compiled knowledge layer. It should contain only information that is stable, reusable, and likely to help future agents.
 
-### 2. `AGENTS.md` should stay small
+### 2. `.agents/AGENTS.md` should stay small
 
-`AGENTS.md` is for concise, repo-wide guidance.
+`.agents/AGENTS.md` is for concise, repo-wide guidance.
 
 It should not contain:
 
@@ -62,7 +66,7 @@ It should not contain:
 - speculative notes
 - one-off debugging details
 
-Those belong in session bundles, troubleshooting docs, playbooks, or repo decisions.
+Those belong in `.agents/sessions/` bundles, `.agents/docs/troubleshooting.md`, `.agents/playbooks/`, or `.agents/docs/repo-decisions.md`.
 
 ### 3. Distillation should be a separate role
 
@@ -263,7 +267,7 @@ Put here:
 
 ### `.agents/playbooks/`
 
-Durable multi-step procedures (sibling of `docs/`, not inside `docs/`).
+Durable multi-step procedures (sibling of `.agents/docs/`, not inside `.agents/docs/`).
 
 Put here:
 
@@ -322,7 +326,7 @@ Otherwise it probably belongs in:
 
 This kit is structured so it can live as a GitHub repository, a multi-file gist, a **Use this template** repo, or an internal docs tree.
 
-When adapting for a specific tool, keep the `.agents/` layout stable and change only wiring or light packaging under `agents/` and `skills/` inside that tree.
+When adapting for a specific tool, keep the `.agents/` layout stable and change only wiring or light packaging under `.agents/agents/` and `.agents/skills/` inside that tree.
 
 ## License
 

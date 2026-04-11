@@ -4,6 +4,10 @@ Consult this file first for repo-wide operational guidance.
 
 This file is template content for `.agents/AGENTS.md`.
 
+## Disclaimer
+
+This kit was produced with the help of AI tools. It is provided **as-is**; **use at your own risk**. Treat every file as a starting point: validate instructions, commands, and policies against your own project before you rely on them.
+
 ## Purpose
 
 This file contains concise, high-signal instructions for future agents working in this repository.
@@ -29,10 +33,10 @@ This file contains concise, high-signal instructions for future agents working i
 - Keep this file concise.
 - Prefer bullets over prose.
 - Add guidance only when it is stable and broadly useful.
-- Move rationale to the consumer repo's `.agents/docs/repo-decisions.md`.
-- Move recurring failure details to the consumer repo's `.agents/docs/troubleshooting.md`.
-- Move multi-step procedures to the consumer repo's `.agents/playbooks/` directory (sibling of `docs/`, not inside it).
-- Keep temporary task artifacts in the consumer repo's `.agents/sessions/`, not in durable knowledge files.
+- Move rationale to `.agents/docs/repo-decisions.md`.
+- Move recurring failure details to `.agents/docs/troubleshooting.md`.
+- Move multi-step procedures to `.agents/playbooks/` (sibling of `.agents/docs/`, not inside it).
+- Keep temporary task artifacts in `.agents/sessions/`, not in durable knowledge files.
 
 ## Placeholder sections
 
@@ -48,4 +52,4 @@ This file contains concise, high-signal instructions for future agents working i
 ### Before submitting changes
 - Run relevant tests.
 - Validate generated outputs if applicable.
-- Check for updates needed in the consumer repo's `.agents/` when durable lessons were learned.
+- Check for updates needed in `.agents/` when durable lessons were learned.

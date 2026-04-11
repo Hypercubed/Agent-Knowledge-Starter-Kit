@@ -9,13 +9,13 @@ description: Check the `.agents/` knowledge layer for duplication, contradiction
 Keep the compiled repo knowledge layer coherent, minimal, and current.
 
 ## Inputs
-- consumer repo `.agents/AGENTS.md`
-- consumer repo `.agents/docs/MAINTENANCE.md`
-- consumer repo `.agents/docs/index.md`
-- consumer repo `.agents/docs/log.md`
-- consumer repo `.agents/docs/repo-decisions.md`
-- consumer repo `.agents/docs/troubleshooting.md`
-- consumer repo `.agents/playbooks/`
+- `.agents/AGENTS.md`
+- `.agents/docs/MAINTENANCE.md`
+- `.agents/docs/index.md`
+- `.agents/docs/log.md`
+- `.agents/docs/repo-decisions.md`
+- `.agents/docs/troubleshooting.md`
+- `.agents/playbooks/`
 
 ## Checks
 - duplicate guidance
@@ -30,7 +30,7 @@ Keep the compiled repo knowledge layer coherent, minimal, and current.
 Produce:
 - a lint report
 - optional minimal edits
-- a log entry in the consumer repo's `.agents/docs/log.md`
+- a log entry in `.agents/docs/log.md`
 
 ## Constraints
 - Prefer reclassification and compression over adding more text.

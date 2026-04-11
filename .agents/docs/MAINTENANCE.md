@@ -12,27 +12,27 @@ This file belongs in `.agents/docs/`, alongside `.agents/AGENTS.md`.
 
 ## File roles
 
-### `AGENTS.md`
+### `.agents/AGENTS.md`
 Compact, high-signal operational guidance.
 
-### `docs/repo-decisions.md`
+### `.agents/docs/repo-decisions.md`
 Durable rationale, tradeoffs, and architectural choices.
 
-### `docs/troubleshooting.md`
+### `.agents/docs/troubleshooting.md`
 Recurring issue patterns, causes, fixes, and validations.
 
-### `../playbooks/`
+### `.agents/playbooks/`
 Durable multi-step procedures.
 
-### `docs/index.md`
+### `.agents/docs/index.md`
 Catalog of durable knowledge assets.
 
-### `docs/log.md`
+### `.agents/docs/log.md`
 Append-only maintenance log.
 
 ## Distillation policy
 
-A lesson belongs in `AGENTS.md` only if it is:
+A lesson belongs in `.agents/AGENTS.md` only if it is:
 
 - stable
 - concise
@@ -46,7 +46,7 @@ Task bundles live in `.agents/sessions/` and are temporary.
 
 After closeout, treat them as immutable except for status fields in `summary.json`.
 
-Keep bundle subfolders under `.agents/sessions/` gitignored. The kit may track a single `sessions/README.md` for human-facing guidance while every per-task bundle folder stays local-only.
+Keep bundle subfolders under `.agents/sessions/` gitignored. The kit may track a single `.agents/sessions/README.md` for human-facing guidance while every per-task bundle folder stays local-only.
 
 Use one session folder per task-closeout bundle and name folders with a sortable pattern such as `YYYYMMDD-HHMMSS-short-topic`.
 
@@ -61,6 +61,6 @@ Periodically review `.agents/` for:
 - duplication
 - contradictions
 - stale entries
-- oversized `AGENTS.md` sections
+- oversized `.agents/AGENTS.md` sections
 - missing index coverage
 - misplaced content

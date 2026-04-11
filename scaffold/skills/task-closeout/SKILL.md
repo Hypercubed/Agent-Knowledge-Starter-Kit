@@ -19,7 +19,7 @@ Write inside the repo to `.agents/sessions/<session-folder>/`.
 - validation.txt
 
 ## Example bundle
-Filled-in reference files live next to this skill under `example/task-bundle/`.
+Filled-in reference files live under `.agents/skills/task-closeout/example/task-bundle/` when this skill is installed under `.agents/skills/task-closeout/`.
 
 ## Rules
 - Record only observable facts in active-task.md.
@@ -61,7 +61,7 @@ Filled-in reference files live next to this skill under `example/task-bundle/`.
 - What failed
 - What worked
 - Reusable pattern
-- Candidate AGENTS update
+- Candidate `.agents/AGENTS.md` update
 - Candidate troubleshooting note
 - Candidate repo decision
 - Candidate playbook

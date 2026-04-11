@@ -42,7 +42,7 @@ Multi-step maintainer work can produce more than one task-closeout folder for a 
 Adding `prior_session` (path to the earlier bundle directory) records linkage and ordering without reopening or editing earlier packets, which should stay append-only after closeout.
 
 ### Consequences
-- Distillation across linked bundles relies on `task_id`, timestamps, and `prior_session`; see `docs/troubleshooting.md` for overlap symptoms and fixes (avoid rewriting closed session trees).
+- Distillation across linked bundles relies on `task_id`, timestamps, and `prior_session`; see `.agents/docs/troubleshooting.md` for overlap symptoms and fixes (avoid rewriting closed session trees).
 - Agents reconstructing history may follow `prior_session` when present.
 
 ### Sessions directory: tracked README with ignored bundles
@@ -51,10 +51,10 @@ Adding `prior_session` (path to the earlier bundle directory) records linkage an
 Accepted
 
 ### Context
-Consumers need a `sessions/` directory with guidance while keeping per-task bundle folders local.
+Consumers need a `.agents/sessions/` directory with guidance while keeping per-task bundle folders local.
 
 ### Rationale
-A short `README.md` gives human-facing context; pairing `sessions/*` with `!sessions/README.md` tracks exactly one file there while bundle subfolders stay ignored.
+A short `.agents/sessions/README.md` gives human-facing context; in `.agents/.gitignore`, pairing `sessions/*` with `!sessions/README.md` (paths relative to `.agents/`) tracks exactly one file there while bundle subfolders stay ignored.
 
 ### Consequences
 - After copying or merging the kit, confirm `.gitignore` exceptions match the tracked filename exactly (path segments and case).

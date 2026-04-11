@@ -4,7 +4,7 @@
 Outcome: updated  
 Files: `.agents/docs/repo-decisions.md`; `.agents/docs/troubleshooting.md`; `.agents/playbooks/maintainer-adoption-closeout-distill.md`; `.agents/docs/index.md`; `.agents/docs/log.md`; `.agents/sessions/20260411-203100-scaffold-sync-closeout/summary.json`  
 Accepted: 3 (maintainer-only skills never in `scaffold/` decision; wrong-placement troubleshooting; playbook + index pointers to selective sync skill)  
-Rejected: 1 (extra `AGENTS.md` bullet — already covered by existing “Skills” line)  
+Rejected: 1 (extra `.agents/AGENTS.md` bullet — already covered by existing “Skills” line)  
 Notes: Distilled scaffold sync closeout; sync mechanics stay in skill + `sync.sh`.
 
 ### [2026-04-11] knowledge-lint
@@ -17,7 +17,7 @@ Outcome: updated
 Files: `.agents/docs/repo-decisions.md`; `.agents/docs/troubleshooting.md`; `.agents/docs/MAINTENANCE.md`; `.agents/docs/index.md`; `.agents/playbooks/maintainer-adoption-closeout-distill.md`; `.agents/docs/log.md`; `.agents/sessions/20260411-185459-orchestrator-closeout/summary.json`; `.agents/sessions/20260411-190655-sessions-readme/summary.json`  
 Accepted: 7 (`prior_session` convention, sessions README + gitignore rationale, overlapping-bundle distill guidance, gitignore mismatch symptom/fix, MAINTENANCE sessions wording, maintainer checklist playbook, index playbook link)  
 Rejected: 0  
-Notes: Distilled orchestrator closeout and sessions README sessions; no `AGENTS.md` change (candidates optional or already covered).
+Notes: Distilled orchestrator closeout and sessions README sessions; no `.agents/AGENTS.md` change (candidates optional or already covered).
 
 ### [2026-04-11] policy | scaffold-vs-agents
 Outcome: updated  
@@ -37,12 +37,12 @@ Notes: Distilled dogfood adoption session; documented scaffold vs `.agents/` and
 
 ### [YYYY-MM-DD] learning-distill | <task-id>
 Outcome: updated
-Files: consumer repo `.agents/AGENTS.md`; consumer repo `.agents/docs/log.md`
+Files: `.agents/AGENTS.md`; `.agents/docs/log.md`
 Accepted: 0
 Rejected: 0
 Notes: brief summary
 
 ### [YYYY-MM-DD] knowledge-lint
 Outcome: cleanup
-Files: consumer repo `.agents/AGENTS.md`; consumer repo `.agents/docs/log.md`
+Files: `.agents/AGENTS.md`; `.agents/docs/log.md`
 Notes: brief summary

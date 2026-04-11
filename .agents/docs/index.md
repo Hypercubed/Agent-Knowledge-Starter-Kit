@@ -2,24 +2,24 @@
 
 This file belongs in `.agents/docs/`.
 
-## ../AGENTS.md
+## `.agents/AGENTS.md`
 Compact instructions for future agents. Consult first for repo-wide operational guidance.
 
-## docs/repo-decisions.md
+## `.agents/docs/repo-decisions.md`
 Durable rationale, tradeoffs, and architectural choices. Consult when a rule needs explanation.
 
-## docs/troubleshooting.md
+## `.agents/docs/troubleshooting.md`
 Recurring issue patterns, causes, fixes, and validation steps. Consult when debugging known classes of problems.
 
-## ../playbooks/
-Durable procedures for recurring workflows. In this layout, playbooks live under `.agents/playbooks/` (sibling of `docs/`, not inside `docs/`).
+## `.agents/playbooks/`
+Durable procedures for recurring workflows. In this layout, playbooks live under `.agents/playbooks/` (sibling of `.agents/docs/`, not inside it).
 
-Example (this repo): [`../playbooks/maintainer-adoption-closeout-distill.md`](../playbooks/maintainer-adoption-closeout-distill.md) — adopt kit, run closeouts, distill.
+Example (this repo): [`.agents/playbooks/maintainer-adoption-closeout-distill.md`](../playbooks/maintainer-adoption-closeout-distill.md) — adopt kit, run closeouts, distill.
 
-Maintainer-only (this repo): [`../skills/sync-scaffold-agents-skills/SKILL.md`](../skills/sync-scaffold-agents-skills/SKILL.md) — merge kit `agents/` and `skills/` into dogfood `.agents/`.
+Maintainer-only (this repo): [`.agents/skills/sync-scaffold-agents-skills/SKILL.md`](../skills/sync-scaffold-agents-skills/SKILL.md) — merge `scaffold/agents/` and `scaffold/skills/` into `.agents/agents/` and `.agents/skills/`.
 
-## docs/MAINTENANCE.md
+## `.agents/docs/MAINTENANCE.md`
 Maintenance schema and rules for this knowledge layer.
 
-## docs/log.md
+## `.agents/docs/log.md`
 Append-only record of distillation and maintenance activity.

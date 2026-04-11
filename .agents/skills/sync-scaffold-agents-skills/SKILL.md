@@ -49,5 +49,5 @@ Refresh `.agents/agents/` and `.agents/skills/` from **`scaffold/agents/`** and 
 
 ## Constraints
 
-- Do not sync `scaffold/docs`, `scaffold/playbooks`, `AGENTS.md`, or other paths via this skill unless the user asks for a different scope.
+- Do not sync `scaffold/docs/`, `scaffold/playbooks/`, `scaffold/AGENTS.md`, `.agents/AGENTS.md`, or other paths via this skill unless the user asks for a different scope.
 - Do not delete consumer-only skills or agents to “match” scaffold; missing kit files stay only in scaffold until the next successful sync adds them.
