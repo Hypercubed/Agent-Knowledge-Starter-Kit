@@ -39,6 +39,7 @@ This file contains concise, high-signal instructions for future agents working i
 - `scaffold/` in git is the **distributable kit**: it should read like a consumer’s `.agents/` tree only (no starter-repo narration inside those files).
 - An optional `.agents/` here is **maintainer dogfood** and may diverge from `scaffold/`; do not treat parity with `scaffold/` as a requirement.
 - Edit `scaffold/` when improving the generic template; use `.agents/` for lessons and workflow that apply to maintaining **this** repo.
+- **Skills:** add portable kit skills under `scaffold/skills/` (they sync into `.agents/skills/`). Add maintainer-only skills only under `.agents/skills/`, never under `scaffold/`; keep any helper script beside `SKILL.md` in that skill folder so adopters do not receive them.
 - Treat per-task bundle subfolders under `.agents/sessions/` as gitignored working memory unless deliberately force-added; a tracked `sessions/README.md` may exist per kit layout.
 
 ## Placeholder sections

@@ -1,5 +1,12 @@
 # Knowledge Maintenance Log
 
+### [2026-04-11] learning-distill | t-20260411-203100-scaffold-sync
+Outcome: updated  
+Files: `.agents/docs/repo-decisions.md`; `.agents/docs/troubleshooting.md`; `.agents/playbooks/maintainer-adoption-closeout-distill.md`; `.agents/docs/index.md`; `.agents/docs/log.md`; `.agents/sessions/20260411-203100-scaffold-sync-closeout/summary.json`  
+Accepted: 3 (maintainer-only skills never in `scaffold/` decision; wrong-placement troubleshooting; playbook + index pointers to selective sync skill)  
+Rejected: 1 (extra `AGENTS.md` bullet — already covered by existing “Skills” line)  
+Notes: Distilled scaffold sync closeout; sync mechanics stay in skill + `sync.sh`.
+
 ### [2026-04-11] knowledge-lint
 Outcome: updated  
 Files: `.agents/AGENTS.md`; `.agents/docs/repo-decisions.md`; `.agents/docs/index.md`; `.agents/docs/log.md`; `scaffold/AGENTS.md`; `README.md`; `.agents/skills/knowledge-lint/SKILL.md`; `.agents/skills/learning-distill/SKILL.md`; `scaffold/skills/knowledge-lint/SKILL.md`; `scaffold/skills/learning-distill/SKILL.md`  

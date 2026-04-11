@@ -16,6 +16,8 @@ Durable procedures for recurring workflows. In this layout, playbooks live under
 
 Example (this repo): [`../playbooks/maintainer-adoption-closeout-distill.md`](../playbooks/maintainer-adoption-closeout-distill.md) — adopt kit, run closeouts, distill.
 
+Maintainer-only (this repo): [`../skills/sync-scaffold-agents-skills/SKILL.md`](../skills/sync-scaffold-agents-skills/SKILL.md) — merge kit `agents/` and `skills/` into dogfood `.agents/`.
+
 ## docs/MAINTENANCE.md
 Maintenance schema and rules for this knowledge layer.
 
