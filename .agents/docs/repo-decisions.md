@@ -30,6 +30,35 @@ An earlier approach treated `.agents/` as a refreshed copy of `scaffold/`.
 ### Consequences
 That policy is retracted; see “Scaffold content stays consumer-generic” above.
 
+### Optional `prior_session` in session `summary.json`
+
+### Status
+Accepted (optional convention)
+
+### Context
+Multi-step maintainer work can produce more than one task-closeout folder for a single initiative (for example adoption work plus a later orchestrator meta-closeout).
+
+### Rationale
+Adding `prior_session` (path to the earlier bundle directory) records linkage and ordering without reopening or editing earlier packets, which should stay append-only after closeout.
+
+### Consequences
+- Distillation across linked bundles relies on `task_id`, timestamps, and `prior_session`; see `docs/troubleshooting.md` for overlap symptoms and fixes (avoid rewriting closed session trees).
+- Agents reconstructing history may follow `prior_session` when present.
+
+### Sessions directory: tracked README with ignored bundles
+
+### Status
+Accepted
+
+### Context
+Consumers need a `sessions/` directory with guidance while keeping per-task bundle folders local.
+
+### Rationale
+A short `README.md` gives human-facing context; pairing `sessions/*` with `!sessions/README.md` tracks exactly one file there while bundle subfolders stay ignored.
+
+### Consequences
+- After copying or merging the kit, confirm `.gitignore` exceptions match the tracked filename exactly (path segments and case).
+
 ## Entry template
 
 ### Decision

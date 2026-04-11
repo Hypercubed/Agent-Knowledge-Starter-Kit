@@ -261,9 +261,9 @@ Put here:
 - known fixes
 - validation steps
 
-### `.agents/docs/playbooks/`
+### `.agents/playbooks/`
 
-Durable multi-step procedures.
+Durable multi-step procedures (sibling of `docs/`, not inside `docs/`).
 
 Put here:
 
@@ -313,7 +313,7 @@ Otherwise it probably belongs in:
 
 - `.agents/docs/repo-decisions.md`
 - `.agents/docs/troubleshooting.md`
-- `.agents/docs/playbooks/`
+- `.agents/playbooks/`
 - nowhere at all
 
 ---

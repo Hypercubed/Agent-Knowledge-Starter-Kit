@@ -12,7 +12,9 @@ Durable rationale, tradeoffs, and architectural choices. Consult when a rule nee
 Recurring issue patterns, causes, fixes, and validation steps. Consult when debugging known classes of problems.
 
 ## ../playbooks/
-Durable procedures for recurring workflows.
+Durable procedures for recurring workflows. In this layout, playbooks live under `.agents/playbooks/` (sibling of `docs/`, not inside `docs/`).
+
+Example (this repo): [`../playbooks/maintainer-adoption-closeout-distill.md`](../playbooks/maintainer-adoption-closeout-distill.md) — adopt kit, run closeouts, distill.
 
 ## docs/MAINTENANCE.md
 Maintenance schema and rules for this knowledge layer.

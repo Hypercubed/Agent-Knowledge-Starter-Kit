@@ -31,7 +31,7 @@ This file contains concise, high-signal instructions for future agents working i
 - Add guidance only when it is stable and broadly useful.
 - Move rationale to the consumer repo's `.agents/docs/repo-decisions.md`.
 - Move recurring failure details to the consumer repo's `.agents/docs/troubleshooting.md`.
-- Move multi-step procedures to the consumer repo's `.agents/docs/playbooks/`.
+- Move multi-step procedures to the consumer repo's `.agents/playbooks/` directory (sibling of `docs/`, not inside it).
 - Keep temporary task artifacts in the consumer repo's `.agents/sessions/`, not in durable knowledge files.
 
 ## This repository (agent-knowledge-starter)
@@ -39,7 +39,7 @@ This file contains concise, high-signal instructions for future agents working i
 - `scaffold/` in git is the **distributable kit**: it should read like a consumer’s `.agents/` tree only (no starter-repo narration inside those files).
 - An optional `.agents/` here is **maintainer dogfood** and may diverge from `scaffold/`; do not treat parity with `scaffold/` as a requirement.
 - Edit `scaffold/` when improving the generic template; use `.agents/` for lessons and workflow that apply to maintaining **this** repo.
-- Session bundles under `.agents/sessions/` stay gitignored unless you deliberately force-add them.
+- Treat per-task bundle subfolders under `.agents/sessions/` as gitignored working memory unless deliberately force-added; a tracked `sessions/README.md` may exist per kit layout.
 
 ## Placeholder sections
 

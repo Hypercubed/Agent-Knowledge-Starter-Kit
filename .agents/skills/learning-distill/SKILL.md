@@ -16,7 +16,7 @@ Convert raw task evidence into concise, durable repo knowledge.
 - `.agents/docs/log.md`
 - `.agents/docs/repo-decisions.md`
 - `.agents/docs/troubleshooting.md`
-- `.agents/docs/playbooks/`
+- `.agents/playbooks/`
 
 ## Classification categories
 Classify each candidate lesson as one of:
@@ -31,7 +31,7 @@ Classify each candidate lesson as one of:
 - Do not copy task history into `.agents/AGENTS.md`.
 - Use `.agents/docs/repo-decisions.md` for rationale and nuance.
 - Use `.agents/docs/troubleshooting.md` for recurring failures and fixes.
-- Use `.agents/docs/playbooks/` for durable multi-step procedures.
+- Use `.agents/playbooks/` for durable multi-step procedures.
 - Add to `.agents/AGENTS.md` only if the lesson is broad, stable, concise, and actionable.
 - Reject low-confidence or one-off lessons.
 

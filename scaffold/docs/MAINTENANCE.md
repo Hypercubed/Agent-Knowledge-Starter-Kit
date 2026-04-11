@@ -46,7 +46,7 @@ Task bundles live in `.agents/sessions/` and are temporary.
 
 After closeout, treat them as immutable except for status fields in `summary.json`.
 
-Keep `.agents/sessions/` in the repo but ignored by git so temporary working-memory artifacts do not become committed durable knowledge.
+Keep bundle subfolders under `.agents/sessions/` gitignored. The kit may track a single `sessions/README.md` for human-facing guidance while every per-task bundle folder stays local-only.
 
 Use one session folder per task-closeout bundle and name folders with a sortable pattern such as `YYYYMMDD-HHMMSS-short-topic`.
 

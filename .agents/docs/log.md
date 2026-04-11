@@ -1,5 +1,17 @@
 # Knowledge Maintenance Log
 
+### [2026-04-11] knowledge-lint
+Outcome: updated  
+Files: `.agents/AGENTS.md`; `.agents/docs/repo-decisions.md`; `.agents/docs/index.md`; `.agents/docs/log.md`; `scaffold/AGENTS.md`; `README.md`; `.agents/skills/knowledge-lint/SKILL.md`; `.agents/skills/learning-distill/SKILL.md`; `scaffold/skills/knowledge-lint/SKILL.md`; `scaffold/skills/learning-distill/SKILL.md`  
+Notes: Fixed playbook path everywhere (`playbooks/` vs `docs/playbooks/`); aligned sessions bullet with MAINTENANCE; deduped `prior_session` consequences vs troubleshooting; clarified index playbooks location.
+
+### [2026-04-11] learning-distill | t-20260411-185459-orchestrator, t-20260411-190655-sessions-readme
+Outcome: updated  
+Files: `.agents/docs/repo-decisions.md`; `.agents/docs/troubleshooting.md`; `.agents/docs/MAINTENANCE.md`; `.agents/docs/index.md`; `.agents/playbooks/maintainer-adoption-closeout-distill.md`; `.agents/docs/log.md`; `.agents/sessions/20260411-185459-orchestrator-closeout/summary.json`; `.agents/sessions/20260411-190655-sessions-readme/summary.json`  
+Accepted: 7 (`prior_session` convention, sessions README + gitignore rationale, overlapping-bundle distill guidance, gitignore mismatch symptom/fix, MAINTENANCE sessions wording, maintainer checklist playbook, index playbook link)  
+Rejected: 0  
+Notes: Distilled orchestrator closeout and sessions README sessions; no `AGENTS.md` change (candidates optional or already covered).
+
 ### [2026-04-11] policy | scaffold-vs-agents
 Outcome: updated  
 Files: `scaffold/*` (reverted generic templates); `.agents/AGENTS.md`; `.agents/docs/repo-decisions.md`; `.agents/docs/troubleshooting.md`; `.agents/docs/index.md`; `.agents/docs/log.md`; removed `playbooks/refresh-dot-agents-from-scaffold.md`  

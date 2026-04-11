@@ -15,7 +15,7 @@ Keep the compiled repo knowledge layer coherent, minimal, and current.
 - consumer repo `.agents/docs/log.md`
 - consumer repo `.agents/docs/repo-decisions.md`
 - consumer repo `.agents/docs/troubleshooting.md`
-- consumer repo `.agents/docs/playbooks/`
+- consumer repo `.agents/playbooks/`
 
 ## Checks
 - duplicate guidance

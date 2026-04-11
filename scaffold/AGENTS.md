@@ -31,7 +31,7 @@ This file contains concise, high-signal instructions for future agents working i
 - Add guidance only when it is stable and broadly useful.
 - Move rationale to the consumer repo's `.agents/docs/repo-decisions.md`.
 - Move recurring failure details to the consumer repo's `.agents/docs/troubleshooting.md`.
-- Move multi-step procedures to the consumer repo's `.agents/docs/playbooks/`.
+- Move multi-step procedures to the consumer repo's `.agents/playbooks/` directory (sibling of `docs/`, not inside it).
 - Keep temporary task artifacts in the consumer repo's `.agents/sessions/`, not in durable knowledge files.
 
 ## Placeholder sections
