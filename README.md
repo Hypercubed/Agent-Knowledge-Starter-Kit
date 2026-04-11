@@ -2,10 +2,6 @@
 
 A shareable, tool-agnostic starter kit for maintaining a compiled repo knowledge layer for coding agents.
 
-## Disclaimer
-
-This repository and the kit under `scaffold/` were produced with the help of AI tools. Everything here is **as-is**; **use at your own risk**. Validate instructions, commands, and policies for your environment before relying on them.
-
 This pattern separates three concerns:
 
 1. **Temporary session outputs** live inside the repo under `.agents/sessions/`, with one folder per task-closeout bundle.
@@ -15,6 +11,10 @@ This pattern separates three concerns:
 In this repository, `scaffold/` is the template for that tree. Copy everything under `scaffold/` into `.agents/` at the root of a project that adopts the kit.
 
 The goal is to avoid bloating a single `.agents/AGENTS.md` with temporary notes, while still preserving useful lessons from completed work.
+
+## Disclaimer
+
+This repository and the kit under `scaffold/` were produced with the help of AI tools. Everything here is **as-is**; **use at your own risk**. Validate instructions, commands, and policies for your environment before relying on them.
 
 ## Quick start
 
@@ -34,7 +34,7 @@ This kit ships **content** (markdown, layout, and conventions), not a single ven
 Most coding agents can edit code well enough, but repo learning often degrades into one of two bad outcomes:
 
 - useful lessons are lost after the session ends
-- too much low-quality context gets stuffed into instructions files
+- too much low-quality context gets stuffed into instruction files
 
 This starter kit introduces a small maintenance system:
 
