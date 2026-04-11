@@ -100,7 +100,7 @@ starter repo
 │   │   ├── learning-agent.md
 │   │   └── lint-agent.md
 │   ├── sessions/
-│   │   └── .gitkeep
+│   │   └── README.md
 │   └── skills/
 │       ├── task-closeout/
 │       │   ├── SKILL.md
@@ -133,7 +133,7 @@ consumer repo after adoption
     │   ├── learning-agent.md
     │   └── lint-agent.md
     ├── sessions/
-    │   └── .gitkeep
+    │   └── README.md
     └── skills/
         ├── task-closeout/
         │   ├── SKILL.md
@@ -154,9 +154,9 @@ consumer repo after adoption
 
 ## Scaffold vs consumer layout
 
-- In **this** repo, `scaffold/` holds the same files a consumer will have under `.agents/`; it is template-only, not live project knowledge.
-- Paths under `scaffold/` mirror `.agents/` one-to-one (including `sessions/` and `skills/`).
-- After adoption, treat `.agents/` as the contract; adjust only wiring in your tool, not the overall layout, when possible.
+- `scaffold/` is the **published kit**: treat it as if it were already rooted at `.agents/` in a consumer project. It should not describe this GitHub repo’s layout or maintainer-only workflows.
+- This starter repository may also keep an optional `.agents/` for dogfood; that tree **does not** have to stay identical to `scaffold/` (maintainer-specific notes may live only under `.agents/` here).
+- After adoption elsewhere, the consumer’s `.agents/` is the contract; adjust only wiring in your tool, not the overall layout, when possible.
 
 ## In-repo session output location
 
