@@ -14,7 +14,6 @@ Accepted: 1 (after an integration guide first draft, do one realistic dogfood pa
 Rejected: 2 (`.agents/AGENTS.md` update absent; repo decision candidate too process-local for `repo-decisions.md`)
 Notes: Distilled OpenClaw guide refinement closeout; promoted a small integration-guide playbook improvement and kept the product-specific example in `docs/integrations/openclaw.md`.
 
-
 ### [2026-04-12] learning-distill | t-20260412-154653-openclaw-integration-guide
 Outcome: updated
 Files: `.agents/playbooks/writing-integration-guides.md`; `.agents/docs/log.md`; `.agents/sessions/20260412-154653-openclaw-integration-guide/summary.json`
