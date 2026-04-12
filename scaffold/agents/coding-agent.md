@@ -23,8 +23,7 @@ Produce a task bundle when a task:
 
 Write the closeout bundle to `.agents/sessions/<session-folder>/`, using one session folder per bundle and a sortable name such as `YYYYMMDD-HHMMSS-short-topic`.
 
-Record the canonical task/session identifier as the `task_id` field inside the
-bundle's `summary.json`. The session folder is only a storage label.
+Record the canonical task/session identifier as the `task_id` field inside the bundle's `summary.json`. The session folder is only a storage label.
 
 ## Constraints
 

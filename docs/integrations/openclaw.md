@@ -184,11 +184,13 @@ This is where OpenClaw is especially strong: it can drive the maintenance loop c
 Use `.agents/` as the shared contract across OpenClaw and other tools.
 
 Best when:
+
 - multiple tools touch the same repo
 - you want portable repo knowledge in Git
 - OpenClaw is one participant, not the only runtime
 
 Trade-off:
+
 - requires discipline to keep policy out of OpenClaw-only memory or automation text
 
 #### 2. Replicate into OpenClaw-native structures
@@ -196,10 +198,12 @@ Trade-off:
 Mirror some repo guidance into OpenClaw memory, skills, or standing instructions.
 
 Best when:
+
 - the repo is effectively private to one OpenClaw operator
 - convenience matters more than cross-tool portability
 
 Trade-off:
+
 - easy to create drift and duplicate sources of truth
 - weaker fit for a shareable repo knowledge layer
 
@@ -208,10 +212,12 @@ Trade-off:
 Use OpenClaw-native memory and automation for assistant continuity and orchestration, while keeping repo policy canonical under `.agents/`.
 
 Best when:
+
 - you want OpenClaw's persistent-assistant strengths without losing the portable repo contract
 - the same repo may also be touched by Cursor, Codex, CI, or future tools
 
 Trade-off:
+
 - requires a clear boundary between personal memory and repo knowledge
 
 ## 5. Two-tool example: OpenClaw + Codex sharing a repo

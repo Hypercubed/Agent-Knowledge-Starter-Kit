@@ -1,8 +1,8 @@
 ---
 description: >
-  Document using out-of-repo knowledge trees (for example ~/.agents) for
-  personal or org overlays, including precedence versus in-repo .agents/ and
-  what must remain in the repository for teammates and CI.
+  Document using out-of-repo knowledge trees (for example ~/.agents) for personal or org overlays, including precedence versus in-repo .agents/ and what must remain in the repository for teammates and CI.
+
+
 created: 2026-04-11
 status: draft
 writer: AI

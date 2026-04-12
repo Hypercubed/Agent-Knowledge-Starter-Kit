@@ -1,19 +1,14 @@
 # Plan: Add Knowledge Search Skill
 
-**Status:** planned
-**Goal:** Add a `knowledge-search` skill to prevent context bloat and explicitly train agents on how to dynamically locate and read relevant docs rather than loading the entire knowledge layer into context.
-**Date:** 2026-04-12
-**Priority:** Medium
-**Blocked by:** none
-**Scope estimate:** Small (1 skill creation, minor doc updates)
+**Status:** planned **Goal:** Add a `knowledge-search` skill to prevent context bloat and explicitly train agents on how to dynamically locate and read relevant docs rather than loading the entire knowledge layer into context. **Date:** 2026-04-12 **Priority:** Medium **Blocked by:** none **Scope estimate:** Small (1 skill creation, minor doc updates)
 
 ---
 
 ## Overview
 
-Currently, the primary entry point is `.agents/AGENTS.md` and `.agents/docs/index.md`. On large, long-lived projects, the number of files in `.agents/docs/` and `.agents/playbooks/` will grow significantly. Less sophisticated or overly eager agents might try to load *all* documentation into their context window at session start to find answers, leading to massive token costs and context degradation.
+Currently, the primary entry point is `.agents/AGENTS.md` and `.agents/docs/index.md`. On large, long-lived projects, the number of files in `.agents/docs/` and `.agents/playbooks/` will grow significantly. Less sophisticated or overly eager agents might try to load _all_ documentation into their context window at session start to find answers, leading to massive token costs and context degradation.
 
-Introducing a `knowledge-search` skill formally codifies the behavior of **searching before reading**. It will instruct agents to use their native file-search tools (like grep, ripgrep, or similar tool APIs) against `.agents/` targeting specific keywords before attempting to `read_file` or load entire directories. 
+Introducing a `knowledge-search` skill formally codifies the behavior of **searching before reading**. It will instruct agents to use their native file-search tools (like grep, ripgrep, or similar tool APIs) against `.agents/` targeting specific keywords before attempting to `read_file` or load entire directories.
 
 ## Guide structure for the skill
 
@@ -25,21 +20,24 @@ The skill should be structured similarly to `task-closeout` and `learning-distil
    - Do NOT attempt to read every file in `.agents/docs/`.
    - Use a filesystem search tool (like grep) to search for the query text across `.agents/docs/` and `.agents/playbooks/`.
    - Read `.agents/docs/index.md` as a fallback to locate structural categories.
-   - Once a relevant file is identified from the search hit, read *only* that specific file.
-4. **Constraints**: Never run a `cat` or `read` blindly on the entire `.agents/` directory. 
+   - Once a relevant file is identified from the search hit, read _only_ that specific file.
+4. **Constraints**: Never run a `cat` or `read` blindly on the entire `.agents/` directory.
 
 ## Tasks
 
 ### 1. Create the `knowledge-search` skill
+
 - Draft `scaffold/skills/knowledge-search/SKILL.md`.
 - Mirror it to `.agents/skills/knowledge-search/SKILL.md` for maintainer dogfooding.
 - Add an example or helper script if necessary (though text instructions are usually enough for agentic models).
 
 ### 2. Update architectural docs
+
 - Detail this skill in `docs/architecture.md` and list it among the core tools (`task-closeout`, `knowledge-lint`, `learning-distill`).
-- Update `scaffold/AGENTS.md` to include a line like: *“If you cannot find the answer immediately, use the `knowledge-search` skill before guessing or asking the user.”*
+- Update `scaffold/AGENTS.md` to include a line like: _“If you cannot find the answer immediately, use the `knowledge-search` skill before guessing or asking the user.”_
 
 ### 3. Verification pass
+
 - Run a dummy task on a repository with a bloated `.agents/` folder using an agent like Antigravity, OpenClaw, or Claude Code.
 - Ask a highly specific question ("How do we handle the database migration lock?").
 - Verify that the agent successfully discovers and uses `knowledge-search` rather than indiscriminately mapping the whole directory structure.

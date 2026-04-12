@@ -99,9 +99,7 @@ If the repo needs explicit instruction routing, keep it small:
 
 ```json
 {
-  "instructions": [
-    "AGENTS.md"
-  ]
+  "instructions": ["AGENTS.md"]
 }
 ```
 
@@ -116,8 +114,7 @@ If you want a Kilo slash command for knowledge maintenance, point it back at the
 description: Close a task using the repo knowledge workflow
 ---
 
-Read `.agents/skills/task-closeout/SKILL.md` and follow it exactly.
-Keep temporary evidence under `.agents/sessions/`.
+Read `.agents/skills/task-closeout/SKILL.md` and follow it exactly. Keep temporary evidence under `.agents/sessions/`.
 ```
 
 The same rule applies to `.kilo/agent/*.md`: keep the agent prompt short and route it to `.agents/` docs instead of forking the guidance.

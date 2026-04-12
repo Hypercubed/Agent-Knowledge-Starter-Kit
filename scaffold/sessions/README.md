@@ -4,5 +4,4 @@ Task-closeout bundles go here as **gitignored** subfolders (for example `YYYYMMD
 
 Only this file is tracked. Everything else under `.agents/sessions/` stays local working memory until distilled into durable docs under `.agents/`.
 
-The folder name is a sortable storage label. The canonical task/session
-identifier is the `task_id` field inside each bundle's `summary.json`.
+The folder name is a sortable storage label. The canonical task/session identifier is the `task_id` field inside each bundle's `summary.json`.

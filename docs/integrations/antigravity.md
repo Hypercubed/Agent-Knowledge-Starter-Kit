@@ -10,6 +10,7 @@ This guide was verified against Antigravity's current behavior using the standar
 ## 1. Prerequisites
 
 You should have:
+
 - A repository populated with the kit layout under `.agents/` (typically by copying `scaffold/` from the starter kit).
 - Access to the Antigravity agent CLI or tool interface.
 
@@ -26,19 +27,20 @@ You should have:
 ### Antigravity Knowledge Items (KIs) vs kit `.agents/docs/`
 
 Antigravity maintains KIs as part of its **Persistent Context**. These files are:
+
 - **Agent-private & Local**: Typically stored locally and persisting across multiple sessions on that machine for the user.
 - **Dynamic**: Natively searched and summarized at the beginning of interactions based on the repository state.
 
 The kit's `.agents/` folder is:
-- **Repo-shared & Committed**: Used by *any* agent or team member on any machine.
+
+- **Repo-shared & Committed**: Used by _any_ agent or team member on any machine.
 - **Version-controlled**: Trackable via `git diff`.
 
-**Integration pattern:** Treat the kit's `.agents/` folder as the true repo-shared knowledge. Antigravity can dynamically pull context, but you must still persist durable knowledge using the kit's systems so *other tools* can read it.
+**Integration pattern:** Treat the kit's `.agents/` folder as the true repo-shared knowledge. Antigravity can dynamically pull context, but you must still persist durable knowledge using the kit's systems so _other tools_ can read it.
 
 ### Antigravity Artifacts vs kit `.agents/sessions/`
 
-When Antigravity enters Planning Mode, it creates markdown files (Implementation Plans, Tasks, Walkthroughs) natively tracking its work. However, it stores these in its own `<appDataDir>`, **not** the repo. 
-To follow the kit's philosophy, you must instruct Antigravity to deliberately copy/export its closeout summaries to `.agents/sessions/<id>/` when the work is done.
+When Antigravity enters Planning Mode, it creates markdown files (Implementation Plans, Tasks, Walkthroughs) natively tracking its work. However, it stores these in its own `<appDataDir>`, **not** the repo. To follow the kit's philosophy, you must instruct Antigravity to deliberately copy/export its closeout summaries to `.agents/sessions/<id>/` when the work is done.
 
 ## 3. Setup steps
 
@@ -72,13 +74,16 @@ Suggested flow for Antigravity in a kit-enabled repo:
 ### Other tools aren't seeing what Antigravity learned
 
 #### Symptom
+
 Antigravity thoroughly researched and optimized a pattern, but Cursor or Codex keeps breaking it.
 
 #### Likely causes
-Antigravity either saved the context inside its private Knowledge Items (KIs) or kept its artifacts in `<appDataDir>\brain\`. Neither is visible to a CI agent or a teammate's IDE. 
+
+Antigravity either saved the context inside its private Knowledge Items (KIs) or kept its artifacts in `<appDataDir>\brain\`. Neither is visible to a CI agent or a teammate's IDE.
 
 #### Fix
-Prompt Antigravity to write the finalized documentation or conventions into `.agents/docs/` or `.agents/AGENTS.md`. The `.agents/` tree is the shared communication boundary for all tools. 
+
+Prompt Antigravity to write the finalized documentation or conventions into `.agents/docs/` or `.agents/AGENTS.md`. The `.agents/` tree is the shared communication boundary for all tools.
 
 ## 7. References
 

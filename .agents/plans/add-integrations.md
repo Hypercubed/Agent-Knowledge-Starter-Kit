@@ -1,17 +1,12 @@
 # Plan: Add Integration Guides
 
-**Status:** in-progress
-**Goal:** Create `docs/integrations/` with per-tool integration guides so users of different agents/IDEs can connect this kit to their workflow.
-**Date:** 2025-04-12
-**Priority:** High
-**Blocked by:** verify each tool against real behavior before documenting it
-**Scope estimate:** multiple small docs PRs
+**Status:** in-progress **Goal:** Create `docs/integrations/` with per-tool integration guides so users of different agents/IDEs can connect this kit to their workflow. **Date:** 2025-04-12 **Priority:** High **Blocked by:** verify each tool against real behavior before documenting it **Scope estimate:** multiple small docs PRs
 
 ---
 
 ## Overview
 
-The kit explains *what* `.agents/` does but does not yet show users *how* to wire it into their specific tool. We need integration guides — step-by-step, per-tool, in `docs/integrations/`.
+The kit explains _what_ `.agents/` does but does not yet show users _how_ to wire it into their specific tool. We need integration guides — step-by-step, per-tool, in `docs/integrations/`.
 
 ## Verified corrections from the Hermes pass
 
@@ -40,7 +35,7 @@ Each guide should follow a consistent structure (a template file can be added on
 Each guide should focus on what makes the tool's integration unique. Persistent assistants (Hermes, OpenClaw) need explicit coverage of how their native memory/skills interact with the kit's repo knowledge. IDE-integrated tools (Cursor, Copilot, VS Code extensions) need explicit coverage of discovery files and rule formats.
 
 | Guide | Tool type | Discovery mechanism | Key integration question | Status |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | `antigravity.md` | Agentic AI | KIs, Context Logs | How to separate local KI memory from repo-shared `.agents/` and export artifacts via task-closeout | **done / verified** |
 | `hermes.md` | Persistent assistant | memory, session recall, Hermes skills, `AGENTS.md` | When to use Hermes memory vs repo knowledge, and how to avoid the dual-skill-namespace trap | **done / verified** |
 | `openclaw.md` | Persistent assistant | `AGENTS.md`, startup files, native memory, session tools, automation, `.agents/skills/` | How OpenClaw's native memory, automation, and startup behavior overlap with the kit without replacing the repo knowledge layer | **done** — verified against local OpenClaw docs/CLI and live `openclaw status` |

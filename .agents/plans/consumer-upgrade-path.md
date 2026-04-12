@@ -1,8 +1,8 @@
 ---
 description: >
-  Provide a consumer-friendly upgrade path when replacing or merging a new
-  scaffold/ drop into an existing project that already adopted an earlier kit
-  version.
+  Provide a consumer-friendly upgrade path when replacing or merging a new scaffold/ drop into an existing project that already adopted an earlier kit version.
+
+
 created: 2026-04-11
 status: partially implemented
 writer: AI

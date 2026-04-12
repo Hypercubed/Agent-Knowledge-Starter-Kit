@@ -13,24 +13,31 @@ This file belongs in `.agents/docs/`, alongside `.agents/AGENTS.md`.
 ## File roles
 
 ### `.agents/AGENTS.md`
+
 Compact, high-signal operational guidance.
 
 ### `.agents/docs/repo-decisions.md`
+
 Durable rationale, tradeoffs, and architectural choices.
 
 ### `.agents/docs/troubleshooting.md`
+
 Recurring issue patterns, causes, fixes, and validations.
 
 ### `.agents/playbooks/`
+
 Durable multi-step procedures.
 
 ### `.agents/docs/index.md`
+
 Catalog of durable knowledge assets.
 
 ### `.agents/docs/log.md`
+
 Append-only maintenance log.
 
 ### `.agents/plans/`
+
 Active task planning, research documents, and implementation plans.
 
 ## Distillation policy

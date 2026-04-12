@@ -1,6 +1,7 @@
 # Writing Integration Guides for Convergent Tools
 
 ## Trigger
+
 When writing an integration guide for an agent tool that has its own memory, skills, or knowledge systems (e.g., Hermes, OpenClaw), or for **IDE-integrated / rules-based** tools (e.g., Cursor project rules, Copilot instructions files).
 
 ## Steps
@@ -24,6 +25,7 @@ When writing an integration guide for an agent tool that has its own memory, ski
 8. **Prefer one post-dogfood refinement pass.** After the first working draft, run at least one realistic workflow through the target tool. If that lived run clarifies the value proposition or exposes missing framing, add one short concrete example to the published guide. If you are running as the target tool during the writing session, that session itself qualifies as the dogfood pass — note this explicitly in the guide's verification statement and in the task-closeout `Remaining Work` section.
 
 ## Pitfalls
+
 - Don't assume the tool adopted the kit — they may be convergent, not compatible.
 - Don't oversell the kit. The tool's native systems may be better for some tasks.
 - Don't skip the namespace collision problem. If the tool has its own `skills/` or `memory/` directories, explain how to avoid confusion with the kit's equivalents.

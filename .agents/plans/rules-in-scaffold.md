@@ -1,8 +1,8 @@
 ---
 description: >
-  Extend the distributable kit under scaffold/ with a documented place for
-  tool-agnostic or tool-adjacent agent rules, plus guidance on when distilled
-  learning should land in rules versus AGENTS.md, docs, or playbooks.
+  Extend the distributable kit under scaffold/ with a documented place for tool-agnostic or tool-adjacent agent rules, plus guidance on when distilled learning should land in rules versus AGENTS.md, docs, or playbooks.
+
+
 created: 2026-04-11
 status: draft
 writer: AI

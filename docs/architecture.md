@@ -118,15 +118,11 @@ consumer repo after adoption
 
 ## Task and session identity
 
-Each task-closeout bundle has one canonical task/session identifier: the
-`task_id` field inside `.agents/sessions/<session-folder>/summary.json`.
+Each task-closeout bundle has one canonical task/session identifier: the `task_id` field inside `.agents/sessions/<session-folder>/summary.json`.
 
-The session folder name is a sortable storage label. It should be
-human-readable and usually aligned with the task, but agents should not infer
-canonical identity from the folder name.
+The session folder name is a sortable storage label. It should be human-readable and usually aligned with the task, but agents should not infer canonical identity from the folder name.
 
-Use `repo_id` for the stable repository or project context. Use `task_id` for
-the specific task/session.
+Use `repo_id` for the stable repository or project context. Use `task_id` for the specific task/session.
 
 When passing work between agents, provide both:
 
@@ -163,11 +159,7 @@ These files are temporary working-memory artifacts that stay inside the repo so 
 
 Keep `.agents/sessions/` gitignored so bundles stay local and do not become committed durable knowledge.
 
-Repo-local storage is the default because session evidence stays near the code
-and durable docs it describes. If agents run in cloud, ephemeral, or
-multi-machine environments, adapt the storage location or backup process so
-bundles survive long enough to distill. Keep the same bundle shape and keep
-per-task artifacts out of commits.
+Repo-local storage is the default because session evidence stays near the code and durable docs it describes. If agents run in cloud, ephemeral, or multi-machine environments, adapt the storage location or backup process so bundles survive long enough to distill. Keep the same bundle shape and keep per-task artifacts out of commits.
 
 Recommended naming guidance:
 

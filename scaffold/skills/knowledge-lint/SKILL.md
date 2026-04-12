@@ -6,9 +6,11 @@ description: Check the `.agents/` knowledge layer for duplication, contradiction
 # Knowledge Lint
 
 ## Goal
+
 Keep the compiled repo knowledge layer coherent, minimal, and current.
 
 ## Inputs
+
 - `.agents/AGENTS.md`
 - `.agents/docs/MAINTENANCE.md`
 - `.agents/docs/index.md`
@@ -18,6 +20,7 @@ Keep the compiled repo knowledge layer coherent, minimal, and current.
 - `.agents/playbooks/`
 
 ## Checks
+
 - duplicate guidance
 - contradictions
 - stale or superseded rules
@@ -27,12 +30,15 @@ Keep the compiled repo knowledge layer coherent, minimal, and current.
 - decisions that should be compressed into AGENTS guidance
 
 ## Output
+
 Produce:
+
 - a lint report
 - optional minimal edits
 - a log entry in `.agents/docs/log.md`
 
 ## Constraints
+
 - Prefer reclassification and compression over adding more text.
 - Do not modify source code.
 - Do not delete knowledge without explicit justification.

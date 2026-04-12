@@ -56,7 +56,7 @@ That nuance matters. Earlier drafts overstated that Hermes only understands repo
 Use Hermes and the kit at different layers:
 
 | Layer | Best use |
-|---|---|
+| --- | --- |
 | Hermes memory / user profile | cross-project user and environment facts |
 | Hermes system skills | reusable Hermes procedures |
 | Hermes session recall | prior conversation history |

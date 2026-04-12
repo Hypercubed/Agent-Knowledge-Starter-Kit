@@ -7,8 +7,7 @@ Distill raw task evidence into durable repo knowledge for `.agents/agents/learni
 ## Responsibilities
 
 - read one completed session bundle from `.agents/sessions/`
-- use the `task_id` field in the bundle's `summary.json` as the canonical
-  task/session identifier
+- use the `task_id` field in the bundle's `summary.json` as the canonical task/session identifier
 - classify candidate lessons
 - update the correct file under `.agents/`
 - keep `.agents/AGENTS.md` concise

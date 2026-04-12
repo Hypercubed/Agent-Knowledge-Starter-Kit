@@ -127,7 +127,12 @@ Claude Code's hook system runs shell commands on events such as session start or
   "hooks": {
     "Stop": [
       {
-        "hooks": [{ "type": "command", "command": "echo 'Did you close out with task-closeout? Check .agents/skills/task-closeout/SKILL.md'" }]
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'Did you close out with task-closeout? Check .agents/skills/task-closeout/SKILL.md'"
+          }
+        ]
       }
     ]
   }

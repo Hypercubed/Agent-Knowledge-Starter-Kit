@@ -6,9 +6,11 @@ description: Read a completed temporary session bundle from `.agents/sessions/` 
 # Learning Distill
 
 ## Goal
+
 Convert raw task evidence into concise, durable repo knowledge.
 
 ## Inputs
+
 - session bundle directory under `.agents/sessions/`
 - `.agents/AGENTS.md`
 - `.agents/docs/MAINTENANCE.md`
@@ -18,11 +20,12 @@ Convert raw task evidence into concise, durable repo knowledge.
 - `.agents/docs/troubleshooting.md`
 - `.agents/playbooks/`
 
-Read the canonical task/session identifier from the `task_id` field in the
-bundle's `summary.json`. Do not infer identity from the session folder name.
+Read the canonical task/session identifier from the `task_id` field in the bundle's `summary.json`. Do not infer identity from the session folder name.
 
 ## Classification categories
+
 Classify each candidate lesson as one of:
+
 - ephemeral
 - AGENTS guidance
 - troubleshooting
@@ -30,6 +33,7 @@ Classify each candidate lesson as one of:
 - playbook
 
 ## Distillation rules
+
 - Preserve only stable, reusable knowledge.
 - Do not copy task history into `.agents/AGENTS.md`.
 - Use `.agents/docs/repo-decisions.md` for rationale and nuance.
@@ -40,6 +44,7 @@ Classify each candidate lesson as one of:
 - Keep `.agents/docs/log.md` minimal: no secrets, personal data, private business details, long raw outputs, or copied transcript text.
 
 ## Procedure
+
 1. Read the session bundle.
 2. Read `summary.json` and use its `task_id` in notes and log entries.
 3. Compare candidates against the existing `.agents/` files.
@@ -51,6 +56,7 @@ Classify each candidate lesson as one of:
 9. Mark the session bundle as distilled.
 
 ## Constraints
+
 - Do not modify source code.
 - Do not invent new repo rules unsupported by the task evidence.
 - Do not expand `.agents/AGENTS.md` with rationale or narrative.
@@ -58,7 +64,9 @@ Classify each candidate lesson as one of:
 - Prefer small edits over large rewrites.
 
 ## AGENTS criteria
+
 A lesson belongs in `.agents/AGENTS.md` only if it is:
+
 - high confidence
 - broadly useful in this repo
 - likely to recur

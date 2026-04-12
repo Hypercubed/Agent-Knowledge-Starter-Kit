@@ -1,8 +1,8 @@
 ---
 description: >
-  Promote the plans pattern from maintainer dogfood under .agents/plans/ into
-  scaffold/ with conventions for lifecycle, frontmatter, and how plans relate
-  to sessions, playbooks, and distillation.
+  Promote the plans pattern from maintainer dogfood under .agents/plans/ into scaffold/ with conventions for lifecycle, frontmatter, and how plans relate to sessions, playbooks, and distillation.
+
+
 created: 2026-04-11
 status: draft
 writer: AI

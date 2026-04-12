@@ -8,12 +8,9 @@ This pattern separates three concerns:
 2. **Durable repo knowledge** lives under `.agents/`.
 3. **Agent roles and skills** live in that same `.agents/` tree and describe how coding, learning, and maintenance workflows run.
 
-Important: in this repository, `scaffold/` is the published starter kit.
-Copy everything under `scaffold/` into `.agents/` at the root of a
-project that adopts the kit.
+Important: in this repository, `scaffold/` is the published starter kit. Copy everything under `scaffold/` into `.agents/` at the root of a project that adopts the kit.
 
-The root `.agents/` directory in this repository is for maintaining this
-starter kit itself. Do not blindly copy it into another repo.
+The root `.agents/` directory in this repository is for maintaining this starter kit itself. Do not blindly copy it into another repo.
 
 The goal is to avoid bloating a single `.agents/AGENTS.md` with temporary notes, while still preserving useful lessons from completed work.
 
@@ -65,29 +62,14 @@ Use the kit as a lightweight maintenance loop around normal agent work:
 
 1. **Start with the repo knowledge layer.** Keep a short root `AGENTS.md` or tool rule that points agents to `.agents/AGENTS.md` and `.agents/docs/index.md`. Put durable repo policy in `.agents/`, not in each tool's native config.
 2. **Do the implementation work normally.** Have the coding agent read the relevant durable guidance, use playbooks or troubleshooting docs when needed, and keep tool-specific prompts as thin wiring.
-3. **Close meaningful tasks with `task-closeout`.** At completion,
-   blockage, or abandonment, invoke the repo-local `task-closeout` skill. It
-   should write raw evidence and a structured bundle under
-   `.agents/sessions/<folder>/`, which is usually gitignored. The canonical
-   task/session identifier is the `task_id` field inside that bundle's
-   `summary.json`; the folder name is only a sortable storage label.
-4. **Promote durable lessons with `learning-distill`.** After closeout, run a
-   separate learning pass with `learning-distill`. Pass the session bundle
-   path and use the `task_id` field in `summary.json` when referring to the
-   task. Promote only stable, reusable lessons into `.agents/AGENTS.md`,
-   `.agents/docs/`, or `.agents/playbooks/`; leave one-off task history in
-   `.agents/sessions/`.
+3. **Close meaningful tasks with `task-closeout`.** At completion, blockage, or abandonment, invoke the repo-local `task-closeout` skill. It should write raw evidence and a structured bundle under `.agents/sessions/<folder>/`, which is usually gitignored. The canonical task/session identifier is the `task_id` field inside that bundle's `summary.json`; the folder name is only a sortable storage label.
+4. **Promote durable lessons with `learning-distill`.** After closeout, run a separate learning pass with `learning-distill`. Pass the session bundle path and use the `task_id` field in `summary.json` when referring to the task. Promote only stable, reusable lessons into `.agents/AGENTS.md`, `.agents/docs/`, or `.agents/playbooks/`; leave one-off task history in `.agents/sessions/`.
 5. **Keep the knowledge layer clean with `knowledge-lint`.** Periodically invoke `knowledge-lint` to find duplicate, stale, contradictory, oversized, or uncategorized guidance before the layer becomes noisy.
 6. **Review the diff.** Treat durable knowledge changes like code: inspect what changed, make sure session bundles stayed temporary, and commit only the files that should become shared repo knowledge.
 
 Tool-specific guides in [`docs/integrations/`](docs/integrations/) show how to wire this same workflow into individual products.
 
-Repo-local session storage is the default because bundles stay close to the
-code, diffs, commands, and durable docs they describe. In cloud, ephemeral,
-or shared-agent environments, adapt the storage location if local
-`.agents/sessions/` data may disappear or cross machine boundaries. Keep
-per-task session artifacts out of commits, either with the kit's
-`.agents/.gitignore` or equivalent repo-root ignore rules.
+Repo-local session storage is the default because bundles stay close to the code, diffs, commands, and durable docs they describe. In cloud, ephemeral, or shared-agent environments, adapt the storage location if local `.agents/sessions/` data may disappear or cross machine boundaries. Keep per-task session artifacts out of commits, either with the kit's `.agents/.gitignore` or equivalent repo-root ignore rules.
 
 ## Adopting into an existing `.agents/`
 

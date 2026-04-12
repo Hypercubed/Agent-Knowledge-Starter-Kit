@@ -6,16 +6,17 @@ description: Capture the current task into a structured temporary session bundle
 # Task Closeout
 
 ## Goal
+
 Create a temporary handoff packet for later learning extraction.
 
 ## Output location
+
 Write inside the repo to `.agents/sessions/<session-folder>/`.
 
-The session folder name is a sortable storage label. The canonical
-task/session identifier is the `task_id` field inside the bundle's
-`summary.json`.
+The session folder name is a sortable storage label. The canonical task/session identifier is the `task_id` field inside the bundle's `summary.json`.
 
 ## Required outputs
+
 - summary.json
 - active-task.md
 - learning-candidate.md
@@ -23,9 +24,11 @@ task/session identifier is the `task_id` field inside the bundle's
 - validation.txt
 
 ## Example bundle
+
 Filled-in reference files live under `.agents/skills/task-closeout/example/task-bundle/` when this skill is installed under `.agents/skills/task-closeout/`.
 
 ## Rules
+
 - Record only observable facts in active-task.md.
 - Record only candidate lessons in learning-candidate.md.
 - Distinguish clearly between what failed, what worked, and what is only a hypothesis.
@@ -34,6 +37,7 @@ Filled-in reference files live under `.agents/skills/task-closeout/example/task-
 - Prefer concise bullet lists.
 
 ## Procedure
+
 1. Determine or create `repo_id`.
 2. Determine or create `task_id`.
 3. Create a session folder using the pattern `YYYYMMDD-HHMMSS-short-topic`.
@@ -46,12 +50,14 @@ Filled-in reference files live under `.agents/skills/task-closeout/example/task-
 10. Mark the session bundle ready for distillation.
 
 ## Session folder naming
+
 - Use a deterministic, sortable folder name such as `YYYYMMDD-HHMMSS-short-topic`.
 - Keep the slug short, lowercase, and tied to the task goal.
 - Reuse the same session folder only for the single task-closeout bundle it was created for.
 - Do not treat the folder name as the canonical task identity; use the `task_id` field in `summary.json`.
 
 ## active-task.md sections
+
 - Task ID
 - Goal
 - Outcome
@@ -62,6 +68,7 @@ Filled-in reference files live under `.agents/skills/task-closeout/example/task-
 - Notes
 
 ## learning-candidate.md sections
+
 - Task
 - What failed
 - What worked

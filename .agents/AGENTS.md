@@ -49,17 +49,19 @@ This file contains concise, high-signal instructions for future agents working i
 ## Placeholder sections
 
 ### Build and test
+
 - Add repo-specific commands here.
 
 ### Coding conventions
+
 - Add repo-specific conventions here.
 
 ### Recurring pitfalls
-- The maintainer often mistypes `.agent/` when they mean `.agents/`. If a
-  request mentions `.agent/`, verify whether the existing `.agents/` path is
-  intended before creating a new `.agent/` tree.
+
+- The maintainer often mistypes `.agent/` when they mean `.agents/`. If a request mentions `.agent/`, verify whether the existing `.agents/` path is intended before creating a new `.agent/` tree.
 
 ### Before submitting changes
+
 - Run relevant tests.
 - Validate generated outputs if applicable.
 - Check for updates needed in `.agents/` when durable lessons were learned.
