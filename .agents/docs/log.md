@@ -5,8 +5,21 @@ Outcome: updated
 Files: `.agents/docs/repo-decisions.md`; `.agents/playbooks/maintainer-adoption-closeout-distill.md`; `.agents/docs/log.md`; `.agents/sessions/20260412-161547-log-safety-hardening/summary.json`
 Accepted: 2 (kit-contract policy changes must update `scaffold/` too; maintainer closeout checklist should verify dogfood-only vs kit-wide scope before task completion)
 Rejected: 2 (`.agents/AGENTS.md` update absent; troubleshooting candidate treated as process failure rather than recurring runtime issue)
-Notes: Distilled log-safety hardening closeout; promoted scope discipline into maintainer docs after the first pass initially missed scaffold copies.
+Notes: Distilled log-safety hardening closeout; promoted scope discipline into maintainer docs after the first pass initially missed scaffold copies.]
 
+### [2026-04-12] learning-distill | t-20260412-155309-openclaw-guide-refinement
+Outcome: updated
+Files: `.agents/playbooks/writing-integration-guides.md`; `.agents/docs/log.md`; `.agents/sessions/20260412-155309-openclaw-guide-refinement/summary.json`
+Accepted: 1 (after an integration guide first draft, do one realistic dogfood pass and add a short concrete workflow example if it improves the framing)
+Rejected: 2 (`.agents/AGENTS.md` update absent; repo decision candidate too process-local for `repo-decisions.md`)
+Notes: Distilled OpenClaw guide refinement closeout; promoted a small integration-guide playbook improvement and kept the product-specific example in `docs/integrations/openclaw.md`.
+
+### [2026-04-12] learning-distill | t-20260412-154653-openclaw-integration-guide
+Outcome: updated
+Files: `.agents/playbooks/writing-integration-guides.md`; `.agents/docs/log.md`; `.agents/sessions/20260412-154653-openclaw-integration-guide/summary.json`
+Accepted: 1 (persistent-assistant integration guides should explicitly separate personal/runtime memory from repo-local durable knowledge)
+Rejected: 3 (`.agents/AGENTS.md` update absent; troubleshooting candidate not yet recurring; repo decision already covered by existing docs/integrations policy)
+Notes: Distilled OpenClaw integration guide closeout; kept durable change in the integration-writing playbook and left product-specific detail in `docs/integrations/openclaw.md`.
 
 ### [2026-04-12] learning-distill | t-20260412-045044-review-followup-docs
 Outcome: updated
