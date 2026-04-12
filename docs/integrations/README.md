@@ -4,6 +4,7 @@ This directory contains user-facing guides for connecting specific tools to the 
 
 ## Available guides
 
+- [Antigravity](./antigravity.md) — Persistent Context mapping, handling native planning artifacts, and leveraging kit memory as canonical storage
 - [Hermes](./hermes.md) — verified guidance for using Hermes with a repo that stores durable knowledge under `.agents/`
 - [OpenClaw](./openclaw.md) — native memory, startup files, session tools, automation, and how to keep `.agents/` as canonical repo knowledge
 - [Cursor](./cursor.md) — project rules, `AGENTS.md`, and how to point Agent at `.agents/` without duplicating it

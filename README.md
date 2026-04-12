@@ -119,6 +119,7 @@ Tool-specific integration guides live in [`docs/integrations/`](docs/integration
 
 Currently available:
 
+- [Antigravity](docs/integrations/antigravity.md)
 - [Hermes](docs/integrations/hermes.md)
 - [OpenClaw](docs/integrations/openclaw.md)
 - [Cursor](docs/integrations/cursor.md)

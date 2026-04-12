@@ -1,5 +1,12 @@
 # Knowledge Maintenance Log
 
+### [2026-04-12] learning-distill | create-antigravity-integration
+Outcome: updated
+Files: `.agents/docs/troubleshooting.md`; `.agents/docs/log.md`; `.agents/sessions/20260412-160900-antigravity-integration/summary.json`
+Accepted: 1 (added Antigravity KI troubleshooting to clarify local memory vs repo memory)
+Rejected: 0
+Notes: Distilled Antigravity integration guide closeout. Added a troubleshooting entry explaining how Antigravity KIs differ from the exported session bundle memory.
+
 ### [2026-04-12] learning-distill | t-20260412-214827-review-fixes
 Outcome: no durable changes
 Files: `.agents/docs/log.md`; `.agents/sessions/20260412-214827-review-fixes/summary.json`

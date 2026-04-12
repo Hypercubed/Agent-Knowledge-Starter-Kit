@@ -41,6 +41,7 @@ Each guide should focus on what makes the tool's integration unique. Persistent 
 
 | Guide | Tool type | Discovery mechanism | Key integration question | Status |
 |---|---|---|---|---|
+| `antigravity.md` | Agentic AI | KIs, Context Logs | How to separate local KI memory from repo-shared `.agents/` and export artifacts via task-closeout | **done / verified** |
 | `hermes.md` | Persistent assistant | memory, session recall, Hermes skills, `AGENTS.md` | When to use Hermes memory vs repo knowledge, and how to avoid the dual-skill-namespace trap | **done / verified** |
 | `openclaw.md` | Persistent assistant | `AGENTS.md`, startup files, native memory, session tools, automation, `.agents/skills/` | How OpenClaw's native memory, automation, and startup behavior overlap with the kit without replacing the repo knowledge layer | **done** — verified against local OpenClaw docs/CLI and live `openclaw status` |
 | `codex.md` | Coding agent / IDE / app | `AGENTS.md`, `.agents/skills/`, config, sandbox approvals | How Codex's native `AGENTS.md` and `.agents/skills/` discovery should use the kit without duplicating repo knowledge | **done** — verified against official Codex docs |
@@ -121,7 +122,7 @@ Each guide should focus on what makes the tool's integration unique. Persistent 
 
 - add a brief "Integrations" section linking to `docs/integrations/`
 - keep it concise and guide-oriented
-- **Status:** partial — Hermes, Cursor, Codex, Kilo Code, and Claude Code links added
+- **Status:** partial — Antigravity, Hermes, Cursor, Codex, Kilo Code, and Claude Code links added
 
 ## Out of scope (for now)
 
