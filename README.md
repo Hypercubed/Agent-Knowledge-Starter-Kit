@@ -1,4 +1,4 @@
-# Agent Knowledge Starter Kit v1.1-next
+# Agent Knowledge Starter Kit v1.2
 
 A shareable, tool-agnostic starter kit for maintaining a compiled repo knowledge layer for coding agents.
 
