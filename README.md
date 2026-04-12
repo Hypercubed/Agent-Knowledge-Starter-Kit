@@ -124,6 +124,7 @@ Currently available:
 - [Cursor](docs/integrations/cursor.md)
 - [Codex](docs/integrations/codex.md)
 - [Kilo Code](docs/integrations/kilo-code.md)
+- [Claude Code](docs/integrations/claude-code.md)
 
 ---
 
