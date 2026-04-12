@@ -33,6 +33,8 @@ The script skips optional checks when local tools are unavailable:
 
 Install or otherwise make skipped tools available before a release-quality publish pass.
 
+The publish script passes `--alive 200,0` to `markdown-link-check` so restricted or offline environments do not fail every external URL with status `0`. Local relative links still need to pass, and maintainers should manually review external documentation links before publishing integration-guide changes.
+
 ## Review guidance
 
 Scaffold files should read as if copied into a consumer repo's `.agents/` directory. Remove or rewrite references that only make sense in this starter repo, such as dogfood notes, maintainer-only helper workflows, local plans, or session bundle history.

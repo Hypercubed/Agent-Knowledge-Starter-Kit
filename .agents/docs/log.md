@@ -1,5 +1,9 @@
 # Knowledge Maintenance Log
 
+### [2026-04-12] learning-distill | t-20260412-170915-publish-check-link-handling
+
+Outcome: updated Files: `.agents/playbooks/pre-publish.md`; `.agents/docs/log.md`; `.agents/sessions/20260412-170915-publish-check-link-handling/summary.json` Accepted: 1 (pre-publish link checks should tolerate external status `0` in restricted environments while keeping local links blocking) Rejected: 2 (`.agents/AGENTS.md` and troubleshooting updates not warranted for a narrow publish-workflow lesson) Notes: Distilled publish checker closeout; durable guidance was kept in the pre-publish playbook.
+
 ### [2026-04-12] learning-distill | knowledge-lint-20260412
 
 Outcome: updated Files: `.agents/docs/troubleshooting.md`; `.agents/docs/log.md`; `.agents/sessions/20260412-162300-knowledge-lint-pass/summary.json` Accepted: 1 (Added troubleshooting entry for Windows-to-WSL Tool Path Failures) Rejected: 0 Notes: Distilled knowledge-lint session. Added a troubleshooting note to prevent agents struggling with Windows-WSL cross-environment file paths.

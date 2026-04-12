@@ -109,7 +109,7 @@ elif npx_package_available markdown-link-check --help; then
   link_failed=0
   while IFS= read -r md_file; do
     [ -z "$md_file" ] && continue
-    if ! timeout_cmd 30s npx --no-install markdown-link-check "$md_file"; then
+    if ! timeout_cmd 30s npx --no-install markdown-link-check --alive 200,0 "$md_file"; then
       link_failed=1
     fi
   done <<EOF
