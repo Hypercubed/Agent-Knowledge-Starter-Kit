@@ -126,12 +126,12 @@ Tool-specific integration guides live in [`docs/integrations/`](docs/integration
 Currently available:
 
 - [Antigravity](docs/integrations/antigravity.md)
-- [Hermes](docs/integrations/hermes.md)
-- [OpenClaw](docs/integrations/openclaw.md)
-- [Cursor](docs/integrations/cursor.md)
-- [Codex](docs/integrations/codex.md)
-- [Kilo Code](docs/integrations/kilo-code.md)
 - [Claude Code](docs/integrations/claude-code.md)
+- [Codex](docs/integrations/codex.md)
+- [Cursor](docs/integrations/cursor.md)
+- [Hermes](docs/integrations/hermes.md)
+- [Kilo Code](docs/integrations/kilo-code.md)
+- [OpenClaw](docs/integrations/openclaw.md)
 
 ---
 
