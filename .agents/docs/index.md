@@ -30,4 +30,4 @@ Append-only record of distillation and maintenance activity.
 [`INSTALL.md`](../../INSTALL.md) — agent-facing installation and merge checklist for adopting this starter kit into a target repository.
 
 ## Root integration guides (this repository)
-[`docs/integrations/README.md`](../../docs/integrations/README.md) — per-tool wiring for Hermes, Cursor, Codex, and other planned guides (user-facing; not part of the copied `scaffold/` tree).
+[`docs/integrations/README.md`](../../docs/integrations/README.md) — per-tool wiring for Hermes, OpenClaw, Cursor, Codex, Kilo Code, and Claude Code (user-facing; not part of the copied `scaffold/` tree).

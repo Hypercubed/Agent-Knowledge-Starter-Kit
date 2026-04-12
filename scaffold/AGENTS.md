@@ -2,8 +2,6 @@
 
 Consult this file first for repo-wide operational guidance.
 
-This file is template content for `.agents/AGENTS.md`.
-
 ## Disclaimer
 
 This kit was produced with the help of AI tools. It is provided **as-is**; **use at your own risk**. Treat every file as a starting point: validate instructions, commands, and policies against your own project before you rely on them.

@@ -1,5 +1,12 @@
 # Knowledge Maintenance Log
 
+### [2026-04-12] learning-distill | t-20260412-214827-review-fixes
+Outcome: no durable changes
+Files: `.agents/docs/log.md`; `.agents/sessions/20260412-214827-review-fixes/summary.json`
+Accepted: 0
+Rejected: 2 (memory-workflow pattern is ephemeral; scaffold scope-check is duplicate of existing repo decision)
+Notes: Distilled post-review fixes closeout; both edits were minimal and follow existing decisions — nothing warranted promotion.
+
 ### [2026-04-12] learning-distill | t-20260412-213033-claude-code-guide
 Outcome: updated
 Files: `.agents/playbooks/writing-integration-guides.md`; `.agents/docs/log.md`; `.agents/sessions/20260412-213033-claude-code-integration/summary.json`
