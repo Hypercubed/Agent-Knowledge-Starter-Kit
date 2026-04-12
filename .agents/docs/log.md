@@ -1,5 +1,12 @@
 # Knowledge Maintenance Log
 
+### [2026-04-12] learning-distill | t-20260412-014546-cursor-integration
+Outcome: updated  
+Files: `.agents/playbooks/writing-integration-guides.md`; `.agents/docs/index.md`; `.agents/docs/log.md`; `.agents/sessions/20260412-014546-cursor-integration/summary.json`  
+Accepted: 2 (playbook section for IDE/rules-based integration patterns; index pointer to root `docs/integrations/`)  
+Rejected: 3 (`.agents/AGENTS.md`, `.agents/docs/troubleshooting.md`, `.agents/docs/repo-decisions.md` — candidates absent or already covered by `docs/integrations/cursor.md` and existing decisions)  
+Notes: Distilled Cursor integration task-closeout; medium-confidence “doc-verified vs in-app” caveat stays in the published guide, not duplicated here.
+
 ### [2026-04-11] learning-distill | t-20260411-existing-agents-adoption-feedback, t-20260411-quickstart-install-docs
 Outcome: updated  
 Files: `.agents/docs/repo-decisions.md`; `.agents/docs/index.md`; `.agents/docs/log.md`; `.agents/sessions/20260411-145015-existing-agents-adoption/summary.json`; `.agents/sessions/20260411-145937-quickstart-install-docs/summary.json`  

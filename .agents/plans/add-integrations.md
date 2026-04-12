@@ -44,7 +44,7 @@ Each guide should focus on what makes the tool's integration unique. Persistent 
 | `hermes.md` | Persistent assistant | memory, session recall, Hermes skills, `AGENTS.md` | When to use Hermes memory vs repo knowledge, and how to avoid the dual-skill-namespace trap | **done / verified** |
 | `openclaw.md` | Persistent assistant | AGENTS.md, CLAUDE.md, `.agents/skills/`, native memory | How OpenClaw's native memory/skills overlap with the kit | planned |
 | `claude-code.md` | Coding agent / IDE | `CLAUDE.md`, settings, AGENTS.md | How to point Claude Code at the kit cleanly | planned |
-| `cursor.md` | IDE (rules-based) | `.cursor/rules` MDC files | How to map rules to `.agents/` content without duplication | planned |
+| `cursor.md` | IDE (rules-based) | `.cursor/rules` MDC files | How to map rules to `.agents/` content without duplication | **done** — verified against Cursor Rules docs |
 | `copilot.md` | IDE (rules-based) | `.github/copilot-instructions.md` | How to reference `.agents/` from Copilot instructions | planned |
 | `vscode-extensions.md` | IDE extensions | varies by extension | How to document per-extension discovery and setup without overclaiming | planned |
 
@@ -83,6 +83,7 @@ Each guide should focus on what makes the tool's integration unique. Persistent 
 - document `.cursor/rules` MDC format
 - show how to map rules to `.agents/` content without splitting the source of truth
 - include a two-tool example
+- **Status:** done
 
 ### 6. Write `copilot.md`
 
@@ -100,7 +101,7 @@ Each guide should focus on what makes the tool's integration unique. Persistent 
 
 - add a brief "Integrations" section linking to `docs/integrations/`
 - keep it concise and guide-oriented
-- **Status:** partial — Hermes link added
+- **Status:** partial — Hermes and Cursor links added
 
 ## Out of scope (for now)
 

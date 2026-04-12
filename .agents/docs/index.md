@@ -28,3 +28,6 @@ Append-only record of distillation and maintenance activity.
 
 ## Root install docs
 [`INSTALL.md`](../../INSTALL.md) — agent-facing installation and merge checklist for adopting this starter kit into a target repository.
+
+## Root integration guides (this repository)
+[`docs/integrations/README.md`](../../docs/integrations/README.md) — per-tool wiring for Hermes, Cursor, and other planned guides (user-facing; not part of the copied `scaffold/` tree).

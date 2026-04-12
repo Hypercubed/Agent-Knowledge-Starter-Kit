@@ -66,6 +66,7 @@ Tool-specific integration guides live in [`docs/integrations/`](docs/integration
 Currently available:
 
 - [Hermes](docs/integrations/hermes.md)
+- [Cursor](docs/integrations/cursor.md)
 
 ---
 

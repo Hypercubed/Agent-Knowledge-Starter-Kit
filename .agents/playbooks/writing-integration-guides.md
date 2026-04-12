@@ -1,7 +1,7 @@
 # Writing Integration Guides for Convergent Tools
 
 ## Trigger
-When writing an integration guide for an agent tool that has its own memory, skills, or knowledge systems (e.g., Hermes, OpenClaw).
+When writing an integration guide for an agent tool that has its own memory, skills, or knowledge systems (e.g., Hermes, OpenClaw), or for **IDE-integrated / rules-based** tools (e.g., Cursor project rules, Copilot instructions files).
 
 ## Steps
 
@@ -25,3 +25,12 @@ When writing an integration guide for an agent tool that has its own memory, ski
 - Don't oversell the kit. The tool's native systems may be better for some tasks.
 - Don't skip the namespace collision problem. If the tool has its own `skills/` or `memory/` directories, explain how to avoid confusion with the kit's equivalents.
 - Don't turn a single weak run into a product-wide claim without reproduction.
+
+## IDE and rules-based tools (Cursor, Copilot-style)
+
+Overlap is often **duplicated prose** in editor rules or instruction files versus canonical text under `.agents/`, not a second on-disk skill registry (contrast with Hermes system skills vs repo `.agents/skills/`).
+
+1. Document the tool’s **discovery mechanism** (for example project rules paths, `AGENTS.md` placement, glob scoping) using vendor docs or reproduced behavior.
+2. Keep **durable repo policy** in `.agents/`; use the tool’s config for **thin wiring** (pointers, `@file`-style references, short always-on bootstrap) so one source of truth does not fork.
+3. When the tool supports **nested or scoped agent instructions**, state explicitly whether `.agents/AGENTS.md` is always in context or only when working under `.agents/` (adopters may otherwise assume global injection).
+4. If full in-product verification is not done, label the guide accordingly and anchor behavioral claims to **official documentation** rather than analogy to other tools.
