@@ -279,6 +279,65 @@ The schema and policy document for the knowledge layer.
 8. The learning agent appends a summary to `.agents/docs/log.md`.
 9. Periodically, the lint agent runs `knowledge-lint`.
 
+```mermaid
+flowchart TD
+    A[Start coding task] --> C[Read durable knowledge first<br/>.agents/AGENTS.md<br/>.agents/docs/index.md<br/>playbooks / troubleshooting]
+    C --> B[Coding agent does implementation work]
+    B --> D{Meaningful stopping point?<br/>complete / blocked / abandoned}
+    D -- No --> B
+    D -- Yes --> E[Run skill: task-closeout]
+
+    subgraph SessionBundle["Temporary session bundle under .agents/sessions/&lt;folder&gt;/"]
+        E --> F[summary.json<br/>canonical task_id lives here]
+        E --> G[active-task.md<br/>facts and task state]
+        E --> H[learning-candidate.md<br/>candidate lessons]
+        E --> I[changed-files.txt]
+        E --> J[validation.txt]
+    end
+
+    F --> K[Learning agent runs: learning-distill]
+    G --> K
+    H --> K
+    I --> K
+    J --> K
+
+    K --> L[Read task_id from summary.json<br/>do not infer identity from folder name]
+    L --> M[Classify candidates]
+
+    M --> M1[Ephemeral<br/>leave in session bundle]
+    M --> M2[AGENTS guidance]
+    M --> M3[Troubleshooting]
+    M --> M4[Repo decision]
+    M --> M5[Playbook]
+
+    M2 --> N1[Update .agents/AGENTS.md<br/>only if broad, stable, concise, actionable]
+    M3 --> N2[Update .agents/docs/troubleshooting.md]
+    M4 --> N3[Update .agents/docs/repo-decisions.md]
+    M5 --> N4[Update .agents/playbooks/*]
+
+    N1 --> O[Update .agents/docs/index.md if structure changed]
+    N2 --> O
+    N3 --> O
+    N4 --> O
+
+    O --> P[Append concise maintenance entry<br/>to .agents/docs/log.md]
+    P --> Q[Mark session bundle distilled]
+
+    Q --> R[Periodic maintenance pass]
+    R --> S[Run skill: knowledge-lint]
+
+    subgraph KnowledgeLint["Knowledge-lint / maintenance cleanup"]
+        S --> T[Check duplication]
+        S --> U[Check contradictions]
+        S --> V[Check stale or superseded guidance]
+        S --> W[Check oversized AGENTS sections]
+        S --> X[Check missing index coverage]
+        S --> Y[Recommend or apply minimal cleanup]
+    end
+
+    Y --> Z[Keep compiled knowledge layer coherent, minimal, current]
+```
+
 ---
 
 ## Distillation rules

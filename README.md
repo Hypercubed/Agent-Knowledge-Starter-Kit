@@ -67,6 +67,30 @@ Use the kit as a lightweight maintenance loop around normal agent work:
 5. **Keep the knowledge layer clean with `knowledge-lint`.** Periodically invoke `knowledge-lint` to find duplicate, stale, contradictory, oversized, or uncategorized guidance before the layer becomes noisy.
 6. **Review the diff.** Treat durable knowledge changes like code: inspect what changed, make sure session bundles stayed temporary, and commit only the files that should become shared repo knowledge.
 
+```mermaid
+flowchart LR
+    A[Code task] --> B[task-closeout]
+    B --> C[Session bundle<br/>.agents/sessions/&lt;folder&gt;<br/>summary.json<br/>active-task.md<br/>learning-candidate.md]
+
+    C --> D[learning-distill]
+    D --> E{Classify lesson}
+
+    E -->|ephemeral| F[Keep in session bundle]
+    E -->|agent guidance| G[.agents/AGENTS.md]
+    E -->|troubleshooting| H[.agents/docs/troubleshooting.md]
+    E -->|repo decision| I[.agents/docs/repo-decisions.md]
+    E -->|playbook| J[.agents/playbooks/*]
+
+    G --> K[index.md + log.md]
+    H --> K
+    I --> K
+    J --> K
+
+    K --> L[Mark distilled]
+    L --> M[knowledge-lint]
+    M --> N[Clean duplicates, contradictions,<br/>stale guidance, missing index coverage]
+```
+
 Tool-specific guides in [`docs/integrations/`](docs/integrations/) show how to wire this same workflow into individual products.
 
 Repo-local session storage is the default because bundles stay close to the code, diffs, commands, and durable docs they describe. In cloud, ephemeral, or shared-agent environments, adapt the storage location if local `.agents/sessions/` data may disappear or cross machine boundaries. Keep per-task session artifacts out of commits, either with the kit's `.agents/.gitignore` or equivalent repo-root ignore rules.
