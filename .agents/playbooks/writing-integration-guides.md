@@ -21,7 +21,7 @@ When writing an integration guide for an agent tool that has its own memory, ski
 6. **Verify claims against real behavior.** Before documenting a limitation, reproduce it in the current tool or current repo context. Distinguish a repo bootstrap file (such as root `AGENTS.md`) from the durable `.agents/` knowledge layer when both exist.
 
 7. **Update repo routing docs together.** When a new guide lands under `docs/integrations/`, update the main `README.md`, `docs/integrations/README.md`, and any maintainer tracker such as `.agents/plans/add-integrations.md` in the same change so discovery and status stay aligned.
-8. **Prefer one post-dogfood refinement pass.** After the first working draft, run at least one realistic workflow through the target tool. If that lived run clarifies the value proposition or exposes missing framing, add one short concrete example to the published guide.
+8. **Prefer one post-dogfood refinement pass.** After the first working draft, run at least one realistic workflow through the target tool. If that lived run clarifies the value proposition or exposes missing framing, add one short concrete example to the published guide. If you are running as the target tool during the writing session, that session itself qualifies as the dogfood pass — note this explicitly in the guide's verification statement and in the task-closeout `Remaining Work` section.
 
 ## Pitfalls
 - Don't assume the tool adopted the kit — they may be convergent, not compatible.

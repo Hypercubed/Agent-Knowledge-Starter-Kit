@@ -1,5 +1,12 @@
 # Knowledge Maintenance Log
 
+### [2026-04-12] learning-distill | t-20260412-213033-claude-code-guide
+Outcome: updated
+Files: `.agents/playbooks/writing-integration-guides.md`; `.agents/docs/log.md`; `.agents/sessions/20260412-213033-claude-code-integration/summary.json`
+Accepted: 1 (when writing an integration guide while running as the target tool, the writing session is the dogfood verification pass — note this in the guide and closeout)
+Rejected: 2 (dedicated-subsection pattern is ephemeral craft; atomic routing-doc update is already covered by playbook step 7)
+Notes: Distilled Claude Code integration guide closeout; one minimal playbook step 8 amendment; no AGENTS.md or troubleshooting changes warranted.
+
 ### [2026-04-12] learning-distill | t-20260412-161547-log-safety-hardening
 Outcome: updated
 Files: `.agents/docs/repo-decisions.md`; `.agents/playbooks/maintainer-adoption-closeout-distill.md`; `.agents/docs/log.md`; `.agents/sessions/20260412-161547-log-safety-hardening/summary.json`

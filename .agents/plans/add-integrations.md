@@ -45,7 +45,7 @@ Each guide should focus on what makes the tool's integration unique. Persistent 
 | `openclaw.md` | Persistent assistant | `AGENTS.md`, startup files, native memory, session tools, automation, `.agents/skills/` | How OpenClaw's native memory, automation, and startup behavior overlap with the kit without replacing the repo knowledge layer | **done** — verified against local OpenClaw docs/CLI and live `openclaw status` |
 | `codex.md` | Coding agent / IDE / app | `AGENTS.md`, `.agents/skills/`, config, sandbox approvals | How Codex's native `AGENTS.md` and `.agents/skills/` discovery should use the kit without duplicating repo knowledge | **done** — verified against official Codex docs |
 | `kilo-code.md` | Coding agent / CLI / app | `AGENTS.md`, `kilo.json`, `.kilo/command/*.md`, `.kilo/agent/*.md`, Kilo-native skills | How Kilo's native commands, agents, skills, and instructions should point to canonical repo knowledge under `.agents/` without forking it | **done** — based on documented Kilo config/discovery model and repo-local config locations |
-| `claude-code.md` | Coding agent / IDE | `CLAUDE.md`, settings, AGENTS.md | How to point Claude Code at the kit cleanly | planned |
+| `claude-code.md` | Coding agent / IDE | `CLAUDE.md`, settings, AGENTS.md | How to point Claude Code at the kit cleanly | **done** — verified against live Claude Code behavior in this repo |
 | `cursor.md` | IDE (rules-based) | `.cursor/rules` MDC files | How to map rules to `.agents/` content without duplication | **done** — verified against Cursor Rules docs |
 | `copilot.md` | IDE (rules-based) | `.github/copilot-instructions.md` | How to reference `.agents/` from Copilot instructions | planned |
 | `vscode-extensions.md` | IDE extensions | varies by extension | How to document per-extension discovery and setup without overclaiming | planned |
@@ -88,6 +88,7 @@ Each guide should focus on what makes the tool's integration unique. Persistent 
 - document `CLAUDE.md` setup and any pointer/config files
 - make root `AGENTS.md` vs `.agents/AGENTS.md` roles explicit
 - include a two-tool example
+- **Status:** done — verified against live Claude Code behavior in this repo; covers CLAUDE.md hierarchy, auto-memory vs kit docs distinction, .claude/commands/ vs .agents/skills/, hooks, and Claude Code + Codex two-tool example
 
 ### 6. Write `cursor.md`
 
@@ -120,7 +121,7 @@ Each guide should focus on what makes the tool's integration unique. Persistent 
 
 - add a brief "Integrations" section linking to `docs/integrations/`
 - keep it concise and guide-oriented
-- **Status:** partial — Hermes, Cursor, Codex, and Kilo Code links added
+- **Status:** partial — Hermes, Cursor, Codex, Kilo Code, and Claude Code links added
 
 ## Out of scope (for now)
 

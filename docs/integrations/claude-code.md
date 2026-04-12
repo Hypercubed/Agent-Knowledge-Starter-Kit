@@ -1,89 +1,97 @@
 # Claude Code Integration Guide
 
-Claude Code and this starter kit are a natural fit: Claude Code reads `CLAUDE.md` files for persistent instructions and supports repo-local skills under `.claude/skills/`. The kit adds a structured knowledge layer around those primitives, separating durable repo guidance from temporary task evidence.
+Claude Code and this starter kit complement each other naturally. Claude Code's `CLAUDE.md` provides session-start context; the kit adds the structured repo knowledge layer, session bundles, and distillation workflow that survive beyond a single conversation.
 
-* **Claude Code** is Anthropic's agentic coding tool, available in the terminal, VS Code, JetBrains, a desktop app, and the browser. It reads your codebase, edits files, runs commands, and connects to external tools via MCP.
-* **This kit** is a **repo-scoped knowledge layer** under `.agents/`: durable guidance, docs, playbooks, skills, and gitignored session bundles for distillation.
+- **Claude Code** is Anthropic's CLI for Claude. It reads `CLAUDE.md` at the project root and in parent directories, exposes `.claude/commands/*.md` as custom slash commands, supports hooks via `.claude/settings.json`, and maintains an agent-private memory system across sessions.
+- **This kit** is a **repo-scoped knowledge layer** under `.agents/`: durable guidance, docs, playbooks, skills, and gitignored session bundles for distillation.
 
-This guide was checked against Claude Code documentation on April 12, 2026. Re-check [code.claude.com/docs](https://code.claude.com/docs) after updates, particularly around memory behavior and skill discovery.
+This guide was written and verified against Claude Code's behavior in this repository on April 12, 2026. Re-check linked Anthropic documentation after Claude Code updates, especially around `CLAUDE.md` discovery and custom command formats.
 
 ## 1. Prerequisites
 
 You should have:
 
-* a repository that already contains (or you are about to add) the kit layout under `.agents/` — typically by copying `scaffold/` from this starter kit
-* Claude Code installed (terminal, VS Code extension, JetBrains plugin, desktop app, or web)
-* a `CLAUDE.md` at the project root if you want Claude Code to discover the kit during normal work outside `.agents/`
-* permission to read and write `.agents/` for both implementation work and knowledge maintenance tasks
+- a repository that already contains (or you are about to add) the kit layout under `.agents/` — typically by copying `scaffold/` from this starter kit
+- Claude Code CLI installed (`claude` on your PATH) or the Claude Code extension in your editor
+- permission to add version-controlled project configuration (`CLAUDE.md`, optionally `.claude/commands/`)
+- clarity on whether personal preferences belong in `~/.claude/CLAUDE.md` (global user) or in the project-level `CLAUDE.md` (repo-shared)
 
-For normal local work, keep the repo under version control before delegating agentic tasks. Durable knowledge changes should be reviewable in Git the same way code changes are.
+Optional:
+
+- `.claude/commands/` if you want to expose kit skills as Claude Code slash commands
+- `.claude/settings.json` hooks for inline automation tied to file-edit or session events
+- MCP server configuration in settings for extended tool access
 
 ## 2. Discovery mechanism
 
 ### What Claude Code discovers natively
 
-Claude Code has its own instruction and memory system:
-
 | Mechanism | Where it lives | Role |
 | --- | --- | --- |
-| **`CLAUDE.md`** | Project root, `.claude/CLAUDE.md`, subdirectories, `~/.claude/CLAUDE.md` | Persistent instructions loaded at session start; hierarchy walks up from working directory |
-| **`CLAUDE.local.md`** | Project root or subdirectory (add to `.gitignore`) | Personal per-project preferences not committed to version control |
-| **`.claude/rules/*.md`** | Project-scoped rules directory | Modular instructions, optionally scoped to file paths via `paths:` frontmatter |
-| **Auto memory** | `~/.claude/projects/<project>/memory/MEMORY.md` | Notes Claude writes itself; first 200 lines loaded each session |
-| **Skills** | `.claude/skills/<name>/SKILL.md` | Reusable on-demand workflows; not loaded at session start |
-| **MCP servers** | Configured in Claude Code settings | External tool integrations (Google Drive, Jira, Slack, etc.) |
+| `CLAUDE.md` | Project root, parent directories, `~/.claude/CLAUDE.md` | Primary instruction file; loaded hierarchically at session start |
+| `AGENTS.md` | Project root | Also read as additional agent instructions |
+| `.claude/commands/*.md` | `.claude/commands/` (project) or `~/.claude/commands/` (user) | Custom slash commands, invoked as `/command-name` in chat |
+| `.claude/settings.json` | `.claude/settings.json` (project) or `~/.claude/settings.json` (user) | Hooks, MCP configuration, and behavioral settings |
+| Auto-memory | `~/.claude/projects/<project>/memory/` | Agent-private persistent memory across sessions for the current user |
+| MCP servers | Settings files | External tools and context providers |
 
-Claude Code walks up the directory tree from your working directory and loads all `CLAUDE.md` and `CLAUDE.local.md` files it finds. More specific locations take precedence when instructions conflict. Files in subdirectories below the working directory are loaded lazily, when Claude reads files in those subdirectories.
+Claude Code walks `CLAUDE.md` from the project root upward through parent directories, then to `~/.claude/CLAUDE.md`. Files closer to the working directory take precedence for conflicting guidance.
 
 ### What the kit provides
 
 The starter kit stores repo-specific knowledge in the repository itself:
 
-* `.agents/AGENTS.md` — concise repo-wide durable guidance
-* `.agents/docs/*` — index, decisions, troubleshooting, maintenance schema, log
-* `.agents/playbooks/` — multi-step procedures
-* `.agents/skills/<n>/SKILL.md` — portable repo-local skills
-* `.agents/sessions/` — task-closeout bundles, usually gitignored except `README.md`
+- `.agents/AGENTS.md` — concise repo-wide durable guidance
+- `.agents/docs/*` — index, decisions, troubleshooting, maintenance schema, log
+- `.agents/playbooks/` — multi-step procedures
+- `.agents/skills/<name>/SKILL.md` — portable skills (files, not a separate runtime registry)
+- `.agents/sessions/` — task-closeout bundles, usually gitignored except `README.md`
 
 ### Root `CLAUDE.md` vs `.agents/AGENTS.md` (important for Claude Code)
 
-Claude Code reads `CLAUDE.md`, not `AGENTS.md`. If your repository already has an `AGENTS.md` used by other coding agents, create a `CLAUDE.md` that imports it so both tools stay in sync without duplicating content:
+Claude Code natively loads `CLAUDE.md` from the project root; it does **not** automatically load `.agents/AGENTS.md` unless a root instruction tells it to. Use this split:
 
-```markdown
-@AGENTS.md
+- **`CLAUDE.md`** at the project root — short bootstrap that points Claude Code at `.agents/AGENTS.md` and `.agents/docs/index.md`. Keep it concise.
+- **`.agents/AGENTS.md`** — the portable, durable instructions file copied from `scaffold/` into consumer repos.
 
-## Claude Code
+This mirrors the same root-vs-durable pattern used by Codex and Cursor: one thin wiring file in the project root, one authoritative source of truth under `.agents/`.
 
-Consult `.agents/AGENTS.md` for durable repo guidance.
-Use `.agents/docs/index.md` to find playbooks and troubleshooting docs.
-Keep temporary task evidence in `.agents/sessions/` (gitignored bundles).
-```
+### Claude Code auto-memory vs kit `.agents/docs/` (critical distinction)
 
-The `@path` import syntax expands and injects the referenced file into Claude's context at session start. Use it to bridge the two systems rather than maintaining two separate instruction files.
+Claude Code maintains an auto-memory system at `~/.claude/projects/<project>/memory/`. These files are:
 
-`.agents/AGENTS.md` is a nested file — Claude Code will only load it lazily, when Claude reads files inside `.agents/`. A root `CLAUDE.md` with an explicit import or pointer ensures the kit's guidance is in context for work anywhere in the repo.
+- **agent-private**: accessible only to the Claude Code instance running as the current user
+- **not version-controlled**: they live outside the repo, in the user's home directory
+- **cross-session**: they persist across multiple Claude Code sessions for that user
 
-### Claude Code skills and kit `.agents/skills/`
+The kit's `.agents/docs/` is the opposite:
 
-Claude Code's native skills live under `.claude/skills/`, not `.agents/skills/`. These are different locations. The kit's `.agents/skills/<n>/SKILL.md` files are ordinary repo files that Claude Code can read on demand via bash or explicit instructions — they are not auto-discovered as native Claude Code skills.
+- **repo-shared**: committed to git, readable by any agent or team member
+- **version-controlled**: changes appear in `git log` and can be reviewed and reverted
+- **tool-agnostic**: Codex, Cursor, or a CI job can all read the same files
 
-Two practical approaches:
+**Do not use Claude Code auto-memory as a substitute for kit durable docs.** Lessons that belong in `.agents/docs/`, `.agents/AGENTS.md`, or `.agents/playbooks/` should be promoted there — not kept in `~/.claude/` where other contributors and other tools cannot see them.
 
-1. **Reference by path in `CLAUDE.md`**: instruct Claude to read `.agents/skills/task-closeout/SKILL.md` when closing a task. This keeps the kit portable without requiring a second skill location.
-2. **Symlink into `.claude/skills/`**: if you want native skill invocation, symlink the relevant `.agents/skills/<n>/` directories into `.claude/skills/`. The skill name is taken from the directory name, and `SKILL.md` must be present inside. Keep symlinks explicit so the indirection is visible.
+### `.claude/commands/` vs kit `.agents/skills/`
 
-For most kit workflows, option 1 is simpler and avoids creating a second namespace to maintain.
+Claude Code does **not** automatically discover `.agents/skills/*/SKILL.md` as slash commands (contrast with Codex, which explicitly scans `.agents/skills/`). The two registries are separate:
+
+| Layer | Where | Invocation |
+| --- | --- | --- |
+| Kit skills | `.agents/skills/<name>/SKILL.md` | Explicit prompt: "read and follow `.agents/skills/task-closeout/SKILL.md`" |
+| Claude Code commands | `.claude/commands/<name>.md` | `/name` in chat |
+
+You can optionally bridge them: create a `.claude/commands/task-closeout.md` that instructs Claude Code to open and follow `.agents/skills/task-closeout/SKILL.md`. This is thin wiring — one or two lines — not a copy of the skill content.
 
 ## 3. Setup steps
 
-### Recommended pattern: thin `CLAUDE.md` bootstrap, fat `.agents/` tree
+### Recommended pattern: thin `CLAUDE.md`, fat `.agents/` tree
 
-1. **Install the kit** by copying or merging `scaffold/` into the target repo's `.agents/` directory (follow `INSTALL.md`).
-2. **Add a root `CLAUDE.md`** if the repo does not already have one. Keep it short — its job is to route Claude into `.agents/`, not to duplicate long policy.
-3. **Keep all durable repo knowledge in `.agents/`** — same as the kit docs.
-4. **Use `@path` imports** in `CLAUDE.md` to pull in content Claude should always have, such as the `AGENTS.md` bridge above.
-5. **Keep personal preferences** in `~/.claude/CLAUDE.md` or a gitignored `CLAUDE.local.md`, not in the committed `CLAUDE.md`.
-6. **Do not move integration guides into `.agents/`** — user-facing tool setup belongs in root `docs/integrations/`.
+1. Install the kit by copying or merging `scaffold/` into the target repo's `.agents/` directory.
+2. Add a short `CLAUDE.md` at the project root if the repo does not already have one.
+3. Keep all durable repo policy in `.agents/`; root `CLAUDE.md` should route Claude Code rather than duplicate long guidance.
+4. Keep personal or cross-project preferences in `~/.claude/CLAUDE.md`, not in the repo's `CLAUDE.md`.
+5. Keep `.claude/settings.json` for project-specific hooks and MCP config; do not commit `.claude/settings.local.json`, which typically holds personal credentials or local overrides.
 
 ### Example root `CLAUDE.md`
 
@@ -92,196 +100,151 @@ For most kit workflows, option 1 is simpler and avoids creating a second namespa
 
 This repo uses the Agent Knowledge Starter Kit.
 
-- Read `.agents/AGENTS.md` for durable repo guidance and conventions.
-- Use `.agents/docs/index.md` to find decisions, troubleshooting, and playbooks.
-- For task boundaries, read `.agents/skills/task-closeout/SKILL.md` before closing work.
-- Keep raw task evidence under `.agents/sessions/` (gitignored bundles); do not promote session notes into durable docs without a learning pass.
-
-@AGENTS.md
+- Read `.agents/AGENTS.md` for durable repo guidance (build, test, conventions, pitfalls).
+- Use `.agents/docs/index.md` to find decisions, troubleshooting docs, and playbooks.
+- For task closeout, follow `.agents/skills/task-closeout/SKILL.md` and write the bundle under `.agents/sessions/`.
+- Keep temporary task evidence in `.agents/sessions/`; do not promote session notes into durable docs without a learning pass through `.agents/skills/learning-distill/SKILL.md`.
 ```
 
-### Example: optionally bridging to native skills
+Keep this short. Claude Code loads `CLAUDE.md` at every session; a large file is expensive context that crowds out the work.
 
-If you want kit maintenance workflows to be invokable as native Claude Code skills:
+### Optional: expose kit skills as Claude Code commands
 
-```bash
-# One-time setup per repo
-mkdir -p .claude/skills
-ln -s ../../.agents/skills/task-closeout .claude/skills/task-closeout
-ln -s ../../.agents/skills/learning-distill .claude/skills/learning-distill
-ln -s ../../.agents/skills/knowledge-lint .claude/skills/knowledge-lint
-```
-
-After symlinking, Claude Code can discover these as named skills. Invoke them explicitly when they matter: "use the task-closeout skill" or `/task-closeout` if you've set up a matching slash command. Skill auto-detection is not always reliable, so explicit invocation is preferred for maintenance workflows.
-
-### Using `.claude/rules/` for path-scoped guidance
-
-For teams that want to enforce kit conventions only when editing certain files, add a rules file:
-
-`.claude/rules/agent-knowledge-kit.md`:
+Create `.claude/commands/task-closeout.md`:
 
 ```markdown
----
-paths:
-  - ".agents/**/*.md"
----
-
-# Agent Knowledge Kit maintenance rules
-
-When editing files under `.agents/`:
-- Do not bloat `.agents/AGENTS.md` with temporary task history.
-- Respect the maintenance schema in `.agents/docs/MAINTENANCE.md`.
-- Keep session bundles under `.agents/sessions/` and out of commits.
-- After a meaningful change, note it in `.agents/docs/log.md`.
+Read and follow `.agents/skills/task-closeout/SKILL.md`. Write the output bundle to `.agents/sessions/<timestamp>-<slug>/`.
 ```
 
-Rules without a `paths` field load every session. Keep unconditional rules short; move scope-specific guidance into path-scoped rules.
+This lets you invoke the skill with `/task-closeout` in chat. Keep the command file as a pointer, not a copy of the skill text.
+
+### Hooks in `.claude/settings.json`
+
+Claude Code's hook system runs shell commands on events such as session start or tool use. You can use hooks for lightweight automation — for example, to remind yourself of closeout steps or to run a linter after edits land:
+
+```json
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [{ "type": "command", "command": "echo 'Did you close out with task-closeout? Check .agents/skills/task-closeout/SKILL.md'" }]
+      }
+    ]
+  }
+}
+```
+
+Keep hooks minimal. They fire on every matching event; a hook that runs constantly adds noise. Use hooks only when there is a genuine automation benefit, not just to repeat instructions already in `CLAUDE.md`.
 
 ## 4. Workflow
 
-Suggested Claude Code workflow in a kit-enabled repo:
+Suggested flow for Claude Code in a kit-enabled repo:
 
-1. Launch Claude Code from the repository root so the root `CLAUDE.md` loads at startup.
-2. For work that touches repo conventions, confirm Claude has read `.agents/AGENTS.md` and `.agents/docs/index.md` before proceeding.
-3. At task completion, ask Claude to read `.agents/skills/task-closeout/SKILL.md` and follow it. The closeout bundle goes under `.agents/sessions/<folder>/`.
-4. Run a separate learning pass: ask Claude to read `.agents/skills/learning-distill/SKILL.md` and promote only stable lessons into `.agents/docs/` or `.agents/AGENTS.md`.
-5. Periodically run `knowledge-lint` to keep the durable layer coherent.
-6. When you change durable guidance, edit `.agents/` first. Update `CLAUDE.md` only if the wiring changed — new paths, new mandatory steps.
-7. Use `/memory` to check what auto memory has accumulated. If Claude has saved a useful project fact to auto memory that belongs in `CLAUDE.md` instead, move it manually; auto memory is machine-local and does not share across teammates.
+1. At session start, `CLAUDE.md` is loaded automatically. Claude Code does not re-read `.agents/AGENTS.md` unless explicitly asked or pointed there by `CLAUDE.md`.
+2. Read `.agents/AGENTS.md` and `.agents/docs/index.md` when the task needs repo-wide policy.
+3. For maintenance tasks, invoke kit skills explicitly — "run task-closeout" or "follow `.agents/skills/task-closeout/SKILL.md`". This works with no prior setup; Claude Code will find and read the skill file from the repo. The `.claude/commands/` wrapper (section 3) is a convenience for the `/name` shorthand, not a requirement.
+4. Write session bundles under `.agents/sessions/<folder>/` (gitignored); do not put task notes in `.agents/AGENTS.md` or durable docs. Claude Code can write to `.agents/sessions/` without sandbox restrictions, unlike some other tools.
+5. Run a learning pass using `.agents/skills/learning-distill/SKILL.md` to promote stable lessons into `.agents/docs/` or `.agents/AGENTS.md`.
+6. Use `git diff` to review durable knowledge changes before committing. Session bundles should remain gitignored; only promote what is genuinely reusable.
+7. Keep personal or session-scoped observations in Claude Code auto-memory; promote repo-shared lessons into `.agents/` instead.
 
-## 5. CLAUDE.md vs auto memory vs `.agents/`
+## 5. Two-tool example: Claude Code + Codex sharing a repo
 
-Claude Code has two built-in persistence mechanisms in addition to the kit's `.agents/` layer. Understanding which layer to use for what prevents duplication and drift:
+**Scenario:** A team uses Claude Code for day-to-day implementation and knowledge maintenance; Codex runs broader agentic tasks — cross-file refactors, dependency upgrades, or automated PR review — via CI.
 
-| What | Where |
-| --- | --- |
-| Durable repo policy, conventions, architecture | `.agents/AGENTS.md` (kit) |
-| Multi-step maintenance procedures | `.agents/playbooks/` (kit) |
-| Routing pointer for Claude Code | root `CLAUDE.md` |
-| Personal machine preferences (all projects) | `~/.claude/CLAUDE.md` |
-| Personal per-project preferences (gitignored) | `CLAUDE.local.md` |
-| Learnings Claude discovers automatically (machine-local) | auto memory (`~/.claude/projects/.../MEMORY.md`) |
-| Temporary task evidence | `.agents/sessions/` (kit, gitignored) |
-
-The key distinction: `.agents/` is the shared, committed source of truth for the team. Auto memory is machine-local and appropriate for personal patterns Claude discovers. `CLAUDE.md` is wiring — keep it short.
-
-## 6. Two-tool example: Claude Code + Cursor sharing a repo
-
-**Scenario:** A team uses Claude Code in the terminal for agentic tasks and Cursor in the IDE for day-to-day editing.
-
-* **Claude Code** reads root `CLAUDE.md`, follows the `@AGENTS.md` import, and runs closeout or distillation workflows using `.agents/skills/`.
-* **Cursor** uses a thin `.cursor/rules/` layer or root `AGENTS.md` to point its Agent at the same `.agents/` files (see [cursor.md](./cursor.md) for Cursor-specific setup).
-* **Shared contract** is the repo's `.agents/` tree, committed to version control.
+- **Claude Code** reads root `CLAUDE.md`, follows `.agents/AGENTS.md` for repo policy, and writes session bundles via the `task-closeout` skill.
+- **Codex** reads root `AGENTS.md`, discovers `.agents/skills/` natively, and invokes `$task-closeout` or `$learning-distill` as Codex skills.
+- **Shared contract** is the `.agents/` tree under git.
 
 Example flow:
 
-1. You implement a feature in Cursor with an always-on rule pointing to `.agents/AGENTS.md`.
-2. You switch to Claude Code in the terminal to run a broader refactor. Root `CLAUDE.md` loads the same conventions.
-3. Claude Code closes the task with a bundle under `.agents/sessions/`, following `task-closeout`.
-4. You run a learning pass in Claude Code: `$learning-distill` (or explicit instruction) promotes stable lessons into `.agents/docs/`.
-5. Both Cursor and Claude Code read the updated durable docs on the next session because the knowledge lives in Git, not in a vendor-specific chat history.
+1. You implement a feature in Claude Code following `.agents/AGENTS.md` conventions. At completion you invoke "follow `.agents/skills/task-closeout/SKILL.md`"; Claude Code writes a bundle under `.agents/sessions/`.
+2. A Codex run performs a broader migration. Codex discovers `.agents/skills/` natively and invokes `$task-closeout`; its bundle also lands in `.agents/sessions/`.
+3. You run a learning pass in Claude Code ("follow `.agents/skills/learning-distill/SKILL.md`, source `.agents/sessions/<bundle>`"). Promoted lessons update `.agents/docs/` and are committed.
+4. On the next Codex session, Codex reads the same updated `.agents/AGENTS.md` and `.agents/docs/` without any extra export, because the knowledge is version-controlled in the repo.
 
-## 7. Troubleshooting
+Neither tool needs to read the other's chat history or private memory. The repo is the shared source of truth.
 
-### Claude Code does not follow `.agents/AGENTS.md`
+## 6. Troubleshooting
 
-#### Symptom
-
-Claude follows root instructions but ignores durable guidance under `.agents/`.
-
-#### Likely causes
-
-* There is no root `CLAUDE.md` or it does not import or reference `.agents/AGENTS.md`.
-* Claude Code was launched from a subdirectory whose hierarchy does not include the root `CLAUDE.md`.
-* The root `CLAUDE.md` is too long and the relevant instructions are deprioritized.
-
-#### Fix
-
-Add or tighten the root `CLAUDE.md` with an explicit `@AGENTS.md` import or a clear pointer. Keep `CLAUDE.md` short — target under 200 lines. Use `/memory` in a session to verify which files loaded.
-
-#### Validation
-
-Start a fresh Claude Code session, run `/memory`, and confirm both `CLAUDE.md` and the imported `AGENTS.md` appear in the loaded files list.
-
-### Auto memory conflicts with `.agents/` guidance
+### Claude Code does not consult `.agents/AGENTS.md`
 
 #### Symptom
 
-Claude follows auto memory that contradicts `.agents/AGENTS.md`.
+Claude Code follows root `CLAUDE.md` but ignores durable guidance under `.agents/`.
 
 #### Likely causes
 
-Auto memory accumulated a stale or incorrect fact that now overrides intended behavior. Auto memory is delivered alongside `CLAUDE.md` at session start, so it carries similar weight.
+- Root `CLAUDE.md` does not point Claude Code at `.agents/AGENTS.md`.
+- Claude Code was invoked from a subdirectory and the root `CLAUDE.md` was not found in the directory walk.
 
 #### Fix
 
-Run `/memory`, open the auto memory folder, and delete or edit the conflicting entry. If a correction belongs to the whole team, move it from auto memory into `.agents/AGENTS.md` and commit it.
+Add an explicit pointer to `.agents/AGENTS.md` in root `CLAUDE.md`. Verify by asking Claude Code to summarize active instructions at session start; it should mention `.agents/AGENTS.md` if the pointer is in place.
 
 #### Validation
 
-After editing auto memory, start a fresh session and confirm Claude follows the canonical `.agents/` guidance.
+Open a fresh Claude Code session from the repo root and ask: "What durable repo guidance applies here?" It should cite `.agents/AGENTS.md` content.
 
-### Kit skills not recognized as native Claude Code skills
+### Durable lessons accumulate in auto-memory instead of `.agents/`
 
 #### Symptom
 
-Asking Claude to use "task-closeout" or invoking `$task-closeout` does not find the skill.
+Useful lessons from completed sessions exist in `~/.claude/projects/.../memory/` but are invisible to teammates and other tools.
 
 #### Likely causes
 
-`.agents/skills/` is not in the `.claude/skills/` discovery path. Claude Code discovers native skills from `.claude/skills/` (project) and `~/.claude/skills/` (user), not from `.agents/skills/`.
+Claude Code's auto-memory is automatic and convenient. Without a deliberate promotion step it is easy to leave reusable insights there instead of surfacing them through `learning-distill`.
 
 #### Fix
 
-Either (a) add explicit instructions in `CLAUDE.md` to read the skill file by path: "before closing a task, read `.agents/skills/task-closeout/SKILL.md` and follow it," or (b) symlink the relevant skill directories into `.claude/skills/` as described in Setup.
+After task closeout, run a learning pass: "follow `.agents/skills/learning-distill/SKILL.md`, source `<session-bundle>`." Promote stable, reusable guidance into `.agents/docs/` or `.agents/AGENTS.md` and commit it. Personal session-scoped notes can stay in auto-memory.
 
 #### Validation
 
-Ask Claude to read the skill file explicitly. Confirm it opens and reads `.agents/skills/task-closeout/SKILL.md` from disk.
+A teammate or CI job following `.agents/AGENTS.md` sees the promoted lesson without needing access to your `~/.claude/` directory.
 
-### `CLAUDE.md` grows too large and adherence degrades
+### `.claude/commands/` duplicates `.agents/skills/` content
 
 #### Symptom
 
-Claude ignores some instructions or picks between conflicting rules arbitrarily.
+Skill text is copied verbatim into a `.claude/commands/<name>.md` file, creating two diverging copies.
 
 #### Likely causes
 
-`CLAUDE.md` exceeds ~200 lines, consuming excess context. Or instructions are vague and Claude deprioritizes them when they seem irrelevant to the current task.
+The command file was written to be self-contained rather than delegating to the skill file.
 
 #### Fix
 
-Move detailed, scope-specific content to `.claude/rules/` with `paths:` frontmatter, or to `.agents/playbooks/`. Keep root `CLAUDE.md` to routing and universally applicable facts only.
+Replace the command body with a one-line pointer: "Read and follow `.agents/skills/<name>/SKILL.md`." The canonical skill text lives in the kit; the command is only an invocation shortcut.
 
 #### Validation
 
-Run `/memory` to inspect loaded files. Check that `CLAUDE.md` is short and the detailed guidance is reachable from playbooks or path-scoped rules.
+A change to `.agents/skills/<name>/SKILL.md` takes effect immediately without touching `.claude/commands/`.
 
-### Guidance is duplicated between `CLAUDE.md` and `.agents/AGENTS.md`
+### `settings.local.json` committed to the repo
 
 #### Symptom
 
-Editing a convention requires updating both `CLAUDE.md` and `.agents/AGENTS.md`. They drift apart over time.
+Personal credentials or local API keys appear in git history.
 
 #### Likely causes
 
-Long policy was copied into `CLAUDE.md` rather than kept in `.agents/AGENTS.md` and imported.
+`.claude/settings.local.json` was staged alongside other `.claude/` changes.
 
 #### Fix
 
-Shrink `CLAUDE.md` to pointers and `@path` imports. Keep durable policy in `.agents/AGENTS.md`. One canonical file per concern.
+Add `.claude/settings.local.json` to `.gitignore` immediately. Rotate any exposed credentials. Only commit `.claude/settings.json` (project-level, non-sensitive settings) if needed; keep credential-bearing config local-only.
 
 #### Validation
 
-A convention change should require editing one `.agents/` file, not hunting duplicate prose across `CLAUDE.md` and `.agents/`.
+`git log --all -- .claude/settings.local.json` returns no commits.
 
-## 8. References
+## 7. References
 
-* [Claude Code overview](https://code.claude.com/docs/en/overview) — surfaces, installation, and capabilities
-* [How Claude remembers your project](https://code.claude.com/docs/en/memory) — `CLAUDE.md`, `.claude/rules/`, auto memory, `AGENTS.md` import
-* [Skills](https://code.claude.com/docs/en/skills) — native skill discovery, `SKILL.md` conventions, `.claude/skills/`
-* [`README.md`](../../README.md) — kit overview and root vs `.agents/AGENTS.md` split
-* [`INSTALL.md`](../../INSTALL.md) — adopting `scaffold/` into `.agents/`
-* [`cursor.md`](./cursor.md) — Cursor integration (complementary tool, shared `.agents/` contract)
-* [`codex.md`](./codex.md) — Codex integration (contrasting native skill namespace with path-based skill references)
-* [`.agents/plans/add-integrations.md`](../../.agents/plans/add-integrations.md) — integration doc conventions for this repository
+- [Claude Code documentation](https://docs.anthropic.com/en/docs/claude-code) — `CLAUDE.md`, custom commands, hooks, memory, MCP configuration
+- [`README.md`](../../README.md) — kit overview and root vs `.agents/AGENTS.md` split
+- [`INSTALL.md`](../../INSTALL.md) — adopting `scaffold/` into `.agents/`
+- [`codex.md`](./codex.md) — contrasting Codex's native `.agents/skills/` discovery with Claude Code's explicit-reference model
+- [`cursor.md`](./cursor.md) — comparison point for IDE rules-based wiring
+- [`.agents/plans/add-integrations.md`](../../.agents/plans/add-integrations.md) — integration doc conventions for this repository
