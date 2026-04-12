@@ -42,7 +42,7 @@ Each guide should focus on what makes the tool's integration unique. Persistent 
 | Guide | Tool type | Discovery mechanism | Key integration question | Status |
 |---|---|---|---|---|
 | `hermes.md` | Persistent assistant | memory, session recall, Hermes skills, `AGENTS.md` | When to use Hermes memory vs repo knowledge, and how to avoid the dual-skill-namespace trap | **done / verified** |
-| `openclaw.md` | Persistent assistant | AGENTS.md, CLAUDE.md, `.agents/skills/`, native memory | How OpenClaw's native memory/skills overlap with the kit | planned |
+| `openclaw.md` | Persistent assistant | `AGENTS.md`, startup files, native memory, session tools, automation, `.agents/skills/` | How OpenClaw's native memory, automation, and startup behavior overlap with the kit without replacing the repo knowledge layer | **done** — verified against local OpenClaw docs/CLI and live `openclaw status` |
 | `codex.md` | Coding agent / IDE / app | `AGENTS.md`, `.agents/skills/`, config, sandbox approvals | How Codex's native `AGENTS.md` and `.agents/skills/` discovery should use the kit without duplicating repo knowledge | **done** — verified against official Codex docs |
 | `kilo-code.md` | Coding agent / CLI / app | `AGENTS.md`, `kilo.json`, `.kilo/command/*.md`, `.kilo/agent/*.md`, Kilo-native skills | How Kilo's native commands, agents, skills, and instructions should point to canonical repo knowledge under `.agents/` without forking it | **done** — based on documented Kilo config/discovery model and repo-local config locations |
 | `claude-code.md` | Coding agent / IDE | `CLAUDE.md`, settings, AGENTS.md | How to point Claude Code at the kit cleanly | planned |
@@ -73,6 +73,7 @@ Each guide should focus on what makes the tool's integration unique. Persistent 
 - explain native memory/skills vs repo `.agents/`
 - clarify `.agents/skills/` vs any OpenClaw-native skill system
 - include a two-tool example
+- **Status:** done — verified against local OpenClaw docs/CLI and a live `openclaw status` run
 
 ### 4. Write `codex.md`
 

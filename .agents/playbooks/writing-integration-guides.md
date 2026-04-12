@@ -21,11 +21,13 @@ When writing an integration guide for an agent tool that has its own memory, ski
 6. **Verify claims against real behavior.** Before documenting a limitation, reproduce it in the current tool or current repo context. Distinguish a repo bootstrap file (such as root `AGENTS.md`) from the durable `.agents/` knowledge layer when both exist.
 
 7. **Update repo routing docs together.** When a new guide lands under `docs/integrations/`, update the main `README.md`, `docs/integrations/README.md`, and any maintainer tracker such as `.agents/plans/add-integrations.md` in the same change so discovery and status stay aligned.
+8. **Prefer one post-dogfood refinement pass.** After the first working draft, run at least one realistic workflow through the target tool. If that lived run clarifies the value proposition or exposes missing framing, add one short concrete example to the published guide.
 
 ## Pitfalls
 - Don't assume the tool adopted the kit — they may be convergent, not compatible.
 - Don't oversell the kit. The tool's native systems may be better for some tasks.
 - Don't skip the namespace collision problem. If the tool has its own `skills/` or `memory/` directories, explain how to avoid confusion with the kit's equivalents.
+- For persistent assistants with their own long-term memory or workspace files, explicitly separate personal/runtime memory from repo-local durable knowledge. Do not let repo architecture guidance drift into assistant-private memory stores.
 - Don't turn a single weak run into a product-wide claim without reproduction.
 - Don't leave incidental references to whichever guide you used as a template. Keep cross-tool comparisons only when they explain a real integration risk for the target tool.
 
