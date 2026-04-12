@@ -68,6 +68,7 @@ Currently available:
 - [Hermes](docs/integrations/hermes.md)
 - [Cursor](docs/integrations/cursor.md)
 - [Codex](docs/integrations/codex.md)
+- [Kilo Code](docs/integrations/kilo-code.md)
 
 ---
 

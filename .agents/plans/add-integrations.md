@@ -44,6 +44,7 @@ Each guide should focus on what makes the tool's integration unique. Persistent 
 | `hermes.md` | Persistent assistant | memory, session recall, Hermes skills, `AGENTS.md` | When to use Hermes memory vs repo knowledge, and how to avoid the dual-skill-namespace trap | **done / verified** |
 | `openclaw.md` | Persistent assistant | AGENTS.md, CLAUDE.md, `.agents/skills/`, native memory | How OpenClaw's native memory/skills overlap with the kit | planned |
 | `codex.md` | Coding agent / IDE / app | `AGENTS.md`, `.agents/skills/`, config, sandbox approvals | How Codex's native `AGENTS.md` and `.agents/skills/` discovery should use the kit without duplicating repo knowledge | **done** — verified against official Codex docs |
+| `kilo-code.md` | Coding agent / CLI / app | `AGENTS.md`, `kilo.json`, `.kilo/command/*.md`, `.kilo/agent/*.md`, Kilo-native skills | How Kilo's native commands, agents, skills, and instructions should point to canonical repo knowledge under `.agents/` without forking it | **done** — based on documented Kilo config/discovery model and repo-local config locations |
 | `claude-code.md` | Coding agent / IDE | `CLAUDE.md`, settings, AGENTS.md | How to point Claude Code at the kit cleanly | planned |
 | `cursor.md` | IDE (rules-based) | `.cursor/rules` MDC files | How to map rules to `.agents/` content without duplication | **done** — verified against Cursor Rules docs |
 | `copilot.md` | IDE (rules-based) | `.github/copilot-instructions.md` | How to reference `.agents/` from Copilot instructions | planned |
@@ -94,6 +95,14 @@ Each guide should focus on what makes the tool's integration unique. Persistent 
 - include a two-tool example
 - **Status:** done
 
+### 6.5 Write `kilo-code.md`
+
+- document `kilo.json` / `.kilo/kilo.json`, `.kilo/command/*.md`, `.kilo/agent/*.md`, Kilo-native skills, and instruction discovery
+- make root `AGENTS.md` vs `.agents/AGENTS.md` roles explicit
+- keep one source of truth under `.agents/`; Kilo-specific config under `.kilo/` should be thin wiring only
+- include a two-tool example
+- **Status:** done — based on documented Kilo configuration/discovery behavior and repo-local config locations
+
 ### 7. Write `copilot.md`
 
 - document `.github/copilot-instructions.md`
@@ -110,7 +119,7 @@ Each guide should focus on what makes the tool's integration unique. Persistent 
 
 - add a brief "Integrations" section linking to `docs/integrations/`
 - keep it concise and guide-oriented
-- **Status:** partial — Hermes, Cursor, and Codex links added
+- **Status:** partial — Hermes, Cursor, Codex, and Kilo Code links added
 
 ## Out of scope (for now)
 

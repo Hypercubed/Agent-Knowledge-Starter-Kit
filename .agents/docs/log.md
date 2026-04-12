@@ -75,6 +75,13 @@ Accepted: 5 (move Hermes guide into `docs/integrations/`; verify dual-skill-name
 Rejected: 1 (treating earlier file-tool failures as a general Hermes limitation)  
 Notes: Distilled the Hermes integration review session; evidence points primarily to a weak model plus a real Hermes-vs-repo skill-namespace gotcha, not to a broad repo-setup failure.
 
+### [2026-04-12] learning-distill | t-20260411-201214-kilo-code-integration
+Outcome: updated
+Files: `.agents/playbooks/writing-integration-guides.md`; `.agents/docs/log.md`; `.agents/sessions/20260411-201214-kilo-code-integration/summary.json`
+Accepted: 1 (integration-guide changes should update root README, integrations index, and maintainer tracker together)
+Rejected: 3 (no `.agents/AGENTS.md` update; Kilo-specific troubleshooting/bootstrap guidance stayed out due to doc-based, not hands-on, evidence; repo decision duplicated existing `docs/integrations/` policy)
+Notes: Distilled the Kilo Code integration doc task; kept durable changes repo-level and avoided promoting low-confidence Kilo-specific behavior claims.
+
 ## Template
 
 ### [YYYY-MM-DD] learning-distill | <task-id>

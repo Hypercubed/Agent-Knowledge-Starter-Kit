@@ -20,6 +20,8 @@ When writing an integration guide for an agent tool that has its own memory, ski
 
 6. **Verify claims against real behavior.** Before documenting a limitation, reproduce it in the current tool or current repo context. Distinguish a repo bootstrap file (such as root `AGENTS.md`) from the durable `.agents/` knowledge layer when both exist.
 
+7. **Update repo routing docs together.** When a new guide lands under `docs/integrations/`, update the main `README.md`, `docs/integrations/README.md`, and any maintainer tracker such as `.agents/plans/add-integrations.md` in the same change so discovery and status stay aligned.
+
 ## Pitfalls
 - Don't assume the tool adopted the kit — they may be convergent, not compatible.
 - Don't oversell the kit. The tool's native systems may be better for some tasks.
