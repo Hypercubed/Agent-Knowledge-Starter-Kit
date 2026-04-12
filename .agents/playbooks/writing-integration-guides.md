@@ -25,6 +25,7 @@ When writing an integration guide for an agent tool that has its own memory, ski
 - Don't oversell the kit. The tool's native systems may be better for some tasks.
 - Don't skip the namespace collision problem. If the tool has its own `skills/` or `memory/` directories, explain how to avoid confusion with the kit's equivalents.
 - Don't turn a single weak run into a product-wide claim without reproduction.
+- Don't leave incidental references to whichever guide you used as a template. Keep cross-tool comparisons only when they explain a real integration risk for the target tool.
 
 ## IDE and rules-based tools (Cursor, Copilot-style)
 

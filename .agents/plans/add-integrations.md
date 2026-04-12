@@ -43,6 +43,7 @@ Each guide should focus on what makes the tool's integration unique. Persistent 
 |---|---|---|---|---|
 | `hermes.md` | Persistent assistant | memory, session recall, Hermes skills, `AGENTS.md` | When to use Hermes memory vs repo knowledge, and how to avoid the dual-skill-namespace trap | **done / verified** |
 | `openclaw.md` | Persistent assistant | AGENTS.md, CLAUDE.md, `.agents/skills/`, native memory | How OpenClaw's native memory/skills overlap with the kit | planned |
+| `codex.md` | Coding agent / IDE / app | `AGENTS.md`, `.agents/skills/`, config, sandbox approvals | How Codex's native `AGENTS.md` and `.agents/skills/` discovery should use the kit without duplicating repo knowledge | **done** — verified against official Codex docs |
 | `claude-code.md` | Coding agent / IDE | `CLAUDE.md`, settings, AGENTS.md | How to point Claude Code at the kit cleanly | planned |
 | `cursor.md` | IDE (rules-based) | `.cursor/rules` MDC files | How to map rules to `.agents/` content without duplication | **done** — verified against Cursor Rules docs |
 | `copilot.md` | IDE (rules-based) | `.github/copilot-instructions.md` | How to reference `.agents/` from Copilot instructions | planned |
@@ -72,36 +73,44 @@ Each guide should focus on what makes the tool's integration unique. Persistent 
 - clarify `.agents/skills/` vs any OpenClaw-native skill system
 - include a two-tool example
 
-### 4. Write `claude-code.md`
+### 4. Write `codex.md`
+
+- document `AGENTS.md`, `.agents/skills/`, Codex config, and sandbox approval behavior
+- make root `AGENTS.md` vs `.agents/AGENTS.md` roles explicit
+- explain Codex repo-local skill discovery vs user/admin/system skills
+- include a two-tool example
+- **Status:** done — verified against official Codex docs
+
+### 5. Write `claude-code.md`
 
 - document `CLAUDE.md` setup and any pointer/config files
 - make root `AGENTS.md` vs `.agents/AGENTS.md` roles explicit
 - include a two-tool example
 
-### 5. Write `cursor.md`
+### 6. Write `cursor.md`
 
 - document `.cursor/rules` MDC format
 - show how to map rules to `.agents/` content without splitting the source of truth
 - include a two-tool example
 - **Status:** done
 
-### 6. Write `copilot.md`
+### 7. Write `copilot.md`
 
 - document `.github/copilot-instructions.md`
 - show how to reference `.agents/` from Copilot instructions
 - include a two-tool example
 
-### 7. Write `vscode-extensions.md`
+### 8. Write `vscode-extensions.md`
 
 - cover only extensions whose discovery/setup behavior is verified
 - likely candidates: Cline, Continue, other widely used extensions
 - include a two-tool example
 
-### 8. Update main README as guides land
+### 9. Update main README as guides land
 
 - add a brief "Integrations" section linking to `docs/integrations/`
 - keep it concise and guide-oriented
-- **Status:** partial — Hermes and Cursor links added
+- **Status:** partial — Hermes, Cursor, and Codex links added
 
 ## Out of scope (for now)
 

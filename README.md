@@ -67,6 +67,7 @@ Currently available:
 
 - [Hermes](docs/integrations/hermes.md)
 - [Cursor](docs/integrations/cursor.md)
+- [Codex](docs/integrations/codex.md)
 
 ---
 

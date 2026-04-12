@@ -1,5 +1,12 @@
 # Knowledge Maintenance Log
 
+### [2026-04-12] learning-distill | t-20260411-195746-codex-integration
+Outcome: updated
+Files: `.agents/playbooks/writing-integration-guides.md`; `.agents/docs/troubleshooting.md`; `.agents/docs/index.md`; `.agents/docs/log.md`; `.agents/sessions/20260411-195746-codex-integration/summary.json`
+Accepted: 3 (remove incidental template-tool references from integration guides; Codex `.agents/` write sandbox troubleshooting; index now names Codex among root integration guides)
+Rejected: 3 (`.agents/AGENTS.md` update absent; repo decision absent; Codex guide-specific verification details stay in `docs/integrations/codex.md`)
+Notes: Distilled Codex integration guide closeout; no `scaffold/` changes because integration docs remain root user-facing docs.
+
 ### [2026-04-12] learning-distill | t-20260412-014546-cursor-integration
 Outcome: updated  
 Files: `.agents/playbooks/writing-integration-guides.md`; `.agents/docs/index.md`; `.agents/docs/log.md`; `.agents/sessions/20260412-014546-cursor-integration/summary.json`  

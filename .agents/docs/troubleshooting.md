@@ -64,6 +64,23 @@ A skill meant only for this repo’s dual-tree maintenance appears under `scaffo
 #### Validation
 - `scaffold/skills/` lists only portable kit skills; maintainer sync or similar tooling exists only under `.agents/skills/` when applicable.
 
+### Codex cannot write under `.agents/` during closeout or distill
+
+#### Symptom
+Codex can read `.agents/` but creating a session folder or updating durable knowledge files fails with a read-only filesystem or approval-related error.
+
+#### Likely causes
+- Codex sandbox settings protect `.agents/` under workspace-write mode.
+- The current session is running in read-only mode.
+
+#### Fix
+- Approve the specific `.agents/` write needed for closeout or distillation, or use a configuration that permits the intended maintenance edit.
+- Do not treat the error as a kit layout problem; `.agents/` is still the correct location for dogfood knowledge and session bundles in this repo.
+
+#### Validation
+- The intended `.agents/` file or session folder is created or updated.
+- `git status --short` shows only expected durable knowledge changes; per-task session bundles remain ignored.
+
 ## Entry template
 
 ### Symptom
