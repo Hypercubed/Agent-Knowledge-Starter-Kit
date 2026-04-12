@@ -79,7 +79,7 @@ Describe the known recovery steps.
 ### Validation
 How to confirm the problem is resolved.
 
-### Dual skill namespace: `skill_view` returns wrong file
+### Hermes Agent–specific: Dual skill namespace (`skill_view` returns wrong file)
 
 #### Symptom
 Agent calls `skill_view(name="task-closeout")` and gets back a stub or different content than what exists at `.agents/skills/task-closeout/SKILL.md` in the repo.
@@ -97,7 +97,7 @@ Agent calls `skill_view(name="task-closeout")` and gets back a stub or different
 - The skill content matches the repo file exactly.
 - `skill_view` and direct filesystem read return the same content (or `skill_view` returns nothing).
 
-### Suspected tool anomaly from a single weak run
+### Hermes Agent–specific: Suspected tool anomaly from a single weak run
 
 #### Symptom
 An earlier session reports that `write_file`, `patch`, or `read_file` behaved inconsistently with the real repository state.
