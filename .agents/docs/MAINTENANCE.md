@@ -30,6 +30,9 @@ Catalog of durable knowledge assets.
 ### `.agents/docs/log.md`
 Append-only maintenance log.
 
+### `.agents/plans/`
+Active task planning, research documents, and implementation plans.
+
 ## Distillation policy
 
 A lesson belongs in `.agents/AGENTS.md` only if it is:

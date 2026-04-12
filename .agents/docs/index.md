@@ -26,6 +26,9 @@ Maintenance schema and rules for this knowledge layer.
 ## `.agents/docs/log.md`
 Append-only record of distillation and maintenance activity.
 
+## `.agents/plans/`
+Upcoming work, architectural research, and active task plans. Unlisted from `MAINTENANCE.md` originally but heavily used for agent workflow planning (e.g. `add-knowledge-search.md`).
+
 ## Root install docs
 [`INSTALL.md`](../../INSTALL.md) — agent-facing installation and merge checklist for adopting this starter kit into a target repository.
 

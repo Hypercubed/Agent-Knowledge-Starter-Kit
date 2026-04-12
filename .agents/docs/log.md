@@ -1,5 +1,16 @@
 # Knowledge Maintenance Log
 
+### [2026-04-12] learning-distill | knowledge-lint-20260412
+Outcome: updated
+Files: `.agents/docs/troubleshooting.md`; `.agents/docs/log.md`; `.agents/sessions/20260412-162300-knowledge-lint-pass/summary.json`
+Accepted: 1 (Added troubleshooting entry for Windows-to-WSL Tool Path Failures)
+Rejected: 0
+Notes: Distilled knowledge-lint session. Added a troubleshooting note to prevent agents struggling with Windows-WSL cross-environment file paths.
+
+### [2026-04-12] knowledge-lint
+Outcome: cleanup
+Files: `.agents/docs/log.md`; `.agents/docs/index.md`; `.agents/docs/MAINTENANCE.md`
+Notes: Removed duplicate learning-distill entry for `log-safety-hardening` and a stray closing bracket. Documented the `.agents/plans/` directory in `index.md` and `MAINTENANCE.md` to address uncategorized knowledge and missing index coverage.
 ### [2026-04-12] learning-distill | create-antigravity-integration
 Outcome: updated
 Files: `.agents/docs/troubleshooting.md`; `.agents/docs/log.md`; `.agents/sessions/20260412-160900-antigravity-integration/summary.json`
@@ -26,7 +37,7 @@ Outcome: updated
 Files: `.agents/docs/repo-decisions.md`; `.agents/playbooks/maintainer-adoption-closeout-distill.md`; `.agents/docs/log.md`; `.agents/sessions/20260412-161547-log-safety-hardening/summary.json`
 Accepted: 2 (kit-contract policy changes must update `scaffold/` too; maintainer closeout checklist should verify dogfood-only vs kit-wide scope before task completion)
 Rejected: 2 (`.agents/AGENTS.md` update absent; troubleshooting candidate treated as process failure rather than recurring runtime issue)
-Notes: Distilled log-safety hardening closeout; promoted scope discipline into maintainer docs after the first pass initially missed scaffold copies.]
+Notes: Distilled log-safety hardening closeout; promoted scope discipline into maintainer docs after the first pass initially missed scaffold copies.
 
 ### [2026-04-12] learning-distill | t-20260412-155309-openclaw-guide-refinement
 Outcome: updated
@@ -42,12 +53,6 @@ Accepted: 1 (persistent-assistant integration guides should explicitly separate 
 Rejected: 3 (`.agents/AGENTS.md` update absent; troubleshooting candidate not yet recurring; repo decision already covered by existing docs/integrations policy)
 Notes: Distilled OpenClaw integration guide closeout; kept durable change in the integration-writing playbook and left product-specific detail in `docs/integrations/openclaw.md`.
 
-### [2026-04-12] learning-distill | t-20260412-161547-log-safety-hardening
-Outcome: updated
-Files: `.agents/docs/repo-decisions.md`; `.agents/playbooks/maintainer-adoption-closeout-distill.md`; `.agents/docs/log.md`; `.agents/sessions/20260412-161547-log-safety-hardening/summary.json`
-Accepted: 2 (kit-contract policy changes must update `scaffold/` too; maintainer closeout checklist should verify dogfood-only vs kit-wide scope before task completion)
-Rejected: 2 (`.agents/AGENTS.md` update absent; troubleshooting candidate treated as process failure rather than recurring runtime issue)
-Notes: Distilled log-safety hardening closeout; promoted scope discipline into maintainer docs after the first pass initially missed scaffold copies.
 
 ### [2026-04-12] learning-distill | t-20260412-045044-review-followup-docs
 Outcome: updated
