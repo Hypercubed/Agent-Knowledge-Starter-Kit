@@ -1,5 +1,13 @@
 # Knowledge Maintenance Log
 
+### [2026-04-12] learning-distill | t-20260412-161547-log-safety-hardening
+Outcome: updated
+Files: `.agents/docs/repo-decisions.md`; `.agents/playbooks/maintainer-adoption-closeout-distill.md`; `.agents/docs/log.md`; `.agents/sessions/20260412-161547-log-safety-hardening/summary.json`
+Accepted: 2 (kit-contract policy changes must update `scaffold/` too; maintainer closeout checklist should verify dogfood-only vs kit-wide scope before task completion)
+Rejected: 2 (`.agents/AGENTS.md` update absent; troubleshooting candidate treated as process failure rather than recurring runtime issue)
+Notes: Distilled log-safety hardening closeout; promoted scope discipline into maintainer docs after the first pass initially missed scaffold copies.
+
+
 ### [2026-04-12] learning-distill | t-20260412-045044-review-followup-docs
 Outcome: updated
 Files: `.agents/docs/repo-decisions.md`; `.agents/playbooks/maintainer-adoption-closeout-distill.md`; `.agents/docs/log.md`; `.agents/sessions/20260412-045044-review-followup-docs/summary.json`

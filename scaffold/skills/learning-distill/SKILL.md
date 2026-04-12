@@ -37,6 +37,7 @@ Classify each candidate lesson as one of:
 - Use `.agents/playbooks/` for durable multi-step procedures.
 - Add to `.agents/AGENTS.md` only if the lesson is broad, stable, concise, and actionable.
 - Reject low-confidence or one-off lessons.
+- Keep `.agents/docs/log.md` minimal: no secrets, personal data, private business details, long raw outputs, or copied transcript text.
 
 ## Procedure
 1. Read the session bundle.
@@ -46,13 +47,14 @@ Classify each candidate lesson as one of:
 5. Classify each lesson.
 6. Draft minimal updates to the appropriate file or files.
 7. Update `.agents/docs/index.md` if durable knowledge structure changed.
-8. Append a concise entry to `.agents/docs/log.md`.
+8. Append a concise, non-sensitive entry to `.agents/docs/log.md`.
 9. Mark the session bundle as distilled.
 
 ## Constraints
 - Do not modify source code.
 - Do not invent new repo rules unsupported by the task evidence.
 - Do not expand `.agents/AGENTS.md` with rationale or narrative.
+- Do not copy secrets, private identifiers, personal data, customer data, or long raw command/error output into durable docs, especially `.agents/docs/log.md`.
 - Prefer small edits over large rewrites.
 
 ## AGENTS criteria

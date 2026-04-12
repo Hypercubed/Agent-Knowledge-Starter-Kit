@@ -111,13 +111,29 @@ location or backup process if local bundles may disappear before distillation.
 Each successful distillation should append a concise entry to
 `.agents/docs/log.md`.
 
-Prefer log entries that include:
+Treat `.agents/docs/log.md` as a **minimal maintenance audit trail**, not a
+narrative summary.
 
+Include only what future maintainers need to understand that a distillation
+happened:
+
+- date
 - task ID
-- source session bundle path
+- source session bundle path when useful
+- high-level outcome
 - files changed
-- classification counts
+- short classification counts or labels
 - whether changes were accepted, proposed only, or rejected
+- one brief maintenance note if needed
+
+Do **not** include:
+
+- secrets, tokens, credentials, or auth material
+- personal data, customer data, or private business details
+- private URLs, hostnames, inbox contents, or externally identifying strings
+  unless they are already intended to be public repo knowledge
+- long copied command output, stack traces, transcripts, or raw error text
+- narrative task history better left in the session bundle
 
 ## Lint policy
 
