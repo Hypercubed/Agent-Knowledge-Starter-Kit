@@ -54,6 +54,13 @@ Accepted: 5 (dual-tree ops guidance, repo decision, drift troubleshooting, refre
 Rejected: 0  
 Notes: Distilled dogfood adoption session; documented scaffold vs `.agents/` and refresh procedure.
 
+### [2026-04-12] learning-distill | t-20260412-003934-hermes-integration-review
+Outcome: updated  
+Files: `.agents/docs/repo-decisions.md`; `.agents/docs/troubleshooting.md`; `.agents/docs/index.md`; `.agents/docs/log.md`; `.agents/playbooks/writing-integration-guides.md`; `.agents/plans/add-integrations.md`; `README.md`; `docs/integrations/README.md`; `docs/integrations/hermes.md`; `.agents/sessions/20260412-003934-hermes-integration-review/summary.json`  
+Accepted: 5 (move Hermes guide into `docs/integrations/`; verify dual-skill-namespace warning; narrow earlier broad Hermes file-tool claims; strengthen integration-guides playbook with explicit verification; update add-integrations plan to reflect verified Hermes findings)  
+Rejected: 1 (treating earlier file-tool failures as a general Hermes limitation)  
+Notes: Distilled the Hermes integration review session; evidence points primarily to a weak model plus a real Hermes-vs-repo skill-namespace gotcha, not to a broad repo-setup failure.
+
 ## Template
 
 ### [YYYY-MM-DD] learning-distill | <task-id>

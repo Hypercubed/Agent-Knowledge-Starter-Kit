@@ -59,6 +59,14 @@ If both root `AGENTS.md` and `.agents/AGENTS.md` exist, treat root `AGENTS.md` a
 
 This kit ships **content** (markdown, layout, and conventions), not a single vendor-specific config. You still need to register `.agents/skills/*/SKILL.md` and `.agents/agents/*.md` (or equivalent) however your stack expects. Keep the on-disk layout under `.agents/` stable so the knowledge layer stays portable when you change tools.
 
+## Integrations
+
+Tool-specific integration guides live in [`docs/integrations/`](docs/integrations/).
+
+Currently available:
+
+- [Hermes](docs/integrations/hermes.md)
+
 ---
 
 ## Why this exists

@@ -14,7 +14,9 @@ Recurring issue patterns, causes, fixes, and validation steps. Consult when debu
 ## `.agents/playbooks/`
 Durable procedures for recurring workflows. In this layout, playbooks live under `.agents/playbooks/` (sibling of `.agents/docs/`, not inside it).
 
-Example (this repo): [`.agents/playbooks/maintainer-adoption-closeout-distill.md`](../playbooks/maintainer-adoption-closeout-distill.md) — adopt kit, run closeouts, distill.
+Examples (this repo):
+- [`.agents/playbooks/maintainer-adoption-closeout-distill.md`](../playbooks/maintainer-adoption-closeout-distill.md) — adopt kit, run closeouts, distill.
+- [`.agents/playbooks/writing-integration-guides.md`](../playbooks/writing-integration-guides.md) — write user-facing tool integration guides without overstating unverified behavior.
 
 Maintainer-only (this repo): [`.agents/skills/sync-scaffold-agents-skills/SKILL.md`](../skills/sync-scaffold-agents-skills/SKILL.md) — merge `scaffold/agents/` and `scaffold/skills/` into `.agents/agents/` and `.agents/skills/`.
 
