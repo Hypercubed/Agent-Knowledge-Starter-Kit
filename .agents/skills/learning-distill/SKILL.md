@@ -18,6 +18,9 @@ Convert raw task evidence into concise, durable repo knowledge.
 - `.agents/docs/troubleshooting.md`
 - `.agents/playbooks/`
 
+Read the canonical task/session identifier from the `task_id` field in the
+bundle's `summary.json`. Do not infer identity from the session folder name.
+
 ## Classification categories
 Classify each candidate lesson as one of:
 - ephemeral
@@ -37,13 +40,14 @@ Classify each candidate lesson as one of:
 
 ## Procedure
 1. Read the session bundle.
-2. Compare candidates against the existing `.agents/` files.
-3. Remove duplication.
-4. Classify each lesson.
-5. Draft minimal updates to the appropriate file or files.
-6. Update `.agents/docs/index.md` if durable knowledge structure changed.
-7. Append a concise entry to `.agents/docs/log.md`.
-8. Mark the session bundle as distilled.
+2. Read `summary.json` and use its `task_id` in notes and log entries.
+3. Compare candidates against the existing `.agents/` files.
+4. Remove duplication.
+5. Classify each lesson.
+6. Draft minimal updates to the appropriate file or files.
+7. Update `.agents/docs/index.md` if durable knowledge structure changed.
+8. Append a concise entry to `.agents/docs/log.md`.
+9. Mark the session bundle as distilled.
 
 ## Constraints
 - Do not modify source code.

@@ -55,7 +55,9 @@ This file contains concise, high-signal instructions for future agents working i
 - Add repo-specific conventions here.
 
 ### Recurring pitfalls
-- Add stable pitfalls here.
+- The maintainer often mistypes `.agent/` when they mean `.agents/`. If a
+  request mentions `.agent/`, verify whether the existing `.agents/` path is
+  intended before creating a new `.agent/` tree.
 
 ### Before submitting changes
 - Run relevant tests.

@@ -1,5 +1,12 @@
 # Knowledge Maintenance Log
 
+### [2026-04-12] learning-distill | t-20260412-045044-review-followup-docs
+Outcome: updated
+Files: `.agents/docs/repo-decisions.md`; `.agents/playbooks/maintainer-adoption-closeout-distill.md`; `.agents/docs/log.md`; `.agents/sessions/20260412-045044-review-followup-docs/summary.json`
+Accepted: 3 (`.agent/` typo AGENTS guidance already present; sync-after-scaffold-agent-or-skill-edits decision; maintainer playbook sync step)
+Rejected: 2 (troubleshooting entry until the sync omission recurs; extra docs about object-path shorthand beyond current identity wording fixes)
+Notes: Distilled review follow-up docs closeout; kept changes maintainer-local and did not alter scaffold during learning distillation.
+
 ### [2026-04-12] learning-distill | t-20260411-195746-codex-integration
 Outcome: updated
 Files: `.agents/playbooks/writing-integration-guides.md`; `.agents/docs/troubleshooting.md`; `.agents/docs/index.md`; `.agents/docs/log.md`; `.agents/sessions/20260411-195746-codex-integration/summary.json`

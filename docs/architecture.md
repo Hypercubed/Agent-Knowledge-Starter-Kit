@@ -116,6 +116,31 @@ consumer repo after adoption
 - This starter repository may also keep an optional `.agents/` for dogfood; that tree **does not** have to stay identical to `scaffold/` (maintainer-specific notes may live only under `.agents/` here).
 - After adoption elsewhere, the consumer’s `.agents/` is the contract; adjust only wiring in your tool, not the overall layout, when possible.
 
+## Task and session identity
+
+Each task-closeout bundle has one canonical task/session identifier: the
+`task_id` field inside `.agents/sessions/<session-folder>/summary.json`.
+
+The session folder name is a sortable storage label. It should be
+human-readable and usually aligned with the task, but agents should not infer
+canonical identity from the folder name.
+
+Use `repo_id` for the stable repository or project context. Use `task_id` for
+the specific task/session.
+
+When passing work between agents, provide both:
+
+- the session bundle path
+- the `task_id` value from `summary.json`
+
+Example:
+
+```text
+Bundle path: .agents/sessions/20260411-122921-auth-timeout-fix/
+Task ID: t-20260411-122921-auth-timeout-fix
+Repo ID: agent-knowledge-starter
+```
+
 ## In-repo session output location
 
 Store temporary task and session outputs inside the repo under `.agents/sessions/`.
@@ -137,6 +162,12 @@ Each session folder contains one task-closeout bundle, including:
 These files are temporary working-memory artifacts that stay inside the repo so they are easy to inspect, reuse, and distill across editor sessions.
 
 Keep `.agents/sessions/` gitignored so bundles stay local and do not become committed durable knowledge.
+
+Repo-local storage is the default because session evidence stays near the code
+and durable docs it describes. If agents run in cloud, ephemeral, or
+multi-machine environments, adapt the storage location or backup process so
+bundles survive long enough to distill. Keep the same bundle shape and keep
+per-task artifacts out of commits.
 
 Recommended naming guidance:
 
@@ -247,13 +278,14 @@ The schema and policy document for the knowledge layer.
 ## Task lifecycle
 
 1. A coding task begins.
-2. The coding agent creates or adopts a `repo_id` and `task_id`.
+2. The coding agent creates or adopts a stable `repo_id` and a task-specific `task_id`.
 3. At completion, blockage, or abandonment, the coding agent runs `task-closeout`.
 4. A structured task-closeout bundle is written to `.agents/sessions/<session-folder>/`.
-5. The learning agent runs `learning-distill` on that session bundle.
-6. Durable lessons are written into `.agents/`.
-7. The learning agent appends a summary to `.agents/docs/log.md`.
-8. Periodically, the lint agent runs `knowledge-lint`.
+5. The canonical task/session identifier is recorded in the `task_id` field inside the bundle's `summary.json`.
+6. The learning agent runs `learning-distill` on that session bundle.
+7. Durable lessons are written into `.agents/`.
+8. The learning agent appends a summary to `.agents/docs/log.md`.
+9. Periodically, the lint agent runs `knowledge-lint`.
 
 ---
 

@@ -74,6 +74,30 @@ Putting a maintainer skill in `scaffold/` ships it to consumers, who often have 
 - Maintainer-only skills and any helper scripts stay under this repo’s `.agents/skills/<skill-name>/` beside `SKILL.md`.
 - Portable skills and agent role files remain under `scaffold/skills/` and `scaffold/agents/` and are merged into `.agents/` when maintainers run the documented sync.
 
+### Sync root `.agents` after scaffold agent or skill edits
+
+### Status
+Accepted
+
+### Context
+This repo dogfoods the starter kit through a root `.agents/` tree while
+publishing portable agent and skill definitions under `scaffold/`.
+
+### Rationale
+When `scaffold/agents/` or `scaffold/skills/` changes, the root dogfood
+`.agents/agents/` and `.agents/skills/` copies should receive those portable
+updates in the same maintenance pass. That keeps local agent behavior aligned
+with the kit without copying maintainer-only files into `scaffold/`.
+
+### Consequences
+- After portable edits under `scaffold/agents/` or `scaffold/skills/`, run
+  `./.agents/skills/sync-scaffold-agents-skills/sync.sh` from the repository
+  root.
+- Review the resulting diff under `.agents/agents/` and `.agents/skills/`.
+- Do not use this sync for `scaffold/docs/`, `scaffold/playbooks/`,
+  `scaffold/AGENTS.md`, or other paths unless a separate task explicitly
+  changes the sync scope.
+
 ### Kit installation guidance lives in root docs
 
 ### Status

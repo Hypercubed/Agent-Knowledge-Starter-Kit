@@ -11,6 +11,10 @@ Create a temporary handoff packet for later learning extraction.
 ## Output location
 Write inside the repo to `.agents/sessions/<session-folder>/`.
 
+The session folder name is a sortable storage label. The canonical
+task/session identifier is the `task_id` field inside the bundle's
+`summary.json`.
+
 ## Required outputs
 - summary.json
 - active-task.md
@@ -38,13 +42,14 @@ Filled-in reference files live under `.agents/skills/task-closeout/example/task-
 6. Collect commands run and validation results.
 7. Write active-task.md.
 8. Write learning-candidate.md.
-9. Write summary.json with status and metadata.
+9. Write summary.json with status, metadata, `repo_id`, and `task_id`.
 10. Mark the session bundle ready for distillation.
 
 ## Session folder naming
 - Use a deterministic, sortable folder name such as `YYYYMMDD-HHMMSS-short-topic`.
 - Keep the slug short, lowercase, and tied to the task goal.
 - Reuse the same session folder only for the single task-closeout bundle it was created for.
+- Do not treat the folder name as the canonical task identity; use the `task_id` field in `summary.json`.
 
 ## active-task.md sections
 - Task ID

@@ -13,6 +13,10 @@ Create or update a target repo's `.agents/` knowledge layer from this starter ki
 
 Treat files under `scaffold/` as if they are rooted at `.agents/` in the target repo.
 
+Do not use this repository's root `.agents/` directory as install source. It
+contains maintainer-only knowledge for this starter-kit repo and may include
+files adopters should not copy.
+
 ## Before Editing
 
 1. Inspect the target repo for an existing `.agents/` directory.
