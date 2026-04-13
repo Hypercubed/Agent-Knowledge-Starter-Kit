@@ -117,6 +117,23 @@ Suggested Codex workflow in a kit-enabled repo:
 6. When changing knowledge files, respect the starter-repo boundary: update `scaffold/` only for consumer-generic kit content, and update this repo's `.agents/` only for maintainer dogfood.
 7. Verify with `git status --short` and targeted file reads before finishing. Session bundles under `.agents/sessions/` are usually ignored, so confirm closeout files directly rather than expecting them in Git status.
 
+### Task closeout and session IDs
+
+When closing out a task with the `task-closeout` skill, capture the Codex session ID when the local Codex environment exposes one. This is optional metadata; omit it when the session ID is not available.
+
+- In a Codex-run shell, check `CODEX_THREAD_ID`:
+
+```bash
+printenv CODEX_THREAD_ID
+```
+
+- If that variable is unavailable, local Codex installs may also record recent sessions in `~/.codex/session_index.jsonl`; match the current task name and updated timestamp, then use the `id` value.
+- Local rollout transcripts may live under `~/.codex/sessions/<year>/<month>/<day>/` with the same ID in the filename and in the `session_meta` payload.
+- To resume a session from the CLI, run `codex resume <session-id>`. The current CLI also accepts a thread name in place of the ID, and `codex resume --last` continues the most recent recorded session.
+- Record `agent` as `codex` and record the ID as `agent_session_id` in `summary.json`; add matching Agent and Agent Session ID sections to `active-task.md`.
+
+Treat the home-directory files as local implementation details for traceability, not as portable repo data. Do not commit Codex transcript files or rely on this metadata for agents/tools that cannot retrieve a stable session ID.
+
 ## 5. Two-tool example: Codex + Cursor sharing a repo
 
 **Scenario:** A team uses Codex for deeper agentic tasks and Cursor for day-to-day IDE chat.

@@ -46,8 +46,19 @@ Filled-in reference files live under `.agents/skills/task-closeout/example/task-
 6. Collect commands run and validation results.
 7. Write active-task.md.
 8. Write learning-candidate.md.
-9. Write summary.json with status, metadata, `repo_id`, and `task_id`.
+9. Write summary.json with status, metadata, `repo_id`, `task_id`, and optional agent identifiers when available.
 10. Mark the session bundle ready for distillation.
+
+## Optional agent metadata
+
+Record agent provenance whenever the active tool can supply it. Record session provenance whenever the active tool can supply a stable session identifier.
+
+- In `summary.json`, add `agent` when the active agent/tool identity is known.
+- In `summary.json`, add `agent_session_id` when the active agent/tool exposes a stable session ID.
+- In `active-task.md`, add an Agent section when the agent/tool identity is known.
+- In `active-task.md`, add an Agent Session ID section when the active agent/tool exposes a stable session ID.
+- Treat `agent` and `agent_session_id` independently: record either one when available; omit only the specific field/section that is unavailable.
+- Do not invent session IDs or require manual lookup outside the agent/tool's supported session history.
 
 ## Session folder naming
 
@@ -59,6 +70,8 @@ Filled-in reference files live under `.agents/skills/task-closeout/example/task-
 ## active-task.md sections
 
 - Task ID
+- Agent (optional)
+- Agent Session ID (optional)
 - Goal
 - Outcome
 - Files Changed

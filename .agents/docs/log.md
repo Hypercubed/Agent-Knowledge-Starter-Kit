@@ -1,5 +1,9 @@
 # Knowledge Maintenance Log
 
+### [2026-04-12] learning-distill | t-20260412-193758-kilo-session-guide, t-20260412-215500-add-agent-ids
+
+Outcome: updated Files: `.agents/playbooks/writing-integration-guides.md`; `.agents/docs/log.md`; `.agents/sessions/20260412-193758-kilo-session-guide/summary.json`; `.agents/sessions/20260412-215500-add-agent-ids/summary.json` Accepted: 2 (session metadata guidance must stay optional and source-supported; integration guides may document resume commands only when the tool exposes a stable supported workflow) Rejected: 2 (`.agents/AGENTS.md` broad rule not needed because task-closeout skill now carries the contract; separate repo decision duplicated existing verification/routing decisions) Notes: Distilled Kilo and Gemini/Codex session metadata closeouts; kept durable guidance in the integration-guide playbook and task-closeout skill.
+
 ### [2026-04-12] learning-distill | t-20260412-190052-gemini-cli-integration
 
 Outcome: updated Files: `.agents/playbooks/writing-integration-guides.md`; `.agents/docs/repo-decisions.md`; `.agents/docs/troubleshooting.md`; `.agents/docs/log.md`; `.agents/sessions/20260412-190052-gemini-cli-integration/summary.json` Accepted: 3 (formalized "Routing Pattern" for root bootstrap files; added repo decision for root routing files; added Gemini CLI-specific troubleshooting) Rejected: 1 (`.agents/AGENTS.md` update absent; preferred keeping guidance in playbook and decisions) Notes: Distilled Gemini CLI integration closeout. Formalized the "Routing Pattern" common to multiple agentic tools.

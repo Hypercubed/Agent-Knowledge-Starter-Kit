@@ -153,6 +153,43 @@ Suggested flow for Claude Code in a kit-enabled repo:
 6. Use `git diff` to review durable knowledge changes before committing. Session bundles should remain gitignored; only promote what is genuinely reusable.
 7. Keep personal or session-scoped observations in Claude Code auto-memory; promote repo-shared lessons into `.agents/` instead.
 
+### Task closeout and session IDs
+
+When closing out a task with the `task-closeout` skill, capture the Claude Code session ID when it is available. This is optional metadata that links the repository bundle to the platform-side conversation history.
+
+**Headless / scripted sessions** — the session ID is returned directly in the JSON output:
+
+```bash
+result=$(claude -p "your prompt" --output-format json)
+session_id=$(echo "$result" | jq -r '.session_id')
+```
+
+**Interactive sessions** — there is no environment variable or in-session command that exposes the current session UUID. After the session, find the most recently modified session file for this project:
+
+```bash
+ls -t ~/.claude/projects/$(pwd | tr '/' '-')/*.jsonl 2>/dev/null \
+  | head -1 | xargs basename | sed 's/\.jsonl//'
+```
+
+This relies on the filesystem encoding Claude Code uses: the absolute path of the working directory with every `/` replaced by `-`.
+
+**Session naming** — if you want a stable human-readable handle rather than a UUID, name the session before starting:
+
+```bash
+claude -n "my-task-name"
+```
+
+Or rename it mid-session with `/rename my-task-name`. Named sessions can be resumed by name instead of UUID.
+
+**To resume a session**:
+
+```bash
+claude --resume <session-id>      # by UUID
+claude --resume my-task-name      # by name
+```
+
+Record `agent` as `claude-code` and the UUID (or name) as `agent_session_id` in `summary.json`; add matching Agent and Agent Session ID sections to `active-task.md`. Omit these fields when the session ID is not available — for example, in an interactive session where you did not note the UUID and the filesystem lookup is impractical.
+
 ## 5. Two-tool example: Claude Code + Codex sharing a repo
 
 **Scenario:** A team uses Claude Code for day-to-day implementation and knowledge maintenance; Codex runs broader agentic tasks — cross-file refactors, dependency upgrades, or automated PR review — via CI.

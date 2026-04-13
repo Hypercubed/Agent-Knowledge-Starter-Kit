@@ -130,6 +130,21 @@ Suggested Kilo workflow in a kit-enabled repo:
 5. Keep raw session evidence in `.agents/sessions/`, then distill stable lessons back into `.agents/docs/*` or `.agents/AGENTS.md`.
 6. When Kilo-native skills are helpful, keep them clearly separate from repo knowledge and document why they exist outside `.agents/`.
 
+### Task closeout, session IDs, and resume
+
+When closing out a task with the `task-closeout` skill, capture a Kilo-native session ID only when Kilo exposes one through a supported interface. This is optional metadata; omit it when the active Kilo surface does not provide a stable session identifier.
+
+- Kilo CLI documents workspace session continuation through `kilo --continue` (or `kilo -c`) and interactive session switching through `/sessions`, but the public CLI docs do not currently document a general-purpose command for printing the active session ID during a normal interactive run.
+- Kilo does expose session-oriented commands such as `kilo export [sessionID]` and `kilo session`, which suggests session IDs exist internally, but this guide should stay conservative until there is a clearly documented, user-facing way to read the current session ID from the running session.
+- If your Kilo integration layer already receives a session identifier from Kilo itself, for example from structured events or a host integration API, record it as `agent_session_id` in `summary.json` and add matching Agent and Agent Session ID sections to `active-task.md`.
+- Do not scrape undocumented local storage or invent IDs just to populate closeout metadata. For Kilo, missing `agent_session_id` is preferable to unstable or guessed values.
+
+Resume behavior is documented and can be described safely:
+
+- Run `kilo --continue` or `kilo -c` to resume the most recent session for the current workspace.
+- In an interactive Kilo session, use `/sessions` (also available as `/resume` or `/continue`) to switch to another saved session.
+- Current public Kilo CLI docs do not clearly document a stable non-interactive command for resuming a specific session by ID. Treat direct ID-based resume as unsupported in this guide unless Kilo's official docs add it.
+
 ### When to use Kilo-native skills at all
 
 Use Kilo-native skills only when you need Kilo-specific behavior that should not be part of the cross-tool repo contract.

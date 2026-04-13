@@ -73,6 +73,18 @@ Foundational mandates for this repository:
 
 3. **Register Kit Skills**: Since Gemini CLI uses `activate_skill` for named skills, you should instruct it to treat the files under `.agents/skills/` as available resources.
 
+### Task Closeout & Session IDs
+
+When closing out a task with the `task-closeout` skill, capture the Gemini CLI **Session ID** when it is available. This is optional metadata that links the repository bundle to the platform-side conversation history.
+
+- **To find the current Session ID**: Run `gemini --list-sessions` from the terminal. The session marked "Just now" or matching your current task description contains the UUID (e.g., `[00000000-0000-4000-8000-000000000000]`).
+- **To resume a session**: Use the `--resume` flag with the full UUID: `gemini --resume 00000000-0000-4000-8000-000000000000`. This is useful for returning to a previous conversation for follow-up work or debugging.
+- **Where to record it**:
+    - `summary.json`: Use the `agent_session_id` and `agent` (set to `gemini-cli`) fields.
+    - `active-task.md`: Include **Agent** and **Agent Session ID** sections.
+
+If Gemini CLI cannot list or identify the active session, omit these fields rather than guessing.
+
 ## 4. Workflow: Research, Strategy, Execution
 
 Gemini CLI's native lifecycle maps cleanly to the kit's distillation process:

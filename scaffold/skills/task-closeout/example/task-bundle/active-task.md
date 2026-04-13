@@ -4,6 +4,14 @@
 
 `t-20260407-143210-monaco`
 
+## Agent
+
+`example-agent`
+
+## Agent Session ID
+
+`example-session-id`
+
 ## Goal
 
 Fix Monaco JSON worker setup in the ESM build.
