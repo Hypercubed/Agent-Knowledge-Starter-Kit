@@ -133,6 +133,7 @@ Currently available:
 - [Kilo Code](docs/integrations/kilo-code.md)
 - [OpenClaw](docs/integrations/openclaw.md)
 - [OpenCode](docs/integrations/opencode.md)
+- [Warp](docs/integrations/warp.md)
 
 ---
 

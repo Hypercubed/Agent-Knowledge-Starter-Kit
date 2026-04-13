@@ -1,4 +1,7 @@
 # Knowledge Maintenance Log
+### [2026-04-13] learning-distill | t-20260413-045938-warp-integration-guide
+
+Outcome: updated Files: `.agents/docs/index.md`; `.agents/docs/log.md`; `.agents/sessions/20260413-045938-warp-integration-guide/summary.json` Accepted: 1 (maintainer knowledge index should keep root integration-guide coverage current as new guides are added) Rejected: 4 (no `.agents/AGENTS.md`, troubleshooting, repo decision, or playbook changes warranted) Notes: Distilled Warp integration guide closeout; durable update was limited to the index pointer and distillation metadata.
 
 ### [2026-04-13] learning-distill | t-20260413-044145-opencode-guide
 

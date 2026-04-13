@@ -13,6 +13,7 @@ This directory contains user-facing guides for connecting specific tools to the 
 - [OpenCode](./opencode.md) — root `AGENTS.md`, `opencode.json`, `.opencode/commands/`, native skill discovery, and how to keep `.agents/` canonical
 - [Claude Code](./claude-code.md) — `CLAUDE.md`, auto-memory vs kit docs, `.claude/commands/` vs `.agents/skills/`, and thin wiring without duplication
 - [Gemini CLI](./gemini-cli.md) — `GEMINI.md`, `save_memory` vs kit docs, and orchestrating the Research-Strategy-Execution lifecycle with `.agents/`
+- [Warp](./warp.md) — project/global Rules, skill discovery, Oz local/cloud workflows, and keeping `.agents/` as canonical repo knowledge
 
 ## Planned guides
 

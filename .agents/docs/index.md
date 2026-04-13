@@ -44,4 +44,4 @@ Upcoming work, architectural research, and active task plans. Unlisted from `MAI
 
 ## Root integration guides (this repository)
 
-[`docs/integrations/README.md`](../../docs/integrations/README.md) — per-tool wiring for Hermes, OpenClaw, Cursor, Codex, Kilo Code, and Claude Code (user-facing; not part of the copied `scaffold/` tree).
+[`docs/integrations/README.md`](../../docs/integrations/README.md) — per-tool wiring for Antigravity, Claude Code, Codex, Cursor, Gemini CLI, Hermes, Kilo Code, OpenClaw, OpenCode, and Warp (user-facing; not part of the copied `scaffold/` tree).
