@@ -2,18 +2,28 @@
 
 This directory contains user-facing guides for connecting specific tools to the Agent Knowledge Starter Kit.
 
+Start with [Integration Patterns](./patterns.md) to choose the right wiring model. The product pages are quick references for exact filenames, setup snippets, caveats, and verification notes.
+
+## Choose Your Pattern
+
+- [Root `AGENTS.md` native or compatible](./patterns.md#root-agentsmd-native-or-compatible): Codex, OpenCode, Kilo Code, Warp, OpenClaw
+- [Tool-specific bootstrap file](./patterns.md#tool-specific-bootstrap-file): Claude Code, Gemini CLI
+- [Rules-based IDE wiring](./patterns.md#rules-based-ide-wiring): Cursor
+- [Persistent memory and runtime boundary](./patterns.md#persistent-memory-and-runtime-boundary): Hermes, Antigravity, OpenClaw
+
 ## Available guides
 
-- [Antigravity](./antigravity.md) — Persistent Context mapping, handling native planning artifacts, and leveraging kit memory as canonical storage
-- [Hermes](./hermes.md) — verified guidance for using Hermes with a repo that stores durable knowledge under `.agents/`
-- [OpenClaw](./openclaw.md) — native memory, startup files, session tools, automation, and how to keep `.agents/` as canonical repo knowledge
-- [Cursor](./cursor.md) — project rules, `AGENTS.md`, and how to point Agent at `.agents/` without duplicating it
-- [Codex](./codex.md) — `AGENTS.md`, repo-local `.agents/skills/`, sandbox permissions, and how Codex should use the kit
-- [Kilo Code](./kilo-code.md) — `AGENTS.md`, `kilo.json`, thin `.kilo/` wiring, and how to keep `.agents/` as the shared source of truth
-- [OpenCode](./opencode.md) — root `AGENTS.md`, `opencode.json`, `.opencode/commands/`, native skill discovery, and how to keep `.agents/` canonical
-- [Claude Code](./claude-code.md) — `CLAUDE.md`, auto-memory vs kit docs, `.claude/commands/` vs `.agents/skills/`, and thin wiring without duplication
-- [Gemini CLI](./gemini-cli.md) — `GEMINI.md`, `save_memory` vs kit docs, and orchestrating the Research-Strategy-Execution lifecycle with `.agents/`
-- [Warp](./warp.md) — project/global Rules, skill discovery, Oz local/cloud workflows, and keeping `.agents/` as canonical repo knowledge
+- [Integration Patterns](./patterns.md) - shared model and comparison matrix
+- [Antigravity](./antigravity.md) - Persistent Context, planning artifacts, and explicit session export
+- [Claude Code](./claude-code.md) - `CLAUDE.md`, auto-memory, command wrappers, and kit routing
+- [Codex](./codex.md) - `AGENTS.md`, repo-local `.agents/skills/`, sandbox caveats, and kit routing
+- [Cursor](./cursor.md) - `.cursor/rules/`, `AGENTS.md`, and rules-based wiring
+- [Gemini CLI](./gemini-cli.md) - `GEMINI.md`, `save_memory`, and repo skill routing
+- [Hermes](./hermes.md) - Hermes memory, session recall, skill namespace caveats, and repo skill files
+- [Kilo Code](./kilo-code.md) - `AGENTS.md`, `kilo.json`, `.kilo/` wrappers, and kit routing
+- [OpenClaw](./openclaw.md) - startup files, memory, sessions, automation, and kit boundaries
+- [OpenCode](./opencode.md) - `AGENTS.md`, `opencode.json`, `.opencode/` wrappers, and native skill discovery
+- [Warp](./warp.md) - project/global rules, skills, Oz workflows, and kit routing
 
 ## Planned guides
 

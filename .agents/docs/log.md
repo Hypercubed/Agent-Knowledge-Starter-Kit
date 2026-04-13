@@ -1,4 +1,9 @@
 # Knowledge Maintenance Log
+
+### [2026-04-13] learning-distill | t-20260412-232119-integration-consolidation
+
+Outcome: updated Files: `.agents/playbooks/writing-integration-guides.md`; `.agents/playbooks/pre-publish.md`; `.agents/docs/repo-decisions.md`; `.agents/docs/log.md`; `.agents/sessions/20260412-232119-integration-consolidation/summary.json` Accepted: 3 (shared integration patterns page decision; integration-guide playbook quick-reference guidance; manual Prettier command should match `--prose-wrap never`) Rejected: 2 (`.agents/AGENTS.md` update absent; closeout folder sandbox escalation treated as existing Codex `.agents/` write troubleshooting) Notes: Distilled integration consolidation closeout; kept durable updates focused on future integration-guide maintenance.
+
 ### [2026-04-13] learning-distill | t-20260413-045938-warp-integration-guide
 
 Outcome: updated Files: `.agents/docs/index.md`; `.agents/docs/log.md`; `.agents/sessions/20260413-045938-warp-integration-guide/summary.json` Accepted: 1 (maintainer knowledge index should keep root integration-guide coverage current as new guides are added) Rejected: 4 (no `.agents/AGENTS.md`, troubleshooting, repo decision, or playbook changes warranted) Notes: Distilled Warp integration guide closeout; durable update was limited to the index pointer and distillation metadata.

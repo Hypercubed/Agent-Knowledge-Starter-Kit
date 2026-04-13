@@ -1,113 +1,55 @@
-# Gemini CLI Integration Guide
+# Gemini CLI Integration Quick Reference
 
-Gemini CLI is an interactive, agentic command-line interface designed for collaborative software engineering. It uses a **Research -> Strategy -> Execution** lifecycle and employs specialized sub-agents and skills to manage complex tasks.
+Use this page for Gemini CLI-specific wiring. For the shared integration model, read [Integration Patterns](./patterns.md).
 
-- **Gemini CLI** uses `GEMINI.md` for foundational mandates, `.gemini/` for project configuration, and has a native `save_memory` system for persistent facts.
-- **This kit** provides the **repo-scoped knowledge layer** under `.agents/`: durable guidance, docs, playbooks, skills, and session bundles for distillation.
+Verified against Gemini CLI behavior in this repository on April 12, 2026.
 
-This guide was verified against Gemini CLI behavior in this repository on April 12, 2026.
+## Setup
 
-## 1. Prerequisites
-
-- Repository with the kit layout under `.agents/` — typically by copying `scaffold/` from this starter kit.
-- Gemini CLI installed and on your PATH.
-- Permission to add/modify `GEMINI.md` at the project root.
-
-## 2. Discovery mechanism
-
-### What Gemini CLI discovers natively
-
-| Mechanism | Where it lives | Role |
-| --- | --- | --- |
-| `GEMINI.md` | Project root | Foundational mandates; takes absolute precedence over general defaults. |
-| `.gemini/` | Project root | Configuration and project-specific internal state. |
-| `save_memory(scope="project")` | `~/.gemini/memory/` (user-local) | Persistent facts about the project, private to the user. |
-| `activate_skill` | Built-in / Custom | Dynamic loading of specialized agent capabilities. |
-| Sub-agents | Built-in | Delegation to experts like `codebase_investigator` or `generalist`. |
-### Root `GEMINI.md` vs `.agents/AGENTS.md` (The Routing Pattern)
-
-Gemini CLI treats `GEMINI.md` as its primary source of mandates. To maintain a single source of truth, follow the **Routing Pattern**:
-
-- **Root `GEMINI.md`**: A "thin" bootstrap file that routes Gemini CLI to the `.agents/` directory.
-- **`.agents/AGENTS.md`**: The authoritative, portable instructions file for the repository.
-
-This pattern ensures that all agents (Gemini CLI, Cursor, Claude Code) follow the same durable repo guidance without duplicating prose in tool-specific config files.
-
-### Project Memory vs Kit Durable Docs
-...
-## 6. Troubleshooting & Gotchas
-
-### Tool Ignore Patterns in `sessions/`
-Since `.agents/sessions/` is typically gitignored to keep bundles local, Gemini CLI's `read_file` tool may refuse to read them if configured to respect `.gitignore`.
-- **Symptoms**: `read_file` returns an error for files under `.agents/sessions/`.
-- **Workaround**: Use `run_shell_command` with `cat` or `ls` to interact with session bundles, or provide an explicit override if the tool allows it.
-
-### Mandate Precedence
-If Gemini CLI ignores `.agents/` playbooks, ensure the mandate in `GEMINI.md` uses strong language (e.g., "You MUST read and follow...") as Gemini CLI treats `GEMINI.md` as an absolute mandate that overrides its default system prompt.
-
-## 7. Verification Statement
-
-Gemini CLI's `save_memory` is **private to the user** and not version-controlled.
-
-- **Durable Repo Knowledge**: Must live in `.agents/docs/` or `.agents/AGENTS.md`.
-- **Private Setup/Notes**: Use `save_memory(scope="project")` for local environment quirks or personal reminders that shouldn't be committed.
-
-## 3. Setup steps
-
-### Recommended pattern: thin `GEMINI.md`, fat `.agents/` tree
-
-1. Install the kit by copying `scaffold/` to `.agents/`.
-2. Create or update `GEMINI.md` at the project root with the following content:
+1. Install or merge the starter kit into the target repo as `.agents/`.
+2. Add or update root `GEMINI.md`.
+3. Keep `GEMINI.md` as a thin router into `.agents/`.
+4. Treat Gemini `save_memory(scope="project")` as user-local memory, not shared repo docs.
+5. Instruct Gemini to read `.agents/skills/<name>/SKILL.md` directly when a repo workflow matters.
 
 ```markdown
 # GEMINI.md
 
 Foundational mandates for this repository:
 
-- **Source of Truth**: All durable repository knowledge and agent guidance live in the `.agents/` directory.
-- **Durable Guidance**: Read and follow `.agents/AGENTS.md` at the start of every session.
-- **Task Boundaries**: Use the `task-closeout` skill (located at `.agents/skills/task-closeout/SKILL.md`) when completing, blocking, or abandoning a task.
-- **Session Bundles**: Store session evidence in `.agents/sessions/`. Do not commit these files unless explicitly asked.
-- **Knowledge Base**: Consult `.agents/docs/index.md` for architectural decisions, troubleshooting, and playbooks.
+- Durable repository knowledge and agent guidance live in `.agents/`.
+- Read and follow `.agents/AGENTS.md` at the start of every session.
+- Consult `.agents/docs/index.md` for decisions, troubleshooting, and playbooks.
+- For task closeout, follow `.agents/skills/task-closeout/SKILL.md`.
+- Store temporary session evidence in `.agents/sessions/`; do not commit it unless explicitly asked.
 ```
 
-3. **Register Kit Skills**: Since Gemini CLI uses `activate_skill` for named skills, you should instruct it to treat the files under `.agents/skills/` as available resources.
+## Discovery and Config
 
-### Task Closeout & Session IDs
+| Mechanism | Location | Use |
+| --- | --- | --- |
+| Root mandates | `GEMINI.md` | Primary Gemini CLI instruction file |
+| Project config | `.gemini/` | Project-specific config and state |
+| Project memory | `~/.gemini/memory/` | User-local persistent facts |
+| Native skills | Built-in or custom skill registry | Gemini-native capabilities |
+| Sub-agents | Built-in | Research, strategy, and execution delegation |
 
-When closing out a task with the `task-closeout` skill, capture the Gemini CLI **Session ID** when it is available. This is optional metadata that links the repository bundle to the platform-side conversation history.
+## Gemini-Specific Caveats
 
-- **To find the current Session ID**: Run `gemini --list-sessions` from the terminal. The session marked "Just now" or matching your current task description contains the UUID (e.g., `[00000000-0000-4000-8000-000000000000]`).
-- **To resume a session**: Use the `--resume` flag with the full UUID: `gemini --resume 00000000-0000-4000-8000-000000000000`. This is useful for returning to a previous conversation for follow-up work or debugging.
-- **Where to record it**:
-    - `summary.json`: Use the `agent_session_id` and `agent` (set to `gemini-cli`) fields.
-    - `active-task.md`: Include **Agent** and **Agent Session ID** sections.
+- `GEMINI.md` should be strong routing into `.agents/`, but not the canonical policy store.
+- If Gemini file tools respect `.gitignore`, direct reads under `.agents/sessions/` may fail. Use an allowed shell read or explicit override when available.
+- Capture a Gemini session ID in closeout metadata only when it is clearly available, such as from `gemini --list-sessions`; otherwise omit it.
+- `save_memory(scope="project")` is private and not version-controlled. Shared lessons belong in `.agents/docs/`.
 
-If Gemini CLI cannot list or identify the active session, omit these fields rather than guessing.
+## Workflow
 
-## 4. Workflow: Research, Strategy, Execution
+1. Use Gemini CLI's research, strategy, and execution lifecycle normally.
+2. During research, read `.agents/AGENTS.md` and relevant docs or playbooks.
+3. During closeout, follow `.agents/skills/task-closeout/SKILL.md`.
+4. Periodically run a learning pass to promote durable lessons from `.agents/sessions/` into `.agents/`.
 
-Gemini CLI's native lifecycle maps cleanly to the kit's distillation process:
+## References
 
-1. **Research**: Use `codebase_investigator` and read `.agents/docs/` to understand the project.
-2. **Strategy**: Formulate a plan that respects the playbooks in `.agents/playbooks/`.
-3. **Execution**:
-   - **Plan/Act/Validate**: Follow the kit's standards for surgical changes and testing.
-   - **Closeout**: Run `activate_skill(name="task-closeout")` (if the skill is registered/aliased) or explicitly follow `.agents/skills/task-closeout/SKILL.md` to bundle the session.
-4. **Distillation**: Periodically run the `learning-distill` skill to promote session findings to durable docs.
-
-## 5. Concrete Two-Tool Workflow: Gemini CLI + Cursor
-
-Gemini CLI and Cursor can share the same `.agents/` knowledge layer for a powerful hybrid workflow:
-
-- **Gemini CLI (Terminal)**: Use for high-volume research, batch refactoring, and structured task closeout. It manages the lifecycle and ensures session bundles are created.
-- **Cursor (IDE)**: Use for tactical code editing, UI work, and real-time completions. Cursor rules (`.cursor/rules/`) point to the same `.agents/AGENTS.md` file, ensuring consistent guidance.
-
-**Scenario:**
-1. Use Gemini CLI to research a complex bug using `codebase_investigator`.
-2. Move to Cursor to implement the fix with AI-assisted editing, following the instructions shared in `.agents/AGENTS.md`.
-3. Return to Gemini CLI to run the `task-closeout` skill, bundling the research and implementation details for later distillation.
-
-## 6. Verification Statement
-
-This guide was written and verified by Gemini CLI while operating within this repository on April 12, 2026. The integration pattern (thin `GEMINI.md` pointing to `.agents/`) was confirmed to effectively route the agent to the kit's knowledge layer.
+- [`README.md`](../../README.md)
+- [`INSTALL.md`](../../INSTALL.md)
+- [Integration Patterns](./patterns.md)

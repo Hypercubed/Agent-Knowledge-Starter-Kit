@@ -126,7 +126,7 @@ Each guide should focus on what makes the tool's integration unique. Persistent 
 
 - add a brief "Integrations" section linking to `docs/integrations/`
 - keep it concise and guide-oriented
-- **Status:** partial — Antigravity, Hermes, Cursor, Codex, Kilo Code, OpenCode, Claude Code, and Gemini CLI links added
+- **Status:** done - README links to the shared integration patterns guide plus all current product quick references.
 
 ## Out of scope (for now)
 
@@ -141,6 +141,4 @@ Each guide should focus on what makes the tool's integration unique. Persistent 
 - each published guide follows the 7-section structure above
 - main README links to `docs/integrations/`
 - every published guide is grounded in real tool behavior or clearly labeled as provisional
-- at least one persistent-assistant guide (Hermes) and one IDE-oriented guide are both verified
-blished guide is grounded in real tool behavior or clearly labeled as provisional
 - at least one persistent-assistant guide (Hermes) and one IDE-oriented guide are both verified

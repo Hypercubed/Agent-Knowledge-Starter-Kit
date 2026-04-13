@@ -14,19 +14,21 @@ When writing an integration guide for an agent tool that has its own memory, ski
 
 4. **Use the Routing Pattern.** For tools that support a high-precedence instruction file at the project root (e.g., `CLAUDE.md`, `GEMINI.md`, `AGENTS.md`), recommend a "thin bootstrap" that points the agent to the durable knowledge under `.agents/`. This ensures a single source of truth across multiple tools.
 
-5. **Describe integration options.** Present three patterns with trade-offs:
+5. **Reuse shared integration patterns.** If the tool fits an existing pattern in `docs/integrations/patterns.md`, keep the product page as a quick reference: exact filenames, minimal snippets, discovery/config table, unique caveats, verification date, and references. Update `patterns.md` only when a tool introduces a new reusable pattern or comparison-matrix field.
+
+6. **Describe integration options.** Present three patterns with trade-offs:
    - **Kit as bridge:** Shared `.agents/` tree lets multiple tools coordinate
    - **Replicate:** Mirror the tool's native structures into the kit's format
    - **Hybrid:** Use the tool's native systems for daily work, the kit for cross-tool coordination
    - If the tool already discovers `.agents/skills/` natively, prefer those canonical skill files over copying the workflow into tool-local command wrappers; add wrappers only as thin convenience aliases.
 
-6. **Include a concrete two-tool workflow.** Show a real scenario where the agent tool works alongside another tool (e.g., Hermes + Claude Code, OpenClaw + GitHub Actions). This is where the guide becomes genuinely useful vs. just describing features.
+7. **Include a concrete two-tool workflow.** Show a real scenario where the agent tool works alongside another tool (e.g., Hermes + Claude Code, OpenClaw + GitHub Actions). This is where the guide becomes genuinely useful vs. just describing features.
 
-7. **Verify claims against real behavior.** Before documenting a limitation, reproduce it in the current tool or current repo context. Distinguish a repo bootstrap file (such as root `AGENTS.md`) from the durable `.agents/` knowledge layer when both exist.
+8. **Verify claims against real behavior.** Before documenting a limitation, reproduce it in the current tool or current repo context. Distinguish a repo bootstrap file (such as root `AGENTS.md`) from the durable `.agents/` knowledge layer when both exist.
 
-8. **Update repo routing docs together.** When a new guide lands under `docs/integrations/`, update the main `README.md`, `docs/integrations/README.md`, and any maintainer tracker such as `.agents/plans/add-integrations.md` in the same change so discovery and status stay aligned.
-9. **Prefer one post-dogfood refinement pass.** After the first working draft, run at least one realistic workflow through the target tool. If that lived run clarifies the value proposition or exposes missing framing, add one short concrete example to the published guide. If you are running as the target tool during the writing session, that session itself qualifies as the dogfood pass — note this explicitly in the guide's verification statement and in the task-closeout `Remaining Work` section.
-10. **Keep session metadata guidance conservative.** If the guide mentions task-closeout provenance, document `agent_session_id` capture and resume commands only when the tool exposes them through a supported interface. If the agent identity is known but no stable session ID is available, record `agent` and explicitly omit `agent_session_id`.
+9. **Update repo routing docs together.** When a new guide lands under `docs/integrations/`, update the main `README.md`, `docs/integrations/README.md`, and any maintainer tracker such as `.agents/plans/add-integrations.md` in the same change so discovery and status stay aligned.
+10. **Prefer one post-dogfood refinement pass.** After the first working draft, run at least one realistic workflow through the target tool. If that lived run clarifies the value proposition or exposes missing framing, add one short concrete example to the published guide. If you are running as the target tool during the writing session, that session itself qualifies as the dogfood pass — note this explicitly in the guide's verification statement and in the task-closeout `Remaining Work` section.
+11. **Keep session metadata guidance conservative.** If the guide mentions task-closeout provenance, document `agent_session_id` capture and resume commands only when the tool exposes them through a supported interface. If the agent identity is known but no stable session ID is available, record `agent` and explicitly omit `agent_session_id`.
 
 ## Pitfalls
 
@@ -36,6 +38,7 @@ When writing an integration guide for an agent tool that has its own memory, ski
 - For persistent assistants with their own long-term memory or workspace files, explicitly separate personal/runtime memory from repo-local durable knowledge. Do not let repo architecture guidance drift into assistant-private memory stores.
 - Don't turn a single weak run into a product-wide claim without reproduction.
 - Don't leave incidental references to whichever guide you used as a template. Keep cross-tool comparisons only when they explain a real integration risk for the target tool.
+- Don't repeat shared "thin wiring, canonical `.agents/`" explanations in every product page. Put shared concepts in `docs/integrations/patterns.md` and link to them from quick references.
 
 ## IDE and rules-based tools (Cursor, Copilot-style)
 

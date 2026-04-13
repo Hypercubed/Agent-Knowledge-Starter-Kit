@@ -27,7 +27,7 @@ Use before publishing, tagging, or handing this starter kit to another repo.
 The script skips optional checks when local tools are unavailable:
 
 - `jq` for JSON validation in the portable structure checker
-- `npx` with locally available `prettier` for Markdown formatting
+- `npx` with locally available `prettier` for Markdown formatting. When running Prettier manually, match the publish script with `--prose-wrap never`; default Prettier wrapping can cause avoidable Markdown table churn.
 - `npx` with locally available `markdown-link-check` for link validation
 - `rg` for leakage scans
 

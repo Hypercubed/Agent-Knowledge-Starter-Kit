@@ -121,14 +121,16 @@ This kit ships **content** (markdown, layout, and conventions), not a single ven
 
 ## Integrations
 
-Tool-specific integration guides live in [`docs/integrations/`](docs/integrations/).
+Tool-specific integration guides live in [`docs/integrations/`](docs/integrations/). Start with the shared [Integration Patterns](docs/integrations/patterns.md) guide, then use the product-specific quick reference for exact setup details.
 
 Currently available:
 
+- [Integration Patterns](docs/integrations/patterns.md)
 - [Antigravity](docs/integrations/antigravity.md)
 - [Claude Code](docs/integrations/claude-code.md)
 - [Codex](docs/integrations/codex.md)
 - [Cursor](docs/integrations/cursor.md)
+- [Gemini CLI](docs/integrations/gemini-cli.md)
 - [Hermes](docs/integrations/hermes.md)
 - [Kilo Code](docs/integrations/kilo-code.md)
 - [OpenClaw](docs/integrations/openclaw.md)

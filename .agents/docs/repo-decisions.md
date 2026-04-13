@@ -198,15 +198,39 @@ Integration guides are user-facing setup documentation for humans configuring th
 ### Use the Routing Pattern for agentic tool bootstrap files
 
 #### Status
+
 Accepted
 
 #### Context
+
 Multiple agentic tools (Claude Code, Cursor, Gemini CLI) use root-level instruction files (`CLAUDE.md`, `AGENTS.md`, `GEMINI.md`) that take precedence.
 
 #### Rationale
+
 To maintain a single source of truth, these root files should not contain full policy. Instead, they should "route" the agent to the durable knowledge under `.agents/`.
 
 #### Consequences
+
 - Root files stay "thin" (bootstrap only).
 - `.agents/` remains the authoritative location for durable repo knowledge.
 - Cross-tool consistency is improved across different AI toolchains.
+
+### Shared integration patterns belong in `docs/integrations/patterns.md`
+
+#### Status
+
+Accepted
+
+#### Context
+
+The product-specific integration guides began repeating the same "thin wiring, canonical `.agents/`" guidance across many tools.
+
+#### Rationale
+
+Shared integration concepts are easier to maintain in one pattern guide. Product pages stay useful when they focus on tool-specific filenames, snippets, caveats, verification dates, and references.
+
+#### Consequences
+
+- Put reusable integration models and comparison matrices in `docs/integrations/patterns.md`.
+- Keep product-specific integration pages as quick references that link back to the shared pattern guide.
+- Update both integration indexes when adding or reorganizing integration guides.
