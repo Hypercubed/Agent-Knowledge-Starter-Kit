@@ -11,6 +11,7 @@ This directory contains user-facing guides for connecting specific tools to the 
 - [Codex](./codex.md) — `AGENTS.md`, repo-local `.agents/skills/`, sandbox permissions, and how Codex should use the kit
 - [Kilo Code](./kilo-code.md) — `AGENTS.md`, `kilo.json`, thin `.kilo/` wiring, and how to keep `.agents/` as the shared source of truth
 - [Claude Code](./claude-code.md) — `CLAUDE.md`, auto-memory vs kit docs, `.claude/commands/` vs `.agents/skills/`, and thin wiring without duplication
+- [Gemini CLI](./gemini-cli.md) — `GEMINI.md`, `save_memory` vs kit docs, and orchestrating the Research-Strategy-Execution lifecycle with `.agents/`
 
 ## Planned guides
 

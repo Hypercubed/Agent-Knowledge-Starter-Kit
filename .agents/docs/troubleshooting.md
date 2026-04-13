@@ -199,3 +199,22 @@ Agent tool calls to list, read, or write files in a WSL workspace fail with "The
 #### Validation
 
 - Tool calls complete successfully.
+
+### Gemini CLI not following durable guidance
+
+#### Symptom
+
+Gemini CLI ignores playbooks, repo decisions, or conventions stored under `.agents/`.
+
+#### Likely causes
+
+- Lack of a root `GEMINI.md` file.
+- The root `GEMINI.md` does not explicitly mandate reading `.agents/AGENTS.md`.
+
+#### Fix
+
+- Create or update `GEMINI.md` at the project root to include a mandate: "Read and follow `.agents/AGENTS.md` at the start of every session."
+
+#### Validation
+
+- Gemini CLI acknowledges the mandates in `GEMINI.md` and correctly references `.agents/` files during its Research phase.

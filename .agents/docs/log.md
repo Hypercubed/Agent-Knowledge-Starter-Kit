@@ -1,5 +1,9 @@
 # Knowledge Maintenance Log
 
+### [2026-04-12] learning-distill | t-20260412-190052-gemini-cli-integration
+
+Outcome: updated Files: `.agents/playbooks/writing-integration-guides.md`; `.agents/docs/repo-decisions.md`; `.agents/docs/troubleshooting.md`; `.agents/docs/log.md`; `.agents/sessions/20260412-190052-gemini-cli-integration/summary.json` Accepted: 3 (formalized "Routing Pattern" for root bootstrap files; added repo decision for root routing files; added Gemini CLI-specific troubleshooting) Rejected: 1 (`.agents/AGENTS.md` update absent; preferred keeping guidance in playbook and decisions) Notes: Distilled Gemini CLI integration closeout. Formalized the "Routing Pattern" common to multiple agentic tools.
+
 ### [2026-04-12] learning-distill | t-20260412-170915-publish-check-link-handling
 
 Outcome: updated Files: `.agents/playbooks/pre-publish.md`; `.agents/docs/log.md`; `.agents/sessions/20260412-170915-publish-check-link-handling/summary.json` Accepted: 1 (pre-publish link checks should tolerate external status `0` in restricted environments while keeping local links blocking) Rejected: 2 (`.agents/AGENTS.md` and troubleshooting updates not warranted for a narrow publish-workflow lesson) Notes: Distilled publish checker closeout; durable guidance was kept in the pre-publish playbook.

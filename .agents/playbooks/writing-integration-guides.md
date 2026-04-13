@@ -12,17 +12,19 @@ When writing an integration guide for an agent tool that has its own memory, ski
 
 3. **Map gaps.** What does the kit provide that the tool lacks, and vice versa? (e.g., the kit has session bundles and distillation protocols; the tool has persistent cross-session memory that the kit doesn't track)
 
-4. **Describe integration options.** Present three patterns with trade-offs:
+4. **Use the Routing Pattern.** For tools that support a high-precedence instruction file at the project root (e.g., `CLAUDE.md`, `GEMINI.md`, `AGENTS.md`), recommend a "thin bootstrap" that points the agent to the durable knowledge under `.agents/`. This ensures a single source of truth across multiple tools.
+
+5. **Describe integration options.** Present three patterns with trade-offs:
    - **Kit as bridge:** Shared `.agents/` tree lets multiple tools coordinate
    - **Replicate:** Mirror the tool's native structures into the kit's format
    - **Hybrid:** Use the tool's native systems for daily work, the kit for cross-tool coordination
 
-5. **Include a concrete two-tool workflow.** Show a real scenario where the agent tool works alongside another tool (e.g., Hermes + Claude Code, OpenClaw + GitHub Actions). This is where the guide becomes genuinely useful vs. just describing features.
+6. **Include a concrete two-tool workflow.** Show a real scenario where the agent tool works alongside another tool (e.g., Hermes + Claude Code, OpenClaw + GitHub Actions). This is where the guide becomes genuinely useful vs. just describing features.
 
-6. **Verify claims against real behavior.** Before documenting a limitation, reproduce it in the current tool or current repo context. Distinguish a repo bootstrap file (such as root `AGENTS.md`) from the durable `.agents/` knowledge layer when both exist.
+7. **Verify claims against real behavior.** Before documenting a limitation, reproduce it in the current tool or current repo context. Distinguish a repo bootstrap file (such as root `AGENTS.md`) from the durable `.agents/` knowledge layer when both exist.
 
-7. **Update repo routing docs together.** When a new guide lands under `docs/integrations/`, update the main `README.md`, `docs/integrations/README.md`, and any maintainer tracker such as `.agents/plans/add-integrations.md` in the same change so discovery and status stay aligned.
-8. **Prefer one post-dogfood refinement pass.** After the first working draft, run at least one realistic workflow through the target tool. If that lived run clarifies the value proposition or exposes missing framing, add one short concrete example to the published guide. If you are running as the target tool during the writing session, that session itself qualifies as the dogfood pass — note this explicitly in the guide's verification statement and in the task-closeout `Remaining Work` section.
+8. **Update repo routing docs together.** When a new guide lands under `docs/integrations/`, update the main `README.md`, `docs/integrations/README.md`, and any maintainer tracker such as `.agents/plans/add-integrations.md` in the same change so discovery and status stay aligned.
+9. **Prefer one post-dogfood refinement pass.** After the first working draft, run at least one realistic workflow through the target tool. If that lived run clarifies the value proposition or exposes missing framing, add one short concrete example to the published guide. If you are running as the target tool during the writing session, that session itself qualifies as the dogfood pass — note this explicitly in the guide's verification statement and in the task-closeout `Remaining Work` section.
 
 ## Pitfalls
 
