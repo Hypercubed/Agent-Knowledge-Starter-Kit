@@ -35,13 +35,13 @@ Read `.agents/skills/task-closeout/SKILL.md` and follow it exactly. Keep tempora
 
 ## Discovery and Config
 
-| Mechanism | Location | Use |
-| --- | --- | --- |
-| Project config | `kilo.json`, `.kilo/kilo.json` | Repo-scoped Kilo settings |
-| Commands | `.kilo/command/*.md` | Slash commands and thin task routing |
-| Agents | `.kilo/agent/*.md` | Kilo-native personas and permissions |
-| Skills | `.kilo/skill/*/SKILL.md`, `.kilo/skills/*/SKILL.md`, configured paths | Kilo-native skill registry |
-| Instructions | root `AGENTS.md`, `.kilo/instructions.md`, configured globs | Always-on or scoped instruction files |
+| Mechanism      | Location                                                              | Use                                   |
+| -------------- | --------------------------------------------------------------------- | ------------------------------------- |
+| Project config | `kilo.json`, `.kilo/kilo.json`                                        | Repo-scoped Kilo settings             |
+| Commands       | `.kilo/command/*.md`                                                  | Slash commands and thin task routing  |
+| Agents         | `.kilo/agent/*.md`                                                    | Kilo-native personas and permissions  |
+| Skills         | `.kilo/skill/*/SKILL.md`, `.kilo/skills/*/SKILL.md`, configured paths | Kilo-native skill registry            |
+| Instructions   | root `AGENTS.md`, `.kilo/instructions.md`, configured globs           | Always-on or scoped instruction files |
 
 ## Kilo-Specific Caveats
 

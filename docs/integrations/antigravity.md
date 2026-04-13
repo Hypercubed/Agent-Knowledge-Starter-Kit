@@ -14,13 +14,13 @@ Verified against Antigravity's current behavior using the standard Antigravity t
 
 ## Discovery and Config
 
-| Mechanism | Location | Use |
-| --- | --- | --- |
-| Knowledge Items | Agent-private app data | Local persistent context |
-| Conversation logs | Agent-private app data | Raw local logs and artifacts |
-| Planning artifacts | Agent-private app data | Implementation plans and walkthroughs |
-| Tool system | Antigravity runtime | File reads, search, shell commands, edits |
-| Kit knowledge | `.agents/` | Shared repo knowledge and session bundles |
+| Mechanism          | Location               | Use                                       |
+| ------------------ | ---------------------- | ----------------------------------------- |
+| Knowledge Items    | Agent-private app data | Local persistent context                  |
+| Conversation logs  | Agent-private app data | Raw local logs and artifacts              |
+| Planning artifacts | Agent-private app data | Implementation plans and walkthroughs     |
+| Tool system        | Antigravity runtime    | File reads, search, shell commands, edits |
+| Kit knowledge      | `.agents/`             | Shared repo knowledge and session bundles |
 
 ## Antigravity-Specific Caveats
 

@@ -27,14 +27,14 @@ This repo uses the Agent Knowledge Starter Kit.
 
 ## Discovery and Config
 
-| Mechanism | Location | Use |
-| --- | --- | --- |
-| Startup files | root `AGENTS.md`, `SOUL.md`, `USER.md`, sometimes `MEMORY.md` | Session bootstrap and standing instructions |
-| Workspace memory | `MEMORY.md`, `memory/*.md` | Assistant/user continuity and local operating context |
-| Skills | Installed workspace skills, built-ins, repo skill files | Native and repo-local workflows |
-| Session tools | `sessions_list`, `sessions_history`, `sessions_spawn`, etc. | Recall and orchestration |
-| Automation | Heartbeat, cron, hooks, Task Flow, background tasks | Periodic or event-driven work |
-| CLI/Gateway | `openclaw status`, `openclaw agent`, `openclaw sessions` | Inspection and operations |
+| Mechanism        | Location                                                      | Use                                                   |
+| ---------------- | ------------------------------------------------------------- | ----------------------------------------------------- |
+| Startup files    | root `AGENTS.md`, `SOUL.md`, `USER.md`, sometimes `MEMORY.md` | Session bootstrap and standing instructions           |
+| Workspace memory | `MEMORY.md`, `memory/*.md`                                    | Assistant/user continuity and local operating context |
+| Skills           | Installed workspace skills, built-ins, repo skill files       | Native and repo-local workflows                       |
+| Session tools    | `sessions_list`, `sessions_history`, `sessions_spawn`, etc.   | Recall and orchestration                              |
+| Automation       | Heartbeat, cron, hooks, Task Flow, background tasks           | Periodic or event-driven work                         |
+| CLI/Gateway      | `openclaw status`, `openclaw agent`, `openclaw sessions`      | Inspection and operations                             |
 
 ## OpenClaw-Specific Caveats
 

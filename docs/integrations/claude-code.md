@@ -31,13 +31,13 @@ Read and follow `.agents/skills/task-closeout/SKILL.md`. Write the output bundle
 
 ## Discovery and Config
 
-| Mechanism | Location | Use |
-| --- | --- | --- |
-| Primary instructions | root and parent `CLAUDE.md`, `~/.claude/CLAUDE.md` | Session-start instructions |
-| Additional instructions | root `AGENTS.md` | Additional agent instructions |
-| Commands | `.claude/commands/*.md`, `~/.claude/commands/*.md` | Custom slash commands |
-| Settings | `.claude/settings.json`, `~/.claude/settings.json` | Hooks, MCP config, behavior settings |
-| Auto-memory | `~/.claude/projects/<project>/memory/` | User-local cross-session memory |
+| Mechanism               | Location                                           | Use                                  |
+| ----------------------- | -------------------------------------------------- | ------------------------------------ |
+| Primary instructions    | root and parent `CLAUDE.md`, `~/.claude/CLAUDE.md` | Session-start instructions           |
+| Additional instructions | root `AGENTS.md`                                   | Additional agent instructions        |
+| Commands                | `.claude/commands/*.md`, `~/.claude/commands/*.md` | Custom slash commands                |
+| Settings                | `.claude/settings.json`, `~/.claude/settings.json` | Hooks, MCP config, behavior settings |
+| Auto-memory             | `~/.claude/projects/<project>/memory/`             | User-local cross-session memory      |
 
 ## Claude-Specific Caveats
 

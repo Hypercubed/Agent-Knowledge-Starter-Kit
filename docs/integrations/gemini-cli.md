@@ -26,13 +26,13 @@ Foundational mandates for this repository:
 
 ## Discovery and Config
 
-| Mechanism | Location | Use |
-| --- | --- | --- |
-| Root mandates | `GEMINI.md` | Primary Gemini CLI instruction file |
-| Project config | `.gemini/` | Project-specific config and state |
-| Project memory | `~/.gemini/memory/` | User-local persistent facts |
-| Native skills | Built-in or custom skill registry | Gemini-native capabilities |
-| Sub-agents | Built-in | Research, strategy, and execution delegation |
+| Mechanism      | Location                          | Use                                          |
+| -------------- | --------------------------------- | -------------------------------------------- |
+| Root mandates  | `GEMINI.md`                       | Primary Gemini CLI instruction file          |
+| Project config | `.gemini/`                        | Project-specific config and state            |
+| Project memory | `~/.gemini/memory/`               | User-local persistent facts                  |
+| Native skills  | Built-in or custom skill registry | Gemini-native capabilities                   |
+| Sub-agents     | Built-in                          | Research, strategy, and execution delegation |
 
 ## Gemini-Specific Caveats
 

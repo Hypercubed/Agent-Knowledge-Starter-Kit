@@ -34,14 +34,14 @@ Optional `opencode.json`:
 
 ## Discovery and Config
 
-| Mechanism | Location | Use |
-| --- | --- | --- |
-| Project rules | root `AGENTS.md` | Primary repo instructions |
-| Compatibility rules | root `CLAUDE.md` | Fallback instruction file if no OpenCode `AGENTS.md` is present |
-| Config | `opencode.json` / `opencode.jsonc` | Runtime config and optional extra instructions |
-| Commands | `.opencode/commands/` | Thin slash-style wrappers |
-| Agents | `.opencode/agents/` | OpenCode-specific runtime agents |
-| Skills | `.opencode/skills/`, `.agents/skills/`, `.claude/skills/` | Reusable workflows |
+| Mechanism           | Location                                                  | Use                                                             |
+| ------------------- | --------------------------------------------------------- | --------------------------------------------------------------- |
+| Project rules       | root `AGENTS.md`                                          | Primary repo instructions                                       |
+| Compatibility rules | root `CLAUDE.md`                                          | Fallback instruction file if no OpenCode `AGENTS.md` is present |
+| Config              | `opencode.json` / `opencode.jsonc`                        | Runtime config and optional extra instructions                  |
+| Commands            | `.opencode/commands/`                                     | Thin slash-style wrappers                                       |
+| Agents              | `.opencode/agents/`                                       | OpenCode-specific runtime agents                                |
+| Skills              | `.opencode/skills/`, `.agents/skills/`, `.claude/skills/` | Reusable workflows                                              |
 
 ## OpenCode-Specific Caveats
 

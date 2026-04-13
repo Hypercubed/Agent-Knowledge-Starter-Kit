@@ -6,7 +6,7 @@
 
 ## Overview
 
-Currently, the primary entry point is `.agents/AGENTS.md` and `.agents/docs/index.md`. On large, long-lived projects, the number of files in `.agents/docs/` and `.agents/playbooks/` will grow significantly. Less sophisticated or overly eager agents might try to load _all_ documentation into their context window at session start to find answers, leading to massive token costs and context degradation.
+Currently, the primary entry point is `.agents/AGENTS.md` and `.agents/docs/index.md`. On large, long-lived projects, the number of files in `.agents/docs/` and `.agents/playbooks/` will grow significantly. Less sophisticated or overly eager agents might try to load *all* documentation into their context window at session start to find answers, leading to massive token costs and context degradation.
 
 Introducing a `knowledge-search` skill formally codifies the behavior of **searching before reading**. It will instruct agents to use their native file-search tools (like grep, ripgrep, or similar tool APIs) against `.agents/` targeting specific keywords before attempting to `read_file` or load entire directories.
 
@@ -20,7 +20,7 @@ The skill should be structured similarly to `task-closeout` and `learning-distil
    - Do NOT attempt to read every file in `.agents/docs/`.
    - Use a filesystem search tool (like grep) to search for the query text across `.agents/docs/` and `.agents/playbooks/`.
    - Read `.agents/docs/index.md` as a fallback to locate structural categories.
-   - Once a relevant file is identified from the search hit, read _only_ that specific file.
+   - Once a relevant file is identified from the search hit, read *only* that specific file.
 4. **Constraints**: Never run a `cat` or `read` blindly on the entire `.agents/` directory.
 
 ## Tasks
@@ -34,7 +34,7 @@ The skill should be structured similarly to `task-closeout` and `learning-distil
 ### 2. Update architectural docs
 
 - Detail this skill in `docs/architecture.md` and list it among the core tools (`task-closeout`, `knowledge-lint`, `learning-distill`).
-- Update `scaffold/AGENTS.md` to include a line like: _“If you cannot find the answer immediately, use the `knowledge-search` skill before guessing or asking the user.”_
+- Update `scaffold/AGENTS.md` to include a line like: *“If you cannot find the answer immediately, use the `knowledge-search` skill before guessing or asking the user.”*
 
 ### 3. Verification pass
 

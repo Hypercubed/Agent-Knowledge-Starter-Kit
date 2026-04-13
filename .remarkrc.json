@@ -1,0 +1,11 @@
+{
+  "settings": {
+    "bullet": "-",
+    "rule": "-",
+    "emphasis": "*"
+  },
+  "plugins": [
+    "remark-frontmatter",
+    "remark-gfm"
+  ]
+}

@@ -27,6 +27,7 @@ Refresh `.agents/agents/` and `.agents/skills/` from **`scaffold/agents/`** and 
 ## Procedure
 
 1. Confirm the repository root contains `scaffold/agents`, `scaffold/skills`, and `.agents/` (the script creates `agents` and `skills` subdirs under `.agents` if needed).
+
 2. From the repository root, run:
 
    ```bash

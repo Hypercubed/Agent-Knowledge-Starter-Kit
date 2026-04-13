@@ -4,7 +4,8 @@
 # - Required: bash, git, find, sed
 # - Required local helper: scripts/check-agents-structure.sh
 # - Optional: timeout bounds optional npx probes when installed.
-# - Optional: npx with locally available prettier checks Markdown formatting.
+# - Optional: globally installed or npx-available remark checks Markdown formatting.
+# - Optional: .remarkrc.json configures frontmatter/GFM support and Markdown style.
 # - Optional: npx with locally available markdown-link-check validates Markdown links.
 # - Optional: rg runs publish leakage scans.
 # - Optional via check-agents-structure.sh: jq validates JSON when installed.
@@ -87,17 +88,17 @@ run_structure_check .agents
 section "Markdown Formatting"
 md_files="$(git ls-files '*.md')"
 if ! command -v npx >/dev/null 2>&1; then
-  warn "npx is not installed; skipping Prettier Markdown check."
+  warn "npx is not installed; skipping Remark Markdown check."
 elif [ -z "$md_files" ]; then
   pass "No tracked Markdown files found."
-elif npx_package_available prettier --version; then
-  if timeout_cmd 60s npx --no-install prettier --check --prose-wrap never $md_files; then
-    pass "Prettier Markdown check passed."
+elif command -v remark >/dev/null 2>&1; then
+  if timeout_cmd 60s remark $md_files --frail; then
+    pass "Remark Markdown check passed."
   else
-    fail "Prettier Markdown check failed."
+    fail "Remark Markdown check failed."
   fi
 else
-  warn "Prettier is not available to npx without installation; skipping Markdown formatting check."
+  warn "remark is not installed; skipping Markdown formatting check."
 fi
 
 section "Markdown Links"

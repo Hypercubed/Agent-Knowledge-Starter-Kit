@@ -25,13 +25,13 @@ This repo uses the Agent Knowledge Starter Kit.
 
 ## Discovery and Config
 
-| Mechanism | Location | Use |
-| --- | --- | --- |
-| Project Rules | root `AGENTS.md` or `WARP.md` | Repo-scoped rules |
-| Global Rules | Warp Drive | Cross-repo user/team guidance |
-| Skills | Supported project/global skill directories, including `.agents/skills/` | Reusable workflows |
-| Slash commands | `/init`, `/plan`, `/skills`, `/open-project-rules`, `/create-environment` | Runtime workflow helpers |
-| Oz | Warp local/cloud agent runtime | Local and cloud agent workflows |
+| Mechanism      | Location                                                                  | Use                             |
+| -------------- | ------------------------------------------------------------------------- | ------------------------------- |
+| Project Rules  | root `AGENTS.md` or `WARP.md`                                             | Repo-scoped rules               |
+| Global Rules   | Warp Drive                                                                | Cross-repo user/team guidance   |
+| Skills         | Supported project/global skill directories, including `.agents/skills/`   | Reusable workflows              |
+| Slash commands | `/init`, `/plan`, `/skills`, `/open-project-rules`, `/create-environment` | Runtime workflow helpers        |
+| Oz             | Warp local/cloud agent runtime                                            | Local and cloud agent workflows |
 
 ## Warp-Specific Caveats
 

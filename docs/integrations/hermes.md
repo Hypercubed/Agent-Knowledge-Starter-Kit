@@ -14,15 +14,15 @@ Based on behavior verified while working in this repo, including failure modes c
 
 ## Discovery and Config
 
-| Mechanism | Location | Use |
-| --- | --- | --- |
-| Repo entrypoint | root `AGENTS.md` | Bootstrap into `.agents/` |
-| Kit instructions | `.agents/AGENTS.md` | Durable repo guidance |
-| Kit docs | `.agents/docs/`, `.agents/playbooks/` | Decisions, troubleshooting, procedures |
-| Kit skills | `.agents/skills/<name>/SKILL.md` | Repo-local workflows |
-| Hermes memory | Hermes runtime | User/profile continuity |
-| Hermes skills | Hermes skill store | Runtime-integrated procedures |
-| Session recall | Hermes runtime | Prior conversation history |
+| Mechanism        | Location                              | Use                                    |
+| ---------------- | ------------------------------------- | -------------------------------------- |
+| Repo entrypoint  | root `AGENTS.md`                      | Bootstrap into `.agents/`              |
+| Kit instructions | `.agents/AGENTS.md`                   | Durable repo guidance                  |
+| Kit docs         | `.agents/docs/`, `.agents/playbooks/` | Decisions, troubleshooting, procedures |
+| Kit skills       | `.agents/skills/<name>/SKILL.md`      | Repo-local workflows                   |
+| Hermes memory    | Hermes runtime                        | User/profile continuity                |
+| Hermes skills    | Hermes skill store                    | Runtime-integrated procedures          |
+| Session recall   | Hermes runtime                        | Prior conversation history             |
 
 ## Hermes-Specific Caveats
 

@@ -32,12 +32,12 @@ Do not duplicate long policy here; open the referenced paths when needed.
 
 ## Discovery and Config
 
-| Mechanism | Location | Use |
-| --- | --- | --- |
-| Project Rules | `.cursor/rules/` | Repo-scoped instructions with modes, descriptions, and globs |
-| Root/nested instructions | `AGENTS.md` | Plain markdown agent instructions |
-| User Rules | Cursor Settings -> Rules | User-wide preferences |
-| Team Rules | Cursor dashboard | Org-wide policy with higher precedence |
+| Mechanism                | Location                 | Use                                                          |
+| ------------------------ | ------------------------ | ------------------------------------------------------------ |
+| Project Rules            | `.cursor/rules/`         | Repo-scoped instructions with modes, descriptions, and globs |
+| Root/nested instructions | `AGENTS.md`              | Plain markdown agent instructions                            |
+| User Rules               | Cursor Settings -> Rules | User-wide preferences                                        |
+| Team Rules               | Cursor dashboard         | Org-wide policy with higher precedence                       |
 
 ## Cursor-Specific Caveats
 

@@ -25,13 +25,13 @@ This repo uses the Agent Knowledge Starter Kit.
 
 ## Discovery and Config
 
-| Mechanism | Location | Use |
-| --- | --- | --- |
-| Project instructions | root and nested `AGENTS.md`, `AGENTS.override.md` | Session-start instructions |
-| Kit instructions | `.agents/AGENTS.md` | Durable repo guidance after root routing |
-| Repo skills | `.agents/skills/<name>/SKILL.md` | Repo-local Codex skills |
-| User config | `~/.codex/config.toml` | Sandbox, approvals, profiles, fallback filenames |
-| Rules | `~/.codex/rules/*.rules` | Experimental command-approval rules |
+| Mechanism            | Location                                          | Use                                              |
+| -------------------- | ------------------------------------------------- | ------------------------------------------------ |
+| Project instructions | root and nested `AGENTS.md`, `AGENTS.override.md` | Session-start instructions                       |
+| Kit instructions     | `.agents/AGENTS.md`                               | Durable repo guidance after root routing         |
+| Repo skills          | `.agents/skills/<name>/SKILL.md`                  | Repo-local Codex skills                          |
+| User config          | `~/.codex/config.toml`                            | Sandbox, approvals, profiles, fallback filenames |
+| Rules                | `~/.codex/rules/*.rules`                          | Experimental command-approval rules              |
 
 ## Codex-Specific Caveats
 
