@@ -44,7 +44,7 @@ Each guide should focus on what makes the tool's integration unique. Persistent 
 | `opencode.md`          | Coding agent / terminal / desktop / IDE | `AGENTS.md`, `opencode.json`, `.opencode/agents/`, `.opencode/commands/`, native skill discovery | How OpenCode's native rules, config, commands, agents, and skill discovery should point to canonical repo knowledge under `.agents/` without forking it | **done** — based on official OpenCode docs and a live dogfood writing pass in this repo    |
 | `claude-code.md`       | Coding agent / IDE                      | `CLAUDE.md`, settings, AGENTS.md                                                                 | How to point Claude Code at the kit cleanly                                                                                                             | **done** — verified against live Claude Code behavior in this repo                         |
 | `cursor.md`            | IDE (rules-based)                       | `.cursor/rules` MDC files                                                                        | How to map rules to `.agents/` content without duplication                                                                                              | **done** — verified against Cursor Rules docs                                              |
-| `copilot.md`           | IDE (rules-based)                       | `.github/copilot-instructions.md`                                                                | How to reference `.agents/` from Copilot instructions                                                                                                   | planned                                                                                    |
+| `copilot.md`           | IDE (rules-based)                       | `.github/copilot-instructions.md`                                                                | How to reference `.agents/` from Copilot instructions                                                                                                   | **done** — verified against VS Code Copilot Chat behavior; covers instruction file discovery, VS Code context model, and two-tool workflow              |
 | `vscode-extensions.md` | IDE extensions                          | varies by extension                                                                              | How to document per-extension discovery and setup without overclaiming                                                                                  | planned                                                                                    |
 
 ## Tasks
@@ -112,9 +112,11 @@ Each guide should focus on what makes the tool's integration unique. Persistent 
 
 ### 7. Write `copilot.md`
 
-- document `.github/copilot-instructions.md`
-- show how to reference `.agents/` from Copilot instructions
-- include a two-tool example
+- document `.github/copilot-instructions.md` as primary discovery file
+- show VS Code workspace context model and how nested `.agents/` files are not auto-visible
+- include a two-tool example (Copilot + Claude Code)
+- explain caveat: Copilot Chat is conversation-scoped, not persistent
+- **Status:** done — verified against VS Code Copilot Chat behavior with agent capabilities
 
 ### 8. Write `vscode-extensions.md`
 
