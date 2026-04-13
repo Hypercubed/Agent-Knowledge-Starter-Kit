@@ -18,6 +18,7 @@ When writing an integration guide for an agent tool that has its own memory, ski
    - **Kit as bridge:** Shared `.agents/` tree lets multiple tools coordinate
    - **Replicate:** Mirror the tool's native structures into the kit's format
    - **Hybrid:** Use the tool's native systems for daily work, the kit for cross-tool coordination
+   - If the tool already discovers `.agents/skills/` natively, prefer those canonical skill files over copying the workflow into tool-local command wrappers; add wrappers only as thin convenience aliases.
 
 6. **Include a concrete two-tool workflow.** Show a real scenario where the agent tool works alongside another tool (e.g., Hermes + Claude Code, OpenClaw + GitHub Actions). This is where the guide becomes genuinely useful vs. just describing features.
 

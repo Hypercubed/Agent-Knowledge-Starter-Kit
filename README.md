@@ -132,6 +132,7 @@ Currently available:
 - [Hermes](docs/integrations/hermes.md)
 - [Kilo Code](docs/integrations/kilo-code.md)
 - [OpenClaw](docs/integrations/openclaw.md)
+- [OpenCode](docs/integrations/opencode.md)
 
 ---
 

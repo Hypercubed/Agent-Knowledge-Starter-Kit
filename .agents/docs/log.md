@@ -1,5 +1,9 @@
 # Knowledge Maintenance Log
 
+### [2026-04-13] learning-distill | t-20260413-044145-opencode-guide
+
+Outcome: updated Files: `.agents/playbooks/writing-integration-guides.md`; `.agents/docs/log.md`; `.agents/sessions/20260413-044145-opencode-integration/summary.json` Accepted: 1 (if a tool already discovers `.agents/skills/` natively, integration guides should keep those skills canonical and use tool-local command wrappers only as thin convenience aliases) Rejected: 3 (no `.agents/AGENTS.md` update; no troubleshooting entry; no repo decision beyond existing routing/canonical-source rules) Notes: Distilled the OpenCode integration guide closeout; promoted one small playbook clarification and kept product-specific OpenCode behavior in `docs/integrations/opencode.md`.
+
 ### [2026-04-12] learning-distill | t-20260412-193758-kilo-session-guide, t-20260412-215500-add-agent-ids
 
 Outcome: updated Files: `.agents/playbooks/writing-integration-guides.md`; `.agents/docs/log.md`; `.agents/sessions/20260412-193758-kilo-session-guide/summary.json`; `.agents/sessions/20260412-215500-add-agent-ids/summary.json` Accepted: 2 (session metadata guidance must stay optional and source-supported; integration guides may document resume commands only when the tool exposes a stable supported workflow) Rejected: 2 (`.agents/AGENTS.md` broad rule not needed because task-closeout skill now carries the contract; separate repo decision duplicated existing verification/routing decisions) Notes: Distilled Kilo and Gemini/Codex session metadata closeouts; kept durable guidance in the integration-guide playbook and task-closeout skill.
