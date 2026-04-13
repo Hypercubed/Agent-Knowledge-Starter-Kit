@@ -8,7 +8,7 @@ Start with [Integration Patterns](./patterns.md) to choose the right wiring mode
 
 - [Root `AGENTS.md` native or compatible](./patterns.md#root-agentsmd-native-or-compatible): Codex, OpenCode, Kilo Code, Warp, OpenClaw
 - [Tool-specific bootstrap file](./patterns.md#tool-specific-bootstrap-file): Claude Code, Gemini CLI
-- [Rules-based IDE wiring](./patterns.md#rules-based-ide-wiring): Cursor
+- [Rules-based IDE wiring](./patterns.md#rules-based-ide-wiring): Cursor, GitHub Copilot
 - [Persistent memory and runtime boundary](./patterns.md#persistent-memory-and-runtime-boundary): Hermes, Antigravity, OpenClaw
 
 ## Available guides
@@ -17,6 +17,7 @@ Start with [Integration Patterns](./patterns.md) to choose the right wiring mode
 - [Antigravity](./antigravity.md) - Persistent Context, planning artifacts, and explicit session export
 - [Claude Code](./claude-code.md) - `CLAUDE.md`, auto-memory, command wrappers, and kit routing
 - [Codex](./codex.md) - `AGENTS.md`, repo-local `.agents/skills/`, sandbox caveats, and kit routing
+- [Copilot](./copilot.md) - `.github/copilot-instructions.md`, VS Code workspace context, and kit routing
 - [Cursor](./cursor.md) - `.cursor/rules/`, `AGENTS.md`, and rules-based wiring
 - [Gemini CLI](./gemini-cli.md) - `GEMINI.md`, `save_memory`, and repo skill routing
 - [Hermes](./hermes.md) - Hermes memory, session recall, skill namespace caveats, and repo skill files
@@ -29,7 +30,6 @@ Start with [Integration Patterns](./patterns.md) to choose the right wiring mode
 
 These are tracked in `.agents/plans/add-integrations.md` and should be added only after they are verified against real tool behavior:
 
-- Copilot
 - VS Code extensions
 
 ## Notes

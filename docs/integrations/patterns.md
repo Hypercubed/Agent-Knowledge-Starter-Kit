@@ -47,11 +47,11 @@ The bootstrap should say where the real repo knowledge lives. Native memory such
 
 ### Rules-Based IDE Wiring
 
-Tool: [Cursor](./cursor.md)
+Tools: [Cursor](./cursor.md), [GitHub Copilot](./copilot.md)
 
-Cursor project rules are useful wiring, especially `.cursor/rules/*.mdc` files with `alwaysApply`, descriptions, or globs. Keep those rules short. Reference `.agents/` paths instead of pasting long policy into rule bodies.
+Cursor project rules and Copilot instruction files are useful wiring. Keep them short: reference `.agents/` paths instead of pasting long policy into rule bodies or instruction files.
 
-This pattern should also fit future rules-based IDE guides such as Copilot or VS Code extensions.
+This pattern should also fit future rules-based IDE guides such as VS Code extensions.
 
 ### Persistent Memory and Runtime Boundary
 
@@ -68,6 +68,7 @@ At task boundaries, export durable evidence into `.agents/sessions/<folder>/` an
 | Antigravity | Optional root `AGENTS.md`                     | Agent-private app data                                      | Knowledge Items, conversation logs, planning artifacts | Prompt it to read repo skill files                                 | Export local artifacts into `.agents/sessions/` for other tools |
 | Claude Code | Root `CLAUDE.md`, also reads root `AGENTS.md` | `.claude/commands/`, `.claude/settings.json`                | User-local auto-memory                                 | `.claude/commands/` can wrap `.agents/skills/`                     | Do not use auto-memory as repo docs                             |
 | Codex       | Root `AGENTS.md`                              | `~/.codex/config.toml`, rules, connectors                   | Session-local plus configured tools                    | Discovers repo `.agents/skills/`                                   | `.agents/AGENTS.md` is not repo-wide unless routed from root    |
+| Copilot     | `.github/copilot-instructions.md`             | VS Code workspace settings (`.vscode/settings.json`)        | Conversation-scoped context (not persistent)           | Explicitly prompt to read `.agents/skills/` files                  | Nested `.agents/` files not auto-visible; use bootstrap routing |
 | Cursor      | `.cursor/rules/` and/or root `AGENTS.md`      | Project/User/Team Rules                                     | Product context, not repo durable storage              | Treat `.agents/skills/` as files to open                           | Avoid duplicating long policy in `.cursor/rules/`               |
 | Gemini CLI  | Root `GEMINI.md`                              | `.gemini/`                                                  | `save_memory(scope="project")` is user-local           | Activate native skills or explicitly read repo skill files         | Keep `GEMINI.md` as routing, not the canonical policy file      |
 | Hermes      | Root `AGENTS.md` if present                   | Hermes runtime and skill store                              | Memory and session recall                              | Hermes skills and repo skills are separate namespaces              | Read `.agents/skills/*/SKILL.md` from disk for repo workflows   |

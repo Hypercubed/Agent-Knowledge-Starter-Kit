@@ -234,3 +234,23 @@ Shared integration concepts are easier to maintain in one pattern guide. Product
 - Put reusable integration models and comparison matrices in `docs/integrations/patterns.md`.
 - Keep product-specific integration pages as quick references that link back to the shared pattern guide.
 - Update both integration indexes when adding or reorganizing integration guides.
+
+### GitHub Copilot as Rules-Based IDE Wiring tool
+
+#### Status
+
+Accepted
+
+#### Context
+
+GitHub Copilot Chat in VS Code is conversation-scoped (not persistent across restarts), uses instruction files for configuration (like Cursor project rules), and relies on VS Code workspace settings.
+
+#### Rationale
+
+While Copilot can work alongside persistent agents, its primary execution model is stateless conversation, which maps better to IDE integration than to persistent assistant patterns. Other IDE-integrated tools like Cursor also use instruction files + project rules + workspace settings for thin wiring, making the "Rules-Based IDE Wiring" pattern a consistent category.
+
+#### Consequences
+
+- The Copilot integration guide focuses on thin bootstrap wiring (`.github/copilot-instructions.md`) and explicit `@`-reference to durable files, not on sync protocols for persistent agent state.
+- Future IDE-based tools with similar discovery mechanics should evaluate the Rules-Based IDE Wiring pattern before creating a new category.
+- Integration guides for this pattern emphasize context scoping and explicit file references as key differences from persistent-assistant patterns.

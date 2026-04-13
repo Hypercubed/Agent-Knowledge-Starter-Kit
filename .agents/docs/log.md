@@ -1,5 +1,9 @@
 # Knowledge Maintenance Log
 
+### \[2026-04-13] learning-distill | t-20260413-140000-copilot-integration-guide
+
+Outcome: updated Files: `.agents/docs/troubleshooting.md`; `.agents/docs/repo-decisions.md`; `.agents/docs/log.md`; `.agents/sessions/20260413-140000-copilot-integration-guide/summary.json` Accepted: 2 (Copilot Chat context troubleshooting entry; GitHub Copilot as Rules-Based IDE Wiring architectural decision) Rejected: 2 (`.agents/AGENTS.md` update absent — integration guides are tool-specific, not repo-wide guidance; nested `.agents/` visibility caveat already present in patterns.md) Notes: Distilled Copilot integration guide closeout; promoted Copilot-specific troubleshooting entry and architectural classification decision; kept guide-specific details and two-tool workflow examples in `docs/integrations/copilot.md`.
+
 ### \[2026-04-13] learning-distill | t-20260412-232119-integration-consolidation
 
 Outcome: updated Files: `.agents/playbooks/writing-integration-guides.md`; `.agents/playbooks/pre-publish.md`; `.agents/docs/repo-decisions.md`; `.agents/docs/log.md`; `.agents/sessions/20260412-232119-integration-consolidation/summary.json` Accepted: 3 (shared integration patterns page decision; integration-guide playbook quick-reference guidance; manual Prettier command should match `--prose-wrap never`) Rejected: 2 (`.agents/AGENTS.md` update absent; closeout folder sandbox escalation treated as existing Codex `.agents/` write troubleshooting) Notes: Distilled integration consolidation closeout; kept durable updates focused on future integration-guide maintenance.
