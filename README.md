@@ -49,7 +49,13 @@ Manual install:
 Agent-assisted install:
 
 ```text
-Install the Agent Knowledge Starter Kit into this repo. Follow INSTALL.md from the starter kit. Preserve any existing repo-specific `.agents/rules/`, `.agents/playbooks/`, and `.agents/skills/`; merge missing kit pieces instead of replacing `.agents/` wholesale. After installing, summarize changed files and any manual tool-integration steps I still need to do.
+Install the Agent Knowledge Starter Kit into this repo from
+https://github.com/jamesmh/agent-knowledge-starter. Follow INSTALL.md
+from the starter kit. Preserve any existing repo-specific
+`.agents/rules/`, `.agents/playbooks/`, and `.agents/skills/`; merge
+missing kit pieces instead of replacing `.agents/` wholesale. After
+installing, summarize changed files and any manual tool-integration
+steps I still need to do.
 ```
 
 ### For agents

@@ -1,6 +1,8 @@
 ---
 name: sync-scaffold-agents-skills
 description: Maintainer-only for this repository. Copy kit agent definitions and skills from scaffold into .agents (scaffold/agents and scaffold/skills only). One-way merge; leaves other .agents files and any extra local skills intact. Use when scaffold is canonical for those two directories and this repo keeps a dual-tree layout.
+metadata:
+  internal: true
 ---
 
 # Sync scaffold agents and skills (this repo)
