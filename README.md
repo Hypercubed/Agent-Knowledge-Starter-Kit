@@ -50,7 +50,7 @@ Agent-assisted install:
 
 ```text
 Install the Agent Knowledge Starter Kit into this repo from
-https://github.com/jamesmh/agent-knowledge-starter. Follow INSTALL.md
+https://github.com/Hypercubed/Agent-Knowledge-Starter-Kit. Follow INSTALL.md
 from the starter kit. Preserve any existing repo-specific
 `.agents/rules/`, `.agents/playbooks/`, and `.agents/skills/`; merge
 missing kit pieces instead of replacing `.agents/` wholesale. After
