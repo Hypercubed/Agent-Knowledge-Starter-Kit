@@ -36,14 +36,14 @@ A root `.copilot-instructions.md` file is sometimes mentioned as a fallback, but
 
 ## Discovery and Config
 
-| Mechanism                 | Location                                          | Use                                          |
-| ------------------------- | ------------------------------------------------- | -------------------------------------------- |
-| Repository instructions   | `.github/copilot-instructions.md`                 | Repo-level agent instructions                |
-| Reusable prompts          | `.github/prompts/*.prompt.md`                     | Prompt files for invoking skills or workflows |
-| Project instructions      | root `AGENTS.md`                                  | Plain markdown agent instructions            |
-| Kit knowledge             | `.agents/AGENTS.md`, `.agents/docs/index.md`      | Durable repo guidance and decision log       |
-| VS Code preferences       | `.vscode/settings.json`, `.vscode/extensions.json`| Editor settings, not repo policy             |
-| Workspace context         | VS Code Chat context panel, `@` file references   | File-scoped guidance during chat sessions    |
+| Mechanism               | Location                                           | Use                                           |
+| ----------------------- | -------------------------------------------------- | --------------------------------------------- |
+| Repository instructions | `.github/copilot-instructions.md`                  | Repo-level agent instructions                 |
+| Reusable prompts        | `.github/prompts/*.prompt.md`                      | Prompt files for invoking skills or workflows |
+| Project instructions    | root `AGENTS.md`                                   | Plain markdown agent instructions             |
+| Kit knowledge           | `.agents/AGENTS.md`, `.agents/docs/index.md`       | Durable repo guidance and decision log        |
+| VS Code preferences     | `.vscode/settings.json`, `.vscode/extensions.json` | Editor settings, not repo policy              |
+| Workspace context       | VS Code Chat context panel, `@` file references    | File-scoped guidance during chat sessions     |
 
 ## Copilot-Specific Caveats
 

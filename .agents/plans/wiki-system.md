@@ -1,7 +1,7 @@
 # Plan: Wiki Expansion for Agent-Knowledge-Starter-Kit
 
-**Version:** 1.1  
-**Status:** Draft  
+**Version:** 1.1\
+**Status:** Draft\
 **Scope:** Extend the starter kit to include a codebase-grounded wiki as a first-class knowledge store, alongside (not derived from) skills and playbooks.
 
 ---
@@ -9,6 +9,7 @@
 ## Background
 
 The kit maintains knowledge in:
+
 - `.agents/AGENTS.md` — high-signal agent instructions
 - `.agents/docs/repo-decisions/` — architectural rationale (one file per decision)
 - `.agents/docs/troubleshooting/` — failure patterns (one file per pattern)
@@ -25,13 +26,13 @@ This plan adds a **wiki** as a declarative, codebase-grounded knowledge layer. T
 
 ### Wiki vs. skills/playbooks
 
-| | Wiki | Skills / Playbooks |
-|---|---|---|
-| Type | Declarative | Procedural |
-| Purpose | Describe what the system is and why | Describe how to do something |
-| Consumer | Humans and agents seeking understanding | Agents executing steps |
-| Source | Session data + direct writes | Session data |
-| Grounded in | Codebase (via `code_refs`) | Workflows and patterns |
+|             | Wiki                                    | Skills / Playbooks           |
+| ----------- | --------------------------------------- | ---------------------------- |
+| Type        | Declarative                             | Procedural                   |
+| Purpose     | Describe what the system is and why     | Describe how to do something |
+| Consumer    | Humans and agents seeking understanding | Agents executing steps       |
+| Source      | Session data + direct writes            | Session data                 |
+| Grounded in | Codebase (via `code_refs`)              | Workflows and patterns       |
 
 Both are updated during distillation from the same session data. Neither derives from the other. Cross-references are links, not derivations.
 
@@ -43,6 +44,7 @@ Both are updated during distillation from the same session data. Neither derives
 ### Linter as maintenance loop
 
 The linter detects drift between wiki entries and actual code:
+
 - **Small drift** → fix inline
 - **Significant drift** → emit a wiki plan
 
@@ -116,24 +118,24 @@ lint detects drift → small: fix inline | significant: emit wiki plan → recon
 
 ### New files
 
-| File | Purpose |
-|---|---|
-| `.agents/wiki/index.md` | Wiki entry registry and table of contents |
-| `.agents/wiki/decisions/` | Architectural decisions subdirectory |
-| `.agents/wiki/systems/` | Systems knowledge subdirectory |
-| `.agents/wiki/concepts/` | Concepts and patterns subdirectory |
+| File                                  | Purpose                                                                                                |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| `.agents/wiki/index.md`               | Wiki entry registry and table of contents                                                              |
+| `.agents/wiki/decisions/`             | Architectural decisions subdirectory                                                                   |
+| `.agents/wiki/systems/`               | Systems knowledge subdirectory                                                                         |
+| `.agents/wiki/concepts/`              | Concepts and patterns subdirectory                                                                     |
 | `.agents/skills/wiki-update/SKILL.md` | Direct write skill — accepts fact, decision, or external URL; writes wiki entry without session bundle |
 
 ### Modified files
 
-| File | Changes |
-|---|---|
-| `.agents/skills/task-closeout/SKILL.md` | Add `wiki_candidates` field to session bundle. Separate from skill/playbook candidates. Captures declarative notes, decisions, system observations. |
-| `.agents/skills/learning-distill/SKILL.md` | Add wiki as distillation target. Add classification logic: descriptive → wiki, prescriptive → skills/playbooks. Add multi-session reconciliation mode. Add linking guidance between wiki and skills/playbooks. |
-| `.agents/skills/knowledge-lint/SKILL.md` | Add semantic lint pass: verify `code_refs` against codebase. Small drift → fix inline. Significant drift → emit wiki plan. |
-| `docs/architecture.md` (this repo) or `.agents/docs/architecture.md` (consumer tree) | Update lifecycle diagram to include wiki. Update distillation rules. Document wiki plan as a plan type. |
-| `.agents/docs/index.md` | Register wiki in knowledge asset catalog. |
-| `.agents/agents/learning-agent.md` | Add reconciliation agent role. Document multi-session reconciliation invocation. |
+| File                                                                                 | Changes                                                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `.agents/skills/task-closeout/SKILL.md`                                              | Add `wiki_candidates` field to session bundle. Separate from skill/playbook candidates. Captures declarative notes, decisions, system observations.                                                            |
+| `.agents/skills/learning-distill/SKILL.md`                                           | Add wiki as distillation target. Add classification logic: descriptive → wiki, prescriptive → skills/playbooks. Add multi-session reconciliation mode. Add linking guidance between wiki and skills/playbooks. |
+| `.agents/skills/knowledge-lint/SKILL.md`                                             | Add semantic lint pass: verify `code_refs` against codebase. Small drift → fix inline. Significant drift → emit wiki plan.                                                                                     |
+| `docs/architecture.md` (this repo) or `.agents/docs/architecture.md` (consumer tree) | Update lifecycle diagram to include wiki. Update distillation rules. Document wiki plan as a plan type.                                                                                                        |
+| `.agents/docs/index.md`                                                              | Register wiki in knowledge asset catalog.                                                                                                                                                                      |
+| `.agents/agents/learning-agent.md`                                                   | Add reconciliation agent role. Document multi-session reconciliation invocation.                                                                                                                               |
 
 ---
 
@@ -144,11 +146,13 @@ lint detects drift → small: fix inline | significant: emit wiki plan → recon
 **Purpose:** Direct wiki write without a session bundle.
 
 **Inputs:**
+
 - A fact, decision, observation, or external URL
 - Optional: target section (`decisions/`, `systems/`, `concepts/`)
 - Optional: `code_refs` to associate
 
 **Behavior:**
+
 1. If URL provided, fetch and summarize relevant content
 2. Classify into the appropriate wiki section
 3. Check `wiki/index.md` for an existing entry with matching topic
@@ -180,16 +184,19 @@ Add `wiki_candidates` to `learning-candidate.md`:
 **Classification step** (after reading session bundle):
 
 For each candidate in `learning-candidate.md`:
+
 - Descriptive (what the system does, why a decision was made, how something works) → wiki
 - Prescriptive (how to do X, steps to follow, agent instructions) → skills/playbooks or AGENTS.md
 
 **Wiki write step:**
+
 - Match candidate to existing wiki entry by topic or `id`
 - If match: update entry body, add session to `source_sessions`, update `last_updated`
 - If no match: create new entry, classify into `decisions/`, `systems/`, or `concepts/`
 - Update `wiki/index.md`
 
 **Multi-session reconciliation mode:**
+
 - Accepts multiple session bundle paths
 - Surfaces conflicting wiki candidates across sessions
 - Merges non-conflicting updates
@@ -197,6 +204,7 @@ For each candidate in `learning-candidate.md`:
 - Updates wiki and skills/playbooks from reconciled output
 
 **Linking guidance:**
+
 - Wiki entries may reference playbooks: `See [playbook-name] for steps.`
 - Playbooks may reference wiki entries: `See [wiki-entry] for context.`
 - Linter checks for broken cross-references
@@ -208,6 +216,7 @@ For each candidate in `learning-candidate.md`:
 **Semantic lint pass:**
 
 For each wiki entry with `code_refs`:
+
 1. Verify each referenced file exists in the codebase
 2. Optionally verify referenced symbols if tooling supports it
 3. Classify drift:
@@ -256,6 +265,7 @@ Decisions stay under `.agents/docs/repo-decisions/` (not `.agents/wiki/decisions
 ---
 
 **Phase 1 — Wiki foundation**
+
 - Create `wiki/` directory structure and `wiki/index.md`
 - Define entry format with frontmatter schema
 - Update `task-closeout` to capture `wiki_candidates`
@@ -263,11 +273,13 @@ Decisions stay under `.agents/docs/repo-decisions/` (not `.agents/wiki/decisions
 - Update `.agents/docs/index.md` and `docs/architecture.md` (this repo)
 
 **Phase 2 — Lint integration**
+
 - Update `knowledge-lint` with semantic lint pass
 - Add wiki plan emission
 - Update `.agents/agents/learning-agent.md` with wiki plan handling
 
 **Phase 3 — Direct write and reconciliation**
+
 - Create `wiki-update` skill
 - Add multi-session reconciliation mode to `learning-distill`
 - Update `docs/architecture.md` with full lifecycle including direct write path

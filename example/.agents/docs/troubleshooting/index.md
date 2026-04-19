@@ -10,4 +10,4 @@ One recurring issue pattern per markdown file under this directory. New entries:
 
 ## Index
 
-_No entries in the bootstrap copy. Add a markdown file in this directory and link it here._
+*No entries in the bootstrap copy. Add a markdown file in this directory and link it here.*

@@ -1,5 +1,9 @@
 # Knowledge Maintenance Log
 
+### \[2026-04-19] learning-distill | t-20260419-172217-remark-md-fix
+
+Outcome: updated Files: `.agents/AGENTS.md`; `.agents/docs/troubleshooting/remark-or-bulk-markdown-rewrite-unwanted-paths.md`; `.agents/docs/troubleshooting/index.md`; `.agents/docs/log.md`; `.agents/sessions/20260419-172217-remark-md-fix/summary.json` Accepted: 2 (AGENTS pitfall for scoped `git restore` after mass Markdown format; troubleshooting pattern for wide remark runs and accidental unrelated restores) Rejected: 0 Notes: Session evidence medium-confidence on narrative details; durable guidance kept mechanical and path-scoped.
+
 ### \[2026-04-19] learning-distill | t-20260419-230724-v2-kit-closeout
 
 Outcome: no net durable edits Files: `.agents/docs/log.md`; `.agents/sessions/20260419-230724-v2-kit-closeout/summary.json` Accepted: 0 Rejected: 4 (AGENTS already updated in task; link-check-after-delete operational; optional triple-`MAINTENANCE` playbook line and “bootstrap copies track root policy” decision deferred as low urgency) Notes: v2 kit polish closeout; reusable git-index hygiene before `git ls-files`-based checks remains ephemeral unless adopters hit it repeatedly.

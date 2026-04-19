@@ -20,6 +20,7 @@ One file per recurring issue pattern. New entries: follow [Entry shape](../MAINT
 - [Hermes Agent–specific: Suspected tool anomaly from a single weak run](hermes-agent-specific-suspected-tool-anomaly-from-a-single-weak-run.md)
 - [Maintainer-only skill appears as a portable kit skill](maintainer-skill-lives-under-agents-skills-by-mistake.md)
 - [Overlapping session bundles for one initiative](overlapping-session-bundles-for-one-initiative.md)
+- [Remark or bulk Markdown rewrite touched unwanted paths](remark-or-bulk-markdown-rewrite-unwanted-paths.md)
 - [Session Discovery Fails During Distillation or Closeout](session-discovery-fails-during-distillation-or-closeout.md)
 - [Unexpected files under `.agents/sessions/` in git status](unexpected-files-under-agents-sessions-in-git-status.md)
 - [Windows-to-WSL Tool Path Failures](windows-to-wsl-tool-path-failures.md)

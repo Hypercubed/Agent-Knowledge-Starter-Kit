@@ -10,4 +10,4 @@ One architectural or policy decision per markdown file under this directory. New
 
 ## Index
 
-_No entries in the bootstrap copy. Add a markdown file in this directory and link it here._
+*No entries in the bootstrap copy. Add a markdown file in this directory and link it here.*

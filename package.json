@@ -22,7 +22,8 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "remark:fix": "remark --output -- $(git ls-files '*.md')"
   },
   "devDependencies": {
     "markdown-link-check": "^3.14.1",

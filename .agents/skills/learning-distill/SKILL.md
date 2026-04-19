@@ -27,11 +27,17 @@ Read the canonical task/session identifier from the `task_id` field in the bundl
 Run this once per target repo after the skill files are present under `.agents/skills/learning-distill/` (for example after copying only that skill folder or after an `npx`/package install drops it there). Idempotent: safe to repeat.
 
 1. Resolve the repo root (the directory that contains `.git/` in normal layouts).
+
 2. Ensure `.agents/` exists.
+
 3. Ensure `.agents/playbooks/` exists. If `.agents/playbooks/README.md` is missing, copy `bootstrap/playbooks/README.md` from this skill folder into place.
+
 4. Ensure `.agents/docs/` exists. For each of `index.md`, `MAINTENANCE.md`, and `log.md`, if the file is missing under `.agents/docs/`, copy it from `bootstrap/docs/` in this skill folder. If `.agents/docs/repo-decisions/index.md` or `.agents/docs/troubleshooting/index.md` is missing, copy the entire contents of `bootstrap/docs/repo-decisions/` and `bootstrap/docs/troubleshooting/` respectively, creating only files that do not already exist (do not overwrite). If a file already exists, do not overwrite it.
+
 5. Ensure `.agents/sessions/` exists. If `.agents/sessions/README.md` is missing, copy `bootstrap/sessions/README.md` from this skill folder into place.
+
 6. If `.agents/AGENTS.md` is missing, copy `bootstrap/AGENTS.md` from this skill folder into place. If it already exists, do not overwrite it.
+
 7. Ensure `.agents/.gitignore` exists. If it is missing, create it with exactly:
 
    ```gitignore

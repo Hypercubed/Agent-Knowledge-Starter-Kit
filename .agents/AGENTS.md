@@ -57,6 +57,7 @@ This file contains concise, high-signal instructions for future agents working i
 
 ### Recurring pitfalls
 
+- After a mass in-place Markdown formatter run (for example `npm run remark:fix` over tracked `*.md`), undo with `git restore` scoped to the same path set the command touched. Avoid `git restore .` or other broad restores when `git status` lists paths outside that set; confirm with the maintainer before discarding unrelated work.
 - The maintainer often mistypes `.agent/` when they mean `.agents/`. If a request mentions `.agent/`, verify whether the existing `.agents/` path is intended before creating a new `.agent/` tree.
 - **Do not run editor-wide Replace All** of legacy path tokens (for example `scaffold/` → `.agents/`) without a **path-scoped** search and a full diff review. The substring appears in normal English (“scaffolding”), historical audit lines, and deliberate mentions of removed layout; bulk replace can duplicate the kit directory segment in one path and corrupts durable docs. After wide edits, run `bash scripts/check-publish.sh` (includes a doubled-segment scan).
 
