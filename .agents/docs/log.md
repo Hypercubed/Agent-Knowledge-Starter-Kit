@@ -1,5 +1,13 @@
 # Knowledge Maintenance Log
 
+### \[2026-04-19] learning-distill | t-20260419-151439-learning-distill-discovery-failure
+
+Outcome: updated Files: `.agents/docs/troubleshooting.md`; `.agents/docs/log.md`; `.agents/sessions/20260419-151439-learning-distill-discovery-failure/summary.json` Accepted: 1 (added troubleshooting note for structure-aware session discovery to avoid missing undistilled bundles) Rejected: 3 (no AGENTS.md rule, repo decision, or playbook change warranted for what is essentially operational tool usage failure) Notes: Distilled learning-distill discovery failure session; added a troubleshooting entry on how to correctly enumerate session bundles before concluding the directory is empty.
+
+### \[2026-04-19] learning-distill | t-20260419-150446-remove-scaffold-tree
+
+Outcome: updated Files: `.agents/docs/repo-decisions.md`; `.agents/docs/log.md`; `.agents/sessions/20260419-150446-remove-scaffold-tree/summary.json` Accepted: 2 (single-tree architecture repo decision; replace smoke test with generate-example playbook) Rejected: 0 Notes: Distilled the session removing the dual-tree scaffold. Playbook and index were already updated in the task itself; recorded the decision formally in repo-decisions.md.
+
 ### \[2026-04-19] learning-distill | t-20260419-134800-task-closeout
 
 Outcome: updated Files: `.agents/docs/troubleshooting.md`; `.agents/docs/log.md`; `.agents/sessions/20260419-134800-task-closeout/summary.json` Accepted: 1 (use `git log` / `git diff --name-only` to enumerate paths when the tree is clean before closeout) Rejected: 3 (adopter vs maintainer `skills`/`-y` audience labeling already in root install docs and sync skill; shell/yargs noise ephemeral; no AGENTS, repo-decision, or playbook change warranted) Notes: Distilled wip-v2 maintainer closeout after install/publish/tooling work.

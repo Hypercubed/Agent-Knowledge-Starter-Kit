@@ -59,6 +59,7 @@ This file contains concise, high-signal instructions for future agents working i
 
 ### Before submitting changes
 
+- DO NOT stage or commit changes. The maintainer will handle all git staging and commits.
 - Run relevant tests.
 - Validate generated outputs if applicable.
 - Check for updates needed in `.agents/` when durable lessons were learned.

@@ -4,6 +4,25 @@ This template belongs in `.agents/docs/repo-decisions.md`.
 
 Use this file for durable rationale and architectural choices.
 
+### Single-tree architecture (`.agents/`)
+
+### Status
+
+Accepted (supersedes prior "dual-tree" approach)
+
+### Context
+
+The repository previously maintained a `scaffold/` tree parallel to `.agents/`, confusing AI agents and users about where skills and workflows lived.
+
+### Rationale
+
+Consolidating the repository to use its own `.agents/` tree as the canonical kit removes maintenance overhead and simplifies skill installation. Adopters just use `npx skills add <repository>` rather than manually copying from a separate `scaffold/` directory.
+
+### Consequences
+
+- All generic templates and skills now live in `.agents/`.
+- Installation instructions command explicit use of `cp` instead of writing line-by-line to prevent template drift.
+
 ### Scaffold content stays consumer-generic
 
 ### Status
@@ -152,6 +171,26 @@ Installation guidance is about consuming this starter repository, not durable kn
 - Put human quick-start guidance, agent install prompts, and detailed install checklists in root docs.
 - Add content to `.agents/` only when every adopter should receive it inside their `.agents/` tree.
 - If installation guidance creates a durable local policy, record the rationale here rather than duplicating the full checklist.
+
+### Agents do not stage or commit changes
+
+### Status
+
+Accepted
+
+### Context
+
+When finishing work, agents might try to stage (`git add`) or commit the changes they made. 
+
+### Rationale
+
+The repository maintainer prefers to manually review all uncommitted changes, stage them selectively, and write the commit messages themselves. Agents staging or committing changes circumvents this manual review step.
+
+### Consequences
+
+- Agents should never run `git add` or `git commit`.
+- Leave all modified, created, or deleted files in the working directory as unstaged changes.
+- Use `/local-review-uncommitted` to let the maintainer review the uncommitted files.
 
 ## Entry template
 
