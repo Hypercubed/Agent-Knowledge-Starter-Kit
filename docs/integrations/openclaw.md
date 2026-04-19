@@ -8,7 +8,7 @@ OpenClaw belongs to two patterns: it can use root `AGENTS.md` as a repo entrypoi
 
 ## Setup
 
-1. Install or merge the starter kit into the target repo as `.agents/`.
+1. Install starter skills in the target repo with `npx skills add Hypercubed/Agent-Knowledge-Starter-Kit`, then run each installed skill's initialization from its `SKILL.md` (see [`INSTALL.md`](../../INSTALL.md)).
 2. Keep or add a short root `AGENTS.md` that routes OpenClaw into `.agents/`.
 3. Keep durable repo policy in `.agents/`, not in OpenClaw memory files.
 4. Keep repo-closeout and distillation workflows under `.agents/skills/` and `.agents/playbooks/`.

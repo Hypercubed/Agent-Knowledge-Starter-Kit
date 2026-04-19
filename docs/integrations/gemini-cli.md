@@ -6,7 +6,7 @@ Verified against Gemini CLI behavior in this repository on April 12, 2026.
 
 ## Setup
 
-1. Install or merge the starter kit into the target repo as `.agents/`.
+1. Install starter skills in the target repo with `npx skills add Hypercubed/Agent-Knowledge-Starter-Kit`, then run each installed skill's initialization from its `SKILL.md` (see [`INSTALL.md`](../../INSTALL.md)).
 2. Add or update root `GEMINI.md`.
 3. Keep `GEMINI.md` as a thin router into `.agents/`.
 4. Treat Gemini `save_memory(scope="project")` as user-local memory, not shared repo docs.

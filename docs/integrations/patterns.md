@@ -13,6 +13,10 @@ Keep one source of truth:
 
 Do not copy long-lived repo policy into every tool's native config. Point the tool at `.agents/AGENTS.md`, `.agents/docs/index.md`, `.agents/playbooks/`, and `.agents/skills/` instead.
 
+## Adopting the kit
+
+In a target repository, install shared skills with `npx skills add Hypercubed/Agent-Knowledge-Starter-Kit`, then follow each installed skill's **Skill initialization** in its `SKILL.md`. See [`INSTALL.md`](../../INSTALL.md) for the full merge checklist.
+
 ## Pattern Groups
 
 ### Root `AGENTS.md` Native or Compatible

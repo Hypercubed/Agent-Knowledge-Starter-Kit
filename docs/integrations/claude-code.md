@@ -6,7 +6,7 @@ Written and verified against Claude Code behavior in this repository on April 12
 
 ## Setup
 
-1. Install or merge the starter kit into the target repo as `.agents/`.
+1. Install starter skills in the target repo with `npx skills add Hypercubed/Agent-Knowledge-Starter-Kit`, then run each installed skill's initialization from its `SKILL.md` (see [`INSTALL.md`](../../INSTALL.md)).
 2. Add a short root `CLAUDE.md` that routes Claude Code into `.agents/`.
 3. Keep durable repo policy in `.agents/`, not in `CLAUDE.md` or auto-memory.
 4. Keep personal preferences in `~/.claude/CLAUDE.md`.

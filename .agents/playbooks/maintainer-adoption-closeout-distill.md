@@ -5,7 +5,7 @@ Use when dogfooding or refreshing this repo’s `.agents/` from `scaffold/` and 
 ## Steps
 
 1. Copy or refresh kit paths from `scaffold/` into `.agents/` as needed; keep `scaffold/` edits consumer-generic.
-2. If you changed `scaffold/agents/` or `scaffold/skills/`, sync those portable files into root `.agents/` in the same maintenance pass. To merge **only** those two scaffold paths into `.agents/` (no delete of extra files under `.agents/`), run `./.agents/skills/sync-scaffold-agents-skills/sync.sh` from the repository root; see [`.agents/skills/sync-scaffold-agents-skills/SKILL.md`](../skills/sync-scaffold-agents-skills/SKILL.md).
+2. If you changed `scaffold/skills/`, sync those shared skills into root `.agents/` in the same maintenance pass. Run `npx skills add . -y` (or `npm run bootstrap`) from the repository root, then review the diff under `.agents/skills/`; see [`.agents/skills/sync-scaffold-agents-skills/SKILL.md`](../skills/sync-scaffold-agents-skills/SKILL.md).
 3. Verify diffs (`git diff`, `git status`) and any tree comparisons you rely on (for example `diff -rq` for intentional parity checks).
 4. Run **task-closeout** for the coding or adoption work; produce one dated folder under `.agents/sessions/`.
 5. If an orchestrator or meta step wraps the arc, run **task-closeout** again in a **new** session folder; set `prior_session` in `summary.json` to the earlier bundle path instead of editing the first folder.
@@ -16,5 +16,5 @@ Use when dogfooding or refreshing this repo’s `.agents/` from `scaffold/` and 
 
 - Each closeout folder keeps the standard artifact set from task-closeout.
 - Linked bundles reference each other only via new metadata (such as `prior_session`), not by rewriting old files.
-- If `scaffold/agents/` or `scaffold/skills/` changed, `git diff` shows the matching synced root `.agents/agents/` or `.agents/skills/` updates.
+- If `scaffold/skills/` changed, `git diff` shows matching synced root `.agents/skills/` updates.
 - For kit-wide policy changes, `git status` or `git diff` shows both the `scaffold/` and root `.agents/` copies updated where applicable.

@@ -6,7 +6,7 @@ Based on behavior verified while working in this repo, including failure modes c
 
 ## Setup
 
-1. Use a repo that already has the starter kit or equivalent `.agents/` layout.
+1. Install starter skills in the target repo with `npx skills add Hypercubed/Agent-Knowledge-Starter-Kit`, then run each installed skill's initialization from its `SKILL.md` (see [`INSTALL.md`](../../INSTALL.md)).
 2. Read root `AGENTS.md` first when present, then follow it into `.agents/`.
 3. Keep repo-specific durable knowledge in `.agents/`.
 4. Use Hermes memory for cross-project user and environment facts.

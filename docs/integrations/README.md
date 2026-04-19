@@ -4,6 +4,8 @@ This directory contains user-facing guides for connecting specific tools to the 
 
 Start with [Integration Patterns](./patterns.md) to choose the right wiring model. The product pages are quick references for exact filenames, setup snippets, caveats, and verification notes.
 
+Before wiring a tool, install shared kit skills in the target repo with `npx skills add Hypercubed/Agent-Knowledge-Starter-Kit` and follow [`INSTALL.md`](../../INSTALL.md).
+
 ## Choose Your Pattern
 
 - [Root `AGENTS.md` native or compatible](./patterns.md#root-agentsmd-native-or-compatible): Codex, OpenCode, Kilo Code, Warp, OpenClaw

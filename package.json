@@ -1,0 +1,37 @@
+{
+  "name": "agent-knowledge-starter",
+  "version": "1.5.0",
+  "description": "A shareable, tool-agnostic starter kit for maintaining a compiled repo knowledge layer for coding agents.",
+  "keywords": [
+    "ai",
+    "knowledge",
+    "skills",
+    "agents"
+  ],
+  "homepage": "https://github.com/Hypercubed/Agent-Knowledge-Starter-Kit#readme",
+  "bugs": {
+    "url": "https://github.com/Hypercubed/Agent-Knowledge-Starter-Kit/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hypercubed/Agent-Knowledge-Starter-Kit.git"
+  },
+  "license": "MIT",
+  "author": "Hypercubed (J. Harshbarger)",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "bootstrap": "skills add . -y"
+  },
+  "devDependencies": {
+    "markdown-link-check": "^3.14.1",
+    "remark-cli": "^12.0.1",
+    "remark-frontmatter": "^5.0.0",
+    "remark-gfm": "^4.0.1",
+    "skills": "^1.5.1"
+  },
+  "dependencies": {
+  }
+}

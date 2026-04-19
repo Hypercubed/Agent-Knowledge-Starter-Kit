@@ -15,6 +15,22 @@ Treat files under `scaffold/` as if they are rooted at `.agents/` in the target 
 
 Do not use this repository's root `.agents/` directory as install source. It contains maintainer-only knowledge for this starter-kit repo and may include files adopters should not copy.
 
+## Skill-first install (default)
+
+Install from `scaffold/skills/` and use each skill's `bootstrap/` templates via that skill's initialization steps. A skill-first workflow is:
+
+1. Run `npx skills add Hypercubed/Agent-Knowledge-Starter-Kit` in the target repo to place shared skills under `.agents/skills/`. Alternative: copy from `scaffold/skills/<skill-name>/` manually. Preserve each skill folder layout, including any `bootstrap/` subdirectory shipped beside `SKILL.md`.
+2. Open each installed skill's `SKILL.md` and run its **Skill initialization** section once before relying on that skill. Initialization is idempotent: it creates missing directories and template files without overwriting existing repo-specific content.
+3. Register `SKILL.md` paths in the user's editor or agent product if required.
+
+**Suggested order when installing multiple skills**
+
+- **Closeout only:** run `task-closeout` initialization. It creates `.agents/sessions/` and session ignore rules; it does not create durable `docs/` or `AGENTS.md` scaffolding.
+- **Distillation or linting:** run `learning-distill` initialization first when you need the durable `.agents/docs/` and `.agents/playbooks/` scaffold (and a template `.agents/AGENTS.md` when missing). It also ensures `.agents/sessions/` and `.agents/.gitignore` session rules exist.
+- **Lint only (no distill):** run `knowledge-lint` initialization when you added lint without distill; it creates the same durable doc scaffold from its `bootstrap/` copy without touching session storage.
+
+When in doubt after installing all three kit skills, run `learning-distill` initialization once, then proceed. The other skills' initialization steps remain safe no-ops or small merges (for example missing `.gitignore` lines).
+
 ## Before Editing
 
 1. Inspect the target repo for an existing `.agents/` directory.
@@ -26,11 +42,13 @@ Do not use this repository's root `.agents/` directory as install source. It con
 
 If the target repo has no `.agents/` directory:
 
-1. Copy everything under `scaffold/` into `.agents/`.
-2. Keep `.agents/.gitignore` tracked; its `sessions/*` rules are sufficient for normal Git usage.
-3. Edit `.agents/AGENTS.md` with the repo's build, test, architecture, and workflow guidance.
-4. Register `.agents/skills/*/SKILL.md` and `.agents/agents/*.md` in the user's editor or agent product, if required.
-5. Record the adoption in `.agents/docs/log.md`.
+1. Run `npx skills add Hypercubed/Agent-Knowledge-Starter-Kit` to install shared skills into `.agents/skills/`. Alternative: copy `scaffold/skills/` manually.
+2. Run **Skill initialization** from each installed skill's `SKILL.md` (see [Skill-first install](#skill-first-install-default)).
+3. Add `scaffold/agents/` into `.agents/agents/` only when you want the bundled agent role markdown.
+4. Keep `.agents/.gitignore` tracked when the repo uses it; its `sessions/*` rules are sufficient for normal Git usage. If `.agents/` is not tracked, add equivalent session ignore rules at the repo root (see [Skill-first install](#skill-first-install-default)).
+5. Edit `.agents/AGENTS.md` with the repo's build, test, architecture, and workflow guidance (or start from the template created by skill initialization).
+6. Register `.agents/skills/*/SKILL.md` and `.agents/agents/*.md` in the user's editor or agent product, if required.
+7. Record the adoption in `.agents/docs/log.md`.
 
 ## Existing `.agents/` Install
 
@@ -39,8 +57,10 @@ If the target repo already has `.agents/`, do not replace it wholesale unless th
 Use this merge checklist:
 
 1. Preserve existing repo-specific `rules/`, `playbooks/`, and `skills/`.
-2. Add missing starter-kit directories from `scaffold/`: `docs/`, `agents/`, and `sessions/`.
-3. Add the portable maintenance skills if missing: `task-closeout`, `learning-distill`, and `knowledge-lint`.
+2. Add missing starter-kit skills with `npx skills add Hypercubed/Agent-Knowledge-Starter-Kit` (or from `scaffold/skills/`) and run each installed skill's initialization.
+
+`npx skills add . -y` (or `npm run bootstrap`) is maintainer-only for this starter-kit repository when syncing from a local checkout; it uses `-y` for non-interactive self-bootstrap. Adopters should use the published repo reference above without `-y`.
+3. Add `scaffold/agents/` into `.agents/agents/` only when you want bundled role markdown.
 4. Merge `.agents/AGENTS.md` by hand. Keep stable repo guidance concise; do not add session history or long rationale.
 5. Prefer the kit default `.agents/.gitignore` patterns: `sessions/*` and `!sessions/README.md`.
 6. Use repo-root `.gitignore` session patterns only if the repo intentionally does not track `.agents/.gitignore`: `.agents/sessions/*` and `!.agents/sessions/README.md`.

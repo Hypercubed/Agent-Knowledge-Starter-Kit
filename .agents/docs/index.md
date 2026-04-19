@@ -24,7 +24,7 @@ Examples (this repo):
 - [`.agents/playbooks/pre-publish.md`](../playbooks/pre-publish.md) — run pre-publish checks and review warnings before publishing the starter kit.
 - [`.agents/playbooks/writing-integration-guides.md`](../playbooks/writing-integration-guides.md) — write user-facing tool integration guides without overstating unverified behavior.
 
-Maintainer-only (this repo): [`.agents/skills/sync-scaffold-agents-skills/SKILL.md`](../skills/sync-scaffold-agents-skills/SKILL.md) — merge `scaffold/agents/` and `scaffold/skills/` into `.agents/agents/` and `.agents/skills/`.
+Maintainer-only (this repo): [`.agents/skills/sync-scaffold-agents-skills/SKILL.md`](../skills/sync-scaffold-agents-skills/SKILL.md) — run `npx skills add . -y` to sync shared skills from `scaffold/skills/` into `.agents/skills/`.
 
 ## `.agents/docs/MAINTENANCE.md`
 

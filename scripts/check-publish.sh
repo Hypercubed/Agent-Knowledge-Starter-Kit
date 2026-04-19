@@ -4,7 +4,7 @@
 # - Required: bash, git, find, sed
 # - Required local helper: scripts/check-agents-structure.sh
 # - Optional: timeout bounds optional npx probes when installed.
-# - Optional: globally installed or npx-available remark checks Markdown formatting.
+# - Optional: remark-cli with remark-frontmatter and remark-gfm checks Markdown formatting.
 # - Optional: .remarkrc.json configures frontmatter/GFM support and Markdown style.
 # - Optional: npx with locally available markdown-link-check validates Markdown links.
 # - Optional: rg runs publish leakage scans.
@@ -97,8 +97,14 @@ elif command -v remark >/dev/null 2>&1; then
   else
     fail "Remark Markdown check failed."
   fi
+elif npx_package_available remark --help; then
+  if timeout_cmd 60s npx --no-install remark $md_files --frail; then
+    pass "Remark Markdown check passed via npx."
+  else
+    fail "Remark Markdown check failed via npx."
+  fi
 else
-  warn "remark is not installed; skipping Markdown formatting check."
+  warn "remark is not installed and not available to npx without installation; skipping Markdown formatting check."
 fi
 
 section "Markdown Links"

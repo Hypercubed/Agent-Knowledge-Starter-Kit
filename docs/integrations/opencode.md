@@ -6,7 +6,7 @@ Based on current OpenCode documentation reviewed on April 12, 2026. Re-check Ope
 
 ## Setup
 
-1. Install or merge the starter kit into the target repo as `.agents/`.
+1. Install starter skills in the target repo with `npx skills add Hypercubed/Agent-Knowledge-Starter-Kit`, then run each installed skill's initialization from its `SKILL.md` (see [`INSTALL.md`](../../INSTALL.md)).
 2. Keep a short root `AGENTS.md` that routes OpenCode into `.agents/`.
 3. Keep durable repo policy in `.agents/`, not duplicated across `AGENTS.md`, `opencode.json`, and commands.
 4. Let OpenCode discover `.agents/skills/` natively when available.
