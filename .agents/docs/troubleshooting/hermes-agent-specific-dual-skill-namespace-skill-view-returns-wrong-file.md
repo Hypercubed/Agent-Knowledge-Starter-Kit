@@ -12,7 +12,7 @@ Agent calls `skill_view(name="task-closeout")` and gets back a stub or different
 
 #### Likely causes
 
-- `skill_view` looks up skills from the Hermes system directory (`~/.hermes/skills/`), not from the repo's `.agents/skills/` directory.
+- **Hermes install vs repo tree:** `skill_view` resolves skills from the Hermes system directory (`~/.hermes/skills/`), not from the repository’s `.agents/skills/` directory. This “two namespaces” behavior is tool-specific and unrelated to the repository’s single-tree kit layout.
 - The two namespaces can have entries with the same name but completely different content.
 - Subagents especially will grab whichever one they find first via the skill system, never looking at the repo file tree.
 

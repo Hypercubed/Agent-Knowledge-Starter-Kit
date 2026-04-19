@@ -143,6 +143,18 @@ else
     README.md INSTALL.md docs .agents
 fi
 
+section "Knowledge path hygiene"
+if ! command -v rg >/dev/null 2>&1; then
+  warn "rg is not installed; skipping doubled-path check."
+else
+  printf '\n-- %s --\n' "Doubled .agents/ path segments (bad global replace)"
+  if rg -n --hidden --glob '!*sessions/[0-9]*' '\.agents/\.agents' README.md INSTALL.md docs .agents; then
+    fail "Found .agents/.agents path segments; fix bulk replace or copy/paste before publishing."
+  else
+    pass "No doubled .agents/ path segments under checked paths."
+  fi
+fi
+
 section "Summary"
 printf 'Failures: %s\n' "$failures"
 printf 'Warnings: %s\n' "$warnings"

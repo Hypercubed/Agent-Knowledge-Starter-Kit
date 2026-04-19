@@ -12,13 +12,14 @@ Accepted (supersedes prior "dual-tree" approach)
 
 ### Context
 
-The repository previously maintained a `scaffold/` tree parallel to `.agents/`, confusing AI agents and users about where skills and workflows lived.
+The repository previously maintained a **`scaffold/`** tree parallel to `.agents/`, which confused agents and users about where skills and workflows lived.
 
 ### Rationale
 
-Consolidating the repository to use its own `.agents/` tree as the canonical kit removes maintenance overhead and simplifies skill installation. Adopters just use `npx skills add <repository>` rather than manually copying from a separate `scaffold/` directory.
+Consolidating on **root `.agents/`** as the only canonical kit tree removes that overhead and simplifies installation: adopters use `npx skills add <repository>` (or copy `.agents/skills/`) without mirroring a second tree. A generated **`example/.agents/`** folder illustrates a bootstrap install; it is not a parallel source of truth.
 
 ### Consequences
 
-- All generic templates and skills now live in `.agents/`.
-- Installation instructions command explicit use of `cp` instead of writing line-by-line to prevent template drift.
+- Portable templates and skills live under root `.agents/` only.
+- Maintainer-only skills in `.agents/skills/` are flagged with **`metadata.internal: true`** (see [Maintainer-only skills use `metadata.internal: true`](maintainer-skills-mark-internal-in-frontmatter.md)).
+- The disposable **`example/`** tree is regenerated when the illustrated install should match recent kit changes (see [Regenerate `example/` when the portable kit or bootstrap changes](regenerate-example-when-portable-kit-changes.md)).

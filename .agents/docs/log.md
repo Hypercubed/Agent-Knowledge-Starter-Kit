@@ -1,5 +1,37 @@
 # Knowledge Maintenance Log
 
+### \[2026-04-19] learning-distill | t-20260419-164303-knowledge-layer-hygiene
+
+Outcome: no net durable edits Files: `.agents/docs/log.md`; `.agents/sessions/20260419-164303-knowledge-layer-hygiene/summary.json` Accepted: 0 Rejected: 0 Notes: Closeout already promoted hygiene (sample `repo-decisions/` / `troubleshooting/`, `check-publish.sh`, scoped replace) into MAINTENANCE and pitfalls into AGENTS; same-day log rows cover substantive edits.
+
+### \[2026-04-19] maintenance | remove-layout-v2-labeling
+
+Outcome: updated Files: `.agents/docs/index.md`; `.agents/docs/MAINTENANCE.md`; `.agents/docs/troubleshooting/github-copilot-chat-context-not-in-focus.md`; `README.md`; `.agents/skills/learning-distill/bootstrap/docs/index.md`; `.agents/skills/knowledge-lint/bootstrap/docs/index.md`; `example/.agents/docs/index.md`; `example/.agents/skills/learning-distill/bootstrap/docs/index.md`; `example/.agents/skills/knowledge-lint/bootstrap/docs/index.md`; `.agents/plans/wiki-system.md`; `.agents/docs/log.md` Classification: drop “layout v2” framing and monolith migration narrative from normative docs; describe current directory layout only Disposition: accepted Notes: Older `log.md` rows may still mention layout v2 by name.
+
+### \[2026-04-19] maintenance | bulk-replace-prevention
+
+Outcome: updated Files: `.agents/AGENTS.md`; `.agents/docs/MAINTENANCE.md`; `.agents/skills/knowledge-lint/SKILL.md`; `scripts/check-publish.sh`; `.agents/docs/log.md` Classification: document why knowledge-lint does not catch naive token replace; add mechanical doubled-path check and editing hygiene Disposition: accepted Notes: `check-publish.sh` now fails when `rg` finds the literal doubled kit path segment under README, INSTALL, docs, and `.agents/` (AGENTS and MAINTENANCE describe the hazard without embedding that substring so the scan stays clean).
+
+### \[2026-04-19] maintenance | rename-troubleshooting-example-vs-root
+
+Outcome: updated Files: `.agents/docs/troubleshooting/comparing-example-agents-to-root-agents.md` (renamed from `comparing-agents-to-agents-in-this-starter-repo.md`); `.agents/docs/troubleshooting/index.md`; `.agents/docs/log.md` Classification: slug and `id` now match the topic (`example/.agents/` vs root `.agents/`) Disposition: accepted Notes: Historical log lines may still cite the old filename.
+
+### \[2026-04-19] maintenance | troubleshooting-layout-v2-pass
+
+Outcome: updated Files: `.agents/docs/troubleshooting/antigravity-lessons-learned-aren-t-visible-to-teammate-s-agents.md`; `.agents/docs/troubleshooting/gemini-cli-not-following-durable-guidance.md`; `.agents/docs/troubleshooting/github-copilot-chat-context-not-in-focus.md`; `.agents/docs/troubleshooting/hermes-agent-specific-dual-skill-namespace-skill-view-returns-wrong-file.md`; `.agents/docs/troubleshooting/comparing-agents-to-agents-in-this-starter-repo.md`; `.agents/docs/log.md` Classification: align guidance with knowledge layout v2 and current repo decisions; disambiguate Hermes skill namespaces from single-tree kit Disposition: accepted Notes: No index row changes; no entries removed as obsolete.
+
+### \[2026-04-19] maintenance | repo-decisions-prune
+
+Outcome: updated Files: `.agents/docs/repo-decisions/index.md`; `.agents/docs/repo-decisions/single-tree-architecture-agents.md`; `.agents/docs/troubleshooting/maintainer-skill-lives-under-agents-skills-by-mistake.md`; `.agents/docs/repo-decisions/maintainer-skills-mark-internal-in-frontmatter.md` (new); `.agents/docs/repo-decisions/regenerate-example-when-portable-kit-changes.md` (new); `.agents/docs/log.md` Classification: removed superseded or obsolete decisions (dual-tree historical, kit-contract/scaffold-era, maintainer-only-outside-agents, portable-content scaffold framing, sync-after-scaffold); added decisions for `internal` maintainer skills and regenerating `example/` Disposition: accepted Notes: Deleted prior markdown files for removed decisions from `.agents/docs/repo-decisions/`; single-tree entry now points at the two replacement decisions.
+
+### \[2026-04-19] maintenance | docs-index-and-single-tree-audit
+
+Outcome: updated Files: `.agents/docs/index.md`; `.agents/docs/repo-decisions/index.md`; `.agents/docs/troubleshooting/index.md`; `.agents/docs/repo-decisions/scaffold-content-stays-consumer-generic.md`; `.agents/docs/repo-decisions/sync-root-agents-skills-after-scaffold-skill-edits.md`; `.agents/docs/repo-decisions/maintainer-only-skills-and-scripts-never-live-under-agents.md`; `.agents/docs/repo-decisions/dual-agents-path-vs-agents-dogfood-historical.md`; `.agents/docs/repo-decisions/single-tree-architecture-agents.md`; `.agents/docs/repo-decisions/kit-contract-policy-changes-must-update-agents-too.md`; `.agents/docs/troubleshooting/comparing-agents-to-agents-in-this-starter-repo.md`; `.agents/docs/troubleshooting/maintainer-skill-lives-under-agents-skills-by-mistake.md`; `.agents/skills/learning-distill/bootstrap/docs/index.md`; `.agents/skills/knowledge-lint/bootstrap/docs/index.md`; `.agents/skills/knowledge-lint/SKILL.md`; `.agents/docs/log.md` Classification: index coverage (layout v2, playbooks, skills, agents, root docs, integrations); stale dual-tree and `scaffold/` guidance removed from durable decisions and troubleshooting Disposition: accepted Notes: Historical `scaffold/` references remain only where explicitly historical; `example/.agents/` described as generated illustration, not a second canonical tree. Regenerated `example/` via `generate-example/run.sh`.
+
+### \[2026-04-19] knowledge-lint | periodic-pass
+
+Outcome: cleanup Files: `.agents/docs/index.md`; `.agents/docs/log.md` Classification: index coverage (playbooks README + portable kit skills listed); no AGENTS or playbook edits Disposition: accepted Notes: knowledge-lint pass after layout v2; indexes and `id`/filename slugs verified; no broken links in repo-decisions or troubleshooting indexes.
+
 ### \[2026-04-19] maintenance | knowledge-layout-v2-phase0
 
 Outcome: migrated Files: `.agents/docs/repo-decisions/` (new directory, per-decision markdown + indexes); `.agents/docs/troubleshooting/` (new directory, per-pattern markdown + indexes); removed `.agents/docs/repo-decisions.md` and `.agents/docs/troubleshooting.md`; `.agents/docs/index.md`; `.agents/docs/MAINTENANCE.md`; `README.md`; `INSTALL.md`; `docs/architecture.md`; `.agents/AGENTS.md`; `.agents/skills/learning-distill/` (SKILL + bootstrap); `.agents/skills/knowledge-lint/` (SKILL + bootstrap); `.agents/skills/generate-example/run.sh`; selected `.agents/plans/*.md`; regenerated `example/` Accepted: — Rejected: — Notes: Knowledge layout v2 — minimal frontmatter (`id`, `title`, `last_updated`) on each entry file; historical log lines above unchanged.

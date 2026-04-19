@@ -2,7 +2,7 @@
 
 A shareable, tool-agnostic starter kit for maintaining a compiled repo knowledge layer for coding agents.
 
-**Knowledge layout v2:** durable decisions and troubleshooting patterns live as separate markdown files under `.agents/docs/repo-decisions/` and `.agents/docs/troubleshooting/` (each with its own `index.md`), not as single monolithic files.
+Durable decisions and troubleshooting patterns live as separate markdown files under `.agents/docs/repo-decisions/` and `.agents/docs/troubleshooting/`, each with its own `index.md`.
 
 This pattern separates three concerns:
 

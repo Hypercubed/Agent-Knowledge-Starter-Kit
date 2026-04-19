@@ -56,6 +56,7 @@ This file contains concise, high-signal instructions for future agents working i
 ### Recurring pitfalls
 
 - The maintainer often mistypes `.agent/` when they mean `.agents/`. If a request mentions `.agent/`, verify whether the existing `.agents/` path is intended before creating a new `.agent/` tree.
+- **Do not run editor-wide Replace All** of legacy path tokens (for example `scaffold/` → `.agents/`) without a **path-scoped** search and a full diff review. The substring appears in normal English (“scaffolding”), historical audit lines, and deliberate mentions of removed layout; bulk replace can duplicate the kit directory segment in one path and corrupts durable docs. After wide edits, run `bash scripts/check-publish.sh` (includes a doubled-segment scan).
 
 ### Before submitting changes
 

@@ -2,6 +2,8 @@
 
 This file belongs in `.agents/docs/`.
 
+Durable knowledge uses separate markdown files per topic: architectural decisions under [`repo-decisions/`](repo-decisions/index.md); recurring issues under [`troubleshooting/`](troubleshooting/index.md). Each entry file includes minimal YAML frontmatter (`id`, `title`, `last_updated`).
+
 ## `.agents/AGENTS.md`
 
 Compact instructions for future agents. Consult first for repo-wide operational guidance.
@@ -18,15 +20,33 @@ Recurring issue patterns, causes, fixes, and validation steps (one markdown file
 
 Durable procedures for recurring workflows. In this layout, playbooks live under `.agents/playbooks/` (sibling of `.agents/docs/`, not inside it).
 
+- [`.agents/playbooks/README.md`](../playbooks/README.md) — how playbooks differ from repo decisions, troubleshooting entries, and skills.
+
 Examples (this repo):
 
 - [`.agents/playbooks/generate-example.md`](../playbooks/generate-example.md) — generate a complete bootstrapped example folder for the kit.
 - [`.agents/playbooks/pre-publish.md`](../playbooks/pre-publish.md) — run pre-publish checks and review warnings before publishing the starter kit.
 - [`.agents/playbooks/writing-integration-guides.md`](../playbooks/writing-integration-guides.md) — write user-facing tool integration guides without overstating unverified behavior.
 
+## Portable kit skills (`.agents/skills/`)
+
+Workflow definitions shipped with the kit (each folder contains `SKILL.md` and often a `bootstrap/` tree for initialization):
+
+- [`task-closeout`](../skills/task-closeout/SKILL.md) — structured session bundles under `.agents/sessions/`.
+- [`learning-distill`](../skills/learning-distill/SKILL.md) — distill bundles into durable `.agents/` knowledge.
+- [`knowledge-lint`](../skills/knowledge-lint/SKILL.md) — periodic pass for duplication, drift, and index gaps.
+
 Maintainer-only (this repo):
 
-- [`.agents/skills/generate-example/SKILL.md`](../skills/generate-example/SKILL.md) — generate a disposable consumer-path example structure.
+- [`.agents/skills/generate-example/SKILL.md`](../skills/generate-example/SKILL.md) — generate a disposable consumer-path example structure (`metadata.internal: true`).
+
+## `.agents/agents/`
+
+Persona-style markdown for multi-agent workflows (optional for single-agent setups):
+
+- [`.agents/agents/coding-agent.md`](../agents/coding-agent.md)
+- [`.agents/agents/learning-agent.md`](../agents/learning-agent.md)
+- [`.agents/agents/lint-agent.md`](../agents/lint-agent.md)
 
 ## `.agents/docs/MAINTENANCE.md`
 
@@ -38,9 +58,15 @@ Append-only record of distillation and maintenance activity.
 
 ## `.agents/plans/`
 
-Upcoming work, architectural research, and active task plans. Unlisted from `MAINTENANCE.md` originally but heavily used for agent workflow planning (e.g. `add-knowledge-search.md`).
+Active task planning, research documents, and implementation plans. For the wiki roadmap see [`.agents/plans/wiki-system.md`](../plans/wiki-system.md); for new integration guides see [`.agents/plans/add-integrations.md`](../plans/add-integrations.md).
 
-## Root install docs
+## Repository architecture (root docs)
+
+[`docs/architecture.md`](../../docs/architecture.md) — design principles, lifecycle, layout, and how closeout, distillation, and lint fit together.
+
+## Root readme and install
+
+[`README.md`](../../README.md) — kit overview and maintenance loop diagram.
 
 [`INSTALL.md`](../../INSTALL.md) — agent-facing installation and merge checklist for adopting this starter kit into a target repository.
 

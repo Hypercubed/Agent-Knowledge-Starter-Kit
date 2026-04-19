@@ -8,7 +8,7 @@ last_updated: 2026-04-19
 
 #### Symptom
 
-Gemini CLI ignores playbooks, repo decisions, or conventions stored under `.agents/`.
+Gemini CLI ignores playbooks, decisions under `.agents/docs/repo-decisions/`, troubleshooting entries, or other conventions reached via `.agents/AGENTS.md` / [`.agents/docs/index.md`](../index.md).
 
 #### Likely causes
 
