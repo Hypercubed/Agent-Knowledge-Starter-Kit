@@ -1,5 +1,9 @@
 # Knowledge Maintenance Log
 
+### \[2026-04-19] learning-distill | t-20260419-134800-task-closeout
+
+Outcome: updated Files: `.agents/docs/troubleshooting.md`; `.agents/docs/log.md`; `.agents/sessions/20260419-134800-task-closeout/summary.json` Accepted: 1 (use `git log` / `git diff --name-only` to enumerate paths when the tree is clean before closeout) Rejected: 3 (adopter vs maintainer `skills`/`-y` audience labeling already in root install docs and sync skill; shell/yargs noise ephemeral; no AGENTS, repo-decision, or playbook change warranted) Notes: Distilled wip-v2 maintainer closeout after install/publish/tooling work.
+
 ### \[2026-04-13] learning-distill | t-20260413-140000-copilot-integration-guide
 
 Outcome: updated Files: `.agents/docs/troubleshooting.md`; `.agents/docs/repo-decisions.md`; `.agents/docs/log.md`; `.agents/sessions/20260413-140000-copilot-integration-guide/summary.json` Accepted: 2 (Copilot Chat context troubleshooting entry; GitHub Copilot as Rules-Based IDE Wiring architectural decision) Rejected: 2 (`.agents/AGENTS.md` update absent — integration guides are tool-specific, not repo-wide guidance; nested `.agents/` visibility caveat already present in patterns.md) Notes: Distilled Copilot integration guide closeout; promoted Copilot-specific troubleshooting entry and architectural classification decision; kept guide-specific details and two-tool workflow examples in `docs/integrations/copilot.md`.

@@ -241,3 +241,22 @@ Copilot Chat answers don't reference `.agents/AGENTS.md` even though `.github/co
 
 - Open `.github/copilot-instructions.md` and confirm it routes to `.agents/`.
 - In Copilot Chat, use `@` to explicitly reference durable files when needed.
+
+### Clean `git status` but you need touched paths for closeout
+
+#### Symptom
+
+The working tree is clean (changes already committed), but **task-closeout** needs an accurate list of paths touched in the session.
+
+#### Likely causes
+
+- Commits landed before closeout.
+- The arc spans multiple commits.
+
+#### Fix
+
+- Use `git log -1 --name-only` for the latest commit, or widen the window (`git log -N --name-only`, or `git diff --name-only <base>..HEAD`) to match the task scope.
+
+#### Validation
+
+- Closeout artifacts (for example `changed-files.txt`) list the expected paths.

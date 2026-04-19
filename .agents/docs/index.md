@@ -21,10 +21,14 @@ Durable procedures for recurring workflows. In this layout, playbooks live under
 Examples (this repo):
 
 - [`.agents/playbooks/maintainer-adoption-closeout-distill.md`](../playbooks/maintainer-adoption-closeout-distill.md) — adopt kit, run closeouts, distill.
+- [`.agents/playbooks/maintainer-install-smoke-test.md`](../playbooks/maintainer-install-smoke-test.md) — validate consumer install flow in `_test-target-repo` without `--all`.
 - [`.agents/playbooks/pre-publish.md`](../playbooks/pre-publish.md) — run pre-publish checks and review warnings before publishing the starter kit.
 - [`.agents/playbooks/writing-integration-guides.md`](../playbooks/writing-integration-guides.md) — write user-facing tool integration guides without overstating unverified behavior.
 
-Maintainer-only (this repo): [`.agents/skills/sync-scaffold-agents-skills/SKILL.md`](../skills/sync-scaffold-agents-skills/SKILL.md) — run `npx skills add . -y` to sync shared skills from `scaffold/skills/` into `.agents/skills/`.
+Maintainer-only (this repo):
+
+- [`.agents/skills/sync-scaffold-agents-skills/SKILL.md`](../skills/sync-scaffold-agents-skills/SKILL.md) — run `npx skills add . -y` to sync shared skills from `scaffold/skills/` into `.agents/skills/`.
+- [`.agents/skills/maintainer-install-smoke-test/SKILL.md`](../skills/maintainer-install-smoke-test/SKILL.md) — run a disposable consumer-path install smoke test in `_test-target-repo` without `--all`.
 
 ## `.agents/docs/MAINTENANCE.md`
 
