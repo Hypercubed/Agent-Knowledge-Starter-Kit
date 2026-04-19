@@ -2,8 +2,6 @@
 
 Consult this file first for repo-wide operational guidance.
 
-This file is template content for `.agents/AGENTS.md`.
-
 ## Disclaimer
 
 This kit was produced with the help of AI tools. It is provided **as-is**; **use at your own risk**. Treat every file as a starting point: validate instructions, commands, and policies against your own project before you rely on them.
@@ -38,11 +36,6 @@ This file contains concise, high-signal instructions for future agents working i
 - Move multi-step procedures to `.agents/playbooks/` (sibling of `.agents/docs/`, not inside it).
 - Keep temporary task artifacts in `.agents/sessions/`, not in durable knowledge files.
 
-## This repository (agent-knowledge-starter)
-
-- **Skills:** Add portable kit skills under `.agents/skills/`. Maintainer-only skills should include `internal: true` in their metadata.
-- Treat per-task bundle subfolders under `.agents/sessions/` as gitignored working memory unless deliberately force-added; a tracked `.agents/sessions/README.md` may exist per kit layout.
-
 ## Placeholder sections
 
 ### Build and test
@@ -55,7 +48,7 @@ This file contains concise, high-signal instructions for future agents working i
 
 ### Recurring pitfalls
 
-- The maintainer often mistypes `.agent/` when they mean `.agents/`. If a request mentions `.agent/`, verify whether the existing `.agents/` path is intended before creating a new `.agent/` tree.
+- Add stable pitfalls here.
 
 ### Before submitting changes
 

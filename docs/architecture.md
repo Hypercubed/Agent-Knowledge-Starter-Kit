@@ -41,40 +41,6 @@ Future agents should consult the compiled `.agents/` layer first, not rediscover
 ## Repository layout
 
 ```text
-starter repo
-.
-├── scaffold/
-│   ├── AGENTS.md
-│   ├── docs/
-│   │   ├── MAINTENANCE.md
-│   │   ├── index.md
-│   │   ├── log.md
-│   │   ├── repo-decisions.md
-│   │   └── troubleshooting.md
-│   ├── playbooks/
-│   │   └── README.md
-│   ├── agents/
-│   │   ├── coding-agent.md
-│   │   ├── learning-agent.md
-│   │   └── lint-agent.md
-│   ├── sessions/
-│   │   └── README.md
-│   └── skills/
-│       ├── task-closeout/
-│       │   ├── SKILL.md
-│       │   └── example/
-│       │       └── task-bundle/
-│       │           ├── summary.json
-│       │           ├── active-task.md
-│       │           ├── learning-candidate.md
-│       │           ├── changed-files.txt
-│       │           └── validation.txt
-│       ├── learning-distill/
-│       │   └── SKILL.md
-│       └── knowledge-lint/
-│           └── SKILL.md
-
-consumer repo after adoption
 .
 └── .agents/
     ├── AGENTS.md
@@ -110,10 +76,9 @@ consumer repo after adoption
 
 ---
 
-## Scaffold vs consumer layout
+## Starter vs consumer layout
 
-- `scaffold/` is the **published kit**: treat it as if it were already rooted at `.agents/` in a consumer project. It should not describe this GitHub repo’s layout or maintainer-only workflows.
-- This starter repository may also keep an optional `.agents/` for dogfood; that tree **does not** have to stay identical to `scaffold/` (maintainer-specific notes may live only under `.agents/` here).
+- This GitHub repository is the **starter kit**: it is rooted in its own `.agents/` tree. Treat it as the source of truth for the generic templates.
 - After adoption elsewhere, the consumer’s `.agents/` is the contract; adjust only wiring in your tool, not the overall layout, when possible.
 
 ## Task and session identity

@@ -116,22 +116,22 @@ lint detects drift → small: fix inline | significant: emit wiki plan → recon
 
 | File | Purpose |
 |---|---|
-| `scaffold/wiki/index.md` | Wiki entry registry and table of contents |
-| `scaffold/wiki/decisions/` | Architectural decisions subdirectory |
-| `scaffold/wiki/systems/` | Systems knowledge subdirectory |
-| `scaffold/wiki/concepts/` | Concepts and patterns subdirectory |
-| `scaffold/skills/wiki-update/SKILL.md` | Direct write skill — accepts fact, decision, or external URL; writes wiki entry without session bundle |
+| `.agents/wiki/index.md` | Wiki entry registry and table of contents |
+| `.agents/wiki/decisions/` | Architectural decisions subdirectory |
+| `.agents/wiki/systems/` | Systems knowledge subdirectory |
+| `.agents/wiki/concepts/` | Concepts and patterns subdirectory |
+| `.agents/skills/wiki-update/SKILL.md` | Direct write skill — accepts fact, decision, or external URL; writes wiki entry without session bundle |
 
 ### Modified files
 
 | File | Changes |
 |---|---|
-| `scaffold/skills/task-closeout/SKILL.md` | Add `wiki_candidates` field to session bundle. Separate from skill/playbook candidates. Captures declarative notes, decisions, system observations. |
-| `scaffold/skills/learning-distill/SKILL.md` | Add wiki as distillation target. Add classification logic: descriptive → wiki, prescriptive → skills/playbooks. Add multi-session reconciliation mode. Add linking guidance between wiki and skills/playbooks. |
-| `scaffold/skills/knowledge-lint/SKILL.md` | Add semantic lint pass: verify `code_refs` against codebase. Small drift → fix inline. Significant drift → emit wiki plan. |
-| `scaffold/docs/architecture.md` | Update lifecycle diagram to include wiki. Update distillation rules. Document wiki plan as a plan type. |
-| `scaffold/docs/index.md` | Register wiki in knowledge asset catalog. |
-| `scaffold/agents/learning-agent.md` | Add reconciliation agent role. Document multi-session reconciliation invocation. |
+| `.agents/skills/task-closeout/SKILL.md` | Add `wiki_candidates` field to session bundle. Separate from skill/playbook candidates. Captures declarative notes, decisions, system observations. |
+| `.agents/skills/learning-distill/SKILL.md` | Add wiki as distillation target. Add classification logic: descriptive → wiki, prescriptive → skills/playbooks. Add multi-session reconciliation mode. Add linking guidance between wiki and skills/playbooks. |
+| `.agents/skills/knowledge-lint/SKILL.md` | Add semantic lint pass: verify `code_refs` against codebase. Small drift → fix inline. Significant drift → emit wiki plan. |
+| `.agents/docs/architecture.md` | Update lifecycle diagram to include wiki. Update distillation rules. Document wiki plan as a plan type. |
+| `.agents/docs/index.md` | Register wiki in knowledge asset catalog. |
+| `.agents/agents/learning-agent.md` | Add reconciliation agent role. Document multi-session reconciliation invocation. |
 
 ---
 

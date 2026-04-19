@@ -82,7 +82,6 @@ section "Repository"
 printf 'Root: %s\n' "$ROOT_DIR"
 
 section "Portable Agent Structure"
-run_structure_check scaffold
 run_structure_check .agents
 
 section "Markdown Formatting"
@@ -131,22 +130,17 @@ else
   warn "markdown-link-check is not available to npx without installation; skipping link validation."
 fi
 
-section "Scaffold File List"
-find scaffold -maxdepth 4 -type f | sort
+section "Published Files List"
+find .agents -maxdepth 4 -type f | sort
 
 section "Publish Leakage Scans"
 if ! command -v rg >/dev/null 2>&1; then
   warn "rg is not installed; skipping leakage scans."
 else
   run_warning_scan \
-    "Starter-repo-only language in scaffold" \
-    'agent-knowledge-starter|dogfood|sync-scaffold|\.agents/plans' \
-    scaffold
-
-  run_warning_scan \
     "High-signal secret or local path patterns" \
     'Bearer [A-Za-z0-9._-]{20,}|sk-[A-Za-z0-9_-]{20,}|ghp_[A-Za-z0-9_]{20,}|github_pat_[A-Za-z0-9_]{20,}|AWS_ACCESS_KEY_ID|AWS_SECRET_ACCESS_KEY|-----BEGIN .*PRIVATE KEY-----|/home/[A-Za-z0-9._-]+/|C:\\Users\\' \
-    README.md INSTALL.md docs scaffold .agents
+    README.md INSTALL.md docs .agents
 fi
 
 section "Summary"

@@ -54,7 +54,7 @@ Outcome: updated Files: `.agents/playbooks/writing-integration-guides.md`; `.age
 
 ### \[2026-04-12] learning-distill | t-20260412-161547-log-safety-hardening
 
-Outcome: updated Files: `.agents/docs/repo-decisions.md`; `.agents/playbooks/maintainer-adoption-closeout-distill.md`; `.agents/docs/log.md`; `.agents/sessions/20260412-161547-log-safety-hardening/summary.json` Accepted: 2 (kit-contract policy changes must update `scaffold/` too; maintainer closeout checklist should verify dogfood-only vs kit-wide scope before task completion) Rejected: 2 (`.agents/AGENTS.md` update absent; troubleshooting candidate treated as process failure rather than recurring runtime issue) Notes: Distilled log-safety hardening closeout; promoted scope discipline into maintainer docs after the first pass initially missed scaffold copies.
+Outcome: updated Files: `.agents/docs/repo-decisions.md`; `.agents/playbooks/maintainer-adoption-closeout-distill.md`; `.agents/docs/log.md`; `.agents/sessions/20260412-161547-log-safety-hardening/summary.json` Accepted: 2 (kit-contract policy changes must update `.agents/` too; maintainer closeout checklist should verify dogfood-only vs kit-wide scope before task completion) Rejected: 2 (`.agents/AGENTS.md` update absent; troubleshooting candidate treated as process failure rather than recurring runtime issue) Notes: Distilled log-safety hardening closeout; promoted scope discipline into maintainer docs after the first pass initially missed scaffold copies.
 
 ### \[2026-04-12] learning-distill | t-20260412-155309-openclaw-guide-refinement
 
@@ -70,7 +70,7 @@ Outcome: updated Files: `.agents/docs/repo-decisions.md`; `.agents/playbooks/mai
 
 ### \[2026-04-12] learning-distill | t-20260411-195746-codex-integration
 
-Outcome: updated Files: `.agents/playbooks/writing-integration-guides.md`; `.agents/docs/troubleshooting.md`; `.agents/docs/index.md`; `.agents/docs/log.md`; `.agents/sessions/20260411-195746-codex-integration/summary.json` Accepted: 3 (remove incidental template-tool references from integration guides; Codex `.agents/` write sandbox troubleshooting; index now names Codex among root integration guides) Rejected: 3 (`.agents/AGENTS.md` update absent; repo decision absent; Codex guide-specific verification details stay in `docs/integrations/codex.md`) Notes: Distilled Codex integration guide closeout; no `scaffold/` changes because integration docs remain root user-facing docs.
+Outcome: updated Files: `.agents/playbooks/writing-integration-guides.md`; `.agents/docs/troubleshooting.md`; `.agents/docs/index.md`; `.agents/docs/log.md`; `.agents/sessions/20260411-195746-codex-integration/summary.json` Accepted: 3 (remove incidental template-tool references from integration guides; Codex `.agents/` write sandbox troubleshooting; index now names Codex among root integration guides) Rejected: 3 (`.agents/AGENTS.md` update absent; repo decision absent; Codex guide-specific verification details stay in `docs/integrations/codex.md`) Notes: Distilled Codex integration guide closeout; no `.agents/` changes because integration docs remain root user-facing docs.
 
 ### \[2026-04-12] learning-distill | t-20260412-014546-cursor-integration
 
@@ -86,7 +86,7 @@ Outcome: updated\
 Files: `.agents/docs/repo-decisions.md`; `.agents/docs/index.md`; `.agents/docs/log.md`; `.agents/sessions/20260411-145015-existing-agents-adoption/summary.json`; `.agents/sessions/20260411-145937-quickstart-install-docs/summary.json`\
 Accepted: 2 (root docs are the home for kit installation guidance; index pointer to root `INSTALL.md`)\
 Rejected: 4 (extra `.agents/AGENTS.md`, troubleshooting, and playbook updates; README/plan content was already present from the source tasks)\
-Notes: Distilled two installation-doc bundles; kept copied `scaffold/` content unchanged because setup guidance is about consuming the starter repo.
+Notes: Distilled two installation-doc bundles; kept copied `.agents/` content unchanged because setup guidance is about consuming the starter repo.
 
 ### \[2026-04-11] docs | quickstart-agent-install
 
@@ -108,14 +108,14 @@ Notes: Incorporated adopter feedback directly in README and kept the broader con
 
 Outcome: updated\
 Files: `.agents/docs/repo-decisions.md`; `.agents/docs/troubleshooting.md`; `.agents/playbooks/maintainer-adoption-closeout-distill.md`; `.agents/docs/index.md`; `.agents/docs/log.md`; `.agents/sessions/20260411-203100-scaffold-sync-closeout/summary.json`\
-Accepted: 3 (maintainer-only skills never in `scaffold/` decision; wrong-placement troubleshooting; playbook + index pointers to selective sync skill)\
+Accepted: 3 (maintainer-only skills never in `.agents/` decision; wrong-placement troubleshooting; playbook + index pointers to selective sync skill)\
 Rejected: 1 (extra `.agents/AGENTS.md` bullet — already covered by existing “Skills” line)\
 Notes: Distilled scaffold sync closeout; sync mechanics stay in skill + `sync.sh`.
 
 ### \[2026-04-11] knowledge-lint
 
 Outcome: updated\
-Files: `.agents/AGENTS.md`; `.agents/docs/repo-decisions.md`; `.agents/docs/index.md`; `.agents/docs/log.md`; `scaffold/AGENTS.md`; `README.md`; `.agents/skills/knowledge-lint/SKILL.md`; `.agents/skills/learning-distill/SKILL.md`; `scaffold/skills/knowledge-lint/SKILL.md`; `scaffold/skills/learning-distill/SKILL.md`\
+Files: `.agents/AGENTS.md`; `.agents/docs/repo-decisions.md`; `.agents/docs/index.md`; `.agents/docs/log.md`; `.agents/AGENTS.md`; `README.md`; `.agents/skills/knowledge-lint/SKILL.md`; `.agents/skills/learning-distill/SKILL.md`; `.agents/skills/knowledge-lint/SKILL.md`; `.agents/skills/learning-distill/SKILL.md`\
 Notes: Fixed playbook path everywhere (`playbooks/` vs `docs/playbooks/`); aligned sessions bullet with MAINTENANCE; deduped `prior_session` consequences vs troubleshooting; clarified index playbooks location.
 
 ### \[2026-04-11] learning-distill | t-20260411-185459-orchestrator, t-20260411-190655-sessions-readme
@@ -129,7 +129,7 @@ Notes: Distilled orchestrator closeout and sessions README sessions; no `.agents
 ### \[2026-04-11] policy | scaffold-vs-agents
 
 Outcome: updated\
-Files: `scaffold/*` (reverted generic templates); `.agents/AGENTS.md`; `.agents/docs/repo-decisions.md`; `.agents/docs/troubleshooting.md`; `.agents/docs/index.md`; `.agents/docs/log.md`; removed `playbooks/refresh-dot-agents-from-scaffold.md`\
+Files: `.agents/*` (reverted generic templates); `.agents/AGENTS.md`; `.agents/docs/repo-decisions.md`; `.agents/docs/troubleshooting.md`; `.agents/docs/index.md`; `.agents/docs/log.md`; removed `playbooks/refresh-dot-agents-from-scaffold.md`\
 Accepted: 1 (scaffold stays consumer-generic; `.agents/` may diverge)\
 Rejected: prior “keep scaffold aligned with `.agents/`” approach\
 Notes: Scaffold should not encode starter-repo dogfood; maintainer knowledge lives under `.agents/` and README only.

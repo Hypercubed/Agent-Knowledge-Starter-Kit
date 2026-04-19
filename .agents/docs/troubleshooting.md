@@ -4,23 +4,23 @@ This template belongs in `.agents/docs/troubleshooting.md`.
 
 Use this file for recurring issue patterns and validated recoveries.
 
-### Comparing `scaffold/` to `.agents/` in this starter repo
+### Comparing `.agents/` to `.agents/` in this starter repo
 
 #### Symptom
 
-Expectation that `diff` between `scaffold/` and `.agents/` should be empty (aside from sessions).
+Expectation that `diff` between `.agents/` and `.agents/` should be empty (aside from sessions).
 
 #### Likely causes
 
-- Assumption that the two trees are meant to stay mirrored. They are not: `scaffold/` is the generic kit; `.agents/` is optional maintainer dogfood and may differ.
+- Assumption that the two trees are meant to stay mirrored. They are not: `.agents/` is the generic kit; `.agents/` is optional maintainer dogfood and may differ.
 
 #### Fix
 
-- Use `scaffold/` when changing what **consumers** receive. Use `.agents/` for **this repo’s** durable notes without forcing them back into the template.
+- Use `.agents/` when changing what **consumers** receive. Use `.agents/` for **this repo’s** durable notes without forcing them back into the template.
 
 #### Validation
 
-- `scaffold/` files contain no references to this repository’s layout beyond what a normal consumer would write in `.agents/`.
+- `.agents/` files contain no references to this repository’s layout beyond what a normal consumer would write in `.agents/`.
 
 ### Overlapping session bundles for one initiative
 
@@ -62,11 +62,11 @@ Two or more folders under `.agents/sessions/` describe related work, or `summary
 
 - Only the intended `.agents/sessions/README.md` (if any) is tracked; bundle directories stay ignored.
 
-### Maintainer skill lives under `scaffold/skills/` by mistake
+### Maintainer skill lives under `.agents/skills/` by mistake
 
 #### Symptom
 
-A skill meant only for this repo’s dual-tree maintenance appears under `scaffold/skills/`, or adopters would inherit maintainer-only automation.
+A skill meant only for this repo’s dual-tree maintenance appears under `.agents/skills/`, or adopters would inherit maintainer-only automation.
 
 #### Likely causes
 
@@ -74,11 +74,11 @@ A skill meant only for this repo’s dual-tree maintenance appears under `scaffo
 
 #### Fix
 
-- Remove the skill from `scaffold/skills/`. Keep it only under `.agents/skills/<skill-name>/` with any helper script in the same folder as `SKILL.md`.
+- Remove the skill from `.agents/skills/`. Keep it only under `.agents/skills/<skill-name>/` with any helper script in the same folder as `SKILL.md`.
 
 #### Validation
 
-- `scaffold/skills/` lists only portable kit skills; maintainer sync or similar tooling exists only under `.agents/skills/` when applicable.
+- `.agents/skills/` lists only portable kit skills; maintainer sync or similar tooling exists only under `.agents/skills/` when applicable.
 
 ### Codex cannot write under `.agents/` during closeout or distill
 

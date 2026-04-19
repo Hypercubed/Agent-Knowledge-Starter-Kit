@@ -17,9 +17,9 @@
     "repo-maintenance"
   ],
   "skills": [
-    "./scaffold/skills/task-closeout",
-    "./scaffold/skills/learning-distill",
-    "./scaffold/skills/knowledge-lint"
+    "./.agents/skills/task-closeout",
+    "./.agents/skills/learning-distill",
+    "./.agents/skills/knowledge-lint"
   ],
-  "agents": "./scaffold/agents/"
+  "agents": "./.agents/agents/"
 }

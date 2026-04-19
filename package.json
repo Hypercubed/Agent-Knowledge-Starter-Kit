@@ -22,8 +22,7 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "bootstrap": "skills add . -y"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
     "markdown-link-check": "^3.14.1",

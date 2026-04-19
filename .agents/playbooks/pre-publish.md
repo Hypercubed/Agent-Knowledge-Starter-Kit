@@ -9,8 +9,8 @@ Use before publishing, tagging, or handing this starter kit to another repo.
 3. Review warnings manually. Leakage scan hits are not automatic failures; the scan is intentionally narrow and is only a backstop for obvious starter-repo leakage, credentials, or local machine paths.
 4. When only validating a copied knowledge layer, run the portable structure check directly: `bash scripts/check-agents-structure.sh .agents`.
 5. Confirm ignored session bundles are local evidence only. For each validated tree, the only tracked file under `sessions/` should be `sessions/README.md`.
-6. Review the printed `scaffold/` file list. It should contain only the distributable kit for this layout: portable `agents/`, portable `skills/`, and the task-closeout example bundle files.
-7. If root `.agents/` changed, decide whether the same change belongs in the published kit. Put consumer-generic contract changes in `scaffold/`; keep repo-maintainer workflow only under `.agents/`.
+6. Review the printed `.agents/` file list. It should contain only the distributable kit for this layout: portable `agents/`, portable `skills/`, and the task-closeout example bundle files.
+7. If root `.agents/` changed, decide whether the same change belongs in the published kit. Put consumer-generic contract changes in `.agents/`; keep repo-maintainer workflow only under `.agents/`.
 8. Run `knowledge-lint` periodically, and before publishing after several agent-assisted edits, to find duplicated, stale, contradictory, oversized, or misplaced durable knowledge.
 9. Inspect `git status --short` and `git diff` before tagging or publishing.
 
@@ -47,7 +47,7 @@ Scaffold files should read as if copied into a consumer repo's `.agents/` direct
 
 Leakage scans are not a substitute for reviewing the diff. They intentionally avoid broad terms such as `secret`, `token`, `maintainer`, `localhost`, and example session paths because this repo documents those concepts directly.
 
-Root `.agents/` is allowed to contain maintainer-only knowledge for this repo. Do not copy that content to `scaffold/` unless it is part of the portable kit contract.
+Root `.agents/` is allowed to contain maintainer-only knowledge for this repo. Do not copy that content to `.agents/` unless it is part of the portable kit contract.
 
 `scripts/check-agents-structure.sh` is the portable validator. It accepts a target tree such as `.agents` or `scaffold` and checks the knowledge-layer shape without running this repo's README, root docs, or publish leakage checks.
 

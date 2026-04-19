@@ -16,14 +16,14 @@ The published template must be copy-pasteable as `.agents/` without carrying sta
 
 ### Rationale
 
-Consumers should not inherit maintainer-only workflows, paths like `scaffold/`, or “keep trees aligned” rules. Those belong in this repo’s `.agents/` (or root `README.md`), not in the kit files under `scaffold/`.
+Consumers should not inherit maintainer-only workflows, paths like `.agents/`, or “keep trees aligned” rules. Those belong in this repo’s `.agents/` (or root `README.md`), not in the kit files under `.agents/`.
 
 ### Consequences
 
-- `scaffold/` is edited only for improvements that belong in **any** adopter’s `.agents/` layout.
-- This repository’s optional `.agents/` may accumulate dogfood-specific notes and **does not** need to match `scaffold/` byte-for-byte.
+- `.agents/` is edited only for improvements that belong in **any** adopter’s `.agents/` layout.
+- This repository’s optional `.agents/` may accumulate dogfood-specific notes and **does not** need to match `.agents/` byte-for-byte.
 
-### Dual `scaffold/` path vs `.agents/` dogfood (historical)
+### Dual `.agents/` path vs `.agents/` dogfood (historical)
 
 ### Status
 
@@ -31,7 +31,7 @@ Superseded
 
 ### Context
 
-An earlier approach treated `.agents/` as a refreshed copy of `scaffold/`.
+An earlier approach treated `.agents/` as a refreshed copy of `.agents/`.
 
 ### Consequences
 
@@ -74,7 +74,7 @@ A short `.agents/sessions/README.md` gives human-facing context; in `.agents/.gi
 
 - After copying or merging the kit, confirm `.gitignore` exceptions match the tracked filename exactly (path segments and case).
 
-### Maintainer-only skills and scripts never live under `scaffold/`
+### Maintainer-only skills and scripts never live under `.agents/`
 
 ### Status
 
@@ -82,16 +82,16 @@ Accepted
 
 ### Context
 
-Skills under `scaffold/skills/` are what adopters copy into their `.agents/skills/` tree. Maintainer workflows for this repository (for example selective sync from `scaffold/` into dogfood `.agents/`) are not portable kit content.
+Skills under `.agents/skills/` are what adopters copy into their `.agents/skills/` tree. Maintainer workflows for this repository (for example selective sync from `.agents/` into dogfood `.agents/`) are not portable kit content.
 
 ### Rationale
 
-Putting a maintainer skill in `scaffold/` ships it to consumers, who often have no `scaffold/` directory, and erases the boundary between generic template and starter-repo dogfood.
+Putting a maintainer skill in `.agents/` ships it to consumers, who often have no `.agents/` directory, and erases the boundary between generic template and starter-repo dogfood.
 
 ### Consequences
 
 - Maintainer-only skills and any helper scripts stay under this repo’s `.agents/skills/<skill-name>/` beside `SKILL.md`.
-- Portable skills and agent role files remain under `scaffold/skills/` and `scaffold/agents/` and are merged into `.agents/` when maintainers run the documented sync.
+- Portable skills and agent role files remain under `.agents/skills/` and `.agents/agents/` and are merged into `.agents/` when maintainers run the documented sync.
 
 ### Sync root `.agents` skills after scaffold skill edits
 
@@ -101,19 +101,19 @@ Accepted
 
 ### Context
 
-This repo dogfoods the starter kit through a root `.agents/` tree while publishing portable shared skills under `scaffold/skills/`.
+This repo dogfoods the starter kit through a root `.agents/` tree while publishing portable shared skills under `.agents/skills/`.
 
 ### Rationale
 
-When `scaffold/skills/` changes, the root dogfood `.agents/skills/` copy should receive those portable updates in the same maintenance pass. That keeps local behavior aligned with the kit without copying maintainer-only files into `scaffold/`.
+When `.agents/skills/` changes, the root dogfood `.agents/skills/` copy should receive those portable updates in the same maintenance pass. That keeps local behavior aligned with the kit without copying maintainer-only files into `.agents/`.
 
 ### Consequences
 
-- After portable edits under `scaffold/skills/`, run `npx skills add . -y` (or `npm run bootstrap`) from the repository root.
+- After portable edits under `.agents/skills/`, run `npx skills add . -y` (or `npm run bootstrap`) from the repository root.
 - Review the resulting diff under `.agents/skills/`.
 - Do not use this sync for non-skill paths unless a separate task explicitly changes the sync scope.
 
-### Kit-contract policy changes must update `scaffold/` too
+### Kit-contract policy changes must update `.agents/` too
 
 ### Status
 
@@ -121,16 +121,16 @@ Accepted
 
 ### Context
 
-This repository intentionally allows maintainer dogfood under root `.agents/` to diverge from `scaffold/`, but some changes are not maintainer-local. When a change alters the portable kit contract, updating only root `.agents/` leaves adopters without the intended behavior.
+This repository intentionally allows maintainer dogfood under root `.agents/` to diverge from `.agents/`, but some changes are not maintainer-local. When a change alters the portable kit contract, updating only root `.agents/` leaves adopters without the intended behavior.
 
 ### Rationale
 
-Safety hardening and other policy-bearing changes that belong to the published starter kit must land in `scaffold/` as well as any local dogfood copy. The repo may keep dual trees, but portable policy cannot live only in the maintainer tree.
+Safety hardening and other policy-bearing changes that belong to the published starter kit must land in `.agents/` as well as any local dogfood copy. The repo may keep dual trees, but portable policy cannot live only in the maintainer tree.
 
 ### Consequences
 
 - For changes to docs, playbooks, or other policy-bearing files that exist in both trees, decide explicitly whether the scope is maintainer-only or kit-wide.
-- If the change is kit-wide, update both root `.agents/` and `scaffold/` in the same task.
+- If the change is kit-wide, update both root `.agents/` and `.agents/` in the same task.
 - Do not assume exact text parity between the two trees when patching; verify each target file against its real current contents.
 
 ### Kit installation guidance lives in root docs
@@ -145,12 +145,12 @@ Adopter-facing setup instructions need to explain how to copy or merge the start
 
 ### Rationale
 
-Installation guidance is about consuming this starter repository, not durable knowledge that every consumer should inherit inside its copied `.agents/` tree. Keeping setup guidance in root docs such as `README.md` and `INSTALL.md` lets `scaffold/` remain a clean consumer `.agents/` template.
+Installation guidance is about consuming this starter repository, not durable knowledge that every consumer should inherit inside its copied `.agents/` tree. Keeping setup guidance in root docs such as `README.md` and `INSTALL.md` lets `.agents/` remain a clean consumer `.agents/` template.
 
 ### Consequences
 
 - Put human quick-start guidance, agent install prompts, and detailed install checklists in root docs.
-- Add content to `scaffold/` only when every adopter should receive it inside their `.agents/` tree.
+- Add content to `.agents/` only when every adopter should receive it inside their `.agents/` tree.
 - If installation guidance creates a durable local policy, record the rationale here rather than duplicating the full checklist.
 
 ## Entry template

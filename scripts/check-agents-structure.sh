@@ -58,21 +58,6 @@ else
 fi
 
 section "Required Files"
-if [ "$target" = "scaffold" ]; then
-  required_files="
-agents/coding-agent.md
-agents/learning-agent.md
-agents/lint-agent.md
-skills/knowledge-lint/SKILL.md
-skills/learning-distill/SKILL.md
-skills/task-closeout/SKILL.md
-skills/task-closeout/example/task-bundle/summary.json
-skills/task-closeout/example/task-bundle/active-task.md
-skills/task-closeout/example/task-bundle/learning-candidate.md
-skills/task-closeout/example/task-bundle/changed-files.txt
-skills/task-closeout/example/task-bundle/validation.txt
-"
-else
   required_files="
 AGENTS.md
 .gitignore
@@ -95,7 +80,6 @@ skills/task-closeout/example/task-bundle/learning-candidate.md
 skills/task-closeout/example/task-bundle/changed-files.txt
 skills/task-closeout/example/task-bundle/validation.txt
 "
-fi
 
 while IFS= read -r relative_path; do
   [ -z "$relative_path" ] && continue

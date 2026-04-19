@@ -20,15 +20,13 @@ Durable procedures for recurring workflows. In this layout, playbooks live under
 
 Examples (this repo):
 
-- [`.agents/playbooks/maintainer-adoption-closeout-distill.md`](../playbooks/maintainer-adoption-closeout-distill.md) — adopt kit, run closeouts, distill.
-- [`.agents/playbooks/maintainer-install-smoke-test.md`](../playbooks/maintainer-install-smoke-test.md) — validate consumer install flow in `_test-target-repo` without `--all`.
+- [`.agents/playbooks/generate-example.md`](../playbooks/generate-example.md) — generate a complete bootstrapped example folder for the kit.
 - [`.agents/playbooks/pre-publish.md`](../playbooks/pre-publish.md) — run pre-publish checks and review warnings before publishing the starter kit.
 - [`.agents/playbooks/writing-integration-guides.md`](../playbooks/writing-integration-guides.md) — write user-facing tool integration guides without overstating unverified behavior.
 
 Maintainer-only (this repo):
 
-- [`.agents/skills/sync-scaffold-agents-skills/SKILL.md`](../skills/sync-scaffold-agents-skills/SKILL.md) — run `npx skills add . -y` to sync shared skills from `scaffold/skills/` into `.agents/skills/`.
-- [`.agents/skills/maintainer-install-smoke-test/SKILL.md`](../skills/maintainer-install-smoke-test/SKILL.md) — run a disposable consumer-path install smoke test in `_test-target-repo` without `--all`.
+- [`.agents/skills/generate-example/SKILL.md`](../skills/generate-example/SKILL.md) — generate a disposable consumer-path example structure.
 
 ## `.agents/docs/MAINTENANCE.md`
 
@@ -48,4 +46,4 @@ Upcoming work, architectural research, and active task plans. Unlisted from `MAI
 
 ## Root integration guides (this repository)
 
-[`docs/integrations/README.md`](../../docs/integrations/README.md) — per-tool wiring for Antigravity, Claude Code, Codex, Cursor, Gemini CLI, Hermes, Kilo Code, OpenClaw, OpenCode, and Warp (user-facing; not part of the copied `scaffold/` tree).
+[`docs/integrations/README.md`](../../docs/integrations/README.md) — per-tool wiring for Antigravity, Claude Code, Codex, Cursor, Gemini CLI, Hermes, Kilo Code, OpenClaw, OpenCode, and Warp (user-facing; not part of the copied `.agents/` tree).
