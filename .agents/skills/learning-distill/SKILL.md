@@ -22,6 +22,29 @@ Convert raw task evidence into concise, durable repo knowledge.
 
 Read the canonical task/session identifier from the `task_id` field in the bundle's `summary.json`. Do not infer identity from the session folder name.
 
+## Skill initialization (before first distillation)
+
+Run this once per target repo after the skill files are present under `.agents/skills/learning-distill/` (for example after copying only that skill folder or after an `npx`/package install drops it there). Idempotent: safe to repeat.
+
+1. Resolve the repo root (the directory that contains `.git/` in normal layouts).
+2. Ensure `.agents/` exists.
+3. Ensure `.agents/playbooks/` exists. If `.agents/playbooks/README.md` is missing, copy `bootstrap/playbooks/README.md` from this skill folder into place.
+4. Ensure `.agents/docs/` exists. For each of `index.md`, `MAINTENANCE.md`, `log.md`, `repo-decisions.md`, and `troubleshooting.md`, if the file is missing under `.agents/docs/`, copy the matching file from `bootstrap/docs/` in this skill folder. If a file already exists, do not overwrite it.
+5. Ensure `.agents/sessions/` exists. If `.agents/sessions/README.md` is missing, copy `bootstrap/sessions/README.md` from this skill folder into place.
+6. If `.agents/AGENTS.md` is missing, copy `bootstrap/AGENTS.md` from this skill folder into place. If it already exists, do not overwrite it.
+7. Ensure `.agents/.gitignore` exists. If it is missing, create it with exactly:
+
+   ```gitignore
+   sessions/*
+   !sessions/README.md
+   ```
+
+   If `.agents/.gitignore` already exists, merge these two lines if they are absent; do not remove unrelated ignore rules.
+
+8. If the repo does not track `.agents/.gitignore` and the user relies on the repo root `.gitignore`, ensure equivalent patterns exist there: `.agents/sessions/*` and `!.agents/sessions/README.md`.
+
+This initialization supplies the durable doc scaffold the distill procedure expects. It does not fabricate repo-specific guidance beyond the kit templates.
+
 ## Classification categories
 
 Classify each candidate lesson as one of:

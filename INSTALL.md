@@ -15,6 +15,22 @@ Treat files under `scaffold/` as if they are rooted at `.agents/` in the target 
 
 Do not use this repository's root `.agents/` directory as install source. It contains maintainer-only knowledge for this starter-kit repo and may include files adopters should not copy.
 
+## Skill-first install (optional)
+
+You do not have to copy the entire `scaffold/` tree when you only want the portable maintenance skills (`task-closeout`, `learning-distill`, `knowledge-lint`). A skill-first workflow is:
+
+1. Place each skill under `.agents/skills/<skill-name>/` in the target repo (copy from `scaffold/skills/<skill-name>/`, or use another installer such as an `npx skills`-style tool if your stack provides one). Preserve the skill folder layout, including any `bootstrap/` subdirectory shipped beside `SKILL.md`.
+2. Open each installed skill's `SKILL.md` and run its **Skill initialization** section once before relying on that skill. Initialization is idempotent: it creates missing directories and template files without overwriting existing repo-specific content.
+3. Register `SKILL.md` paths in the user's editor or agent product if required.
+
+**Suggested order when installing multiple skills**
+
+- **Closeout only:** run `task-closeout` initialization. It creates `.agents/sessions/` and session ignore rules; it does not create durable `docs/` or `AGENTS.md` scaffolding.
+- **Distillation or linting:** run `learning-distill` initialization first when you need the durable `.agents/docs/` and `.agents/playbooks/` scaffold (and a template `.agents/AGENTS.md` when missing). It also ensures `.agents/sessions/` and `.agents/.gitignore` session rules exist.
+- **Lint only (no distill):** run `knowledge-lint` initialization when you added lint without distill; it creates the same durable doc scaffold from its `bootstrap/` copy without touching session storage.
+
+When in doubt after installing all three kit skills, run `learning-distill` initialization once, then proceed. The other skills' initialization steps remain safe no-ops or small merges (for example missing `.gitignore` lines).
+
 ## Before Editing
 
 1. Inspect the target repo for an existing `.agents/` directory.
@@ -26,11 +42,12 @@ Do not use this repository's root `.agents/` directory as install source. It con
 
 If the target repo has no `.agents/` directory:
 
-1. Copy everything under `scaffold/` into `.agents/`.
-2. Keep `.agents/.gitignore` tracked; its `sessions/*` rules are sufficient for normal Git usage.
-3. Edit `.agents/AGENTS.md` with the repo's build, test, architecture, and workflow guidance.
-4. Register `.agents/skills/*/SKILL.md` and `.agents/agents/*.md` in the user's editor or agent product, if required.
-5. Record the adoption in `.agents/docs/log.md`.
+1. **Full kit (recommended default):** copy everything under `scaffold/` into `.agents/`.
+2. **Skills only:** copy `scaffold/skills/` into `.agents/skills/`, then run **Skill initialization** from each installed skill's `SKILL.md` (see [Skill-first install](#skill-first-install-optional)). Add `scaffold/agents/` into `.agents/agents/` only when you want the bundled agent role markdown.
+3. Keep `.agents/.gitignore` tracked when the repo uses it; its `sessions/*` rules are sufficient for normal Git usage. If `.agents/` is not tracked, add equivalent session ignore rules at the repo root (see [Skill-first install](#skill-first-install-optional)).
+4. Edit `.agents/AGENTS.md` with the repo's build, test, architecture, and workflow guidance (or start from the template created by skill initialization).
+5. Register `.agents/skills/*/SKILL.md` and `.agents/agents/*.md` in the user's editor or agent product, if required.
+6. Record the adoption in `.agents/docs/log.md`.
 
 ## Existing `.agents/` Install
 

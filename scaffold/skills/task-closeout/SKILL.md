@@ -9,6 +9,26 @@ description: Capture the current task into a structured temporary session bundle
 
 Create a temporary handoff packet for later learning extraction.
 
+## Skill initialization (before first closeout)
+
+Run this once per target repo after the skill files are present under `.agents/skills/task-closeout/` (for example after copying only that skill folder or after an `npx`/package install drops it there). Idempotent: safe to repeat.
+
+1. Resolve the repo root (the directory that contains `.git/` in normal layouts).
+2. Ensure `.agents/sessions/` exists.
+3. If `.agents/sessions/README.md` is missing, create it from `bootstrap/sessions/README.md` in this skill folder (same prose as the kit’s `scaffold/sessions/README.md`).
+4. Ensure `.agents/.gitignore` exists. If it is missing, create it with exactly:
+
+   ```gitignore
+   sessions/*
+   !sessions/README.md
+   ```
+
+   If `.agents/.gitignore` already exists, merge these two lines if they are absent; do not remove unrelated ignore rules.
+
+5. If the repo does not track `.agents/.gitignore` and the user relies on the repo root `.gitignore`, ensure equivalent patterns exist there: `.agents/sessions/*` and `!.agents/sessions/README.md`.
+
+Do not create durable knowledge files (`AGENTS.md`, `docs/`, `playbooks/`) as part of this skill; those are owned by `learning-distill` initialization or a full kit merge.
+
 ## Output location
 
 Write inside the repo to `.agents/sessions/<session-folder>/`.
