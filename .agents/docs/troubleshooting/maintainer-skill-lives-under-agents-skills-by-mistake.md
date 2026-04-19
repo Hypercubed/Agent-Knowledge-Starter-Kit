@@ -1,14 +1,14 @@
 ---
 id: maintainer-skill-lives-under-agents-skills-by-mistake
-title: "Maintainer skill lives under `.agents/skills/` by mistake"
+title: "Maintainer skill lives under `scaffold/skills/` by mistake"
 last_updated: 2026-04-19
 ---
 
-# Maintainer skill lives under `.agents/skills/` by mistake
+# Maintainer skill lives under `scaffold/skills/` by mistake
 
 #### Symptom
 
-A skill meant only for this repo’s dual-tree maintenance appears under `.agents/skills/`, or adopters would inherit maintainer-only automation.
+A skill meant only for this repo’s dual-tree maintenance appears under `scaffold/skills/`, or adopters would inherit maintainer-only automation.
 
 #### Likely causes
 
@@ -16,8 +16,8 @@ A skill meant only for this repo’s dual-tree maintenance appears under `.agent
 
 #### Fix
 
-- Remove the skill from `.agents/skills/`. Keep it only under `.agents/skills/<skill-name>/` with any helper script in the same folder as `SKILL.md`.
+- Remove the skill from `scaffold/skills/`. Keep it only under `.agents/skills/<skill-name>/` with any helper script in the same folder as `SKILL.md`.
 
 #### Validation
 
-- `.agents/skills/` lists only portable kit skills; maintainer sync or similar tooling exists only under `.agents/skills/` when applicable.
+- `scaffold/skills/` lists only portable kit skills; maintainer sync or similar tooling exists only under `.agents/skills/` when applicable.

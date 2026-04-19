@@ -12,7 +12,7 @@ Accepted (supersedes prior “dual tree sync” policy)
 
 ### Context
 
-The published template must be copy-pasteable as `.agents/` without carrying starter-repository concepts.
+The published template must be copy-pasteable as `scaffold/` without carrying starter-repository concepts.
 
 ### Rationale
 

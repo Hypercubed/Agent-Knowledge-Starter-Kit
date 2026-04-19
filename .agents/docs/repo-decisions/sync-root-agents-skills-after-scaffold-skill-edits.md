@@ -12,11 +12,11 @@ Accepted
 
 ### Context
 
-This repo dogfoods the starter kit through a root `.agents/` tree while publishing portable shared skills under `.agents/skills/`.
+This repo dogfoods the starter kit through a root `.agents/` tree while publishing portable shared skills under `scaffold/skills/`.
 
 ### Rationale
 
-When `.agents/skills/` changes, the root dogfood `.agents/skills/` copy should receive those portable updates in the same maintenance pass. That keeps local behavior aligned with the kit without copying maintainer-only files into `.agents/`.
+When `scaffold/skills/` changes, the root dogfood `.agents/skills/` copy should receive those portable updates in the same maintenance pass. That keeps local behavior aligned with the kit without copying maintainer-only files into `.agents/`.
 
 ### Consequences
 
