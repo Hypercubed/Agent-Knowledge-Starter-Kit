@@ -23,12 +23,12 @@ Add a small end-to-end example that demonstrates the knowledge loop:
 
 ## Current decision
 
-Do not implement this example in the current review-follow-up batch. The repository itself already demonstrates the structural layout through `scaffold/` and the maintainer `.agents/` tree, so the example should be designed carefully rather than added as extra narrative.
+Do not implement this example in the current review-follow-up batch. The repository already demonstrates the structural layout through `example/.agents/` (generated full kit) and the maintainer `.agents/` tree, so the example should be designed carefully rather than added as extra narrative.
 
 ## Scope
 
-- Decide whether the example belongs in `README.md`, `docs/architecture.md`, or a scaffold doc.
-- Prefer connecting the example to `scaffold/skills/task-closeout/example/task-bundle/` instead of inventing an unrelated scenario.
+- Decide whether the example belongs in `README.md`, `docs/architecture.md`, or `example/.agents/docs/`.
+- Prefer connecting the example to `example/.agents/skills/task-closeout/example/task-bundle/` instead of inventing an unrelated scenario.
 - Show the canonical identity model using the `task_id` field inside `summary.json`.
 - Show classification destinations for at least:
   - `.agents/AGENTS.md`
@@ -48,4 +48,4 @@ Do not implement this example in the current review-follow-up batch. The reposit
 
 - A reader can understand the full closeout-to-distillation loop without inferring missing steps.
 - The example reinforces that session bundles are temporary and durable lessons belong in reviewed `.agents/` files.
-- The example does not blur the distinction between `scaffold/` as the published kit and this repository's maintainer `.agents/` tree.
+- The example does not blur the distinction between the published kit (`example/.agents/` after `generate-example`, or an adopter tree installed via skills) and this repository's maintainer `.agents/` tree.

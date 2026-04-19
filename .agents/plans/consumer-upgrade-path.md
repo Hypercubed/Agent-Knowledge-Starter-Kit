@@ -1,6 +1,6 @@
 ---
 description: >
-  Provide a consumer-friendly upgrade path when replacing or merging a new scaffold/ drop into an existing project that already adopted an earlier kit version.
+  Provide a consumer-friendly upgrade path when refreshing kit skills or merging a new kit drop into an existing project that already adopted an earlier kit version.
 
 
 created: 2026-04-11
@@ -17,8 +17,8 @@ Reduce friction and fear when **upgrading** the agent knowledge starter in a rea
 
 ## Scope
 
-- Add a dedicated doc (likely under `scaffold/docs/` or top-level consumer section in README) covering v1 → vNext style upgrades.
-- Call out safe paths (e.g. wholesale replace of `scaffold/` in the starter repo vs merge into consumer `.agents/`).
+- Add a dedicated doc (likely under `example/.agents/docs/` or top-level consumer section in README) covering v1 → vNext style upgrades, **or** keep the story README-first if that stays sufficient.
+- Call out safe paths (e.g. re-run `npx skills add …` vs manually merging skill folders vs replacing disposable template trees only).
 - Reference optional tooling already in this repo (e.g. selective sync skills) where relevant, without requiring it.
 - Cover first-time adoption into a repo that already has `.agents/`: preserve existing domain-specific `rules/`, `playbooks/`, and `skills/`, then add missing `docs/`, `agents/`, `sessions/`, and the closeout/distill/lint skills.
 - Explain that `.agents/.gitignore` is sufficient for session bundles when tracked, with repo-root `.gitignore` patterns only as an alternative for repos that do not track nested gitignore files.
@@ -36,14 +36,14 @@ Reduce friction and fear when **upgrading** the agent knowledge starter in a rea
 ## Out of scope (for this plan)
 
 - Version tagging policy or changelog automation (could be a follow-up).
-- A dedicated scaffold doc remains a follow-up if this guidance should live inside the distributable `.agents/docs/` tree instead of only in README and `INSTALL.md`.
+- A dedicated kit doc under `example/.agents/docs/` remains a follow-up if this guidance should live inside the copied `.agents/` tree instead of only in README and `INSTALL.md`.
 
 ## Success criteria
 
 - A new adopter and an existing adopter each have a short, ordered checklist.
-- “What breaks if I copy scaffold over my .agents?” is answered explicitly.
+- “What breaks if I wholesale replace `.agents/` or overwrite kit skills?” is answered explicitly.
 - Existing repo-specific knowledge remains discoverable after adoption.
 
 ## Notes
 
-- Consider a small compatibility matrix: AGENTS.md, skills paths, sessions gitignore, new folders (plans, rules) as they land.
+- Consider a small compatibility matrix: AGENTS.md, skills paths, sessions gitignore, new folders (plans, rules) as they land (this repo validates `.agents/` via `scripts/check-publish.sh`, not a second `scaffold/` tree).

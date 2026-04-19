@@ -1,6 +1,6 @@
 ---
 description: >
-  Add concise guidance explaining when and how to use the scaffold's coding, learning, and lint agent role definitions from docs and skills.
+  Add concise guidance explaining when and how to use the published kit's coding, learning, and lint agent role definitions from docs and skills.
 
 
 created: 2026-04-12
@@ -13,7 +13,7 @@ prompter: Hypercubed
 
 ## Goal
 
-Make the three scaffold agent roles discoverable and actionable without turning the scaffold into an orchestration framework.
+Make the three kit agent roles discoverable and actionable without turning the kit into an orchestration framework.
 
 Readers should be able to answer:
 
@@ -25,23 +25,23 @@ Readers should be able to answer:
 
 ## Current gap
 
-`scaffold/agents/` defines three roles:
+`example/.agents/agents/` (generated full kit) and consumer `.agents/agents/` define three roles:
 
 - `coding-agent.md` handles implementation, validation, and task closeout
 - `learning-agent.md` distills completed session bundles into durable knowledge
 - `lint-agent.md` maintains coherence of the durable knowledge layer
 
-The scaffold docs and skills explain the knowledge model, bundle format, and maintenance rules, but they do not explicitly teach adopters when these roles should be invoked or how role responsibilities map to the skills.
+The kit docs and skills explain the knowledge model, bundle format, and maintenance rules, but they do not explicitly teach adopters when these roles should be invoked or how role responsibilities map to the skills.
 
 ## Proposed documentation updates
 
-### `scaffold/docs/index.md`
+### `example/.agents/docs/index.md` (or consumer `.agents/docs/index.md`)
 
-Add `scaffold/agents/` to the knowledge index with a short description of each role and links to the role files.
+Add `agents/` to the knowledge index with a short description of each role and links to the role files.
 
 Keep this as a discovery aid, not a full lifecycle explanation.
 
-### `scaffold/docs/MAINTENANCE.md`
+### `example/.agents/docs/MAINTENANCE.md`
 
 Add an "Agent roles" section near the knowledge model or file roles section.
 
@@ -53,7 +53,7 @@ Cover:
 - source code changes belong to the coding agent, while learning and lint work should stay inside `.agents/`
 - the handoff boundary is the session bundle under `.agents/sessions/`
 
-### `scaffold/AGENTS.md`
+### `example/.agents/AGENTS.md`
 
 Add a compact pointer under maintenance rules or before submitting changes:
 
@@ -65,7 +65,7 @@ This should stay short so `.agents/AGENTS.md` remains high-signal.
 
 ### Skill descriptions
 
-Update the three scaffold skills so their "Use when" descriptions mention the agent role they support:
+Update the three maintenance skills so their "Use when" descriptions mention the agent role they support:
 
 - `task-closeout` supports the coding agent's closeout handoff
 - `learning-distill` is the learning agent's primary workflow
@@ -75,7 +75,7 @@ Avoid duplicating the full role definitions inside every skill.
 
 ### Optional playbook
 
-Consider adding a compact playbook such as `scaffold/playbooks/agent-role-lifecycle.md` only if the maintenance doc becomes too dense.
+Consider adding a compact playbook such as `example/.agents/playbooks/agent-role-lifecycle.md` only if the maintenance doc becomes too dense.
 
 The playbook should show one normal flow:
 
@@ -88,8 +88,8 @@ Prefer this playbook only if it replaces repeated lifecycle prose elsewhere.
 
 ## Scope
 
-- Update scaffold files first because they are the published template.
-- Mirror updates into `.agents/` only through the existing scaffold sync process if that remains the repo convention.
+- Update `example/.agents/` (via `generate-example` / maintainer workflow) when the change belongs in the published kit snapshot.
+- Update root `.agents/` when the change belongs in every adopter’s portable contract (this repo no longer maintains a separate `scaffold/` sync tree).
 - Keep role guidance concise and procedural.
 - Preserve the existing distinction between temporary session evidence and durable `.agents/` knowledge.
 
@@ -99,13 +99,13 @@ Prefer this playbook only if it replaces repeated lifecycle prose elsewhere.
 - Adding automation for spawning or selecting agents.
 - Changing the session bundle schema.
 - Rewriting the existing role files except for small clarifying links if needed.
-- Adding product-specific examples unrelated to the scaffold lifecycle.
+- Adding product-specific examples unrelated to the kit lifecycle.
 
 ## Open questions
 
-- Should `scaffold/agents/` be indexed as durable knowledge assets, or should the index remain focused only on `.agents/` runtime files?
+- Should `agents/` be indexed as durable knowledge assets, or should the index remain focused only on runtime `.agents/` files that adopters edit most?
 - Should role guidance live entirely in `MAINTENANCE.md`, or should a separate playbook carry the end-to-end lifecycle example?
-- Should the sync skill be updated so future scaffold-to-`.agents` updates explicitly mention agent role docs, or is the existing sync behavior enough?
+- Should `generate-example` (or packaging) be updated so future kit snapshots always include agent role doc links in the index, or is README + INSTALL enough?
 
 ## Success criteria
 

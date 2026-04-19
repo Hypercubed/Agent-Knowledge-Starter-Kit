@@ -1,6 +1,6 @@
 ---
 description: >
-  Extend the distributable kit under scaffold/ with a documented place for tool-agnostic or tool-adjacent agent rules, plus guidance on when distilled learning should land in rules versus AGENTS.md, docs, or playbooks.
+  Extend the distributable kit (published `.agents/` layout, e.g. example/.agents/) with a documented place for tool-agnostic or tool-adjacent agent rules, plus guidance on when distilled learning should land in rules versus AGENTS.md, docs, or playbooks.
 
 
 created: 2026-04-11
@@ -9,7 +9,7 @@ writer: AI
 prompter: Hypercubed
 ---
 
-# Rules in the scaffold
+# Rules in the published kit
 
 ## Goal
 
@@ -17,18 +17,18 @@ Give adopters a clear, portable pattern for **normative agent instructions** tha
 
 ## Scope
 
-- Define where rules live in `scaffold/` (layout, naming, optional index).
+- Define where rules live in the consumer `.agents/` tree (layout, naming, optional index); use `example/.agents/` as the concrete reference once generated.
 - Document the decision boundary: rules vs `AGENTS.md` vs `repo-decisions.md` vs playbooks.
-- Update maintainer sync or docs only as needed after scaffold changes (follow existing dual-tree conventions).
+- Update maintainer docs or `generate-example` only as needed after kit layout changes (follow single-tree conventions in `.agents/docs/repo-decisions.md`).
 
 ## Out of scope (for this plan)
 
 - Changing vendor-specific formats beyond what the README already describes.
-- Implementing scaffold changes in this iteration (per current constraint).
+- Implementing layout changes in this iteration (per current constraint).
 
 ## Success criteria
 
-- A consumer copying `scaffold/` knows where to add rules and how they relate to distillation.
+- A consumer installing or copying the kit knows where to add rules and how they relate to distillation.
 - `learning-distill` (or successor) can classify lessons into the rules location without ambiguity.
 
 ## Notes

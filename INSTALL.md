@@ -19,6 +19,8 @@ Install from `.agents/skills/` and use each skill's `bootstrap/` templates via t
 2. Open each installed skill's `SKILL.md` and run its **Skill initialization** section once before relying on that skill. Initialization is idempotent. Agents should use `cp` to copy missing directories and template files from the skill's `bootstrap/` folder rather than attempting to generate or recreate them from scratch. Do not overwrite existing repo-specific content.
 3. Register `SKILL.md` paths in the user's editor or agent product if required.
 
+Skill **definitions** may live wherever your Skills CLI installs them (including user or global locations). This kit still expects **initialization and ongoing output** (sessions, durable docs, `AGENTS.md` updates from these flows) under the **target repository’s** `.agents/` when work runs in that repo. Register the paths your product resolves; you do not need extra kit-specific steps for a global install unless a product ignores the repo working directory.
+
 **Suggested order when installing multiple skills**
 
 - **Closeout only:** run `task-closeout` initialization. It creates `.agents/sessions/` and session ignore rules; it does not create durable `docs/` or `AGENTS.md` scaffolding.

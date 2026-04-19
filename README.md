@@ -8,7 +8,7 @@ This pattern separates three concerns:
 2. **Durable repo knowledge** lives under `.agents/`.
 3. **Agent roles and skills** live in that same `.agents/` tree and describe how coding, learning, and maintenance workflows run.
 
-Important: in this repository, adoption is skill/bootstrap-first. Install the portable skills under `.agents/skills/` and run each skill's **Skill initialization** once so the repo gains only the folders and template files needed for the installed skills.
+Important: in this repository, adoption is skill/bootstrap-first. Install the kit skills with your Skills CLI and run each skill's **Skill initialization** once so the repo gains only the folders and template files needed for the installed skills. Default `npx skills add` often places skills under `.agents/skills/`; user or global installs are fine too—session bundles and durable knowledge still belong under this repo’s `.agents/`. Details: [INSTALL.md](INSTALL.md#skill-first-install-default).
 
 The goal is to avoid bloating a single `.agents/AGENTS.md` with temporary notes, while still preserving useful lessons from completed work.
 

@@ -27,14 +27,14 @@ The skill should be structured similarly to `task-closeout` and `learning-distil
 
 ### 1. Create the `knowledge-search` skill
 
-- Draft `scaffold/skills/knowledge-search/SKILL.md`.
-- Mirror it to `.agents/skills/knowledge-search/SKILL.md` for maintainer dogfooding.
+- Draft the skill as portable kit content: add `knowledge-search/SKILL.md` under the published skills surface (today: ship via the same mechanism as other kit skills — the plugin’s skill set and the generated `example/.agents/skills/` tree from `generate-example`).
+- Ensure maintainer `.agents/skills/knowledge-search/SKILL.md` exists when the skill is ready so this repo dogfoods it like the other maintenance skills.
 - Add an example or helper script if necessary (though text instructions are usually enough for agentic models).
 
 ### 2. Update architectural docs
 
 - Detail this skill in `docs/architecture.md` and list it among the core tools (`task-closeout`, `knowledge-lint`, `learning-distill`).
-- Update `scaffold/AGENTS.md` to include a line like: *“If you cannot find the answer immediately, use the `knowledge-search` skill before guessing or asking the user.”*
+- Update `example/.agents/AGENTS.md` (and any skill bootstrap `AGENTS.md` fragments) to include a line like: *“If you cannot find the answer immediately, use the `knowledge-search` skill before guessing or asking the user.”*
 
 ### 3. Verification pass
 
@@ -44,6 +44,6 @@ The skill should be structured similarly to `task-closeout` and `learning-distil
 
 ## Definition of Done
 
-- `scaffold/skills/knowledge-search/SKILL.md` exists.
+- `example/.agents/skills/knowledge-search/SKILL.md` exists after `generate-example` (or equivalent published kit path), and the source-of-truth skill lives with other kit skills for packaging.
 - The root `README.md` and `docs/architecture.md` list `knowledge-search` as a standard kit skill.
 - The interaction pattern relies purely on standard agent utilities (grep/read) and does not require third-party vector databases.

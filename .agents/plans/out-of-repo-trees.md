@@ -25,13 +25,19 @@ Let teams and individuals use **secondary roots** (such as `~/.agents/` or a man
 ## Out of scope (for this plan)
 
 - Implementing tool-specific wiring for every editor (link patterns only).
-- Changing scaffold in this iteration.
+- Changing the generated `example/` kit layout in this iteration (unless a tiny doc-only pointer is needed).
 
 ## Success criteria
 
-- README or `scaffold/docs/` gives a single authoritative section adopters can copy.
+- README, `INSTALL.md`, or `docs/` gives a single authoritative section adopters can copy (the repository no longer ships a parallel `scaffold/` tree; use root docs and `example/.agents/docs/` only if the guidance belongs in the copied kit).
 - Skills or agents that should “read repo first, overlay second” can cite one short paragraph.
 
 ## Notes
 
 - Align with portable kit philosophy: in-repo `.agents/` remains canonical for the project; overlays are optional and product-specific registration stays the adopter’s responsibility.
+
+## Global skill installs vs overlay trees
+
+This plan is about optional **knowledge overlays** (extra markdown trees such as a personal `~/.agents/`), not about where the Skills CLI stores skill **definitions**. The Skills CLI (for example `npx skills add`) may install skills under a user or global path depending on the product and flags; that is separate from the compiled repo layer under the project.
+
+For this kit, durable output and session bundles should remain under the **repository’s** `.agents/` when work runs in that repo. `task-closeout`, `learning-distill`, and `knowledge-lint` are written to use `./.agents/` relative to the project. No extra instructions are required for global skill installs as long as the agent uses the repo as the working directory and those paths are honored. Add troubleshooting only if a specific product is observed writing kit output outside the repo.

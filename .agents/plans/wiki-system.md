@@ -129,7 +129,7 @@ lint detects drift → small: fix inline | significant: emit wiki plan → recon
 | `.agents/skills/task-closeout/SKILL.md` | Add `wiki_candidates` field to session bundle. Separate from skill/playbook candidates. Captures declarative notes, decisions, system observations. |
 | `.agents/skills/learning-distill/SKILL.md` | Add wiki as distillation target. Add classification logic: descriptive → wiki, prescriptive → skills/playbooks. Add multi-session reconciliation mode. Add linking guidance between wiki and skills/playbooks. |
 | `.agents/skills/knowledge-lint/SKILL.md` | Add semantic lint pass: verify `code_refs` against codebase. Small drift → fix inline. Significant drift → emit wiki plan. |
-| `.agents/docs/architecture.md` | Update lifecycle diagram to include wiki. Update distillation rules. Document wiki plan as a plan type. |
+| `docs/architecture.md` (this repo) or `.agents/docs/architecture.md` (consumer tree) | Update lifecycle diagram to include wiki. Update distillation rules. Document wiki plan as a plan type. |
 | `.agents/docs/index.md` | Register wiki in knowledge asset catalog. |
 | `.agents/agents/learning-agent.md` | Add reconciliation agent role. Document multi-session reconciliation invocation. |
 
@@ -262,6 +262,6 @@ Wiki plans skip implementation — they re-enter the cycle at the distill step.
 
 ## Open Questions
 
-1. Should wiki plans live in `.agents/plans/` (a new directory) or alongside session bundles in `.agents/sessions/`? Plans feel more durable than sessions but less permanent than `docs/`.
+1. **Where should wiki plans live?** Maintainer initiative plans already use `.agents/plans/`. Wiki-specific plan files can use the same directory with frontmatter `type: wiki-plan`, or a subfolder such as `.agents/plans/wiki/` if volume grows. Do not park durable plans under `.agents/sessions/`.
 2. Should `repo-decisions.md` and `troubleshooting.md` be formally deprecated in favor of wiki entries, or kept as summaries that link into the wiki?
 3. What is the right conflict resolution policy for multi-session reconciliation — last-write-wins, flag for review, or something else?
