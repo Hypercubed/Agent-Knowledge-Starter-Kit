@@ -16,13 +16,13 @@ This file belongs in `.agents/docs/`, alongside `.agents/AGENTS.md`.
 
 Compact, high-signal operational guidance.
 
-### `.agents/docs/repo-decisions.md`
+### `.agents/docs/repo-decisions/`
 
-Durable rationale, tradeoffs, and architectural choices.
+Durable rationale, tradeoffs, and architectural choices. Each decision is a markdown file; [index.md](repo-decisions/index.md) lists them.
 
-### `.agents/docs/troubleshooting.md`
+### `.agents/docs/troubleshooting/`
 
-Recurring issue patterns, causes, fixes, and validations.
+Recurring issue patterns, causes, fixes, and validations. Each pattern is a markdown file; [index.md](troubleshooting/index.md) lists them.
 
 ### `.agents/playbooks/`
 
@@ -48,17 +48,17 @@ Do not use for long rationale, task history, or low-confidence guesses.
 
 Example: "Run `npm test` after changing parser fixtures."
 
-### `.agents/docs/troubleshooting.md`
+### `.agents/docs/troubleshooting/`
 
-Use for recurring symptoms, likely causes, known fixes, and validation steps.
+Use for recurring symptoms, likely causes, known fixes, and validation steps (add or edit a file under this directory).
 
 Do not use for architectural rationale or one-time command failures.
 
 Example: "Symptom: JSON editor fails to load. Fix: verify Monaco JSON worker wiring."
 
-### `.agents/docs/repo-decisions.md`
+### `.agents/docs/repo-decisions/`
 
-Use for durable rationale, tradeoffs, exceptions, and why a convention exists.
+Use for durable rationale, tradeoffs, exceptions, and why a convention exists (add or edit a file under this directory).
 
 Do not use for step-by-step procedures or incident logs.
 

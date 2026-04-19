@@ -20,7 +20,7 @@ It should not contain:
 - speculative notes
 - one-off debugging details
 
-Those belong in `.agents/sessions/` bundles, `.agents/docs/troubleshooting.md`, `.agents/playbooks/`, or `.agents/docs/repo-decisions.md`.
+Those belong in `.agents/sessions/` bundles, `.agents/docs/troubleshooting/`, `.agents/playbooks/`, or `.agents/docs/repo-decisions/`.
 
 ### 3. Distillation should be a separate role
 
@@ -48,8 +48,12 @@ Future agents should consult the compiled `.agents/` layer first, not rediscover
     │   ├── MAINTENANCE.md
     │   ├── index.md
     │   ├── log.md
-    │   ├── repo-decisions.md
-    │   └── troubleshooting.md
+    │   ├── repo-decisions/
+    │   │   ├── index.md
+    │   │   └── …
+    │   └── troubleshooting/
+    │       ├── index.md
+    │       └── …
     ├── playbooks/
     │   └── README.md
     ├── agents/
@@ -186,9 +190,9 @@ Put here:
 - recurring high-confidence pitfalls
 - short checklists
 
-### `.agents/docs/repo-decisions.md`
+### `.agents/docs/repo-decisions/`
 
-Durable rationale and architectural choices.
+Durable rationale and architectural choices (one markdown file per decision; see `index.md` in that directory).
 
 Put here:
 
@@ -196,9 +200,9 @@ Put here:
 - tradeoffs and exceptions
 - decisions that may need explanation later
 
-### `.agents/docs/troubleshooting.md`
+### `.agents/docs/troubleshooting/`
 
-Recurring failure and recovery patterns.
+Recurring failure and recovery patterns (one markdown file per pattern; see `index.md` in that directory).
 
 Put here:
 
@@ -246,7 +250,7 @@ The schema and policy document for the knowledge layer.
 
 ```mermaid
 flowchart TD
-    A[Start coding task] --> C[Read durable knowledge first<br/>.agents/AGENTS.md<br/>.agents/docs/index.md<br/>playbooks / troubleshooting]
+    A[Start coding task] --> C[Read durable knowledge first<br/>.agents/AGENTS.md<br/>.agents/docs/index.md<br/>playbooks / troubleshooting/]
     C --> B[Coding agent does implementation work]
     B --> D{Meaningful stopping point?<br/>complete / blocked / abandoned}
     D -- No --> B
@@ -276,8 +280,8 @@ flowchart TD
     M --> M5[Playbook]
 
     M2 --> N1[Update .agents/AGENTS.md<br/>only if broad, stable, concise, actionable]
-    M3 --> N2[Update .agents/docs/troubleshooting.md]
-    M4 --> N3[Update .agents/docs/repo-decisions.md]
+    M3 --> N2[Update .agents/docs/troubleshooting/]
+    M4 --> N3[Update .agents/docs/repo-decisions/]
     M5 --> N4[Update .agents/playbooks/*]
 
     N1 --> O[Update .agents/docs/index.md if structure changed]
@@ -317,7 +321,7 @@ A candidate lesson belongs in `.agents/AGENTS.md` only if it is:
 
 Otherwise it probably belongs in:
 
-- `.agents/docs/repo-decisions.md`
-- `.agents/docs/troubleshooting.md`
+- `.agents/docs/repo-decisions/`
+- `.agents/docs/troubleshooting/`
 - `.agents/playbooks/`
 - nowhere at all

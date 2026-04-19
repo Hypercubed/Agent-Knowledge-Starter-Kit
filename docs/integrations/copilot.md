@@ -68,7 +68,7 @@ A root `.copilot-instructions.md` file is sometimes mentioned as a fallback, but
 This workflow shows Copilot Chat and Claude Code working on the same repo with the kit:
 
 1. **Start in Copilot Chat** with a bug report or feature request.
-2. **Copilot reads** `.github/copilot-instructions.md` → routes to `.agents/AGENTS.md` and `.agents/docs/troubleshooting.md`.
+2. **Copilot reads** `.github/copilot-instructions.md` → routes to `.agents/AGENTS.md` and `.agents/docs/troubleshooting/` (see index there).
 3. **Copilot suggests** changes and implementation strategy in chat.
 4. **Hand off to Claude Code** by switching to the Claude Code editor or pasting context.
 5. **Claude Code reads** root `CLAUDE.md` (separate from Copilot instructions) → routes to same `.agents/` files.
@@ -83,4 +83,4 @@ Both agents converge on the same `.agents/` tree, keeping knowledge centralized 
 - [`README.md`](../../README.md)
 - [`INSTALL.md`](../../INSTALL.md)
 - [Integration Patterns](./patterns.md)
-- [`.agents/docs/troubleshooting.md`](../../.agents/docs/troubleshooting.md) — see "GitHub Copilot Chat context not in focus" for context visibility troubleshooting
+- [`.agents/docs/troubleshooting/`](../../.agents/docs/troubleshooting/github-copilot-chat-context-not-in-focus.md) — Copilot Chat context visibility

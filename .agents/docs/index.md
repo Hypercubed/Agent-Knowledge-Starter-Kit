@@ -6,13 +6,13 @@ This file belongs in `.agents/docs/`.
 
 Compact instructions for future agents. Consult first for repo-wide operational guidance.
 
-## `.agents/docs/repo-decisions.md`
+## `.agents/docs/repo-decisions/`
 
-Durable rationale, tradeoffs, and architectural choices. Consult when a rule needs explanation.
+Durable rationale, tradeoffs, and architectural choices (one markdown file per decision). Consult [index.md](repo-decisions/index.md) when a rule needs explanation.
 
-## `.agents/docs/troubleshooting.md`
+## `.agents/docs/troubleshooting/`
 
-Recurring issue patterns, causes, fixes, and validation steps. Consult when debugging known classes of problems.
+Recurring issue patterns, causes, fixes, and validation steps (one markdown file per pattern). Consult [index.md](troubleshooting/index.md) when debugging known classes of problems.
 
 ## `.agents/playbooks/`
 

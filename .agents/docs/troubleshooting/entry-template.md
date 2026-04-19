@@ -1,10 +1,10 @@
-# Troubleshooting
+---
+id: entry-template
+title: "Entry template"
+last_updated: 2026-04-19
+---
 
-This template belongs in `.agents/docs/troubleshooting.md`.
-
-Use this file for recurring issue patterns and validated recoveries.
-
-## Entry template
+# Entry template
 
 ### Symptom
 

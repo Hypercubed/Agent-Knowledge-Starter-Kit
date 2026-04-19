@@ -1,5 +1,9 @@
 # Knowledge Maintenance Log
 
+### \[2026-04-19] maintenance | knowledge-layout-v2-phase0
+
+Outcome: migrated Files: `.agents/docs/repo-decisions/` (new directory, per-decision markdown + indexes); `.agents/docs/troubleshooting/` (new directory, per-pattern markdown + indexes); removed `.agents/docs/repo-decisions.md` and `.agents/docs/troubleshooting.md`; `.agents/docs/index.md`; `.agents/docs/MAINTENANCE.md`; `README.md`; `INSTALL.md`; `docs/architecture.md`; `.agents/AGENTS.md`; `.agents/skills/learning-distill/` (SKILL + bootstrap); `.agents/skills/knowledge-lint/` (SKILL + bootstrap); `.agents/skills/generate-example/run.sh`; selected `.agents/plans/*.md`; regenerated `example/` Accepted: — Rejected: — Notes: Knowledge layout v2 — minimal frontmatter (`id`, `title`, `last_updated`) on each entry file; historical log lines above unchanged.
+
 ### \[2026-04-19] learning-distill | t-20260419-151439-learning-distill-discovery-failure
 
 Outcome: updated Files: `.agents/docs/troubleshooting.md`; `.agents/docs/log.md`; `.agents/sessions/20260419-151439-learning-distill-discovery-failure/summary.json` Accepted: 1 (added troubleshooting note for structure-aware session discovery to avoid missing undistilled bundles) Rejected: 3 (no AGENTS.md rule, repo decision, or playbook change warranted for what is essentially operational tool usage failure) Notes: Distilled learning-distill discovery failure session; added a troubleshooting entry on how to correctly enumerate session bundles before concluding the directory is empty.

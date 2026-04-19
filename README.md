@@ -2,6 +2,8 @@
 
 A shareable, tool-agnostic starter kit for maintaining a compiled repo knowledge layer for coding agents.
 
+**Knowledge layout v2:** durable decisions and troubleshooting patterns live as separate markdown files under `.agents/docs/repo-decisions/` and `.agents/docs/troubleshooting/` (each with its own `index.md`), not as single monolithic files.
+
 This pattern separates three concerns:
 
 1. **Temporary session outputs** live inside the repo under `.agents/sessions/`, with one folder per task-closeout bundle.
@@ -66,7 +68,7 @@ Follow [INSTALL.md](INSTALL.md). Run `npx skills add Hypercubed/Agent-Knowledge-
 Use the kit as a lightweight maintenance loop around normal agent work:
 
 1. **Start with the repo knowledge layer.** Keep a short root `AGENTS.md` or tool rule that points agents to `.agents/AGENTS.md` and `.agents/docs/index.md`. Put durable repo policy in `.agents/`, not in each tool's native config.
-2. **Do the implementation work normally.** Have the coding agent read the relevant durable guidance, use playbooks or troubleshooting docs when needed, and keep tool-specific prompts as thin wiring.
+2. **Do the implementation work normally.** Have the coding agent read the relevant durable guidance, use playbooks or files under `.agents/docs/troubleshooting/` when needed, and keep tool-specific prompts as thin wiring.
 3. **Close meaningful tasks with `task-closeout`.** At completion, blockage, or abandonment, invoke the repo-local `task-closeout` skill. It should write raw evidence and a structured bundle under `.agents/sessions/<folder>/`, which is usually gitignored. The canonical task/session identifier is the `task_id` field inside that bundle's `summary.json`; the folder name is only a sortable storage label.
 4. **Promote durable lessons with `learning-distill`.** After closeout, run a separate learning pass with `learning-distill`. Pass the session bundle path and use the `task_id` field in `summary.json` when referring to the task. Promote only stable, reusable lessons into `.agents/AGENTS.md`, `.agents/docs/`, or `.agents/playbooks/`; leave one-off task history in `.agents/sessions/`.
 5. **Keep the knowledge layer clean with `knowledge-lint`.** Periodically invoke `knowledge-lint` to find duplicate, stale, contradictory, oversized, or uncategorized guidance before the layer becomes noisy.
@@ -82,8 +84,8 @@ flowchart LR
 
     E -->|ephemeral| F[Keep in session bundle]
     E -->|agent guidance| G[.agents/AGENTS.md]
-    E -->|troubleshooting| H[.agents/docs/troubleshooting.md]
-    E -->|repo decision| I[.agents/docs/repo-decisions.md]
+    E -->|troubleshooting| H[.agents/docs/troubleshooting/]
+    E -->|repo decision| I[.agents/docs/repo-decisions/]
     E -->|playbook| J[.agents/playbooks/*]
 
     G --> K[index.md + log.md]
@@ -111,7 +113,7 @@ Use this checklist:
 3. Add the portable maintenance skills if they are not already present: `task-closeout`, `learning-distill`, and `knowledge-lint`.
 4. Merge `.agents/AGENTS.md` by hand so stable repo guidance stays concise and temporary history stays out.
 5. Confirm session ignore rules. Prefer the kit default in `.agents/.gitignore`: `sessions/*` and `!sessions/README.md`. Use repo-root `.gitignore` patterns only as an alternative: `.agents/sessions/*` and `!.agents/sessions/README.md`.
-6. Record the adoption in `.agents/docs/log.md` and any durable rationale in `.agents/docs/repo-decisions.md`.
+6. Record the adoption in `.agents/docs/log.md` and any durable rationale in a new or existing file under `.agents/docs/repo-decisions/` (update `repo-decisions/index.md` when adding a decision).
 7. Update `.agents/docs/index.md` so pre-existing repo-specific `rules/`, `playbooks/`, and `skills/` are discoverable.
 
 If both root `AGENTS.md` and `.agents/AGENTS.md` exist, treat root `AGENTS.md` as the agent entrypoint for that checkout and `.agents/AGENTS.md` as the portable knowledge-layer file. Keep one source of truth for each instruction: root `AGENTS.md` should point agents into `.agents/` or contain only bootstrap guidance, while durable repo conventions live in `.agents/AGENTS.md`.

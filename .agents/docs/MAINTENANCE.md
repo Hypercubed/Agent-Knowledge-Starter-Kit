@@ -10,19 +10,21 @@ This file belongs in `.agents/docs/`, alongside `.agents/AGENTS.md`.
 - Files in `.agents/` are synthesized durable knowledge.
 - Durable knowledge should be incremental, concise, and reviewable.
 
+**Layout v2:** Architectural decisions live under `.agents/docs/repo-decisions/` (one file per decision plus `index.md`). Troubleshooting patterns live under `.agents/docs/troubleshooting/` (one file per pattern plus `index.md`). Each entry file carries minimal YAML frontmatter (`id`, `title`, `last_updated`).
+
 ## File roles
 
 ### `.agents/AGENTS.md`
 
 Compact, high-signal operational guidance.
 
-### `.agents/docs/repo-decisions.md`
+### `.agents/docs/repo-decisions/`
 
-Durable rationale, tradeoffs, and architectural choices.
+Durable rationale, tradeoffs, and architectural choices. Each decision is a markdown file; [index.md](repo-decisions/index.md) lists them.
 
-### `.agents/docs/troubleshooting.md`
+### `.agents/docs/troubleshooting/`
 
-Recurring issue patterns, causes, fixes, and validations.
+Recurring issue patterns, causes, fixes, and validations. Each pattern is a markdown file; [index.md](troubleshooting/index.md) lists them.
 
 ### `.agents/playbooks/`
 

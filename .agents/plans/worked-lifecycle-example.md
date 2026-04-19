@@ -32,8 +32,8 @@ Do not implement this example in the current review-follow-up batch. The reposit
 - Show the canonical identity model using the `task_id` field inside `summary.json`.
 - Show classification destinations for at least:
   - `.agents/AGENTS.md`
-  - `.agents/docs/troubleshooting.md`
-  - `.agents/docs/repo-decisions.md`
+  - `.agents/docs/troubleshooting/`
+  - `.agents/docs/repo-decisions/`
   - `.agents/playbooks/`
   - `.agents/docs/log.md`
 - Keep the example compact enough that it helps adoption without becoming a tutorial.

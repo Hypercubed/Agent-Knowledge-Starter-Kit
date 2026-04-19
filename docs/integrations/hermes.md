@@ -44,4 +44,4 @@ Based on behavior verified while working in this repo, including failure modes c
 - [`README.md`](../../README.md)
 - [`INSTALL.md`](../../INSTALL.md)
 - [Integration Patterns](./patterns.md)
-- [`../../.agents/docs/troubleshooting.md`](../../.agents/docs/troubleshooting.md)
+- [`../../.agents/docs/troubleshooting/`](../../.agents/docs/troubleshooting/index.md)

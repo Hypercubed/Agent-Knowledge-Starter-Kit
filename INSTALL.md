@@ -61,7 +61,7 @@ Use this merge checklist:
 5. Prefer the kit default `.agents/.gitignore` patterns: `sessions/*` and `!sessions/README.md`.
 6. Use repo-root `.gitignore` session patterns only if the repo intentionally does not track `.agents/.gitignore`: `.agents/sessions/*` and `!.agents/sessions/README.md`.
 7. Record the adoption in `.agents/docs/log.md`.
-8. Record durable rationale or local policy choices in `.agents/docs/repo-decisions.md`.
+8. Record durable rationale or local policy choices in a new or existing file under `.agents/docs/repo-decisions/` (update `repo-decisions/index.md` when adding a decision).
 9. Update `.agents/docs/index.md` so pre-existing repo-specific `rules/`, `playbooks/`, and `skills/` are discoverable.
 
 ## Root `AGENTS.md` Relationship

@@ -13,7 +13,7 @@ prompter: Hypercubed
 
 ## Repository context (2026-04)
 
-The repository removed the parallel `scaffold/` tree in favor of a **single-tree** layout: canonical portable content is maintained under root `.agents/`, and an optional **generated** full kit lives under `example/.agents/` (see `.agents/docs/repo-decisions.md`). This plan’s original title referred to “scaffold”; mentally substitute “published kit copy” wherever that made sense historically.
+The repository removed the parallel `scaffold/` tree in favor of a **single-tree** layout: canonical portable content is maintained under root `.agents/`, and an optional **generated** full kit lives under `example/.agents/` (see `.agents/docs/repo-decisions/`). This plan’s original title referred to “scaffold”; mentally substitute “published kit copy” wherever that made sense historically.
 
 ## Goal
 

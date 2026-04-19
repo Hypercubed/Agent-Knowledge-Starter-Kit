@@ -64,8 +64,8 @@ AGENTS.md
 docs/MAINTENANCE.md
 docs/index.md
 docs/log.md
-docs/repo-decisions.md
-docs/troubleshooting.md
+docs/repo-decisions/index.md
+docs/troubleshooting/index.md
 agents/coding-agent.md
 agents/learning-agent.md
 agents/lint-agent.md

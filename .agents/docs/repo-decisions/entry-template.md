@@ -1,10 +1,10 @@
-# Repository Decisions
+---
+id: entry-template
+title: "Entry template"
+last_updated: 2026-04-19
+---
 
-This template belongs in `.agents/docs/repo-decisions.md`.
-
-Use this file for durable rationale and architectural choices.
-
-## Entry template
+# Entry template
 
 ### Decision
 
