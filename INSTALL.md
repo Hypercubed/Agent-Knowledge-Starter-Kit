@@ -46,7 +46,7 @@ If the target repo has no `.agents/` directory:
 4. Keep `.agents/.gitignore` tracked when the repo uses it; its `sessions/*` rules are sufficient for normal Git usage. If `.agents/` is not tracked, add equivalent session ignore rules at the repo root (see [Skill-first install](#skill-first-install-default)).
 5. Edit `.agents/AGENTS.md` with the repo's build, test, architecture, and workflow guidance (or start from the template created by skill initialization).
 6. Register `.agents/skills/*/SKILL.md` and `.agents/agents/*.md` in the user's editor or agent product, if required.
-7. Record the adoption in `.agents/docs/log.md`.
+7. Optional audit trail: append a minimal adoption note to `.agents/docs/log.md` only if your team uses that file as a maintenance log (see `.agents/docs/MAINTENANCE.md`, Logging policy). Agents should not add `log.md` rows by default after a routine install.
 
 ## Existing `.agents/` Install
 
@@ -56,13 +56,12 @@ Use this merge checklist:
 
 1. Preserve existing repo-specific `rules/`, `playbooks/`, and `skills/`.
 2. Add missing starter-kit skills with `npx skills add Hypercubed/Agent-Knowledge-Starter-Kit` (or from `.agents/skills/`) and run each installed skill's initialization.
-
-4. Merge `.agents/AGENTS.md` by hand. Keep stable repo guidance concise; do not add session history or long rationale.
-5. Prefer the kit default `.agents/.gitignore` patterns: `sessions/*` and `!sessions/README.md`.
-6. Use repo-root `.gitignore` session patterns only if the repo intentionally does not track `.agents/.gitignore`: `.agents/sessions/*` and `!.agents/sessions/README.md`.
-7. Record the adoption in `.agents/docs/log.md`.
-8. Record durable rationale or local policy choices in a new or existing file under `.agents/docs/repo-decisions/` (update `repo-decisions/index.md` when adding a decision).
-9. Update `.agents/docs/index.md` so pre-existing repo-specific `rules/`, `playbooks/`, and `skills/` are discoverable.
+3. Merge `.agents/AGENTS.md` by hand. Keep stable repo guidance concise; do not add session history or long rationale.
+4. Prefer the kit default `.agents/.gitignore` patterns: `sessions/*` and `!sessions/README.md`.
+5. Use repo-root `.gitignore` session patterns only if the repo intentionally does not track `.agents/.gitignore`: `.agents/sessions/*` and `!.agents/sessions/README.md`.
+6. Optional audit trail: append a minimal adoption note to `.agents/docs/log.md` only if your team uses that file as a maintenance log (see `.agents/docs/MAINTENANCE.md`, Logging policy). Agents should not add `log.md` rows by default after a routine merge.
+7. Record durable rationale or local policy choices in a new or existing file under `.agents/docs/repo-decisions/` (update `repo-decisions/index.md` when adding a decision).
+8. Update `.agents/docs/index.md` so pre-existing repo-specific `rules/`, `playbooks/`, and `skills/` are discoverable.
 
 ## Root `AGENTS.md` Relationship
 

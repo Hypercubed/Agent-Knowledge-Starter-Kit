@@ -29,7 +29,7 @@ Run this once per target repo after the skill files are present under `.agents/s
 4. Ensure `.agents/docs/` exists. For each of `index.md`, `MAINTENANCE.md`, and `log.md`, if the file is missing under `.agents/docs/`, copy the matching file from `bootstrap/docs/` in this skill folder. If `.agents/docs/repo-decisions/index.md` or `.agents/docs/troubleshooting/index.md` is missing, copy the entire contents of `bootstrap/docs/repo-decisions/` and `bootstrap/docs/troubleshooting/` respectively, creating only files that do not already exist (do not overwrite). If a file already exists, do not overwrite it.
 5. If `.agents/AGENTS.md` is missing, copy `bootstrap/AGENTS.md` from this skill folder into place. If it already exists, do not overwrite it.
 
-If `.agents/sessions/` or `.agents/.gitignore` session rules are missing, prefer running `task-closeout` initialization (sessions + ignore rules) or `learning-distill` initialization (broader `.agents/` scaffold including sessions).
+If `.agents/sessions/` or `.agents/.gitignore` session rules are missing, prefer running `task-closeout` initialization (sessions + ignore rules) or `learning-distill` initialization (broader `.agents/` bootstrap layout including sessions).
 
 ## Checks
 
@@ -39,10 +39,11 @@ If `.agents/sessions/` or `.agents/.gitignore` session rules are missing, prefer
 - oversized AGENTS sections
 - missing index coverage in `.agents/docs/index.md` for durable assets
 - broken links in indexes and cross-links between docs
-- `repo-decisions/index.md` and `troubleshooting/index.md` list only files that exist; each entry file has frontmatter `id` matching its filename slug where applicable
+- `repo-decisions/index.md` and `troubleshooting/index.md` list only files that exist; each entry file has frontmatter `id` aligned with its filename slug where applicable, and **`id` values are unique across both directories** (not only within one)
 - troubleshooting entries that should be decisions or playbooks
 - decisions that should be compressed into AGENTS guidance
 - uncategorized knowledge (content with no clear home in AGENTS, a decision file, troubleshooting file, or playbook)
+- **Mechanical path hygiene (especially after migrations or Replace All):** from the repository root, run `rg -n '\\.agents/\\.agents' .agents README.md INSTALL.md docs` (or equivalent). Hits usually mean a bad global replace or copy/paste error. This skill does **not** execute `rg` for you; `scripts/check-publish.sh` includes a blocking check when `rg` is available.
 
 ## Output
 
@@ -50,7 +51,8 @@ Produce:
 
 - a lint report
 - optional minimal edits
-- a log entry in `.agents/docs/log.md`
+
+Do **not** append to `.agents/docs/log.md` as part of this skill unless the user explicitly asked for a log entry. Distillation logging belongs to **learning-distill**; see `.agents/docs/MAINTENANCE.md` (Logging policy).
 
 ## Constraints
 

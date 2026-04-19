@@ -75,7 +75,7 @@ Classify each candidate lesson as one of:
 5. Classify each lesson.
 6. Draft minimal updates to the appropriate file or files.
 7. Update `.agents/docs/index.md` if durable knowledge structure changed.
-8. Append a concise, non-sensitive entry to `.agents/docs/log.md`.
+8. Append a concise, non-sensitive entry to `.agents/docs/log.md` (distillation is the routine workflow that updates this file; see `.agents/docs/MAINTENANCE.md` Logging policy).
 9. Mark the session bundle as distilled.
 
 ## Constraints

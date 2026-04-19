@@ -35,6 +35,7 @@ This file contains concise, high-signal instructions for future agents working i
 - Move recurring failure details into a new or existing file under `.agents/docs/troubleshooting/` (update `troubleshooting/index.md` when adding a pattern).
 - Move multi-step procedures to `.agents/playbooks/` (sibling of `.agents/docs/`, not inside it).
 - Keep temporary task artifacts in `.agents/sessions/`, not in durable knowledge files.
+- Do not append to `.agents/docs/log.md` except when running **learning-distill** after a session bundle, or when the user explicitly asks you to record there.
 
 ## Placeholder sections
 

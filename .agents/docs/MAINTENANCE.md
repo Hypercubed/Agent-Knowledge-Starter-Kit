@@ -11,6 +11,14 @@ This file belongs in `.agents/docs/`, alongside `.agents/AGENTS.md`.
 - Durable knowledge should be incremental, concise, and reviewable.
 - Architectural decisions live under `.agents/docs/repo-decisions/` (one file per decision plus `index.md`). Troubleshooting patterns live under `.agents/docs/troubleshooting/` (one file per pattern plus `index.md`). Each entry file carries minimal YAML frontmatter (`id`, `title`, `last_updated`).
 
+## Entry shape
+
+When adding a new markdown file under `repo-decisions/` or `troubleshooting/`, follow the frontmatter and body headings used by existing entries in that folder. Required YAML keys: `id`, `title`, `last_updated`. Use a stable `id` aligned with the filename slug; it must be **unique across both** `repo-decisions/` and `troubleshooting/` (not only within one folder).
+
+**Repository decisions** typically use body sections: `### Decision`, `### Status` (Accepted | superseded | provisional), `### Context`, `### Rationale`, `### Consequences`.
+
+**Troubleshooting** typically uses: `#### Symptom`, `#### Likely causes`, `#### Fix`, `#### Validation`.
+
 ## File roles
 
 ### `.agents/AGENTS.md`
@@ -63,7 +71,9 @@ Use one session folder per task-closeout bundle and name folders with a sortable
 
 ## Logging policy
 
-Each successful distillation should append a concise entry to `.agents/docs/log.md`.
+**Who may edit:** In general, do not append to `.agents/docs/log.md` unless the user explicitly instructs you to, or you are executing the **learning-distill** workflow after distilling a session bundle. Periodic **knowledge-lint** passes and other routine edits do **not** get a log row by default.
+
+Each successful **learning-distill** run should append a concise entry to `.agents/docs/log.md`.
 
 Treat `.agents/docs/log.md` as a **minimal maintenance audit trail**, not a narrative summary.
 

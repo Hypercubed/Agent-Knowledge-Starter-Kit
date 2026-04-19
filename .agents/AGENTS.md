@@ -2,7 +2,7 @@
 
 Consult this file first for repo-wide operational guidance.
 
-This file is template content for `.agents/AGENTS.md`.
+This file is template content for `.agents/AGENTS.md`. The **This repository (agent-knowledge-starter)** section below applies only to this starter repository (dogfood), not to generic consumer installs.
 
 ## Disclaimer
 
@@ -37,11 +37,13 @@ This file contains concise, high-signal instructions for future agents working i
 - Move recurring failure details into a new or existing file under `.agents/docs/troubleshooting/` (update `troubleshooting/index.md` when adding a pattern).
 - Move multi-step procedures to `.agents/playbooks/` (sibling of `.agents/docs/`, not inside it).
 - Keep temporary task artifacts in `.agents/sessions/`, not in durable knowledge files.
+- Do not append to `.agents/docs/log.md` except when running **learning-distill** after a session bundle, or when the user explicitly asks you to record there.
 
 ## This repository (agent-knowledge-starter)
 
 - **Skills:** Add portable kit skills under `.agents/skills/`. Maintainer-only skills should include `internal: true` in their metadata.
 - Treat per-task bundle subfolders under `.agents/sessions/` as gitignored working memory unless deliberately force-added; a tracked `.agents/sessions/README.md` may exist per kit layout.
+- **Maintainer requests vs durable knowledge:** If the maintainer asks for a change that appears inconsistent with existing kit guidance (this file, `.agents/docs/` including `repo-decisions/` and `troubleshooting/`, playbooks, or root `docs/` that define the kit), say so plainly, point to the conflicting sources, and ask follow-up questions as needed. Do not ignore the tension or silently contradict established guidance unless they explicitly choose to supersede or replace it.
 
 ## Placeholder sections
 

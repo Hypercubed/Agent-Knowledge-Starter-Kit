@@ -6,12 +6,11 @@ last_updated: 2026-04-19
 
 # Repository decisions
 
-One file per durable architectural or policy decision. Use [entry-template.md](entry-template.md) when adding a new decision.
+One file per durable architectural or policy decision. New entries: follow [Entry shape](../MAINTENANCE.md#entry-shape) in `MAINTENANCE.md`, then add a row below.
 
 ## Index
 
 - [Agents do not stage or commit changes](agents-do-not-stage-or-commit-changes.md)
-- [Entry template](entry-template.md)
 - [GitHub Copilot as Rules-Based IDE Wiring tool](github-copilot-as-rules-based-ide-wiring-tool.md)
 - [Integration guides belong in `docs/integrations/`, not `.agents/`](integration-guides-belong-in-docs-integrations-not-agents.md)
 - [Kit installation guidance lives in root docs](kit-installation-guidance-lives-in-root-docs.md)

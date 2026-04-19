@@ -39,7 +39,7 @@ If `.agents/sessions/` or `.agents/.gitignore` session rules are missing, prefer
 - oversized AGENTS sections
 - missing index coverage in `.agents/docs/index.md` for durable assets
 - broken links in indexes and cross-links between docs
-- `repo-decisions/index.md` and `troubleshooting/index.md` list only files that exist; each entry file has frontmatter `id` matching its filename slug where applicable
+- `repo-decisions/index.md` and `troubleshooting/index.md` list only files that exist; each entry file has frontmatter `id` aligned with its filename slug where applicable, and **`id` values are unique across both directories** (not only within one)
 - troubleshooting entries that should be decisions or playbooks
 - decisions that should be compressed into AGENTS guidance
 - uncategorized knowledge (content with no clear home in AGENTS, a decision file, troubleshooting file, or playbook)
@@ -51,7 +51,8 @@ Produce:
 
 - a lint report
 - optional minimal edits
-- a log entry in `.agents/docs/log.md`
+
+Do **not** append to `.agents/docs/log.md` as part of this skill unless the user explicitly asked for a log entry. Distillation logging belongs to **learning-distill**; see `.agents/docs/MAINTENANCE.md` (Logging policy).
 
 ## Constraints
 
