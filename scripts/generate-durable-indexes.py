@@ -1,19 +1,19 @@
 #!/usr/bin/env python3
 """
-Regenerate decisions/ and troubleshooting/ index.md files from durable-entry YAML
-frontmatter (see .agents/docs/MAINTENANCE.md).
+Regenerate index.md in durable-knowledge folders from sibling entry YAML frontmatter.
+
+Default behavior matches this kit: updates `.agents/docs/decisions/index.md` and
+`.agents/docs/troubleshooting/index.md` (see `.agents/docs/MAINTENANCE.md`).
 
 Requirements:
   - Python 3.9+
   - PyYAML (`pip install pyyaml` or your distro package)
 
-Default roots:
-  - .agents/docs/decisions
-  - .agents/docs/troubleshooting
-
 Usage:
   python3 scripts/generate-durable-indexes.py
   python3 scripts/generate-durable-indexes.py --agents-root path/to/.agents
+  python3 scripts/generate-durable-indexes.py --target .agents/docs/decisions
+  python3 scripts/generate-durable-indexes.py -t foo/bar -t other/baz
 """
 
 from __future__ import annotations
@@ -37,6 +37,18 @@ except ImportError:  # pragma: no cover
 
 
 _SLUG_RE = re.compile(r"^[a-z0-9_-]+$")
+
+DECISIONS_BLURB = (
+    "One file per durable architectural or policy decision. New entries: "
+    "follow [Entry shape](../MAINTENANCE.md#entry-shape) in `MAINTENANCE.md`, "
+    "then add a row below."
+)
+
+TROUBLESHOOTING_BLURB = (
+    "One file per recurring issue pattern. New entries: follow "
+    "[Entry shape](../MAINTENANCE.md#entry-shape) in `MAINTENANCE.md`, "
+    "then add a row below."
+)
 
 
 def _read_frontmatter_block(path: Path) -> tuple[dict[str, Any], str]:
@@ -114,6 +126,85 @@ def _render_index(
     return header + "\n\n" + body.lstrip("\n")
 
 
+def _infer_kind(folder: Path) -> str:
+    name = folder.name.casefold()
+    if name == "decisions":
+        return "decisions"
+    if name == "troubleshooting":
+        return "troubleshooting"
+    return "generic"
+
+
+def _slug_for_index_id(folder: Path) -> str:
+    base = folder.name.lower()
+    base = re.sub(r"[^a-z0-9_-]+", "-", base)
+    base = re.sub(r"-{2,}", "-", base).strip("-")
+    return base or "folder"
+
+
+def _default_heading(folder: Path) -> str:
+    return folder.name.replace("-", " ").replace("_", " ").title()
+
+
+def _default_generic_blurb(folder: Path) -> str:
+    maint = folder.parent / "MAINTENANCE.md"
+    if maint.is_file():
+        return (
+            "Each topic is a sibling markdown file (except this index). New entries: "
+            "follow [Entry shape](../MAINTENANCE.md#entry-shape) in `MAINTENANCE.md`, "
+            "then add a row below."
+        )
+    return (
+        "Each topic is a sibling markdown file (except this index). "
+        "Add YAML frontmatter on each entry file (at least `id` and `title`), "
+        "then add a row below."
+    )
+
+
+def _parse_heading_and_blurb(body: str) -> tuple[str | None, str | None]:
+    lines = body.lstrip("\n").splitlines()
+    i = 0
+    while i < len(lines) and not lines[i].strip():
+        i += 1
+    if i >= len(lines):
+        return None, None
+    heading: str | None = None
+    if lines[i].startswith("# "):
+        heading = lines[i][2:].strip()
+        i += 1
+    buf: list[str] = []
+    while i < len(lines):
+        stripped = lines[i].strip()
+        if stripped == "## Index":
+            break
+        buf.append(lines[i])
+        i += 1
+    blurb = "\n".join(buf).strip()
+    return heading, blurb or None
+
+
+def _parse_existing_index(index_path: Path) -> dict[str, str | None]:
+    out: dict[str, str | None] = {
+        "index_id": None,
+        "index_title": None,
+        "heading": None,
+        "blurb": None,
+    }
+    if not index_path.is_file():
+        return out
+    fm, body = _read_frontmatter_block(index_path)
+    idx = fm.get("id")
+    if isinstance(idx, str) and idx:
+        out["index_id"] = idx
+    tit = fm.get("title")
+    if isinstance(tit, str) and tit.strip():
+        out["index_title"] = _normalize_title(tit)
+    h, b = _parse_heading_and_blurb(body)
+    out["heading"] = h
+    out["blurb"] = b
+    return out
+
+
 def _collect_entries(folder: Path, kind: str) -> list[tuple[Path, dict[str, Any]]]:
     out: list[tuple[Path, dict[str, Any]]] = []
     for path in sorted(folder.glob("*.md")):
@@ -189,15 +280,88 @@ def _write_if_changed(path: Path, content: str, dry_run: bool) -> bool:
     return True
 
 
+def _resolve_index_template(folder: Path, kind: str) -> tuple[str, str, str, str]:
+    """Return index_id, index_title, heading, blurb."""
+    parsed = _parse_existing_index(folder / "index.md")
+    if kind == "decisions":
+        return (
+            "decisions-index",
+            "Decisions index",
+            "Decisions",
+            DECISIONS_BLURB,
+        )
+    if kind == "troubleshooting":
+        return (
+            "troubleshooting-index",
+            "Troubleshooting index",
+            "Troubleshooting",
+            TROUBLESHOOTING_BLURB,
+        )
+    slug = _slug_for_index_id(folder)
+    heading = parsed["heading"] or _default_heading(folder)
+    blurb = parsed["blurb"] or _default_generic_blurb(folder)
+    index_id = parsed["index_id"] or f"{slug}-index"
+    index_title = parsed["index_title"] or f"{heading} index"
+    return index_id, index_title, heading, blurb
+
+
+def regenerate_folder_index(folder: Path, *, today: str, dry_run: bool) -> bool:
+    """Return True if the index would change or was written (excluding dry-run no-op)."""
+    folder = folder.expanduser()
+    try:
+        folder = folder.resolve()
+    except OSError as exc:
+        print(f"ERROR: could not resolve path {folder}: {exc}", file=sys.stderr)
+        return False
+
+    if not folder.is_dir():
+        print(f"ERROR: not a directory: {folder}", file=sys.stderr)
+        return False
+
+    kind = _infer_kind(folder)
+    entries = _collect_entries(folder, kind)
+    links = _build_sorted_links(entries)
+    index_id, index_title, heading, blurb = _resolve_index_template(folder, kind)
+    body = "\n".join(_index_body_lines(heading, blurb, links))
+    index_path = folder / "index.md"
+    last_updated = _resolve_last_updated(index_path, body, today)
+    content = _render_index(
+        index_id=index_id,
+        index_title=index_title,
+        heading=heading,
+        blurb=blurb,
+        entries=links,
+        last_updated=last_updated,
+    )
+    return _write_if_changed(index_path, content, dry_run)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Regenerate decisions/ and troubleshooting/ index.md files."
+        description=(
+            "Regenerate index.md from YAML frontmatter on sibling *.md entry files."
+        )
     )
     parser.add_argument(
         "--agents-root",
         type=Path,
         default=Path(".agents"),
-        help="Path to the .agents directory (default: ./.agents)",
+        help=(
+            "Path to the .agents directory when using default targets "
+            "(default: ./.agents)"
+        ),
+    )
+    parser.add_argument(
+        "--target",
+        "-t",
+        action="append",
+        type=Path,
+        metavar="DIR",
+        help=(
+            "Directory whose index.md should be regenerated (repeatable). "
+            "When omitted, defaults to <agents-root>/docs/decisions and "
+            "<agents-root>/docs/troubleshooting>."
+        ),
     )
     parser.add_argument(
         "--dry-run",
@@ -205,71 +369,42 @@ def main() -> int:
         help="Print actions only; do not write files.",
     )
     args = parser.parse_args()
-    agents_root: Path = args.agents_root
-    docs = agents_root / "docs"
-    decisions_dir = docs / "decisions"
-    troubleshooting_dir = docs / "troubleshooting"
     today = _today_iso()
+    explicit = bool(args.target)
 
-    if not docs.is_dir():
-        print(f"ERROR: docs directory not found: {docs}", file=sys.stderr)
-        return 1
+    if explicit:
+        folder_paths = [Path(p) for p in args.target]
+    else:
+        agents_root = args.agents_root
+        docs = agents_root / "docs"
+        if not docs.is_dir():
+            print(
+                f"ERROR: docs directory not found for default targets: {docs}",
+                file=sys.stderr,
+            )
+            return 1
+        folder_paths = [docs / "decisions", docs / "troubleshooting"]
 
     changed = False
+    had_error = False
 
-    if decisions_dir.is_dir():
-        entries = _collect_entries(decisions_dir, "decisions")
-        links = _build_sorted_links(entries)
-        blurb = (
-            "One file per durable architectural or policy decision. New entries: "
-            "follow [Entry shape](../MAINTENANCE.md#entry-shape) in `MAINTENANCE.md`, "
-            "then add a row below."
-        )
-        body = "\n".join(_index_body_lines("Decisions", blurb, links))
-        last_updated = _resolve_last_updated(
-            decisions_dir / "index.md", body, today
-        )
-        content = _render_index(
-            index_id="decisions-index",
-            index_title="Decisions index",
-            heading="Decisions",
-            blurb=blurb,
-            entries=links,
-            last_updated=last_updated,
-        )
-        if _write_if_changed(decisions_dir / "index.md", content, args.dry_run):
+    for raw in folder_paths:
+        folder = raw.expanduser()
+        if not explicit:
+            if not folder.is_dir():
+                print(f"WARN: skipping missing directory {folder}", file=sys.stderr)
+                continue
+        else:
+            if not folder.exists() or not folder.is_dir():
+                print(f"ERROR: not a directory: {folder}", file=sys.stderr)
+                had_error = True
+                continue
+
+        if regenerate_folder_index(folder, today=today, dry_run=args.dry_run):
             changed = True
-    else:
-        print(f"WARN: skipping missing directory {decisions_dir}", file=sys.stderr)
 
-    if troubleshooting_dir.is_dir():
-        entries = _collect_entries(troubleshooting_dir, "troubleshooting")
-        links = _build_sorted_links(entries)
-        tblurb = (
-            "One file per recurring issue pattern. New entries: follow "
-            "[Entry shape](../MAINTENANCE.md#entry-shape) in `MAINTENANCE.md`, "
-            "then add a row below."
-        )
-        body = "\n".join(_index_body_lines("Troubleshooting", tblurb, links))
-        last_updated = _resolve_last_updated(
-            troubleshooting_dir / "index.md", body, today
-        )
-        content = _render_index(
-            index_id="troubleshooting-index",
-            index_title="Troubleshooting index",
-            heading="Troubleshooting",
-            blurb=tblurb,
-            entries=links,
-            last_updated=last_updated,
-        )
-        if _write_if_changed(troubleshooting_dir / "index.md", content, args.dry_run):
-            changed = True
-    else:
-        print(
-            f"WARN: skipping missing directory {troubleshooting_dir}",
-            file=sys.stderr,
-        )
-
+    if had_error:
+        return 1
     if changed and args.dry_run:
         print("\nDry run: one or more indexes would change.", file=sys.stderr)
         return 2

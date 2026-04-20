@@ -50,6 +50,18 @@ If `.agents/sessions/` or `.agents/.gitignore` session rules are missing, run **
 - uncategorized knowledge (content with no clear home in AGENTS, a decision file, troubleshooting file, or playbook)
 - **Mechanical path hygiene (especially after migrations or Replace All):** search for doubled `.agents/` path segments (for example `.agents/.agents` in paths) under `.agents/`, `README.md`, `INSTALL.md`, and `docs/`. Hits usually mean a bad global replace or copy/paste error.
 
+## Index refresh (optional)
+
+After adding or renaming durable entry files under `.agents/docs/decisions/` or `.agents/docs/troubleshooting/`, you may rebuild each folder’s `index.md` from entry YAML frontmatter (see `.agents/docs/MAINTENANCE.md`) by running from the repository root:
+
+`python3 scripts/generate-durable-indexes.py`
+
+To update a single folder (any path that follows the same entry + `index.md` layout):
+
+`python3 scripts/generate-durable-indexes.py --target .agents/docs/decisions`
+
+Use the same command with `--target .agents/docs/troubleshooting` for troubleshooting. This does not replace **knowledge-lint**; run a lint pass afterward to validate contracts, prose, and cross-links.
+
 ## Output
 
 Produce:
