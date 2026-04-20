@@ -10,7 +10,7 @@ hook_dir="${repo_root}/.git/hooks"
 mkdir -p "$hook_dir"
 hook="${hook_dir}/post-commit"
 
-marker="# wiki-search auto-index"
+marker="# docs-search auto-compile"
 
 if [[ -f "$hook" ]] && grep -qF "$marker" "$hook"; then
   echo "Hook already installed: $hook"
@@ -19,11 +19,11 @@ fi
 
 cat >>"$hook" <<'EOF'
 
-# wiki-search auto-index
+# docs-search auto-compile
 if git diff-tree --no-commit-id --name-only -r HEAD | grep -q '^\.agents/docs/'; then
-  python3 "$(git rev-parse --show-toplevel)/.agents/skills/wiki-search/scripts/index-wiki.py" || true
+  bash "$(git rev-parse --show-toplevel)/scripts/docs-compile.sh" || true
 fi
 EOF
 
 chmod +x "$hook" 2>/dev/null || true
-echo "Appended wiki-search block to: $hook"
+echo "Appended docs-search block to: $hook"

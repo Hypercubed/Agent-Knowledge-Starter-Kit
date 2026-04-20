@@ -11,8 +11,9 @@ Use before publishing, tagging, or handing this starter kit to another repo.
 5. Confirm ignored session bundles are local evidence only. For each validated tree, the only tracked file under `sessions/` should be `sessions/README.md`.
 6. Review the printed `.agents/` file list. It should contain only the distributable kit for this layout: portable `agents/`, portable `skills/`, and the task-closeout example bundle files.
 7. If root `.agents/` changed, decide whether the same change belongs in the portable kit contract versus maintainer-only dogfood (for example `.agents/plans/`). Consumer-generic behavior belongs in shared skills and docs; keep maintainer workflow notes in maintainer-facing paths unless you intend to promote them.
-8. Run `knowledge-lint` periodically, and before publishing after several agent-assisted edits, to find duplicated, stale, contradictory, oversized, or misplaced durable knowledge.
-9. Inspect `git status --short` and `git diff` before tagging or publishing.
+8. When `.agents/docs/` durable entries changed, run `bash scripts/docs-compile.sh` (see [`docs-compile.md`](docs-compile.md)) so indexes and the maintainer docs-search cache stay aligned before lint or publish.
+9. Run `knowledge-lint` periodically, and before publishing after several agent-assisted edits, to find duplicated, stale, contradictory, oversized, or misplaced durable knowledge.
+10. Inspect `git status --short` and `git diff` before tagging or publishing.
 
 ## Expected output
 

@@ -1,18 +1,17 @@
 #!/usr/bin/env python3
 """
-Build wiki-index.json from `.agents/docs/` (wiki root: first-level `*/index.md`
-plus optional `index.md` at the wiki root).
+Build docs-search-index.json from `.agents/docs/` (docs root: first-level
+`*/index.md` plus optional root `index.md`).
 
-Refreshes `decisions/` and `troubleshooting/` sibling indexes first by invoking
-`scripts/generate-durable-indexes.py` from the repository root.
+Does not regenerate durable `decisions/` or `troubleshooting/` indexes; run
+`bash scripts/docs-compile.sh` or `python3 scripts/generate-durable-indexes.py`
+first when those entries changed.
 """
 
 from __future__ import annotations
 
 import argparse
 import json
-import re
-import subprocess
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -82,7 +81,7 @@ def _first_h1_title(body: str) -> str | None:
 
 def _section_record(
     *,
-    wiki_root: Path,
+    docs_root: Path,
     repo_root: Path,
     index_path: Path,
     folder_label: str,
@@ -103,54 +102,31 @@ def _section_record(
         description = _first_markdown_paragraph(body)
 
     rel_repo = index_path.resolve().relative_to(repo_root.resolve())
-    wiki_relpath = index_path.resolve().relative_to(wiki_root.resolve()).as_posix()
+    docs_relpath = index_path.resolve().relative_to(docs_root.resolve()).as_posix()
     return {
         "id": folder_label or "docs-root",
         "title": title_out,
         "description": description,
         "path": rel_repo.as_posix(),
-        "wiki_path": wiki_relpath,
+        "docs_path": docs_relpath,
         "folder": folder_label,
     }
 
 
-def _refresh_durable_indexes(repo_root: Path, dry_run: bool) -> None:
-    script = repo_root / "scripts" / "generate-durable-indexes.py"
-    if not script.is_file():
-        print(f"WARN: missing {script}; skipping index refresh.", file=sys.stderr)
-        return
-    cmd = [
-        sys.executable,
-        str(script),
-        "-t",
-        str(repo_root / ".agents" / "docs" / "decisions"),
-        "-t",
-        str(repo_root / ".agents" / "docs" / "troubleshooting"),
-    ]
-    if dry_run:
-        cmd.append("--dry-run")
-    proc = subprocess.run(cmd, cwd=str(repo_root), check=False)
-    if proc.returncode not in (0, 2):
-        print(
-            f"WARN: {script.name} exited {proc.returncode}; continuing wiki scan.",
-            file=sys.stderr,
-        )
-
-
-def _collect_sections(wiki_root: Path, repo_root: Path) -> list[dict[str, Any]]:
+def _collect_sections(docs_root: Path, repo_root: Path) -> list[dict[str, Any]]:
     sections: list[dict[str, Any]] = []
-    root_index = wiki_root / "index.md"
+    root_index = docs_root / "index.md"
     if root_index.is_file():
         sections.append(
             _section_record(
-                wiki_root=wiki_root,
+                docs_root=docs_root,
                 repo_root=repo_root,
                 index_path=root_index,
                 folder_label="",
             )
         )
 
-    for child in sorted(wiki_root.iterdir()):
+    for child in sorted(docs_root.iterdir()):
         if not child.is_dir():
             continue
         idx = child / "index.md"
@@ -158,7 +134,7 @@ def _collect_sections(wiki_root: Path, repo_root: Path) -> list[dict[str, Any]]:
             continue
         sections.append(
             _section_record(
-                wiki_root=wiki_root,
+                docs_root=docs_root,
                 repo_root=repo_root,
                 index_path=idx,
                 folder_label=child.name,
@@ -168,16 +144,13 @@ def _collect_sections(wiki_root: Path, repo_root: Path) -> list[dict[str, Any]]:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Build wiki-index.json under wiki-search.")
+    parser = argparse.ArgumentParser(
+        description="Build docs-search-index.json under docs-search skill."
+    )
     parser.add_argument(
         "--dry-run",
         action="store_true",
-        help="Refresh durable indexes in dry-run mode only; do not write wiki-index.json.",
-    )
-    parser.add_argument(
-        "--no-refresh-indexes",
-        action="store_true",
-        help="Skip running scripts/generate-durable-indexes.py first.",
+        help="Print sample JSON to stderr only; do not write docs-search-index.json.",
     )
     args = parser.parse_args()
 
@@ -187,23 +160,20 @@ def main() -> int:
         print("ERROR: could not locate repository root (.git).", file=sys.stderr)
         return 1
 
-    wiki_root = repo_root / ".agents" / "docs"
-    if not wiki_root.is_dir():
-        print(f"ERROR: wiki root not found: {wiki_root}", file=sys.stderr)
+    docs_root = repo_root / ".agents" / "docs"
+    if not docs_root.is_dir():
+        print(f"ERROR: docs root not found: {docs_root}", file=sys.stderr)
         return 1
 
-    if not args.no_refresh_indexes:
-        _refresh_durable_indexes(repo_root, dry_run=args.dry_run)
-
-    sections = _collect_sections(wiki_root, repo_root)
+    sections = _collect_sections(docs_root, repo_root)
     payload = {
-        "version": 1,
-        "wiki_root": ".agents/docs",
+        "version": 2,
+        "docs_root": ".agents/docs",
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "sections": sections,
     }
 
-    out_path = skill_dir / "wiki-index.json"
+    out_path = skill_dir / "docs-search-index.json"
     if args.dry_run:
         print(json.dumps(payload, indent=2)[:2000] + "\n...", file=sys.stderr)
         print(f"DRY-RUN: would write {out_path}", file=sys.stderr)

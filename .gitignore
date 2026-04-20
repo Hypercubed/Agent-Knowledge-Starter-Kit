@@ -4,8 +4,8 @@
 node_modules
 skills-lock.json
 
-# Maintainer wiki search cache (see `.agents/skills/wiki-search/`)
-.agents/skills/wiki-search/wiki-index.json
+# Maintainer docs search cache (see `.agents/skills/docs-search/`)
+.agents/skills/docs-search/docs-search-index.json
 # Python bytecode
 **/__pycache__/
 *.pyc

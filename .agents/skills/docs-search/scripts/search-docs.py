@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Rank wiki sections from wiki-index.json using simple token overlap + regex.
+Rank docs sections from docs-search-index.json using simple token overlap + regex.
 """
 
 from __future__ import annotations
@@ -12,16 +12,20 @@ import sys
 from pathlib import Path
 from typing import Any
 
+INDEX_NAMES = ("docs-search-index.json", "wiki-index.json")
+
 
 def _load_index(skill_dir: Path) -> dict[str, Any]:
-    path = skill_dir / "wiki-index.json"
-    if not path.is_file():
-        print(
-            f"ERROR: {path} not found. Run: python3 scripts/index-wiki.py",
-            file=sys.stderr,
-        )
-        sys.exit(2)
-    return json.loads(path.read_text(encoding="utf-8"))
+    for name in INDEX_NAMES:
+        path = skill_dir / name
+        if path.is_file():
+            return json.loads(path.read_text(encoding="utf-8"))
+    print(
+        "ERROR: no search index found. Run: bash scripts/docs-compile.sh\n"
+        "       (or: python3 .agents/skills/docs-search/scripts/index-docs.py)",
+        file=sys.stderr,
+    )
+    sys.exit(2)
 
 
 def _tokenize(q: str) -> list[str]:
@@ -30,12 +34,13 @@ def _tokenize(q: str) -> list[str]:
 
 
 def _score_section(query: str, tokens: list[str], sec: dict[str, Any]) -> float:
+    docs_path = sec.get("docs_path", sec.get("wiki_path", ""))
     hay = " ".join(
         [
             str(sec.get("title", "")),
             str(sec.get("description", "")),
             str(sec.get("path", "")),
-            str(sec.get("wiki_path", "")),
+            str(docs_path),
             str(sec.get("folder", "")),
         ]
     ).casefold()
@@ -61,7 +66,7 @@ def _folder_display(folder: str) -> str:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Search wiki-index.json.")
+    parser = argparse.ArgumentParser(description="Search docs-search-index.json.")
     parser.add_argument("query", help="Free-text query")
     parser.add_argument(
         "-n",
@@ -99,15 +104,19 @@ def main() -> int:
 
     print("🏷️ TOP MATCHES:\n")
     if not top:
-        print("(no matches — run index-wiki.py or broaden your query)")
+        print(
+            "(no matches — run bash scripts/docs-compile.sh or broaden your query)"
+        )
         return 0
 
-    for score, sec in top:
+    for _score, sec in top:
         title = sec.get("title", "(untitled)")
         desc = str(sec.get("description", "")).strip()
-        wiki_path = sec.get("wiki_path") or sec.get("path", "")
+        docs_path = sec.get("docs_path", sec.get("wiki_path", ""))
         folder = str(sec.get("folder", ""))
-        rel_from_skill = f"../../docs/{wiki_path}" if wiki_path else "../../docs/index.md"
+        rel_from_skill = (
+            f"../../docs/{docs_path}" if docs_path else "../../docs/index.md"
+        )
         print(f"📁 {_folder_display(folder)}")
         print(f"   {title}")
         if desc:

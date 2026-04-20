@@ -50,6 +50,14 @@ If `.agents/sessions/` or `.agents/.gitignore` session rules are missing, run **
 - uncategorized knowledge (content with no clear home in AGENTS, a decision file, troubleshooting file, or playbook)
 - **Mechanical path hygiene (especially after migrations or Replace All):** search for doubled `.agents/` path segments (for example `.agents/.agents` in paths) under `.agents/`, `README.md`, `INSTALL.md`, and `docs/`. Hits usually mean a bad global replace or copy/paste error.
 
+## Derived indexes (before lint)
+
+When `decisions/` or `troubleshooting/` entry files were added, removed, or renamed, refresh generated indexes and the maintainer **docs-search** cache so mechanical checks reflect the tree:
+
+`bash scripts/docs-compile.sh`
+
+See [`.agents/playbooks/docs-compile.md`](../playbooks/docs-compile.md).
+
 ## Output
 
 Produce:
