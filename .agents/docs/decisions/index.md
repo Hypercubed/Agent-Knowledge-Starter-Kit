@@ -1,7 +1,7 @@
 ---
 id: decisions-index
 title: "Decisions index"
-last_updated: 2026-04-19
+last_updated: 2026-04-20
 ---
 
 # Decisions

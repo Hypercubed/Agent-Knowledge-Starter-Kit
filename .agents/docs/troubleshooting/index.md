@@ -1,7 +1,7 @@
 ---
 id: troubleshooting-index
 title: "Troubleshooting index"
-last_updated: 2026-04-19
+last_updated: 2026-04-20
 ---
 
 # Troubleshooting
@@ -13,7 +13,7 @@ One file per recurring issue pattern. New entries: follow [Entry shape](../MAINT
 - [Antigravity: Lessons learned aren't visible to teammate's agents](antigravity-lessons-learned-aren-t-visible-to-teammate-s-agents.md)
 - [Clean `git status` but you need touched paths for closeout](clean-git-status-but-you-need-touched-paths-for-closeout.md)
 - [Codex cannot write under `.agents/` during closeout or distill](codex-cannot-write-under-agents-during-closeout-or-distill.md)
-- [Comparing `example/.agents/` to root `.agents/`](comparing-example-agents-to-root-agents.md)
+- [Comparing greenfield `example/.agents/` to this repo’s root `.agents/`](comparing-example-agents-to-root-agents.md)
 - [Gemini CLI not following durable guidance](gemini-cli-not-following-durable-guidance.md)
 - [GitHub Copilot Chat context not in focus](github-copilot-chat-context-not-in-focus.md)
 - [Hermes Agent–specific: Dual skill namespace (`skill_view` returns wrong file)](hermes-agent-specific-dual-skill-namespace-skill-view-returns-wrong-file.md)

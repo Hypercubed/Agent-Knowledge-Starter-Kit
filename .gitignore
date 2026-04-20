@@ -3,3 +3,9 @@
 .claude
 node_modules
 skills-lock.json
+
+# Maintainer wiki search cache (see `.agents/skills/wiki-search/`)
+.agents/skills/wiki-search/wiki-index.json
+# Python bytecode
+**/__pycache__/
+*.pyc

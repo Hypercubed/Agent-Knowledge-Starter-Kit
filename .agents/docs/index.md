@@ -39,6 +39,7 @@ Workflow definitions shipped with the kit (each folder contains `SKILL.md` and o
 Maintainer-only (this repository):
 
 - [`.agents/skills/generate-example/SKILL.md`](../skills/generate-example/SKILL.md) — generate a disposable consumer-path example structure (`metadata.internal: true`).
+- [`.agents/skills/wiki-search/SKILL.md`](../skills/wiki-search/SKILL.md) — index `.agents/docs/` for quick local search (`metadata.internal: true`).
 - **Planning / roadmaps** (under `.agents/plans/`, not part of the portable consumer kit): [wiki-system.md](../plans/wiki-system.md), [repo-centric-wiki-tooling.md](../plans/repo-centric-wiki-tooling.md), [add-integrations.md](../plans/add-integrations.md).
 
 ## `.agents/agents/`
