@@ -22,7 +22,7 @@ Copilot Chat answers don't reference `.agents/AGENTS.md` even though `.github/co
 
 #### Fix
 
-- Use `@.agents/AGENTS.md`, `@.agents/docs/index.md`, or the specific indexes `@.agents/docs/repo-decisions/index.md` / `@.agents/docs/troubleshooting/index.md` when you need to route between decisions, troubleshooting patterns, and playbooks.
+- Use `@.agents/AGENTS.md`, `@.agents/docs/index.md`, or the specific indexes `@.agents/docs/decisions/index.md` / `@.agents/docs/troubleshooting/index.md` when you need to route between decisions, troubleshooting patterns, and playbooks.
 - Ask Copilot to read the bootstrap file: "What does `.github/copilot-instructions.md` tell you?"
 - For visibility outside `.agents/`-heavy work, prefer a short root `AGENTS.md` that points into `.agents/` rather than assuming nested files are always in context (see [`docs/integrations/copilot.md`](../../../docs/integrations/copilot.md)).
 

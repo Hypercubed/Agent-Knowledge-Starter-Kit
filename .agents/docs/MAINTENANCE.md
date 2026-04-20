@@ -9,31 +9,31 @@ This file belongs in `.agents/docs/`, alongside `.agents/AGENTS.md`.
 - Session bundles under `.agents/sessions/` are raw evidence.
 - Files in `.agents/` are synthesized durable knowledge.
 - Durable knowledge should be incremental, concise, and reviewable.
-- Architectural decisions live under `.agents/docs/repo-decisions/` (one file per decision plus `index.md`). Troubleshooting patterns live under `.agents/docs/troubleshooting/` (one file per pattern plus `index.md`). Each **entry** file (every `*.md` except `index.md` in those folders) carries YAML frontmatter so tools can parse metadata without reading the body.
+- Architectural decisions live under `.agents/docs/decisions/` (one file per decision plus `index.md`). Troubleshooting patterns live under `.agents/docs/troubleshooting/` (one file per pattern plus `index.md`). Each **entry** file (every `*.md` except `index.md` in those folders) carries YAML frontmatter so tools can parse metadata without reading the body.
 
 ## Entry shape
 
-When adding a new markdown file under `repo-decisions/` or `troubleshooting/`, follow the frontmatter and body headings used by existing entries in that folder, including the [Frontmatter contract](#frontmatter-contract-durable-entries) below. During **knowledge-lint**, verify that contract by inspection (duplicate `id`, missing keys, scalar `tags` instead of a list, `status` only on decisions, and so on). Automated enforcement may be added later as maintainer-only tooling.
+When adding a new markdown file under `decisions/` or `troubleshooting/`, follow the frontmatter and body headings used by existing entries in that folder, including the [Frontmatter contract](#frontmatter-contract-durable-entries) below. During **knowledge-lint**, verify that contract by inspection (duplicate `id`, missing keys, scalar `tags` instead of a list, `status` only on decisions, and so on). Automated enforcement may be added later as maintainer-only tooling.
 
 ### Frontmatter contract (durable entries)
 
-Applies to every `*.md` file under `repo-decisions/` and `troubleshooting/` **except** each folder’s `index.md`.
+Applies to every `*.md` file under `decisions/` and `troubleshooting/` **except** each folder’s `index.md`.
 
 **Required keys (all entries):**
 
-- `id`: stable slug, **must match** the filename without `.md`, lowercase `[a-z0-9_-]`, **globally unique** across both `repo-decisions/` and `troubleshooting/`.
+- `id`: stable slug, **must match** the filename without `.md`, lowercase `[a-z0-9_-]`, **globally unique** across both `decisions/` and `troubleshooting/`.
 - `title`: short human title (quoted if it contains colons).
 - `last_updated`: ISO calendar date `YYYY-MM-DD`.
 - `description`: one or two sentences summarizing the entry for query and index output (machine-oriented).
 - `tags`: non-empty YAML **list** of topic labels (`auth`, `build`, `testing`, `release`, `docs`, `sessions`, `skills`, and so on). Each tag is lowercase `[a-z0-9_-]` only—**not** a comma-separated scalar string.
 
-**Required keys (`repo-decisions/` only):**
+**Required keys (`decisions/` only):**
 
 - `status`: lifecycle for the decision record: `accepted`, `superseded`, or `provisional` (lowercase). Prefer aligning the body’s status section with this value.
 
 **Optional keys (any entry):**
 
-- `depends_on`: YAML **list** of other durable **entry ids** (the `id` frontmatter value on any `repo-decisions/` or `troubleshooting/` entry file, regardless of folder). Use this when there is a hard dependency or ordering readers should follow. Omit the key when there is no explicit graph edge.
+- `depends_on`: YAML **list** of other durable **entry ids** (the `id` frontmatter value on any `decisions/` or `troubleshooting/` entry file, regardless of folder). Use this when there is a hard dependency or ordering readers should follow. Omit the key when there is no explicit graph edge.
 
 **Do not** put `status` on troubleshooting entries; lifecycle applies to decision records.
 
@@ -43,7 +43,7 @@ Applies to every `*.md` file under `repo-decisions/` and `troubleshooting/` **ex
 - Prefer **sibling** paths (`other-id.md`) or explicit relative paths (`../MAINTENANCE.md`) so links stay stable when the repo is checked out on different machines.
 - Avoid bare URLs as the only pointer when a durable repo file exists; URLs are fine for external references.
 
-### Example (`repo-decisions/`)
+### Example (`decisions/`)
 
 ```yaml
 ---
@@ -86,9 +86,9 @@ tags: [git, markdown, tooling]
 
 Compact, high-signal operational guidance.
 
-### `.agents/docs/repo-decisions/`
+### `.agents/docs/decisions/`
 
-Durable rationale, tradeoffs, and architectural choices. Each decision is a markdown file; [index.md](repo-decisions/index.md) lists them.
+Durable rationale, tradeoffs, and architectural choices. Each decision is a markdown file; [index.md](decisions/index.md) lists them.
 
 ### `.agents/docs/troubleshooting/`
 
@@ -167,6 +167,6 @@ Periodically review `.agents/` for:
 Automated **knowledge-lint** runs are still human-guided; they do not prove prose is sensible. After any wide find-and-replace across markdown:
 
 - Re-check durable entry frontmatter against [Frontmatter contract](#frontmatter-contract-durable-entries) (required keys, list-shaped `tags`, `status` only on decisions, no duplicate `id` across both folders).
-- Re-read a sample of `repo-decisions/` and `troubleshooting/` entries for broken sentences or doubled kit path segments (the `.agents` directory name repeated in one filesystem path).
+- Re-read a sample of `decisions/` and `troubleshooting/` entries for broken sentences or doubled kit path segments (the `.agents` directory name repeated in one filesystem path).
 - Search for doubled `.agents/` path segments (for example the substring `.agents/.agents` in paths under `.agents/`, `README.md`, `INSTALL.md`, and `docs/`) before publishing; hits usually mean a bad global replace.
 - Prefer scoped replacements (limit to `.agents/docs/`, or a single file), whole-word or whole-path patterns, and commit-sized diffs instead of repo-wide blind replace.

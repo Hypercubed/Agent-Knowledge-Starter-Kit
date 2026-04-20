@@ -2,7 +2,7 @@
 
 A shareable, tool-agnostic starter kit for maintaining a compiled repo knowledge layer for coding agents.
 
-Durable decisions and troubleshooting patterns live as separate markdown files under `.agents/docs/repo-decisions/` and `.agents/docs/troubleshooting/`, each with its own `index.md`.
+Durable decisions and troubleshooting patterns live as separate markdown files under `.agents/docs/decisions/` and `.agents/docs/troubleshooting/`, each with its own `index.md`.
 
 This pattern separates three concerns:
 
@@ -85,7 +85,7 @@ flowchart LR
     E -->|ephemeral| F[Keep in session bundle]
     E -->|agent guidance| G[.agents/AGENTS.md]
     E -->|troubleshooting| H[.agents/docs/troubleshooting/]
-    E -->|repo decision| I[.agents/docs/repo-decisions/]
+    E -->|repo decision| I[.agents/docs/decisions/]
     E -->|playbook| J[.agents/playbooks/*]
 
     G --> K[index.md + log.md]
@@ -113,7 +113,7 @@ Use this checklist:
 3. Add the portable maintenance skills if they are not already present: `task-closeout`, `learning-distill`, and `knowledge-lint`.
 4. Merge `.agents/AGENTS.md` by hand so stable repo guidance stays concise and temporary history stays out.
 5. Confirm session ignore rules. Prefer the kit default in `.agents/.gitignore`: `sessions/*` and `!sessions/README.md`. Use repo-root `.gitignore` patterns only as an alternative: `.agents/sessions/*` and `!.agents/sessions/README.md`.
-6. Optional: append a minimal adoption note to `.agents/docs/log.md` only if you use that file as a maintenance audit trail (see `.agents/docs/MAINTENANCE.md`, Logging policy). Record any durable rationale in a new or existing file under `.agents/docs/repo-decisions/` (update `repo-decisions/index.md` when adding a decision).
+6. Optional: append a minimal adoption note to `.agents/docs/log.md` only if you use that file as a maintenance audit trail (see `.agents/docs/MAINTENANCE.md`, Logging policy). Record any durable rationale in a new or existing file under `.agents/docs/decisions/` (update `decisions/index.md` when adding a decision).
 7. Update `.agents/docs/index.md` so pre-existing repo-specific `rules/`, `playbooks/`, and `skills/` are discoverable.
 
 If both root `AGENTS.md` and `.agents/AGENTS.md` exist, treat root `AGENTS.md` as the agent entrypoint for that checkout and `.agents/AGENTS.md` as the portable knowledge-layer file. Keep one source of truth for each instruction: root `AGENTS.md` should point agents into `.agents/` or contain only bootstrap guidance, while durable repo conventions live in `.agents/AGENTS.md`.

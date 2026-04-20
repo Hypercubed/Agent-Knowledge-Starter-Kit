@@ -1,10 +1,10 @@
 ---
-id: repo-decisions-index
-title: "Repository decisions index"
+id: decisions-index
+title: "Decisions index"
 last_updated: 2026-04-19
 ---
 
-# Repository decisions
+# Decisions
 
 One architectural or policy decision per markdown file under this directory. New entries: follow [Entry shape](../MAINTENANCE.md#entry-shape) in `MAINTENANCE.md`, pick a stable `id` and filename slug, then add a row below when the file is ready.
 

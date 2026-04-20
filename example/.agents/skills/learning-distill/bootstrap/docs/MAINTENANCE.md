@@ -9,11 +9,11 @@ This file belongs in `.agents/docs/`, alongside `.agents/AGENTS.md`.
 - Session bundles under `.agents/sessions/` are raw evidence.
 - Files in `.agents/` are synthesized durable knowledge.
 - Durable knowledge should be incremental, concise, and reviewable.
-- Architectural decisions live under `.agents/docs/repo-decisions/` (one file per decision plus `index.md`). Troubleshooting patterns live under `.agents/docs/troubleshooting/` (one file per pattern plus `index.md`). Each entry file carries minimal YAML frontmatter (`id`, `title`, `last_updated`).
+- Architectural decisions live under `.agents/docs/decisions/` (one file per decision plus `index.md`). Troubleshooting patterns live under `.agents/docs/troubleshooting/` (one file per pattern plus `index.md`). Each entry file carries minimal YAML frontmatter (`id`, `title`, `last_updated`).
 
 ## Entry shape
 
-When adding a new markdown file under `repo-decisions/` or `troubleshooting/`, follow the frontmatter and body headings used by existing entries in that folder. Required YAML keys: `id`, `title`, `last_updated`. Use a stable `id` aligned with the filename slug; it must be **unique across both** `repo-decisions/` and `troubleshooting/` (not only within one folder).
+When adding a new markdown file under `decisions/` or `troubleshooting/`, follow the frontmatter and body headings used by existing entries in that folder. Required YAML keys: `id`, `title`, `last_updated`. Use a stable `id` aligned with the filename slug; it must be **unique across both** `decisions/` and `troubleshooting/` (not only within one folder).
 
 **Repository decisions** typically use body sections: `### Decision`, `### Status` (Accepted | superseded | provisional), `### Context`, `### Rationale`, `### Consequences`.
 
@@ -25,9 +25,9 @@ When adding a new markdown file under `repo-decisions/` or `troubleshooting/`, f
 
 Compact, high-signal operational guidance.
 
-### `.agents/docs/repo-decisions/`
+### `.agents/docs/decisions/`
 
-Durable rationale, tradeoffs, and architectural choices. Each decision is a markdown file; [index.md](repo-decisions/index.md) lists them.
+Durable rationale, tradeoffs, and architectural choices. Each decision is a markdown file; [index.md](decisions/index.md) lists them.
 
 ### `.agents/docs/troubleshooting/`
 
@@ -65,7 +65,7 @@ Do not use for architectural rationale or one-time command failures.
 
 Example: "Symptom: JSON editor fails to load. Fix: verify Monaco JSON worker wiring."
 
-### `.agents/docs/repo-decisions/`
+### `.agents/docs/decisions/`
 
 Use for durable rationale, tradeoffs, exceptions, and why a convention exists (add or edit a file under this directory).
 

@@ -12,7 +12,7 @@ tags: [gemini, agents, integrations]
 
 #### Symptom
 
-Gemini CLI ignores playbooks, decisions under `.agents/docs/repo-decisions/`, troubleshooting entries, or other conventions reached via `.agents/AGENTS.md` / [`.agents/docs/index.md`](../index.md).
+Gemini CLI ignores playbooks, decisions under `.agents/docs/decisions/`, troubleshooting entries, or other conventions reached via `.agents/AGENTS.md` / [`.agents/docs/index.md`](../index.md).
 
 #### Likely causes
 

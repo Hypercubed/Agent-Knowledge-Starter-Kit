@@ -11,12 +11,12 @@
 The kit maintains knowledge in:
 
 - `.agents/AGENTS.md` — high-signal agent instructions
-- `.agents/docs/repo-decisions/` — architectural rationale (one file per decision)
+- `.agents/docs/decisions/` — architectural rationale (one file per decision)
 - `.agents/docs/troubleshooting/` — failure patterns (one file per pattern)
 - `.agents/playbooks/` — procedural multi-step workflows
 - `.agents/docs/index.md` and `log.md` — catalog and audit trail
 
-**Phase 0** (see [Phasing](#phasing)) is complete: durable decisions and troubleshooting already use per-entry files under `.agents/docs/repo-decisions/` and `.agents/docs/troubleshooting/`.
+**Phase 0** (see [Phasing](#phasing)) is complete: durable decisions and troubleshooting already use per-entry files under `.agents/docs/decisions/` and `.agents/docs/troubleshooting/`.
 
 This plan adds a **wiki** as a declarative, codebase-grounded knowledge layer. The wiki is not the source of truth for skills/playbooks — both are maintained from session data, referenced from each other, but not derived from each other. The wiki captures the *what and why*; skills/playbooks capture the *how*.
 
@@ -58,12 +58,12 @@ A wiki plan re-enters the cycle at the distill step, not the implementation step
 .agents/
   wiki/
     index.md              ← entry registry and table of contents
-    decisions/            ← architectural decisions (may absorb or mirror `.agents/docs/repo-decisions/` entries over time)
+    decisions/            ← architectural decisions (may absorb or mirror `.agents/docs/decisions/` entries over time)
     systems/              ← how subsystems work, grounded in code
     concepts/             ← domain concepts, patterns, terminology
 ```
 
-The **Phase 1** `.agents/wiki/` tree remains additive relative to skills and playbooks and can later absorb or cross-link entries under `.agents/docs/repo-decisions/` and `.agents/docs/troubleshooting/`.
+The **Phase 1** `.agents/wiki/` tree remains additive relative to skills and playbooks and can later absorb or cross-link entries under `.agents/docs/decisions/` and `.agents/docs/troubleshooting/`.
 
 ---
 
@@ -254,13 +254,13 @@ Wiki plans skip implementation — they re-enter the cycle at the distill step.
 
 **Phase 0 — Directory-based decisions and troubleshooting** *(complete)*
 
-*Canonical layout:* architectural decisions live under `.agents/docs/repo-decisions/` (one markdown file per decision plus `index.md`); recurring patterns under `.agents/docs/troubleshooting/` (one file per pattern plus `index.md`). Each entry file uses minimal YAML frontmatter (`id`, `title`, `last_updated`). [`.agents/docs/index.md`](../docs/index.md) catalogs durable assets; [`.agents/docs/log.md`](../docs/log.md) is append-only (do not rewrite older entries).
+*Canonical layout:* architectural decisions live under `.agents/docs/decisions/` (one markdown file per decision plus `index.md`); recurring patterns under `.agents/docs/troubleshooting/` (one file per pattern plus `index.md`). Each entry file uses minimal YAML frontmatter (`id`, `title`, `last_updated`). [`.agents/docs/index.md`](../docs/index.md) catalogs durable assets; [`.agents/docs/log.md`](../docs/log.md) is append-only (do not rewrite older entries).
 
 Skills and `generate-example` bootstrap or copy those directories for new installs; distillation and lint target the same paths.
 
 **Handoff to Phase 1**
 
-Decisions stay under `.agents/docs/repo-decisions/` (not `.agents/wiki/decisions/`) so there is no collision with the Phase 1 wiki tree. When Phase 1 is implemented, entries can move or mirror into `wiki/decisions/` using the same slugs as stable `id` values to avoid a second rename pass.
+Decisions stay under `.agents/docs/decisions/` (not `.agents/wiki/decisions/`) so there is no collision with the Phase 1 wiki tree. When Phase 1 is implemented, entries can move or mirror into `wiki/decisions/` using the same slugs as stable `id` values to avoid a second rename pass.
 
 ---
 
@@ -289,5 +289,5 @@ Decisions stay under `.agents/docs/repo-decisions/` (not `.agents/wiki/decisions
 ## Open Questions
 
 1. **Where should wiki plans live?** Maintainer initiative plans already use `.agents/plans/`. Wiki-specific plan files can use the same directory with frontmatter `type: wiki-plan`, or a subfolder such as `.agents/plans/wiki/` if volume grows. Do not park durable plans under `.agents/sessions/`.
-2. After Phase 1, should `.agents/wiki/decisions/` subsume `.agents/docs/repo-decisions/`, stay separate with cross-links only, or follow another split?
+2. After Phase 1, should `.agents/wiki/decisions/` subsume `.agents/docs/decisions/`, stay separate with cross-links only, or follow another split?
 3. What is the right conflict resolution policy for multi-session reconciliation — last-write-wins, flag for review, or something else?

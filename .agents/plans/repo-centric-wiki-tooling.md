@@ -156,7 +156,7 @@ Make durable docs machine-addressable enough for compile and query workflows.
 ### Changes
 
 1. Extend the frontmatter contract for files under
-   `.agents/docs/repo-decisions/` and `.agents/docs/troubleshooting/`.
+   `.agents/docs/decisions/` and `.agents/docs/troubleshooting/`.
 2. Keep existing required keys: `id`, `title`, `last_updated`.
 3. Add new recommended or required keys:
    - `description`: 1 to 2 sentence summary used by query output
@@ -196,7 +196,7 @@ without traversing the full tree.
 1. Add a repo-local script such as `scripts/knowledge-compile.(js|sh)`.
 2. Crawl durable knowledge sources:
    - `.agents/AGENTS.md`
-   - `.agents/docs/repo-decisions/`
+   - `.agents/docs/decisions/`
    - `.agents/docs/troubleshooting/`
    - `.agents/playbooks/`
    - optionally `.agents/plans/` for maintainer planning discovery

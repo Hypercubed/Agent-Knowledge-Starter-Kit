@@ -20,7 +20,7 @@ Antigravity thoroughly researched and optimized a pattern on a local machine, bu
 
 #### Fix
 
-- Direct Antigravity to land finalized documentation in durable kit paths under `.agents/` (for example `.agents/docs/repo-decisions/`, `.agents/docs/troubleshooting/`, `.agents/playbooks/`, following [`.agents/docs/index.md`](../index.md)), or run **`task-closeout`** so evidence becomes a session bundle for **`learning-distill`**. Local Knowledge Items are not shared; `.agents/` (via `git`) is the cross-tool boundary.
+- Direct Antigravity to land finalized documentation in durable kit paths under `.agents/` (for example `.agents/docs/decisions/`, `.agents/docs/troubleshooting/`, `.agents/playbooks/`, following [`.agents/docs/index.md`](../index.md)), or run **`task-closeout`** so evidence becomes a session bundle for **`learning-distill`**. Local Knowledge Items are not shared; `.agents/` (via `git`) is the cross-tool boundary.
 
 #### Validation
 

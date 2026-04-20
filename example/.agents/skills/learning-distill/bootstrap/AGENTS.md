@@ -31,7 +31,7 @@ This file contains concise, high-signal instructions for future agents working i
 - Keep this file concise.
 - Prefer bullets over prose.
 - Add guidance only when it is stable and broadly useful.
-- Move rationale into a new or existing file under `.agents/docs/repo-decisions/` (update `repo-decisions/index.md` when adding a decision).
+- Move rationale into a new or existing file under `.agents/docs/decisions/` (update `decisions/index.md` when adding a decision).
 - Move recurring failure details into a new or existing file under `.agents/docs/troubleshooting/` (update `troubleshooting/index.md` when adding a pattern).
 - Move multi-step procedures to `.agents/playbooks/` (sibling of `.agents/docs/`, not inside it).
 - Keep temporary task artifacts in `.agents/sessions/`, not in durable knowledge files.

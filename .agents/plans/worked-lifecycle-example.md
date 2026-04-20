@@ -33,7 +33,7 @@ Do not implement this example in the current review-follow-up batch. The reposit
 - Show classification destinations for at least:
   - `.agents/AGENTS.md`
   - `.agents/docs/troubleshooting/`
-  - `.agents/docs/repo-decisions/`
+  - `.agents/docs/decisions/`
   - `.agents/playbooks/`
   - `.agents/docs/log.md`
 - Keep the example compact enough that it helps adoption without becoming a tutorial.

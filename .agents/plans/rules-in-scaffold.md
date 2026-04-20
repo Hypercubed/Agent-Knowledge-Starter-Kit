@@ -18,8 +18,8 @@ Give adopters a clear, portable pattern for **normative agent instructions** tha
 ## Scope
 
 - Define where rules live in the consumer `.agents/` tree (layout, naming, optional index); use `example/.agents/` as the concrete reference once generated.
-- Document the decision boundary: rules vs `AGENTS.md` vs `repo-decisions/` vs playbooks.
-- Update maintainer docs or `generate-example` only as needed after kit layout changes (follow single-tree conventions in `.agents/docs/repo-decisions/`).
+- Document the decision boundary: rules vs `AGENTS.md` vs `decisions/` vs playbooks.
+- Update maintainer docs or `generate-example` only as needed after kit layout changes (follow single-tree conventions in `.agents/docs/decisions/`).
 
 ## Out of scope (for this plan)
 
@@ -33,4 +33,4 @@ Give adopters a clear, portable pattern for **normative agent instructions** tha
 
 ## Notes
 
-- Align with prior discussion: tool-native rules for glob/enforcement; `AGENTS.md` for portable repo-wide ops; rationale stays in `.agents/docs/repo-decisions/`.
+- Align with prior discussion: tool-native rules for glob/enforcement; `AGENTS.md` for portable repo-wide ops; rationale stays in `.agents/docs/decisions/`.

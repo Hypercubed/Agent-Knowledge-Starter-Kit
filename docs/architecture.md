@@ -20,7 +20,7 @@ It should not contain:
 - speculative notes
 - one-off debugging details
 
-Those belong in `.agents/sessions/` bundles, `.agents/docs/troubleshooting/`, `.agents/playbooks/`, or `.agents/docs/repo-decisions/`.
+Those belong in `.agents/sessions/` bundles, `.agents/docs/troubleshooting/`, `.agents/playbooks/`, or `.agents/docs/decisions/`.
 
 ### 3. Distillation should be a separate role
 
@@ -48,7 +48,7 @@ Future agents should consult the compiled `.agents/` layer first, not rediscover
     │   ├── MAINTENANCE.md
     │   ├── index.md
     │   ├── log.md
-    │   ├── repo-decisions/
+    │   ├── decisions/
     │   │   ├── index.md
     │   │   └── …
     │   └── troubleshooting/
@@ -190,7 +190,7 @@ Put here:
 - recurring high-confidence pitfalls
 - short checklists
 
-### `.agents/docs/repo-decisions/`
+### `.agents/docs/decisions/`
 
 Durable rationale and architectural choices (one markdown file per decision; see `index.md` in that directory).
 
@@ -281,7 +281,7 @@ flowchart TD
 
     M2 --> N1[Update .agents/AGENTS.md<br/>only if broad, stable, concise, actionable]
     M3 --> N2[Update .agents/docs/troubleshooting/]
-    M4 --> N3[Update .agents/docs/repo-decisions/]
+    M4 --> N3[Update .agents/docs/decisions/]
     M5 --> N4[Update .agents/playbooks/*]
 
     N1 --> O[Update .agents/docs/index.md if structure changed]
@@ -321,7 +321,7 @@ A candidate lesson belongs in `.agents/AGENTS.md` only if it is:
 
 Otherwise it probably belongs in:
 
-- `.agents/docs/repo-decisions/`
+- `.agents/docs/decisions/`
 - `.agents/docs/troubleshooting/`
 - `.agents/playbooks/`
 - nowhere at all

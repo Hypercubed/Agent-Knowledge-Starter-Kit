@@ -21,7 +21,7 @@ Expectation that a `diff` between a fresh consumer-style tree (for example `exam
 #### Fix
 
 - Use **root `.agents/`** as the source of truth for what the starter kit ships and how this repo dogfoods it.
-- Use **`example/.agents/`** only as a disposable illustration of a bootstrap install, not as a second canonical tree to keep aligned byte-for-byte. When the illustrated tree should match recent portable or bootstrap changes, regenerate **`example/`** (see [Regenerate `example/` when the portable kit or bootstrap changes](../repo-decisions/regenerate-example-when-portable-kit-changes.md)).
+- Use **`example/.agents/`** only as a disposable illustration of a bootstrap install, not as a second canonical tree to keep aligned byte-for-byte. When the illustrated tree should match recent portable or bootstrap changes, regenerate **`example/`** (see [Regenerate `example/` when the portable kit or bootstrap changes](../decisions/regenerate-example-when-portable-kit-changes.md)).
 
 #### Validation
 

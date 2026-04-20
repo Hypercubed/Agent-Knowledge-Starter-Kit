@@ -2,15 +2,15 @@
 
 This file belongs in `.agents/docs/`.
 
-Durable knowledge uses separate markdown files per topic: architectural decisions under [`repo-decisions/`](repo-decisions/index.md); recurring issues under [`troubleshooting/`](troubleshooting/index.md). Each entry file includes minimal YAML frontmatter (`id`, `title`, `last_updated`).
+Durable knowledge uses separate markdown files per topic: architectural decisions under [`decisions/`](decisions/index.md); recurring issues under [`troubleshooting/`](troubleshooting/index.md). Each entry file includes minimal YAML frontmatter (`id`, `title`, `last_updated`).
 
 ## `.agents/AGENTS.md`
 
 Compact instructions for future agents. Consult first for repo-wide operational guidance.
 
-## `.agents/docs/repo-decisions/`
+## `.agents/docs/decisions/`
 
-Durable rationale, tradeoffs, and architectural choices (one markdown file per decision). Consult [index.md](repo-decisions/index.md) when a rule needs explanation.
+Durable rationale, tradeoffs, and architectural choices (one markdown file per decision). Consult [index.md](decisions/index.md) when a rule needs explanation.
 
 ## `.agents/docs/troubleshooting/`
 

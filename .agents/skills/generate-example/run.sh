@@ -33,7 +33,7 @@ sync_docs_subtree() {
     [[ -f "${dest_root}/${rel}" ]] || cp "${src_root}/${rel}" "${dest_root}/${rel}"
   done < <(find "$src_root" -type f -print0)
 }
-sync_docs_subtree "${LD}/bootstrap/docs/repo-decisions" "${target}/.agents/docs/repo-decisions"
+sync_docs_subtree "${LD}/bootstrap/docs/decisions" "${target}/.agents/docs/decisions"
 sync_docs_subtree "${LD}/bootstrap/docs/troubleshooting" "${target}/.agents/docs/troubleshooting"
 [[ -f "${target}/.agents/sessions/README.md" ]] || cp "${LD}/bootstrap/sessions/README.md" "${target}/.agents/sessions/README.md"
 [[ -f "${target}/.agents/AGENTS.md" ]] || cp "${LD}/bootstrap/AGENTS.md" "${target}/.agents/AGENTS.md"

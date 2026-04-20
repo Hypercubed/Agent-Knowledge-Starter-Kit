@@ -16,7 +16,7 @@ Convert raw task evidence into concise, durable repo knowledge.
 - `.agents/docs/MAINTENANCE.md`
 - `.agents/docs/index.md`
 - `.agents/docs/log.md`
-- `.agents/docs/repo-decisions/` (per-decision markdown files; see `index.md` there)
+- `.agents/docs/decisions/` (per-decision markdown files; see `index.md` there)
 - `.agents/docs/troubleshooting/` (per-pattern markdown files; see `index.md` there)
 - `.agents/playbooks/`
 
@@ -32,7 +32,7 @@ Run this once per target repo after the skill files are present under `.agents/s
 
 3. Ensure `.agents/playbooks/` exists. If `.agents/playbooks/README.md` is missing, copy `bootstrap/playbooks/README.md` from this skill folder into place.
 
-4. Ensure `.agents/docs/` exists. For each of `index.md`, `MAINTENANCE.md`, and `log.md`, if the file is missing under `.agents/docs/`, copy it from `bootstrap/docs/` in this skill folder. If `.agents/docs/repo-decisions/index.md` or `.agents/docs/troubleshooting/index.md` is missing, copy the entire contents of `bootstrap/docs/repo-decisions/` and `bootstrap/docs/troubleshooting/` respectively, creating only files that do not already exist (do not overwrite). If a file already exists, do not overwrite it.
+4. Ensure `.agents/docs/` exists. For each of `index.md`, `MAINTENANCE.md`, and `log.md`, if the file is missing under `.agents/docs/`, copy it from `bootstrap/docs/` in this skill folder. If `.agents/docs/decisions/index.md` or `.agents/docs/troubleshooting/index.md` is missing, copy the entire contents of `bootstrap/docs/decisions/` and `bootstrap/docs/troubleshooting/` respectively, creating only files that do not already exist (do not overwrite). If a file already exists, do not overwrite it.
 
 5. Ensure `.agents/sessions/` exists. If `.agents/sessions/README.md` is missing, copy `bootstrap/sessions/README.md` from this skill folder into place.
 
@@ -65,7 +65,7 @@ Classify each candidate lesson as one of:
 
 - Preserve only stable, reusable knowledge.
 - Do not copy task history into `.agents/AGENTS.md`.
-- Add or edit a file under `.agents/docs/repo-decisions/` for rationale and nuance (use a stable filename slug; keep `id` in frontmatter aligned with the slug; update `repo-decisions/index.md` when adding a new decision).
+- Add or edit a file under `.agents/docs/decisions/` for rationale and nuance (use a stable filename slug; keep `id` in frontmatter aligned with the slug; update `decisions/index.md` when adding a new decision).
 - Add or edit a file under `.agents/docs/troubleshooting/` for recurring failures and fixes (same index and frontmatter conventions).
 - Use `.agents/playbooks/` for durable multi-step procedures.
 - Add to `.agents/AGENTS.md` only if the lesson is broad, stable, concise, and actionable.

@@ -23,7 +23,7 @@ Reduce friction and fear when **upgrading** the agent knowledge starter in a rea
 - Cover first-time adoption into a repo that already has `.agents/`: preserve existing domain-specific `rules/`, `playbooks/`, and `skills/`, then add missing `docs/`, `agents/`, `sessions/`, and the closeout/distill/lint skills.
 - Explain that `.agents/.gitignore` is sufficient for session bundles when tracked, with repo-root `.gitignore` patterns only as an alternative for repos that do not track nested gitignore files.
 - Explain how root `AGENTS.md` and `.agents/AGENTS.md` should relate when both exist.
-- Recommend recording adoption in `.agents/docs/log.md` and durable rationale under `.agents/docs/repo-decisions/`, then updating `.agents/docs/index.md` with pre-existing repo-specific knowledge assets.
+- Recommend recording adoption in `.agents/docs/log.md` and durable rationale under `.agents/docs/decisions/`, then updating `.agents/docs/index.md` with pre-existing repo-specific knowledge assets.
 
 ## Implemented so far
 
