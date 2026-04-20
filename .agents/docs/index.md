@@ -58,7 +58,7 @@ Append-only record of distillation and maintenance activity.
 
 ## `.agents/plans/`
 
-Active task planning, research documents, and implementation plans. For the wiki roadmap see [`.agents/plans/wiki-system.md`](../plans/wiki-system.md); for new integration guides see [`.agents/plans/add-integrations.md`](../plans/add-integrations.md).
+Active task planning, research documents, and implementation plans. For the wiki roadmap see [`.agents/plans/wiki-system.md`](../plans/wiki-system.md); for the concrete repo-centric wiki tooling roadmap see [`.agents/plans/repo-centric-wiki-tooling.md`](../plans/repo-centric-wiki-tooling.md); for new integration guides see [`.agents/plans/add-integrations.md`](../plans/add-integrations.md).
 
 ## Repository architecture (root docs)
 
