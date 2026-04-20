@@ -37,7 +37,7 @@ This is intentionally generic. It should work with any system that supports user
 
 ### For humans
 
-You can install the kit manually or ask an agent to do it.
+You can install the kit manually, copy the pre-initialized `example/.agents/` into a fresh repo, or ask an agent to do it.
 
 Manual install:
 
@@ -45,6 +45,12 @@ Manual install:
 2. If the project already has `.agents/`, merge instead of replacing; preserve repo-specific `rules/`, `playbooks/`, and `skills/`.
 3. Edit `.agents/AGENTS.md` with real build, test, and project conventions (or keep the template created by skill initialization until you are ready).
 4. Wire `.agents/skills/*/SKILL.md` and `.agents/agents/*.md` into your editor or agent product.
+
+Copy the example (fresh repo):
+
+1. Create a new empty repository (or project folder).
+2. Copy this repository’s [`example/.agents/`](example/.agents/) directory into your project root as `.agents/`. You do not need anything else from [`example/`](example/) (for example its README).
+3. Wire `.agents/skills/*/SKILL.md` and `.agents/agents/*.md` into your tools (see [`INSTALL.md`](INSTALL.md)).
 
 Agent-assisted install:
 

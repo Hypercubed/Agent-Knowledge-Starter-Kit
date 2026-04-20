@@ -72,9 +72,22 @@ Classify each candidate lesson as one of:
 - Reject low-confidence or one-off lessons.
 - Keep `.agents/docs/log.md` minimal: no secrets, personal data, private business details, long raw outputs, or copied transcript text.
 
+## Finding session bundles (gitignore)
+
+By kit design, per-task folders under `.agents/sessions/` are **gitignored** (only `README.md` is meant to stay tracked). Many search and listing tools **skip gitignored paths by default**, so a first pass can look empty even when bundles exist on disk.
+
+**Do not** conclude that `.agents/sessions/` has no bundles based only on an ignore-aware code search or glob.
+
+**Do** locate bundles with at least one method that actually sees ignored files, for example:
+
+- List the directory with a filesystem API or shell (`ls`, `find`, and similar) rather than relying solely on an IDE index that excludes gitignored paths.
+- When using ripgrep, pass flags that include gitignored files (for example `--no-ignore-vcs`, or `--no-ignore` if your search is scoped under `.agents/sessions/` and you accept searching other ignored paths in that subtree).
+
+Then open each candidate bundle’s `summary.json`: treat `task_id` as canonical, and filter or prioritize work using distillation state fields (`distilled`, `status`, `distillation_status`, or equivalents). Do not select a bundle from its folder name alone.
+
 ## Procedure
 
-1. Read the session bundle.
+1. Locate the correct session bundle using **Finding session bundles (gitignore)**, then read that bundle’s files.
 2. Read `summary.json` and use its `task_id` in notes and log entries.
 3. Compare candidates against the existing `.agents/` files.
 4. Remove duplication.

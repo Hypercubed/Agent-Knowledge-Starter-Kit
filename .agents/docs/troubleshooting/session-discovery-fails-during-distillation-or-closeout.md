@@ -18,10 +18,12 @@ A first-pass glob suggests `.agents/sessions/` contains no bundles, even though 
 
 - Searching for misspelled or non-existent directories.
 - Using a narrow glob and accepting an incomplete result without structure-aware verification.
+- **Ignore-aware search hiding bundles:** everything under `.agents/sessions/` except `README.md` is gitignored, so tools that skip ignored paths can report an empty directory even when bundles exist on disk.
 
 #### Fix
 
 - Verify with a structure-aware query like `.agents/sessions/*/summary.json` before assuming the directory is empty.
+- When using ripgrep or IDE search, include **gitignored** files if the tool supports it (for example `rg --no-ignore-vcs`), or enumerate the directory with the shell filesystem APIs instead of an ignore-aware index alone.
 - Read `summary.json` to filter sessions by state fields such as `distilled` rather than relying on folder names.
 
 #### Validation

@@ -1,5 +1,9 @@
 # Knowledge Maintenance Log
 
+### \[2026-04-19] learning-distill | t-20260419-knowledge-layer-metadata-plans-decisions, t-20260419-204841-plan-scaffold-closeout
+
+Outcome: updated Files: `.agents/AGENTS.md`; `.agents/docs/troubleshooting/session-discovery-fails-during-distillation-or-closeout.md`; `.agents/docs/log.md`; `.agents/sessions/20260419-190500-knowledge-layer-layout/summary.json`; `.agents/sessions/20260419-204841-plan-scaffold-closeout/summary.json` Accepted: 2 (troubleshooting: gitignored `.agents/sessions/` can make ignore-aware search look empty; AGENTS: plan-only `.agents/plans/` must not drive skill or shipped-behavior edits until implementation is requested) Rejected: 3 (extra consumer-kit decision for excluding `plans/` — already covered in `.agents/docs/index.md`; knowledge-layer bootstrap/rename playbook and git-diff closeout path hints already covered elsewhere or embodied in skills) Notes: Re-checked sessions with gitignored paths visible; two previously undistilled bundles processed.
+
 ### \[2026-04-19] learning-distill | t-20260419-172217-remark-md-fix
 
 Outcome: updated Files: `.agents/AGENTS.md`; `.agents/docs/troubleshooting/remark-or-bulk-markdown-rewrite-unwanted-paths.md`; `.agents/docs/troubleshooting/index.md`; `.agents/docs/log.md`; `.agents/sessions/20260419-172217-remark-md-fix/summary.json` Accepted: 2 (AGENTS pitfall for scoped `git restore` after mass Markdown format; troubleshooting pattern for wide remark runs and accidental unrelated restores) Rejected: 0 Notes: Session evidence medium-confidence on narrative details; durable guidance kept mechanical and path-scoped.
