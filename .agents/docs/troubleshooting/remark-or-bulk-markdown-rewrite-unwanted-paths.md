@@ -2,6 +2,10 @@
 id: remark-or-bulk-markdown-rewrite-unwanted-paths
 title: "Remark or bulk Markdown rewrite touched unwanted paths"
 last_updated: 2026-04-19
+description: >
+  Wide Markdown formatter runs can touch many files; this pattern explains how
+  to restore only the intended paths without discarding unrelated work.
+tags: [markdown, git, tooling]
 ---
 
 # Remark or bulk Markdown rewrite touched unwanted paths

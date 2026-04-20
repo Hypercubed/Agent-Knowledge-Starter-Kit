@@ -2,6 +2,10 @@
 id: hermes-agent-specific-dual-skill-namespace-skill-view-returns-wrong-file
 title: "Hermes Agent–specific: Dual skill namespace (`skill_view` returns wrong file)"
 last_updated: 2026-04-19
+description: >
+  Hermes may resolve `skill_view` against a different skill namespace than the
+  repo’s `.agents/skills/` tree, returning unexpected stub content.
+tags: [hermes, skills, tooling]
 ---
 
 # Hermes Agent–specific: Dual skill namespace (`skill_view` returns wrong file)

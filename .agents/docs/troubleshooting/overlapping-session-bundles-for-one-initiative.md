@@ -2,6 +2,10 @@
 id: overlapping-session-bundles-for-one-initiative
 title: "Overlapping session bundles for one initiative"
 last_updated: 2026-04-19
+description: >
+  Multiple `.agents/sessions/` folders may describe related work, complicating
+  which bundle to distill or how `prior_session` links should be read.
+tags: [sessions, workflow, skills]
 ---
 
 # Overlapping session bundles for one initiative

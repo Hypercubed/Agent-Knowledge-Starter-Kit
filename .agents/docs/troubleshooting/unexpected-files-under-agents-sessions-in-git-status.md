@@ -2,6 +2,10 @@
 id: unexpected-files-under-agents-sessions-in-git-status
 title: "Unexpected files under `.agents/sessions/` in git status"
 last_updated: 2026-04-19
+description: >
+  Session bundles or stray files under `.agents/sessions/` can show up as
+  tracked or modified when ignore rules and README expectations drift.
+tags: [sessions, git, workflow]
 ---
 
 # Unexpected files under `.agents/sessions/` in git status

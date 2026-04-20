@@ -2,6 +2,11 @@
 id: shared-integration-patterns-belong-in-docs-integrations-patterns-md
 title: "Shared integration patterns belong in `docs/integrations/patterns.md`"
 last_updated: 2026-04-19
+description: >
+  Cross-vendor patterns that are not kit-specific belong in
+  `docs/integrations/patterns.md` instead of duplicating them across agent trees.
+tags: [docs, integrations, architecture]
+status: accepted
 ---
 
 # Shared integration patterns belong in `docs/integrations/patterns.md`

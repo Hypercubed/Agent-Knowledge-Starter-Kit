@@ -2,6 +2,11 @@
 id: use-the-routing-pattern-for-agentic-tool-bootstrap-files
 title: "Use the Routing Pattern for agentic tool bootstrap files"
 last_updated: 2026-04-19
+description: >
+  Bootstrap files for agentic tools should route to `.agents/AGENTS.md` and
+  portable skills rather than embedding long forked guidance.
+tags: [agents, integrations, docs]
+status: accepted
 ---
 
 # Use the Routing Pattern for agentic tool bootstrap files

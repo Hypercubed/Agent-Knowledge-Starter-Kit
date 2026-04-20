@@ -2,6 +2,10 @@
 id: codex-cannot-write-under-agents-during-closeout-or-distill
 title: "Codex cannot write under `.agents/` during closeout or distill"
 last_updated: 2026-04-19
+description: >
+  Codex runs may treat `.agents/` as read-only or require extra approval when
+  creating session bundles or updating durable knowledge during workflows.
+tags: [codex, sessions, skills, agents]
 ---
 
 # Codex cannot write under `.agents/` during closeout or distill

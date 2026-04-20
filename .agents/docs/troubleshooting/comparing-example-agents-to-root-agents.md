@@ -2,6 +2,10 @@
 id: comparing-example-agents-to-root-agents
 title: "Comparing greenfield `example/.agents/` to this repo’s root `.agents/`"
 last_updated: 2026-04-19
+description: >
+  Consumers expect `example/.agents/` to mirror a portable install; diffs against
+  root `.agents/` usually mean the example tree needs regeneration or a doc fix.
+tags: [example, maintenance, agents]
 ---
 
 # Comparing greenfield `example/.agents/` to this repo’s root `.agents/`

@@ -2,6 +2,10 @@
 id: windows-to-wsl-tool-path-failures
 title: "Windows-to-WSL Tool Path Failures"
 last_updated: 2026-04-19
+description: >
+  Agents running on Windows against a WSL workspace can fail file operations
+  when paths cross the Windows/Linux boundary incorrectly.
+tags: [windows, wsl, tooling]
 ---
 
 # Windows-to-WSL Tool Path Failures

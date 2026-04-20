@@ -2,6 +2,11 @@
 id: github-copilot-as-rules-based-ide-wiring-tool
 title: "GitHub Copilot as Rules-Based IDE Wiring tool"
 last_updated: 2026-04-19
+description: >
+  Treat GitHub Copilot as an IDE wiring layer that routes agents to repo-local
+  rules and skills, not as a second knowledge store.
+tags: [tooling, integrations, agents, docs]
+status: accepted
 ---
 
 # GitHub Copilot as Rules-Based IDE Wiring tool

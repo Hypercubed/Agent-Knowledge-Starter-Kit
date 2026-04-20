@@ -2,6 +2,10 @@
 id: antigravity-lessons-learned-aren-t-visible-to-teammate-s-agents
 title: "Antigravity: Lessons learned aren't visible to teammate's agents"
 last_updated: 2026-04-19
+description: >
+  Local-only research in Antigravity does not automatically become durable repo
+  knowledge teammates can load; distill lessons into tracked `.agents/` files.
+tags: [agents, workflow, docs]
 ---
 
 # Antigravity: Lessons learned aren't visible to teammate's agents

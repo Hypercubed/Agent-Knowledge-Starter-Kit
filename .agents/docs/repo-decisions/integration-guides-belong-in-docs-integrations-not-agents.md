@@ -2,6 +2,13 @@
 id: integration-guides-belong-in-docs-integrations-not-agents
 title: "Integration guides belong in `docs/integrations/`, not `.agents/`"
 last_updated: 2026-04-19
+description: >
+  Product-specific install and wiring guides live under root `docs/integrations/`
+  so `.agents/` stays portable kit knowledge rather than vendor how-tos.
+tags: [docs, integrations, architecture]
+status: accepted
+depends_on:
+  - shared-integration-patterns-belong-in-docs-integrations-patterns-md
 ---
 
 # Integration guides belong in `docs/integrations/`, not `.agents/`

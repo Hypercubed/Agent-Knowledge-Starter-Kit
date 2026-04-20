@@ -2,6 +2,11 @@
 id: agents-do-not-stage-or-commit-changes
 title: "Agents do not stage or commit changes"
 last_updated: 2026-04-19
+description: >
+  Coding agents should leave git staging and commits to the maintainer so
+  history and review boundaries stay human-controlled.
+tags: [git, agents, workflow]
+status: accepted
 ---
 
 # Agents do not stage or commit changes

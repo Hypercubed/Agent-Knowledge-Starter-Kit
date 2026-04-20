@@ -2,6 +2,10 @@
 id: github-copilot-chat-context-not-in-focus
 title: "GitHub Copilot Chat context not in focus"
 last_updated: 2026-04-19
+description: >
+  Copilot Chat may ignore `.agents/` guidance when routing files or editor
+  context are not aligned with the repo’s documented bootstrap pattern.
+tags: [github-copilot, agents, integrations]
 ---
 
 # GitHub Copilot Chat context not in focus

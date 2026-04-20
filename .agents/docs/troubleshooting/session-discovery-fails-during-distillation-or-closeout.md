@@ -2,6 +2,10 @@
 id: session-discovery-fails-during-distillation-or-closeout
 title: "Session Discovery Fails During Distillation or Closeout"
 last_updated: 2026-04-19
+description: >
+  Closeout or distillation workflows sometimes report no session bundles even
+  when work exists; this entry covers common glob and layout causes.
+tags: [sessions, skills, workflow]
 ---
 
 # Session Discovery Fails During Distillation or Closeout

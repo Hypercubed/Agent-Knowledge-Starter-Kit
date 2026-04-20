@@ -2,6 +2,11 @@
 id: maintainer-skills-mark-internal-in-frontmatter
 title: "Maintainer-only skills use `metadata.internal: true`"
 last_updated: 2026-04-19
+description: >
+  Skills that are only for this repository’s maintenance must declare
+  `metadata.internal: true` so portable installs do not surface them as kit skills.
+tags: [skills, maintenance, release]
+status: accepted
 ---
 
 # Maintainer-only skills use `metadata.internal: true`

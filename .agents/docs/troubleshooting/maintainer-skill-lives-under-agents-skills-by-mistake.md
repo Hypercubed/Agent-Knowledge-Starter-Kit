@@ -2,6 +2,12 @@
 id: maintainer-skill-lives-under-agents-skills-by-mistake
 title: "Maintainer-only skill appears as a portable kit skill"
 last_updated: 2026-04-19
+description: >
+  Maintainer automation placed under `.agents/skills/` without `internal: true`
+  can be picked up by consumer installs; mark it internal or relocate it.
+tags: [skills, maintenance, release]
+depends_on:
+  - maintainer-skills-mark-internal-in-frontmatter
 ---
 
 # Maintainer-only skill appears as a portable kit skill

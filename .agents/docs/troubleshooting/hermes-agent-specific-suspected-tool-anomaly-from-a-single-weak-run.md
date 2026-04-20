@@ -2,6 +2,10 @@
 id: hermes-agent-specific-suspected-tool-anomaly-from-a-single-weak-run
 title: "Hermes Agent–specific: Suspected tool anomaly from a single weak run"
 last_updated: 2026-04-19
+description: >
+  A single flaky tool invocation in Hermes should be validated against the real
+  filesystem before promoting it as a durable repo-wide incident pattern.
+tags: [hermes, tooling, debugging]
 ---
 
 # Hermes Agent–specific: Suspected tool anomaly from a single weak run

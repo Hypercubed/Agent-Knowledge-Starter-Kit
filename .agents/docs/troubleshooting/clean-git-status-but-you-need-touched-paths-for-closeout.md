@@ -2,6 +2,10 @@
 id: clean-git-status-but-you-need-touched-paths-for-closeout
 title: "Clean `git status` but you need touched paths for closeout"
 last_updated: 2026-04-19
+description: >
+  After commits, the working tree is clean but **task-closeout** still needs an
+  accurate list of paths touched in the session for the bundle record.
+tags: [git, sessions, skills, workflow]
 ---
 
 # Clean `git status` but you need touched paths for closeout

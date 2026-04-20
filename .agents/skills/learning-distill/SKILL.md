@@ -49,7 +49,7 @@ Run this once per target repo after the skill files are present under `.agents/s
 
 8. If the repo does not track `.agents/.gitignore` and the user relies on the repo root `.gitignore`, ensure equivalent patterns exist there: `.agents/sessions/*` and `!.agents/sessions/README.md`.
 
-This initialization supplies the durable doc scaffold the distill procedure expects. It does not fabricate repo-specific guidance beyond the kit templates.
+This initialization supplies the durable doc scaffold the distill procedure expects. It does not fabricate repo-specific guidance beyond the kit templates. The same `bootstrap/` tree is the canonical source for **knowledge-lint** initialization when both skills are installed (see that skill’s `SKILL.md`).
 
 ## Classification categories
 

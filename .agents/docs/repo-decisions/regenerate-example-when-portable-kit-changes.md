@@ -2,6 +2,11 @@
 id: regenerate-example-when-portable-kit-changes
 title: "Regenerate `example/` when the portable kit or bootstrap changes"
 last_updated: 2026-04-19
+description: >
+  When portable `.agents/` templates or bootstrap behavior change, refresh the
+  generated `example/` tree so the illustrated consumer install stays accurate.
+tags: [example, maintenance, release, skills]
+status: accepted
 ---
 
 # Regenerate `example/` when the portable kit or bootstrap changes

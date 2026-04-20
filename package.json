@@ -23,7 +23,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "remark:fix": "remark --output -- $(git ls-files '*.md')"
+    "remark:fix": "remark \".agents/**/*.md\" --output"
   },
   "devDependencies": {
     "markdown-link-check": "^3.14.1",

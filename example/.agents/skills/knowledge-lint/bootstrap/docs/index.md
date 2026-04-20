@@ -46,10 +46,6 @@ Maintenance schema and rules for this knowledge layer.
 
 Append-only record of distillation and maintenance activity.
 
-## `.agents/plans/`
-
-Active task planning, research documents, and implementation plans. Add this folder in your repository if you use it; starter content may omit it.
-
 ## Repository architecture and install (project root)
 
 When this kit lives at the **repository root** of your project, optional pointers:

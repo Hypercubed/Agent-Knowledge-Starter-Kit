@@ -2,6 +2,14 @@
 id: single-tree-architecture-agents
 title: "Single-tree architecture (`.agents/`)"
 last_updated: 2026-04-19
+description: >
+  Canonical kit knowledge and portable skills live only under root `.agents/`;
+  the `example/` tree is generated illustration, not a second source of truth.
+tags: [architecture, agents, installation]
+status: accepted
+depends_on:
+  - maintainer-skills-mark-internal-in-frontmatter
+  - regenerate-example-when-portable-kit-changes
 ---
 
 # Single-tree architecture (`.agents/`)

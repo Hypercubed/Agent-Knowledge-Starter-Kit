@@ -2,6 +2,11 @@
 id: sessions-directory-tracked-readme-with-ignored-bundles
 title: "Sessions directory: tracked README with ignored bundles"
 last_updated: 2026-04-19
+description: >
+  Track only `.agents/sessions/README.md` in git while per-task bundle folders
+  stay ignored so temporary closeout evidence does not pollute history.
+tags: [sessions, git, workflow]
+status: accepted
 ---
 
 # Sessions directory: tracked README with ignored bundles

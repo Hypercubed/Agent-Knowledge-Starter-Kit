@@ -2,6 +2,11 @@
 id: kit-installation-guidance-lives-in-root-docs
 title: "Kit installation guidance lives in root docs"
 last_updated: 2026-04-19
+description: >
+  Consumer-facing install, layout, and integration instructions belong in
+  repository root `docs/` rather than inside `.agents/docs/`.
+tags: [docs, installation, release]
+status: accepted
 ---
 
 # Kit installation guidance lives in root docs
