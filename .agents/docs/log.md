@@ -1,5 +1,9 @@
 # Knowledge Maintenance Log
 
+### \[2026-04-20] learning-distill | t-20260421-030348-option-a-skill-delivery
+
+Outcome: updated Files: `.agents/docs/decisions/docs-tooling-scripts-resolve-target-from-override-then-nearest-agents.md`; `.agents/docs/troubleshooting/docs-tooling-resolves-wrong-project-root-in-nested-example-or-global-installs.md`; `.agents/docs/decisions/index.md`; `.agents/docs/troubleshooting/index.md`; `.agents/skills/docs-search/docs-search-index.json`; `.agents/docs/log.md`; `.agents/sessions/20260421-030348-option-a-skill-delivery/summary.json` Accepted: 2 (decision: docs tooling target resolution contract; troubleshooting: wrong-root resolution in nested/global script runs) Rejected: 0 Notes: Distilled Option A docs-search/docs-compile delivery session; retained only reusable path-resolution and validation guidance.
+
 ### \[2026-04-19] learning-distill | t-20260419-knowledge-layer-metadata-plans-decisions, t-20260419-204841-plan-scaffold-closeout
 
 Outcome: updated Files: `.agents/AGENTS.md`; `.agents/docs/troubleshooting/session-discovery-fails-during-distillation-or-closeout.md`; `.agents/docs/log.md`; `.agents/sessions/20260419-190500-knowledge-layer-layout/summary.json`; `.agents/sessions/20260419-204841-plan-scaffold-closeout/summary.json` Accepted: 2 (troubleshooting: gitignored `.agents/sessions/` can make ignore-aware search look empty; AGENTS: plan-only `.agents/plans/` must not drive skill or shipped-behavior edits until implementation is requested) Rejected: 3 (extra consumer-kit decision for excluding `plans/` — already covered in `.agents/docs/index.md`; knowledge-layer bootstrap/rename playbook and git-diff closeout path hints already covered elsewhere or embodied in skills) Notes: Re-checked sessions with gitignored paths visible; two previously undistilled bundles processed.

@@ -11,6 +11,7 @@ One file per durable architectural or policy decision. New entries: follow [Entr
 ## Index
 
 - [Agents do not stage or commit changes](agents-do-not-stage-or-commit-changes.md)
+- [Docs tooling scripts resolve target from override, then nearest `.agents`](docs-tooling-scripts-resolve-target-from-override-then-nearest-agents.md)
 - [GitHub Copilot as Rules-Based IDE Wiring tool](github-copilot-as-rules-based-ide-wiring-tool.md)
 - [Integration guides belong in `docs/integrations/`, not `.agents/`](integration-guides-belong-in-docs-integrations-not-agents.md)
 - [Kit installation guidance lives in root docs](kit-installation-guidance-lives-in-root-docs.md)
