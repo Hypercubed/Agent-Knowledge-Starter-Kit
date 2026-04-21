@@ -11,7 +11,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -193,18 +192,7 @@ def _collect_sections(docs_root: Path, repo_root: Path) -> list[dict[str, Any]]:
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description=(
-            "Build docs-search-index.json under the resolved .agents/skills/docs-search."
-        )
-    )
-    parser.add_argument(
-        "--agents-root",
-        type=Path,
-        default=None,
-        help=(
-            "Path to .agents directory. If omitted, use AGENTS_ROOT env var, "
-            "then nearest .agents from current working directory."
-        ),
+        description="Build docs-search-index.json under docs-search skill."
     )
     parser.add_argument(
         "--dry-run",
@@ -213,22 +201,9 @@ def main() -> int:
     )
     args = parser.parse_args()
 
-    raw_agents_root: Path | None = args.agents_root
-    if raw_agents_root is None:
-        env_root = Path(os.environ["AGENTS_ROOT"]) if "AGENTS_ROOT" in os.environ else None
-        raw_agents_root = env_root
-
-    if raw_agents_root is not None:
-        candidate = raw_agents_root.expanduser().resolve()
-        agents_root = candidate if candidate.name == ".agents" else candidate / ".agents"
-    else:
-        agents_root = _find_agents_root(Path.cwd())
-
-    if agents_root is None or not agents_root.is_dir():
-        print(
-            "ERROR: could not locate .agents directory. Pass --agents-root or set AGENTS_ROOT.",
-            file=sys.stderr,
-        )
+    agents_root = _find_agents_root(Path.cwd())
+    if agents_root is None:
+        print("ERROR: could not locate .agents directory from current path.", file=sys.stderr)
         return 1
 
     repo_root = agents_root.parent

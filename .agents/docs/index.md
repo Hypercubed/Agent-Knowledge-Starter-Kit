@@ -26,7 +26,6 @@ Examples (this repo):
 
 - [`.agents/playbooks/generate-example.md`](../playbooks/generate-example.md) — generate a complete bootstrapped example folder for the kit.
 - [`.agents/playbooks/pre-publish.md`](../playbooks/pre-publish.md) — run pre-publish checks and review warnings before publishing the starter kit.
-- [`.agents/playbooks/docs-compile.md`](../playbooks/docs-compile.md) — refresh derived docs indexes and the maintainer docs-search cache.
 - [`.agents/playbooks/writing-integration-guides.md`](../playbooks/writing-integration-guides.md) — write user-facing tool integration guides without overstating unverified behavior.
 
 ## Portable kit skills (`.agents/skills/`)
@@ -36,11 +35,12 @@ Workflow definitions shipped with the kit (each folder contains `SKILL.md` and o
 - [`task-closeout`](../skills/task-closeout/SKILL.md) — structured session bundles under `.agents/sessions/`.
 - [`learning-distill`](../skills/learning-distill/SKILL.md) — distill bundles into durable `.agents/` knowledge.
 - [`knowledge-lint`](../skills/knowledge-lint/SKILL.md) — periodic pass for duplication, drift, and index gaps.
+- [`docs-search`](../skills/docs-search/SKILL.md) — search durable `.agents/` knowledge via local index generation from markdown sources.
+- [`docs-compile`](../skills/docs-compile/SKILL.md) — optional regeneration of durable `decisions/index.md` and `troubleshooting/index.md`.
 
 Maintainer-only (this repository):
 
 - [`.agents/skills/generate-example/SKILL.md`](../skills/generate-example/SKILL.md) — generate a disposable consumer-path example structure (`metadata.internal: true`).
-- [`.agents/skills/docs-search/SKILL.md`](../skills/docs-search/SKILL.md) — search `.agents/docs/` via a local index (`metadata.internal: true`).
 - **Planning / roadmaps** (under `.agents/plans/`, not part of the portable consumer kit): [wiki-system.md](../plans/wiki-system.md), [repo-centric-wiki-tooling.md](../plans/repo-centric-wiki-tooling.md), [add-integrations.md](../plans/add-integrations.md).
 
 ## `.agents/agents/`

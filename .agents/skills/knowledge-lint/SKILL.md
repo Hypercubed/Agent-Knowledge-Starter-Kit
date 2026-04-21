@@ -43,7 +43,7 @@ If `.agents/sessions/` or `.agents/.gitignore` session rules are missing, run **
 - oversized AGENTS sections
 - missing index coverage in `.agents/docs/index.md` for durable assets
 - broken links in indexes and cross-links between docs
-- `decisions/index.md` and `troubleshooting/index.md` list only files that exist; each entry file has frontmatter `id` aligned with its filename slug where applicable, and **`id` values are unique across both directories** (not only within one)
+- when `decisions/index.md` or `troubleshooting/index.md` exists, verify listed files exist and align with entry files; always verify each entry file has frontmatter `id` aligned with its filename slug where applicable, and **`id` values are unique across both directories** (not only within one)
 - **Durable entry metadata contract:** each `decisions/*.md` and `troubleshooting/*.md` entry (excluding each folder’s `index.md`) follows `.agents/docs/MAINTENANCE.md` — required `id`, `title`, `last_updated`, `description`, and YAML list `tags`; `decisions/` entries also have `status` (`accepted`, `superseded`, or `provisional`); no `status` on troubleshooting entries; `tags` is never a single scalar string meant to hold a list; optional `depends_on` is a YAML list when present. Confirm by reading frontmatter, not only prose.
 - troubleshooting entries that should be decisions or playbooks
 - decisions that should be compressed into AGENTS guidance
@@ -52,11 +52,13 @@ If `.agents/sessions/` or `.agents/.gitignore` session rules are missing, run **
 
 ## Derived indexes (before lint)
 
-When `decisions/` or `troubleshooting/` entry files were added, removed, or renamed, refresh generated indexes and the maintainer **docs-search** cache so mechanical checks reflect the tree:
+When `decisions/` or `troubleshooting/` entry files were added, removed, or renamed, attempt docs-compile first so optional durable indexes stay fresh:
 
-`bash scripts/docs-compile.sh`
+`bash .agents/skills/docs-compile/scripts/docs-compile.sh`
 
-See [`.agents/playbooks/docs-compile.md`](../playbooks/docs-compile.md).
+If the `docs-compile` skill is not installed, continue linting and skip durable index freshness checks that depend on those optional index files.
+
+See [`.agents/skills/docs-compile/SKILL.md`](../docs-compile/SKILL.md).
 
 ## Output
 

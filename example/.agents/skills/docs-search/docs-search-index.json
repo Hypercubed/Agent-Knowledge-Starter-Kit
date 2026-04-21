@@ -1,0 +1,34 @@
+{
+  "version": 2,
+  "docs_root": ".agents/docs",
+  "generated_at": "2026-04-21T02:59:46Z",
+  "sections": [
+    {
+      "id": "index",
+      "title": "Knowledge Index",
+      "description": "This file belongs in `.agents/docs/`.",
+      "path": ".agents/docs/index.md",
+      "docs_path": "index.md",
+      "folder": "",
+      "kind": "docs-root"
+    },
+    {
+      "id": "README",
+      "title": "Playbooks",
+      "description": "This directory belongs in `.agents/playbooks/`.",
+      "path": ".agents/playbooks/README.md",
+      "docs_path": "",
+      "folder": "playbooks",
+      "kind": "playbook"
+    },
+    {
+      "id": "AGENTS",
+      "title": "AGENTS.md",
+      "description": "Consult this file first for repo-wide operational guidance.",
+      "path": ".agents/AGENTS.md",
+      "docs_path": "",
+      "folder": ".agents",
+      "kind": "agents"
+    }
+  ]
+}

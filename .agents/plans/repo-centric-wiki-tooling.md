@@ -4,7 +4,7 @@ description: >
   markdown knowledge layer without replacing the existing skill-based
   distillation workflow.
 created: 2026-04-19
-status: draft
+status: in-progress
 writer: AI
 prompter: Hypercubed
 ---
@@ -25,6 +25,21 @@ Hermes Agent and llm-wiki-compiler while keeping this starter kit:
 The intended outcome is not a separate knowledge platform. The outcome is a
 small set of local conventions and scripts that make `.agents/` easier for
 agents to ingest, query, maintain, and validate.
+
+## Current direction (Option A, April 2026)
+
+The implementation direction now favors a split between query correctness and
+optional human-oriented index regeneration:
+
+- `docs-search` is consumer-facing and self-sufficient for building
+  `docs-search-index.json` directly from durable markdown sources.
+- `docs-compile` is an optional consumer skill that regenerates
+  `decisions/index.md` and `troubleshooting/index.md`, then refreshes
+  `docs-search-index.json`.
+- `learning-distill` and `knowledge-lint` attempt `docs-compile` when present,
+  but continue when absent.
+- Durable section `index.md` files are optional compile artifacts rather than a
+  hard runtime dependency for docs-search.
 
 ## Why this plan exists
 
@@ -193,7 +208,8 @@ without traversing the full tree.
 
 ### Changes
 
-1. Add a repo-local script such as `scripts/knowledge-compile.(js|sh)`.
+1. Add a repo-local script such as
+   `.agents/skills/docs-compile/scripts/docs-compile.sh` (or equivalent).
 2. Crawl durable knowledge sources:
    - `.agents/AGENTS.md`
    - `.agents/docs/decisions/`
@@ -204,6 +220,8 @@ without traversing the full tree.
    - `.agents/docs/index.json` for machine-oriented lookup
    - refreshed `.agents/docs/index.md` for human-oriented navigation
    - optional per-section indexes if the root index becomes too dense
+   - note: per-section `index.md` artifacts are optional in the Option A
+     packaging model and should not be required for docs-search correctness
 4. Standardize artifact fields in `index.json`:
    - `id`
    - `title`
@@ -315,11 +333,11 @@ leaving it as optional maintainer knowledge.
 
 1. Update `learning-distill` so the routine flow becomes:
    - write or update durable docs
-   - run `knowledge-compile`
+   - run `docs-compile` when available
    - review generated changes
 2. Update `knowledge-lint` to validate:
    - metadata contract
-   - index coverage
+   - index coverage (conditional when optional compile artifacts are absent)
    - graph coverage
    - broken links between docs and playbooks
 3. Update `task-closeout` guidance if new candidate fields help downstream

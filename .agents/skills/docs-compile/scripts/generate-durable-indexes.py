@@ -10,10 +10,10 @@ Requirements:
   - PyYAML (`pip install pyyaml` or your distro package)
 
 Usage:
-  python3 scripts/generate-durable-indexes.py
-  python3 scripts/generate-durable-indexes.py --agents-root path/to/.agents
-  python3 scripts/generate-durable-indexes.py --target .agents/docs/decisions
-  python3 scripts/generate-durable-indexes.py -t foo/bar -t other/baz
+  python3 .agents/skills/docs-compile/scripts/generate-durable-indexes.py
+  python3 .agents/skills/docs-compile/scripts/generate-durable-indexes.py --agents-root path/to/.agents
+  python3 .agents/skills/docs-compile/scripts/generate-durable-indexes.py --target .agents/docs/decisions
+  python3 .agents/skills/docs-compile/scripts/generate-durable-indexes.py -t foo/bar -t other/baz
 """
 
 from __future__ import annotations

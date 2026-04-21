@@ -33,12 +33,12 @@ Industry pattern (aligned with common ADR guidance): keep **accepted rationale**
 
 ## Placement in this repo
 
-| Location | Role |
-| -------- | ---- |
-| `.agents/plans/*.md` | **Active** plans: current maintainer and starter-roadmap work (this repo’s working set). |
-| `.agents/plans/archive/*.md` | **Cold storage** for finished, cancelled, superseded, or otherwise retired plans (same `id` and filename stem as before the move). |
-| `example/.agents/plans/` | **Optional future** mirror for the generated example tree once `generate-example` and docs agree to ship a starter `README.md` + one sample plan. |
-| Consumer repo after merge | Same relative path `.agents/plans/` if the adopting team wants initiatives beside the rest of the kit. |
+| Location                     | Role                                                                                                                                              |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `.agents/plans/*.md`         | **Active** plans: current maintainer and starter-roadmap work (this repo’s working set).                                                          |
+| `.agents/plans/archive/*.md` | **Cold storage** for finished, cancelled, superseded, or otherwise retired plans (same `id` and filename stem as before the move).                |
+| `example/.agents/plans/`     | **Optional future** mirror for the generated example tree once `generate-example` and docs agree to ship a starter `README.md` + one sample plan. |
+| Consumer repo after merge    | Same relative path `.agents/plans/` if the adopting team wants initiatives beside the rest of the kit.                                            |
 
 **Naming:** one initiative per file, filename stem equals frontmatter `id`, lowercase `[a-z0-9_-].md`. The same rule applies under `plans/archive/` (path changes; **`id` does not**).
 
@@ -46,14 +46,14 @@ Industry pattern (aligned with common ADR guidance): keep **accepted rationale**
 
 ## How plans differ from siblings
 
-| Artifact | Holds | Lifetime |
-| -------- | ----- | -------- |
-| `.agents/plans/` (top level) | Intent, scope, phasing, success criteria, links | While active or not yet filed into `archive/` |
-| `.agents/plans/archive/` | Same as plans, retired | Indefinite retention; optional trim after link graph is stable |
-| `.agents/playbooks/` | Repeatable **how-to** procedures | Long-lived; update in place |
-| `.agents/sessions/` | Raw evidence for **one** task (closeout bundles) | Short-lived; gitignored bundles |
-| `.agents/docs/decisions/` | Accepted (or provisional) **architectural/policy** outcomes | Long-lived; supersede in place with links |
-| `.agents/AGENTS.md` | Concise operational rules | Small; stable bullets only |
+| Artifact                     | Holds                                                       | Lifetime                                                       |
+| ---------------------------- | ----------------------------------------------------------- | -------------------------------------------------------------- |
+| `.agents/plans/` (top level) | Intent, scope, phasing, success criteria, links             | While active or not yet filed into `archive/`                  |
+| `.agents/plans/archive/`     | Same as plans, retired                                      | Indefinite retention; optional trim after link graph is stable |
+| `.agents/playbooks/`         | Repeatable **how-to** procedures                            | Long-lived; update in place                                    |
+| `.agents/sessions/`          | Raw evidence for **one** task (closeout bundles)            | Short-lived; gitignored bundles                                |
+| `.agents/docs/decisions/`    | Accepted (or provisional) **architectural/policy** outcomes | Long-lived; supersede in place with links                      |
+| `.agents/AGENTS.md`          | Concise operational rules                                   | Small; stable bullets only                                     |
 
 **Anti-patterns**
 
@@ -74,15 +74,15 @@ Applies to each plan markdown file under `.agents/plans/` or `.agents/plans/arch
 - `tags`: non-empty YAML **list** of lowercase `[a-z0-9_-]` labels (same style as durable entries).
 - `status`: plan lifecycle (lowercase):
 
-  | Value | Meaning |
-  | ----- | ------- |
-  | `draft` | Outline; not committed as team direction. |
-  | `active` | Current initiative; work may proceed. |
-  | `paused` | Intentionally on hold (time or dependency). |
-  | `completed` | Outcomes achieved or explicitly closed; see body for where knowledge landed. |
-  | `cancelled` | Stopped without the planned outcomes; record why in the body. |
-  | `archived` | Obsolete context kept for history only (often after a move to `plans/archive/`). |
-  | `superseded` | Replaced by another plan; set `superseded_by`. |
+  | Value        | Meaning                                                                          |
+  | ------------ | -------------------------------------------------------------------------------- |
+  | `draft`      | Outline; not committed as team direction.                                        |
+  | `active`     | Current initiative; work may proceed.                                            |
+  | `paused`     | Intentionally on hold (time or dependency).                                      |
+  | `completed`  | Outcomes achieved or explicitly closed; see body for where knowledge landed.     |
+  | `cancelled`  | Stopped without the planned outcomes; record why in the body.                    |
+  | `archived`   | Obsolete context kept for history only (often after a move to `plans/archive/`). |
+  | `superseded` | Replaced by another plan; set `superseded_by`.                                   |
 
 **Note:** this `status` vocabulary is **only** for files under `plans/`. Do not confuse it with decision `status` (`accepted` / `provisional` / `superseded`) in `.agents/docs/decisions/`.
 
@@ -212,12 +212,12 @@ That keeps parsers simple (no new required frontmatter on decisions) while prese
 
 All of these are **optional** workflow skills under `.agents/skills/`—plain `SKILL.md` contracts, no vendor lock-in.
 
-| Skill (proposed) | Responsibility |
-| ---------------- | ---------------- |
-| **write-plan** | Scaffold a new `plans/<id>.md` with valid frontmatter; check id collision with `decisions/` and `troubleshooting/`; suggest `related_decisions` from context. |
-| **update-plan-status** | Bump `last_updated`, transition `status`, set `superseded_by` / `supersedes`, and ensure body “Knowledge routing” matches reality. |
-| **archive-plan** | Move a terminal plan to `plans/archive/`, then **link sweep** durable docs (decisions, indexes, playbooks, cross-plan links) so nothing points at the old top-level path. |
-| **plan-to-playbook** | When steps stabilize, extract procedure to `.agents/playbooks/` and replace the plan section with a link (avoid duplication). |
+| Skill (proposed)                  | Responsibility                                                                                                                                                                                                           |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **write-plan**                    | Scaffold a new `plans/<id>.md` with valid frontmatter; check id collision with `decisions/` and `troubleshooting/`; suggest `related_decisions` from context.                                                            |
+| **update-plan-status**            | Bump `last_updated`, transition `status`, set `superseded_by` / `supersedes`, and ensure body “Knowledge routing” matches reality.                                                                                       |
+| **archive-plan**                  | Move a terminal plan to `plans/archive/`, then **link sweep** durable docs (decisions, indexes, playbooks, cross-plan links) so nothing points at the old top-level path.                                                |
+| **plan-to-playbook**              | When steps stabilize, extract procedure to `.agents/playbooks/` and replace the plan section with a link (avoid duplication).                                                                                            |
 | **distill / lint hooks (future)** | Extend **learning-distill** or **knowledge-lint** to warn on `anticipated_decisions` that never became files, or plans `status: active` with stale `last_updated` (human-reviewed warnings only until schema is stable). |
 
 **write-plan** is the highest-leverage first skill: it encodes the frontmatter contract and collision rules as executable checklists.
@@ -228,14 +228,14 @@ Maintainer-only skills (if any) should follow [Maintainer-only skills use `metad
 
 Use these as direct dependencies or implementation templates when building the planned plan skills.
 
-| Candidate skill | Use directly for planned work | Reuse notes for planned skills |
-| --------------- | ----------------------------- | ------------------------------ |
-| [`.agents/skills/task-closeout/SKILL.md`](../skills/task-closeout/SKILL.md) | **Yes**, for plan-involved session evidence capture and `summary.json.related_plans` enforcement. | Copy its "required vs optional fields" language style, explicit procedure numbering, and canonical-id emphasis (`task_id` in `summary.json`). `write-plan` can mirror this by enforcing filename/id equality and required frontmatter keys. |
-| [`.agents/skills/learning-distill/SKILL.md`](../skills/learning-distill/SKILL.md) | **Yes**, for converting session evidence into durable decisions/playbooks/troubleshooting tied back to plans. | Reuse its classification model (ephemeral vs durable targets) to define `plan-to-playbook` promotion criteria and `update-plan-status` completion gates (for example, only mark `completed` after outputs are routed). |
-| [`.agents/skills/knowledge-lint/SKILL.md`](../skills/knowledge-lint/SKILL.md) | **Yes**, as the lint pass that can eventually check plan freshness and link integrity. | Reuse metadata-contract checks, cross-index consistency checks, and mechanical path-hygiene patterns for `archive-plan` link sweep checks (old path to `plans/archive/` updates). |
-| [`.agents/skills/generate-example/SKILL.md`](../skills/generate-example/SKILL.md) | **Yes** (maintainer-only) when promoting plans into generated `example/.agents/`. | Reuse the "canonical playbook is source of truth" pattern; if plans become portable, add any `example/.agents/plans/` seed files through bootstrap/generation rather than manual drift. |
-| `create-skill` (Cursor built-in skill) | **Reference only** for authoring style and structure, not as repo runtime dependency. | Reuse naming/description conventions, progressive disclosure, and validation checklist style when drafting `write-plan`, `update-plan-status`, and `archive-plan` `SKILL.md` files. |
-| `find-skills` helper skill | **Reference only** when evaluating external ecosystem skills to avoid reinventing. | Use as a periodic discovery step before implementing new repo-local plan skills; record what was evaluated and why local implementation was still needed. |
+| Candidate skill                                                                   | Use directly for planned work                                                                                 | Reuse notes for planned skills                                                                                                                                                                                                              |
+| --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`.agents/skills/task-closeout/SKILL.md`](../skills/task-closeout/SKILL.md)       | **Yes**, for plan-involved session evidence capture and `summary.json.related_plans` enforcement.             | Copy its "required vs optional fields" language style, explicit procedure numbering, and canonical-id emphasis (`task_id` in `summary.json`). `write-plan` can mirror this by enforcing filename/id equality and required frontmatter keys. |
+| [`.agents/skills/learning-distill/SKILL.md`](../skills/learning-distill/SKILL.md) | **Yes**, for converting session evidence into durable decisions/playbooks/troubleshooting tied back to plans. | Reuse its classification model (ephemeral vs durable targets) to define `plan-to-playbook` promotion criteria and `update-plan-status` completion gates (for example, only mark `completed` after outputs are routed).                      |
+| [`.agents/skills/knowledge-lint/SKILL.md`](../skills/knowledge-lint/SKILL.md)     | **Yes**, as the lint pass that can eventually check plan freshness and link integrity.                        | Reuse metadata-contract checks, cross-index consistency checks, and mechanical path-hygiene patterns for `archive-plan` link sweep checks (old path to `plans/archive/` updates).                                                           |
+| [`.agents/skills/generate-example/SKILL.md`](../skills/generate-example/SKILL.md) | **Yes** (maintainer-only) when promoting plans into generated `example/.agents/`.                             | Reuse the "canonical playbook is source of truth" pattern; if plans become portable, add any `example/.agents/plans/` seed files through bootstrap/generation rather than manual drift.                                                     |
+| `create-skill` (Cursor built-in skill)                                            | **Reference only** for authoring style and structure, not as repo runtime dependency.                         | Reuse naming/description conventions, progressive disclosure, and validation checklist style when drafting `write-plan`, `update-plan-status`, and `archive-plan` `SKILL.md` files.                                                         |
+| `find-skills` helper skill                                                        | **Reference only** when evaluating external ecosystem skills to avoid reinventing.                            | Use as a periodic discovery step before implementing new repo-local plan skills; record what was evaluated and why local implementation was still needed.                                                                                   |
 
 ### Notes for later implementation
 

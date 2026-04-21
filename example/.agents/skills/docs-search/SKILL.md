@@ -14,7 +14,7 @@ Search durable guidance under `.agents/` with a local JSON index.
 
 ## Quickstart
 
-From the target repository (or any subdirectory under it):
+From the repository root:
 
 ```bash
 python3 .agents/skills/docs-search/scripts/index-docs.py
@@ -49,7 +49,6 @@ Default search output lists up to **5** matches; use `--limit 3` for top-3.
 ## Command options
 
 - `index-docs.py --dry-run` prints sample JSON only and does not write `docs-search-index.json`.
-- `index-docs.py --agents-root /path/to/.agents` overrides auto-discovery (equivalent to `AGENTS_ROOT=/path/to/.agents`).
 - `search-docs.py --limit 3` returns fewer matches (default is 5).
 
 ## Constraints
