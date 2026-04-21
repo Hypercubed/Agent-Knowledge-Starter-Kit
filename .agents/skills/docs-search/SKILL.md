@@ -31,7 +31,7 @@ Default search output lists up to **5** matches; use `--limit 3` for top-3.
 
 ## Agent workflow (3 steps)
 
-1. **Index** — Run `index-docs.py` so `docs-search-index.json` reflects current durable markdown.
+1. **Index** — Run `index-docs.py` so `docs-search-index.json` reflects every `*.md` under `.agents/docs/` (plus playbooks and `AGENTS.md` as before).
 2. **Search** — Run `search-docs.py "<query>"` to get ranked results (title, short description, path).
 3. **Read** — Open the reported file paths for full content.
 
