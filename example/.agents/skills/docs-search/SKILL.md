@@ -49,9 +49,12 @@ Default search output lists up to **5** matches; use `--limit 3` for top-3.
 ## Command options
 
 - `index-docs.py --dry-run` prints sample JSON only and does not write `docs-search-index.json`.
+- `index-docs.py --agents-root /path/to/.agents` overrides auto-discovery (equivalent to `AGENTS_ROOT=/path/to/.agents`).
+- `search-docs.py --agents-root /path/to/.agents` matches the indexer when the skill runs from outside that repo's `.agents/skills/docs-search/`.
 - `search-docs.py --limit 3` returns fewer matches (default is 5).
 
 ## Constraints
 
 - Search is **heuristic** (token overlap + substring), not semantic embeddings.
-- `docs-search-index.json` is a local cache and should remain gitignored.
+- `docs-search-index.json` is a **repo-local** cache under the target checkout's `.agents/skills/docs-search/` (written by `index-docs.py`). `search-docs.py` loads that path when it can resolve that checkout's `.agents/` from the working directory or `AGENTS_ROOT` / `--agents-root`, so search stays scoped to the repo even if the skill definition lives elsewhere.
+- `docs-search-index.json` should remain gitignored.

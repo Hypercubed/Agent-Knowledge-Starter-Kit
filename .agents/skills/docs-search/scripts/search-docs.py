@@ -7,12 +7,32 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import sys
 from pathlib import Path
 from typing import Any
 
 INDEX_NAMES = ("docs-search-index.json", "wiki-index.json")
+
+
+def _find_agents_root(start: Path) -> Path | None:
+    p = start.resolve()
+    for candidate in [p, *p.parents]:
+        agents = candidate / ".agents"
+        if agents.is_dir():
+            return agents
+    return None
+
+
+def _resolve_agents_root(args_agents_root: Path | None) -> Path | None:
+    raw: Path | None = args_agents_root
+    if raw is None and "AGENTS_ROOT" in os.environ:
+        raw = Path(os.environ["AGENTS_ROOT"])
+    if raw is not None:
+        candidate = raw.expanduser().resolve()
+        return candidate if candidate.name == ".agents" else candidate / ".agents"
+    return _find_agents_root(Path.cwd())
 
 
 def _load_index(skill_dir: Path) -> dict[str, Any]:
@@ -26,6 +46,30 @@ def _load_index(skill_dir: Path) -> dict[str, Any]:
         file=sys.stderr,
     )
     sys.exit(2)
+
+
+def _index_dir_for_search(
+    *,
+    script_skill_dir: Path,
+    agents_root: Path | None,
+) -> Path:
+    """
+    Prefer the repo-local index written by index-docs.py under
+    <repo>/.agents/skills/docs-search/ so search stays repo-scoped even when
+    this script is executed from a global or agent-specific skill copy.
+    """
+    if agents_root is not None and agents_root.is_dir():
+        repo_skill_dir = agents_root / "skills" / "docs-search"
+        if any((repo_skill_dir / name).is_file() for name in INDEX_NAMES):
+            return repo_skill_dir
+        print(
+            "ERROR: no search index under this repo's .agents/skills/docs-search/.\n"
+            "       Run: python3 .agents/skills/docs-search/scripts/index-docs.py\n"
+            "       (Index output is always repo-scoped next to that repo's .agents/.)",
+            file=sys.stderr,
+        )
+        sys.exit(2)
+    return script_skill_dir
 
 
 def _tokenize(q: str) -> list[str]:
@@ -79,9 +123,22 @@ def main() -> int:
         default=5,
         help="Max results (default: 5)",
     )
+    parser.add_argument(
+        "--agents-root",
+        type=Path,
+        default=None,
+        help=(
+            "Path to the target repo's .agents directory (same as index-docs.py). "
+            "If omitted, use AGENTS_ROOT or walk up from the current working directory."
+        ),
+    )
     args = parser.parse_args()
 
-    skill_dir = Path(__file__).resolve().parent.parent
+    script_skill_dir = Path(__file__).resolve().parent.parent
+    agents_root = _resolve_agents_root(args.agents_root)
+    skill_dir = _index_dir_for_search(
+        script_skill_dir=script_skill_dir, agents_root=agents_root
+    )
     data = _load_index(skill_dir)
     sections = data.get("sections")
     if not isinstance(sections, list):
