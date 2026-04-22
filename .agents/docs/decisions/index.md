@@ -1,7 +1,7 @@
 ---
 id: decisions-index
 title: "Decisions index"
-last_updated: 2026-04-20
+last_updated: 2026-04-22
 ---
 
 # Decisions
@@ -10,6 +10,7 @@ One file per durable architectural or policy decision. New entries: follow [Entr
 
 ## Index
 
+- [`docs-search` stays canonical for `.agents/` knowledge; host-native search is not the default fallback policy](docs-search-remains-canonical-over-host-native-search.md)
 - [Agents do not stage or commit changes](agents-do-not-stage-or-commit-changes.md)
 - [Docs tooling scripts resolve target from override, then nearest `.agents`](docs-tooling-scripts-resolve-target-from-override-then-nearest-agents.md)
 - [GitHub Copilot as Rules-Based IDE Wiring tool](github-copilot-as-rules-based-ide-wiring-tool.md)
