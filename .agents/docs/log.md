@@ -1,5 +1,17 @@
 # Knowledge Maintenance Log
 
+### \[2026-04-22] learning-distill | t-20260422-zo-followup
+
+Outcome: updated Files: `.agents/docs/troubleshooting/zo-ui-skills-discovery-requires-manual-mirror.md`; `.agents/docs/log.md` Accepted: 0 (workflow violation surfaced, not promoted to durable doc) Rejected: 0 Notes: Distilled follow-up session. Manual log.md edit from earlier was explicit user request but violated normal workflow. Removed manually-injected "related note" from troubleshooting entry — duplication of existing AGENTS.md maintenance rule. Session bundle captures the workflow violation for future reference.
+
+### \[2026-04-22] learning-distill | t-20260422-zo-closeout
+
+Outcome: updated Files: `.agents/docs/troubleshooting/zo-ui-skills-discovery-requires-manual-mirror.md`; `.agents/docs/troubleshooting/index.md`; `.agents/docs/log.md`; `.agents/sessions/20260422-0056-zo-closeout/summary.json` Accepted: 1 (troubleshooting: Zo UI does not auto-discover repo-local `.agents/skills/` skills; mirror SKILL.md into /home/workspace/Skills/ for UI visibility) Rejected: 4 (AGENTS note too Zo-specific for a portable kit; repo decision redundant with single-tree architecture; playbook too narrow, covered by writing-integration-guides.md; simulated-bundle correction is ephemeral) Notes: Distilled Zo integration guide closeout; accepted only the recurring discovery failure pattern.
+
+### \[2026-04-22] learning-distill | t-20260422-zo-closeout-followup
+
+Outcome: updated Files: `docs/integrations/zo-computer.md`; `/home/workspace/AGENTS.md` Accepted: 2 (zo-computer.md: added Skills Discovery step 5 + copy-paste snippet for AGENTS.md update; workspace AGENTS.md: added Skills Discovery section) Rejected: 0 Notes: Second-pass distill from same session after clarification that root AGENTS.md is workspace-level and agent-agnostic. Both updates are workspace-level (not kit portable), so they don't belong in `.agents/AGENTS.md`.
+
 ### \[2026-04-20] learning-distill | t-20260421-030348-option-a-skill-delivery
 
 Outcome: updated Files: `.agents/docs/decisions/docs-tooling-scripts-resolve-target-from-override-then-nearest-agents.md`; `.agents/docs/troubleshooting/docs-tooling-resolves-wrong-project-root-in-nested-example-or-global-installs.md`; `.agents/docs/decisions/index.md`; `.agents/docs/troubleshooting/index.md`; `.agents/skills/docs-search/docs-search-index.json`; `.agents/docs/log.md`; `.agents/sessions/20260421-030348-option-a-skill-delivery/summary.json` Accepted: 2 (decision: docs tooling target resolution contract; troubleshooting: wrong-root resolution in nested/global script runs) Rejected: 0 Notes: Distilled Option A docs-search/docs-compile delivery session; retained only reusable path-resolution and validation guidance.
@@ -92,7 +104,7 @@ Outcome: updated Files: `.agents/playbooks/writing-integration-guides.md`; `.age
 
 Outcome: updated Files: `.agents/playbooks/pre-publish.md`; `.agents/docs/log.md`; `.agents/sessions/20260412-170915-publish-check-link-handling/summary.json` Accepted: 1 (pre-publish link checks should tolerate external status `0` in restricted environments while keeping local links blocking) Rejected: 2 (`.agents/AGENTS.md` and troubleshooting updates not warranted for a narrow publish-workflow lesson) Notes: Distilled publish checker closeout; durable guidance was kept in the pre-publish playbook.
 
-### \[2026-04-12] learning-distill | knowledge-lint-20260412
+### \[2026-04-12] knowledge-lint-20260412
 
 Outcome: updated Files: `.agents/docs/troubleshooting.md`; `.agents/docs/log.md`; `.agents/sessions/20260412-162300-knowledge-lint-pass/summary.json` Accepted: 1 (Added troubleshooting entry for Windows-to-WSL Tool Path Failures) Rejected: 0 Notes: Distilled knowledge-lint session. Added a troubleshooting note to prevent agents struggling with Windows-WSL cross-environment file paths.
 
