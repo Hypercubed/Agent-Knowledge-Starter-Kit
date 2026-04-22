@@ -215,7 +215,7 @@ without traversing the full tree.
    - `.agents/docs/decisions/`
    - `.agents/docs/troubleshooting/`
    - `.agents/playbooks/`
-   - optionally `.agents/plans/` for maintainer planning discovery
+   - optionally `.agents/docs/plans/` for maintainer planning discovery
 3. Generate derived artifacts:
    - `.agents/docs/index.json` for machine-oriented lookup
    - refreshed `.agents/docs/index.md` for human-oriented navigation

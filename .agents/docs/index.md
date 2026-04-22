@@ -41,7 +41,11 @@ Workflow definitions shipped with the kit (each folder contains `SKILL.md` and o
 Maintainer-only (this repository):
 
 - [`.agents/skills/generate-example/SKILL.md`](../skills/generate-example/SKILL.md) — generate a disposable consumer-path example structure (`metadata.internal: true`).
-- **Planning / roadmaps** (under `.agents/plans/`, not part of the portable consumer kit): [wiki-system.md](../plans/wiki-system.md), [repo-centric-wiki-tooling.md](../plans/repo-centric-wiki-tooling.md), [add-integrations.md](../plans/add-integrations.md).
+## `.agents/docs/plans/`
+
+Maintainer initiatives and roadmaps (one markdown file per plan; [index.md](plans/index.md) lists them). These files are **plan-only**: they do not change shipped kit behavior until implementation is requested. They are not part of the default portable consumer kit contract.
+
+High-signal examples in this repo: [wiki-system.md](plans/wiki-system.md), [repo-centric-wiki-tooling.md](plans/repo-centric-wiki-tooling.md), [add-integrations.md](plans/add-integrations.md).
 
 ## `.agents/agents/`
 

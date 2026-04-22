@@ -104,6 +104,8 @@ def _default_kind_for_docs_file(docs_root: Path, path: Path) -> str:
     first = parts[0].casefold()
     if first == "decisions":
         return "decision"
+    if first == "plans":
+        return "plan"
     return parts[0]
 
 

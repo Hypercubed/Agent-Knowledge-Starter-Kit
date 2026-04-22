@@ -3,7 +3,7 @@ id: plans-in-scaffold
 title: "Plans in the published kit"
 last_updated: 2026-04-20
 description: >
-  Promote the plans pattern from maintainer dogfood under `.agents/plans/` into the
+  Promote the plans pattern from maintainer dogfood under `.agents/docs/plans/` into the
   portable kit (including generated `example/.agents/plans/` when appropriate), with
   YAML conventions, lifecycle, session and decision linkage, and optional skills.
 tags: [plans, kit, roadmap, decisions, sessions, playbooks]
@@ -21,9 +21,9 @@ prompter: Hypercubed
 
 ## Repository context
 
-The repository uses a **single-tree** layout: canonical portable content lives under root `.agents/`, and a **generated** full consumer illustration lives under `example/.agents/` (see [Single-tree architecture (`.agents/`)](../docs/decisions/single-tree-architecture-agents.md)). This document was historically titled “scaffold”; treat **published kit copy** as `example/.agents/` **or** the same paths after a consumer merges the kit into their repo.
+The repository uses a **single-tree** layout: canonical portable content lives under root `.agents/`, and a **generated** full consumer illustration lives under `example/.agents/` (see [Single-tree architecture (`.agents/`)](../decisions/single-tree-architecture-agents.md)). This document was historically titled “scaffold”; treat **published kit copy** as `example/.agents/` **or** the same paths after a consumer merges the kit into their repo.
 
-**Today:** maintainer and roadmap-style plans already live under `.agents/plans/`. They are called out from [`.agents/docs/index.md`](../docs/index.md) but are **not** yet part of the default portable contract the way `decisions/`, `troubleshooting/`, `playbooks/`, and `sessions/` are.
+**Today:** maintainer and roadmap-style plans already live under `.agents/docs/plans/`. They are called out from [`.agents/docs/index.md`](../index.md) but are **not** yet part of the default portable contract the way `decisions/`, `troubleshooting/`, `playbooks/`, and `sessions/` are.
 
 ## Purpose (tool-agnostic)
 
@@ -35,21 +35,21 @@ Industry pattern (aligned with common ADR guidance): keep **accepted rationale**
 
 | Location                     | Role                                                                                                                                              |
 | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `.agents/plans/*.md`         | **Active** plans: current maintainer and starter-roadmap work (this repo’s working set).                                                          |
-| `.agents/plans/archive/*.md` | **Cold storage** for finished, cancelled, superseded, or otherwise retired plans (same `id` and filename stem as before the move).                |
+| `.agents/docs/plans/*.md`         | **Active** plans: current maintainer and starter-roadmap work (this repo’s working set).                                                          |
+| `.agents/docs/plans/archive/*.md` | **Cold storage** for finished, cancelled, superseded, or otherwise retired plans (same `id` and filename stem as before the move).                |
 | `example/.agents/plans/`     | **Optional future** mirror for the generated example tree once `generate-example` and docs agree to ship a starter `README.md` + one sample plan. |
-| Consumer repo after merge    | Same relative path `.agents/plans/` if the adopting team wants initiatives beside the rest of the kit.                                            |
+| Consumer repo after merge    | Same relative path `.agents/docs/plans/` if the adopting team wants initiatives beside the rest of the kit.                                            |
 
 **Naming:** one initiative per file, filename stem equals frontmatter `id`, lowercase `[a-z0-9_-].md`. The same rule applies under `plans/archive/` (path changes; **`id` does not**).
 
-**Collision rule:** plan `id` values must **not** match any `id` under `.agents/docs/decisions/` or `.agents/docs/troubleshooting/` (those ids share a single global namespace per [MAINTENANCE.md](../docs/MAINTENANCE.md)). Prefix plan ids with a clear token (for example `plan-` or a short project slug) if names might clash.
+**Collision rule:** plan `id` values must **not** match any `id` under `.agents/docs/decisions/` or `.agents/docs/troubleshooting/` (those ids share a single global namespace per [MAINTENANCE.md](../MAINTENANCE.md)). Prefix plan ids with a clear token (for example `plan-` or a short project slug) if names might clash.
 
 ## How plans differ from siblings
 
 | Artifact                     | Holds                                                       | Lifetime                                                       |
 | ---------------------------- | ----------------------------------------------------------- | -------------------------------------------------------------- |
-| `.agents/plans/` (top level) | Intent, scope, phasing, success criteria, links             | While active or not yet filed into `archive/`                  |
-| `.agents/plans/archive/`     | Same as plans, retired                                      | Indefinite retention; optional trim after link graph is stable |
+| `.agents/docs/plans/` (top level) | Intent, scope, phasing, success criteria, links             | While active or not yet filed into `archive/`                  |
+| `.agents/docs/plans/archive/`     | Same as plans, retired                                      | Indefinite retention; optional trim after link graph is stable |
 | `.agents/playbooks/`         | Repeatable **how-to** procedures                            | Long-lived; update in place                                    |
 | `.agents/sessions/`          | Raw evidence for **one** task (closeout bundles)            | Short-lived; gitignored bundles                                |
 | `.agents/docs/decisions/`    | Accepted (or provisional) **architectural/policy** outcomes | Long-lived; supersede in place with links                      |
@@ -63,7 +63,7 @@ Industry pattern (aligned with common ADR guidance): keep **accepted rationale**
 
 ## YAML frontmatter contract (plans)
 
-Applies to each plan markdown file under `.agents/plans/` or `.agents/plans/archive/` (same contract in both places). Optional `plans/README.md` or `plans/archive/README.md` index files are excluded unless they adopt plan frontmatter on purpose.
+Applies to each plan markdown file under `.agents/docs/plans/` or `.agents/docs/plans/archive/` (same contract in both places). Optional `plans/README.md` or `plans/archive/README.md` index files are excluded unless they adopt plan frontmatter on purpose.
 
 ### Required keys
 
@@ -139,7 +139,7 @@ Keep the body scannable; prefer links over prose walls.
 ```mermaid
 flowchart LR
   subgraph author
-    P[Plan under .agents/plans/]
+    P[Plan under .agents/docs/plans/]
   end
   subgraph work
     S[Session bundles .agents/sessions/]
@@ -167,8 +167,8 @@ flowchart LR
 1. **Author** — create `plans/<id>.md` with required frontmatter and a clear goal.
 2. **Execute** — day-to-day work uses **task-closeout** bundles under `.agents/sessions/` (evidence, not the plan).
 3. **Distill** — **learning-distill** promotes stable lessons to decisions, troubleshooting, playbooks, or `AGENTS.md`.
-4. **Tie back** — when a new decision exists because of the initiative, add an **Origin** (or **Related plan**) subsection in the decision body with a **relative** Markdown link to the plan file (top-level `../../plans/<id>.md` or, after archival, `../../plans/archive/<id>.md`). Optionally add the decision’s `id` to the plan’s `outcome_decisions` and bump `last_updated`.
-5. **Complete** — set terminal `status` (`completed`, `cancelled`, `superseded`, or `archived` as appropriate); list final artifact paths; **move** the file to `.agents/plans/archive/` when it should leave the active set (see [Plan archive](#plan-archive-cold-storage)); run a **link sweep** so no durable doc still points at the old path.
+4. **Tie back** — when a new decision exists because of the initiative, add an **Origin** (or **Related plan**) subsection in the decision body with a **relative** Markdown link to the plan file (top-level `../plans/<id>.md` or, after archival, `../plans/archive/<id>.md`). Optionally add the decision’s `id` to the plan’s `outcome_decisions` and bump `last_updated`.
+5. **Complete** — set terminal `status` (`completed`, `cancelled`, `superseded`, or `archived` as appropriate); list final artifact paths; **move** the file to `.agents/docs/plans/archive/` when it should leave the active set (see [Plan archive](#plan-archive-cold-storage)); run a **link sweep** so no durable doc still points at the old path.
 6. **Supersede** — set `superseded_by`, link the replacement plan, then archive the old file if it is no longer an active working document.
 
 ### Session ↔ plan link (`summary.json`)
@@ -182,7 +182,7 @@ Contract (see also [task-closeout](../skills/task-closeout/SKILL.md)):
 "related_plans": ["plans-in-scaffold"]
 ```
 
-If unsure whether the task “involves” a plan, default to **including** `related_plans` when any `.agents/plans/**/*.md` file for that initiative was touched or explicitly named as scope in `active-task.md`.
+If unsure whether the task “involves” a plan, default to **including** `related_plans` when any `.agents/docs/plans/**/*.md` file for that initiative was touched or explicitly named as scope in `active-task.md`.
 
 Planning-only note: this contract lives here as a **proposed policy** until the corresponding skill work is intentionally scheduled; do not change `task-closeout` behavior as part of this planning document alone.
 
@@ -190,21 +190,21 @@ Planning-only note: this contract lives here as a **proposed policy** until the 
 
 When a plan is **finished, cancelled, superseded, or otherwise retired** as a day-to-day working document, **move** it off the top-level plans list instead of leaving broken or stale links across the repo.
 
-1. **Move the file** — from `.agents/plans/<id>.md` to `.agents/plans/archive/<id>.md` (same basename; same frontmatter `id`). Prefer `git mv` so history follows the file.
+1. **Move the file** — from `.agents/docs/plans/<id>.md` to `.agents/docs/plans/archive/<id>.md` (same basename; same frontmatter `id`). Prefer `git mv` so history follows the file.
 2. **Set or confirm terminal `status`** in frontmatter (`completed`, `cancelled`, `superseded`, or `archived`) and bump `last_updated`.
-3. **Link sweep** — search the repo for references to the old path (`plans/<id>.md`, `../plans/<id>.md`, `../../plans/<id>.md`, index bullets, playbooks, decisions, other plans) and update them to `plans/archive/<id>.md` (adjust relative depth per file). **Do not** orphan navigational docs: if `docs/index.md` or similar listed the plan, either point to `archive/` or remove the bullet if the plan is no longer worth surfacing.
-4. **Decisions** — update `### Related initiative` (or equivalent) links from `../../plans/<id>.md` to `../../plans/archive/<id>.md`.
+3. **Link sweep** — search the repo for references to the old path (`docs/plans/<id>.md`, `../plans/<id>.md`, index bullets, playbooks, decisions, other plans) and update them to `docs/plans/archive/<id>.md` (adjust relative depth per file). **Do not** orphan navigational docs: if `docs/index.md` or similar listed the plan, either point to `archive/` or remove the bullet if the plan is no longer worth surfacing.
+4. **Decisions** — update `### Related initiative` (or equivalent) links from `../plans/<id>.md` to `../plans/archive/<id>.md`.
 
 Past **task-closeout** bundles may keep their original `related_plans` ids unchanged; ids are stable across the move.
 
 ## Linking decisions back to plans
 
-Decisions remain governed by [MAINTENANCE.md](../docs/MAINTENANCE.md): `depends_on` links **other durable entry ids**, not plan ids.
+Decisions remain governed by [MAINTENANCE.md](../MAINTENANCE.md): `depends_on` links **other durable entry ids**, not plan ids.
 
 **Recommended cross-link shape**
 
-- From **plan** → decision: use `related_decisions` / `outcome_decisions` in plan frontmatter, and/or body links to `../docs/decisions/<id>.md`.
-- From **decision** → plan: add a short subsection in the decision body, for example `### Related initiative`, with a relative link to `../../plans/<id>.md` or `../../plans/archive/<id>.md` (from `docs/decisions/`), matching where the plan file currently lives.
+- From **plan** → decision: use `related_decisions` / `outcome_decisions` in plan frontmatter, and/or body links to `../decisions/<id>.md`.
+- From **decision** → plan: add a short subsection in the decision body, for example `### Related initiative`, with a relative link to `../plans/<id>.md` or `../plans/archive/<id>.md` (from `docs/decisions/`), matching where the plan file currently lives.
 
 That keeps parsers simple (no new required frontmatter on decisions) while preserving human- and agent-visible traceability.
 
@@ -222,7 +222,7 @@ All of these are **optional** workflow skills under `.agents/skills/`—plain `S
 
 **write-plan** is the highest-leverage first skill: it encodes the frontmatter contract and collision rules as executable checklists.
 
-Maintainer-only skills (if any) should follow [Maintainer-only skills use `metadata.internal: true`](../docs/decisions/maintainer-skills-mark-internal-in-frontmatter.md).
+Maintainer-only skills (if any) should follow [Maintainer-only skills use `metadata.internal: true`](../decisions/maintainer-skills-mark-internal-in-frontmatter.md).
 
 ### Existing skills to reuse/reference
 
@@ -252,7 +252,7 @@ Use these as direct dependencies or implementation templates when building the p
 
 - Add `example/.agents/plans/README.md` via `generate-example` bootstrap describing plans vs playbooks vs sessions, and document `plans/archive/` for retired plans.
 - Optionally seed one **generic** sample plan with `consumer_portable: true` as a template.
-- Update [Regenerate `example/` when the portable kit or bootstrap changes](../docs/decisions/regenerate-example-when-portable-kit-changes.md) workflows if new paths are added.
+- Update [Regenerate `example/` when the portable kit or bootstrap changes](../decisions/regenerate-example-when-portable-kit-changes.md) workflows if new paths are added.
 - Keep **meta** maintainer roadmaps (`consumer_portable: false`) out of the generated example unless explicitly copied for demonstration.
 
 Automated plan lint in CI stays **out of scope** until the frontmatter schema has baked in real use (see original scope note below).
@@ -273,9 +273,9 @@ Automated plan lint in CI stays **out of scope** until the frontmatter schema ha
 **Success criteria**
 
 - Adopters can file approved work as plans without overloading `AGENTS.md` or session bundles.
-- Maintainers have a single authoritative description of plan lifecycle and linking; discovery continues from [`.agents/docs/index.md`](../docs/index.md) and [`.agents/docs/MAINTENANCE.md`](../docs/MAINTENANCE.md) as indexes evolve.
+- Maintainers have a single authoritative description of plan lifecycle and linking; discovery continues from [`.agents/docs/index.md`](../index.md) and [`.agents/docs/MAINTENANCE.md`](../MAINTENANCE.md) as indexes evolve.
 
 ## Notes
 
-- This file is **meta**: it defines how “plans” behave in the kit while the pattern is validated under `.agents/plans/`.
+- This file is **meta**: it defines how “plans” behave in the kit while the pattern is validated under `.agents/docs/plans/`.
 - **Pre-migration plans** may still use informal frontmatter (`writer`, `prompter`, `created` without `id`); normalize to this contract when touching a file for other reasons.

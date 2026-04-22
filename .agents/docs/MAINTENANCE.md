@@ -102,6 +102,10 @@ Durable multi-step procedures.
 
 Catalog of durable knowledge assets.
 
+### `.agents/docs/plans/`
+
+Maintainer roadmaps and multi-step initiatives (markdown under this folder; [index.md](plans/index.md) lists them). Plan files are **plan-only** guidance: they do not change shipped kit behavior until implementation is requested. See [plans-in-scaffold.md](plans/plans-in-scaffold.md) for the YAML contract and lifecycle.
+
 ### `.agents/docs/log.md`
 
 Append-only maintenance log.
