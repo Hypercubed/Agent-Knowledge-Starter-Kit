@@ -20,11 +20,13 @@ Plan **`id`** values must be **unique within** all of:
 - `.agents/docs/plans/*.md` (except `index.md`)
 - `.agents/docs/plans/archive/*.md`
 
-The filename stem (without `.md`) **must equal** `id`. Use lowercase `[a-z0-9_-]` only. **Every** plan id **must start with** `plan-` (see [Slug prefixes in `MAINTENANCE.md`](../../docs/MAINTENANCE.md#slug-prefixes-per-directory)). Decisions (`dec-`) and troubleshooting (`ts-`) use separate prefixes, so there is no cross-folder collision.
+The filename stem (without `.md`) **must equal** `id`. Use lowercase `[a-z0-9_-]` only. **Do not** put a type prefix in the plan filename; the file already lives under `plans/`.
+
+The same stem may exist under `decisions/` or `troubleshooting/`; use **qualified** references (`decisions/<slug>`, `troubleshooting/<slug>`, `plans/<slug>`) in plan metadata whenever the target kind matters (see [Entry `id` and qualified graph references in `MAINTENANCE.md`](../../docs/MAINTENANCE.md#entry-id-and-qualified-graph-references)).
 
 ## Required YAML keys (every plan entry)
 
-- `id` — stable slug; must match filename; globally unique as above.
+- `id` — stable slug; must match filename; unique within `plans/` as above.
 - `title` — short human title (JSON-quoted in YAML if it contains colons).
 - `last_updated` — `YYYY-MM-DD`; bump when the plan meaningfully changes.
 - `description` — one or two sentences, machine-oriented (docs-search uses this in listings).
@@ -46,10 +48,10 @@ The filename stem (without `.md`) **must equal** `id`. Use lowercase `[a-z0-9_-]
 ## Optional YAML keys
 
 - `kind` — `initiative` \| `meta` \| `exploration` (default: treat as `initiative` if omitted).
-- `anticipated_decisions` — planned decision slugs not yet filed.
-- `outcome_decisions` — durable entry ids produced or materially updated by this plan.
-- `supersedes` / `superseded_by` — other plan `id` values.
-- `related_plans` — other plan `id` values.
+- `anticipated_decisions` — planned **`decisions/<slug>`** pointers not yet filed.
+- `outcome_decisions` — **`decisions/<slug>`** or **`troubleshooting/<slug>`** pointers produced or materially updated by this plan.
+- `supersedes` / `superseded_by` — **`plans/<slug>`** pointers.
+- `related_plans` — other **`plans/<slug>`** pointers.
 - `consumer_portable` — boolean; `true` if the plan is intended to ship in generated `example/`.
 - `author_kind` — `human` \| `ai` (audit).
 - `prompter` — free text when `author_kind` is `ai`.
@@ -63,16 +65,16 @@ Do **not** put `related_decisions` in YAML. After the H1, use a **`## Related de
 ```markdown
 ## Related decisions
 
-- [Single-tree architecture (`.agents/`)](../decisions/dec-single-tree-architecture-agents.md)
+- [Single-tree architecture (`.agents/`)](../decisions/single-tree-architecture-agents.md)
 ```
 
-For troubleshooting patterns, link to `../troubleshooting/<id>.md` the same way. This keeps cross-refs readable in git and editors without teaching tools a second graph format.
+For troubleshooting patterns, link to `../troubleshooting/<slug>.md` the same way.
 
 ## Example frontmatter
 
 ```yaml
 ---
-id: plan-example-initiative
+id: example-initiative
 title: "Example initiative"
 last_updated: 2026-04-22
 description: >
