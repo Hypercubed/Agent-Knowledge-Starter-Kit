@@ -39,6 +39,8 @@ Applies to every `*.md` file under `decisions/` and `troubleshooting/` **except*
 
 ### Frontmatter contract (plans)
 
+The **write-plan** skill also ships a portable copy of this contract at `.agents/skills/write-plan/CONTRACT.md` for skill-only installs.
+
 Applies to every `*.md` file under **`plans/`** and **`plans/archive/`**, except `plans/index.md` and any other index or README files unless they intentionally adopt plan frontmatter.
 
 Plans share the **same global `id` namespace** as `decisions/` and `troubleshooting/`: a plan `id` must not equal any decision or troubleshooting entry `id`. Prefer a clear prefix (for example `plan-`) when names might collide.

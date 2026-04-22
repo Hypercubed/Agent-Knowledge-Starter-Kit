@@ -7,7 +7,7 @@ description: Scaffold a new maintainer plan under `.agents/docs/plans/<id>.md` w
 
 ## Goal
 
-Create a **plan-only** markdown file under `.agents/docs/plans/` that matches the contract in [`.agents/docs/MAINTENANCE.md`](../../docs/MAINTENANCE.md#frontmatter-contract-plans) and the narrative in [plans-as-first-class-artifacts](../../docs/plans/plans-as-first-class-artifacts.md), without hand-copying frontmatter.
+Create a **plan-only** markdown file under `.agents/docs/plans/` that matches the **plan frontmatter contract** shipped with this skill ([`CONTRACT.md`](CONTRACT.md)), without hand-copying YAML. The repo’s normative copy of the same rules lives under [Frontmatter contract (plans) in `MAINTENANCE.md`](../../docs/MAINTENANCE.md#frontmatter-contract-plans); narrative and lifecycle context: [plans-as-first-class-artifacts](../../docs/plans/plans-as-first-class-artifacts.md). If `CONTRACT.md` ever disagrees with `MAINTENANCE.md`, treat **`MAINTENANCE.md` as authoritative** until the skill contract is updated.
 
 ## When to use
 
