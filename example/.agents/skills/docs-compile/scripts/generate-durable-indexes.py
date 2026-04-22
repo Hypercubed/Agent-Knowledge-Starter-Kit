@@ -52,6 +52,11 @@ TROUBLESHOOTING_BLURB = (
     "then add a row below."
 )
 
+PLANS_BLURB = (
+    "One file per maintainer initiative or roadmap. New entries: follow the plan contract "
+    "in [plans-as-first-class-artifacts.md](plans-as-first-class-artifacts.md), then add a row below."
+)
+
 
 def _read_frontmatter_block(path: Path) -> tuple[dict[str, Any], str]:
     text = path.read_text(encoding="utf-8")
@@ -133,6 +138,8 @@ def _infer_kind(folder: Path) -> str:
         return "decisions"
     if name == "troubleshooting":
         return "troubleshooting"
+    if name == "plans":
+        return "plans"
     return "generic"
 
 
@@ -304,6 +311,13 @@ def _resolve_index_template(folder: Path, kind: str) -> tuple[str, str, str, str
             "Troubleshooting index",
             "Troubleshooting",
             TROUBLESHOOTING_BLURB,
+        )
+    if kind == "plans":
+        return (
+            "plans-index",
+            "Plans index",
+            "Plans",
+            PLANS_BLURB,
         )
     slug = _slug_for_index_id(folder)
     heading = parsed["heading"] or _default_heading(folder)

@@ -1,7 +1,21 @@
+---
+id: wiki-system
+title: "Wiki expansion for agent knowledge starter"
+last_updated: 2026-04-22
+description: >
+  Extend the starter kit with a codebase-grounded wiki as a first-class knowledge
+  store alongside skills and playbooks (not derived from them).
+tags: [wiki, architecture, knowledge-layer]
+status: draft
+kind: initiative
+consumer_portable: false
+author_kind: ai
+prompter: Hypercubed
+---
+
 # Plan: Wiki Expansion for Agent-Knowledge-Starter-Kit
 
 **Version:** 1.1\
-**Status:** Draft\
 **Scope:** Extend the starter kit to include a codebase-grounded wiki as a first-class knowledge store, alongside (not derived from) skills and playbooks.
 
 ---
@@ -254,7 +268,7 @@ Wiki plans skip implementation — they re-enter the cycle at the distill step.
 
 **Phase 0 — Directory-based decisions and troubleshooting** *(complete)*
 
-*Canonical layout:* architectural decisions live under `.agents/docs/decisions/` (one markdown file per decision plus `index.md`); recurring patterns under `.agents/docs/troubleshooting/` (one file per pattern plus `index.md`). Each entry file uses minimal YAML frontmatter (`id`, `title`, `last_updated`). [`.agents/docs/index.md`](../docs/index.md) catalogs durable assets; [`.agents/docs/log.md`](../docs/log.md) is append-only (do not rewrite older entries).
+*Canonical layout:* architectural decisions live under `.agents/docs/decisions/` (one markdown file per decision plus `index.md`); recurring patterns under `.agents/docs/troubleshooting/` (one file per pattern plus `index.md`). Each entry file uses minimal YAML frontmatter (`id`, `title`, `last_updated`). [`.agents/docs/index.md`](../index.md) catalogs durable assets; [`.agents/docs/log.md`](../log.md) is append-only (do not rewrite older entries).
 
 Skills and `generate-example` bootstrap or copy those directories for new installs; distillation and lint target the same paths.
 
@@ -288,6 +302,6 @@ Decisions stay under `.agents/docs/decisions/` (not `.agents/wiki/decisions/`) s
 
 ## Open Questions
 
-1. **Where should wiki plans live?** Maintainer initiative plans already use `.agents/plans/`. Wiki-specific plan files can use the same directory with frontmatter `type: wiki-plan`, or a subfolder such as `.agents/plans/wiki/` if volume grows. Do not park durable plans under `.agents/sessions/`.
+1. **Where should wiki plans live?** Maintainer initiative plans already use `.agents/docs/plans/`. Wiki-specific plan files can use the same directory with frontmatter `type: wiki-plan`, or a subfolder such as `.agents/docs/plans/wiki/` if volume grows. Do not park durable plans under `.agents/sessions/`.
 2. After Phase 1, should `.agents/wiki/decisions/` subsume `.agents/docs/decisions/`, stay separate with cross-links only, or follow another split?
 3. What is the right conflict resolution policy for multi-session reconciliation — last-write-wins, flag for review, or something else?

@@ -1,6 +1,21 @@
+---
+id: integrate-docs-search-learning-distill-knowledge-lint
+title: "Integrate docs-search into learning-distill and knowledge-lint"
+last_updated: 2026-04-22
+description: >
+  Make docs-search a first-class lookup step in distillation and lint workflows
+  rather than only a post-write cache refresh.
+tags: [docs-search, learning-distill, knowledge-lint, skills]
+status: completed
+kind: initiative
+consumer_portable: false
+author_kind: ai
+prompter: Hypercubed
+---
+
 # Plan: Integrate docs-search into learning-distill and knowledge-lint
 
-**Status:** implemented **Date:** 2026-04-21 **Priority:** Medium **Blocked by:** none
+**Date:** 2026-04-21 **Priority:** Medium **Blocked by:** none
 
 ---
 

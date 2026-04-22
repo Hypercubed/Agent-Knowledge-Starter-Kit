@@ -1,11 +1,14 @@
 ---
+id: consumer-upgrade-path
+title: "Consumer-friendly upgrade path"
+last_updated: 2026-04-22
 description: >
-  Provide a consumer-friendly upgrade path when refreshing kit skills or merging a new kit drop into an existing project that already adopted an earlier kit version.
-
-
-created: 2026-04-11
-status: partially implemented
-writer: AI
+  Reduce friction when upgrading the starter kit in an existing repo with clear merge guidance.
+tags: [installation, upgrades, consumers]
+status: active
+kind: initiative
+consumer_portable: false
+author_kind: ai
 prompter: Hypercubed
 ---
 

@@ -31,7 +31,7 @@ Before wiring a tool, install shared kit skills in the target repo with `npx ski
 
 ## Planned guides
 
-These are tracked in `.agents/plans/add-integrations.md` and should be added only after they are verified against real tool behavior:
+These are tracked in `.agents/docs/plans/add-integrations.md` and should be added only after they are verified against real tool behavior:
 
 - VS Code extensions
 

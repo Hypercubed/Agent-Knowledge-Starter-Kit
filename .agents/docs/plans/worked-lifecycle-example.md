@@ -1,11 +1,15 @@
 ---
+id: worked-lifecycle-example
+title: "Worked lifecycle example"
+last_updated: 2026-04-22
 description: >
-  Add a compact worked lifecycle example that shows how a task-closeout bundle becomes durable knowledge without duplicating this repository's structural example.
-
-
-created: 2026-04-12
-status: planned
-writer: AI
+  Add a compact end-to-end example from task-closeout through learning-distill
+  without duplicating the structural example tree.
+tags: [sessions, learning-distill, documentation]
+status: draft
+kind: initiative
+consumer_portable: false
+author_kind: ai
 prompter: Hypercubed
 ---
 

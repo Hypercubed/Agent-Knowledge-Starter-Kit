@@ -1,11 +1,14 @@
 ---
+id: agent-role-guidance
+title: "Agent role guidance"
+last_updated: 2026-04-22
 description: >
-  Add concise guidance explaining when and how to use the published kit's coding, learning, and lint agent role definitions from docs and skills.
-
-
-created: 2026-04-12
-status: planned
-writer: AI
+  Document when and how to use coding, learning, and lint agent roles with the kit.
+tags: [agents, documentation, workflow]
+status: draft
+kind: initiative
+consumer_portable: false
+author_kind: ai
 prompter: Hypercubed
 ---
 

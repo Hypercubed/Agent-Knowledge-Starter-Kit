@@ -1,11 +1,15 @@
 ---
+id: out-of-repo-trees
+title: "Guidance for out-of-repo knowledge trees"
+last_updated: 2026-04-22
 description: >
-  Document using out-of-repo knowledge trees (for example ~/.agents) for personal or org overlays, including precedence versus in-repo .agents/ and what must remain in the repository for teammates and CI.
-
-
-created: 2026-04-11
+  Document overlays such as ~/.agents for personal or org policy and precedence
+  versus in-repo .agents/.
+tags: [installation, architecture, agents]
 status: draft
-writer: AI
+kind: initiative
+consumer_portable: false
+author_kind: ai
 prompter: Hypercubed
 ---
 

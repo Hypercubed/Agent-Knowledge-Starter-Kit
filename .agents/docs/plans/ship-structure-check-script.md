@@ -1,3 +1,18 @@
+---
+id: ship-structure-check-script
+title: "Ship structure check script with the kit"
+last_updated: 2026-04-22
+description: >
+  Make check-agents-structure.sh easy for consumers to run; keep check-publish
+  maintainer-only for this starter repo.
+tags: [scripts, installation, validation]
+status: active
+kind: initiative
+consumer_portable: false
+author_kind: ai
+prompter: Hypercubed
+---
+
 # Ship Structure Check Script With The Kit
 
 ## Goal

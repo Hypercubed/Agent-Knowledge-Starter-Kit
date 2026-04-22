@@ -1,6 +1,21 @@
+---
+id: add-knowledge-search
+title: "Add knowledge search skill"
+last_updated: 2026-04-22
+description: >
+  Roadmap for a knowledge-search skill that trains agents to search .agents/
+  markdown before loading large context windows.
+tags: [skills, docs-search, context]
+status: draft
+kind: initiative
+consumer_portable: false
+author_kind: ai
+prompter: Hypercubed
+---
+
 # Plan: Add Knowledge Search Skill
 
-**Status:** planned **Goal:** Add a `knowledge-search` skill to prevent context bloat and explicitly train agents on how to dynamically locate and read relevant docs rather than loading the entire knowledge layer into context. **Date:** 2026-04-12 **Priority:** Medium **Blocked by:** none **Scope estimate:** Small (1 skill creation, minor doc updates)
+**Goal:** Add a `knowledge-search` skill to prevent context bloat and explicitly train agents on how to dynamically locate and read relevant docs rather than loading the entire knowledge layer into context. **Date:** 2026-04-12 **Priority:** Medium **Blocked by:** none **Scope estimate:** Small (1 skill creation, minor doc updates)
 
 ---
 
