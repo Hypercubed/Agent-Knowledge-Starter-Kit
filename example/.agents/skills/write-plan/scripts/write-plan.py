@@ -2,7 +2,8 @@
 """
 Scaffold a new plan markdown file under .agents/docs/plans/ with valid frontmatter.
 
-Checks id uniqueness against decisions/, troubleshooting/, and existing plans/.
+Checks id uniqueness against decisions/, troubleshooting/, plans/, and
+plans/archive/.
 """
 
 from __future__ import annotations
@@ -104,8 +105,18 @@ def _suggest_related_decisions(
     return out
 
 
+def _load_plan_body_template(*, skill_dir: Path, title: str) -> str:
+    path = skill_dir / "bootstrap" / "plan-body.md"
+    if not path.is_file():
+        print(f"ERROR: scaffold template missing: {path}", file=sys.stderr)
+        sys.exit(1)
+    text = path.read_text(encoding="utf-8")
+    return text.replace("{{title}}", title)
+
+
 def _render_plan_markdown(
     *,
+    skill_dir: Path,
     plan_id: str,
     title: str,
     description: str,
@@ -134,41 +145,7 @@ def _render_plan_markdown(
     parts.append("---")
     header = "\n".join(parts) + "\n"
 
-    body = f"""
-# {title}
-
-## Goal
-
-(TODO: one paragraph — why this initiative exists and what gap it closes.)
-
-## Scope / non-goals
-
-- (TODO)
-
-## Approach
-
-(TODO: link to [relevant decisions](../decisions/) or playbooks instead of restating.)
-
-## Phases or milestones
-
-1. (TODO)
-
-## Success criteria
-
-- [ ] (TODO)
-
-## Risks
-
-| Risk | Mitigation |
-| --- | --- |
-| (TODO) | (TODO) |
-
-## Knowledge routing
-
-| Output | Destination |
-| --- | --- |
-| (TODO) | (TODO) |
-"""
+    body = _load_plan_body_template(skill_dir=skill_dir, title=title)
     return header + body.lstrip("\n")
 
 
@@ -264,11 +241,14 @@ def main() -> int:
     decisions = agents_root / "docs" / "decisions"
     troubleshooting = agents_root / "docs" / "troubleshooting"
     plans_dir = agents_root / "docs" / "plans"
+    plans_archive = plans_dir / "archive"
+    skill_dir = Path(__file__).resolve().parent.parent
 
     used: set[str] = set()
     used |= _collect_ids_from_folder(decisions)
     used |= _collect_ids_from_folder(troubleshooting)
     used |= _collect_ids_from_folder(plans_dir)
+    used |= _collect_ids_from_folder(plans_archive)
 
     target = plans_dir / f"{plan_id}.md"
     if plan_id in used:
@@ -279,7 +259,9 @@ def main() -> int:
             return 1
         else:
             print(
-                f"ERROR: id {plan_id!r} already used (collision across decisions/troubleshooting/plans)",
+                "ERROR: id "
+                f"{plan_id!r} already used (collision across decisions, troubleshooting, "
+                "plans, or plans/archive)",
                 file=sys.stderr,
             )
             return 1
@@ -304,6 +286,7 @@ def main() -> int:
                 related.append(sid)
 
     content = _render_plan_markdown(
+        skill_dir=skill_dir,
         plan_id=plan_id,
         title=args.title.strip(),
         description=args.description.strip(),

@@ -18,7 +18,7 @@ Create a **plan-only** markdown file under `.agents/docs/plans/` that matches th
 
 Gather from the maintainer or task context:
 
-1. **`id`** — stable slug, lowercase `[a-z0-9_-]`, **must equal** the filename stem (`<id>.md`). Must **not** collide with any `id` under `.agents/docs/decisions/`, `.agents/docs/troubleshooting/`, or an existing plan stem.
+1. **`id`** — stable slug, lowercase `[a-z0-9_-]`, **must equal** the filename stem (`<id>.md`). Must **not** collide with any `id` under `.agents/docs/decisions/`, `.agents/docs/troubleshooting/`, `.agents/docs/plans/`, or `.agents/docs/plans/archive/` (retired plans keep their ids).
 2. **`title`** — short human title.
 3. **`description`** — one or two sentences (machine-oriented; docs-search shows this).
 4. **`tags`** — non-empty list of lowercase `[a-z0-9_-]` labels.
@@ -30,8 +30,10 @@ Gather from the maintainer or task context:
 1. Resolve the repository root (directory containing `.agents/`).
 
 2. Choose `id` and confirm it is not already used:
-   - Search filenames under `.agents/docs/decisions/`, `.agents/docs/troubleshooting/`, and `.agents/docs/plans/` (ignore `plans/index.md`).
+   - Search filenames under `.agents/docs/decisions/`, `.agents/docs/troubleshooting/`, `.agents/docs/plans/`, and `.agents/docs/plans/archive/` (ignore `plans/index.md`).
    - If unsure, run the script once with `--dry-run` after picking a candidate id; collisions exit with an error.
+
+The generated body comes from the scaffold template [`bootstrap/plan-body.md`](bootstrap/plan-body.md) in this skill (placeholder `{{title}}` is replaced). Edit that file to change default sections for all new plans.
 
 3. Optionally infer **`related_decisions`** by skimming nearby decisions whose titles overlap the plan topic (the script can suggest candidates with `--auto-related`).
 
