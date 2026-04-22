@@ -2,8 +2,10 @@
 """
 Scaffold a new plan markdown file under .agents/docs/plans/ with valid frontmatter.
 
-Checks id uniqueness against decisions/, troubleshooting/, plans/, and
-plans/archive/.
+Checks id uniqueness within plans/ and plans/archive/ only.
+
+Related entries (--related) use qualified refs: decisions/<slug>, troubleshooting/<slug>,
+or a bare <slug> when resolvable to exactly one of those files.
 """
 
 from __future__ import annotations
@@ -64,40 +66,81 @@ def _collect_ids_from_folder(folder: Path) -> set[str]:
     return ids
 
 
-def _markdown_link_for_durable_id(*, agents_root: Path, entry_id: str) -> str | None:
-    """Return a markdown list item linking to decisions/ or troubleshooting/ if the file exists."""
+def _resolve_durable_path(*, agents_root: Path, ref: str) -> Path | None:
+    """
+    ref: 'decisions/foo', 'troubleshooting/bar', optional '.md' on slug;
+    or bare 'foo' if exactly one of decisions/foo.md / troubleshooting/foo.md exists.
+    """
+    ref = ref.strip()
+    if not ref:
+        return None
+    low = ref.lower()
+    if "/" in ref:
+        parts = ref.split("/", 1)
+        if len(parts) != 2:
+            return None
+        folder, stem = parts[0], parts[1].removesuffix(".md")
+        if folder not in ("decisions", "troubleshooting", "plans"):
+            return None
+        if not _SLUG_RE.match(stem):
+            return None
+        p = agents_root / "docs" / folder / f"{stem}.md"
+        return p if p.is_file() else None
+
+    stem = ref.removesuffix(".md")
+    if not _SLUG_RE.match(stem):
+        return None
     decisions_dir = agents_root / "docs" / "decisions"
     ts_dir = agents_root / "docs" / "troubleshooting"
-    dec_path = decisions_dir / f"{entry_id}.md"
-    ts_path = ts_dir / f"{entry_id}.md"
-    if dec_path.is_file():
-        rel = f"../decisions/{entry_id}.md"
-        root = dec_path
-    elif ts_path.is_file():
-        rel = f"../troubleshooting/{entry_id}.md"
-        root = ts_path
+    cands: list[Path] = []
+    for base in (decisions_dir, ts_dir):
+        p = base / f"{stem}.md"
+        if p.is_file():
+            cands.append(p)
+    if len(cands) == 1:
+        return cands[0]
+    return None
+
+
+def _qualified_ref_for_path(*, agents_root: Path, path: Path) -> str:
+    rel = path.resolve().relative_to((agents_root / "docs").resolve())
+    return f"{rel.parent.as_posix()}/{path.stem}"
+
+
+def _markdown_link_for_ref(*, agents_root: Path, ref: str) -> str | None:
+    root = _resolve_durable_path(agents_root=agents_root, ref=ref)
+    if root is None:
+        return None
+    folder = root.parent.name
+    stem = root.stem
+    if folder == "decisions":
+        rel = f"../decisions/{stem}.md"
+    elif folder == "troubleshooting":
+        rel = f"../troubleshooting/{stem}.md"
+    elif folder == "plans":
+        rel = f"../plans/{stem}.md"
     else:
         return None
     fm, _ = _read_frontmatter_block(root.read_text(encoding="utf-8"))
     tit = fm.get("title")
-    label = tit.strip() if isinstance(tit, str) and tit.strip() else entry_id.replace("-", " ")
+    label = tit.strip() if isinstance(tit, str) and tit.strip() else stem.replace("-", " ")
     return f"- [{label}]({rel})"
 
 
-def _format_related_decisions_section(*, agents_root: Path, decision_ids: list[str]) -> str:
-    if not decision_ids:
+def _format_related_decisions_section(*, agents_root: Path, refs: list[str]) -> str:
+    if not refs:
         return (
-            "(None yet — add bullet links to `../decisions/<id>.md` or "
-            "`../troubleshooting/<id>.md` for durable entries this plan depends on.)"
+            "(None yet — add bullet links to `../decisions/<slug>.md` or "
+            "`../troubleshooting/<slug>.md` for durable entries this plan depends on.)"
         )
     lines: list[str] = []
-    for eid in decision_ids:
-        line = _markdown_link_for_durable_id(agents_root=agents_root, entry_id=eid)
+    for r in refs:
+        line = _markdown_link_for_ref(agents_root=agents_root, ref=r)
         if line:
             lines.append(line)
         else:
             lines.append(
-                f"- `{eid}` — (no matching `decisions/{eid}.md` or `troubleshooting/{eid}.md`; fix path or id)"
+                f"- `{r}` — (no matching entry; use `decisions/<slug>` or `troubleshooting/<slug>`)"
             )
     return "\n".join(lines)
 
@@ -129,15 +172,16 @@ def _suggest_related_decisions(
         tit_s = tit.lower() if isinstance(tit, str) else path.stem.replace("-", " ")
         score = sum(1 for w in words if w in tit_s)
         if score:
-            scored.append((score, did.strip()))
+            q = _qualified_ref_for_path(agents_root=agents_root, path=path)
+            scored.append((score, q))
     scored.sort(key=lambda t: (-t[0], t[1]))
     out: list[str] = []
     seen: set[str] = set()
-    for _s, did in scored:
-        if did in seen:
+    for _s, q in scored:
+        if q in seen:
             continue
-        seen.add(did)
-        out.append(did)
+        seen.add(q)
+        out.append(q)
         if len(out) >= limit:
             break
     return out
@@ -185,7 +229,7 @@ def _render_plan_markdown(
     header = "\n".join(parts) + "\n"
 
     related_section = _format_related_decisions_section(
-        agents_root=agents_root, decision_ids=related_decisions
+        agents_root=agents_root, refs=related_decisions
     )
     body = _load_plan_body_template(
         skill_dir=skill_dir,
@@ -197,7 +241,11 @@ def _render_plan_markdown(
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Create .agents/docs/plans/<id>.md with plan frontmatter.")
-    parser.add_argument("--id", required=True, help="Stable slug; must match filename [a-z0-9_-]+")
+    parser.add_argument(
+        "--id",
+        required=True,
+        help="Stable slug; must match filename [a-z0-9_-]+ (no folder prefix in filename)",
+    )
     parser.add_argument("--title", required=True)
     parser.add_argument("--description", required=True)
     parser.add_argument(
@@ -227,13 +275,16 @@ def main() -> int:
         "--related",
         action="append",
         default=[],
-        metavar="DECISION_ID",
-        help="Repeatable durable entry id (decision or troubleshooting) to link under ## Related decisions",
+        metavar="QUALIFIED_REF",
+        help=(
+            "Repeatable qualified durable ref: decisions/<slug>, troubleshooting/<slug>, "
+            "or bare <slug> if only one entry file matches"
+        ),
     )
     parser.add_argument(
         "--auto-related",
         action="store_true",
-        help="Suggest related decision ids from keyword overlap (linked in body, not frontmatter)",
+        help="Suggest related decision refs from keyword overlap (linked in body, not frontmatter)",
     )
     parser.add_argument(
         "--consumer-portable",
@@ -249,7 +300,7 @@ def main() -> int:
     parser.add_argument(
         "--dry-run",
         action="store_true",
-        help="Print the file content to stdout only; do not write",
+        help="Print the markdown that would be written; do not create the file",
     )
     parser.add_argument(
         "--force",
@@ -284,15 +335,11 @@ def main() -> int:
                 return 1
             agents_root = found
 
-    decisions = agents_root / "docs" / "decisions"
-    troubleshooting = agents_root / "docs" / "troubleshooting"
     plans_dir = agents_root / "docs" / "plans"
     plans_archive = plans_dir / "archive"
     skill_dir = Path(__file__).resolve().parent.parent
 
     used: set[str] = set()
-    used |= _collect_ids_from_folder(decisions)
-    used |= _collect_ids_from_folder(troubleshooting)
     used |= _collect_ids_from_folder(plans_dir)
     used |= _collect_ids_from_folder(plans_archive)
 
@@ -306,8 +353,7 @@ def main() -> int:
         else:
             print(
                 "ERROR: id "
-                f"{plan_id!r} already used (collision across decisions, troubleshooting, "
-                "plans, or plans/archive)",
+                f"{plan_id!r} already used (collision within plans/ or plans/archive/)",
                 file=sys.stderr,
             )
             return 1
@@ -330,6 +376,11 @@ def main() -> int:
         ):
             if sid not in related:
                 related.append(sid)
+
+    for r in related:
+        if _resolve_durable_path(agents_root=agents_root, ref=r) is None:
+            print(f"ERROR: --related {r!r} does not resolve to an existing entry file", file=sys.stderr)
+            return 1
 
     content = _render_plan_markdown(
         agents_root=agents_root,

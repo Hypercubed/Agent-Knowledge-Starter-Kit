@@ -14,7 +14,7 @@
 
 ## Approach
 
-(TODO: link to [relevant decisions](../decisions/) or playbooks instead of restating.)
+(TODO: link to [relevant decisions](../../../docs/decisions/index.md) or playbooks instead of restating.)
 
 ## Phases or milestones
 

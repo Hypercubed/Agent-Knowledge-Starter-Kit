@@ -148,8 +148,10 @@ if ! command -v rg >/dev/null 2>&1; then
   warn "rg is not installed; skipping doubled-path check."
 else
   printf '\n-- %s --\n' "Doubled .agents/ path segments (bad global replace)"
-  if rg -n --hidden --glob '!*sessions/[0-9]*' '\.agents/\.agents' README.md INSTALL.md docs .agents; then
-    fail "Found .agents/.agents path segments; fix bulk replace or copy/paste before publishing."
+  # Require a path segment after the doubled root (avoids prose that cites the
+  # substring `.agents/.agents` as an anti-pattern example).
+  if rg -n --hidden --glob '!*sessions/[0-9]*' '\.agents/\.agents/' README.md INSTALL.md docs .agents; then
+    fail "Found doubled .agents/ path segments; fix bulk replace or copy/paste before publishing."
   else
     pass "No doubled .agents/ path segments under checked paths."
   fi
