@@ -23,7 +23,7 @@ Gather from the maintainer or task context:
 3. **`description`** — one or two sentences (machine-oriented; docs-search shows this).
 4. **`tags`** — non-empty list of lowercase `[a-z0-9_-]` labels.
 5. **`status`** — one of `draft`, `active`, `paused`, `completed`, `cancelled`, `superseded`, `archived` (plans only; do not reuse decision status strings).
-6. Optional: **`kind`** (`initiative` \| `meta` \| `exploration`), **`related_decisions`** (decision ids), **`consumer_portable`** (boolean; default false for maintainer-only roadmaps).
+6. Optional: **`kind`** (`initiative` \| `meta` \| `exploration`), **`consumer_portable`** (boolean; default false for maintainer-only roadmaps). Link to decisions or troubleshooting in the plan **body** (`## Related decisions`), not in frontmatter.
 
 ## Procedure
 
@@ -33,9 +33,9 @@ Gather from the maintainer or task context:
    - Search filenames under `.agents/docs/decisions/`, `.agents/docs/troubleshooting/`, `.agents/docs/plans/`, and `.agents/docs/plans/archive/` (ignore `plans/index.md`).
    - If unsure, run the script once with `--dry-run` after picking a candidate id; collisions exit with an error.
 
-The generated body comes from the scaffold template [`bootstrap/plan-body.md`](bootstrap/plan-body.md) in this skill (placeholder `{{title}}` is replaced). Edit that file to change default sections for all new plans.
+The generated body comes from the scaffold template [`bootstrap/plan-body.md`](bootstrap/plan-body.md) in this skill (placeholders `{{title}}` and `{{related_decisions_section}}` are replaced). Edit that file to change default sections for all new plans.
 
-3. Optionally infer **`related_decisions`** by skimming nearby decisions whose titles overlap the plan topic (the script can suggest candidates with `--auto-related`).
+3. Optionally infer **related decision ids** by skimming nearby decisions whose titles overlap the plan topic; pass `--auto-related` so the script emits **`## Related decisions`** bullet **links** in the body (never YAML `related_decisions`).
 
 4. Generate the file from the repo root:
 
@@ -50,7 +50,7 @@ The generated body comes from the scaffold template [`bootstrap/plan-body.md`](b
      --auto-related
    ```
 
-   Add explicit links to decisions when you already know them:
+   Add explicit **body** links to decisions or troubleshooting when you already know the ids (repeat `--related` for each):
 
    ```bash
    python3 .agents/skills/write-plan/scripts/write-plan.py \
@@ -61,7 +61,7 @@ The generated body comes from the scaffold template [`bootstrap/plan-body.md`](b
      --related single-tree-architecture-agents
    ```
 
-5. Open the new file and replace the **TODO** sections (Goal, Scope, Approach, milestones, success criteria, risks, knowledge routing).
+5. Open the new file and replace the **TODO** sections (Goal, Scope, Approach, milestones, success criteria, risks, knowledge routing). Keep **`## Related decisions`** as the home for cross-links; add or edit bullet links there instead of frontmatter.
 
 6. Refresh indexes so humans see it in `plans/index.md`:
 

@@ -54,7 +54,9 @@ Plans share the **same global `id` namespace** as `decisions/` and `troubleshoot
 - `tags`: non-empty YAML **list** of lowercase `[a-z0-9_-]` labels.
 - `status`: plan lifecycle, **distinct** from decision `status`. Allowed values: `draft`, `active`, `paused`, `completed`, `cancelled`, `superseded`, `archived` (all lowercase).
 
-**Optional keys (plans):** `kind` (`initiative` \| `meta` \| `exploration`), `related_decisions`, `anticipated_decisions`, `outcome_decisions`, `supersedes`, `superseded_by`, `related_plans`, `consumer_portable` (boolean), `author_kind`, `prompter`.
+**Optional keys (plans):** `kind` (`initiative` \| `meta` \| `exploration`), `anticipated_decisions`, `outcome_decisions`, `supersedes`, `superseded_by`, `related_plans`, `consumer_portable` (boolean), `author_kind`, `prompter`.
+
+**Cross-links to decisions or troubleshooting:** do **not** use a `related_decisions` YAML list. Add a **`## Related decisions`** section in the plan **body** with Markdown bullet links to `../decisions/<id>.md` or `../troubleshooting/<id>.md` (see `.agents/skills/write-plan/CONTRACT.md`).
 
 **Provenance:** use `author_kind` and `prompter` instead of legacy `writer` / `created` fields.
 

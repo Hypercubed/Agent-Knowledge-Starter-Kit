@@ -48,7 +48,6 @@ The filename stem (without `.md`) **must equal** `id`. Use lowercase `[a-z0-9_-]
 ## Optional YAML keys
 
 - `kind` — `initiative` \| `meta` \| `exploration` (default: treat as `initiative` if omitted).
-- `related_decisions` — list of durable entry **ids** (from `decisions/` or `troubleshooting/`).
 - `anticipated_decisions` — planned decision slugs not yet filed.
 - `outcome_decisions` — durable entry ids produced or materially updated by this plan.
 - `supersedes` / `superseded_by` — other plan `id` values.
@@ -58,6 +57,18 @@ The filename stem (without `.md`) **must equal** `id`. Use lowercase `[a-z0-9_-]
 - `prompter` — free text when `author_kind` is `ai`.
 
 Use `author_kind` / `prompter` instead of legacy `writer` / `created` fields.
+
+## Related decisions and troubleshooting (body, not frontmatter)
+
+Do **not** put `related_decisions` in YAML. After the H1, use a **`## Related decisions`** section with Markdown bullet links to durable entries, for example:
+
+```markdown
+## Related decisions
+
+- [Single-tree architecture (`.agents/`)](../decisions/single-tree-architecture-agents.md)
+```
+
+For troubleshooting patterns, link to `../troubleshooting/<id>.md` the same way. This keeps cross-refs readable in git and editors without teaching tools a second graph format.
 
 ## Example frontmatter
 
@@ -71,12 +82,13 @@ description: >
 tags: [docs, plans]
 status: draft
 kind: initiative
-related_decisions: [single-tree-architecture-agents]
 consumer_portable: false
 author_kind: ai
 prompter: example
 ---
 ```
+
+Then continue the file body with **`## Related decisions`** and bullet links as in the section above.
 
 ## Archive
 

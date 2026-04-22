@@ -11,11 +11,6 @@ tags: [plans, docs-search, skills, workflow, schema, kit]
 status: active
 kind: meta
 supersedes: plans-in-scaffold
-related_decisions:
-  - single-tree-architecture-agents
-  - regenerate-example-when-portable-kit-changes
-  - docs-search-remains-canonical-over-host-native-search
-  - plans-live-under-docs-plans-not-agents-plans
 outcome_decisions:
   - plans-live-under-docs-plans-not-agents-plans
 consumer_portable: true
@@ -24,6 +19,13 @@ prompter: Hypercubed
 ---
 
 # Plans as first-class artifacts
+
+## Related decisions
+
+- [Single-tree architecture (`.agents/`)](../decisions/single-tree-architecture-agents.md)
+- [Regenerate `example/` when the portable kit or bootstrap changes](../decisions/regenerate-example-when-portable-kit-changes.md)
+- [`docs-search` stays canonical for `.agents/` knowledge; host-native search is not the default fallback policy](../decisions/docs-search-remains-canonical-over-host-native-search.md)
+- [Maintainer plans live under `.agents/docs/plans/`, not `.agents/plans/`](../decisions/plans-live-under-docs-plans-not-agents-plans.md)
 
 ## Goal
 
@@ -121,7 +123,6 @@ deliberately.
 ### Optional keys
 
 - `kind` — `initiative` | `meta` | `exploration` (default: `initiative`).
-- `related_decisions` — durable entry ids this plan depends on or implements.
 - `anticipated_decisions` — planned decision slugs not yet filed; a distillation
   queue. Replace with real ids once files exist.
 - `outcome_decisions` — durable entry ids created or updated because of this
@@ -145,11 +146,12 @@ description: >
 tags: [security, release, ops]
 status: active
 kind: initiative
-related_decisions: [single-tree-architecture-agents]
 anticipated_decisions: [auth-token-rotation-policy]
 consumer_portable: false
 ---
 ```
+
+Then continue the file body with **`## Related decisions`** and Markdown links to `../decisions/<id>.md` (not a YAML `related_decisions` list).
 
 ### Normalization gap in existing plans
 
@@ -177,14 +179,15 @@ Also normalize across all files: `writer` → `author_kind` (value `ai`);
 
 Sections in order; all optional except Goal:
 
-1. **Goal** — one paragraph; why this initiative exists and what gap it closes.
-2. **Scope / non-goals** — bullets; sets agent and execution boundaries.
-3. **Approach** — method or strategy; link to prior decisions or playbooks
+1. **Related decisions** — bullet links to `../decisions/<id>.md` or `../troubleshooting/<id>.md` (body only; do not use YAML `related_decisions`).
+2. **Goal** — one paragraph; why this initiative exists and what gap it closes.
+3. **Scope / non-goals** — bullets; sets agent and execution boundaries.
+4. **Approach** — method or strategy; link to prior decisions or playbooks
    rather than restating them.
-4. **Phases or milestones** — numbered; each names a concrete deliverable.
-5. **Success criteria** — checkboxes (`- [ ]`); binary and observable.
-6. **Risks** — known unknowns and mitigations; short table preferred.
-7. **Knowledge routing** — where outputs land: playbook paths, decision ids,
+5. **Phases or milestones** — numbered; each names a concrete deliverable.
+6. **Success criteria** — checkboxes (`- [ ]`); binary and observable.
+7. **Risks** — known unknowns and mitigations; short table preferred.
+8. **Knowledge routing** — where outputs land: playbook paths, decision ids,
    troubleshooting ids. Used by `learning-distill` to route correctly.
 
 ## Lifecycle
@@ -249,8 +252,9 @@ flowchart LR
 
 ## Linking decisions ↔ plans
 
-- **Plan → decision:** `related_decisions` / `outcome_decisions` in frontmatter
-  and/or body links to `../decisions/<id>.md`.
+- **Plan → decision:** **`## Related decisions`** in the plan body with links to
+  `../decisions/<id>.md` or `../troubleshooting/<id>.md`; optional `outcome_decisions`
+  in frontmatter when you need machine-readable ids for tooling.
 - **Decision → plan:** `### Related initiative` subsection in the decision body
   with a relative link. Keeps decision frontmatter clean; no new required fields.
 
@@ -258,7 +262,7 @@ flowchart LR
 
 | Skill | Responsibility | Priority |
 |---|---|---|
-| **write-plan** | Scaffold `docs/plans/<id>.md`; check id collision; suggest `related_decisions` from context | **First** |
+| **write-plan** | Scaffold `docs/plans/<id>.md`; check id collision; emit related entry **links** in the body | **First** |
 | **archive-plan** | Move terminal plan to `archive/`; link sweep durable docs | Second |
 | **update-plan-status** | Bump `last_updated`, transition `status`, enforce lifecycle gates | Third |
 | **plan-to-playbook** | Extract stable procedure to `playbooks/`; replace plan section with link | Fourth |
@@ -296,7 +300,7 @@ Implement `.agents/skills/write-plan/SKILL.md` and `scripts/write-plan.py`. The 
 - Prompt for or infer `id`, `title`, `description`, `tags`, `status`
 - Check `id` uniqueness across `decisions/`, `troubleshooting/`, and existing
   plan stems
-- Suggest `related_decisions` from nearby context
+- Suggest related durable entry ids and render **`## Related decisions`** links in the body
 - Write `docs/plans/<id>.md` with valid frontmatter and stub body sections
 *Deliverable: `.agents/skills/write-plan/SKILL.md` and `scripts/write-plan.py`.* *(Done.)*
 

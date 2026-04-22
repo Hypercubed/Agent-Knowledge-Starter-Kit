@@ -1,5 +1,9 @@
 # {{title}}
 
+## Related decisions
+
+{{related_decisions_section}}
+
 ## Goal
 
 (TODO: one paragraph — why this initiative exists and what gap it closes.)

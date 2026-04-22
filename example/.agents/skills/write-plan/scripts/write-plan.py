@@ -64,6 +64,44 @@ def _collect_ids_from_folder(folder: Path) -> set[str]:
     return ids
 
 
+def _markdown_link_for_durable_id(*, agents_root: Path, entry_id: str) -> str | None:
+    """Return a markdown list item linking to decisions/ or troubleshooting/ if the file exists."""
+    decisions_dir = agents_root / "docs" / "decisions"
+    ts_dir = agents_root / "docs" / "troubleshooting"
+    dec_path = decisions_dir / f"{entry_id}.md"
+    ts_path = ts_dir / f"{entry_id}.md"
+    if dec_path.is_file():
+        rel = f"../decisions/{entry_id}.md"
+        root = dec_path
+    elif ts_path.is_file():
+        rel = f"../troubleshooting/{entry_id}.md"
+        root = ts_path
+    else:
+        return None
+    fm, _ = _read_frontmatter_block(root.read_text(encoding="utf-8"))
+    tit = fm.get("title")
+    label = tit.strip() if isinstance(tit, str) and tit.strip() else entry_id.replace("-", " ")
+    return f"- [{label}]({rel})"
+
+
+def _format_related_decisions_section(*, agents_root: Path, decision_ids: list[str]) -> str:
+    if not decision_ids:
+        return (
+            "(None yet — add bullet links to `../decisions/<id>.md` or "
+            "`../troubleshooting/<id>.md` for durable entries this plan depends on.)"
+        )
+    lines: list[str] = []
+    for eid in decision_ids:
+        line = _markdown_link_for_durable_id(agents_root=agents_root, entry_id=eid)
+        if line:
+            lines.append(line)
+        else:
+            lines.append(
+                f"- `{eid}` — (no matching `decisions/{eid}.md` or `troubleshooting/{eid}.md`; fix path or id)"
+            )
+    return "\n".join(lines)
+
+
 def _suggest_related_decisions(
     *,
     agents_root: Path,
@@ -105,17 +143,21 @@ def _suggest_related_decisions(
     return out
 
 
-def _load_plan_body_template(*, skill_dir: Path, title: str) -> str:
+def _load_plan_body_template(
+    *, skill_dir: Path, title: str, related_decisions_section: str
+) -> str:
     path = skill_dir / "bootstrap" / "plan-body.md"
     if not path.is_file():
         print(f"ERROR: scaffold template missing: {path}", file=sys.stderr)
         sys.exit(1)
     text = path.read_text(encoding="utf-8")
-    return text.replace("{{title}}", title)
+    text = text.replace("{{title}}", title)
+    return text.replace("{{related_decisions_section}}", related_decisions_section)
 
 
 def _render_plan_markdown(
     *,
+    agents_root: Path,
     skill_dir: Path,
     plan_id: str,
     title: str,
@@ -138,14 +180,18 @@ def _render_plan_markdown(
         f"status: {status}",
         f"kind: {kind}",
     ]
-    if related_decisions:
-        parts.append("related_decisions:")
-        parts.extend(f"  - {d}" for d in related_decisions)
     parts.append(f"consumer_portable: {'true' if consumer_portable else 'false'}")
     parts.append("---")
     header = "\n".join(parts) + "\n"
 
-    body = _load_plan_body_template(skill_dir=skill_dir, title=title)
+    related_section = _format_related_decisions_section(
+        agents_root=agents_root, decision_ids=related_decisions
+    )
+    body = _load_plan_body_template(
+        skill_dir=skill_dir,
+        title=title,
+        related_decisions_section=related_section,
+    )
     return header + body.lstrip("\n")
 
 
@@ -182,12 +228,12 @@ def main() -> int:
         action="append",
         default=[],
         metavar="DECISION_ID",
-        help="Repeatable durable decision id for related_decisions",
+        help="Repeatable durable entry id (decision or troubleshooting) to link under ## Related decisions",
     )
     parser.add_argument(
         "--auto-related",
         action="store_true",
-        help="Suggest related_decisions from keyword overlap with decision titles",
+        help="Suggest related decision ids from keyword overlap (linked in body, not frontmatter)",
     )
     parser.add_argument(
         "--consumer-portable",
@@ -286,6 +332,7 @@ def main() -> int:
                 related.append(sid)
 
     content = _render_plan_markdown(
+        agents_root=agents_root,
         skill_dir=skill_dir,
         plan_id=plan_id,
         title=args.title.strip(),
@@ -309,7 +356,7 @@ def main() -> int:
     target.write_text(content, encoding="utf-8", newline="\n")
     print(f"Wrote {target}")
     if related:
-        print("related_decisions:", ", ".join(related))
+        print("Related decisions (body links):", ", ".join(related))
     return 0
 
 
