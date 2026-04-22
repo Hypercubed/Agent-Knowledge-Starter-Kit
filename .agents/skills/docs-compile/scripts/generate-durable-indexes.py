@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """
-Regenerate index.md in durable-knowledge folders from sibling entry YAML frontmatter.
+Regenerate index.md in each immediate subdirectory of `.agents/docs/` from sibling
+entry YAML frontmatter.
 
-Default behavior matches this kit: updates `.agents/docs/decisions/index.md` and
-`.agents/docs/troubleshooting/index.md` (see `.agents/docs/MAINTENANCE.md`).
+Default targets are every child directory of `<agents-root>/docs/` (for example
+`decisions/`, `troubleshooting/`, and any future sections). See
+`.agents/docs/MAINTENANCE.md` for entry shape.
 
 Requirements:
   - Python 3.9+
@@ -157,6 +159,15 @@ def _default_generic_blurb(folder: Path) -> str:
         "Each topic is a sibling markdown file (except this index). "
         "Add YAML frontmatter on each entry file (at least `id` and `title`), "
         "then add a row below."
+    )
+
+
+def _default_doc_section_folders(docs_root: Path) -> list[Path]:
+    """Immediate subdirectories of docs_root that should get an index.md."""
+    if not docs_root.is_dir():
+        return []
+    return sorted(
+        p for p in docs_root.iterdir() if p.is_dir() and not p.name.startswith(".")
     )
 
 
@@ -355,8 +366,8 @@ def main() -> int:
         metavar="DIR",
         help=(
             "Directory whose index.md should be regenerated (repeatable). "
-            "When omitted, defaults to <agents-root>/docs/decisions and "
-            "<agents-root>/docs/troubleshooting>."
+            "When omitted, defaults to every immediate subdirectory of "
+            "<agents-root>/docs/."
         ),
     )
     parser.add_argument(
@@ -379,7 +390,7 @@ def main() -> int:
                 file=sys.stderr,
             )
             return 1
-        folder_paths = [docs / "decisions", docs / "troubleshooting"]
+        folder_paths = _default_doc_section_folders(docs)
 
     changed = False
     had_error = False

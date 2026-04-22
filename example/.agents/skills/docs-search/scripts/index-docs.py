@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -79,6 +80,33 @@ def _first_h1_title(body: str) -> str | None:
     return None
 
 
+def _folder_label_for_docs_path(docs_root: Path, path: Path) -> str:
+    """Immediate folder name under docs, or empty when the file lives at docs root."""
+    try:
+        rel = path.resolve().relative_to(docs_root.resolve())
+    except ValueError:
+        return ""
+    parts = rel.parts
+    if len(parts) <= 1:
+        return ""
+    return parts[0]
+
+
+def _default_kind_for_docs_file(docs_root: Path, path: Path) -> str:
+    """Infer search `kind` when frontmatter omits it (under `.agents/docs/` only)."""
+    try:
+        rel = path.resolve().relative_to(docs_root.resolve())
+    except ValueError:
+        return "markdown"
+    parts = rel.parts
+    if len(parts) == 1:
+        return "docs"
+    first = parts[0].casefold()
+    if first == "decisions":
+        return "decision"
+    return parts[0]
+
+
 def _record_for_file(
     *,
     docs_root: Path,
@@ -106,8 +134,7 @@ def _record_for_file(
         docs_relpath = path.resolve().relative_to(docs_root.resolve()).as_posix()
     except ValueError:
         docs_relpath = ""
-    parent = path.parent.name
-    folder = "" if parent == "docs" else parent
+    folder = _folder_label_for_docs_path(docs_root, path)
     entry_id = fm.get("id")
     if isinstance(entry_id, str) and entry_id.strip():
         stable_id = entry_id.strip()
@@ -131,35 +158,15 @@ def _record_for_file(
 
 def _collect_sections(docs_root: Path, repo_root: Path) -> list[dict[str, Any]]:
     sections: list[dict[str, Any]] = []
-    # Optional docs-root index entry.
-    root_index = docs_root / "index.md"
-    if root_index.is_file():
-        sections.append(
-            _record_for_file(
-                docs_root=docs_root,
-                repo_root=repo_root,
-                path=root_index,
-                default_kind="docs-root",
-            )
-        )
-
-    # Durable entry files are primary sources; section index.md files are optional.
-    folders: list[tuple[Path, str]] = [
-        (docs_root / "decisions", "decision"),
-        (docs_root / "troubleshooting", "troubleshooting"),
-    ]
-    for folder, default_kind in folders:
-        if not folder.is_dir():
-            continue
-        for path in sorted(folder.glob("*.md")):
-            if path.name == "index.md":
-                continue
+    # Every markdown file under `.agents/docs/` (including nested paths and index files).
+    if docs_root.is_dir():
+        for path in sorted(docs_root.rglob("*.md")):
             sections.append(
                 _record_for_file(
                     docs_root=docs_root,
                     repo_root=repo_root,
                     path=path,
-                    default_kind=default_kind,
+                    default_kind=_default_kind_for_docs_file(docs_root, path),
                 )
             )
 
@@ -192,7 +199,18 @@ def _collect_sections(docs_root: Path, repo_root: Path) -> list[dict[str, Any]]:
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Build docs-search-index.json under docs-search skill."
+        description=(
+            "Build docs-search-index.json under the resolved .agents/skills/docs-search."
+        )
+    )
+    parser.add_argument(
+        "--agents-root",
+        type=Path,
+        default=None,
+        help=(
+            "Path to .agents directory. If omitted, use AGENTS_ROOT env var, "
+            "then nearest .agents from current working directory."
+        ),
     )
     parser.add_argument(
         "--dry-run",
@@ -201,9 +219,22 @@ def main() -> int:
     )
     args = parser.parse_args()
 
-    agents_root = _find_agents_root(Path.cwd())
-    if agents_root is None:
-        print("ERROR: could not locate .agents directory from current path.", file=sys.stderr)
+    raw_agents_root: Path | None = args.agents_root
+    if raw_agents_root is None:
+        env_root = Path(os.environ["AGENTS_ROOT"]) if "AGENTS_ROOT" in os.environ else None
+        raw_agents_root = env_root
+
+    if raw_agents_root is not None:
+        candidate = raw_agents_root.expanduser().resolve()
+        agents_root = candidate if candidate.name == ".agents" else candidate / ".agents"
+    else:
+        agents_root = _find_agents_root(Path.cwd())
+
+    if agents_root is None or not agents_root.is_dir():
+        print(
+            "ERROR: could not locate .agents directory. Pass --agents-root or set AGENTS_ROOT.",
+            file=sys.stderr,
+        )
         return 1
 
     repo_root = agents_root.parent
