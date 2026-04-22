@@ -1,6 +1,21 @@
+---
+id: add-integrations
+title: "Add integration guides"
+last_updated: 2026-04-22
+description: >
+  Roadmap for per-tool integration guides under docs/integrations/ so adopters
+  can wire this kit into their workflow; one guide remains (vscode-extensions.md).
+tags: [integrations, docs, maintenance]
+status: active
+kind: initiative
+consumer_portable: false
+author_kind: ai
+prompter: Hypercubed
+---
+
 # Plan: Add Integration Guides
 
-**Status:** active — one planned guide remains (`vscode-extensions.md`) **Goal:** Create `docs/integrations/` with per-tool integration guides so users of different agents/IDEs can connect this kit to their workflow. **Date:** 2026-04-12 (last plan audit: 2026-04-19) **Priority:** High **Blocked by:** verify each tool against real behavior before documenting it **Scope estimate:** multiple small docs PRs
+**Goal:** Create `docs/integrations/` with per-tool integration guides so users of different agents/IDEs can connect this kit to their workflow. **Date:** 2026-04-12 (last plan audit: 2026-04-19) **Priority:** High **Blocked by:** verify each tool against real behavior before documenting it **Scope estimate:** multiple small docs PRs
 
 ---
 

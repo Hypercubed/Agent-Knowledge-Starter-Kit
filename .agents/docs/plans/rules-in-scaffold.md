@@ -1,11 +1,15 @@
 ---
+id: rules-in-scaffold
+title: "Rules in the published kit"
+last_updated: 2026-04-22
 description: >
-  Extend the distributable kit (published `.agents/` layout, e.g. example/.agents/) with a documented place for tool-agnostic or tool-adjacent agent rules, plus guidance on when distilled learning should land in rules versus AGENTS.md, docs, or playbooks.
-
-
-created: 2026-04-11
+  Document a portable place for agent rules in the consumer .agents/ tree and
+  how distillation routes content versus AGENTS.md, docs, and playbooks.
+tags: [rules, kit, distillation]
 status: draft
-writer: AI
+kind: initiative
+consumer_portable: false
+author_kind: ai
 prompter: Hypercubed
 ---
 

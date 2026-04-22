@@ -54,7 +54,7 @@ TROUBLESHOOTING_BLURB = (
 
 PLANS_BLURB = (
     "One file per maintainer initiative or roadmap. New entries: follow the plan contract "
-    "in [plans-in-scaffold.md](plans-in-scaffold.md), then add a row below."
+    "in [plans-as-first-class-artifacts.md](plans-as-first-class-artifacts.md), then add a row below."
 )
 
 

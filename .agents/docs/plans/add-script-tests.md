@@ -1,10 +1,15 @@
 ---
+id: add-script-tests
+title: "Add script tests for docs-search and docs-compile"
+last_updated: 2026-04-22
 description: >
-  Add focused automated tests for docs-search and docs-compile scripts introduced
-  by Option A so consumer-deliverable behavior stays stable.
-created: 2026-04-20
+  Add focused automated tests for docs-search and docs-compile scripts so
+  consumer-deliverable behavior stays stable.
+tags: [testing, docs-search, docs-compile]
 status: draft
-writer: AI
+kind: initiative
+consumer_portable: false
+author_kind: ai
 prompter: Hypercubed
 ---
 

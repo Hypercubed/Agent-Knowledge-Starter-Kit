@@ -1,7 +1,21 @@
+---
+id: wiki-system
+title: "Wiki expansion for agent knowledge starter"
+last_updated: 2026-04-22
+description: >
+  Extend the starter kit with a codebase-grounded wiki as a first-class knowledge
+  store alongside skills and playbooks (not derived from them).
+tags: [wiki, architecture, knowledge-layer]
+status: draft
+kind: initiative
+consumer_portable: false
+author_kind: ai
+prompter: Hypercubed
+---
+
 # Plan: Wiki Expansion for Agent-Knowledge-Starter-Kit
 
 **Version:** 1.1\
-**Status:** Draft\
 **Scope:** Extend the starter kit to include a codebase-grounded wiki as a first-class knowledge store, alongside (not derived from) skills and playbooks.
 
 ---

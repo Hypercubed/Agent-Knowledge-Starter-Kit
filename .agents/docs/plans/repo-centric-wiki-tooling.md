@@ -1,11 +1,16 @@
 ---
+id: repo-centric-wiki-tooling
+title: "Repo-centric wiki tooling"
+last_updated: 2026-04-22
 description: >
   Add lightweight compile, query, and visualize capabilities to the repo-local
   markdown knowledge layer without replacing the existing skill-based
   distillation workflow.
-created: 2026-04-19
-status: in-progress
-writer: AI
+tags: [wiki, docs-search, tooling]
+status: active
+kind: initiative
+consumer_portable: false
+author_kind: ai
 prompter: Hypercubed
 ---
 

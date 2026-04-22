@@ -9,11 +9,11 @@ This file belongs in `.agents/docs/`, alongside `.agents/AGENTS.md`.
 - Session bundles under `.agents/sessions/` are raw evidence.
 - Files in `.agents/` are synthesized durable knowledge.
 - Durable knowledge should be incremental, concise, and reviewable.
-- Architectural decisions live under `.agents/docs/decisions/` (one file per decision plus `index.md`). Troubleshooting patterns live under `.agents/docs/troubleshooting/` (one file per pattern plus `index.md`). Each **entry** file (every `*.md` except `index.md` in those folders) carries YAML frontmatter so tools can parse metadata without reading the body.
+- Architectural decisions live under `.agents/docs/decisions/` (one file per decision plus `index.md`). Troubleshooting patterns live under `.agents/docs/troubleshooting/` (one file per pattern plus `index.md`). Maintainer **plans** (initiatives and roadmaps) live under `.agents/docs/plans/` (see [plans/index.md](plans/index.md)). Each **entry** file in `decisions/`, `troubleshooting/`, and `plans/` carries YAML frontmatter so tools can parse metadata without reading the body. Session bundles under `.agents/sessions/` remain temporary evidence, not plans.
 
 ## Entry shape
 
-When adding a new markdown file under `decisions/` or `troubleshooting/`, follow the frontmatter and body headings used by existing entries in that folder, including the [Frontmatter contract](#frontmatter-contract-durable-entries) below. During **knowledge-lint**, verify that contract by inspection (duplicate `id`, missing keys, scalar `tags` instead of a list, `status` only on decisions, and so on). Automated enforcement may be added later as maintainer-only tooling.
+When adding a new markdown file under `decisions/` or `troubleshooting/`, follow the frontmatter and body headings used by existing entries in that folder, including the [Frontmatter contract](#frontmatter-contract-durable-entries) below. When adding a plan under `plans/`, follow the [Frontmatter contract (plans)](#frontmatter-contract-plans) and [Plans as first-class artifacts](plans/plans-as-first-class-artifacts.md). During **knowledge-lint**, verify contracts by inspection (duplicate `id`, missing keys, scalar `tags` instead of a list, `status` only on decisions for durable entries, plan `status` vocabulary for `plans/`, and so on). Automated enforcement may be added later as maintainer-only tooling.
 
 ### Frontmatter contract (durable entries)
 
@@ -36,6 +36,27 @@ Applies to every `*.md` file under `decisions/` and `troubleshooting/` **except*
 - `depends_on`: YAML **list** of other durable **entry ids** (the `id` frontmatter value on any `decisions/` or `troubleshooting/` entry file, regardless of folder). Use this when there is a hard dependency or ordering readers should follow. Omit the key when there is no explicit graph edge.
 
 **Do not** put `status` on troubleshooting entries; lifecycle applies to decision records.
+
+### Frontmatter contract (plans)
+
+Applies to every `*.md` file under **`plans/`** and **`plans/archive/`**, except `plans/index.md` and any other index or README files unless they intentionally adopt plan frontmatter.
+
+Plans share the **same global `id` namespace** as `decisions/` and `troubleshooting/`: a plan `id` must not equal any decision or troubleshooting entry `id`. Prefer a clear prefix (for example `plan-`) when names might collide.
+
+**Required keys (plans):**
+
+- `id`: stable slug, **must match** the filename without `.md`, lowercase `[a-z0-9_-]`.
+- `title`: short human title (quoted if it contains colons).
+- `last_updated`: ISO calendar date `YYYY-MM-DD`.
+- `description`: one or two sentences, machine-oriented (used by docs-search listings).
+- `tags`: non-empty YAML **list** of lowercase `[a-z0-9_-]` labels.
+- `status`: plan lifecycle, **distinct** from decision `status`. Allowed values: `draft`, `active`, `paused`, `completed`, `cancelled`, `superseded`, `archived` (all lowercase).
+
+**Optional keys (plans):** `kind` (`initiative` \| `meta` \| `exploration`), `related_decisions`, `anticipated_decisions`, `outcome_decisions`, `supersedes`, `superseded_by`, `related_plans`, `consumer_portable` (boolean), `author_kind`, `prompter`.
+
+**Provenance:** use `author_kind` and `prompter` instead of legacy `writer` / `created` fields.
+
+**Archive:** when a plan is terminal, move `.agents/docs/plans/<id>.md` to `.agents/docs/plans/archive/<id>.md` (same basename; same `id` in frontmatter), bump `last_updated`, then sweep links in decisions, playbooks, indexes, and other plans.
 
 ### Linking rules (for indexes, maps, and prose)
 
@@ -104,7 +125,7 @@ Catalog of durable knowledge assets.
 
 ### `.agents/docs/plans/`
 
-Maintainer roadmaps and multi-step initiatives (markdown under this folder; [index.md](plans/index.md) lists them). Plan files are **plan-only** guidance: they do not change shipped kit behavior until implementation is requested. See [plans-in-scaffold.md](plans/plans-in-scaffold.md) for the YAML contract and lifecycle.
+Maintainer roadmaps and multi-step initiatives (markdown under this folder; [index.md](plans/index.md) lists them). Plan files are **plan-only** guidance: they do not change shipped kit behavior until implementation is requested. See [plans-as-first-class-artifacts.md](plans/plans-as-first-class-artifacts.md) for the YAML contract and lifecycle.
 
 ### `.agents/docs/log.md`
 
