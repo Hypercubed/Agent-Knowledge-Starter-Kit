@@ -40,6 +40,9 @@ except ImportError:  # pragma: no cover
 
 _SLUG_RE = re.compile(r"^[a-z0-9_-]+$")
 
+# Per `.agents/docs/MAINTENANCE.md` — entry ids match filename stems with a folder prefix.
+_ID_PREFIX = {"decisions": "dec-", "troubleshooting": "ts-", "plans": "plan-"}
+
 DECISIONS_BLURB = (
     "One file per durable architectural or policy decision. New entries: "
     "follow [Entry shape](../MAINTENANCE.md#entry-shape) in `MAINTENANCE.md`, "
@@ -54,7 +57,7 @@ TROUBLESHOOTING_BLURB = (
 
 PLANS_BLURB = (
     "One file per maintainer initiative or roadmap. New entries: follow the plan contract "
-    "in [plans-as-first-class-artifacts.md](plans-as-first-class-artifacts.md), then add a row below."
+    "in [plans-as-first-class-artifacts.md](plan-plans-as-first-class-artifacts.md), then add a row below."
 )
 
 
@@ -243,6 +246,12 @@ def _collect_entries(folder: Path, kind: str) -> list[tuple[Path, dict[str, Any]
             if not _SLUG_RE.match(entry_id):
                 print(
                     f"WARN: id {entry_id!r} should match [a-z0-9_-]+ ({path})",
+                    file=sys.stderr,
+                )
+            want = _ID_PREFIX.get(kind)
+            if want and not entry_id.startswith(want):
+                print(
+                    f"WARN: {kind} entry id {entry_id!r} should start with {want!r} ({path})",
                     file=sys.stderr,
                 )
         if kind == "decisions":

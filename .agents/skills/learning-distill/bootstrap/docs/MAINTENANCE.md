@@ -9,11 +9,23 @@ This file belongs in `.agents/docs/`, alongside `.agents/AGENTS.md`.
 - Session bundles under `.agents/sessions/` are raw evidence.
 - Files in `.agents/` are synthesized durable knowledge.
 - Durable knowledge should be incremental, concise, and reviewable.
-- Architectural decisions live under `.agents/docs/decisions/` (one file per decision plus `index.md`). Troubleshooting patterns live under `.agents/docs/troubleshooting/` (one file per pattern plus `index.md`). Each **entry** file (every `*.md` except `index.md` in those folders) carries YAML frontmatter so tools can parse metadata without reading the body.
+- Architectural decisions live under `.agents/docs/decisions/` (one file per decision plus `index.md`). Troubleshooting patterns live under `.agents/docs/troubleshooting/` (one file per pattern plus `index.md`). Maintainer **plans** (initiatives and roadmaps) live under `.agents/docs/plans/` (see `plans/index.md` there after initialization). Each **entry** file in `decisions/`, `troubleshooting/`, and `plans/` carries YAML frontmatter so tools can parse metadata without reading the body. Session bundles under `.agents/sessions/` remain temporary evidence, not plans.
+
+## Slug prefixes (per directory)
+
+Each immediate subdirectory of `.agents/docs/` that holds durable **entry** files uses a fixed `id` / filename prefix so slugs never collide across folders and tools only need to scan **one** directory for uniqueness:
+
+| Directory | Prefix | Example stem |
+| --- | --- | --- |
+| `decisions/` | `dec-` | `dec-single-tree-architecture-agents` |
+| `troubleshooting/` | `ts-` | `ts-github-copilot-chat-context-not-in-focus` |
+| `plans/` and `plans/archive/` | `plan-` | `plan-add-integrations` |
+
+The filename stem (without `.md`) **must equal** frontmatter `id`, including the prefix. Cross-links in Markdown still use normal relative paths (for example `../decisions/dec-example.md` from a plan).
 
 ## Entry shape
 
-When adding a new markdown file under `decisions/` or `troubleshooting/`, follow the frontmatter and body headings used by existing entries in that folder, including the [Frontmatter contract](#frontmatter-contract-durable-entries) below. During **knowledge-lint**, verify that contract by inspection (duplicate `id`, missing keys, scalar `tags` instead of a list, `status` only on decisions, and so on). Automated enforcement may be added later as maintainer-only tooling.
+When adding a new markdown file under `decisions/` or `troubleshooting/`, follow the frontmatter and body headings used by existing entries in that folder, including the [Frontmatter contract](#frontmatter-contract-durable-entries) below. When adding a plan under `plans/`, follow the [Frontmatter contract (plans)](#frontmatter-contract-plans) and the narrative in `plans/plan-plans-as-first-class-artifacts.md` under your installed `.agents/docs/` tree (after initialization). During **knowledge-lint**, verify contracts by inspection (duplicate `id`, missing keys, scalar `tags` instead of a list, `status` only on decisions for durable entries, plan `status` vocabulary for `plans/`, and so on). Automated enforcement may be added later as maintainer-only tooling.
 
 ### Frontmatter contract (durable entries)
 
@@ -21,7 +33,7 @@ Applies to every `*.md` file under `decisions/` and `troubleshooting/` **except*
 
 **Required keys (all entries):**
 
-- `id`: stable slug, **must match** the filename without `.md`, lowercase `[a-z0-9_-]`, **globally unique** across both `decisions/` and `troubleshooting/`.
+- `id`: stable slug, **must match** the filename without `.md`, lowercase `[a-z0-9_-]`, **unique within this folder**, and **must start with** the directory prefix (`dec-` or `ts-` as above).
 - `title`: short human title (quoted if it contains colons).
 - `last_updated`: ISO calendar date `YYYY-MM-DD`.
 - `description`: one or two sentences summarizing the entry for query and index output (machine-oriented).
@@ -33,13 +45,38 @@ Applies to every `*.md` file under `decisions/` and `troubleshooting/` **except*
 
 **Optional keys (any entry):**
 
-- `depends_on`: YAML **list** of other durable **entry ids** (the `id` frontmatter value on any `decisions/` or `troubleshooting/` entry file, regardless of folder). Use this when there is a hard dependency or ordering readers should follow. Omit the key when there is no explicit graph edge.
+- `depends_on`: YAML **list** of other durable **entry ids** (the `id` frontmatter value on any `decisions/` or `troubleshooting/` entry file, regardless of folder, using each entry’s prefixed `id`). Use this when there is a hard dependency or ordering readers should follow. Omit the key when there is no explicit graph edge.
 
 **Do not** put `status` on troubleshooting entries; lifecycle applies to decision records.
 
+### Frontmatter contract (plans)
+
+The **write-plan** skill also ships a portable copy of this contract at `.agents/skills/write-plan/CONTRACT.md` for skill-only installs.
+
+Applies to every `*.md` file under **`plans/`** and **`plans/archive/`**, except `plans/index.md` and any other index or README files unless they intentionally adopt plan frontmatter.
+
+Plan `id` values are **unique within** `plans/` and `plans/archive/` only (decisions and troubleshooting use their own prefixes, so there is no cross-folder slug collision).
+
+**Required keys (plans):**
+
+- `id`: stable slug, **must match** the filename without `.md`, lowercase `[a-z0-9_-]`, and **must start with** `plan-`.
+- `title`: short human title (quoted if it contains colons).
+- `last_updated`: ISO calendar date `YYYY-MM-DD`.
+- `description`: one or two sentences, machine-oriented (used by docs-search listings).
+- `tags`: non-empty YAML **list** of lowercase `[a-z0-9_-]` labels.
+- `status`: plan lifecycle, **distinct** from decision `status`. Allowed values: `draft`, `active`, `paused`, `completed`, `cancelled`, `superseded`, `archived` (all lowercase).
+
+**Optional keys (plans):** `kind` (`initiative` \| `meta` \| `exploration`), `anticipated_decisions` (planned **`dec-`** decision ids not yet filed), `outcome_decisions` (durable **`dec-`** / **`ts-`** entry ids), `supersedes`, `superseded_by`, `related_plans` (other **`plan-`** ids), `consumer_portable` (boolean), `author_kind`, `prompter`.
+
+**Cross-links to decisions or troubleshooting:** do **not** use a `related_decisions` YAML list. Add a **`## Related decisions`** section in the plan **body** with Markdown bullet links to `../decisions/<id>.md` or `../troubleshooting/<id>.md` (see `.agents/skills/write-plan/CONTRACT.md`).
+
+**Provenance:** use `author_kind` and `prompter` instead of legacy `writer` / `created` fields.
+
+**Archive:** when a plan is terminal, move `.agents/docs/plans/<id>.md` to `.agents/docs/plans/archive/<id>.md` (same basename; same `id` in frontmatter), bump `last_updated`, then sweep links in decisions, playbooks, indexes, and other plans.
+
 ### Linking rules (for indexes, maps, and prose)
 
-- Link to another durable entry using a **relative** Markdown link to that file, for example `[Regenerate example](regenerate-example-when-portable-kit-changes.md)` from a file in the same folder.
+- Link to another durable entry using a **relative** Markdown link to that file, for example `[Regenerate example](dec-regenerate-example-when-portable-kit-changes.md)` from a file in the same folder.
 - Prefer **sibling** paths (`other-id.md`) or explicit relative paths (`../MAINTENANCE.md`) so links stay stable when the repo is checked out on different machines.
 - Avoid bare URLs as the only pointer when a durable repo file exists; URLs are fine for external references.
 
@@ -47,7 +84,7 @@ Applies to every `*.md` file under `decisions/` and `troubleshooting/` **except*
 
 ```yaml
 ---
-id: example-decision-slug
+id: dec-example-policy
 title: "Example decision title"
 last_updated: 2026-04-19
 description: >
@@ -55,7 +92,7 @@ description: >
   and how it relates to the kit.
 tags: [architecture, agents]
 status: accepted
-depends_on: [single-tree-architecture-agents]
+depends_on: [dec-single-tree-architecture-agents]
 ---
 ```
 
@@ -63,7 +100,7 @@ depends_on: [single-tree-architecture-agents]
 
 ```yaml
 ---
-id: example-troubleshooting-slug
+id: ts-example-troubleshooting-pattern
 title: "Example troubleshooting title"
 last_updated: 2026-04-19
 description: >
@@ -102,55 +139,13 @@ Durable multi-step procedures.
 
 Catalog of durable knowledge assets.
 
+### `.agents/docs/plans/`
+
+Maintainer roadmaps and multi-step initiatives (markdown under this folder; `plans/index.md` lists them). Plan files are **plan-only** guidance: they do not change shipped kit behavior until implementation is requested. See `plans/plan-plans-as-first-class-artifacts.md` for the YAML contract and lifecycle.
+
 ### `.agents/docs/log.md`
 
 Append-only maintenance log.
-
-## Classification matrix
-
-Use this matrix when distilling candidate lessons.
-
-### `.agents/AGENTS.md`
-
-Use for concise, broadly applicable instructions agents should see before normal work.
-
-Do not use for long rationale, task history, or low-confidence guesses.
-
-Example: "Run `npm test` after changing parser fixtures."
-
-### `.agents/docs/troubleshooting/`
-
-Use for recurring symptoms, likely causes, known fixes, and validation steps (add or edit a file under this directory).
-
-Do not use for architectural rationale or one-time command failures.
-
-Example: "Symptom: JSON editor fails to load. Fix: verify Monaco JSON worker wiring."
-
-### `.agents/docs/decisions/`
-
-Use for durable rationale, tradeoffs, exceptions, and why a convention exists (add or edit a file under this directory).
-
-Do not use for step-by-step procedures or incident logs.
-
-Example: "The repo uses package-root Monaco imports because narrower imports did not expose JSON defaults."
-
-### `.agents/playbooks/`
-
-Use for ordered, repeatable procedures that need multiple steps.
-
-Do not use for one-line rules or background rationale without actions.
-
-Example: "Refresh generated API fixtures and validate snapshots."
-
-### `.agents/docs/log.md`
-
-Use for append-only records of distillation and maintenance actions.
-
-Do not use for the durable lesson itself.
-
-Example: "Distilled task `t-...`; accepted 2 candidates, rejected 1."
-
-If two destinations seem plausible, choose the one future agents would consult first during the relevant work.
 
 ## Distillation policy
 
@@ -171,10 +166,6 @@ After closeout, treat them as immutable except for status fields in `summary.jso
 Keep bundle subfolders under `.agents/sessions/` gitignored. The kit may track a single `.agents/sessions/README.md` for human-facing guidance while every per-task bundle folder stays local-only.
 
 Use one session folder per task-closeout bundle and name folders with a sortable pattern such as `YYYYMMDD-HHMMSS-short-topic`.
-
-The canonical task/session identifier is the `task_id` field inside each bundle's `summary.json`. The session folder name is only a sortable storage label, even when it resembles the task ID.
-
-Repo-local storage is the default because bundles stay close to the work they describe. In cloud, ephemeral, or shared-agent environments, adapt the storage location or backup process if local bundles may disappear before distillation.
 
 ## Logging policy
 
@@ -216,7 +207,7 @@ Periodically review `.agents/` for:
 
 Automated **knowledge-lint** runs are still human-guided; they do not prove prose is sensible. After any wide find-and-replace across markdown:
 
-- Re-check durable entry frontmatter against [Frontmatter contract](#frontmatter-contract-durable-entries) (required keys, list-shaped `tags`, `status` only on decisions, no duplicate `id` across both folders).
+- Re-check durable entry frontmatter against [Frontmatter contract](#frontmatter-contract-durable-entries) (required keys, list-shaped `tags`, `status` only on decisions, no duplicate `id` within `decisions/` or within `troubleshooting/`, and correct per-folder slug prefixes).
 - Re-read a sample of `decisions/` and `troubleshooting/` entries for broken sentences or doubled kit path segments (the `.agents` directory name repeated in one filesystem path).
 - Search for doubled `.agents/` path segments (for example the substring `.agents/.agents` in paths under `.agents/`, `README.md`, `INSTALL.md`, and `docs/`) before publishing; hits usually mean a bad global replace.
 - Prefer scoped replacements (limit to `.agents/docs/`, or a single file), whole-word or whole-path patterns, and commit-sized diffs instead of repo-wide blind replace.

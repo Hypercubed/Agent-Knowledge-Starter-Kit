@@ -13,16 +13,14 @@ When the full kit is present, the same rules are recorded in [`.agents/docs/MAIN
 
 Ignore `plans/index.md` for frontmatter unless you intentionally add plan-style metadata there.
 
-## Global `id` namespace
+## Plan `id` namespace
 
-Plan **`id`** values must be **unique across** all of:
+Plan **`id`** values must be **unique within** all of:
 
-- `.agents/docs/decisions/*.md` (except `index.md`)
-- `.agents/docs/troubleshooting/*.md` (except `index.md`)
 - `.agents/docs/plans/*.md` (except `index.md`)
 - `.agents/docs/plans/archive/*.md`
 
-The filename stem (without `.md`) **must equal** `id`. Use lowercase `[a-z0-9_-]` only. Prefer a prefix such as `plan-` when a slug might collide with a decision or troubleshooting entry.
+The filename stem (without `.md`) **must equal** `id`. Use lowercase `[a-z0-9_-]` only. **Every** plan id **must start with** `plan-` (see [Slug prefixes in `MAINTENANCE.md`](../../docs/MAINTENANCE.md#slug-prefixes-per-directory)). Decisions (`dec-`) and troubleshooting (`ts-`) use separate prefixes, so there is no cross-folder collision.
 
 ## Required YAML keys (every plan entry)
 
@@ -65,7 +63,7 @@ Do **not** put `related_decisions` in YAML. After the H1, use a **`## Related de
 ```markdown
 ## Related decisions
 
-- [Single-tree architecture (`.agents/`)](../decisions/single-tree-architecture-agents.md)
+- [Single-tree architecture (`.agents/`)](../decisions/dec-single-tree-architecture-agents.md)
 ```
 
 For troubleshooting patterns, link to `../troubleshooting/<id>.md` the same way. This keeps cross-refs readable in git and editors without teaching tools a second graph format.

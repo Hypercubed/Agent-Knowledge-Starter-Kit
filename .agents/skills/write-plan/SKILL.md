@@ -7,7 +7,7 @@ description: Scaffold a new maintainer plan under `.agents/docs/plans/<id>.md` w
 
 ## Goal
 
-Create a **plan-only** markdown file under `.agents/docs/plans/` that matches the **plan frontmatter contract** shipped with this skill ([`CONTRACT.md`](CONTRACT.md)), without hand-copying YAML. The repo’s normative copy of the same rules lives under [Frontmatter contract (plans) in `MAINTENANCE.md`](../../docs/MAINTENANCE.md#frontmatter-contract-plans); narrative and lifecycle context: [plans-as-first-class-artifacts](../../docs/plans/plans-as-first-class-artifacts.md). If `CONTRACT.md` ever disagrees with `MAINTENANCE.md`, treat **`MAINTENANCE.md` as authoritative** until the skill contract is updated.
+Create a **plan-only** markdown file under `.agents/docs/plans/` that matches the **plan frontmatter contract** shipped with this skill ([`CONTRACT.md`](CONTRACT.md)), without hand-copying YAML. The repo’s normative copy of the same rules lives under [Frontmatter contract (plans) in `MAINTENANCE.md`](../../docs/MAINTENANCE.md#frontmatter-contract-plans); narrative and lifecycle context: [plans-as-first-class-artifacts](../../docs/plans/plan-plans-as-first-class-artifacts.md). If `CONTRACT.md` ever disagrees with `MAINTENANCE.md`, treat **`MAINTENANCE.md` as authoritative** until the skill contract is updated.
 
 ## When to use
 
@@ -18,7 +18,7 @@ Create a **plan-only** markdown file under `.agents/docs/plans/` that matches th
 
 Gather from the maintainer or task context:
 
-1. **`id`** — stable slug, lowercase `[a-z0-9_-]`, **must equal** the filename stem (`<id>.md`). Must **not** collide with any `id` under `.agents/docs/decisions/`, `.agents/docs/troubleshooting/`, `.agents/docs/plans/`, or `.agents/docs/plans/archive/` (retired plans keep their ids).
+1. **`id`** — stable slug, lowercase `[a-z0-9_-]`, **must equal** the filename stem (`<id>.md`), and **must start with** `plan-` (see [Slug prefixes](../../docs/MAINTENANCE.md#slug-prefixes-per-directory) in `MAINTENANCE.md`). Must **not** collide with any other plan `id` under `.agents/docs/plans/` or `.agents/docs/plans/archive/` (retired plans keep their ids).
 2. **`title`** — short human title.
 3. **`description`** — one or two sentences (machine-oriented; docs-search shows this).
 4. **`tags`** — non-empty list of lowercase `[a-z0-9_-]` labels.
@@ -29,8 +29,8 @@ Gather from the maintainer or task context:
 
 1. Resolve the repository root (directory containing `.agents/`).
 
-2. Choose `id` and confirm it is not already used:
-   - Search filenames under `.agents/docs/decisions/`, `.agents/docs/troubleshooting/`, `.agents/docs/plans/`, and `.agents/docs/plans/archive/` (ignore `plans/index.md`).
+2. Choose `id` (always `plan-…`) and confirm it is not already used under **plans only**:
+   - Search filenames under `.agents/docs/plans/` and `.agents/docs/plans/archive/` (ignore `plans/index.md`).
    - If unsure, run the script once with `--dry-run` after picking a candidate id; collisions exit with an error.
 
 The generated body comes from the scaffold template [`bootstrap/plan-body.md`](bootstrap/plan-body.md) in this skill (placeholders `{{title}}` and `{{related_decisions_section}}` are replaced). Edit that file to change default sections for all new plans.
@@ -41,7 +41,7 @@ The generated body comes from the scaffold template [`bootstrap/plan-body.md`](b
 
    ```bash
    python3 .agents/skills/write-plan/scripts/write-plan.py \
-     --id "<slug>" \
+     --id "plan-<slug>" \
      --title "<title>" \
      --description "<one or two sentences>" \
      --tags "tag-one,tag-two" \
@@ -58,7 +58,7 @@ The generated body comes from the scaffold template [`bootstrap/plan-body.md`](b
      --title "Example initiative" \
      --description "Short machine-oriented summary for search results." \
      --tags "docs,plans" \
-     --related single-tree-architecture-agents
+     --related dec-single-tree-architecture-agents
    ```
 
 5. Open the new file and replace the **TODO** sections (Goal, Scope, Approach, milestones, success criteria, risks, knowledge routing). Keep **`## Related decisions`** as the home for cross-links; add or edit bullet links there instead of frontmatter.
@@ -72,13 +72,13 @@ The generated body comes from the scaffold template [`bootstrap/plan-body.md`](b
 ## Script reference
 
 - `--dry-run` — print the markdown that would be written; do not create the file.
-- `--force` — overwrite an existing `.agents/docs/plans/<id>.md` only (still refuses collisions with decisions/troubleshooting/other ids).
+- `--force` — overwrite an existing `.agents/docs/plans/<id>.md` only (still refuses collisions with other plan ids).
 - `--agents-root` — path to `.agents` when running outside the usual layout.
 
 ## Constraints
 
 - **Plan-only:** creating or editing a plan does **not** authorize changing shipped skill behavior; implementation still needs an explicit maintainer request.
-- **Global ids:** plan `id` values share a namespace with decisions and troubleshooting; prefix (`plan-…`) when collision risk exists.
+- **Prefixed ids:** decisions use `dec-`, troubleshooting uses `ts-`, plans use `plan-`; each skill checks collisions only inside its folder (see `MAINTENANCE.md`).
 
 ## Related
 

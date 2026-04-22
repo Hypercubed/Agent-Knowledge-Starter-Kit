@@ -83,4 +83,4 @@ Both agents converge on the same `.agents/` tree, keeping knowledge centralized 
 - [`README.md`](../../README.md)
 - [`INSTALL.md`](../../INSTALL.md)
 - [Integration Patterns](./patterns.md)
-- [`.agents/docs/troubleshooting/`](../../.agents/docs/troubleshooting/github-copilot-chat-context-not-in-focus.md) — Copilot Chat context visibility
+- [`.agents/docs/troubleshooting/`](../../.agents/docs/troubleshooting/ts-github-copilot-chat-context-not-in-focus.md) — Copilot Chat context visibility

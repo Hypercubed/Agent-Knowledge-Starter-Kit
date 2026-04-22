@@ -61,7 +61,7 @@ Use `search-docs.py "<topic>"` as a discovery tool during the checks below, part
 - oversized AGENTS sections
 - missing index coverage in `.agents/docs/index.md` for durable assets
 - broken links in indexes and cross-links between docs
-- when `decisions/index.md` or `troubleshooting/index.md` exists, verify listed files exist and align with entry files; always verify each entry file has frontmatter `id` aligned with its filename slug where applicable, and **`id` values are unique across both directories** (not only within one)
+- when `decisions/index.md` or `troubleshooting/index.md` exists, verify listed files exist and align with entry files; always verify each entry file has frontmatter `id` aligned with its filename slug where applicable, **`id` values are unique within `decisions/` and within `troubleshooting/`**, and each entry uses the correct folder prefix (`dec-` / `ts-`; see [Slug prefixes](../../docs/MAINTENANCE.md#slug-prefixes-per-directory) in `MAINTENANCE.md`)
 - **Durable entry metadata contract:** each `decisions/*.md` and `troubleshooting/*.md` entry (excluding each folder’s `index.md`) follows `.agents/docs/MAINTENANCE.md` — required `id`, `title`, `last_updated`, `description`, and YAML list `tags`; `decisions/` entries also have `status` (`accepted`, `superseded`, or `provisional`); no `status` on troubleshooting entries; `tags` is never a single scalar string meant to hold a list; optional `depends_on` is a YAML list when present. Confirm by reading frontmatter, not only prose.
 - troubleshooting entries that should be decisions or playbooks
 - decisions that should be compressed into AGENTS guidance

@@ -2,8 +2,8 @@
 """
 Scaffold a new plan markdown file under .agents/docs/plans/ with valid frontmatter.
 
-Checks id uniqueness against decisions/, troubleshooting/, plans/, and
-plans/archive/.
+Checks id uniqueness within plans/ and plans/archive/ only. Plan ids must use the
+`plan-` prefix (see MAINTENANCE.md).
 """
 
 from __future__ import annotations
@@ -24,6 +24,7 @@ except ImportError:  # pragma: no cover
     sys.exit(1)
 
 _SLUG_RE = re.compile(r"^[a-z0-9_-]+$")
+PLAN_ID_PREFIX = "plan-"
 
 
 def _find_agents_root(start: Path) -> Path | None:
@@ -197,7 +198,11 @@ def _render_plan_markdown(
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Create .agents/docs/plans/<id>.md with plan frontmatter.")
-    parser.add_argument("--id", required=True, help="Stable slug; must match filename [a-z0-9_-]+")
+    parser.add_argument(
+        "--id",
+        required=True,
+        help=f"Stable slug; must match filename [a-z0-9_-]+ and start with {PLAN_ID_PREFIX!r}",
+    )
     parser.add_argument("--title", required=True)
     parser.add_argument("--description", required=True)
     parser.add_argument(
@@ -262,6 +267,12 @@ def main() -> int:
     if not _SLUG_RE.match(plan_id):
         print(f"ERROR: id must match {_SLUG_RE.pattern}", file=sys.stderr)
         return 1
+    if not plan_id.startswith(PLAN_ID_PREFIX):
+        print(
+            f"ERROR: plan id must start with {PLAN_ID_PREFIX!r} (per .agents/docs/plans/ slug prefix)",
+            file=sys.stderr,
+        )
+        return 1
 
     raw_root = args.agents_root
     if raw_root is not None:
@@ -284,15 +295,11 @@ def main() -> int:
                 return 1
             agents_root = found
 
-    decisions = agents_root / "docs" / "decisions"
-    troubleshooting = agents_root / "docs" / "troubleshooting"
     plans_dir = agents_root / "docs" / "plans"
     plans_archive = plans_dir / "archive"
     skill_dir = Path(__file__).resolve().parent.parent
 
     used: set[str] = set()
-    used |= _collect_ids_from_folder(decisions)
-    used |= _collect_ids_from_folder(troubleshooting)
     used |= _collect_ids_from_folder(plans_dir)
     used |= _collect_ids_from_folder(plans_archive)
 
@@ -306,8 +313,7 @@ def main() -> int:
         else:
             print(
                 "ERROR: id "
-                f"{plan_id!r} already used (collision across decisions, troubleshooting, "
-                "plans, or plans/archive)",
+                f"{plan_id!r} already used (collision within plans/ or plans/archive/)",
                 file=sys.stderr,
             )
             return 1
