@@ -1,5 +1,9 @@
 # Knowledge Maintenance Log
 
+### \[2026-04-22] learning-distill | t-20260422-docs-search-native-index-policy
+
+Outcome: updated Files: `.agents/docs/decisions/docs-search-remains-canonical-over-host-native-search.md`; `.agents/docs/decisions/index.md`; `.agents/docs/troubleshooting/index.md`; `.agents/docs/log.md`; `.agents/sessions/20260422-032419-docs-search-native-index-policy/summary.json` Accepted: 1 (decision: keep `docs-search` scripts canonical for `.agents/` knowledge; do not default to host-native index-first with script fallback) Rejected: 1 (AGENTS.md: rationale belongs in `decisions/`, not operational bullets) Notes: Distilled policy discussion after task closeout; ran `docs-compile.sh` to refresh indexes and search cache.
+
 ### \[2026-04-22] learning-distill | t-20260422-zo-followup
 
 Outcome: updated Files: `.agents/docs/troubleshooting/zo-ui-skills-discovery-requires-manual-mirror.md`; `.agents/docs/log.md` Accepted: 0 (workflow violation surfaced, not promoted to durable doc) Rejected: 0 Notes: Distilled follow-up session. Manual log.md edit from earlier was explicit user request but violated normal workflow. Removed manually-injected "related note" from troubleshooting entry — duplication of existing AGENTS.md maintenance rule. Session bundle captures the workflow violation for future reference.
