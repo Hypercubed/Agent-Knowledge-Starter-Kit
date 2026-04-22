@@ -25,3 +25,4 @@ One file per recurring issue pattern. New entries: follow [Entry shape](../MAINT
 - [Session Discovery Fails During Distillation or Closeout](session-discovery-fails-during-distillation-or-closeout.md)
 - [Unexpected files under `.agents/sessions/` in git status](unexpected-files-under-agents-sessions-in-git-status.md)
 - [Windows-to-WSL Tool Path Failures](windows-to-wsl-tool-path-failures.md)
+- [Zo UI skill discovery does not auto-show repo-local skills](zo-ui-skills-discovery-requires-manual-mirror.md)
