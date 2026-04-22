@@ -3,3 +3,9 @@
 .claude
 node_modules
 skills-lock.json
+
+# Maintainer docs search cache (see `.agents/skills/docs-search/`)
+.agents/skills/docs-search/docs-search-index.json
+# Python bytecode
+**/__pycache__/
+*.pyc

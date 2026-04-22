@@ -149,6 +149,7 @@ Currently available:
 - [OpenClaw](docs/integrations/openclaw.md)
 - [OpenCode](docs/integrations/opencode.md)
 - [Warp](docs/integrations/warp.md)
+- [Zo Computer](docs/integrations/zo-computer.md)
 
 ---
 

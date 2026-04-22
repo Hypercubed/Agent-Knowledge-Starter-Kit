@@ -27,10 +27,11 @@ Before wiring a tool, install shared kit skills in the target repo with `npx ski
 - [OpenClaw](./openclaw.md) - startup files, memory, sessions, automation, and kit boundaries
 - [OpenCode](./opencode.md) - `AGENTS.md`, `opencode.json`, `.opencode/` wrappers, and native skill discovery
 - [Warp](./warp.md) - project/global rules, skills, Oz workflows, and kit routing
+- [Zo Computer](./zo-computer.md) - Zo-specific skill discovery, docs-search, and closeout workflow
 
 ## Planned guides
 
-These are tracked in `.agents/plans/add-integrations.md` and should be added only after they are verified against real tool behavior:
+These are tracked in `.agents/docs/plans/plan-add-integrations.md` and should be added only after they are verified against real tool behavior:
 
 - VS Code extensions
 
