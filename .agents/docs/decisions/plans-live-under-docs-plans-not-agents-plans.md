@@ -32,7 +32,7 @@ The `docs-search` indexer walks **`.agents/docs/**/*.md`** (plus playbooks and `
 
 ### Rationale
 
-- **Search:** `search-docs.js` picks up every markdown file under `.agents/docs/`; no special-case crawl is required.
+- **Search:** `search-docs.py` picks up every markdown file under `.agents/docs/`; no special-case crawl is required.
 - **Mental model:** Plans are durable, repo-local documentation with structured frontmatter, similar to decisions and troubleshooting, not ephemeral session evidence.
 - **Portability:** Consumers who want plans opt into the same relative path after merging the kit.
 

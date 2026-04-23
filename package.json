@@ -24,7 +24,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "remark:fix": "remark \".agents/**/*.md\" --output",
-    "search": "node .agents/skills/docs-search/scripts/search-docs.js"
+    "search": "python3 .agents/skills/docs-search/scripts/search-docs.py"
   },
   "devDependencies": {
     "markdown-link-check": "^3.14.1",

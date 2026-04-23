@@ -96,7 +96,7 @@ Then open each candidate bundle’s `summary.json`: treat `task_id` as canonical
    2a. **Search for related existing knowledge.** If docs-search is available, search for each candidate lesson topic before comparing files manually:
 
    ```bash
-   node .agents/skills/docs-search/scripts/search-docs.js "<lesson topic>"
+   python3 .agents/skills/docs-search/scripts/search-docs.py "<lesson topic>"
    ```
 
    Open any returned file paths and treat them as the primary input to step 3 (Compare) and step 4 (Remove duplication). This avoids loading the entire `.agents/` tree into context.

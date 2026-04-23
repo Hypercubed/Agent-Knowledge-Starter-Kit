@@ -29,7 +29,7 @@ When environment dependencies are met, agents should use the provided scripts to
 
 ### Search Knowledge Layer
 ```bash
-node .agents/skills/docs-search/scripts/search-docs.js "<query>"
+python3 .agents/skills/docs-search/scripts/search-docs.py "<query>"
 ```
 
 ### Compile Durable Indexes
@@ -46,7 +46,7 @@ bash .agents/skills/docs-compile/scripts/docs-compile.sh
 ## Workflow for Autonomous Agents
 
 1. **Bootstrap**: Read root `AGENTS.md` -> `.agents/AGENTS.md`.
-2. **Search**: Run `search-docs.js` to find relevant decisions or troubleshooting patterns.
+2. **Search**: Run `search-docs.py` to find relevant decisions or troubleshooting patterns.
 3. **Execute**: Perform the task following repo conventions.
 4. **Closeout**: Follow `.agents/skills/task-closeout/SKILL.md` to create a session bundle.
 5. **Distill (Optional)**: If acting as a learning agent, run `learning-distill` logic and refresh indexes with `docs-compile.sh`.

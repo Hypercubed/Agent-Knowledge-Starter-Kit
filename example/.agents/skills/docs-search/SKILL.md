@@ -1,6 +1,6 @@
 ---
 name: docs-search
-description: Search `.agents/` durable knowledge using a layered search approach (ripgrep, git grep, grep, or Node fallback).
+description: Search `.agents/` durable knowledge using a layered search approach (ripgrep, git grep, grep, or Python fallback).
 ---
 
 # Docs search
@@ -11,7 +11,7 @@ Search logic and script flags are normative in [`CONTRACT.md`](CONTRACT.md). [`.
 
 ## Requirements
 
-- Node.js
+- Python 3.9+
 - (Optional) ripgrep (`rg`) for highest performance.
 
 ## Quickstart
@@ -19,14 +19,14 @@ Search logic and script flags are normative in [`CONTRACT.md`](CONTRACT.md). [`.
 From the target repository (or any subdirectory under it):
 
 ```bash
-node .agents/skills/docs-search/scripts/search-docs.js "auth troubleshooting"
+python3 .agents/skills/docs-search/scripts/search-docs.py "auth troubleshooting"
 ```
 
 Default search output lists up to **5** matches; use `--limit 3` for top-3.
 
 ## Agent workflow (2 steps)
 
-1. **Search** — Run `search-docs.js "<query>"` to get ranked results (title, short description, path).
+1. **Search** — Run `search-docs.py "<query>"` to get ranked results (title, short description, path).
 2. **Read** — Open the reported file paths for full content.
 
 ## Example queries
@@ -37,10 +37,10 @@ Default search output lists up to **5** matches; use `--limit 3` for top-3.
 
 ## Command options
 
-- `search-docs.js --agents-root /path/to/.agents` overrides auto-discovery (equivalent to `AGENTS_ROOT=/path/to/.agents`).
-- `search-docs.js --limit 3` returns fewer matches (default is 5).
+- `search-docs.py --agents-root /path/to/.agents` overrides auto-discovery (equivalent to `AGENTS_ROOT=/path/to/.agents`).
+- `search-docs.py --limit 3` returns fewer matches (default is 5).
 
 ## Constraints
 
-- Search uses a layered fallback strategy: `rg` -> `git grep` -> `grep` -> Node.js.
-- Results are ranked based on tool output or heuristic matches in the Node.js fallback.
+- Search uses a layered fallback strategy: `rg` -> `git grep` -> `grep` -> Python.
+- Results are ranked based on tool output or heuristic matches in the Python fallback.

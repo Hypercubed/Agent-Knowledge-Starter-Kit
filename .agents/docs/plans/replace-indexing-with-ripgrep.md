@@ -99,7 +99,7 @@ Maintain a consistent output format across all backends:
 
 - Phase 2: Implement search wrapper
 
-  - Create "search-docs.js" (or ".py")
+  - Create "search-docs.py" (or ".py")
   - Implement backend detection (rg → git grep → grep)
 
 - Phase 3: Add npm integration

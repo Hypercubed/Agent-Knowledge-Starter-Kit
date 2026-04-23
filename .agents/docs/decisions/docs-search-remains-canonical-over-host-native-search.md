@@ -23,7 +23,7 @@ Accepted
 
 ### Context
 
-Many agent hosts and IDEs expose their own codebase search, semantic retrieval, or background indexing. The portable kit ships `docs-search` (`search-docs.js`) and optional `docs-compile` to manage durable repo knowledge.
+Many agent hosts and IDEs expose their own codebase search, semantic retrieval, or background indexing. The portable kit ships `docs-search` (`search-docs.py`) and optional `docs-compile` to manage durable repo knowledge.
 
 ### Decision
 
