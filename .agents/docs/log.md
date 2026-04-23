@@ -239,3 +239,9 @@ Outcome: updated Files: `.agents/AGENTS.md`; `.agents/docs/log.md` Accepted: 0 R
 ### \[YYYY-MM-DD] knowledge-lint
 
 Outcome: cleanup Files: `.agents/AGENTS.md`; `.agents/docs/log.md` Notes: brief summary
+
+- 2026-04-23: t-20260423-022606-agentic-sandbox-integration
+  - Outcome: distilled
+  - Files updated: .agents/AGENTS.md, .agents/docs/troubleshooting/scripted-skills-require-pyyaml.md, .agents/docs/troubleshooting/index.md
+  - Accepted lessons: 2 (AGENTS note for Python dependencies, troubleshooting pattern for ImportError)
+  - Notes: Distilled lessons on environment requirements for scripted skills.

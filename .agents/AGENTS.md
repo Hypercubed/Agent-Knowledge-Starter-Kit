@@ -50,7 +50,7 @@ This file contains concise, high-signal instructions for future agents working i
 
 ### Build and test
 
-- Add repo-specific commands here.
+- Scripted skills (for example `docs-search`, `docs-compile`) require Python 3 and dependencies `PyYAML` and `rank_bm25` (`pip install pyyaml rank_bm25`).
 
 ### Coding conventions
 
