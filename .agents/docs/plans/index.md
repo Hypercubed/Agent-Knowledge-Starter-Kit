@@ -15,6 +15,7 @@ One file per maintainer initiative or roadmap. New entries: follow the plan cont
 - [Agent role guidance](agent-role-guidance.md)
 - [Consumer-friendly upgrade path](consumer-upgrade-path.md)
 - [Guidance for out-of-repo knowledge trees](out-of-repo-trees.md)
+- [Implement Operating Contract + Trigger System + Playbooks](implement-operating-contract-and-triggers.md)
 - [Introduce Manifest-Based Docs Structure](introduce-docs-manifest.md)
 - [Repo-centric wiki tooling](repo-centric-wiki-tooling.md)
 - [Rules in the published kit](rules-in-scaffold.md)
