@@ -9,7 +9,7 @@ This file belongs in `.agents/docs/`, alongside `.agents/AGENTS.md`.
 - Session bundles under `.agents/sessions/` are raw evidence.
 - Files in `.agents/` are synthesized durable knowledge.
 - Durable knowledge should be incremental, concise, and reviewable.
-- Architectural decisions live under `.agents/docs/decisions/` (one file per decision plus `index.md`). Troubleshooting patterns live under `.agents/docs/troubleshooting/` (one file per pattern plus `index.md`). Maintainer **plans** (initiatives and roadmaps) live under `.agents/docs/plans/` (see [plans/index.md](../../../../docs/plans/index.md) in a full kit checkout). Each **entry** file in `decisions/`, `troubleshooting/`, and `plans/` carries YAML frontmatter so tools can parse metadata without reading the body. Session bundles under `.agents/sessions/` remain temporary evidence, not plans.
+- Architectural decisions live under `.agents/docs/decisions/` (one file per decision plus `index.md`). Troubleshooting patterns live under `.agents/docs/troubleshooting/` (one file per pattern plus `index.md`). Maintainer **plans** (initiatives and roadmaps) live under `.agents/docs/plans/` when you create that folder and add files (typically via **write-plan**). Each **entry** file in `decisions/`, `troubleshooting/`, and `plans/` carries YAML frontmatter so tools can parse metadata without reading the body. Session bundles under `.agents/sessions/` remain temporary evidence, not plans.
 
 ## Entry `id` and qualified graph references
 
@@ -21,7 +21,7 @@ This file belongs in `.agents/docs/`, alongside `.agents/AGENTS.md`.
 
 ## Entry shape
 
-When adding a new markdown file under `decisions/` or `troubleshooting/`, follow the frontmatter and body headings used by existing entries in that folder, including the [Frontmatter contract](#frontmatter-contract-durable-entries) below. When adding a plan under `plans/`, follow the [Frontmatter contract (plans)](#frontmatter-contract-plans) and [Plans as first-class artifacts](../../../../docs/plans/plans-as-first-class-artifacts.md) in a full kit checkout. During **knowledge-lint**, verify contracts by inspection (duplicate `id`, missing keys, scalar `tags` instead of a list, `status` only on decisions for durable entries, plan `status` vocabulary for `plans/`, and so on). Automated enforcement may be added later as maintainer-only tooling.
+When adding a new markdown file under `decisions/` or `troubleshooting/`, follow the frontmatter and body headings used by existing entries in that folder, including the [Frontmatter contract](#frontmatter-contract-durable-entries) below. When adding a plan under `plans/`, follow the [Frontmatter contract (plans)](#frontmatter-contract-plans) and the portable rules in [`write-plan` `CONTRACT.md`](../skills/write-plan/CONTRACT.md). During **knowledge-lint**, verify contracts by inspection (duplicate `id`, missing keys, scalar `tags` instead of a list, `status` only on decisions for durable entries, plan `status` vocabulary for `plans/`, and so on). Automated enforcement may be added later as maintainer-only tooling.
 
 ### Frontmatter contract (durable entries)
 
@@ -137,7 +137,7 @@ Catalog of durable knowledge assets.
 
 ### `.agents/docs/plans/`
 
-Maintainer roadmaps and multi-step initiatives (markdown under this folder; [index.md](../../../../docs/plans/index.md) lists them in a full kit checkout). Plan files are **plan-only** guidance: they do not change shipped kit behavior until implementation is requested. See [plans-as-first-class-artifacts.md](../../../../docs/plans/plans-as-first-class-artifacts.md) for the YAML contract and lifecycle.
+Maintainer roadmaps and multi-step initiatives (markdown under this folder once you create it). Plan files are **plan-only** guidance: they do not change shipped kit behavior until implementation is requested. Use [Frontmatter contract (plans)](#frontmatter-contract-plans) and [`write-plan` `CONTRACT.md`](../skills/write-plan/CONTRACT.md). The Agent Knowledge Starter kit publishes an extended narrative only in its own repository under `.agents/docs/plans/plans-as-first-class-artifacts.md` (not part of this bootstrap).
 
 ### `.agents/docs/log.md`
 

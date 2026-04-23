@@ -9,6 +9,8 @@ description: Check the `.agents/` knowledge layer for duplication, contradiction
 
 Keep the compiled repo knowledge layer coherent, minimal, and current.
 
+Use **Inputs** and the checklist in this file as the maintainer verification list. Durable entry frontmatter, logging, and graph edge rules are normative in [`.agents/docs/MAINTENANCE.md`](../../docs/MAINTENANCE.md).
+
 ## Inputs
 
 - `.agents/AGENTS.md`

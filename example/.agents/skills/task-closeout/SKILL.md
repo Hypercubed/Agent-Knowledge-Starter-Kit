@@ -9,6 +9,8 @@ description: Capture the current task into a structured temporary session bundle
 
 Create a temporary handoff packet for later learning extraction.
 
+Follow **Skill initialization** and **Procedure** below. Session bundle policy at the kit level is summarized in [`.agents/docs/MAINTENANCE.md`](../../docs/MAINTENANCE.md) (Task bundle policy).
+
 ## Skill initialization (before first closeout)
 
 Run this once per target repo after the skill files are present under `.agents/skills/task-closeout/` (for example after copying only that skill folder or after an `npx`/package install drops it there). Idempotent: safe to repeat.

@@ -18,6 +18,7 @@ One file per maintainer initiative or roadmap. New entries: follow the plan cont
 - [Guidance for out-of-repo knowledge trees](out-of-repo-trees.md)
 - [Integrate docs-search into learning-distill and knowledge-lint](integrate-docs-search-learning-distill-knowledge-lint.md)
 - [Plans as first-class artifacts](plans-as-first-class-artifacts.md)
+- [Portable skill CONTRACT.md rollout](portable-skill-contracts.md)
 - [Repo-centric wiki tooling](repo-centric-wiki-tooling.md)
 - [Rules in the published kit](rules-in-scaffold.md)
 - [Ship structure check script with the kit](ship-structure-check-script.md)

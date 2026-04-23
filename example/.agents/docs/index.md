@@ -2,7 +2,7 @@
 
 This file belongs in `.agents/docs/`.
 
-Durable knowledge uses separate markdown files per topic: architectural decisions under [`decisions/`](decisions/index.md); recurring issues under [`troubleshooting/`](troubleshooting/index.md); maintainer initiatives under [`plans/`](plans/index.md). Decision and troubleshooting entry files include minimal YAML frontmatter (`id`, `title`, `last_updated`). Plans use the extended contract in [MAINTENANCE.md](MAINTENANCE.md#frontmatter-contract-plans) and the canonical narrative in [plans-as-first-class-artifacts.md](plans/plans-as-first-class-artifacts.md).
+Durable knowledge uses separate markdown files per topic: architectural decisions under [`decisions/`](decisions/index.md); recurring issues under [`troubleshooting/`](troubleshooting/index.md); maintainer initiatives under `.agents/docs/plans/` when you add that folder (see [`write-plan`](../skills/write-plan/SKILL.md)). See [MAINTENANCE.md](MAINTENANCE.md) for frontmatter and workflow rules.
 
 ## `.agents/AGENTS.md`
 
@@ -18,61 +18,33 @@ Recurring issue patterns, causes, fixes, and validation steps (one markdown file
 
 ## `.agents/docs/plans/`
 
-Maintainer roadmaps and multi-step initiatives (one markdown file per plan). Consult [index.md](plans/index.md) for the full list. Plans are **plan-only** until implementation is requested; they are indexed by [`docs-search`](../skills/docs-search/SKILL.md) like the rest of `.agents/docs/`. Canonical contract: [plans-as-first-class-artifacts.md](plans/plans-as-first-class-artifacts.md).
+Maintainer roadmaps (one markdown file per plan). Scaffold with [`write-plan`](../skills/write-plan/SKILL.md). Plan contract: [MAINTENANCE.md § Frontmatter contract (plans)](MAINTENANCE.md#frontmatter-contract-plans) and [`write-plan` `CONTRACT.md`](../skills/write-plan/CONTRACT.md). The Agent Knowledge Starter kit’s extended narrative for plans lives only in that repository’s `.agents/docs/plans/plans-as-first-class-artifacts.md` (not copied by this bootstrap).
 
 ## `.agents/playbooks/`
 
-Durable procedures for recurring workflows. In this layout, playbooks live under `.agents/playbooks/` (sibling of `.agents/docs/`, not inside it).
+Durable procedures live under `.agents/playbooks/` (sibling of `.agents/docs/`, not inside it).
 
-- [`.agents/playbooks/README.md`](../playbooks/README.md) — how playbooks differ from repo decisions, troubleshooting entries, and skills.
-
-Examples (this repo):
-
-- [`.agents/playbooks/generate-example.md`](../playbooks/generate-example.md) — generate a complete bootstrapped example folder for the kit.
-- [`.agents/playbooks/pre-publish.md`](../playbooks/pre-publish.md) — run pre-publish checks and review warnings before publishing the starter kit.
-- [`.agents/playbooks/writing-integration-guides.md`](../playbooks/writing-integration-guides.md) — write user-facing tool integration guides without overstating unverified behavior.
+- [`.agents/playbooks/README.md`](../playbooks/README.md)
 
 ## Portable kit skills (`.agents/skills/`)
 
-Workflow definitions shipped with the kit (each folder contains `SKILL.md` and often a `bootstrap/` tree for initialization):
+Workflow definitions (each folder contains `SKILL.md`):
 
 - [`task-closeout`](../skills/task-closeout/SKILL.md) — structured session bundles under `.agents/sessions/`.
 - [`learning-distill`](../skills/learning-distill/SKILL.md) — distill bundles into durable `.agents/` knowledge.
 - [`knowledge-lint`](../skills/knowledge-lint/SKILL.md) — periodic pass for duplication, drift, and index gaps.
-- [`docs-search`](../skills/docs-search/SKILL.md) — search durable `.agents/` knowledge via local index generation from markdown sources.
-- [`docs-compile`](../skills/docs-compile/SKILL.md) — optional regeneration of durable section `index.md` files under `.agents/docs/` and the docs-search cache.
-- [`write-plan`](../skills/write-plan/SKILL.md) — scaffold a new plan file under `.agents/docs/plans/` with valid frontmatter and stub sections.
+- [`docs-search`](../skills/docs-search/SKILL.md) — search durable knowledge via a local index built from markdown.
+- [`docs-compile`](../skills/docs-compile/SKILL.md) — optional regeneration of section `index.md` files under `.agents/docs/` and the docs-search cache.
+- [`write-plan`](../skills/write-plan/SKILL.md) — scaffold a new plan under `.agents/docs/plans/` with valid frontmatter.
 
-Maintainer-only (this repository):
+## `.agents/agents/` (optional)
 
-- [`.agents/skills/generate-example/SKILL.md`](../skills/generate-example/SKILL.md) — generate a disposable consumer-path example structure (`metadata.internal: true`).
-
-## `.agents/agents/`
-
-Persona-style markdown for multi-agent workflows (optional for single-agent setups):
+Persona-style markdown when your layout includes `.agents/agents/`:
 
 - [`.agents/agents/coding-agent.md`](../agents/coding-agent.md)
 - [`.agents/agents/learning-agent.md`](../agents/learning-agent.md)
 - [`.agents/agents/lint-agent.md`](../agents/lint-agent.md)
 
-## `.agents/docs/MAINTENANCE.md`
+## `.agents/docs/MAINTENANCE.md` and `log.md`
 
-Maintenance schema and rules for this knowledge layer.
-
-## `.agents/docs/log.md`
-
-Append-only record of distillation and maintenance activity.
-
-## Repository architecture (root docs)
-
-[`docs/architecture.md`](../../../docs/architecture.md) — design principles, lifecycle, layout, and how closeout, distillation, and lint fit together.
-
-## Root readme and install
-
-[`README.md`](../../../README.md) — kit overview and maintenance loop diagram.
-
-[`INSTALL.md`](../../../INSTALL.md) — agent-facing installation and merge checklist for adopting this starter kit into a target repository.
-
-## Root integration guides (this repository)
-
-[`docs/integrations/README.md`](../../../docs/integrations/README.md) — per-tool wiring for Antigravity, Claude Code, Codex, Cursor, Gemini CLI, Hermes, Kilo Code, OpenClaw, OpenCode, and Warp (user-facing; not part of the copied `.agents/` tree).
+Maintenance schema: [MAINTENANCE.md](MAINTENANCE.md). Append-only audit: [log.md](log.md).

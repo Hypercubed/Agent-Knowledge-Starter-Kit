@@ -60,15 +60,9 @@ Use `author_kind` / `prompter` instead of legacy `writer` / `created` fields.
 
 ## Related decisions and troubleshooting (body, not frontmatter)
 
-Do **not** put `related_decisions` in YAML. After the H1, use a **`## Related decisions`** section with Markdown bullet links to durable entries, for example:
+Do **not** put `related_decisions` in YAML. After the H1, use a **`## Related decisions`** section with Markdown bullet links to durable entries. From a plan file under `.agents/docs/plans/`, each bullet targets `../decisions/<slug>.md` or `../troubleshooting/<slug>.md` (relative to that plan file).
 
-```markdown
-## Related decisions
-
-- [Single-tree architecture (`.agents/`)](../decisions/single-tree-architecture-agents.md)
-```
-
-For troubleshooting patterns, link to `../troubleshooting/<slug>.md` the same way.
+For troubleshooting patterns, use the same pattern with `../troubleshooting/<slug>.md`.
 
 ## Example frontmatter
 

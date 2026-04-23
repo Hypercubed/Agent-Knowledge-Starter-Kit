@@ -115,6 +115,12 @@ elif npx_package_available markdown-link-check --help; then
   link_failed=0
   while IFS= read -r md_file; do
     [ -z "$md_file" ] && continue
+    # Bootstrap `index.md` and `MAINTENANCE.md` use links relative to `.agents/docs/` after init;
+    # paths do not resolve while these files live under `learning-distill/bootstrap/docs/` here.
+    case "$md_file" in
+      .agents/skills/learning-distill/bootstrap/docs/index.md) continue ;;
+      .agents/skills/learning-distill/bootstrap/docs/MAINTENANCE.md) continue ;;
+    esac
     if ! timeout_cmd 30s npx --no-install markdown-link-check --alive 200,0 "$md_file"; then
       link_failed=1
     fi

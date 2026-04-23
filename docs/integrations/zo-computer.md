@@ -75,5 +75,12 @@ Add this section to `/home/workspace/AGENTS.md` after install:
 - [`README.md`](../../README.md)
 - [`INSTALL.md`](../../INSTALL.md)
 - [Integration Patterns](./patterns.md)
+
+<!-- markdown-link-check-disable -->
+
+External Zo docs (verify in-browser; automated checks may see HTTP 403):
+
 - [Zo Computer documentation](https://docs.zocomputer.com)
 - [Zo Skills page](https://www.zocomputer.com/skills)
+
+<!-- markdown-link-check-enable -->

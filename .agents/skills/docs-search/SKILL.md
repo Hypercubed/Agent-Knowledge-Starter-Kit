@@ -7,6 +7,8 @@ description: Search `.agents/` durable knowledge using a local JSON index genera
 
 Search durable guidance under `.agents/` with a local JSON index.
 
+Indexer output (JSON), default rooted paths, and script flags are described in **Requirements**, **Quickstart**, and the scripts under this skill folder. [`.agents/docs/MAINTENANCE.md`](../../docs/MAINTENANCE.md) remains authoritative for durable-doc policy where it applies.
+
 ## Requirements
 
 - Python 3.9+

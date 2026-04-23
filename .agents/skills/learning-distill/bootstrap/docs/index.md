@@ -2,7 +2,7 @@
 
 This file belongs in `.agents/docs/`.
 
-Durable knowledge uses separate markdown files per topic: architectural decisions under [`decisions/`](decisions/index.md); recurring issues under [`troubleshooting/`](troubleshooting/index.md). Each entry file includes minimal YAML frontmatter (`id`, `title`, `last_updated`).
+Durable knowledge uses separate markdown files per topic: architectural decisions under [`decisions/`](decisions/index.md); recurring issues under [`troubleshooting/`](troubleshooting/index.md); maintainer initiatives under `.agents/docs/plans/` when you add that folder (see [`write-plan`](../skills/write-plan/SKILL.md)). See [MAINTENANCE.md](MAINTENANCE.md) for frontmatter and workflow rules.
 
 ## `.agents/AGENTS.md`
 
@@ -16,40 +16,35 @@ Durable rationale, tradeoffs, and architectural choices (one markdown file per d
 
 Recurring issue patterns, causes, fixes, and validation steps (one markdown file per pattern). Consult [index.md](troubleshooting/index.md) when debugging known classes of problems.
 
+## `.agents/docs/plans/`
+
+Maintainer roadmaps (one markdown file per plan). Scaffold with [`write-plan`](../skills/write-plan/SKILL.md). Plan contract: [MAINTENANCE.md § Frontmatter contract (plans)](MAINTENANCE.md#frontmatter-contract-plans) and [`write-plan` `CONTRACT.md`](../skills/write-plan/CONTRACT.md). The Agent Knowledge Starter kit’s extended narrative for plans lives only in that repository’s `.agents/docs/plans/plans-as-first-class-artifacts.md` (not copied by this bootstrap).
+
 ## `.agents/playbooks/`
 
-Durable procedures for recurring workflows. In this layout, playbooks live under `.agents/playbooks/` (sibling of `.agents/docs/`, not inside it).
+Durable procedures live under `.agents/playbooks/` (sibling of `.agents/docs/`, not inside it).
 
-- [`.agents/playbooks/README.md`](../../../../playbooks/README.md) — how playbooks differ from repo decisions, troubleshooting entries, and skills.
+- [`.agents/playbooks/README.md`](../playbooks/README.md)
 
 ## Portable kit skills (`.agents/skills/`)
 
-Workflow definitions shipped with the kit (each folder contains `SKILL.md` and often a `bootstrap/` tree for initialization):
+Workflow definitions (each folder contains `SKILL.md`):
 
-- [`task-closeout`](../../../../skills/task-closeout/SKILL.md) — structured session bundles under `.agents/sessions/`.
-- [`learning-distill`](../../../../skills/learning-distill/SKILL.md) — distill bundles into durable `.agents/` knowledge.
-- [`knowledge-lint`](../../../../skills/knowledge-lint/SKILL.md) — periodic pass for duplication, drift, and index gaps.
+- [`task-closeout`](../skills/task-closeout/SKILL.md) — structured session bundles under `.agents/sessions/`.
+- [`learning-distill`](../skills/learning-distill/SKILL.md) — distill bundles into durable `.agents/` knowledge.
+- [`knowledge-lint`](../skills/knowledge-lint/SKILL.md) — periodic pass for duplication, drift, and index gaps.
+- [`docs-search`](../skills/docs-search/SKILL.md) — search durable knowledge via a local index built from markdown.
+- [`docs-compile`](../skills/docs-compile/SKILL.md) — optional regeneration of section `index.md` files under `.agents/docs/` and the docs-search cache.
+- [`write-plan`](../skills/write-plan/SKILL.md) — scaffold a new plan under `.agents/docs/plans/` with valid frontmatter.
 
-## `.agents/agents/`
+## `.agents/agents/` (optional)
 
-Persona-style markdown for multi-agent workflows (optional for single-agent setups):
+Persona-style markdown when your layout includes `.agents/agents/`:
 
-- [`.agents/agents/coding-agent.md`](../../../../agents/coding-agent.md)
-- [`.agents/agents/learning-agent.md`](../../../../agents/learning-agent.md)
-- [`.agents/agents/lint-agent.md`](../../../../agents/lint-agent.md)
+- [`.agents/agents/coding-agent.md`](../agents/coding-agent.md)
+- [`.agents/agents/learning-agent.md`](../agents/learning-agent.md)
+- [`.agents/agents/lint-agent.md`](../agents/lint-agent.md)
 
-## `.agents/docs/MAINTENANCE.md`
+## `.agents/docs/MAINTENANCE.md` and `log.md`
 
-Maintenance schema and rules for this knowledge layer.
-
-## `.agents/docs/log.md`
-
-Append-only record of distillation and maintenance activity.
-
-## Repository architecture and install (project root)
-
-When this kit lives at the **repository root** of your project, optional pointers live next to `.agents/` as normal repository files (for example `README.md`, `INSTALL.md`, and `docs/`). This bootstrap copy intentionally avoids deep relative links to those paths because the hop count differs between a root `.agents/` tree and nested kit layouts (for example `example/.agents/` in this repository).
-
-## Root integration guides (optional)
-
-Per-tool wiring guides typically live under `docs/integrations/` at the repository root (user-facing; not part of the copied `.agents/` tree unless you add them).
+Maintenance schema: [MAINTENANCE.md](MAINTENANCE.md). Append-only audit: [log.md](log.md).

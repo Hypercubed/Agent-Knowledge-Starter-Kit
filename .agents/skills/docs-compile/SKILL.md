@@ -9,6 +9,8 @@ description: Regenerate optional durable docs indexes and rebuild docs-search ca
 
 Regenerate derived documentation artifacts from `.agents/` markdown.
 
+Discovery, subprocess order, and outputs are implemented by `scripts/docs-compile.sh` and the helpers it calls; see **What it does** and **Command** below. [`.agents/docs/MAINTENANCE.md`](../../docs/MAINTENANCE.md) remains authoritative for durable entry shape and index prose where it applies.
+
 ## What it does
 
 1. Regenerates optional durable `index.md` files — one per **immediate subdirectory** of `.agents/docs/` (for example `decisions/`, `troubleshooting/`, and any future top-level sections).

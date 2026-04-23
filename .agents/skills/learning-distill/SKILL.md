@@ -9,6 +9,8 @@ description: Read a completed temporary session bundle from `.agents/sessions/` 
 
 Convert raw task evidence into concise, durable repo knowledge.
 
+Follow **Inputs** and the procedure sections below. Distillation policy and durable entry rules are normative in [`.agents/docs/MAINTENANCE.md`](../../docs/MAINTENANCE.md).
+
 ## Inputs
 
 - session bundle directory under `.agents/sessions/`

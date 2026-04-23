@@ -15,10 +15,23 @@ find_agents_root() {
   return 1
 }
 
-agents_root="$(find_agents_root)" || {
-  echo "ERROR: docs-compile.sh must run from a path inside a tree containing .agents/." >&2
-  exit 1
-}
+if [[ -n "${AGENTS_ROOT:-}" ]]; then
+  candidate="$AGENTS_ROOT"
+  if [[ "$(basename "$candidate")" != ".agents" ]]; then
+    candidate="$candidate/.agents"
+  fi
+  if [[ -d "$candidate" ]]; then
+    agents_root="$(cd "$candidate" && pwd)"
+  else
+    echo "ERROR: AGENTS_ROOT does not resolve to a .agents directory: $AGENTS_ROOT" >&2
+    exit 1
+  fi
+else
+  agents_root="$(find_agents_root)" || {
+    echo "ERROR: docs-compile.sh could not locate .agents. Set AGENTS_ROOT or run inside a repo tree." >&2
+    exit 1
+  }
+fi
 repo_root="$(dirname "$agents_root")"
 cd "$repo_root"
 
