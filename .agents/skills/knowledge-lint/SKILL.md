@@ -34,6 +34,7 @@ Let `LD` denote `.agents/skills/learning-distill`.
 3. Ensure `.agents/playbooks/` exists. If `.agents/playbooks/README.md` is missing, copy `LD/bootstrap/playbooks/README.md` into place.
 4. Ensure `.agents/docs/` exists. For each of `index.md`, `MAINTENANCE.md`, and `log.md`, if the file is missing under `.agents/docs/`, copy it from `LD/bootstrap/docs/`. If `.agents/docs/decisions/index.md` or `.agents/docs/troubleshooting/index.md` is missing, copy the entire contents of `LD/bootstrap/docs/decisions/` or `LD/bootstrap/docs/troubleshooting/` respectively, creating only files that do not already exist (do not overwrite).
 5. If `.agents/AGENTS.md` is missing, copy `LD/bootstrap/AGENTS.md` into place. If it already exists, do not overwrite it.
+6. If `.agents/docs/plans/index.md` is missing and **write-plan** is installed at `.agents/skills/write-plan/`, run **write-plan** skill initialization (see that skill’s `SKILL.md`) so `docs/plans/` exists without touching files supplied by **learning-distill** bootstrap.
 
 If `.agents/sessions/` or `.agents/.gitignore` session rules are missing, run **learning-distill** initialization steps for sessions and ignore rules, or **task-closeout** initialization when you need closeout-first layout.
 

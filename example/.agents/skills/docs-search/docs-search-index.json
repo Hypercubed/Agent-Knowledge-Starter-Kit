@@ -1,7 +1,7 @@
 {
   "version": 2,
   "docs_root": ".agents/docs",
-  "generated_at": "2026-04-23T00:45:17Z",
+  "generated_at": "2026-04-23T00:51:53Z",
   "sections": [
     {
       "id": "MAINTENANCE",
@@ -38,6 +38,15 @@
       "docs_path": "log.md",
       "folder": "",
       "kind": "docs"
+    },
+    {
+      "id": "plans-index",
+      "title": "Plans index",
+      "description": "Maintainer roadmaps and multi-step initiatives (one markdown file per plan in this directory, excluding `archive/`).",
+      "path": ".agents/docs/plans/index.md",
+      "docs_path": "plans/index.md",
+      "folder": "plans",
+      "kind": "plan"
     },
     {
       "id": "troubleshooting-index",
