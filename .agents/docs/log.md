@@ -1,5 +1,9 @@
 # Knowledge Maintenance Log
 
+### \[2026-04-23] learning-distill | t-replace-indexing-with-ripgrep-task
+
+Outcome: updated Files: `.agents/skills/docs-search/scripts/search-docs.py`; `.agents/skills/docs-search/CONTRACT.md`; `.agents/skills/docs-search/SKILL.md`; `.agents/docs/decisions/docs-search-remains-canonical-over-host-native-search.md`; `.agents/docs/log.md`; `.agents/sessions/20260423-170123-replace-indexing-with-ripgrep/summary.json` Accepted: 1 (decision refinement: live search with tiered fallbacks is canonical over pre-built JSON index; freshness is now implicit) Rejected: 0 Notes: Replaced Python indexer/searcher pair with a single live-search script; handling missing subdirectories dynamically to ensure robust fallbacks.
+
 ### \[2026-04-22] learning-distill | t-20260411-existing-agents-adoption-feedback, t-20260411-quickstart-install-docs, t-20260422-185500-skills-first-agents-plans, t-20260422-190600-bootstrap-assets
 
 Outcome: no net durable edits Files: `.agents/docs/log.md`; `.agents/sessions/20260411-145015-existing-agents-adoption/summary.json`; `.agents/sessions/20260411-145937-quickstart-install-docs/summary.json`; `.agents/sessions/20260422-185500-skills-first-agents-plans/summary.json`; `.agents/sessions/20260422-190600-bootstrap-assets/summary.json` Accepted: 0 Rejected: 4 (installation guidance already covered by `kit-installation-guidance-lives-in-root-docs`; skills/bootstrap ownership already covered by existing plans/troubleshooting; runtime-template split in write-plan evidence did not justify a new durable decision yet) Notes: Completed backfill pass for remaining undistilled bundles and normalized metadata with `distilled: true`.
