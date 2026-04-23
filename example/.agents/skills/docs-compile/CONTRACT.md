@@ -32,17 +32,17 @@ If a helper is missing, the shell prints a skip message and continues. Successfu
 
 ## `generate-durable-indexes.py` (direct invocation)
 
-| Flag | Behavior |
-| --- | --- |
-| `--agents-root PATH` | Base `.agents` dir for default targets (default `./.agents`) |
-| `--target` / `-t DIR` | Repeatable; regenerate only `DIR/index.md` |
-| `--dry-run` | Print actions only; exit **2** if any index would change |
+| Flag                  | Behavior                                                     |
+| --------------------- | ------------------------------------------------------------ |
+| `--agents-root PATH`  | Base `.agents` dir for default targets (default `./.agents`) |
+| `--target` / `-t DIR` | Repeatable; regenerate only `DIR/index.md`                   |
+| `--dry-run`           | Print actions only; exit **2** if any index would change     |
 
 Default behavior (no `--target`): every **immediate subdirectory** of `<agents-root>/docs/` that exists gets an `index.md` regenerated from sibling `*.md` entry files (see script docstring). Requires **Python 3.9+** and **PyYAML**.
 
 ## Outputs
 
-| Artifact | Writer |
-| --- | --- |
-| `<section>/index.md` under `.agents/docs/<section>/` | `generate-durable-indexes.py` |
-| `.agents/skills/docs-search/docs-search-index.json` | `index-docs.py` (see [docs-search `CONTRACT.md`](../docs-search/CONTRACT.md)) |
+| Artifact                                             | Writer                                                                        |
+| ---------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `<section>/index.md` under `.agents/docs/<section>/` | `generate-durable-indexes.py`                                                 |
+| `.agents/skills/docs-search/docs-search-index.json`  | `index-docs.py` (see [docs-search `CONTRACT.md`](../docs-search/CONTRACT.md)) |

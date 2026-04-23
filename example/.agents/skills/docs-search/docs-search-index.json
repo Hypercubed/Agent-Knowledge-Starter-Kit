@@ -1,7 +1,7 @@
 {
   "version": 2,
   "docs_root": ".agents/docs",
-  "generated_at": "2026-04-23T02:07:10Z",
+  "generated_at": "2026-04-23T02:30:26Z",
   "sections": [
     {
       "id": "MAINTENANCE",
@@ -47,15 +47,6 @@
       "docs_path": "plans/index.md",
       "folder": "plans",
       "kind": "plan"
-    },
-    {
-      "id": "plans-as-first-class-artifacts",
-      "title": "Plans as first-class artifacts",
-      "description": "Promote plans into a first-class, searchable, portable artifact type living under .agents/docs/plans/, with a canonical frontmatter schema, verified docs-search integration, lifecycle tooling, and a write-plan skill — superseding plan-rules-in-scaffold.",
-      "path": ".agents/docs/plans/plans-as-first-class-artifacts.md",
-      "docs_path": "plans/plans-as-first-class-artifacts.md",
-      "folder": "plans",
-      "kind": "meta"
     },
     {
       "id": "troubleshooting-index",

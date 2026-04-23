@@ -10,6 +10,7 @@ One file per recurring issue pattern. New entries: follow [Entry shape](../MAINT
 
 ## Index
 
+- [`check-publish.sh` reports missing files while `generate-example` is running](check-publish-missing-files-while-generate-example-is-running.md)
 - [`example/.agents/` looks like a full mirror of root dogfood](example-agents-looks-like-full-dogfood-copy.md)
 - [Antigravity: Lessons learned aren't visible to teammate's agents](antigravity-lessons-learned-aren-t-visible-to-teammate-s-agents.md)
 - [Clean `git status` but you need touched paths for closeout](clean-git-status-but-you-need-touched-paths-for-closeout.md)

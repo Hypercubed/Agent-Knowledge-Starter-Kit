@@ -62,7 +62,7 @@ Plan `id` values are **unique within** `plans/` and `plans/archive/` only. The s
 - `tags`: non-empty YAML **list** of lowercase `[a-z0-9_-]` labels.
 - `status`: plan lifecycle, **distinct** from decision `status`. Allowed values: `draft`, `active`, `paused`, `completed`, `cancelled`, `superseded`, `archived` (all lowercase).
 
-**Optional keys (plans):** `kind` (`initiative` \| `meta` \| `exploration`), `anticipated_decisions` (planned **`decisions/<slug>`** pointers not yet filed), `outcome_decisions` (**`decisions/<slug>`** or **`troubleshooting/<slug>`** pointers), `supersedes` / `superseded_by` (**`plans/<slug>`** pointers), `related_plans` (other **`plans/<slug>`** pointers), `consumer_portable` (boolean), `author_kind`, `prompter`.
+**Optional keys (plans):** `kind` (`initiative` | `meta` | `exploration`), `anticipated_decisions` (planned **`decisions/<slug>`** pointers not yet filed), `outcome_decisions` (**`decisions/<slug>`** or **`troubleshooting/<slug>`** pointers), `supersedes` / `superseded_by` (**`plans/<slug>`** pointers), `related_plans` (other **`plans/<slug>`** pointers), `consumer_portable` (boolean), `author_kind`, `prompter`.
 
 **Cross-links to decisions or troubleshooting:** do **not** use a `related_decisions` YAML list. Add a **`## Related decisions`** section in the plan **body** with Markdown bullet links to `../decisions/<id>.md` or `../troubleshooting/<id>.md` (see `.agents/skills/write-plan/CONTRACT.md`).
 
@@ -119,23 +119,23 @@ User-facing kit skills ship a machine-oriented `CONTRACT.md` beside `SKILL.md` s
 
 ### Precedence
 
-| When guidance overlaps | Authority |
-| --- | --- |
-| Durable YAML for `decisions/`, `troubleshooting/`, and `plans/`; logging; task bundle lifecycle; distillation policy; index prose conventions | This `MAINTENANCE.md` |
-| Script paths, flags, generated filenames, session bundle artifacts, `docs-search-index.json` field names | The skill’s `CONTRACT.md` |
+| When guidance overlaps                                                                                                                        | Authority                 |
+| --------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
+| Durable YAML for `decisions/`, `troubleshooting/`, and `plans/`; logging; task bundle lifecycle; distillation policy; index prose conventions | This `MAINTENANCE.md`     |
+| Script paths, flags, generated filenames, session bundle artifacts, `docs-search-index.json` field names                                      | The skill’s `CONTRACT.md` |
 
 If a skill `CONTRACT.md` disagrees with this file on an overlapping topic (for example plan frontmatter wording), **this `MAINTENANCE.md` wins** until the skill contract is updated.
 
 ### Contract locations
 
-| Skill | Portable contract |
-| --- | --- |
-| docs-search | [`CONTRACT.md`](../skills/docs-search/CONTRACT.md) |
-| docs-compile | [`CONTRACT.md`](../skills/docs-compile/CONTRACT.md) |
-| knowledge-lint | [`CONTRACT.md`](../skills/knowledge-lint/CONTRACT.md) |
+| Skill            | Portable contract                                       |
+| ---------------- | ------------------------------------------------------- |
+| docs-search      | [`CONTRACT.md`](../skills/docs-search/CONTRACT.md)      |
+| docs-compile     | [`CONTRACT.md`](../skills/docs-compile/CONTRACT.md)     |
+| knowledge-lint   | [`CONTRACT.md`](../skills/knowledge-lint/CONTRACT.md)   |
 | learning-distill | [`CONTRACT.md`](../skills/learning-distill/CONTRACT.md) |
-| task-closeout | [`CONTRACT.md`](../skills/task-closeout/CONTRACT.md) |
-| write-plan | [`CONTRACT.md`](../skills/write-plan/CONTRACT.md) |
+| task-closeout    | [`CONTRACT.md`](../skills/task-closeout/CONTRACT.md)    |
+| write-plan       | [`CONTRACT.md`](../skills/write-plan/CONTRACT.md)       |
 
 ## Skills docs registry
 
@@ -147,22 +147,22 @@ When adding a new skill that reads or writes `.agents/docs/`, add a row here and
 - which durable paths it owns or updates
 - where its operational contract lives
 
-| Skill | Docs interaction | Durable paths touched | Contract |
-| --- | --- | --- | --- |
-| docs-search | reads docs; writes search cache | reads `.agents/docs/**/*.md`; writes `.agents/skills/docs-search/docs-search-index.json` | [`CONTRACT.md`](../skills/docs-search/CONTRACT.md) |
-| docs-compile | reads docs; writes derived indexes and search cache | writes `.agents/docs/*/index.md`; writes docs-search cache | [`CONTRACT.md`](../skills/docs-compile/CONTRACT.md) |
-| knowledge-lint | reads docs; may suggest or apply minimal edits | `.agents/AGENTS.md`, `.agents/docs/**`, `.agents/playbooks/**` | [`CONTRACT.md`](../skills/knowledge-lint/CONTRACT.md) |
-| learning-distill | reads session bundles; writes durable docs and `.agents/docs/log.md` | `.agents/docs/**`, `.agents/AGENTS.md`, `.agents/playbooks/**` | [`CONTRACT.md`](../skills/learning-distill/CONTRACT.md) |
-| task-closeout | writes temporary bundle only; no durable docs edits | `.agents/sessions/**` | [`CONTRACT.md`](../skills/task-closeout/CONTRACT.md) |
-| write-plan | writes plan docs and contributes plan contract | `.agents/docs/plans/**` | [`CONTRACT.md`](../skills/write-plan/CONTRACT.md) |
-| generate-example (maintainer-only) | rebuilds `example/` mirror for validation/demo | `example/.agents/**` (generated output) | none (maintainer-only) |
+| Skill                              | Docs interaction                                                     | Durable paths touched                                                                    | Contract                                                |
+| ---------------------------------- | -------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| docs-search                        | reads docs; writes search cache                                      | reads `.agents/docs/**/*.md`; writes `.agents/skills/docs-search/docs-search-index.json` | [`CONTRACT.md`](../skills/docs-search/CONTRACT.md)      |
+| docs-compile                       | reads docs; writes derived indexes and search cache                  | writes `.agents/docs/*/index.md`; writes docs-search cache                               | [`CONTRACT.md`](../skills/docs-compile/CONTRACT.md)     |
+| knowledge-lint                     | reads docs; may suggest or apply minimal edits                       | `.agents/AGENTS.md`, `.agents/docs/**`, `.agents/playbooks/**`                           | [`CONTRACT.md`](../skills/knowledge-lint/CONTRACT.md)   |
+| learning-distill                   | reads session bundles; writes durable docs and `.agents/docs/log.md` | `.agents/docs/**`, `.agents/AGENTS.md`, `.agents/playbooks/**`                           | [`CONTRACT.md`](../skills/learning-distill/CONTRACT.md) |
+| task-closeout                      | writes temporary bundle only; no durable docs edits                  | `.agents/sessions/**`                                                                    | [`CONTRACT.md`](../skills/task-closeout/CONTRACT.md)    |
+| write-plan                         | writes plan docs and contributes plan contract                       | `.agents/docs/plans/**`                                                                  | [`CONTRACT.md`](../skills/write-plan/CONTRACT.md)       |
+| generate-example (maintainer-only) | rebuilds `example/` mirror for validation/demo                       | `example/.agents/**` (generated output)                                                  | none (maintainer-only)                                  |
 
 ### Registry row template (for new skills)
 
 When a skill bootstrap introduces or updates docs behavior, add or refresh one row in the table above:
 
-| Skill | Docs interaction | Durable paths touched | Contract |
-| --- | --- | --- | --- |
+| Skill          | Docs interaction                | Durable paths touched                                | Contract                       |
+| -------------- | ------------------------------- | ---------------------------------------------------- | ------------------------------ |
 | `<skill-name>` | reads docs / writes docs / both | explicit `.agents/...` path globs owned by the skill | relative link to `CONTRACT.md` |
 
 Keep this row synchronized with that skill's initialization steps in `SKILL.md`.

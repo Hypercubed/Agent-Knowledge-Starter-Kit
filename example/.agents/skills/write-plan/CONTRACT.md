@@ -6,9 +6,9 @@ When the full kit is present, the same rules are recorded in [`.agents/docs/MAIN
 
 ## Where plans live
 
-| Location | Role |
-| --- | --- |
-| `.agents/docs/plans/*.md` | Active plans |
+| Location                          | Role                                         |
+| --------------------------------- | -------------------------------------------- |
+| `.agents/docs/plans/*.md`         | Active plans                                 |
 | `.agents/docs/plans/archive/*.md` | Retired plans (same `id` as before the move) |
 
 Ignore `plans/index.md` for frontmatter unless you intentionally add plan-style metadata there.
@@ -35,25 +35,25 @@ The same stem may exist under `decisions/` or `troubleshooting/`; use **qualifie
 
 ### Plan `status` values (lowercase only)
 
-| Value | Meaning |
-| --- | --- |
-| `draft` | Outline; not committed as direction |
-| `active` | Current initiative; work may proceed |
-| `paused` | Intentionally on hold |
-| `completed` | Outcomes achieved; body lists where knowledge landed |
-| `cancelled` | Stopped without outcomes; body records why |
-| `superseded` | Replaced by another plan; set `superseded_by` |
-| `archived` | Obsolete context kept for history only |
+| Value        | Meaning                                              |
+| ------------ | ---------------------------------------------------- |
+| `draft`      | Outline; not committed as direction                  |
+| `active`     | Current initiative; work may proceed                 |
+| `paused`     | Intentionally on hold                                |
+| `completed`  | Outcomes achieved; body lists where knowledge landed |
+| `cancelled`  | Stopped without outcomes; body records why           |
+| `superseded` | Replaced by another plan; set `superseded_by`        |
+| `archived`   | Obsolete context kept for history only               |
 
 ## Optional YAML keys
 
-- `kind` — `initiative` \| `meta` \| `exploration` (default: treat as `initiative` if omitted).
+- `kind` — `initiative` | `meta` | `exploration` (default: treat as `initiative` if omitted).
 - `anticipated_decisions` — planned **`decisions/<slug>`** pointers not yet filed.
 - `outcome_decisions` — **`decisions/<slug>`** or **`troubleshooting/<slug>`** pointers produced or materially updated by this plan.
 - `supersedes` / `superseded_by` — **`plans/<slug>`** pointers.
 - `related_plans` — other **`plans/<slug>`** pointers.
 - `consumer_portable` — boolean; `true` if the plan is intended to ship in generated `example/`.
-- `author_kind` — `human` \| `ai` (audit).
+- `author_kind` — `human` | `ai` (audit).
 - `prompter` — free text when `author_kind` is `ai`.
 
 Use `author_kind` / `prompter` instead of legacy `writer` / `created` fields.

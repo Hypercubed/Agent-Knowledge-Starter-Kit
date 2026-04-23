@@ -2,7 +2,7 @@
 
 ## Related decisions
 
-{{related_decisions_section}}
+{{related\_decisions\_section}}
 
 ## Goal
 
@@ -26,12 +26,12 @@
 
 ## Risks
 
-| Risk | Mitigation |
-| --- | --- |
-| (TODO) | (TODO) |
+| Risk   | Mitigation |
+| ------ | ---------- |
+| (TODO) | (TODO)     |
 
 ## Knowledge routing
 
 | Output | Destination |
-| --- | --- |
-| (TODO) | (TODO) |
+| ------ | ----------- |
+| (TODO) | (TODO)      |

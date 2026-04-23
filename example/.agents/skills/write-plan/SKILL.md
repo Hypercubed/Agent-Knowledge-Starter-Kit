@@ -36,7 +36,7 @@ Gather from the maintainer or task context:
 3. **`description`** — one or two sentences (machine-oriented; docs-search shows this).
 4. **`tags`** — non-empty list of lowercase `[a-z0-9_-]` labels.
 5. **`status`** — one of `draft`, `active`, `paused`, `completed`, `cancelled`, `superseded`, `archived` (plans only; do not reuse decision status strings).
-6. Optional: **`kind`** (`initiative` \| `meta` \| `exploration`), **`consumer_portable`** (boolean; default false for maintainer-only roadmaps). Link to decisions or troubleshooting in the plan **body** (`## Related decisions`), not in frontmatter.
+6. Optional: **`kind`** (`initiative` | `meta` | `exploration`), **`consumer_portable`** (boolean; default false for maintainer-only roadmaps). Link to decisions or troubleshooting in the plan **body** (`## Related decisions`), not in frontmatter.
 
 ## Procedure
 

@@ -22,13 +22,13 @@ One **task-closeout** bundle per folder; reuse a folder only for the bundle it w
 
 Each bundle directory **must** contain these filenames:
 
-| File | Role |
-| --- | --- |
-| `summary.json` | Status, timestamps, optional `repo_id`, **`task_id`** (canonical), optional `agent`, `agent_session_id`, git metadata, `distilled`, etc. |
-| `active-task.md` | Observable facts; sections per `SKILL.md` |
-| `learning-candidate.md` | Candidate lessons only |
-| `changed-files.txt` | Paths or identifiers of touched files |
-| `validation.txt` | Checks run and outcomes |
+| File                    | Role                                                                                                                                     |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `summary.json`          | Status, timestamps, optional `repo_id`, **`task_id`** (canonical), optional `agent`, `agent_session_id`, git metadata, `distilled`, etc. |
+| `active-task.md`        | Observable facts; sections per `SKILL.md`                                                                                                |
+| `learning-candidate.md` | Candidate lessons only                                                                                                                   |
+| `changed-files.txt`     | Paths or identifiers of touched files                                                                                                    |
+| `validation.txt`        | Checks run and outcomes                                                                                                                  |
 
 ## `summary.json` fields (contractual minimum)
 
