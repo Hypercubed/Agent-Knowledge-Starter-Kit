@@ -17,6 +17,8 @@ Install from `.agents/skills/` and use each skill's `bootstrap/` templates via t
 
 1. Run `npx skills add Hypercubed/Agent-Knowledge-Starter-Kit` in the target repo to place shared skills under `.agents/skills/`. Alternative: copy from `.agents/skills/<skill-name>/` manually. Preserve each skill folder layout, including any `bootstrap/` subdirectory shipped beside `SKILL.md`.
 
+   **Do not delete or rename** a skill’s `bootstrap/` directory after initialization (or ever): idempotent re-runs, peer skills, and scripts expect those paths under the original `bootstrap/` name. Initialization steps only copy **from** `bootstrap/` into the repo; they must not remove the skill’s `bootstrap/` tree. Some skills also ship runtime templates under `assets/` (for example **write-plan**’s plan body scaffold).
+
    The Skills CLI flag **`--all`** installs every skill in the package into **every agent integration it knows about** (many product-specific directories under the repo root), not only `.agents/skills/`. That behavior comes from the upstream `skills` package. Prefer narrower installs (for example `-s <skill>` and `-a <agent>`) when you want a minimal tree; use `--all` only when you intend that wide layout.
 
 2. Open each installed skill's `SKILL.md` and run its **Skill initialization** section once before relying on that skill. Initialization is idempotent. Agents should use `cp` to copy missing directories and template files from the skill's `bootstrap/` folder rather than attempting to generate or recreate them from scratch. Do not overwrite existing repo-specific content.

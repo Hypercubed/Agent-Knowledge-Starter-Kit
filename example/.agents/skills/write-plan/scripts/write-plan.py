@@ -190,7 +190,7 @@ def _suggest_related_decisions(
 def _load_plan_body_template(
     *, skill_dir: Path, title: str, related_decisions_section: str
 ) -> str:
-    path = skill_dir / "bootstrap" / "plan-body.md"
+    path = skill_dir / "assets" / "plan-body.md"
     if not path.is_file():
         print(f"ERROR: scaffold template missing: {path}", file=sys.stderr)
         sys.exit(1)

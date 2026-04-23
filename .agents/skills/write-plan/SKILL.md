@@ -45,7 +45,7 @@ Gather from the maintainer or task context:
    - Search filenames under `.agents/docs/plans/` and `.agents/docs/plans/archive/` (ignore `plans/index.md`).
    - If unsure, run the script once with `--dry-run` after picking a candidate id; collisions exit with an error.
 
-The generated body comes from the scaffold template [`bootstrap/plan-body.md`](bootstrap/plan-body.md) in this skill (placeholders `{{title}}` and `{{related_decisions_section}}` are replaced). Edit that file to change default sections for all new plans.
+The generated body comes from the scaffold template [`assets/plan-body.md`](assets/plan-body.md) in this skill (placeholders `{{title}}` and `{{related_decisions_section}}` are replaced). Edit that file to change default sections for all new plans.
 
 3. Optionally infer **related decision refs** (`decisions/<slug>`) by skimming nearby decisions whose titles overlap the plan topic; pass `--auto-related` so the script emits **`## Related decisions`** bullet **links** in the body (never YAML `related_decisions`).
 

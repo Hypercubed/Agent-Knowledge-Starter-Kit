@@ -34,7 +34,7 @@ Examples (this repo):
 
 ## Portable kit skills (`.agents/skills/`)
 
-Workflow definitions shipped with the kit (each folder contains `SKILL.md` and often a `bootstrap/` tree for initialization):
+Workflow definitions shipped with the kit (each folder contains `SKILL.md`, often a `bootstrap/` tree for initialization-only copies into the repo, and sometimes an `assets/` folder for templates used at runtime):
 
 - [`task-closeout`](../skills/task-closeout/SKILL.md) — structured session bundles under `.agents/sessions/`.
 - [`learning-distill`](../skills/learning-distill/SKILL.md) — distill bundles into durable `.agents/` knowledge.
