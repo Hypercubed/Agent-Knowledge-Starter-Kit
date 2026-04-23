@@ -58,6 +58,8 @@ Filled-in reference files live under `.agents/skills/task-closeout/example/task-
 - Record only candidate lessons in learning-candidate.md.
 - Distinguish clearly between what failed, what worked, and what is only a hypothesis.
 - Do not update `.agents/AGENTS.md` or any other durable repo knowledge file.
+- Do not edit files under `.agents/skills/` during closeout. Capture proposed skill or `MAINTENANCE.md` edits as text in the bundle; **learning-distill** applies kit-wide skill changes.
+- Treat the **whole maintainer conversation** as in-scope for `active-task.md` and `learning-candidate.md` unless the user explicitly limits closeout to one subtask (mistakes, reversals, and corrections—not only the last `git diff`).
 - Do not write narrative summaries longer than necessary.
 - Prefer concise bullet lists.
 
@@ -69,10 +71,11 @@ Filled-in reference files live under `.agents/skills/task-closeout/example/task-
 4. Keep one task-closeout bundle per session folder.
 5. Collect changed files.
 6. Collect commands run and validation results.
-7. Write active-task.md.
-8. Write learning-candidate.md.
-9. Write summary.json with status, metadata, `repo_id`, `task_id`, and optional agent identifiers when available.
-10. Mark the session bundle ready for distillation.
+7. Re-read the full session (or transcript) before drafting bundle prose so notes and lessons are not scoped to the final edit only.
+8. Write active-task.md.
+9. Write learning-candidate.md.
+10. Write summary.json with status, metadata, `repo_id`, `task_id`, and optional agent identifiers when available.
+11. Mark the session bundle ready for distillation.
 
 ## Optional agent metadata
 

@@ -14,6 +14,8 @@ Produce a disposable `example/` folder containing a cleanly installed and initia
 
 ## Steps
 
+Do **not** populate `example/` by copying, rsyncing, or merging canonical root `.agents/docs/` (or the full dogfood `.agents/` tree) into `example/`. That bypasses the generator and produces a misleading mirror. Always use the script below.
+
 1. Execute the generator script:
    ```bash
    .agents/skills/generate-example/run.sh
@@ -25,3 +27,4 @@ Produce a disposable `example/` folder containing a cleanly installed and initia
    - Simulate **learning-distill** initialization: copy `bootstrap/` templates into `example/.agents/` (top-level `docs/` files, `decisions/`, `troubleshooting/`, `playbooks/README.md`, `sessions/README.md`, `AGENTS.md` when missing). The bootstrap does **not** ship `docs/plans/`; maintainer plan narrative and indexes live only in this kit’s `.agents/docs/plans/`. This is a **fresh** layout, not a mirror of this repository’s durable `decisions/` entries.
    - Copy `.agents/agents/*.md` from this repository so the illustrated tree shows optional agent personas (same filenames as the kit; not part of the portable bootstrap minimum).
 3. Validate the `example/` folder visually to ensure it accurately reflects the starter kit's intended layout.
+4. The script rebuilds `example/.agents/skills/docs-search/docs-search-index.json` from `example/.agents` only so a maintainer’s local index is not copied in via `skills add --copy`.

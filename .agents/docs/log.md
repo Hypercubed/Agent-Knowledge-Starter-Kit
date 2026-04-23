@@ -1,5 +1,9 @@
 # Knowledge Maintenance Log
 
+### \[2026-04-22] learning-distill | t-20260422-182216-scaffold-maintenance
+
+Outcome: updated Files: `.agents/docs/troubleshooting/example-agents-looks-like-full-dogfood-copy.md`; `.agents/docs/troubleshooting/maintainer-plans-files-placed-under-skill-bootstrap.md`; `.agents/skills/task-closeout/SKILL.md`; `.agents/docs/MAINTENANCE.md`; `.agents/skills/learning-distill/bootstrap/docs/MAINTENANCE.md`; `.agents/AGENTS.md`; `.agents/playbooks/generate-example.md`; `.agents/docs/log.md`; `.agents/sessions/20260422-182216-scaffold-maintenance/summary.json` Accepted: 4 (troubleshooting: fat `example/` from bypassing generator; maintainer plans under skill bootstrap; task-closeout rules + procedure for bundle-only edits and full-session scope; playbook + AGENTS + MAINTENANCE hygiene) Rejected: 1 (extra repo decision: covered by existing plans location decision + new troubleshooting) Notes: Ran `docs-compile.sh` then `generate-example/run.sh` (refreshed `example/.agents/` including copied skills).
+
 ### \[2026-04-22] learning-distill | t-20260422-docs-search-native-index-policy
 
 Outcome: updated Files: `.agents/docs/decisions/docs-search-remains-canonical-over-host-native-search.md`; `.agents/docs/decisions/index.md`; `.agents/docs/troubleshooting/index.md`; `.agents/docs/log.md`; `.agents/sessions/20260422-032419-docs-search-native-index-policy/summary.json` Accepted: 1 (decision: keep `docs-search` scripts canonical for `.agents/` knowledge; do not default to host-native index-first with script fallback) Rejected: 1 (AGENTS.md: rationale belongs in `decisions/`, not operational bullets) Notes: Distilled policy discussion after task closeout; ran `docs-compile.sh` to refresh indexes and search cache.

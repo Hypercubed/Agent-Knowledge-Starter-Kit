@@ -10,6 +10,7 @@ One file per recurring issue pattern. New entries: follow [Entry shape](../MAINT
 
 ## Index
 
+- [`example/.agents/` looks like a full mirror of root dogfood](example-agents-looks-like-full-dogfood-copy.md)
 - [Antigravity: Lessons learned aren't visible to teammate's agents](antigravity-lessons-learned-aren-t-visible-to-teammate-s-agents.md)
 - [Clean `git status` but you need touched paths for closeout](clean-git-status-but-you-need-touched-paths-for-closeout.md)
 - [Codex cannot write under `.agents/` during closeout or distill](codex-cannot-write-under-agents-during-closeout-or-distill.md)
@@ -19,6 +20,7 @@ One file per recurring issue pattern. New entries: follow [Entry shape](../MAINT
 - [GitHub Copilot Chat context not in focus](github-copilot-chat-context-not-in-focus.md)
 - [Hermes Agent–specific: Dual skill namespace (`skill_view` returns wrong file)](hermes-agent-specific-dual-skill-namespace-skill-view-returns-wrong-file.md)
 - [Hermes Agent–specific: Suspected tool anomaly from a single weak run](hermes-agent-specific-suspected-tool-anomaly-from-a-single-weak-run.md)
+- [Maintainer plan markdown landed under `learning-distill/bootstrap/`](maintainer-plans-files-placed-under-skill-bootstrap.md)
 - [Maintainer-only skill appears as a portable kit skill](maintainer-skill-lives-under-agents-skills-by-mistake.md)
 - [Overlapping session bundles for one initiative](overlapping-session-bundles-for-one-initiative.md)
 - [Remark or bulk Markdown rewrite touched unwanted paths](remark-or-bulk-markdown-rewrite-unwanted-paths.md)

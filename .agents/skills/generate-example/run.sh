@@ -44,4 +44,13 @@ mkdir -p "${target}/.agents/agents"
 cp "${repo_root}/.agents/agents/"*.md "${target}/.agents/agents/"
 
 echo
+echo "== Rebuild docs-search index for example corpus only =="
+# `skills add --copy` copies the maintainer skill tree verbatim; a local
+# docs-search-index.json from the kit repo (gitignored) would otherwise carry
+# dogfood sections into example/. Rebuild from example/.agents after bootstrap.
+rm -f "${target}/.agents/skills/docs-search/docs-search-index.json"
+python3 "${target}/.agents/skills/docs-search/scripts/index-docs.py" \
+  --agents-root "${target}/.agents"
+
+echo
 echo "Example folder generated successfully at ${target}."

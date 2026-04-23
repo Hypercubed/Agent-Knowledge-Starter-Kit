@@ -44,6 +44,7 @@ This file contains concise, high-signal instructions for future agents working i
 - **Skills:** Add portable kit skills under `.agents/skills/`. Maintainer-only skills should include `internal: true` in their metadata.
 - Treat per-task bundle subfolders under `.agents/sessions/` as gitignored working memory unless deliberately force-added; a tracked `.agents/sessions/README.md` may exist per kit layout.
 - **Plan-only work:** Files under `.agents/docs/plans/` are proposals and roadmaps. Do not change operational skills (for example `task-closeout`) or other shipped kit behavior based on a plan alone unless the maintainer explicitly asks for implementation.
+- **Regenerate `example/`** with `bash .agents/skills/generate-example/run.sh` (see `.agents/playbooks/generate-example.md`); do not refresh it by copying or rsyncing root `.agents/docs/` or other dogfood paths into `example/`.
 - **Maintainer requests vs durable knowledge:** If the maintainer asks for a change that appears inconsistent with existing kit guidance (this file, `.agents/docs/` including `decisions/` and `troubleshooting/`, playbooks, or root `docs/` that define the kit), say so plainly, point to the conflicting sources, and ask follow-up questions as needed. Do not ignore the tension or silently contradict established guidance unless they explicitly choose to supersede or replace it.
 
 ## Placeholder sections

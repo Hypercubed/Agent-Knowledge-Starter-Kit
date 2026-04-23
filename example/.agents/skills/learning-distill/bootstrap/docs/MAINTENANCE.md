@@ -159,6 +159,8 @@ Task bundles live in `.agents/sessions/` and are temporary.
 
 After closeout, treat them as immutable except for status fields in `summary.json`.
 
+**Closeout vs skills:** task-closeout writes only under `.agents/sessions/<bundle>/`. Do not edit portable skills (`.agents/skills/**`) during closeout; describe proposed skill or doc contract changes in the bundle for **learning-distill** to apply.
+
 Keep bundle subfolders under `.agents/sessions/` gitignored. The kit may track a single `.agents/sessions/README.md` for human-facing guidance while every per-task bundle folder stays local-only.
 
 Use one session folder per task-closeout bundle and name folders with a sortable pattern such as `YYYYMMDD-HHMMSS-short-topic`.
