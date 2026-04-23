@@ -14,6 +14,7 @@ depends_on:
 - decisions/maintainer-skills-mark-internal-in-frontmatter
 - decisions/regenerate-example-when-portable-kit-changes
 ---
+
 # Single-tree architecture (`.agents/`)
 
 ### Status

@@ -9,7 +9,7 @@ description: Capture the current task into a structured temporary session bundle
 
 Create a temporary handoff packet for later learning extraction.
 
-Follow **Skill initialization** and **Procedure** below. Session bundle policy at the kit level is summarized in [`.agents/docs/MAINTENANCE.md`](../../docs/MAINTENANCE.md) (Task bundle policy).
+Follow **Skill initialization** and **Procedure** below. Required filenames, `summary.json` expectations, and write scope are in [`CONTRACT.md`](CONTRACT.md). Session bundle policy at the kit level is in [`.agents/docs/MAINTENANCE.md`](../../docs/MAINTENANCE.md) (Task bundle policy); when guidance overlaps, follow [Portable skill contracts](../../docs/MAINTENANCE.md#portable-skill-contracts).
 
 ## Skill initialization (before first closeout)
 

@@ -12,6 +12,7 @@ tags:
 depends_on:
 - decisions/maintainer-skills-mark-internal-in-frontmatter
 ---
+
 # Maintainer-only skill appears as a portable kit skill
 
 #### Symptom

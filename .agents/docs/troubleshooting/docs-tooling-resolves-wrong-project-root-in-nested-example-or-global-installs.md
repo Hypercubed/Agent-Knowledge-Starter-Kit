@@ -13,6 +13,7 @@ tags:
 depends_on:
 - decisions/docs-tooling-scripts-resolve-target-from-override-then-nearest-agents
 ---
+
 # Docs tooling resolves wrong project root in nested `example/` or global installs
 
 #### Symptom

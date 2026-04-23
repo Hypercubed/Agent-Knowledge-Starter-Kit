@@ -7,7 +7,7 @@ description: Search `.agents/` durable knowledge using a local JSON index genera
 
 Search durable guidance under `.agents/` with a local JSON index.
 
-Indexer output (JSON), default rooted paths, and script flags are described in **Requirements**, **Quickstart**, and the scripts under this skill folder. [`.agents/docs/MAINTENANCE.md`](../../docs/MAINTENANCE.md) remains authoritative for durable-doc policy where it applies.
+Indexer output (JSON), default rooted paths, and script flags are normative in [`CONTRACT.md`](CONTRACT.md). [`.agents/docs/MAINTENANCE.md`](../../docs/MAINTENANCE.md) remains authoritative for durable docs policy; when guidance overlaps, follow [Portable skill contracts](../../docs/MAINTENANCE.md#portable-skill-contracts). Human-oriented steps: **Requirements**, **Quickstart**, and scripts under this skill folder.
 
 ## Requirements
 

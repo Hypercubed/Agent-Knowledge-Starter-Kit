@@ -9,7 +9,7 @@ description: Read a completed temporary session bundle from `.agents/sessions/` 
 
 Convert raw task evidence into concise, durable repo knowledge.
 
-Follow **Inputs** and the procedure sections below. Distillation policy and durable entry rules are normative in [`.agents/docs/MAINTENANCE.md`](../../docs/MAINTENANCE.md).
+Follow **Inputs** and the procedure sections below. Bundle paths, writes, and index refresh commands are summarized in [`CONTRACT.md`](CONTRACT.md). Distillation policy and durable entry rules are normative in [`.agents/docs/MAINTENANCE.md`](../../docs/MAINTENANCE.md); when guidance overlaps, follow [Portable skill contracts](../../docs/MAINTENANCE.md#portable-skill-contracts).
 
 ## Inputs
 
@@ -35,6 +35,7 @@ Run this once per target repo after the skill files are present under `.agents/s
 3. Ensure `.agents/playbooks/` exists. If `.agents/playbooks/README.md` is missing, copy `bootstrap/playbooks/README.md` from this skill folder into place.
 
 4. Ensure `.agents/docs/` exists. For each of `index.md`, `MAINTENANCE.md`, and `log.md`, if the file is missing under `.agents/docs/`, copy it from `bootstrap/docs/` in this skill folder. If `.agents/docs/decisions/index.md` or `.agents/docs/troubleshooting/index.md` is missing, copy the entire contents of `bootstrap/docs/decisions/` and `bootstrap/docs/troubleshooting/` respectively, creating only files that do not already exist (do not overwrite). If a file already exists, do not overwrite it. This step does **not** create `.agents/docs/plans/` — that directory is seeded by **write-plan** skill initialization when that skill is installed (so the two skills never overwrite each other’s trees).
+4a. If `.agents/docs/MAINTENANCE.md` exists, ensure the **Skills docs registry** row for `learning-distill` is present and current (docs interaction, durable paths touched, and [`CONTRACT.md`](CONTRACT.md) link). Add the row when missing; update it when behavior changes.
 
 5. Ensure `.agents/sessions/` exists. If `.agents/sessions/README.md` is missing, copy `bootstrap/sessions/README.md` from this skill folder into place.
 

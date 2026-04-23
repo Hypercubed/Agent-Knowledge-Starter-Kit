@@ -9,8 +9,9 @@ tags:
 - skills
 - docs-search
 - context
-status: draft
+status: superseded
 kind: initiative
+superseded_by: plans/integrate-docs-search-learning-distill-knowledge-lint
 consumer_portable: false
 author_kind: ai
 prompter: Hypercubed

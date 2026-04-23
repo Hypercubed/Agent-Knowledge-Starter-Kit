@@ -2,7 +2,7 @@
 
 This document defines the YAML and placement rules for maintainer **plans** under `.agents/docs/plans/`. It ships **inside the write-plan skill** so agents using a skill-only install still have the contract in-tree.
 
-When the full kit is present, the same rules are recorded in [`.agents/docs/MAINTENANCE.md`](../../docs/MAINTENANCE.md#frontmatter-contract-plans). If anything disagrees, **MAINTENANCE.md** is authoritative until this file is updated.
+When the full kit is present, the same rules are recorded in [`.agents/docs/MAINTENANCE.md`](../../docs/MAINTENANCE.md#frontmatter-contract-plans). If anything disagrees, **MAINTENANCE.md** is authoritative until this file is updated. For every user-facing skill `CONTRACT.md` path and the shared precedence rule, see [Portable skill contracts in `MAINTENANCE.md`](../../docs/MAINTENANCE.md#portable-skill-contracts).
 
 ## Where plans live
 

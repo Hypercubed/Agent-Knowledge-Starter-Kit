@@ -9,7 +9,7 @@ tags:
 - installation
 - upgrades
 - consumers
-status: active
+status: draft
 kind: initiative
 consumer_portable: false
 author_kind: ai

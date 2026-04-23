@@ -14,6 +14,7 @@ status: accepted
 depends_on:
 - decisions/single-tree-architecture-agents
 ---
+
 # Docs tooling scripts resolve target from override, then nearest `.agents`
 
 ### Status

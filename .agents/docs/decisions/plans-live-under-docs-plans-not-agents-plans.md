@@ -15,6 +15,7 @@ depends_on:
 - decisions/single-tree-architecture-agents
 - decisions/docs-search-remains-canonical-over-host-native-search
 ---
+
 # Maintainer plans live under `.agents/docs/plans/`, not `.agents/plans/`
 
 ### Status

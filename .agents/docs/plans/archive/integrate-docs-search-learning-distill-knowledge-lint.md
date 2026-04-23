@@ -37,10 +37,12 @@ Insert between current steps 2 and 3:
 
 > **2a. Search for related existing knowledge.**
 > If docs-search is available, refresh the index and search for each candidate lesson topic before comparing files manually:
+>
 > ```bash
 > python3 .agents/skills/docs-search/scripts/index-docs.py
 > python3 .agents/skills/docs-search/scripts/search-docs.py "<lesson topic>"
 > ```
+>
 > Open any returned file paths and treat them as the primary input to step 3 (Compare) and step 4 (Remove duplication). This avoids loading the entire `.agents/` tree into context.
 
 This makes docs-search the **default deduplication mechanism** rather than a manual file scan. It also means the index is refreshed once at the start of distillation, so the later docs-compile/index-docs step at the end becomes a post-write refresh only (no redundant double-index).
@@ -64,9 +66,11 @@ In the **Checks** section, replace the bare bullet "duplicate guidance" with:
 After the docs-compile step and before running checks, add:
 
 > If docs-search is available and docs-compile was not run, refresh the index manually:
+>
 > ```bash
 > python3 .agents/skills/docs-search/scripts/index-docs.py
 > ```
+>
 > Use `search-docs.py "<topic>"` as a discovery tool during the checks below, particularly for duplicates, contradictions, and uncategorized knowledge.
 
 ### 3. Call out search explicitly for uncategorized knowledge

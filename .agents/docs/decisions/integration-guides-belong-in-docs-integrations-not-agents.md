@@ -13,6 +13,7 @@ status: accepted
 depends_on:
 - decisions/shared-integration-patterns-belong-in-docs-integrations-patterns-md
 ---
+
 # Integration guides belong in `docs/integrations/`, not `.agents/`
 
 #### Status

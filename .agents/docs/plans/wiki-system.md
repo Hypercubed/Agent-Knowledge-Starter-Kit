@@ -152,7 +152,7 @@ lint detects drift → small: fix inline | significant: emit wiki plan → recon
 | `.agents/skills/knowledge-lint/SKILL.md`                                             | Add semantic lint pass: verify `code_refs` against codebase. Small drift → fix inline. Significant drift → emit wiki plan.                                                                                     |
 | `docs/architecture.md` (this repo) or `.agents/docs/architecture.md` (consumer tree) | Update lifecycle diagram to include wiki. Update distillation rules. Document wiki plan as a plan type.                                                                                                        |
 | `.agents/docs/index.md`                                                              | Register wiki in knowledge asset catalog.                                                                                                                                                                      |
-| `.agents/skills/learning-distill/SKILL.md` (role narrative) or `.agents/AGENTS.md` | Document multi-session reconciliation invocation for learning-style passes (no separate `agents/` tree).                                                                                                      |
+| `.agents/skills/learning-distill/SKILL.md` (role narrative) or `.agents/AGENTS.md`   | Document multi-session reconciliation invocation for learning-style passes (no separate `agents/` tree).                                                                                                       |
 
 ---
 

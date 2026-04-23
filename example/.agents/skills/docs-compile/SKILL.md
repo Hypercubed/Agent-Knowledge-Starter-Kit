@@ -9,7 +9,7 @@ description: Regenerate optional durable docs indexes and rebuild docs-search ca
 
 Regenerate derived documentation artifacts from `.agents/` markdown.
 
-Discovery, subprocess order, and outputs are implemented by `scripts/docs-compile.sh` and the helpers it calls; see **What it does** and **Command** below. [`.agents/docs/MAINTENANCE.md`](../../docs/MAINTENANCE.md) remains authoritative for durable entry shape and index prose where it applies.
+Discovery, subprocess order, and outputs are specified in [`CONTRACT.md`](CONTRACT.md) and implemented by `scripts/docs-compile.sh` and its helpers; see **What it does** and **Command** below. [`.agents/docs/MAINTENANCE.md`](../../docs/MAINTENANCE.md) remains authoritative for durable entry shape and index prose; when guidance overlaps, follow [Portable skill contracts](../../docs/MAINTENANCE.md#portable-skill-contracts).
 
 ## What it does
 

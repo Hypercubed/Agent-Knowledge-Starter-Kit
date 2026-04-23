@@ -9,7 +9,7 @@ description: Check the `.agents/` knowledge layer for duplication, contradiction
 
 Keep the compiled repo knowledge layer coherent, minimal, and current.
 
-Use **Inputs** and the checklist in this file as the maintainer verification list. Durable entry frontmatter, logging, and graph edge rules are normative in [`.agents/docs/MAINTENANCE.md`](../../docs/MAINTENANCE.md).
+Use **Inputs** and the checklist in this file as the maintainer verification list. Machine-oriented scope, outputs, and tool pointers: [`CONTRACT.md`](CONTRACT.md). Durable entry frontmatter, logging, and graph edge rules are normative in [`.agents/docs/MAINTENANCE.md`](../../docs/MAINTENANCE.md); when guidance overlaps, follow [Portable skill contracts](../../docs/MAINTENANCE.md#portable-skill-contracts).
 
 ## Inputs
 
@@ -35,6 +35,7 @@ Let `LD` denote `.agents/skills/learning-distill`.
 4. Ensure `.agents/docs/` exists. For each of `index.md`, `MAINTENANCE.md`, and `log.md`, if the file is missing under `.agents/docs/`, copy it from `LD/bootstrap/docs/`. If `.agents/docs/decisions/index.md` or `.agents/docs/troubleshooting/index.md` is missing, copy the entire contents of `LD/bootstrap/docs/decisions/` or `LD/bootstrap/docs/troubleshooting/` respectively, creating only files that do not already exist (do not overwrite).
 5. If `.agents/AGENTS.md` is missing, copy `LD/bootstrap/AGENTS.md` into place. If it already exists, do not overwrite it.
 6. If `.agents/docs/plans/index.md` is missing and **write-plan** is installed at `.agents/skills/write-plan/`, run **write-plan** skill initialization (see that skill’s `SKILL.md`) so `docs/plans/` exists without touching files supplied by **learning-distill** bootstrap.
+7. If `.agents/docs/MAINTENANCE.md` exists, ensure the **Skills docs registry** row for `knowledge-lint` is present and current (docs interaction, durable paths touched, and [`CONTRACT.md`](CONTRACT.md) link). Add the row when missing; update it when behavior changes.
 
 If `.agents/sessions/` or `.agents/.gitignore` session rules are missing, run **learning-distill** initialization steps for sessions and ignore rules, or **task-closeout** initialization when you need closeout-first layout.
 

@@ -21,7 +21,7 @@ This file belongs in `.agents/docs/`, alongside `.agents/AGENTS.md`.
 
 ## Entry shape
 
-When adding a new markdown file under `decisions/` or `troubleshooting/`, follow the frontmatter and body headings used by existing entries in that folder, including the [Frontmatter contract](#frontmatter-contract-durable-entries) below. When adding a plan under `plans/`, follow the [Frontmatter contract (plans)](#frontmatter-contract-plans) and the portable rules in [`write-plan` `CONTRACT.md`](../skills/write-plan/CONTRACT.md). During **knowledge-lint**, verify contracts by inspection (duplicate `id`, missing keys, scalar `tags` instead of a list, `status` only on decisions for durable entries, plan `status` vocabulary for `plans/`, and so on). Automated enforcement may be added later as maintainer-only tooling.
+When adding a new markdown file under `decisions/` or `troubleshooting/`, follow the frontmatter and body headings used by existing entries in that folder, including the [Frontmatter contract](#frontmatter-contract-durable-entries) below. When adding a plan under `plans/`, follow the [Frontmatter contract (plans)](#frontmatter-contract-plans) and the portable rules in [`write-plan` `CONTRACT.md`](../skills/write-plan/CONTRACT.md) (see also [Portable skill contracts](#portable-skill-contracts)). During **knowledge-lint**, verify contracts by inspection (duplicate `id`, missing keys, scalar `tags` instead of a list, `status` only on decisions for durable entries, plan `status` vocabulary for `plans/`, and so on). Automated enforcement may be added later as maintainer-only tooling.
 
 ### Frontmatter contract (durable entries)
 
@@ -47,7 +47,7 @@ Applies to every `*.md` file under `decisions/` and `troubleshooting/` **except*
 
 ### Frontmatter contract (plans)
 
-The **write-plan** skill also ships a portable copy of this contract at `.agents/skills/write-plan/CONTRACT.md` for skill-only installs.
+The **write-plan** skill also ships a portable copy of this contract at `.agents/skills/write-plan/CONTRACT.md` for skill-only installs. Other user-facing skills ship their own `CONTRACT.md` files; see [Portable skill contracts](#portable-skill-contracts).
 
 Applies to every `*.md` file under **`plans/`** and **`plans/archive/`**, except `plans/index.md` and any other index or README files unless they intentionally adopt plan frontmatter.
 
@@ -113,99 +113,82 @@ tags: [git, markdown, tooling]
 
 If you adopt heavier compile or index tooling, record the choice in your own `decisions/` files; keep markdown under `.agents/` as the source of truth and prefer thin local scripts over opaque pipelines.
 
-## File roles
+## Portable skill contracts
 
-### `.agents/AGENTS.md`
+User-facing kit skills ship a machine-oriented `CONTRACT.md` beside `SKILL.md` so agents that receive **only** that skill folder still have stable rules for script entrypoints, CLI flags, output paths, bundle filenames, and JSON shapes. Maintainer-only **generate-example** does not ship a separate consumer contract unless we add one later.
 
-Compact, high-signal operational guidance.
+### Precedence
 
-### `.agents/docs/decisions/`
+| When guidance overlaps | Authority |
+| --- | --- |
+| Durable YAML for `decisions/`, `troubleshooting/`, and `plans/`; logging; task bundle lifecycle; distillation policy; index prose conventions | This `MAINTENANCE.md` |
+| Script paths, flags, generated filenames, session bundle artifacts, `docs-search-index.json` field names | The skill’s `CONTRACT.md` |
 
-Durable rationale, tradeoffs, and architectural choices. Each decision is a markdown file; [index.md](decisions/index.md) lists them.
+If a skill `CONTRACT.md` disagrees with this file on an overlapping topic (for example plan frontmatter wording), **this `MAINTENANCE.md` wins** until the skill contract is updated.
 
-### `.agents/docs/troubleshooting/`
+### Contract locations
 
-Recurring issue patterns, causes, fixes, and validations. Each pattern is a markdown file; [index.md](troubleshooting/index.md) lists them.
+| Skill | Portable contract |
+| --- | --- |
+| docs-search | [`CONTRACT.md`](../skills/docs-search/CONTRACT.md) |
+| docs-compile | [`CONTRACT.md`](../skills/docs-compile/CONTRACT.md) |
+| knowledge-lint | [`CONTRACT.md`](../skills/knowledge-lint/CONTRACT.md) |
+| learning-distill | [`CONTRACT.md`](../skills/learning-distill/CONTRACT.md) |
+| task-closeout | [`CONTRACT.md`](../skills/task-closeout/CONTRACT.md) |
+| write-plan | [`CONTRACT.md`](../skills/write-plan/CONTRACT.md) |
 
-### `.agents/playbooks/`
+## Skills docs registry
 
-Durable multi-step procedures.
+This section is the registry for how skills interact with `.agents/docs/` and related durable knowledge files. Skill-local operational details (CLI flags, output paths, JSON fields, required files) live in each skill's `CONTRACT.md`.
 
-### `.agents/docs/index.md`
+When adding a new skill that reads or writes `.agents/docs/`, add a row here and include:
 
-Catalog of durable knowledge assets.
+- whether it reads and/or writes durable docs
+- which durable paths it owns or updates
+- where its operational contract lives
 
-### `.agents/docs/plans/`
+| Skill | Docs interaction | Durable paths touched | Contract |
+| --- | --- | --- | --- |
+| docs-search | reads docs; writes search cache | reads `.agents/docs/**/*.md`; writes `.agents/skills/docs-search/docs-search-index.json` | [`CONTRACT.md`](../skills/docs-search/CONTRACT.md) |
+| docs-compile | reads docs; writes derived indexes and search cache | writes `.agents/docs/*/index.md`; writes docs-search cache | [`CONTRACT.md`](../skills/docs-compile/CONTRACT.md) |
+| knowledge-lint | reads docs; may suggest or apply minimal edits | `.agents/AGENTS.md`, `.agents/docs/**`, `.agents/playbooks/**` | [`CONTRACT.md`](../skills/knowledge-lint/CONTRACT.md) |
+| learning-distill | reads session bundles; writes durable docs and `.agents/docs/log.md` | `.agents/docs/**`, `.agents/AGENTS.md`, `.agents/playbooks/**` | [`CONTRACT.md`](../skills/learning-distill/CONTRACT.md) |
+| task-closeout | writes temporary bundle only; no durable docs edits | `.agents/sessions/**` | [`CONTRACT.md`](../skills/task-closeout/CONTRACT.md) |
+| write-plan | writes plan docs and contributes plan contract | `.agents/docs/plans/**` | [`CONTRACT.md`](../skills/write-plan/CONTRACT.md) |
+| generate-example (maintainer-only) | rebuilds `example/` mirror for validation/demo | `example/.agents/**` (generated output) | none (maintainer-only) |
 
-Maintainer roadmaps and multi-step initiatives (markdown under this folder once you create it). Plan files are **plan-only** guidance: they do not change shipped kit behavior until implementation is requested. Use [Frontmatter contract (plans)](#frontmatter-contract-plans) and [`write-plan` `CONTRACT.md`](../skills/write-plan/CONTRACT.md). An optional long-form plan narrative (for example `plans/plans-as-first-class-artifacts.md` beside `plans/index.md`) is repository-specific and is not supplied by the learning-distill bootstrap.
+### Registry row template (for new skills)
 
-### `.agents/docs/log.md`
+When a skill bootstrap introduces or updates docs behavior, add or refresh one row in the table above:
 
-Append-only maintenance log.
+| Skill | Docs interaction | Durable paths touched | Contract |
+| --- | --- | --- | --- |
+| `<skill-name>` | reads docs / writes docs / both | explicit `.agents/...` path globs owned by the skill | relative link to `CONTRACT.md` |
 
-## Distillation policy
+Keep this row synchronized with that skill's initialization steps in `SKILL.md`.
 
-A lesson belongs in `.agents/AGENTS.md` only if it is:
+## Shared durable policies
 
-- stable
-- concise
-- broadly applicable
-- actionable
-- high confidence
+These policies stay centralized here because they are cross-skill and must not drift:
 
-## Task bundle policy
+- frontmatter contracts for durable entries and plans (above)
+- precedence between this file and skill contracts ([Portable skill contracts](#portable-skill-contracts))
+- task bundle lifecycle boundaries
+- distillation logging constraints
+- lint hygiene expectations
 
-Task bundles live in `.agents/sessions/` and are temporary.
+### Distillation placement
 
-After closeout, treat them as immutable except for status fields in `summary.json`.
+A lesson belongs in `.agents/AGENTS.md` only if it is stable, concise, broadly applicable, actionable, and high confidence. Keep rationale and nuanced history in `.agents/docs/` entries or playbooks.
 
-**Closeout vs skills:** task-closeout writes only under `.agents/sessions/<bundle>/`. Do not edit portable skills (`.agents/skills/**`) during closeout; describe proposed skill or doc contract changes in the bundle for **learning-distill** to apply.
+### Task bundle boundary
 
-Keep bundle subfolders under `.agents/sessions/` gitignored. The kit may track a single `.agents/sessions/README.md` for human-facing guidance while every per-task bundle folder stays local-only.
+Task bundles under `.agents/sessions/` are temporary evidence and should be treated as immutable after closeout except for status/distillation updates in `summary.json`. Closeout writes bundle files; durable knowledge updates are owned by `learning-distill`.
 
-Use one session folder per task-closeout bundle and name folders with a sortable pattern such as `YYYYMMDD-HHMMSS-short-topic`.
+### Logging boundary
 
-## Logging policy
+Do not append to `.agents/docs/log.md` for routine maintenance. Append concise, non-sensitive rows primarily during successful `learning-distill` runs (or when explicitly requested).
 
-**Who may edit:** In general, do not append to `.agents/docs/log.md` unless the user explicitly instructs you to, or you are executing the **learning-distill** workflow after distilling a session bundle. Periodic **knowledge-lint** passes and other routine edits do **not** get a log row by default.
+### Lint hygiene baseline
 
-Each successful **learning-distill** run should append a concise entry to `.agents/docs/log.md`.
-
-Treat `.agents/docs/log.md` as a **minimal maintenance audit trail**, not a narrative summary.
-
-Include only what future maintainers need to understand that a distillation happened:
-
-- date
-- task id
-- high-level outcome
-- files updated
-- short accepted/rejected lesson counts or labels
-- one brief maintenance note if needed
-
-Do **not** include:
-
-- secrets, tokens, credentials, or auth material
-- personal data, customer data, or private business details
-- private URLs, hostnames, inbox contents, or externally identifying strings unless they are already intended to be public repo knowledge
-- long copied command output, stack traces, transcripts, or raw error text
-- narrative task history better left in the session bundle
-
-## Lint policy
-
-Periodically review `.agents/` for:
-
-- duplication
-- contradictions
-- stale entries
-- oversized `.agents/AGENTS.md` sections
-- missing index coverage
-- misplaced content
-
-### Mechanical hygiene (after bulk edits or migrations)
-
-Automated **knowledge-lint** runs are still human-guided; they do not prove prose is sensible. After any wide find-and-replace across markdown:
-
-- Re-check durable entry frontmatter against [Frontmatter contract](#frontmatter-contract-durable-entries) (required keys, list-shaped `tags`, `status` only on decisions, no duplicate `id` within `decisions/` or within `troubleshooting/`, and **`depends_on` entries use qualified `decisions/…` or `troubleshooting/…` form**).
-- Re-read a sample of `decisions/` and `troubleshooting/` entries for broken sentences or doubled kit path segments (the `.agents` directory name repeated in one filesystem path).
-- Search for doubled `.agents/` path segments (for example the substring `.agents/.agents` in paths under `.agents/`, `README.md`, `INSTALL.md`, and `docs/`) before publishing; hits usually mean a bad global replace.
-- Prefer scoped replacements (limit to `.agents/docs/`, or a single file), whole-word or whole-path patterns, and commit-sized diffs instead of repo-wide blind replace.
+Use `knowledge-lint` guidance for checklist details. After broad markdown edits, re-check durable frontmatter conformance, verify qualified graph references, and scan for doubled `.agents/` path segments before publishing.

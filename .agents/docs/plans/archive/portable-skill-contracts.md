@@ -5,10 +5,11 @@ last_updated: 2026-04-22
 description: >
   Add skill-local CONTRACT.md beside each user-facing kit skill, link from SKILL.md, and document the pattern and precedence in MAINTENANCE.md (repo and learning-distill bootstrap).
 tags: ["skills", "docs", "maintenance"]
-status: draft
+status: completed
 kind: initiative
 consumer_portable: false
 ---
+
 # Portable skill CONTRACT.md rollout
 
 ## Related decisions
@@ -50,22 +51,22 @@ Agents that receive **only** a skill folder (without the full kit checkout) stil
 
 ## Success criteria
 
-- [ ] Every targeted user-facing skill ships a `CONTRACT.md` beside `SKILL.md`, and **write-plan** keeps its existing contract; **generate-example** does not need a contract unless we later decide otherwise.
-- [ ] Both `MAINTENANCE.md` copies include the **Portable skill contracts** section (anchor `#portable-skill-contracts`) with the contract path table and precedence rule.
-- [ ] Each affected `SKILL.md` points at its `CONTRACT.md` and the new `MAINTENANCE.md` anchor where helpful.
-- [ ] `example/.agents/` regenerated via **generate-example** matches the shipped kit after the rollout.
+- [x] Every targeted user-facing skill ships a `CONTRACT.md` beside `SKILL.md`, and **write-plan** keeps its existing contract; **generate-example** does not need a contract unless we later decide otherwise.
+- [x] Both `MAINTENANCE.md` copies include the **Portable skill contracts** section (anchor `#portable-skill-contracts`) with the contract path table and precedence rule.
+- [x] Each affected `SKILL.md` points at its `CONTRACT.md` and the new `MAINTENANCE.md` anchor where helpful.
+- [x] `example/.agents/` regenerated via **generate-example** matches the shipped kit after the rollout.
 
 ## Risks
 
-| Risk | Mitigation |
-| --- | --- |
-| Contract text drifts from scripts | Anchor bullets to filenames and flags; review when scripts change. |
+| Risk                                                     | Mitigation                                                                                 |
+| -------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| Contract text drifts from scripts                        | Anchor bullets to filenames and flags; review when scripts change.                         |
 | Duplicated policy between `MAINTENANCE.md` and contracts | Precedence rule + links; contracts defer to `MAINTENANCE.md` for durable YAML and logging. |
 
 ## Knowledge routing
 
-| Output | Destination |
-| --- | --- |
+| Output                            | Destination                                                                                              |
+| --------------------------------- | -------------------------------------------------------------------------------------------------------- |
 | Normative policy for all installs | [`.agents/docs/MAINTENANCE.md`](../../docs/MAINTENANCE.md) and bootstrap twin under **learning-distill** |
-| Portable per-skill specs | `.agents/skills/<skill>/CONTRACT.md` |
-| Illustrated consumer tree | Regenerated `example/.agents/` |
+| Portable per-skill specs          | `.agents/skills/<skill>/CONTRACT.md`                                                                     |
+| Illustrated consumer tree         | Regenerated `example/.agents/`                                                                           |

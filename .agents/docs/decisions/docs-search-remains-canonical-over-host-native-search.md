@@ -14,6 +14,7 @@ status: accepted
 depends_on:
 - decisions/docs-tooling-scripts-resolve-target-from-override-then-nearest-agents
 ---
+
 # `docs-search` stays canonical for `.agents/` knowledge; host-native search is not the default fallback policy
 
 ### Status
