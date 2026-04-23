@@ -66,9 +66,6 @@ docs/index.md
 docs/log.md
 docs/decisions/index.md
 docs/troubleshooting/index.md
-agents/coding-agent.md
-agents/learning-agent.md
-agents/lint-agent.md
 playbooks/README.md
 sessions/README.md
 skills/knowledge-lint/SKILL.md

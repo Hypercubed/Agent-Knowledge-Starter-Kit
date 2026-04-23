@@ -56,10 +56,6 @@ Future agents should consult the compiled `.agents/` layer first, not rediscover
     │       └── …
     ├── playbooks/
     │   └── README.md
-    ├── agents/
-    │   ├── coding-agent.md
-    │   ├── learning-agent.md
-    │   └── lint-agent.md
     ├── sessions/
     │   └── README.md
     └── skills/

@@ -32,21 +32,15 @@ Readers should be able to answer:
 
 ## Current gap
 
-`example/.agents/agents/` (generated full kit) and consumer `.agents/agents/` define three roles:
+The kit is **skills-first**: it no longer ships a separate `.agents/agents/` persona tree. Role boundaries (coding vs learning vs lint) are described at a high level in root [`docs/architecture.md`](../../../docs/architecture.md) and in `.agents/AGENTS.md`, but adopters still need a compact map from **role intent** to **which `SKILL.md` to run** and when.
 
-- `coding-agent.md` handles implementation, validation, and task closeout
-- `learning-agent.md` distills completed session bundles into durable knowledge
-- `lint-agent.md` maintains coherence of the durable knowledge layer
-
-The kit docs and skills explain the knowledge model, bundle format, and maintenance rules, but they do not explicitly teach adopters when these roles should be invoked or how role responsibilities map to the skills.
+The kit docs and skills explain the knowledge model, bundle format, and maintenance rules, but they do not always spell out when to invoke closeout vs distillation vs lint as distinct passes.
 
 ## Proposed documentation updates
 
 ### `example/.agents/docs/index.md` (or consumer `.agents/docs/index.md`)
 
-Add `agents/` to the knowledge index with a short description of each role and links to the role files.
-
-Keep this as a discovery aid, not a full lifecycle explanation.
+Ensure the portable skills section clearly ties each maintenance skill to the workflow phase it supports (closeout, distill, lint), without implying a separate on-disk `agents/` directory.
 
 ### `example/.agents/docs/MAINTENANCE.md`
 
@@ -105,14 +99,13 @@ Prefer this playbook only if it replaces repeated lifecycle prose elsewhere.
 - Adding new agent roles.
 - Adding automation for spawning or selecting agents.
 - Changing the session bundle schema.
-- Rewriting the existing role files except for small clarifying links if needed.
+- Reintroducing a portable `.agents/agents/` markdown tree (superseded by skills + `AGENTS.md` + architecture).
 - Adding product-specific examples unrelated to the kit lifecycle.
 
 ## Open questions
 
-- Should `agents/` be indexed as durable knowledge assets, or should the index remain focused only on runtime `.agents/` files that adopters edit most?
 - Should role guidance live entirely in `MAINTENANCE.md`, or should a separate playbook carry the end-to-end lifecycle example?
-- Should `generate-example` (or packaging) be updated so future kit snapshots always include agent role doc links in the index, or is README + INSTALL enough?
+- Is README + INSTALL + `docs/index.md` enough for discovery, or should each maintenance skill’s `SKILL.md` open with a one-line “role” sentence?
 
 ## Success criteria
 

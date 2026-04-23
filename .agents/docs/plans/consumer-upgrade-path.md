@@ -27,7 +27,7 @@ Reduce friction and fear when **upgrading** the agent knowledge starter in a rea
 - Add a dedicated doc (likely under `example/.agents/docs/` or top-level consumer section in README) covering v1 → vNext style upgrades, **or** keep the story README-first if that stays sufficient.
 - Call out safe paths (e.g. re-run `npx skills add …` vs manually merging skill folders vs replacing disposable template trees only).
 - Reference optional tooling already in this repo (e.g. selective sync skills) where relevant, without requiring it.
-- Cover first-time adoption into a repo that already has `.agents/`: preserve existing domain-specific `rules/`, `playbooks/`, and `skills/`, then add missing `docs/`, `agents/`, `sessions/`, and the closeout/distill/lint skills.
+- Cover first-time adoption into a repo that already has `.agents/`: preserve existing domain-specific `rules/`, `playbooks/`, and `skills/`, then add missing `docs/`, `sessions/`, and the closeout/distill/lint skills.
 - Explain that `.agents/.gitignore` is sufficient for session bundles when tracked, with repo-root `.gitignore` patterns only as an alternative for repos that do not track nested gitignore files.
 - Explain how root `AGENTS.md` and `.agents/AGENTS.md` should relate when both exist.
 - Recommend recording adoption in `.agents/docs/log.md` and durable rationale under `.agents/docs/decisions/`, then updating `.agents/docs/index.md` with pre-existing repo-specific knowledge assets.

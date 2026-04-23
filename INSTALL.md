@@ -45,11 +45,10 @@ If the target repo has no `.agents/` directory:
 
 1. Run `npx skills add Hypercubed/Agent-Knowledge-Starter-Kit` to install shared skills into `.agents/skills/`. Alternative: copy `.agents/skills/` manually.
 2. Run **Skill initialization** from each installed skill's `SKILL.md` (see [Skill-first install](#skill-first-install-default)).
-3. Copy `.agents/agents/` from the starter kit only when you want the bundled agent role markdown.
-4. Keep `.agents/.gitignore` tracked when the repo uses it; its `sessions/*` rules are sufficient for normal Git usage. If `.agents/` is not tracked, add equivalent session ignore rules at the repo root (see [Skill-first install](#skill-first-install-default)).
-5. Edit `.agents/AGENTS.md` with the repo's build, test, architecture, and workflow guidance (or start from the template created by skill initialization).
-6. Register `.agents/skills/*/SKILL.md` and `.agents/agents/*.md` in the user's editor or agent product, if required.
-7. Optional audit trail: append a minimal adoption note to `.agents/docs/log.md` only if your team uses that file as a maintenance log (see `.agents/docs/MAINTENANCE.md`, Logging policy). Agents should not add `log.md` rows by default after a routine install.
+3. Keep `.agents/.gitignore` tracked when the repo uses it; its `sessions/*` rules are sufficient for normal Git usage. If `.agents/` is not tracked, add equivalent session ignore rules at the repo root (see [Skill-first install](#skill-first-install-default)).
+4. Edit `.agents/AGENTS.md` with the repo's build, test, architecture, and workflow guidance (or start from the template created by skill initialization).
+5. Register `.agents/skills/*/SKILL.md` in the user's editor or agent product, if required.
+6. Optional audit trail: append a minimal adoption note to `.agents/docs/log.md` only if your team uses that file as a maintenance log (see `.agents/docs/MAINTENANCE.md`, Logging policy). Agents should not add `log.md` rows by default after a routine install.
 
 ## Existing `.agents/` Install
 

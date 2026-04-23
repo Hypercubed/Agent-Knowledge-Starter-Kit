@@ -37,14 +37,6 @@ Workflow definitions (each folder contains `SKILL.md`):
 - [`docs-compile`](../skills/docs-compile/SKILL.md) — optional regeneration of section `index.md` files under `.agents/docs/` and the docs-search cache.
 - [`write-plan`](../skills/write-plan/SKILL.md) — scaffold a new plan under `.agents/docs/plans/` with valid frontmatter.
 
-## `.agents/agents/` (optional)
-
-Persona-style markdown when your layout includes `.agents/agents/`:
-
-- [`.agents/agents/coding-agent.md`](../agents/coding-agent.md)
-- [`.agents/agents/learning-agent.md`](../agents/learning-agent.md)
-- [`.agents/agents/lint-agent.md`](../agents/lint-agent.md)
-
 ## `.agents/docs/MAINTENANCE.md` and `log.md`
 
 Maintenance schema: [MAINTENANCE.md](MAINTENANCE.md). Append-only audit: [log.md](log.md).

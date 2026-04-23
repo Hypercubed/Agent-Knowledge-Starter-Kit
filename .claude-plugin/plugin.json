@@ -20,6 +20,5 @@
     "./.agents/skills/task-closeout",
     "./.agents/skills/learning-distill",
     "./.agents/skills/knowledge-lint"
-  ],
-  "agents": "./.agents/agents/"
+  ]
 }

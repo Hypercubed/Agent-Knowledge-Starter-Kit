@@ -44,13 +44,13 @@ Manual install:
 1. Install skills with `npx skills add Hypercubed/Agent-Knowledge-Starter-Kit`, then follow each installed `SKILL.md`'s **Skill initialization** once (see [INSTALL.md](INSTALL.md#skill-first-install-default)).
 2. If the project already has `.agents/`, merge instead of replacing; preserve repo-specific `rules/`, `playbooks/`, and `skills/`.
 3. Edit `.agents/AGENTS.md` with real build, test, and project conventions (or keep the template created by skill initialization until you are ready).
-4. Wire `.agents/skills/*/SKILL.md` and `.agents/agents/*.md` into your editor or agent product.
+4. Wire `.agents/skills/*/SKILL.md` into your editor or agent product. Use [`.agents/AGENTS.md`](.agents/AGENTS.md) and [`docs/architecture.md`](docs/architecture.md) for repo-wide and role-boundary guidance.
 
 Copy the example (fresh repo):
 
 1. Create a new empty repository (or project folder).
 2. Copy this repository’s [`example/.agents/`](example/.agents/) directory into your project root as `.agents/`. You do not need anything else from [`example/`](example/) (for example its README).
-3. Wire `.agents/skills/*/SKILL.md` and `.agents/agents/*.md` into your tools (see [`INSTALL.md`](INSTALL.md)).
+3. Wire `.agents/skills/*/SKILL.md` into your tools (see [`INSTALL.md`](INSTALL.md)).
 
 Agent-assisted install:
 
@@ -115,7 +115,7 @@ Do not replace an existing `.agents/` tree wholesale unless it is already dispos
 Use this checklist:
 
 1. Inventory existing `.agents/` content and mark domain-specific files to keep.
-2. Install the skills you need with `npx skills add Hypercubed/Agent-Knowledge-Starter-Kit` (or copy selected skill folders from `.agents/skills/`) and run each skill's **Skill initialization** so missing template files and session layout are created without overwriting existing content. Copy `.agents/agents/` from the starter kit only when you want the bundled agent role markdown.
+2. Install the skills you need with `npx skills add Hypercubed/Agent-Knowledge-Starter-Kit` (or copy selected skill folders from `.agents/skills/`) and run each skill's **Skill initialization** so missing template files and session layout are created without overwriting existing content.
 3. Add the portable maintenance skills if they are not already present: `task-closeout`, `learning-distill`, and `knowledge-lint`.
 4. Merge `.agents/AGENTS.md` by hand so stable repo guidance stays concise and temporary history stays out.
 5. Confirm session ignore rules. Prefer the kit default in `.agents/.gitignore`: `sessions/*` and `!sessions/README.md`. Use repo-root `.gitignore` patterns only as an alternative: `.agents/sessions/*` and `!.agents/sessions/README.md`.
@@ -130,7 +130,7 @@ Design principles, repository layout, agent roles, durable knowledge files, task
 
 ## Tool integration
 
-This kit ships **content** (markdown, layout, and conventions), not a single vendor-specific config. You still need to register `.agents/skills/*/SKILL.md` and `.agents/agents/*.md` (or equivalent) however your stack expects. Keep the on-disk layout under `.agents/` stable so the knowledge layer stays portable when you change tools.
+This kit ships **content** (markdown, layout, and conventions), not a single vendor-specific config. You still need to register `.agents/skills/*/SKILL.md` however your stack expects. Keep the on-disk layout under `.agents/` stable so the knowledge layer stays portable when you change tools.
 
 ## Integrations
 

@@ -40,9 +40,6 @@ sync_docs_subtree "${LD}/bootstrap/docs/troubleshooting" "${target}/.agents/docs
 
 printf '%s\n' 'sessions/*' '!sessions/README.md' > "${target}/.agents/.gitignore"
 
-mkdir -p "${target}/.agents/agents"
-cp "${repo_root}/.agents/agents/"*.md "${target}/.agents/agents/"
-
 echo
 echo "== Rebuild docs-search index for example corpus only =="
 # `skills add --copy` copies the maintainer skill tree verbatim; a local

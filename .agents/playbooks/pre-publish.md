@@ -9,7 +9,7 @@ Use before publishing, tagging, or handing this starter kit to another repo.
 3. Review warnings manually. Leakage scan hits are not automatic failures; the scan is intentionally narrow and is only a backstop for obvious starter-repo leakage, credentials, or local machine paths.
 4. When only validating a copied knowledge layer, run the portable structure check directly: `bash scripts/check-agents-structure.sh .agents`. After regenerating or hand-editing the full kit snapshot, optionally run `bash scripts/check-agents-structure.sh example/.agents` and treat any session-tracking mismatch as a known gap until the script and `example/` layout agree.
 5. Confirm ignored session bundles are local evidence only. For each validated tree, the only tracked file under `sessions/` should be `sessions/README.md`.
-6. Review the printed `.agents/` file list. It should contain only the distributable kit for this layout: portable `agents/`, portable `skills/`, and the task-closeout example bundle files.
+6. Review the printed `.agents/` file list. It should contain only the distributable kit for this layout: portable `skills/` and the task-closeout example bundle files (plus shared docs and playbooks as shipped).
 7. If root `.agents/` changed, decide whether the same change belongs in the portable kit contract versus maintainer-only dogfood (for example `.agents/docs/plans/`). Consumer-generic behavior belongs in shared skills and docs; keep maintainer workflow notes in maintainer-facing paths unless you intend to promote them.
 8. When `.agents/docs/` durable entries changed and the optional `docs-compile` skill is installed, run `bash .agents/skills/docs-compile/scripts/docs-compile.sh` (see [`.agents/skills/docs-compile/SKILL.md`](../skills/docs-compile/SKILL.md)) so optional durable indexes and docs-search cache stay aligned before lint or publish.
 9. Run `knowledge-lint` periodically, and before publishing after several agent-assisted edits, to find duplicated, stale, contradictory, oversized, or misplaced durable knowledge.
@@ -44,7 +44,7 @@ The publish script passes `--alive 200,0` to `markdown-link-check` so restricted
 
 ## Review guidance
 
-Portable skills, agents, and shared docs under `.agents/` should read as if installed in a consumer repo's `.agents/` directory. Remove or rewrite references that only make sense in this starter repo, such as dogfood-only helper workflows or session bundle history, unless they stay strictly outside published surfaces.
+Portable skills and shared docs under `.agents/` should read as if installed in a consumer repo's `.agents/` directory. Remove or rewrite references that only make sense in this starter repo, such as dogfood-only helper workflows or session bundle history, unless they stay strictly outside published surfaces.
 
 Leakage scans are not a substitute for reviewing the diff. They intentionally avoid broad terms such as `secret`, `token`, `maintainer`, `localhost`, and example session paths because this repo documents those concepts directly.
 

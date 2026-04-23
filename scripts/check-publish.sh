@@ -81,7 +81,7 @@ run_structure_check() {
 section "Repository"
 printf 'Root: %s\n' "$ROOT_DIR"
 
-section "Portable Agent Structure"
+section "Portable knowledge structure"
 run_structure_check .agents
 
 section "Markdown Formatting"

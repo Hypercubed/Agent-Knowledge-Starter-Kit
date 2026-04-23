@@ -273,7 +273,7 @@ Teach agents to search the compiled knowledge layer before opening files.
    - keyword search
    - tag filter
    - section filter such as `decision` or `troubleshooting`
-5. Update `.agents/agents/coding-agent.md` and related agent docs with a
+5. Update `.agents/AGENTS.md`, root [`docs/architecture.md`](../../../docs/architecture.md), and/or relevant skill `SKILL.md` files with a
    query-first rule:
    - search before reading
    - read the smallest relevant file set

@@ -47,7 +47,7 @@ Optional `opencode.json`:
 
 - Use `opencode.json` `instructions` as routing, not as a second durable policy store.
 - `.opencode/commands/` are prompt shortcuts. Keep them as pointers to `.agents/skills/` or `.agents/playbooks/`.
-- `.opencode/agents/` should define OpenCode runtime behavior; portable role guidance belongs under `.agents/agents/`.
+- `.opencode/agents/` should define OpenCode runtime behavior; portable role guidance and workflow boundaries live in `.agents/AGENTS.md`, kit skills under `.agents/skills/`, and the shared [Architecture](../../docs/architecture.md) document for this starter.
 
 ## Workflow
 

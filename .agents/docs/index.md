@@ -47,14 +47,6 @@ Maintainer-only (this repository):
 
 - [`.agents/skills/generate-example/SKILL.md`](../skills/generate-example/SKILL.md) — generate a disposable consumer-path example structure (`metadata.internal: true`).
 
-## `.agents/agents/`
-
-Persona-style markdown for multi-agent workflows (optional for single-agent setups):
-
-- [`.agents/agents/coding-agent.md`](../agents/coding-agent.md)
-- [`.agents/agents/learning-agent.md`](../agents/learning-agent.md)
-- [`.agents/agents/lint-agent.md`](../agents/lint-agent.md)
-
 ## `.agents/docs/MAINTENANCE.md`
 
 Maintenance schema and rules for this knowledge layer.
