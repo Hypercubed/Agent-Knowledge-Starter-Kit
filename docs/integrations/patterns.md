@@ -59,7 +59,7 @@ This pattern should also fit future rules-based IDE guides such as VS Code exten
 
 ### Persistent Memory and Runtime Boundary
 
-Tools: [Hermes](./hermes.md), [Antigravity](./antigravity.md), [OpenClaw](./openclaw.md)
+Tools: [Hermes](./hermes.md), [Antigravity](./antigravity.md), [OpenClaw](./openclaw.md), [Agentic Sandbox](./agentic-sandbox.md)
 
 Persistent assistants may have private memory, session recall, artifacts, automation, or runtime skills. Use those systems for local continuity and orchestration, not as the only copy of repo policy.
 
@@ -80,6 +80,7 @@ At task boundaries, export durable evidence into `.agents/sessions/<folder>/` an
 | OpenClaw    | Root `AGENTS.md` plus startup files           | `SOUL.md`, `USER.md`, `MEMORY.md`, automation               | Memory, sessions, heartbeat, cron                      | Native and repo-local skill layers can overlap                     | Do not move repo policy into OpenClaw memory or automation text |
 | OpenCode    | Root `AGENTS.md`                              | `opencode.json`, `.opencode/agents/`, `.opencode/commands/` | Product/runtime dependent                              | Can load `.agents/skills/` natively                                | Keep commands and agents as convenience wrappers                |
 | Warp        | Root `AGENTS.md` or `WARP.md`                 | Warp Drive rules, slash commands, Oz                        | Local/cloud agent context                              | Discovers supported skill directories, including `.agents/skills/` | `WARP.md` can take priority over `AGENTS.md`                    |
+| Agentic Sandbox | Root `AGENTS.md`                          | Shell, filesystem, and native tools                         | Volatile sandbox environment                           | Execute `SKILL.md` via tool calls or run scripts directly          | Requires dependencies (PyYAML) for scripted skills              |
 
 ## Session Export Rule
 

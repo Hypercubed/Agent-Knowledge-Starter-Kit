@@ -11,11 +11,12 @@ Before wiring a tool, install shared kit skills in the target repo with `npx ski
 - [Root `AGENTS.md` native or compatible](./patterns.md#root-agentsmd-native-or-compatible): Codex, OpenCode, Kilo Code, Warp, OpenClaw
 - [Tool-specific bootstrap file](./patterns.md#tool-specific-bootstrap-file): Claude Code, Gemini CLI
 - [Rules-based IDE wiring](./patterns.md#rules-based-ide-wiring): Cursor, GitHub Copilot
-- [Persistent memory and runtime boundary](./patterns.md#persistent-memory-and-runtime-boundary): Hermes, Antigravity, OpenClaw
+- [Persistent memory and runtime boundary](./patterns.md#persistent-memory-and-runtime-boundary): Hermes, Antigravity, OpenClaw, Agentic Sandbox
 
 ## Available guides
 
 - [Integration Patterns](./patterns.md) - shared model and comparison matrix
+- [Agentic Sandbox](./agentic-sandbox.md) - Full filesystem/shell access, tool-based skill execution, and script dependencies
 - [Antigravity](./antigravity.md) - Persistent Context, planning artifacts, and explicit session export
 - [Claude Code](./claude-code.md) - `CLAUDE.md`, auto-memory, command wrappers, and kit routing
 - [Codex](./codex.md) - `AGENTS.md`, repo-local `.agents/skills/`, sandbox caveats, and kit routing
