@@ -23,7 +23,7 @@ Accepted
 
 ### Context
 
-Many agent hosts and IDEs expose their own codebase search, semantic retrieval, or background indexing. The portable kit ships `docs-search` (`index-docs.py`, `search-docs.py`) and optional `docs-compile` to build a repo-local JSON index from known markdown under `.agents/` (and related paths described in the skill).
+Many agent hosts and IDEs expose their own codebase search, semantic retrieval, or background indexing. The portable kit ships `docs-search` (`search-docs.js`) and optional `docs-compile` to manage durable repo knowledge.
 
 ### Decision
 
@@ -32,7 +32,7 @@ Do **not** adopt default skill wording that tells agents to use the host’s nat
 ### Rationale
 
 - **Scope:** Host search typically spans the whole repository (with product-specific ignore rules). Durable kit knowledge is intentionally concentrated under `.agents/` with a stable layout; broad search often dilutes signal with unrelated paths.
-- **Contract:** The documented workflow is index-then-search against a known corpus. A “native first” policy makes freshness implicit and can skip `index-docs.py`, letting `docs-search-index.json` drift from disk and from maintenance expectations.
+- **Contract:** The documented workflow is "native-first" search against a known corpus. Freshness is implicit, letting the system skip the indexing step.
 - **Portability:** Cloud and headless agents do not share one retrieval API. Conditional “if your host has X” instructions multiply branches and go stale as products change.
 - **Dual tooling is fine:** Agents may still use host tools for general code navigation; that is orthogonal to the **canonical** path for validating and searching the kit’s durable markdown layer.
 

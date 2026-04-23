@@ -23,7 +23,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "remark:fix": "remark \".agents/**/*.md\" --output"
+    "remark:fix": "remark \".agents/**/*.md\" --output",
+    "search": "node .agents/skills/docs-search/scripts/search-docs.js"
   },
   "devDependencies": {
     "markdown-link-check": "^3.14.1",

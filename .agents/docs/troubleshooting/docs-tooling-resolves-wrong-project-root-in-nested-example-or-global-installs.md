@@ -38,4 +38,4 @@ depends_on:
 #### Validation
 
 - `docs-compile` succeeds from root and nested `example/` with indexes updated in the intended target.
-- `index-docs.py --dry-run` succeeds from root and nested `example/` and reports the expected docs tree.
+- `node .agents/skills/docs-search/scripts/search-docs.js "search"` succeeds from root and nested `example/` and reports the expected matches.

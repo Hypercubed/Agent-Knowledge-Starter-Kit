@@ -15,6 +15,7 @@ One file per maintainer initiative or roadmap. New entries: follow the plan cont
 - [Agent role guidance](agent-role-guidance.md)
 - [Consumer-friendly upgrade path](consumer-upgrade-path.md)
 - [Guidance for out-of-repo knowledge trees](out-of-repo-trees.md)
+- [Replace Indexing with ripgrep + Fallback Search](replace-indexing-with-ripgrep.md)
 - [Repo-centric wiki tooling](repo-centric-wiki-tooling.md)
 - [Rules in the published kit](rules-in-scaffold.md)
 - [Ship structure check script with the kit](ship-structure-check-script.md)

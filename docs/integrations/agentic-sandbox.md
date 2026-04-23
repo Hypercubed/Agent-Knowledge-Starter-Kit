@@ -26,14 +26,10 @@ Agents with tool access (filesystem and shell) interact with the kit differently
 
 When environment dependencies are met, agents should use the provided scripts to maintain the knowledge layer:
 
-### Refresh Knowledge Search Index
-```bash
-python3 .agents/skills/docs-search/scripts/index-docs.py
-```
 
 ### Search Knowledge Layer
 ```bash
-python3 .agents/skills/docs-search/scripts/search-docs.py "<query>"
+node .agents/skills/docs-search/scripts/search-docs.js "<query>"
 ```
 
 ### Compile Durable Indexes
@@ -50,7 +46,7 @@ bash .agents/skills/docs-compile/scripts/docs-compile.sh
 ## Workflow for Autonomous Agents
 
 1. **Bootstrap**: Read root `AGENTS.md` -> `.agents/AGENTS.md`.
-2. **Search**: Run `search-docs.py` to find relevant decisions or troubleshooting patterns.
+2. **Search**: Run `search-docs.js` to find relevant decisions or troubleshooting patterns.
 3. **Execute**: Perform the task following repo conventions.
 4. **Closeout**: Follow `.agents/skills/task-closeout/SKILL.md` to create a session bundle.
 5. **Distill (Optional)**: If acting as a learning agent, run `learning-distill` logic and refresh indexes with `docs-compile.sh`.

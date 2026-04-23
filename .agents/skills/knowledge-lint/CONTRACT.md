@@ -29,8 +29,7 @@ bash .agents/skills/docs-compile/scripts/docs-compile.sh
 If **docs-compile** is missing but **docs-search** is present:
 
 ```bash
-python3 .agents/skills/docs-search/scripts/index-docs.py
-python3 .agents/skills/docs-search/scripts/search-docs.py "<topic>"
+node .agents/skills/docs-search/scripts/search-docs.js "<topic>"
 ```
 
 Exact flags and JSON shape for those tools: [docs-compile `CONTRACT.md`](../docs-compile/CONTRACT.md), [docs-search `CONTRACT.md`](../docs-search/CONTRACT.md).
