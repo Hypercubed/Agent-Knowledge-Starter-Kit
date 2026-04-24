@@ -49,17 +49,11 @@ If the `docs-compile` skill is not installed, continue linting and skip durable 
 
 See [`.agents/skills/docs-compile/SKILL.md`](../docs-compile/SKILL.md).
 
-If docs-search is available and docs-compile was not run, refresh the index manually:
-
-```bash
-python3 .agents/skills/docs-search/scripts/index-docs.py
-```
-
 Use `search-docs.py "<topic>"` as a discovery tool during the checks below, particularly for duplicates, contradictions, and uncategorized knowledge.
 
 ## Checks
 
-- **Duplicate guidance** — If docs-search is available, run `search-docs.py` for key terms from each major guidance block in `AGENTS.md`, `decisions/`, and `troubleshooting/`. Treat results with multiple high-ranked hits on the same topic as candidates for deduplication. Do not rely solely on manual reading.
+- **Duplicate guidance** — If docs-search is available, run `python3 .agents/skills/docs-search/scripts/search-docs.py` for key terms from each major guidance block in `AGENTS.md`, `decisions/`, and `troubleshooting/`. Treat results with multiple high-ranked hits on the same topic as candidates for deduplication. Do not rely solely on manual reading.
 - contradictions
 - stale or superseded rules
 - oversized AGENTS sections
@@ -69,7 +63,7 @@ Use `search-docs.py "<topic>"` as a discovery tool during the checks below, part
 - **Durable entry metadata contract:** each `decisions/*.md` and `troubleshooting/*.md` entry (excluding each folder’s `index.md`) follows `.agents/docs/MAINTENANCE.md` — required `id`, `title`, `last_updated`, `description`, and YAML list `tags`; `decisions/` entries also have `status` (`accepted`, `superseded`, or `provisional`); no `status` on troubleshooting entries; `tags` is never a single scalar string meant to hold a list; optional `depends_on` is a YAML list when present. Confirm by reading frontmatter, not only prose.
 - troubleshooting entries that should be decisions or playbooks
 - decisions that should be compressed into AGENTS guidance
-- **Uncategorized knowledge** — For content with no clear home, run `search-docs.py "<content topic>"` to find semantically related existing entries. If a related entry exists, propose merging. If none exists, propose a new category.
+- **Uncategorized knowledge** — For content with no clear home, run `python3 .agents/skills/docs-search/scripts/search-docs.py "<content topic>"` to find semantically related existing entries. If a related entry exists, propose merging. If none exists, propose a new category.
 - **Mechanical path hygiene (especially after migrations or Replace All):** search for doubled `.agents/` path segments (for example `.agents/.agents` in paths) under `.agents/`, `README.md`, `INSTALL.md`, and `docs/`. Hits usually mean a bad global replace or copy/paste error.
 
 ## Output

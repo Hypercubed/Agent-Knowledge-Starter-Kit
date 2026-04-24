@@ -42,10 +42,4 @@ After changing durable markdown, when optional skills exist:
 bash .agents/skills/docs-compile/scripts/docs-compile.sh
 ```
 
-If **docs-compile** is missing:
-
-```bash
-python3 .agents/skills/docs-search/scripts/index-docs.py
-```
-
 Contract details: [docs-compile `CONTRACT.md`](../docs-compile/CONTRACT.md), [docs-search `CONTRACT.md`](../docs-search/CONTRACT.md).

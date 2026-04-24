@@ -1,5 +1,9 @@
 # Knowledge Maintenance Log
 
+### \[2026-04-23] learning-distill | t-replace-indexing-with-ripgrep-task
+
+Outcome: updated Files: `.agents/skills/docs-search/scripts/search-docs.py`; `.agents/skills/docs-search/CONTRACT.md`; `.agents/skills/docs-search/SKILL.md`; `.agents/docs/decisions/docs-search-remains-canonical-over-host-native-search.md`; `.agents/docs/log.md`; `.agents/sessions/20260423-170123-replace-indexing-with-ripgrep/summary.json` Accepted: 1 (decision refinement: live search with tiered fallbacks is canonical over pre-built JSON index; freshness is now implicit) Rejected: 0 Notes: Replaced Python indexer/searcher pair with a single live-search script; handling missing subdirectories dynamically to ensure robust fallbacks.
+
 ### [2026-04-23] maintenance | add-operating-contract-and-triggers-plan
 
 Outcome: updated Files: `.agents/docs/plans/implement-operating-contract-and-triggers.md`; `.agents/docs/plans/index.md`; `.agents/docs/log.md` Classification: Added a new plan for implementing the operating contract, trigger system, and playbooks. Disposition: accepted Notes: Manual plan addition per user request.

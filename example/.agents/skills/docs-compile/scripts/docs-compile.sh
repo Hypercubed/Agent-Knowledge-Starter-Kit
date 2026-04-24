@@ -41,10 +41,5 @@ else
   echo "docs-compile: durable index generator not found, skipping."
 fi
 
-if [[ -f ".agents/skills/docs-search/scripts/index-docs.py" ]]; then
-  python3 ".agents/skills/docs-search/scripts/index-docs.py"
-else
-  echo "docs-compile: docs-search indexer not found, skipping."
-fi
 
 echo "docs-compile: done."

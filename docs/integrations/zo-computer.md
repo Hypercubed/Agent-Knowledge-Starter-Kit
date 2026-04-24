@@ -11,7 +11,7 @@ Verified against Zo Computer behavior and documentation on April 21, 2026. Re-ch
 3. Keep durable repo knowledge in `.agents/`, not scattered across Zo workspace files.
 4. Mirror skills into `/home/workspace/Skills/` for Zo UI visibility: copy (or symlink) each skill from `.agents/skills/<name>/` to `/home/workspace/Skills/<name>/`. Zo scans `/home/workspace/Skills/` for `SKILL.md` files; it does not auto-discover skills nested inside `.agents/` or other repo subdirectories.
 5. Update `/home/workspace/AGENTS.md` to include the Skills Discovery section (see below). This ensures future agents in this workspace know to check both `.agents/skills/` and `/home/workspace/Skills/` when looking up skills.
-6. Rebuild the docs-search index after install so Zo can search durable knowledge: `python3 .agents/skills/docs-search/scripts/index-docs.py`.
+6. Verify docs-search works after install: `python3 .agents/skills/docs-search/scripts/search-docs.py "knowledge"`.
 
 Root `AGENTS.md` example:
 
@@ -67,7 +67,7 @@ Add this section to `/home/workspace/AGENTS.md` after install:
 ## Troubleshooting
 
 - **Skills not visible in UI:** Confirm the `SKILL.md` file exists under `/home/workspace/Skills/<skill-name>/SKILL.md` with valid YAML frontmatter (`name` and `description` are required).
-- **docs-search returns no results:** Run `python3 .agents/skills/docs-search/scripts/index-docs.py` to rebuild `docs-search-index.json`, then retry.
+- **docs-search returns no results:** Broaden your query or check that `.agents/docs/` contains markdown files.
 - **`.agents/AGENTS.md` not picked up:** Zo only auto-reads `AGENTS.md` relative to its working directory. Ensure the root `AGENTS.md` explicitly points to `.agents/AGENTS.md`.
 
 ## References

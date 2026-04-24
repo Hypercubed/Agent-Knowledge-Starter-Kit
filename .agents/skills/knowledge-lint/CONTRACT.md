@@ -29,7 +29,6 @@ bash .agents/skills/docs-compile/scripts/docs-compile.sh
 If **docs-compile** is missing but **docs-search** is present:
 
 ```bash
-python3 .agents/skills/docs-search/scripts/index-docs.py
 python3 .agents/skills/docs-search/scripts/search-docs.py "<topic>"
 ```
 

@@ -1,6 +1,6 @@
 # Docs compile contract
 
-Machine-oriented rules for **docs-compile** when only this skill folder is available. This workflow also invokes **docs-search** scripts for index refresh.
+Machine-oriented rules for **docs-compile** when only this skill folder is available.
 
 Durable entry frontmatter and section index prose remain normative in [`.agents/docs/MAINTENANCE.md`](../../docs/MAINTENANCE.md). For precedence, see [Portable skill contracts](../../docs/MAINTENANCE.md#portable-skill-contracts).
 
@@ -26,7 +26,6 @@ On failure the script prints to stderr and exits **1**.
 After `cd` to `repo_root`:
 
 1. If `.agents/skills/docs-compile/scripts/generate-durable-indexes.py` exists, run it with **no extra arguments** (default `--agents-root` inside that script is `./.agents` relative to cwd, i.e. this repo’s `.agents`).
-2. If `.agents/skills/docs-search/scripts/index-docs.py` exists, run it with **no extra arguments**.
 
 If a helper is missing, the shell prints a skip message and continues. Successful completion prints `docs-compile: done.`
 
@@ -45,4 +44,3 @@ Default behavior (no `--target`): every **immediate subdirectory** of `<agents-r
 | Artifact                                             | Writer                                                                        |
 | ---------------------------------------------------- | ----------------------------------------------------------------------------- |
 | `<section>/index.md` under `.agents/docs/<section>/` | `generate-durable-indexes.py`                                                 |
-| `.agents/skills/docs-search/docs-search-index.json`  | `index-docs.py` (see [docs-search `CONTRACT.md`](../docs-search/CONTRACT.md)) |

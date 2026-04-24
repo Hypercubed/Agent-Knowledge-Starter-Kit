@@ -26,10 +26,6 @@ Agents with tool access (filesystem and shell) interact with the kit differently
 
 When environment dependencies are met, agents should use the provided scripts to maintain the knowledge layer:
 
-### Refresh Knowledge Search Index
-```bash
-python3 .agents/skills/docs-search/scripts/index-docs.py
-```
 
 ### Search Knowledge Layer
 ```bash
