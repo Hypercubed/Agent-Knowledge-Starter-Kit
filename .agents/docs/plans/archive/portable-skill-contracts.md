@@ -14,9 +14,9 @@ consumer_portable: false
 
 ## Related decisions
 
-- [Regenerate `example/` when the portable kit or bootstrap changes](../decisions/regenerate-example-when-portable-kit-changes.md)
-- [Single-tree architecture (`.agents/`)](../decisions/single-tree-architecture-agents.md)
-- [Use the routing pattern for agentic tool bootstrap files](../decisions/use-the-routing-pattern-for-agentic-tool-bootstrap-files.md)
+- [Regenerate `example/` when the portable kit or bootstrap changes](../../decisions/regenerate-example-when-portable-kit-changes.md)
+- [Single-tree architecture (`.agents/`)](../../decisions/single-tree-architecture-agents.md)
+- [Use the routing pattern for agentic tool bootstrap files](../../decisions/use-the-routing-pattern-for-agentic-tool-bootstrap-files.md)
 
 ## Goal
 
@@ -27,10 +27,10 @@ Agents that receive **only** a skill folder (without the full kit checkout) stil
 **In scope**
 
 - New `CONTRACT.md` files for **docs-search**, **docs-compile**, **knowledge-lint**, **learning-distill**, and **task-closeout** (narrow specs; link to `MAINTENANCE.md` instead of duplicating durable frontmatter prose).
-- A **Portable skill contracts** section in [`.agents/docs/MAINTENANCE.md`](../../docs/MAINTENANCE.md) and the same section in [`.agents/skills/learning-distill/bootstrap/docs/MAINTENANCE.md`](../../skills/learning-distill/bootstrap/docs/MAINTENANCE.md) (table of contract paths + precedence).
+- A **Portable skill contracts** section in [`.agents/docs/MAINTENANCE.md`](../../MAINTENANCE.md) and the same section in [`.agents/skills/learning-distill/bootstrap/docs/MAINTENANCE.md`](../../../skills/learning-distill/bootstrap/docs/MAINTENANCE.md) (table of contract paths + precedence).
 - `SKILL.md` updates for those five skills so each points at its `CONTRACT.md` and the new `MAINTENANCE.md` anchor.
 - Optional one-line pointer in **write-plan** `CONTRACT.md` to the new `MAINTENANCE.md` section.
-- Regenerate [`example/`](../../../example/) via `generate-example` so the illustrated install matches the kit.
+- Regenerate [`example/`](../../../../example/) via `generate-example` so the illustrated install matches the kit.
 
 **Non-goals**
 
@@ -67,6 +67,6 @@ Agents that receive **only** a skill folder (without the full kit checkout) stil
 
 | Output                            | Destination                                                                                              |
 | --------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| Normative policy for all installs | [`.agents/docs/MAINTENANCE.md`](../../docs/MAINTENANCE.md) and bootstrap twin under **learning-distill** |
+| Normative policy for all installs | [`.agents/docs/MAINTENANCE.md`](../../MAINTENANCE.md) and bootstrap twin under **learning-distill** |
 | Portable per-skill specs          | `.agents/skills/<skill>/CONTRACT.md`                                                                     |
 | Illustrated consumer tree         | Regenerated `example/.agents/`                                                                           |

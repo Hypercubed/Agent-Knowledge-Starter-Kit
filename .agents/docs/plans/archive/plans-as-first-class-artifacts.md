@@ -26,10 +26,10 @@ prompter: Hypercubed
 
 ## Related decisions
 
-- [Single-tree architecture (`.agents/`)](../decisions/single-tree-architecture-agents.md)
-- [Regenerate `example/` when the portable kit or bootstrap changes](../decisions/regenerate-example-when-portable-kit-changes.md)
-- [`docs-search` stays canonical for `.agents/` knowledge; host-native search is not the default fallback policy](../decisions/docs-search-remains-canonical-over-host-native-search.md)
-- [Maintainer plans live under `.agents/docs/plans/`, not `.agents/plans/`](../decisions/plans-live-under-docs-plans-not-agents-plans.md)
+- [Single-tree architecture (`.agents/`)](../../decisions/single-tree-architecture-agents.md)
+- [Regenerate `example/` when the portable kit or bootstrap changes](../../decisions/regenerate-example-when-portable-kit-changes.md)
+- [`docs-search` stays canonical for `.agents/` knowledge; host-native search is not the default fallback policy](../../decisions/docs-search-remains-canonical-over-host-native-search.md)
+- [Maintainer plans live under `.agents/docs/plans/`, not `.agents/plans/`](../../decisions/plans-live-under-docs-plans-not-agents-plans.md)
 
 ## Goal
 
@@ -234,7 +234,7 @@ flowchart LR
    `### Related initiative` subsection in the decision body linking back to
    `../plans/<id>.md` (from `docs/decisions/`). Add the decision `id` to
    `outcome_decisions` and bump `last_updated`. Placement is recorded in
-   [decisions/plans-live-under-docs-plans-not-agents-plans](../decisions/plans-live-under-docs-plans-not-agents-plans.md).
+   [decisions/plans-live-under-docs-plans-not-agents-plans](../../decisions/plans-live-under-docs-plans-not-agents-plans.md).
 5. **Complete** — set terminal `status`; list final artifact paths in body;
    move to `docs/plans/archive/` via `archive-plan` skill; run link sweep.
 6. **Supersede** — set `superseded_by`, link replacement plan, archive old file.

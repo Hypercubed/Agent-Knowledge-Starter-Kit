@@ -44,4 +44,4 @@ The `docs-search` indexer walks **`.agents/docs/**/*.md`** (plus playbooks and `
 
 ### Related initiative
 
-- [Plans as first-class artifacts](../plans/plans-as-first-class-artifacts.md)
+- [Plans as first-class artifacts](../plans/archive/plans-as-first-class-artifacts.md)
