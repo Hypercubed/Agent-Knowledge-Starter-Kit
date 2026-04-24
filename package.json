@@ -23,7 +23,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "remark:fix": "remark \".agents/**/*.md\" --output"
+    "format": "remark \".agents/**/*.md\" --output",
+    "check": "bash scripts/check-publish.sh"
   },
   "devDependencies": {
     "markdown-link-check": "^3.14.1",
