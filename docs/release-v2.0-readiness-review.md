@@ -1,6 +1,7 @@
 # AKSK v2.0 Release Readiness Review (develop)
 
 Date: 2026-04-24 (UTC)
+Last refreshed: 2026-04-24 (UTC, post-latest develop updates)
 Reviewer: Codex agent
 Branch: develop
 
@@ -11,8 +12,14 @@ The kit is close to release, but **not fully v2.0-ready yet**.
 - ✅ Core portable structure checks pass for both `.agents/` and `example/.agents/`.
 - ✅ Pre-publish script runs successfully with no blocking failures.
 - ⚠️ Two meaningful quality warnings remain in pre-publish checks (tooling availability and high-signal path scan).
-- ❌ One release-blocking packaging defect was present and fixed in this change (`package.json` malformed JSON).
-- ⚠️ Documentation consistency issue was present and fixed in this change (outdated plan path reference).
+- ✅ Prior release-blocking packaging defect (`package.json` malformed JSON) remains fixed.
+- ✅ Prior documentation consistency issue (outdated plan path reference) remains fixed.
+
+## Delta since latest develop update
+
+- Re-ran publish and structure checks after the latest develop updates.
+- Confirmed `package.json` still parses as valid JSON.
+- No new blocking failures were introduced by the latest updates.
 
 ## What was reviewed
 
@@ -23,22 +30,22 @@ The kit is close to release, but **not fully v2.0-ready yet**.
 
 ## Findings
 
-### 1) Packaging manifest integrity (fixed)
+### 1) Packaging manifest integrity (fixed, verified again)
 
 `package.json` had invalid JSON syntax that would break npm tooling (`npm install`, `npm run`, release automation):
 
 - Missing comma between `search` and `format` scripts.
 - Extra trailing `s` after the scripts object (`},s`).
 
-This is now fixed.
+This remains fixed and parses correctly.
 
-### 2) Integrations planning reference drift (fixed)
+### 2) Integrations planning reference drift (fixed, verified again)
 
 A stale plan path was referenced in integration maintenance docs:
 
 - `plan-add-integrations.md` was referenced, but actual file is `add-integrations.md`.
 
-Both references fixed:
+Both references remain corrected:
 
 - `docs/integrations/README.md`
 - `.agents/playbooks/writing-integration-guides.md`
@@ -83,10 +90,7 @@ Before tagging and publishing:
 ## Commands executed for this review
 
 - `bash scripts/check-publish.sh`
+- `bash scripts/check-agents-structure.sh .agents`
 - `bash scripts/check-agents-structure.sh example/.agents`
-- `bash -n scripts/check-publish.sh`
-- `bash -n scripts/check-agents-structure.sh`
 - `node -e "JSON.parse(require('fs').readFileSync('package.json','utf8')); console.log('package.json valid')"`
 - `python3 -m json.tool package.json >/dev/null`
-- `python3` ad-hoc local-link existence scan
-
