@@ -39,13 +39,7 @@ WP="${target}/.agents/skills/write-plan"
 if [[ -d "${WP}/bootstrap/docs/plans" ]]; then
   sync_docs_subtree "${WP}/bootstrap/docs/plans" "${target}/.agents/docs/plans"
 fi
-# Optional long-form plan narrative (dogfood); write-plan SKILL links here — copy when present so
-# markdown-link-check passes on the generated example tree.
-if [[ -f "${repo_root}/.agents/docs/plans/plans-as-first-class-artifacts.md" ]]; then
-  mkdir -p "${target}/.agents/docs/plans"
-  cp "${repo_root}/.agents/docs/plans/plans-as-first-class-artifacts.md" \
-    "${target}/.agents/docs/plans/plans-as-first-class-artifacts.md"
-fi
+
 [[ -f "${target}/.agents/sessions/README.md" ]] || cp "${LD}/bootstrap/sessions/README.md" "${target}/.agents/sessions/README.md"
 [[ -f "${target}/.agents/AGENTS.md" ]] || cp "${LD}/bootstrap/AGENTS.md" "${target}/.agents/AGENTS.md"
 

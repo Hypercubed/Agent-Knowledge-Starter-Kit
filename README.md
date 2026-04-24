@@ -139,9 +139,11 @@ Tool-specific integration guides live in [`docs/integrations/`](docs/integration
 Currently available:
 
 - [Integration Patterns](docs/integrations/patterns.md)
+- [Agentic Sandbox](docs/integrations/agentic-sandbox.md)
 - [Antigravity](docs/integrations/antigravity.md)
 - [Claude Code](docs/integrations/claude-code.md)
 - [Codex](docs/integrations/codex.md)
+- [Copilot](docs/integrations/copilot.md)
 - [Cursor](docs/integrations/cursor.md)
 - [Gemini CLI](docs/integrations/gemini-cli.md)
 - [Hermes](docs/integrations/hermes.md)

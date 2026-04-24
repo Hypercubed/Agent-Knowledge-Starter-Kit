@@ -14,6 +14,11 @@ Create a **plan-only** markdown file under `.agents/docs/plans/` that matches th
 - A multi-step initiative needs a durable roadmap (not a session bundle, not an ADR).
 - You want the plan indexed by **docs-search** immediately after creation.
 
+## Requirements
+
+- Python 3.9+
+- PyYAML (`pip install pyyaml` or equivalent)
+
 ## Skill initialization (before first plan scaffold)
 
 Run once per target repo after the skill files are present under `.agents/skills/write-plan/`. Idempotent: safe to repeat.
@@ -95,5 +100,5 @@ The generated body comes from the scaffold template [`assets/plan-body.md`](asse
 
 ## Related
 
-- [docs-search](../docs-search/SKILL.md) — refresh `docs-search-index.json` after substantive plan edits.
-- [docs-compile](../docs-compile/SKILL.md) — regenerate `plans/index.md` and the search index together.
+- [docs-search](../docs-search/SKILL.md) — search for plans directly using `search-docs.py`.
+- [docs-compile](../docs-compile/SKILL.md) — regenerate `plans/index.md` so the new plan appears in the directory index.

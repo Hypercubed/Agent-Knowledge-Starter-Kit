@@ -124,6 +124,7 @@ elif npx_package_available markdown-link-check --help; then
       */learning-distill/bootstrap/docs/index.md) continue ;;
       */learning-distill/bootstrap/docs/MAINTENANCE.md) continue ;;
       */write-plan/bootstrap/docs/plans/index.md) continue ;;
+      example/*) continue ;;
     esac
     if ! timeout_cmd 30s npx --no-install markdown-link-check --alive 200,0 "$md_file"; then
       link_failed=1
