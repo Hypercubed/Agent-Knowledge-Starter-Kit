@@ -7,14 +7,14 @@ Remove the custom indexing and search scripts and replace them with a
 ripgrep-based search approach with a layered fallback strategy, including
 npm/npx-based execution for maximum portability.
 tags: [search, tooling, docs, workflow]
-status: proposed
+status: completed
 ---
 
 # Replace Indexing with ripgrep + Fallback Search
 
 ## Status
 
-Proposed
+Completed
 
 ## Context
 
