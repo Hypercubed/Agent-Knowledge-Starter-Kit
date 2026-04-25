@@ -21,11 +21,7 @@ This file belongs in `.agents/docs/`, alongside `.agents/AGENTS.md`.
 
 ## Entry shape
 
-<<<<<<< HEAD
 When adding a new markdown file under `decisions/` or `troubleshooting/`, follow the frontmatter and body headings used by existing entries in that folder, including the [Frontmatter contract](#frontmatter-contract-durable-entries) below. When adding a plan under `plans/`, follow the [Frontmatter contract (plans)](#frontmatter-contract-plans) and the portable rules in [`write-plan` `CONTRACT.md`](../skills/write-plan/CONTRACT.md) (see also [Portable skill contracts](#portable-skill-contracts)). During **knowledge-lint**, verify contracts by inspection (duplicate `id`, missing keys, scalar `tags` instead of a list, `status` only on decisions for durable entries, plan `status` vocabulary for `plans/`, and so on). You may also validate entry YAML against the provided JSON Schemas (`.agents/skills/learning-distill/bootstrap/docs/decision-frontmatter.schema.json`, `.agents/skills/learning-distill/bootstrap/docs/troubleshooting-frontmatter.schema.json`, and `.agents/skills/write-plan/plan-frontmatter.schema.json`).
-=======
-When adding a new markdown file under `decisions/` or `troubleshooting/`, follow the frontmatter and body headings used by existing entries in that folder, including the [Frontmatter contract](#frontmatter-contract-durable-entries) below. When adding a plan under `plans/`, follow the [Frontmatter contract (plans)](#frontmatter-contract-plans) and the portable rules in [`write-plan` `CONTRACT.md`](../skills/write-plan/CONTRACT.md) (see also [Portable skill contracts](#portable-skill-contracts)). During **docs-lint**, verify contracts by inspection (duplicate `id`, missing keys, scalar `tags` instead of a list, `status` only on decisions for durable entries, plan `status` vocabulary for `plans/`, and so on). Automated enforcement may be added later as maintainer-only tooling.
->>>>>>> abd96da (Rename skill, update docs, capture more knowledge)
 
 ### Frontmatter contract (durable entries)
 
