@@ -25,7 +25,9 @@ verification:
 # Plan: Operating Contract + Trigger System + Playbooks
 
 ## Goal
+
 Introduce a lightweight, repo-native workflow layer that:
+
 - Ensures agents consistently consult repository knowledge
 - Enables automatic execution of reusable workflows (playbooks)
 - Remains tool-agnostic and user-focused
@@ -37,6 +39,7 @@ Introduce a lightweight, repo-native workflow layer that:
 **File:** `.agents/OPERATING_CONTRACT.md`
 
 ### Steps
+
 1. Define mandatory phases:
    - Discover (search repo)
    - Align (respect decisions)
@@ -46,6 +49,7 @@ Introduce a lightweight, repo-native workflow layer that:
 3. Ensure language is directive (not suggestive)
 
 ### Acceptance Criteria
+
 - Contract is under 50 lines
 - Clearly defines pre-task and post-task behavior
 - Does not reference AKSK internals
@@ -57,6 +61,7 @@ Introduce a lightweight, repo-native workflow layer that:
 **File:** `.agents/triggers.yaml`
 
 ### Steps
+
 1. Introduce fixed event set:
    - task-start
    - pre-execution
@@ -76,9 +81,9 @@ triggers:
 
 ### Acceptance Criteria
 
-* YAML is valid and minimal
-* Events are consistent (no free-form expansion)
-* At least one trigger is defined
+- YAML is valid and minimal
+- Events are consistent (no free-form expansion)
+- At least one trigger is defined
 
 ---
 
@@ -90,25 +95,25 @@ triggers:
 
 1. Create initial playbooks:
 
-   * `update-docs.md`
-   * `create-plan.md`
+   - `update-docs.md`
+   - `create-plan.md`
 2. Add frontmatter to each:
 
-   * type: playbook
-   * id
-   * when_to_use
-   * outputs
+   - type: playbook
+   - id
+   - when\_to\_use
+   - outputs
 3. Structure content:
 
-   * Goal
-   * Steps (ordered)
-   * Verification checklist
+   - Goal
+   - Steps (ordered)
+   - Verification checklist
 
 ### Acceptance Criteria
 
-* Each playbook is human-readable and actionable
-* Each has a unique `id`
-* Each includes a verification section
+- Each playbook is human-readable and actionable
+- Each has a unique `id`
+- Each includes a verification section
 
 ---
 
@@ -120,14 +125,14 @@ triggers:
 
 1. Add 1–3 foundational rules:
 
-   * Plans must be updated before task completion
-   * Decisions must be respected
+   - Plans must be updated before task completion
+   - Decisions must be respected
 2. Keep rules declarative (no steps)
 
 ### Acceptance Criteria
 
-* Rules are concise and unambiguous
-* No overlap with playbooks
+- Rules are concise and unambiguous
+- No overlap with playbooks
 
 ---
 
@@ -137,17 +142,17 @@ triggers:
 
 1. Ensure all playbooks include:
 
-   * `id:` in frontmatter
+   - `id:` in frontmatter
 2. Validate that playbooks can be found via:
 
-   * `rg "id: update-docs"`
+   - `rg "id: update-docs"`
 3. Ensure triggers reference valid IDs
 
 ### Acceptance Criteria
 
-* All trigger references resolve to exactly one playbook
-* No duplicate playbook IDs
-* Search returns relevant results quickly
+- All trigger references resolve to exactly one playbook
+- No duplicate playbook IDs
+- Search returns relevant results quickly
 
 ---
 
@@ -157,34 +162,34 @@ triggers:
 
 1. Update agent instructions to:
 
-   * Always read `OPERATING_CONTRACT.md`
-   * Execute triggers on matching events
+   - Always read `OPERATING_CONTRACT.md`
+   - Execute triggers on matching events
 2. Ensure “task-closeout” includes:
 
-   * Running all associated playbooks
+   - Running all associated playbooks
 3. Validate behavior with a sample task
 
 ### Acceptance Criteria
 
-* At least one full cycle executed:
+- At least one full cycle executed:
 
-  * task → closeout → trigger → playbook
-* Docs updated as part of closeout
+  - task → closeout → trigger → playbook
+- Docs updated as part of closeout
 
 ---
 
 ## Verification
 
-* [ ] Operating contract is followed before execution
-* [ ] Trigger fires on task-closeout
-* [ ] `update-docs` playbook is executed
-* [ ] Plans/logs updated as expected
-* [ ] No manual prompting required to use playbooks
+- [ ] Operating contract is followed before execution
+- [ ] Trigger fires on task-closeout
+- [ ] `update-docs` playbook is executed
+- [ ] Plans/logs updated as expected
+- [ ] No manual prompting required to use playbooks
 
 ---
 
 ## Notes
 
-* Keep system declarative and file-based
-* Avoid introducing runtime dependencies
-* Favor clarity over completeness in early iteration
+- Keep system declarative and file-based
+- Avoid introducing runtime dependencies
+- Favor clarity over completeness in early iteration

@@ -19,6 +19,9 @@
   "skills": [
     "./.agents/skills/task-closeout",
     "./.agents/skills/learning-distill",
-    "./.agents/skills/knowledge-lint"
+    "./.agents/skills/knowledge-lint",
+    "./.agents/skills/write-plan",
+    "./.agents/skills/docs-compile",
+    "./.agents/skills/docs-search"
   ]
 }

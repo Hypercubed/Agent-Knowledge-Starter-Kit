@@ -65,8 +65,8 @@ Agents that receive **only** a skill folder (without the full kit checkout) stil
 
 ## Knowledge routing
 
-| Output                            | Destination                                                                                              |
-| --------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| Output                            | Destination                                                                                         |
+| --------------------------------- | --------------------------------------------------------------------------------------------------- |
 | Normative policy for all installs | [`.agents/docs/MAINTENANCE.md`](../../MAINTENANCE.md) and bootstrap twin under **learning-distill** |
-| Portable per-skill specs          | `.agents/skills/<skill>/CONTRACT.md`                                                                     |
-| Illustrated consumer tree         | Regenerated `example/.agents/`                                                                           |
+| Portable per-skill specs          | `.agents/skills/<skill>/CONTRACT.md`                                                                |
+| Illustrated consumer tree         | Regenerated `example/.agents/`                                                                      |

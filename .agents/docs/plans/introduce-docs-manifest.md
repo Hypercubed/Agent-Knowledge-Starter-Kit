@@ -76,7 +76,7 @@ extra_paths:
 
 - "roots" define top-level search locations
 - "types" define structured content used by skills
-- "extra_paths" define unstructured, search-only folders
+- "extra\_paths" define unstructured, search-only folders
 
 ### Path Resolution
 
@@ -93,8 +93,8 @@ Example:
 Search tools (ripgrep + fallback) will:
 
 - include all "roots"
-- include all "types[*].path"
-- include all "extra_paths"
+- include all "types\[\*].path"
+- include all "extra\_paths"
 
 No indexing is required.
 
@@ -128,9 +128,9 @@ This file is derived and should not be manually edited.
 - Phase 3: Update search integration
 
   - Modify search script to read manifest
-  - Build search paths from "roots", "types", and "extra_paths"
+  - Build search paths from "roots", "types", and "extra\_paths"
 
-- Phase 4: Add extra_paths support
+- Phase 4: Add extra\_paths support
 
   - Ensure search includes these folders
   - Do not allow skills to write to them
@@ -152,12 +152,12 @@ This file is derived and should not be manually edited.
 - Manifest drift from actual folder structure
 - Misconfiguration leading to missing search coverage
 - Overextension of manifest scope (becoming too complex)
-- Users misunderstanding difference between types and extra_paths
+- Users misunderstanding difference between types and extra\_paths
 
 ## Exit Criteria
 
 - All skills resolve paths via manifest (no hardcoded directories)
 - Search includes all manifest-defined paths
-- Users can add new folders via "extra_paths" without code changes
+- Users can add new folders via "extra\_paths" without code changes
 - "maintenance.md" is generated and accurate
 - System remains simple and understandable

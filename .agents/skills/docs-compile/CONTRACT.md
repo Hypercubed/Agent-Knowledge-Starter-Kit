@@ -41,6 +41,6 @@ Default behavior (no `--target`): every **immediate subdirectory** of `<agents-r
 
 ## Outputs
 
-| Artifact                                             | Writer                                                                        |
-| ---------------------------------------------------- | ----------------------------------------------------------------------------- |
-| `<section>/index.md` under `.agents/docs/<section>/` | `generate-durable-indexes.py`                                                 |
+| Artifact                                             | Writer                        |
+| ---------------------------------------------------- | ----------------------------- |
+| `<section>/index.md` under `.agents/docs/<section>/` | `generate-durable-indexes.py` |
