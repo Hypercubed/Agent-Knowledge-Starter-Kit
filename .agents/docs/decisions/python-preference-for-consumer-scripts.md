@@ -44,4 +44,4 @@ When replacing an existing script (e.g., Bash → Python):
 
 ### Related
 
-- [Regenerate example/ when portable kit changes](regenerate-example-when-portable-kit-changes)
+- [Regenerate example/ when portable kit changes](regenerate-example-when-portable-kit-changes.md)

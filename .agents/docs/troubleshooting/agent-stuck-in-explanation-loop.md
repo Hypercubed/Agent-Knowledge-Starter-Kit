@@ -2,6 +2,10 @@
 id: agent-stuck-in-explanation-loop
 title: "Agent stuck in explanation loop"
 last_updated: 2026-04-25
+description: Recover from agents repeatedly describing processes instead of executing them.
+tags:
+  - agent-behavior
+  - prompt-engineering
 ---
 
 # Agent stuck in explanation loop

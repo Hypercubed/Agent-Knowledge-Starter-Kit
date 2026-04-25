@@ -2,6 +2,11 @@
 id: zo-ui-skills-discovery-requires-manual-mirror
 title: Zo UI skill discovery does not auto-show repo-local skills
 last_updated: 2026-04-22
+description: Kit skills installed to canonical path are not visible in Zo's Skills UI without manual mirroring.
+tags:
+  - environment-zo
+  - skills
+  - discovery
 ---
 
 # Zo UI skill discovery does not auto-show repo-local skills
