@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Troubleshooting Frontmatter Schema",
+  "description": "Schema for validating maintainer troubleshooting YAML frontmatter in .agents/docs/troubleshooting/*.md",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9_-]+$",
+      "description": "Stable slug, must match the filename without .md. Unique within this folder."
+    },
+    "title": {
+      "type": "string",
+      "description": "Short human title."
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date",
+      "description": "ISO calendar date YYYY-MM-DD."
+    },
+    "description": {
+      "type": "string",
+      "description": "One or two sentences summarizing the entry."
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9_-]+$"
+      },
+      "minItems": 1,
+      "description": "Non-empty list of lowercase [a-z0-9_-] topic labels."
+    },
+    "depends_on": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^(decisions|troubleshooting)/[a-z0-9_-]+$"
+      },
+      "description": "Qualified references to other durable entries."
+    }
+  },
+  "required": ["id", "title", "last_updated", "description", "tags"],
+  "additionalProperties": false
+}
