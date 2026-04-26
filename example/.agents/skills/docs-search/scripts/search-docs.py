@@ -109,7 +109,7 @@ def _run_search(cmd: str, args: list[str], repo_root: Path) -> list[str]:
             check=False,
         )
         if result.returncode == 0:
-            return [line for line in result.stdout.strip().splitlines() if line]
+            return [line.replace("\\", "/") for line in result.stdout.strip().splitlines() if line]
     except Exception:
         pass
     return []

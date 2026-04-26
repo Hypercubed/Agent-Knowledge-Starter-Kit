@@ -11,10 +11,14 @@ Regenerate derived documentation artifacts from `.agents/` markdown.
 
 Discovery, subprocess order, and outputs are specified in [`CONTRACT.md`](CONTRACT.md) and implemented by `scripts/docs-compile.sh` and its helpers; see **What it does** and **Command** below. [`.agents/docs/MAINTENANCE.md`](../../docs/MAINTENANCE.md) remains authoritative for durable entry shape and index prose; when guidance overlaps, follow [Portable skill contracts](../../docs/MAINTENANCE.md#portable-skill-contracts).
 
+## Requirements
+
+- Python 3.9+
+- PyYAML (`pip install pyyaml` or equivalent)
+
 ## What it does
 
 1. Regenerates optional durable `index.md` files — one per **immediate subdirectory** of `.agents/docs/` (for example `decisions/`, `troubleshooting/`, and any future top-level sections).
-2. Rebuilds `.agents/skills/docs-search/docs-search-index.json`.
 
 ## Command
 
