@@ -68,7 +68,7 @@ docs/decisions/index.md
 docs/troubleshooting/index.md
 playbooks/README.md
 sessions/README.md
-skills/knowledge-lint/SKILL.md
+skills/docs-lint/SKILL.md
 skills/learning-distill/SKILL.md
 skills/task-closeout/SKILL.md
 skills/task-closeout/example/task-bundle/summary.json

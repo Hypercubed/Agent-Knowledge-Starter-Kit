@@ -9,12 +9,12 @@ Durable entry frontmatter and section index prose remain normative in [`.agents/
 From repo root (or any subdirectory under it):
 
 ```bash
-bash .agents/skills/docs-compile/scripts/docs-compile.sh
+python .agents/skills/docs-compile/scripts/docs-compile.py
 ```
 
 The shell script `cd`s to the repository root (parent of `.agents/`) before invoking helpers.
 
-## `.agents` resolution (`docs-compile.sh`)
+## `.agents` resolution (`docs-compile.py`)
 
 1. If `AGENTS_ROOT` is set: normalize to a directory whose basename is `.agents` (append `/.agents` when needed), verify it exists, then use it.
 2. Else: walk parents of `PWD` until a directory containing `.agents/` is found.
@@ -41,6 +41,6 @@ Default behavior (no `--target`): every **immediate subdirectory** of `<agents-r
 
 ## Outputs
 
-| Artifact                                             | Writer                                                                        |
-| ---------------------------------------------------- | ----------------------------------------------------------------------------- |
-| `<section>/index.md` under `.agents/docs/<section>/` | `generate-durable-indexes.py`                                                 |
+| Artifact                                             | Writer                        |
+| ---------------------------------------------------- | ----------------------------- |
+| `<section>/index.md` under `.agents/docs/<section>/` | `generate-durable-indexes.py` |

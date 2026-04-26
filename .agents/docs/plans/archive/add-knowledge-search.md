@@ -11,7 +11,7 @@ tags:
 - context
 status: superseded
 kind: initiative
-superseded_by: plans/integrate-docs-search-learning-distill-knowledge-lint
+superseded_by: plans/integrate-docs-search-learning-distill-docs-lint
 consumer_portable: false
 author_kind: ai
 prompter: Hypercubed
@@ -52,7 +52,7 @@ The skill should be structured similarly to `task-closeout` and `learning-distil
 
 ### 2. Update architectural docs
 
-- Detail this skill in `docs/architecture.md` and list it among the core tools (`task-closeout`, `knowledge-lint`, `learning-distill`).
+- Detail this skill in `docs/architecture.md` and list it among the core tools (`task-closeout`, `docs-lint`, `learning-distill`).
 - Update `example/.agents/AGENTS.md` (and any skill bootstrap `AGENTS.md` fragments) to include a line like: *“If you cannot find the answer immediately, use the `knowledge-search` skill before guessing or asking the user.”*
 
 ### 3. Verification pass

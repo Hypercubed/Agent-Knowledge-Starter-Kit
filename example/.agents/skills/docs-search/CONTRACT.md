@@ -4,8 +4,8 @@ Machine-oriented rules for **docs-search** scripts when only this skill folder i
 
 ## Scripts
 
-| Script                   | Role                                     |
-| ------------------------ | ---------------------------------------- |
+| Script                   | Role                                       |
+| ------------------------ | ------------------------------------------ |
 | `scripts/search-docs.py` | Search durable docs with layered fallbacks |
 
 Run from repo root (or any directory under it) using paths like `python3 .agents/skills/docs-search/scripts/search-docs.py` when the full kit layout exists.
@@ -23,6 +23,7 @@ The script resolves the target **`.agents`** directory by:
 ## Search Strategy
 
 The search uses a layered fallback strategy:
+
 1. **ripgrep (rg)**: Primary high-performance search.
 2. **git grep**: Secondary fallback if inside a git repository.
 3. **grep**: Tertiary fallback.

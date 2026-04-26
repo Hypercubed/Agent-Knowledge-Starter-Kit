@@ -26,7 +26,7 @@ consumer-facing in Option A:
 - `.agents/skills/docs-search/scripts/index-docs.py`
 - `.agents/skills/docs-search/scripts/search-docs.py`
 - `.agents/skills/docs-compile/scripts/generate-durable-indexes.py`
-- `.agents/skills/docs-compile/scripts/docs-compile.sh`
+- `.agents/skills/docs-compile/scripts/docs-compile.py`
 
 ## Scope
 
@@ -88,7 +88,7 @@ files and compiles from source markdown:
 4. Handles minor metadata issues with warnings (non-fatal), while preserving
    deterministic output order.
 
-### 4) `docs-compile.sh`
+### 4) `docs-compile.py`
 
 1. Runs generator and indexer when both scripts exist.
 2. Succeeds with explicit skip messaging when one component is missing.

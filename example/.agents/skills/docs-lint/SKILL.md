@@ -1,9 +1,9 @@
 ---
-name: knowledge-lint
+name: docs-lint
 description: Check the `.agents/` knowledge layer for duplication, contradiction, staleness, oversized guidance, broken or stale links, missing index coverage, uncategorized or misplaced knowledge, and consistency between `decisions/` and `troubleshooting/` indexes and their entry files. Use as a periodic maintenance pass.
 ---
 
-# Knowledge Lint
+# Docs Lint
 
 ## Goal
 
@@ -23,9 +23,9 @@ Use **Inputs** and the checklist in this file as the maintainer verification lis
 
 ## Skill initialization (before first lint pass)
 
-Run this once per target repo after the skill files are present under `.agents/skills/knowledge-lint/`. Idempotent: safe to repeat.
+Run this once per target repo after the skill files are present under `.agents/skills/docs-lint/`. Idempotent: safe to repeat.
 
-**Bootstrap source:** this kit keeps a **single** copy of scaffold templates under **learning-distill** at `.agents/skills/learning-distill/bootstrap/`. Run **learning-distill** skill initialization first when that skill is present; do not duplicate those files under **knowledge-lint**. If `learning-distill/` is missing from `.agents/skills/`, install or copy that skill before lint initialization, or copy missing templates from an upstream kit checkout.
+**Bootstrap source:** this kit keeps a **single** copy of scaffold templates under **learning-distill** at `.agents/skills/learning-distill/bootstrap/`. Run **learning-distill** skill initialization first when that skill is present; do not duplicate those files under **docs-lint**. If `learning-distill/` is missing from `.agents/skills/`, install or copy that skill before lint initialization, or copy missing templates from an upstream kit checkout.
 
 Let `LD` denote `.agents/skills/learning-distill`.
 
@@ -35,7 +35,7 @@ Let `LD` denote `.agents/skills/learning-distill`.
 4. Ensure `.agents/docs/` exists. For each of `index.md`, `MAINTENANCE.md`, and `log.md`, if the file is missing under `.agents/docs/`, copy it from `LD/bootstrap/docs/`. If `.agents/docs/decisions/index.md` or `.agents/docs/troubleshooting/index.md` is missing, copy the entire contents of `LD/bootstrap/docs/decisions/` or `LD/bootstrap/docs/troubleshooting/` respectively, creating only files that do not already exist (do not overwrite).
 5. If `.agents/AGENTS.md` is missing, copy `LD/bootstrap/AGENTS.md` into place. If it already exists, do not overwrite it.
 6. If `.agents/docs/plans/index.md` is missing and **write-plan** is installed at `.agents/skills/write-plan/`, run **write-plan** skill initialization (see that skill’s `SKILL.md`) so `docs/plans/` exists without touching files supplied by **learning-distill** bootstrap.
-7. If `.agents/docs/MAINTENANCE.md` exists, ensure the **Skills docs registry** row for `knowledge-lint` is present and current (docs interaction, durable paths touched, and [`CONTRACT.md`](CONTRACT.md) link). Add the row when missing; update it when behavior changes.
+7. If `.agents/docs/MAINTENANCE.md` exists, ensure the **Skills docs registry** row for `docs-lint` is present and current (docs interaction, durable paths touched, and [`CONTRACT.md`](CONTRACT.md) link). Add the row when missing; update it when behavior changes.
 
 If `.agents/sessions/` or `.agents/.gitignore` session rules are missing, run **learning-distill** initialization steps for sessions and ignore rules, or **task-closeout** initialization when you need closeout-first layout.
 
@@ -43,7 +43,7 @@ If `.agents/sessions/` or `.agents/.gitignore` session rules are missing, run **
 
 When `decisions/` or `troubleshooting/` entry files were added, removed, or renamed, attempt docs-compile first so optional durable indexes stay fresh:
 
-`bash .agents/skills/docs-compile/scripts/docs-compile.sh`
+`python .agents/skills/docs-compile/scripts/docs-compile.py`
 
 If the `docs-compile` skill is not installed, continue linting and skip durable index freshness checks that depend on those optional index files.
 
@@ -60,7 +60,7 @@ Use `search-docs.py "<topic>"` as a discovery tool during the checks below, part
 - missing index coverage in `.agents/docs/index.md` for durable assets
 - broken links in indexes and cross-links between docs
 - when `decisions/index.md` or `troubleshooting/index.md` exists, verify listed files exist and align with entry files; always verify each entry file has frontmatter `id` aligned with its filename slug where applicable, **`id` values are unique within `decisions/` and within `troubleshooting/`**, and **`depends_on` entries use qualified `decisions/…` or `troubleshooting/…` form** (see [Entry `id` and qualified graph references](../../docs/MAINTENANCE.md#entry-id-and-qualified-graph-references) in `MAINTENANCE.md`)
-- **Durable entry metadata contract:** each `decisions/*.md` and `troubleshooting/*.md` entry (excluding each folder’s `index.md`) follows `.agents/docs/MAINTENANCE.md` — required `id`, `title`, `last_updated`, `description`, and YAML list `tags`; `decisions/` entries also have `status` (`accepted`, `superseded`, or `provisional`); no `status` on troubleshooting entries; `tags` is never a single scalar string meant to hold a list; optional `depends_on` is a YAML list when present. Confirm by reading frontmatter, not only prose, or by validating against `.agents/skills/learning-distill/bootstrap/docs/decision-frontmatter.schema.json` and `.agents/skills/learning-distill/bootstrap/docs/troubleshooting-frontmatter.schema.json`. If `plans/` are present, validate against `.agents/skills/write-plan/plan-frontmatter.schema.json`.
+- **Durable entry metadata contract:** each `decisions/*.md` and `troubleshooting/*.md` entry (excluding each folder’s `index.md`) follows `.agents/docs/MAINTENANCE.md` — required `id`, `title`, `last_updated`, `description`, and YAML list `tags`; `decisions/` entries also have `status` (`accepted`, `superseded`, or `provisional`); no `status` on troubleshooting entries; `tags` is never a single scalar string meant to hold a list; optional `depends_on` is a YAML list when present. Confirm by reading frontmatter, not only prose.
 - troubleshooting entries that should be decisions or playbooks
 - decisions that should be compressed into AGENTS guidance
 - **Uncategorized knowledge** — For content with no clear home, run `python3 .agents/skills/docs-search/scripts/search-docs.py "<content topic>"` to find semantically related existing entries. If a related entry exists, propose merging. If none exists, propose a new category.

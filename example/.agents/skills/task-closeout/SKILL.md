@@ -114,7 +114,7 @@ Record agent provenance whenever the active tool can supply it. Record session p
 - What failed
 - What worked
 - Reusable pattern
-- Candidate `.agents/AGENTS.md` update
+- Candidate AGENTS update
 - Candidate troubleshooting note
 - Candidate repo decision
 - Candidate playbook

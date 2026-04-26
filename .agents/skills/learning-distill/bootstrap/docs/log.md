@@ -10,6 +10,6 @@ Outcome: updated Source: `.agents/sessions/<session-folder>/` Files: `.agents/AG
 
 Outcome: proposed Source: `.agents/sessions/<session-folder>/` Files: none Classification: AGENTS 0; troubleshooting 0; decisions 0; playbooks 0; rejected 0 Disposition: proposed only Notes: brief summary
 
-### \[YYYY-MM-DD] knowledge-lint
+### \[YYYY-MM-DD] docs-lint
 
 Outcome: cleanup Files: `.agents/AGENTS.md`; `.agents/docs/log.md` Notes: brief summary

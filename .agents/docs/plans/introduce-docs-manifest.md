@@ -3,9 +3,9 @@ id: introduce-docs-manifest
 title: "Introduce Manifest-Based Docs Structure"
 last_updated: 2026-04-22
 description: >
-Add a manifest file to define documentation structure, enabling skills to
-resolve paths dynamically, supporting user-defined folders, and generating
-maintenance.md as a derived system overview.
+  Add a manifest file to define documentation structure, enabling skills to
+  resolve paths dynamically, supporting user-defined folders, and generating
+  maintenance.md as a derived system overview.
 tags: [docs, structure, manifest, workflow]
 status: proposed
 ---

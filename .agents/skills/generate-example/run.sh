@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Enable verbose mode if -v or --verbose is passed
+if [[ "${1:-}" == "-v" || "${1:-}" == "--verbose" ]]; then
+  set -x
+fi
+
+echo "== Starting example generation =="
+
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
 target="${repo_root}/example"
 

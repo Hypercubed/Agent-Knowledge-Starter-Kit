@@ -1,6 +1,6 @@
 # Knowledge lint contract
 
-Machine-oriented rules for **knowledge-lint** when only this skill folder is present. This skill is procedure and checklist only: there is **no** bundled executable script.
+Machine-oriented rules for **docs-lint** when only this skill folder is present. This skill is procedure and checklist only: there is **no** bundled executable script.
 
 Use this file plus `SKILL.md` for the maintainer verification list.
 
@@ -23,7 +23,7 @@ Optional: `.agents/docs/plans/` when present.
 When sibling skills exist, typical **refresh-before-lint** commands are:
 
 ```bash
-bash .agents/skills/docs-compile/scripts/docs-compile.sh
+python .agents/skills/docs-compile/scripts/docs-compile.py
 ```
 
 If **docs-compile** is missing but **docs-search** is present:

@@ -1,7 +1,7 @@
 ---
 id: troubleshooting-index
 title: "Troubleshooting index"
-last_updated: 2026-04-23
+last_updated: 2026-04-25
 ---
 
 # Troubleshooting
@@ -12,6 +12,7 @@ One file per recurring issue pattern. New entries: follow [Entry shape](../MAINT
 
 - [`check-publish.sh` reports missing files while `generate-example` is running](check-publish-missing-files-while-generate-example-is-running.md)
 - [`example/.agents/` looks like a full mirror of root dogfood](example-agents-looks-like-full-dogfood-copy.md)
+- [Agent stuck in explanation loop](agent-stuck-in-explanation-loop.md)
 - [Antigravity: Lessons learned aren't visible to teammate's agents](antigravity-lessons-learned-aren-t-visible-to-teammate-s-agents.md)
 - [Clean `git status` but you need touched paths for closeout](clean-git-status-but-you-need-touched-paths-for-closeout.md)
 - [Codex cannot write under `.agents/` during closeout or distill](codex-cannot-write-under-agents-during-closeout-or-distill.md)
@@ -26,6 +27,8 @@ One file per recurring issue pattern. New entries: follow [Entry shape](../MAINT
 - [Overlapping session bundles for one initiative](overlapping-session-bundles-for-one-initiative.md)
 - [Remark or bulk Markdown rewrite touched unwanted paths](remark-or-bulk-markdown-rewrite-unwanted-paths.md)
 - [Session Discovery Fails During Distillation or Closeout](session-discovery-fails-during-distillation-or-closeout.md)
+- [Stalled maintenance scripts](stalled-maintenance-scripts.md)
 - [Unexpected files under `.agents/sessions/` in git status](unexpected-files-under-agents-sessions-in-git-status.md)
+- [Windows ripgrep path separators](windows-ripgrep-path-separators.md)
 - [Windows-to-WSL Tool Path Failures](windows-to-wsl-tool-path-failures.md)
 - [Zo UI skill discovery does not auto-show repo-local skills](zo-ui-skills-discovery-requires-manual-mirror.md)

@@ -77,7 +77,7 @@ Use the kit as a lightweight maintenance loop around normal agent work:
 2. **Do the implementation work normally.** Have the coding agent read the relevant durable guidance, use playbooks or files under `.agents/docs/troubleshooting/` when needed, and keep tool-specific prompts as thin wiring.
 3. **Close meaningful tasks with `task-closeout`.** At completion, blockage, or abandonment, invoke the repo-local `task-closeout` skill. It should write raw evidence and a structured bundle under `.agents/sessions/<folder>/`, which is usually gitignored. The canonical task/session identifier is the `task_id` field inside that bundle's `summary.json`; the folder name is only a sortable storage label.
 4. **Promote durable lessons with `learning-distill`.** After closeout, run a separate learning pass with `learning-distill`. Pass the session bundle path and use the `task_id` field in `summary.json` when referring to the task. Promote only stable, reusable lessons into `.agents/AGENTS.md`, `.agents/docs/`, or `.agents/playbooks/`; leave one-off task history in `.agents/sessions/`.
-5. **Keep the knowledge layer clean with `knowledge-lint`.** Periodically invoke `knowledge-lint` to find duplicate, stale, contradictory, oversized, or uncategorized guidance before the layer becomes noisy.
+5. **Keep the knowledge layer clean with `docs-lint`.** Periodically invoke `docs-lint` to find duplicate, stale, contradictory, oversized, or uncategorized guidance before the layer becomes noisy.
 6. **Review the diff.** Treat durable knowledge changes like code: inspect what changed, make sure session bundles stayed temporary, and commit only the files that should become shared repo knowledge.
 
 ```mermaid
@@ -100,7 +100,7 @@ flowchart LR
     J --> K
 
     K --> L[Mark distilled]
-    L --> M[knowledge-lint]
+    L --> M[docs-lint]
     M --> N[Clean duplicates, contradictions,<br/>stale guidance, missing index coverage]
 ```
 
@@ -116,7 +116,7 @@ Use this checklist:
 
 1. Inventory existing `.agents/` content and mark domain-specific files to keep.
 2. Install the skills you need with `npx skills add Hypercubed/Agent-Knowledge-Starter-Kit` (or copy selected skill folders from `.agents/skills/`) and run each skill's **Skill initialization** so missing template files and session layout are created without overwriting existing content.
-3. Add the portable maintenance skills if they are not already present: `task-closeout`, `learning-distill`, and `knowledge-lint`.
+3. Add the portable maintenance skills if they are not already present: `task-closeout`, `learning-distill`, and `docs-lint`.
 4. Merge `.agents/AGENTS.md` by hand so stable repo guidance stays concise and temporary history stays out.
 5. Confirm session ignore rules. Prefer the kit default in `.agents/.gitignore`: `sessions/*` and `!sessions/README.md`. Use repo-root `.gitignore` patterns only as an alternative: `.agents/sessions/*` and `!.agents/sessions/README.md`.
 6. Optional: append a minimal adoption note to `.agents/docs/log.md` only if you use that file as a maintenance audit trail (see `.agents/docs/MAINTENANCE.md`, Logging policy). Record any durable rationale in a new or existing file under `.agents/docs/decisions/` (update `decisions/index.md` when adding a decision).

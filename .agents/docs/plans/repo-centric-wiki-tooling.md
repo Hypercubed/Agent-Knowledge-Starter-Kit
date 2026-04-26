@@ -43,7 +43,7 @@ optional human-oriented index regeneration:
 - `docs-compile` is an optional consumer skill that regenerates
   `decisions/index.md` and `troubleshooting/index.md`, then refreshes
   `docs-search-index.json`.
-- `learning-distill` and `knowledge-lint` attempt `docs-compile` when present,
+- `learning-distill` and `docs-lint` attempt `docs-compile` when present,
   but continue when absent.
 - Durable section `index.md` files are optional compile artifacts rather than a
   hard runtime dependency for docs-search.
@@ -72,7 +72,7 @@ as a separate service, database, or monolithic memory layer.
 - Do not require a vector database, remote service, or proprietary runtime.
 - Treat generated indexes and maps as derived artifacts from markdown sources.
 - Preserve the current maintenance loop: `task-closeout` -> `learning-distill`
-  -> `knowledge-lint`.
+  -> `docs-lint`.
 - Favor small deterministic scripts over model-only folder traversal.
 - Keep generated artifacts cheap to diff and safe to regenerate.
 
@@ -216,7 +216,7 @@ without traversing the full tree.
 ### Changes
 
 1. Add a repo-local script such as
-   `.agents/skills/docs-compile/scripts/docs-compile.sh` (or equivalent).
+   `.agents/skills/docs-compile/scripts/docs-compile.py` (or equivalent).
 2. Crawl durable knowledge sources:
    - `.agents/AGENTS.md`
    - `.agents/docs/decisions/`
@@ -314,14 +314,14 @@ see what is connected, duplicated, or orphaned.
    - entries with no metadata
    - heavily connected central docs that may be overloaded
    - duplicate docs on the same topic
-4. Add graph-aware checks to `knowledge-lint`.
+4. Add graph-aware checks to `docs-lint`.
 5. Keep the visualization lightweight and markdown-native so it renders in
    GitHub and editor previews.
 
 ### Deliverables
 
 - Generated `.agents/docs/knowledge-map.md`
-- `knowledge-lint` guidance for orphan and graph drift detection
+- `docs-lint` guidance for orphan and graph drift detection
 - Decision checkpoint for Note D (graph/provenance features worth adopting)
 
 ### Exit criteria
@@ -342,7 +342,7 @@ leaving it as optional maintainer knowledge.
    - write or update durable docs
    - run `docs-compile` when available
    - review generated changes
-2. Update `knowledge-lint` to validate:
+2. Update `docs-lint` to validate:
    - metadata contract
    - index coverage (conditional when optional compile artifacts are absent)
    - graph coverage
@@ -357,7 +357,7 @@ leaving it as optional maintainer knowledge.
 
 ### Deliverables
 
-- Updated skill docs for `learning-distill` and `knowledge-lint`
+- Updated skill docs for `learning-distill` and `docs-lint`
 - Updated architecture and README documentation
 - Clear published guidance on when to rebuild compiled artifacts
 - Decision checkpoint for Note E (core dependency vs optional adapter vs

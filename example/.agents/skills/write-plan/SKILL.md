@@ -7,12 +7,17 @@ description: Scaffold a new maintainer plan under `.agents/docs/plans/<id>.md` w
 
 ## Goal
 
-Create a **plan-only** markdown file under `.agents/docs/plans/` that matches the **plan frontmatter contract** shipped with this skill ([`CONTRACT.md`](CONTRACT.md)), without hand-copying YAML. The repo’s normative copy of the same rules lives under [Frontmatter contract (plans) in `MAINTENANCE.md`](../../docs/MAINTENANCE.md#frontmatter-contract-plans); narrative and lifecycle context lives in the Agent Knowledge Starter repository (not copied by this bootstrap). If `CONTRACT.md` ever disagrees with `MAINTENANCE.md`, treat **`MAINTENANCE.md` as authoritative** until the skill contract is updated. All portable skill contracts and the shared precedence rule: [Portable skill contracts](../../docs/MAINTENANCE.md#portable-skill-contracts).
+Create a **plan-only** markdown file under `.agents/docs/plans/` that matches the **plan frontmatter contract** shipped with this skill ([`CONTRACT.md`](CONTRACT.md)), without hand-copying YAML. The repo’s normative copy of the same rules lives under [Frontmatter contract (plans) in `MAINTENANCE.md`](../../docs/MAINTENANCE.md#frontmatter-contract-plans); narrative and lifecycle context: [plans-as-first-class-artifacts](../../docs/plans/archive/plans-as-first-class-artifacts.md). If `CONTRACT.md` ever disagrees with `MAINTENANCE.md`, treat **`MAINTENANCE.md` as authoritative** until the skill contract is updated. All portable skill contracts and the shared precedence rule: [Portable skill contracts](../../docs/MAINTENANCE.md#portable-skill-contracts).
 
 ## When to use
 
 - A multi-step initiative needs a durable roadmap (not a session bundle, not an ADR).
 - You want the plan indexed by **docs-search** immediately after creation.
+
+## Requirements
+
+- Python 3.9+
+- PyYAML (`pip install pyyaml` or equivalent)
 
 ## Skill initialization (before first plan scaffold)
 
@@ -79,7 +84,7 @@ The generated body comes from the scaffold template [`assets/plan-body.md`](asse
 6. Refresh indexes so humans see it in `plans/index.md`:
 
    ```bash
-   bash .agents/skills/docs-compile/scripts/docs-compile.sh
+   python .agents/skills/docs-compile/scripts/docs-compile.py
    ```
 
 ## Script reference
@@ -95,5 +100,5 @@ The generated body comes from the scaffold template [`assets/plan-body.md`](asse
 
 ## Related
 
-- [docs-search](../docs-search/SKILL.md) — refresh `docs-search-index.json` after substantive plan edits.
-- [docs-compile](../docs-compile/SKILL.md) — regenerate `plans/index.md` and the search index together.
+- [docs-search](../docs-search/SKILL.md) — search for plans directly using `search-docs.py`.
+- [docs-compile](../docs-compile/SKILL.md) — regenerate `plans/index.md` so the new plan appears in the directory index.

@@ -149,7 +149,7 @@ lint detects drift → small: fix inline | significant: emit wiki plan → recon
 | ------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `.agents/skills/task-closeout/SKILL.md`                                              | Add `wiki_candidates` field to session bundle. Separate from skill/playbook candidates. Captures declarative notes, decisions, system observations.                                                            |
 | `.agents/skills/learning-distill/SKILL.md`                                           | Add wiki as distillation target. Add classification logic: descriptive → wiki, prescriptive → skills/playbooks. Add multi-session reconciliation mode. Add linking guidance between wiki and skills/playbooks. |
-| `.agents/skills/knowledge-lint/SKILL.md`                                             | Add semantic lint pass: verify `code_refs` against codebase. Small drift → fix inline. Significant drift → emit wiki plan.                                                                                     |
+| `.agents/skills/docs-lint/SKILL.md`                                             | Add semantic lint pass: verify `code_refs` against codebase. Small drift → fix inline. Significant drift → emit wiki plan.                                                                                     |
 | `docs/architecture.md` (this repo) or `.agents/docs/architecture.md` (consumer tree) | Update lifecycle diagram to include wiki. Update distillation rules. Document wiki plan as a plan type.                                                                                                        |
 | `.agents/docs/index.md`                                                              | Register wiki in knowledge asset catalog.                                                                                                                                                                      |
 | `.agents/skills/learning-distill/SKILL.md` (role narrative) or `.agents/AGENTS.md`   | Document multi-session reconciliation invocation for learning-style passes (no separate `agents/` tree).                                                                                                       |
@@ -228,7 +228,7 @@ For each candidate in `learning-candidate.md`:
 
 ---
 
-### `knowledge-lint` additions
+### `docs-lint` additions
 
 **Semantic lint pass:**
 
@@ -291,7 +291,7 @@ Decisions stay under `.agents/docs/decisions/` (not `.agents/wiki/decisions/`) s
 
 **Phase 2 — Lint integration**
 
-- Update `knowledge-lint` with semantic lint pass
+- Update `docs-lint` with semantic lint pass
 - Add wiki plan emission
 - Update **learning-distill** skill docs and/or `.agents/AGENTS.md` with wiki plan handling for learning-style passes
 
