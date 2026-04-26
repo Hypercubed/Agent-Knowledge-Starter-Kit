@@ -21,11 +21,11 @@ This file belongs in `.agents/docs/`, alongside `.agents/AGENTS.md`.
 
 ## Entry shape
 
-When adding a new markdown file under `decisions/` or `troubleshooting/`, follow the frontmatter and body headings used by existing entries in that folder, including the [Frontmatter contract](#frontmatter-contract-durable-entries) below. When adding a plan under `plans/`, follow the [Frontmatter contract (plans)](#frontmatter-contract-plans) and the portable rules in [`write-plan` `CONTRACT.md`](../skills/write-plan/CONTRACT.md) (see also [Portable skill contracts](#portable-skill-contracts)). During **knowledge-lint**, verify contracts by inspection (duplicate `id`, missing keys, scalar `tags` instead of a list, `status` only on decisions for durable entries, plan `status` vocabulary for `plans/`, and so on). You may also validate entry YAML against the provided JSON Schemas (`.agents/skills/learning-distill/bootstrap/docs/decision-frontmatter.schema.json`, `.agents/skills/learning-distill/bootstrap/docs/troubleshooting-frontmatter.schema.json`, and `.agents/skills/write-plan/plan-frontmatter.schema.json`).
+When adding a new markdown file under `decisions/` or `troubleshooting/`, follow the frontmatter and body headings used by existing entries in that folder, including the [Frontmatter contract](#frontmatter-contract-durable-entries) below. When adding a plan under `plans/`, follow the [Frontmatter contract (plans)](#frontmatter-contract-plans) and the portable rules in [`write-plan` `CONTRACT.md`](../skills/write-plan/CONTRACT.md) (see also [Portable skill contracts](#portable-skill-contracts)). During **knowledge-lint**, verify contracts by inspection (duplicate `id`, missing keys, scalar `tags` instead of a list, `status` only on decisions for durable entries, plan `status` vocabulary for `plans/`, and so on). You may also validate entry YAML against the provided JSON Schemas (`.agents/skills/learning-distill/references/decision-frontmatter.schema.json`, `.agents/skills/learning-distill/references/troubleshooting-frontmatter.schema.json`, and `.agents/skills/write-plan/references/plan-frontmatter.schema.json`).
 
 ### Frontmatter contract (durable entries)
 
-Applies to every `*.md` file under `decisions/` and `troubleshooting/` **except** each folder’s `index.md`. You can validate this contract via JSON Schema using `.agents/skills/learning-distill/bootstrap/docs/decision-frontmatter.schema.json` and `.agents/skills/learning-distill/bootstrap/docs/troubleshooting-frontmatter.schema.json`.
+Applies to every `*.md` file under `decisions/` and `troubleshooting/` **except** each folder’s `index.md`. You can validate this contract via JSON Schema using `.agents/skills/learning-distill/references/decision-frontmatter.schema.json` and `.agents/skills/learning-distill/references/troubleshooting-frontmatter.schema.json`.
 
 **Required keys (all entries):**
 
@@ -47,7 +47,7 @@ Applies to every `*.md` file under `decisions/` and `troubleshooting/` **except*
 
 ### Frontmatter contract (plans)
 
-The **write-plan** skill also ships a portable copy of this contract at `.agents/skills/write-plan/CONTRACT.md` for skill-only installs. Other user-facing skills ship their own `CONTRACT.md` files; see [Portable skill contracts](#portable-skill-contracts). You can validate this contract via JSON Schema using `.agents/skills/write-plan/plan-frontmatter.schema.json`.
+The **write-plan** skill also ships a portable copy of this contract at `.agents/skills/write-plan/CONTRACT.md` for skill-only installs. Other user-facing skills ship their own `CONTRACT.md` files; see [Portable skill contracts](#portable-skill-contracts). You can validate this contract via JSON Schema using `.agents/skills/write-plan/references/plan-frontmatter.schema.json`.
 
 Applies to every `*.md` file under **`plans/`** and **`plans/archive/`**, except `plans/index.md` and any other index or README files unless they intentionally adopt plan frontmatter.
 
@@ -135,7 +135,7 @@ If a skill `CONTRACT.md` disagrees with this file on an overlapping topic (for e
 | docs-lint   | [`CONTRACT.md`](../skills/docs-lint/CONTRACT.md)   |
 | learning-distill | [`CONTRACT.md`](../skills/learning-distill/CONTRACT.md) |
 | task-closeout    | [`CONTRACT.md`](../skills/task-closeout/CONTRACT.md)    |
-| write-plan       | [`CONTRACT.md`](../skills/write-plan/CONTRACT.md)       |
+| write-plan       | [`CONTRACT.md`](../skills/write-plan/references/CONTRACT.md)       |
 
 ## Skills docs registry
 
@@ -154,7 +154,7 @@ When adding a new skill that reads or writes `.agents/docs/`, add a row here and
 | docs-lint                     | reads docs; may suggest or apply minimal edits                       | `.agents/AGENTS.md`, `.agents/docs/**`, `.agents/playbooks/**` | [`CONTRACT.md`](../skills/docs-lint/CONTRACT.md)   |
 | learning-distill                   | reads session bundles; writes durable docs and `.agents/docs/log.md` | `.agents/docs/**`, `.agents/AGENTS.md`, `.agents/playbooks/**` | [`CONTRACT.md`](../skills/learning-distill/CONTRACT.md) |
 | task-closeout                      | writes temporary bundle only; no durable docs edits                  | `.agents/sessions/**`                                          | [`CONTRACT.md`](../skills/task-closeout/CONTRACT.md)    |
-| write-plan                         | writes plan docs and contributes plan contract                       | `.agents/docs/plans/**`                                        | [`CONTRACT.md`](../skills/write-plan/CONTRACT.md)       |
+| write-plan                         | writes plan docs and contributes plan contract                       | `.agents/docs/plans/**`                                        | [`CONTRACT.md`](../skills/write-plan/references/CONTRACT.md)       |
 | generate-example (maintainer-only) | rebuilds `example/` mirror for validation/demo                       | `example/.agents/**` (generated output)                        | none (maintainer-only)                                  |
 
 ### Registry row template (for new skills)

@@ -16,6 +16,11 @@ Discovery, subprocess order, and outputs are specified in [`CONTRACT.md`](CONTRA
 - Python 3.9+
 - PyYAML (`pip install pyyaml` or equivalent)
 
+## Requirements
+
+- Python 3.9+
+- PyYAML (`pip install pyyaml` or equivalent)
+
 ## What it does
 
 1. Regenerates optional durable `index.md` files — one per **immediate subdirectory** of `.agents/docs/` (for example `decisions/`, `troubleshooting/`, and any future top-level sections).
