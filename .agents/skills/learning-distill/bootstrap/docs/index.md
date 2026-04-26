@@ -32,7 +32,7 @@ Workflow definitions (each folder contains `SKILL.md`):
 
 - [`task-closeout`](../skills/task-closeout/SKILL.md) — structured session bundles under `.agents/sessions/`.
 - [`learning-distill`](../skills/learning-distill/SKILL.md) — distill bundles into durable `.agents/` knowledge.
-- [`knowledge-lint`](../skills/knowledge-lint/SKILL.md) — periodic pass for duplication, drift, and index gaps.
+- [`docs-lint`](../skills/docs-lint/SKILL.md) — periodic pass for duplication, drift, and index gaps.
 - [`docs-search`](../skills/docs-search/SKILL.md) — search durable knowledge via a local index built from markdown.
 - [`docs-compile`](../skills/docs-compile/SKILL.md) — optional regeneration of section `index.md` files under `.agents/docs/` and the docs-search cache.
 - [`write-plan`](../skills/write-plan/SKILL.md) — scaffold a new plan under `.agents/docs/plans/` with valid frontmatter.

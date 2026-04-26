@@ -39,7 +39,7 @@ Allowed durable targets include:
 After changing durable markdown, when optional skills exist:
 
 ```bash
-bash .agents/skills/docs-compile/scripts/docs-compile.sh
+python .agents/skills/docs-compile/scripts/docs-compile.py
 ```
 
 Contract details: [docs-compile `CONTRACT.md`](../docs-compile/CONTRACT.md), [docs-search `CONTRACT.md`](../docs-search/CONTRACT.md).

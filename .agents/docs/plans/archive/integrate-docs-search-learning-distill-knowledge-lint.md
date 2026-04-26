@@ -1,6 +1,6 @@
 ---
-id: integrate-docs-search-learning-distill-knowledge-lint
-title: Integrate docs-search into learning-distill and knowledge-lint
+id: integrate-docs-search-learning-distill-docs-lint
+title: Integrate docs-search into learning-distill and docs-lint
 last_updated: 2026-04-22
 description: 'Make docs-search a first-class lookup step in distillation and lint workflows rather than only a post-write cache refresh.
 
@@ -8,7 +8,7 @@ description: 'Make docs-search a first-class lookup step in distillation and lin
 tags:
 - docs-search
 - learning-distill
-- knowledge-lint
+- docs-lint
 - skills
 status: completed
 kind: initiative
@@ -17,7 +17,7 @@ author_kind: ai
 prompter: Hypercubed
 ---
 
-# Plan: Integrate docs-search into learning-distill and knowledge-lint
+# Plan: Integrate docs-search into learning-distill and docs-lint
 
 **Date:** 2026-04-21 **Priority:** Medium **Blocked by:** none
 
@@ -53,7 +53,7 @@ The existing note about running `index-docs.py` if docs-compile is absent is cor
 
 ---
 
-## knowledge-lint changes
+## docs-lint changes
 
 ### 1. Add a search-assisted check for duplicate guidance
 
@@ -92,7 +92,7 @@ The current "uncategorized knowledge" bullet gives no method. Change to:
 ## Suggested edit order
 
 1. `learning-distill/SKILL.md` — Procedure step 2a (highest value, lowest risk)
-2. `knowledge-lint/SKILL.md` — pre-lint index step
-3. `knowledge-lint/SKILL.md` — duplicate guidance bullet
-4. `knowledge-lint/SKILL.md` — uncategorized knowledge bullet
+2. `docs-lint/SKILL.md` — pre-lint index step
+3. `docs-lint/SKILL.md` — duplicate guidance bullet
+4. `docs-lint/SKILL.md` — uncategorized knowledge bullet
 5. Review both files together to confirm the index-docs invocation pattern is consistent (once before reads, once after writes)

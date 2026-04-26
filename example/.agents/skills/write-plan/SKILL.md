@@ -84,7 +84,7 @@ The generated body comes from the scaffold template [`assets/plan-body.md`](asse
 6. Refresh indexes so humans see it in `plans/index.md`:
 
    ```bash
-   bash .agents/skills/docs-compile/scripts/docs-compile.sh
+   python .agents/skills/docs-compile/scripts/docs-compile.py
    ```
 
 ## Script reference

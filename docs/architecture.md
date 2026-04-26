@@ -70,7 +70,7 @@ Future agents should consult the compiled `.agents/` layer first, not rediscover
         │           └── validation.txt
         ├── learning-distill/
         │   └── SKILL.md
-        └── knowledge-lint/
+        └── docs-lint/
             └── SKILL.md
 ```
 
@@ -242,7 +242,7 @@ The schema and policy document for the knowledge layer.
 6. The learning agent runs `learning-distill` on that session bundle.
 7. Durable lessons are written into `.agents/`.
 8. The learning agent appends a summary to `.agents/docs/log.md`.
-9. Periodically, the lint agent runs `knowledge-lint`.
+9. Periodically, the lint agent runs `docs-lint`.
 
 ```mermaid
 flowchart TD
@@ -289,7 +289,7 @@ flowchart TD
     P --> Q[Mark session bundle distilled]
 
     Q --> R[Periodic maintenance pass]
-    R --> S[Run skill: knowledge-lint]
+    R --> S[Run skill: docs-lint]
 
     subgraph KnowledgeLint["Knowledge-lint / maintenance cleanup"]
         S --> T[Check duplication]

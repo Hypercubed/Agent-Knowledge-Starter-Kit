@@ -30,7 +30,7 @@ Skill **definitions** may live wherever your Skills CLI installs them (including
 
 - **Closeout only:** run `task-closeout` initialization. It creates `.agents/sessions/` and session ignore rules; it does not create durable `docs/` or `AGENTS.md` scaffolding.
 - **Distillation or linting:** run `learning-distill` initialization first when you need the durable `.agents/docs/` and `.agents/playbooks/` scaffold (and a template `.agents/AGENTS.md` when missing). It also ensures `.agents/sessions/` and `.agents/.gitignore` session rules exist.
-- **Lint only (no distill):** run `knowledge-lint` initialization when you added lint without distill; it creates the same durable doc scaffold from its `bootstrap/` copy without touching session storage.
+- **Lint only (no distill):** run `docs-lint` initialization when you added lint without distill; it creates the same durable doc scaffold from its `bootstrap/` copy without touching session storage.
 
 When in doubt after installing all three kit skills, run `learning-distill` initialization once, then proceed. The other skills' initialization steps remain safe no-ops or small merges (for example missing `.gitignore` lines).
 

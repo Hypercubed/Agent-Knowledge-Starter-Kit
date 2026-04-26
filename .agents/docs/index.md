@@ -28,6 +28,7 @@ Durable procedures for recurring workflows. In this layout, playbooks live under
 
 Examples (this repo):
 
+- [`.agents/playbooks/major-version-release.md`](../playbooks/major-version-release.md) — checklist for releasing a new major version of the kit.
 - [`.agents/playbooks/generate-example.md`](../playbooks/generate-example.md) — generate a complete bootstrapped example folder for the kit.
 - [`.agents/playbooks/pre-publish.md`](../playbooks/pre-publish.md) — run pre-publish checks and review warnings before publishing the starter kit.
 - [`.agents/playbooks/writing-integration-guides.md`](../playbooks/writing-integration-guides.md) — write user-facing tool integration guides without overstating unverified behavior.
@@ -38,7 +39,7 @@ Workflow definitions shipped with the kit (each folder contains `SKILL.md`, ofte
 
 - [`task-closeout`](../skills/task-closeout/SKILL.md) — structured session bundles under `.agents/sessions/`.
 - [`learning-distill`](../skills/learning-distill/SKILL.md) — distill bundles into durable `.agents/` knowledge.
-- [`knowledge-lint`](../skills/knowledge-lint/SKILL.md) — periodic pass for duplication, drift, and index gaps.
+- [`docs-lint`](../skills/docs-lint/SKILL.md) — periodic pass for duplication, drift, and index gaps.
 - [`docs-search`](../skills/docs-search/SKILL.md) — search durable `.agents/` knowledge via local index generation from markdown sources.
 - [`docs-compile`](../skills/docs-compile/SKILL.md) — optional regeneration of durable section `index.md` files under `.agents/docs/` and the docs-search cache.
 - [`write-plan`](../skills/write-plan/SKILL.md) — scaffold a new plan file under `.agents/docs/plans/` with valid frontmatter and stub sections.

@@ -34,7 +34,7 @@ python3 .agents/skills/docs-search/scripts/search-docs.py "<query>"
 
 ### Compile Durable Indexes
 ```bash
-bash .agents/skills/docs-compile/scripts/docs-compile.sh
+python .agents/skills/docs-compile/scripts/docs-compile.py
 ```
 
 ## Agent-Specific Caveats
@@ -49,7 +49,7 @@ bash .agents/skills/docs-compile/scripts/docs-compile.sh
 2. **Search**: Run `search-docs.py` to find relevant decisions or troubleshooting patterns.
 3. **Execute**: Perform the task following repo conventions.
 4. **Closeout**: Follow `.agents/skills/task-closeout/SKILL.md` to create a session bundle.
-5. **Distill (Optional)**: If acting as a learning agent, run `learning-distill` logic and refresh indexes with `docs-compile.sh`.
+5. **Distill (Optional)**: If acting as a learning agent, run `learning-distill` logic and refresh indexes with `docs-compile.py`.
 
 ## References
 

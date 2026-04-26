@@ -52,7 +52,7 @@ Run this once per target repo after the skill files are present under `.agents/s
 
 8. If the repo does not track `.agents/.gitignore` and the user relies on the repo root `.gitignore`, ensure equivalent patterns exist there: `.agents/sessions/*` and `!.agents/sessions/README.md`.
 
-This initialization supplies the durable doc scaffold the distill procedure expects. It does not fabricate repo-specific guidance beyond the kit templates. The same `bootstrap/` tree is the canonical source for **knowledge-lint** initialization when both skills are installed (see that skill’s `SKILL.md`).
+This initialization supplies the durable doc scaffold the distill procedure expects. It does not fabricate repo-specific guidance beyond the kit templates. The same `bootstrap/` tree is the canonical source for **docs-lint** initialization when both skills are installed (see that skill’s `SKILL.md`).
 
 ## Classification categories
 
@@ -70,7 +70,7 @@ Classify each candidate lesson as one of:
 - Do not copy task history into `.agents/AGENTS.md`.
 - Add or edit a file under `.agents/docs/decisions/` for rationale and nuance (filename stem and frontmatter `id` must match; update `decisions/index.md` when adding a new decision). Collision checks are **only within** `decisions/`. Use **`decisions/<slug>`** or **`troubleshooting/<slug>`** in `depends_on` (see [Entry `id` and qualified graph references](../../docs/MAINTENANCE.md#entry-id-and-qualified-graph-references) in `MAINTENANCE.md`).
 - Add or edit a file under `.agents/docs/troubleshooting/` for recurring failures and fixes (same `id`/filename rules; check collisions **only within** `troubleshooting/`).
-- After changing durable entry files, run `bash .agents/skills/docs-compile/scripts/docs-compile.sh` when the optional `docs-compile` skill is installed to regenerate `decisions/index.md`, `troubleshooting/index.md`, and docs-search cache (see [`.agents/skills/docs-compile/SKILL.md`](../docs-compile/SKILL.md)) before **knowledge-lint** or publishing.
+- After changing durable entry files, run `python .agents/skills/docs-compile/scripts/docs-compile.py` when the optional `docs-compile` skill is installed to regenerate `decisions/index.md`, `troubleshooting/index.md`, and docs-search cache (see [`.agents/skills/docs-compile/SKILL.md`](../docs-compile/SKILL.md)) before **docs-lint** or publishing.
 - Use `.agents/playbooks/` for durable multi-step procedures.
 - Add to `.agents/AGENTS.md` only if the lesson is broad, stable, concise, and actionable.
 - Reject low-confidence or one-off lessons.

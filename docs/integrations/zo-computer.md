@@ -62,7 +62,7 @@ Add this section to `/home/workspace/AGENTS.md` after install:
 3. Read `.agents/AGENTS.md` and `.agents/docs/index.md` before changing conventions.
 4. Use repo-local skills for closeout, distillation, and linting — either via the Skills UI or by running the scripts directly (e.g. `python3 .agents/skills/docs-search/scripts/search-docs.py <query>`).
 5. After meaningful work, run `task-closeout` to capture session evidence in `.agents/sessions/`, then `learning-distill` to promote stable lessons into `.agents/docs/`.
-6. Rebuild derived artifacts: `bash .agents/skills/docs-compile/scripts/docs-compile.sh` regenerates durable indexes and the docs-search cache.
+6. Rebuild derived artifacts: `python .agents/skills/docs-compile/scripts/docs-compile.py` regenerates durable indexes and the docs-search cache.
 
 ## Troubleshooting
 

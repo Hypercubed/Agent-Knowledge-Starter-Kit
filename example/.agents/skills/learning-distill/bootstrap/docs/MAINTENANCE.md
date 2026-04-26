@@ -21,7 +21,7 @@ This file belongs in `.agents/docs/`, alongside `.agents/AGENTS.md`.
 
 ## Entry shape
 
-When adding a new markdown file under `decisions/` or `troubleshooting/`, follow the frontmatter and body headings used by existing entries in that folder, including the [Frontmatter contract](#frontmatter-contract-durable-entries) below. When adding a plan under `plans/`, follow the [Frontmatter contract (plans)](#frontmatter-contract-plans) and the portable rules in [`write-plan` `CONTRACT.md`](../skills/write-plan/CONTRACT.md) (see also [Portable skill contracts](#portable-skill-contracts)). During **knowledge-lint**, verify contracts by inspection (duplicate `id`, missing keys, scalar `tags` instead of a list, `status` only on decisions for durable entries, plan `status` vocabulary for `plans/`, and so on). You may also validate entry YAML against the provided JSON Schemas (`.agents/skills/learning-distill/references/decision-frontmatter.schema.json`, `.agents/skills/learning-distill/references/troubleshooting-frontmatter.schema.json`, and `.agents/skills/write-plan/references/plan-frontmatter.schema.json`).
+When adding a new markdown file under `decisions/` or `troubleshooting/`, follow the frontmatter and body headings used by existing entries in that folder, including the [Frontmatter contract](#frontmatter-contract-durable-entries) below. When adding a plan under `plans/`, follow the [Frontmatter contract (plans)](#frontmatter-contract-plans) and the portable rules in [`write-plan` `CONTRACT.md`](../skills/write-plan/references/CONTRACT.md) (see also [Portable skill contracts](#portable-skill-contracts)). During **knowledge-lint**, verify contracts by inspection (duplicate `id`, missing keys, scalar `tags` instead of a list, `status` only on decisions for durable entries, plan `status` vocabulary for `plans/`, and so on). You may also validate entry YAML against the provided JSON Schemas (`.agents/skills/learning-distill/references/decision-frontmatter.schema.json`, `.agents/skills/learning-distill/references/troubleshooting-frontmatter.schema.json`, and `.agents/skills/write-plan/references/plan-frontmatter.schema.json`).
 
 ### Frontmatter contract (durable entries)
 
@@ -132,7 +132,7 @@ If a skill `CONTRACT.md` disagrees with this file on an overlapping topic (for e
 | ---------------- | ------------------------------------------------------- |
 | docs-search      | [`CONTRACT.md`](../skills/docs-search/CONTRACT.md)      |
 | docs-compile     | [`CONTRACT.md`](../skills/docs-compile/CONTRACT.md)     |
-| knowledge-lint   | [`CONTRACT.md`](../skills/knowledge-lint/CONTRACT.md)   |
+| docs-lint   | [`CONTRACT.md`](../skills/docs-lint/CONTRACT.md)   |
 | learning-distill | [`CONTRACT.md`](../skills/learning-distill/CONTRACT.md) |
 | task-closeout    | [`CONTRACT.md`](../skills/task-closeout/CONTRACT.md)    |
 | write-plan       | [`CONTRACT.md`](../skills/write-plan/CONTRACT.md)       |
@@ -151,7 +151,11 @@ When adding a new skill that reads or writes `.agents/docs/`, add a row here and
 | ---------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------- | ------------------------------------------------------- |
 | docs-search                        | reads docs; fallback search mechanism                                | reads `.agents/docs/**/*.md` directly via scripts              | [`CONTRACT.md`](../skills/docs-search/CONTRACT.md)      |
 | docs-compile                       | reads docs; writes derived indexes                                   | writes `.agents/docs/*/index.md`                               | [`CONTRACT.md`](../skills/docs-compile/CONTRACT.md)     |
+<<<<<<< HEAD
 | knowledge-lint                     | reads docs; may suggest or apply minimal edits                       | `.agents/AGENTS.md`, `.agents/docs/**`, `.agents/playbooks/**` | [`CONTRACT.md`](../skills/knowledge-lint/CONTRACT.md)   |
+=======
+| docs-lint                     | reads docs; may suggest or apply minimal edits                       | `.agents/AGENTS.md`, `.agents/docs/**`, `.agents/playbooks/**` | [`CONTRACT.md`](../skills/docs-lint/CONTRACT.md)   |
+>>>>>>> 6ed4372a49bdfd6059ec63342ce833a2075efa3e
 | learning-distill                   | reads session bundles; writes durable docs and `.agents/docs/log.md` | `.agents/docs/**`, `.agents/AGENTS.md`, `.agents/playbooks/**` | [`CONTRACT.md`](../skills/learning-distill/CONTRACT.md) |
 | task-closeout                      | writes temporary bundle only; no durable docs edits                  | `.agents/sessions/**`                                          | [`CONTRACT.md`](../skills/task-closeout/CONTRACT.md)    |
 | write-plan                         | writes plan docs and contributes plan contract                       | `.agents/docs/plans/**`                                        | [`CONTRACT.md`](../skills/write-plan/CONTRACT.md)       |
@@ -191,4 +195,4 @@ Do not append to `.agents/docs/log.md` for routine maintenance. Append concise, 
 
 ### Lint hygiene baseline
 
-Use `knowledge-lint` guidance for checklist details. After broad markdown edits, re-check durable frontmatter conformance, verify qualified graph references, and scan for doubled `.agents/` path segments before publishing.
+Use `docs-lint` guidance for checklist details. After broad markdown edits, re-check durable frontmatter conformance, verify qualified graph references, and scan for doubled `.agents/` path segments before publishing.

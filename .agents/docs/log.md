@@ -1,5 +1,18 @@
 # Knowledge Maintenance Log
 
+### [2026-04-25] learning-distill | t-20260425-140900-generate-example-verbose
+
+Outcome: updated Files: `.agents/AGENTS.md`; `.agents/docs/troubleshooting/stalled-maintenance-scripts.md`; `.agents/docs/troubleshooting/index.md`; `.agents/docs/log.md`; `.agents/sessions/20260425-200900-generate-example-verbose/summary.json` Accepted: 2 (troubleshooting: stalled maintenance scripts; AGENTS feedback rule) Rejected: 0 Notes: Distilled session for verbose mode improvement; added troubleshooting for long-running scripts using npx and guidance for script feedback.
+
+
+### \[2026-04-25] learning-distill | 20260425-120535-task-closeout
+
+Outcome: updated Files: `.agents/AGENTS.md`; `.agents/docs/troubleshooting/agent-stuck-in-explanation-loop.md`; `.agents/docs/troubleshooting/index.md`; `.agents/docs/log.md`; `.agents/sessions/20260425-120535-task-closeout/summary.json` Accepted: 2 (AGENTS pitfall: execute imperative urgency commands directly; troubleshooting: fixing agent stuck in explanation loop) Rejected: 0 Notes: Distilled task-closeout execution session; added durable guidance for overcoming LLM explanatory loops during file output.
+
+### \[2026-04-25] learning-distill | 20260423-220116-deep-review-v2
+
+Outcome: updated Files: `.agents/docs/troubleshooting/windows-ripgrep-path-separators.md`; `.agents/docs/troubleshooting/index.md`; `.agents/playbooks/major-version-release.md`; `.agents/docs/log.md`; `.agents/sessions/20260423-220116-deep-review-v2/summary.json` Accepted: 2 (troubleshooting: Windows ripgrep path separator normalization in Python scripts; playbook: major version release checks for deprecated artifacts) Rejected: 0 Notes: Distilled deep review v2 session; added troubleshooting for cross-platform ripgrep stdout paths and a playbook for major version artifact cleanup.
+
 ### \[2026-04-23] learning-distill | t-replace-indexing-with-ripgrep-task
 
 Outcome: updated Files: `.agents/skills/docs-search/scripts/search-docs.py`; `.agents/skills/docs-search/CONTRACT.md`; `.agents/skills/docs-search/SKILL.md`; `.agents/docs/decisions/docs-search-remains-canonical-over-host-native-search.md`; `.agents/docs/log.md`; `.agents/sessions/20260423-170123-replace-indexing-with-ripgrep/summary.json` Accepted: 1 (decision refinement: live search with tiered fallbacks is canonical over pre-built JSON index; freshness is now implicit) Rejected: 0 Notes: Replaced Python indexer/searcher pair with a single live-search script; handling missing subdirectories dynamically to ensure robust fallbacks.
@@ -18,11 +31,11 @@ Outcome: updated Files: `.agents/docs/decisions/regenerate-example-when-portable
 
 ### \[2026-04-22] learning-distill | t-20260422-182216-scaffold-maintenance
 
-Outcome: updated Files: `.agents/docs/troubleshooting/example-agents-looks-like-full-dogfood-copy.md`; `.agents/docs/troubleshooting/maintainer-plans-files-placed-under-skill-bootstrap.md`; `.agents/skills/task-closeout/SKILL.md`; `.agents/docs/MAINTENANCE.md`; `.agents/skills/learning-distill/bootstrap/docs/MAINTENANCE.md`; `.agents/AGENTS.md`; `.agents/playbooks/generate-example.md`; `.agents/docs/log.md`; `.agents/sessions/20260422-182216-scaffold-maintenance/summary.json` Accepted: 4 (troubleshooting: fat `example/` from bypassing generator; maintainer plans under skill bootstrap; task-closeout rules + procedure for bundle-only edits and full-session scope; playbook + AGENTS + MAINTENANCE hygiene) Rejected: 1 (extra repo decision: covered by existing plans location decision + new troubleshooting) Notes: Ran `docs-compile.sh` then `generate-example/run.sh` (refreshed `example/.agents/` including copied skills).
+Outcome: updated Files: `.agents/docs/troubleshooting/example-agents-looks-like-full-dogfood-copy.md`; `.agents/docs/troubleshooting/maintainer-plans-files-placed-under-skill-bootstrap.md`; `.agents/skills/task-closeout/SKILL.md`; `.agents/docs/MAINTENANCE.md`; `.agents/skills/learning-distill/bootstrap/docs/MAINTENANCE.md`; `.agents/AGENTS.md`; `.agents/playbooks/generate-example.md`; `.agents/docs/log.md`; `.agents/sessions/20260422-182216-scaffold-maintenance/summary.json` Accepted: 4 (troubleshooting: fat `example/` from bypassing generator; maintainer plans under skill bootstrap; task-closeout rules + procedure for bundle-only edits and full-session scope; playbook + AGENTS + MAINTENANCE hygiene) Rejected: 1 (extra repo decision: covered by existing plans location decision + new troubleshooting) Notes: Ran `docs-compile.py` then `generate-example/run.sh` (refreshed `example/.agents/` including copied skills).
 
 ### \[2026-04-22] learning-distill | t-20260422-docs-search-native-index-policy
 
-Outcome: updated Files: `.agents/docs/decisions/docs-search-remains-canonical-over-host-native-search.md`; `.agents/docs/decisions/index.md`; `.agents/docs/troubleshooting/index.md`; `.agents/docs/log.md`; `.agents/sessions/20260422-032419-docs-search-native-index-policy/summary.json` Accepted: 1 (decision: keep `docs-search` scripts canonical for `.agents/` knowledge; do not default to host-native index-first with script fallback) Rejected: 1 (AGENTS.md: rationale belongs in `decisions/`, not operational bullets) Notes: Distilled policy discussion after task closeout; ran `docs-compile.sh` to refresh indexes and search cache.
+Outcome: updated Files: `.agents/docs/decisions/docs-search-remains-canonical-over-host-native-search.md`; `.agents/docs/decisions/index.md`; `.agents/docs/troubleshooting/index.md`; `.agents/docs/log.md`; `.agents/sessions/20260422-032419-docs-search-native-index-policy/summary.json` Accepted: 1 (decision: keep `docs-search` scripts canonical for `.agents/` knowledge; do not default to host-native index-first with script fallback) Rejected: 1 (AGENTS.md: rationale belongs in `decisions/`, not operational bullets) Notes: Distilled policy discussion after task closeout; ran `docs-compile.py` to refresh indexes and search cache.
 
 ### \[2026-04-22] learning-distill | t-20260422-zo-followup
 
@@ -58,11 +71,11 @@ Outcome: no net durable edits Files: `.agents/docs/log.md`; `.agents/sessions/20
 
 ### \[2026-04-19] maintenance | remove-layout-v2-labeling
 
-Outcome: updated Files: `.agents/docs/index.md`; `.agents/docs/MAINTENANCE.md`; `.agents/docs/troubleshooting/github-copilot-chat-context-not-in-focus.md`; `README.md`; `.agents/skills/learning-distill/bootstrap/docs/index.md`; `.agents/skills/knowledge-lint/bootstrap/docs/index.md`; `example/.agents/docs/index.md`; `example/.agents/skills/learning-distill/bootstrap/docs/index.md`; `example/.agents/skills/knowledge-lint/bootstrap/docs/index.md`; `.agents/plans/wiki-system.md`; `.agents/docs/log.md` Classification: drop “layout v2” framing and monolith migration narrative from normative docs; describe current directory layout only Disposition: accepted Notes: Older `log.md` rows may still mention layout v2 by name.
+Outcome: updated Files: `.agents/docs/index.md`; `.agents/docs/MAINTENANCE.md`; `.agents/docs/troubleshooting/github-copilot-chat-context-not-in-focus.md`; `README.md`; `.agents/skills/learning-distill/bootstrap/docs/index.md`; `.agents/skills/docs-lint/bootstrap/docs/index.md`; `example/.agents/docs/index.md`; `example/.agents/skills/learning-distill/bootstrap/docs/index.md`; `example/.agents/skills/docs-lint/bootstrap/docs/index.md`; `.agents/plans/wiki-system.md`; `.agents/docs/log.md` Classification: drop “layout v2” framing and monolith migration narrative from normative docs; describe current directory layout only Disposition: accepted Notes: Older `log.md` rows may still mention layout v2 by name.
 
 ### \[2026-04-19] maintenance | bulk-replace-prevention
 
-Outcome: updated Files: `.agents/AGENTS.md`; `.agents/docs/MAINTENANCE.md`; `.agents/skills/knowledge-lint/SKILL.md`; `scripts/check-publish.sh`; `.agents/docs/log.md` Classification: document why knowledge-lint does not catch naive token replace; add mechanical doubled-path check and editing hygiene Disposition: accepted Notes: `check-publish.sh` now fails when `rg` finds the literal doubled kit path segment under README, INSTALL, docs, and `.agents/` (AGENTS and MAINTENANCE describe the hazard without embedding that substring so the scan stays clean).
+Outcome: updated Files: `.agents/AGENTS.md`; `.agents/docs/MAINTENANCE.md`; `.agents/skills/docs-lint/SKILL.md`; `scripts/check-publish.sh`; `.agents/docs/log.md` Classification: document why docs-lint does not catch naive token replace; add mechanical doubled-path check and editing hygiene Disposition: accepted Notes: `check-publish.sh` now fails when `rg` finds the literal doubled kit path segment under README, INSTALL, docs, and `.agents/` (AGENTS and MAINTENANCE describe the hazard without embedding that substring so the scan stays clean).
 
 ### \[2026-04-19] maintenance | rename-troubleshooting-example-vs-root
 
@@ -78,15 +91,15 @@ Outcome: updated Files: `.agents/docs/decisions/index.md`; `.agents/docs/decisio
 
 ### \[2026-04-19] maintenance | docs-index-and-single-tree-audit
 
-Outcome: updated Files: `.agents/docs/index.md`; `.agents/docs/decisions/index.md`; `.agents/docs/troubleshooting/index.md`; `.agents/docs/decisions/scaffold-content-stays-consumer-generic.md`; `.agents/docs/decisions/sync-root-agents-skills-after-scaffold-skill-edits.md`; `.agents/docs/decisions/maintainer-only-skills-and-scripts-never-live-under-agents.md`; `.agents/docs/decisions/dual-agents-path-vs-agents-dogfood-historical.md`; `.agents/docs/decisions/single-tree-architecture-agents.md`; `.agents/docs/decisions/kit-contract-policy-changes-must-update-agents-too.md`; `.agents/docs/troubleshooting/comparing-agents-to-agents-in-this-starter-repo.md`; `.agents/docs/troubleshooting/maintainer-skill-lives-under-agents-skills-by-mistake.md`; `.agents/skills/learning-distill/bootstrap/docs/index.md`; `.agents/skills/knowledge-lint/bootstrap/docs/index.md`; `.agents/skills/knowledge-lint/SKILL.md`; `.agents/docs/log.md` Classification: index coverage (layout v2, playbooks, skills, agents, root docs, integrations); stale dual-tree and `scaffold/` guidance removed from durable decisions and troubleshooting Disposition: accepted Notes: Historical `scaffold/` references remain only where explicitly historical; `example/.agents/` described as generated illustration, not a second canonical tree. Regenerated `example/` via `generate-example/run.sh`.
+Outcome: updated Files: `.agents/docs/index.md`; `.agents/docs/decisions/index.md`; `.agents/docs/troubleshooting/index.md`; `.agents/docs/decisions/scaffold-content-stays-consumer-generic.md`; `.agents/docs/decisions/sync-root-agents-skills-after-scaffold-skill-edits.md`; `.agents/docs/decisions/maintainer-only-skills-and-scripts-never-live-under-agents.md`; `.agents/docs/decisions/dual-agents-path-vs-agents-dogfood-historical.md`; `.agents/docs/decisions/single-tree-architecture-agents.md`; `.agents/docs/decisions/kit-contract-policy-changes-must-update-agents-too.md`; `.agents/docs/troubleshooting/comparing-agents-to-agents-in-this-starter-repo.md`; `.agents/docs/troubleshooting/maintainer-skill-lives-under-agents-skills-by-mistake.md`; `.agents/skills/learning-distill/bootstrap/docs/index.md`; `.agents/skills/docs-lint/bootstrap/docs/index.md`; `.agents/skills/docs-lint/SKILL.md`; `.agents/docs/log.md` Classification: index coverage (layout v2, playbooks, skills, agents, root docs, integrations); stale dual-tree and `scaffold/` guidance removed from durable decisions and troubleshooting Disposition: accepted Notes: Historical `scaffold/` references remain only where explicitly historical; `example/.agents/` described as generated illustration, not a second canonical tree. Regenerated `example/` via `generate-example/run.sh`.
 
-### \[2026-04-19] knowledge-lint | periodic-pass
+### \[2026-04-19] docs-lint | periodic-pass
 
-Outcome: cleanup Files: `.agents/docs/index.md`; `.agents/docs/log.md` Classification: index coverage (playbooks README + portable kit skills listed); no AGENTS or playbook edits Disposition: accepted Notes: knowledge-lint pass after layout v2; indexes and `id`/filename slugs verified; no broken links in decisions or troubleshooting indexes.
+Outcome: cleanup Files: `.agents/docs/index.md`; `.agents/docs/log.md` Classification: index coverage (playbooks README + portable kit skills listed); no AGENTS or playbook edits Disposition: accepted Notes: docs-lint pass after layout v2; indexes and `id`/filename slugs verified; no broken links in decisions or troubleshooting indexes.
 
 ### \[2026-04-19] maintenance | knowledge-layout-v2-phase0
 
-Outcome: migrated Files: `.agents/docs/decisions/` (new directory, per-decision markdown + indexes); `.agents/docs/troubleshooting/` (new directory, per-pattern markdown + indexes); removed `.agents/docs/repo-decisions.md` and `.agents/docs/troubleshooting.md`; `.agents/docs/index.md`; `.agents/docs/MAINTENANCE.md`; `README.md`; `INSTALL.md`; `docs/architecture.md`; `.agents/AGENTS.md`; `.agents/skills/learning-distill/` (SKILL + bootstrap); `.agents/skills/knowledge-lint/` (SKILL + bootstrap); `.agents/skills/generate-example/run.sh`; selected `.agents/plans/*.md`; regenerated `example/` Accepted: — Rejected: — Notes: Knowledge layout v2 — minimal frontmatter (`id`, `title`, `last_updated`) on each entry file; historical log lines above unchanged.
+Outcome: migrated Files: `.agents/docs/decisions/` (new directory, per-decision markdown + indexes); `.agents/docs/troubleshooting/` (new directory, per-pattern markdown + indexes); removed `.agents/docs/repo-decisions.md` and `.agents/docs/troubleshooting.md`; `.agents/docs/index.md`; `.agents/docs/MAINTENANCE.md`; `README.md`; `INSTALL.md`; `docs/architecture.md`; `.agents/AGENTS.md`; `.agents/skills/learning-distill/` (SKILL + bootstrap); `.agents/skills/docs-lint/` (SKILL + bootstrap); `.agents/skills/generate-example/run.sh`; selected `.agents/plans/*.md`; regenerated `example/` Accepted: — Rejected: — Notes: Knowledge layout v2 — minimal frontmatter (`id`, `title`, `last_updated`) on each entry file; historical log lines above unchanged.
 
 ### \[2026-04-19] learning-distill | t-20260419-151439-learning-distill-discovery-failure
 
@@ -128,11 +141,11 @@ Outcome: updated Files: `.agents/playbooks/writing-integration-guides.md`; `.age
 
 Outcome: updated Files: `.agents/playbooks/pre-publish.md`; `.agents/docs/log.md`; `.agents/sessions/20260412-170915-publish-check-link-handling/summary.json` Accepted: 1 (pre-publish link checks should tolerate external status `0` in restricted environments while keeping local links blocking) Rejected: 2 (`.agents/AGENTS.md` and troubleshooting updates not warranted for a narrow publish-workflow lesson) Notes: Distilled publish checker closeout; durable guidance was kept in the pre-publish playbook.
 
-### \[2026-04-12] knowledge-lint-20260412
+### \[2026-04-12] docs-lint-20260412
 
-Outcome: updated Files: `.agents/docs/troubleshooting.md`; `.agents/docs/log.md`; `.agents/sessions/20260412-162300-knowledge-lint-pass/summary.json` Accepted: 1 (Added troubleshooting entry for Windows-to-WSL Tool Path Failures) Rejected: 0 Notes: Distilled knowledge-lint session. Added a troubleshooting note to prevent agents struggling with Windows-WSL cross-environment file paths.
+Outcome: updated Files: `.agents/docs/troubleshooting.md`; `.agents/docs/log.md`; `.agents/sessions/20260412-162300-docs-lint-pass/summary.json` Accepted: 1 (Added troubleshooting entry for Windows-to-WSL Tool Path Failures) Rejected: 0 Notes: Distilled docs-lint session. Added a troubleshooting note to prevent agents struggling with Windows-WSL cross-environment file paths.
 
-### \[2026-04-12] knowledge-lint
+### \[2026-04-12] docs-lint
 
 Outcome: cleanup Files: `.agents/docs/log.md`; `.agents/docs/index.md`; `.agents/docs/MAINTENANCE.md` Notes: Removed duplicate learning-distill entry for `log-safety-hardening` and a stray closing bracket. Documented the `.agents/plans/` directory in `index.md` and `MAINTENANCE.md` to address uncategorized knowledge and missing index coverage.
 
@@ -208,10 +221,10 @@ Accepted: 3 (maintainer-only skills never in `.agents/` decision; wrong-placemen
 Rejected: 1 (extra `.agents/AGENTS.md` bullet — already covered by existing “Skills” line)\
 Notes: Distilled scaffold sync closeout; sync mechanics stay in skill + `sync.sh`.
 
-### \[2026-04-11] knowledge-lint
+### \[2026-04-11] docs-lint
 
 Outcome: updated\
-Files: `.agents/AGENTS.md`; `.agents/docs/repo-decisions.md`; `.agents/docs/index.md`; `.agents/docs/log.md`; `.agents/AGENTS.md`; `README.md`; `.agents/skills/knowledge-lint/SKILL.md`; `.agents/skills/learning-distill/SKILL.md`; `.agents/skills/knowledge-lint/SKILL.md`; `.agents/skills/learning-distill/SKILL.md`\
+Files: `.agents/AGENTS.md`; `.agents/docs/repo-decisions.md`; `.agents/docs/index.md`; `.agents/docs/log.md`; `.agents/AGENTS.md`; `README.md`; `.agents/skills/docs-lint/SKILL.md`; `.agents/skills/learning-distill/SKILL.md`; `.agents/skills/docs-lint/SKILL.md`; `.agents/skills/learning-distill/SKILL.md`\
 Notes: Fixed playbook path everywhere (`playbooks/` vs `docs/playbooks/`); aligned sessions bullet with MAINTENANCE; deduped `prior_session` consequences vs troubleshooting; clarified index playbooks location.
 
 ### \[2026-04-11] learning-distill | t-20260411-185459-orchestrator, t-20260411-190655-sessions-readme
@@ -256,6 +269,6 @@ Outcome: updated Files: `.agents/playbooks/writing-integration-guides.md`; `.age
 
 Outcome: updated Files: `.agents/AGENTS.md`; `.agents/docs/log.md` Accepted: 0 Rejected: 0 Notes: brief summary
 
-### \[YYYY-MM-DD] knowledge-lint
+### \[YYYY-MM-DD] docs-lint
 
 Outcome: cleanup Files: `.agents/AGENTS.md`; `.agents/docs/log.md` Notes: brief summary

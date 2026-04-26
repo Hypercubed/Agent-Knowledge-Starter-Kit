@@ -60,7 +60,7 @@ Add a compact pointer under maintenance rules or before submitting changes:
 
 - use `task-closeout` when implementation work produces meaningful reusable context
 - use `learning-distill` after a closeout bundle is ready
-- use `knowledge-lint` periodically or after several distillations
+- use `docs-lint` periodically or after several distillations
 
 This should stay short so `.agents/AGENTS.md` remains high-signal.
 
@@ -70,7 +70,7 @@ Update the three maintenance skills so their "Use when" descriptions mention the
 
 - `task-closeout` supports the coding agent's closeout handoff
 - `learning-distill` is the learning agent's primary workflow
-- `knowledge-lint` is the lint agent's primary workflow
+- `docs-lint` is the lint agent's primary workflow
 
 Avoid duplicating the full role definitions inside every skill.
 

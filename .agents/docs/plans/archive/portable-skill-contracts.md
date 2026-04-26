@@ -26,7 +26,7 @@ Agents that receive **only** a skill folder (without the full kit checkout) stil
 
 **In scope**
 
-- New `CONTRACT.md` files for **docs-search**, **docs-compile**, **knowledge-lint**, **learning-distill**, and **task-closeout** (narrow specs; link to `MAINTENANCE.md` instead of duplicating durable frontmatter prose).
+- New `CONTRACT.md` files for **docs-search**, **docs-compile**, **docs-lint**, **learning-distill**, and **task-closeout** (narrow specs; link to `MAINTENANCE.md` instead of duplicating durable frontmatter prose).
 - A **Portable skill contracts** section in [`.agents/docs/MAINTENANCE.md`](../../MAINTENANCE.md) and the same section in [`.agents/skills/learning-distill/bootstrap/docs/MAINTENANCE.md`](../../../skills/learning-distill/bootstrap/docs/MAINTENANCE.md) (table of contract paths + precedence).
 - `SKILL.md` updates for those five skills so each points at its `CONTRACT.md` and the new `MAINTENANCE.md` anchor.
 - Optional one-line pointer in **write-plan** `CONTRACT.md` to the new `MAINTENANCE.md` section.
@@ -40,14 +40,14 @@ Agents that receive **only** a skill folder (without the full kit checkout) stil
 ## Approach
 
 - Mirror the **write-plan** pattern: `CONTRACT.md` lives beside `SKILL.md`; overlapping **durable docs** rules remain in `MAINTENANCE.md`, which stays **authoritative** until skill contracts are updated.
-- Author each contract from the **actual scripts** (`index-docs.py`, `docs-compile.sh`, `generate-durable-indexes.py`) and existing **SKILL.md** procedures so contracts stay short and accurate.
+- Author each contract from the **actual scripts** (`index-docs.py`, `docs-compile.py`, `generate-durable-indexes.py`) and existing **SKILL.md** procedures so contracts stay short and accurate.
 - Keep bootstrap `MAINTENANCE.md` text aligned with `.agents/docs/MAINTENANCE.md` so **learning-distill** initialization does not fork policy.
 
 ## Phases or milestones
 
 1. Land **Portable skill contracts** in both `MAINTENANCE.md` trees (anchor: `#portable-skill-contracts`).
 2. Add five `CONTRACT.md` files + write-plan `CONTRACT.md` pointer; wire **SKILL.md** links.
-3. Run **docs-compile**; run **generate-example**; optional **knowledge-lint** pass.
+3. Run **docs-compile**; run **generate-example**; optional **docs-lint** pass.
 
 ## Success criteria
 
