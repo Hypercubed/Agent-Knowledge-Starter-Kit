@@ -4,7 +4,7 @@ This document defines the YAML and placement rules for maintainer **plans** unde
 
 When the full kit is present, the same rules are recorded in [`.agents/docs/MAINTENANCE.md`](../../docs/MAINTENANCE.md#frontmatter-contract-plans). If anything disagrees, **MAINTENANCE.md** is authoritative until this file is updated. For every user-facing skill `CONTRACT.md` path and the shared precedence rule, see [Portable skill contracts in `MAINTENANCE.md`](../../docs/MAINTENANCE.md#portable-skill-contracts).
 
-You can also validate this contract via JSON Schema using `.agents/schemas/plan-frontmatter.schema.json`.
+You can also validate this contract via JSON Schema using `plan-frontmatter.schema.json` (shipped in this folder).
 
 ## Where plans live
 

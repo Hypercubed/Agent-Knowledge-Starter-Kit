@@ -21,11 +21,11 @@ This file belongs in `.agents/docs/`, alongside `.agents/AGENTS.md`.
 
 ## Entry shape
 
-When adding a new markdown file under `decisions/` or `troubleshooting/`, follow the frontmatter and body headings used by existing entries in that folder, including the [Frontmatter contract](#frontmatter-contract-durable-entries) below. When adding a plan under `plans/`, follow the [Frontmatter contract (plans)](#frontmatter-contract-plans) and the portable rules in [`write-plan` `CONTRACT.md`](../skills/write-plan/CONTRACT.md) (see also [Portable skill contracts](#portable-skill-contracts)). During **knowledge-lint**, verify contracts by inspection (duplicate `id`, missing keys, scalar `tags` instead of a list, `status` only on decisions for durable entries, plan `status` vocabulary for `plans/`, and so on). You may also validate entry YAML against the provided JSON Schemas under `.agents/schemas/` (`plan-frontmatter.schema.json`, `decision-frontmatter.schema.json`, and `troubleshooting-frontmatter.schema.json`).
+When adding a new markdown file under `decisions/` or `troubleshooting/`, follow the frontmatter and body headings used by existing entries in that folder, including the [Frontmatter contract](#frontmatter-contract-durable-entries) below. When adding a plan under `plans/`, follow the [Frontmatter contract (plans)](#frontmatter-contract-plans) and the portable rules in [`write-plan` `CONTRACT.md`](../skills/write-plan/CONTRACT.md) (see also [Portable skill contracts](#portable-skill-contracts)). During **knowledge-lint**, verify contracts by inspection (duplicate `id`, missing keys, scalar `tags` instead of a list, `status` only on decisions for durable entries, plan `status` vocabulary for `plans/`, and so on). You may also validate entry YAML against the provided JSON Schemas (`.agents/docs/decision-frontmatter.schema.json`, `.agents/docs/troubleshooting-frontmatter.schema.json`, and `.agents/skills/write-plan/plan-frontmatter.schema.json`).
 
 ### Frontmatter contract (durable entries)
 
-Applies to every `*.md` file under `decisions/` and `troubleshooting/` **except** each folder’s `index.md`. You can validate this contract via JSON Schema using `.agents/schemas/decision-frontmatter.schema.json` and `.agents/schemas/troubleshooting-frontmatter.schema.json`.
+Applies to every `*.md` file under `decisions/` and `troubleshooting/` **except** each folder’s `index.md`. You can validate this contract via JSON Schema using `.agents/docs/decision-frontmatter.schema.json` and `.agents/docs/troubleshooting-frontmatter.schema.json`.
 
 **Required keys (all entries):**
 
@@ -47,7 +47,7 @@ Applies to every `*.md` file under `decisions/` and `troubleshooting/` **except*
 
 ### Frontmatter contract (plans)
 
-The **write-plan** skill also ships a portable copy of this contract at `.agents/skills/write-plan/CONTRACT.md` for skill-only installs. Other user-facing skills ship their own `CONTRACT.md` files; see [Portable skill contracts](#portable-skill-contracts). You can validate this contract via JSON Schema using `.agents/schemas/plan-frontmatter.schema.json`.
+The **write-plan** skill also ships a portable copy of this contract at `.agents/skills/write-plan/CONTRACT.md` for skill-only installs. Other user-facing skills ship their own `CONTRACT.md` files; see [Portable skill contracts](#portable-skill-contracts). You can validate this contract via JSON Schema using `.agents/skills/write-plan/plan-frontmatter.schema.json`.
 
 Applies to every `*.md` file under **`plans/`** and **`plans/archive/`**, except `plans/index.md` and any other index or README files unless they intentionally adopt plan frontmatter.
 
