@@ -16,6 +16,7 @@ One file per maintainer initiative or roadmap. New entries: follow the plan cont
 - [Consumer-friendly upgrade path](consumer-upgrade-path.md)
 - [Guidance for out-of-repo knowledge trees](out-of-repo-trees.md)
 - [Introduce Manifest-Based Docs Structure](introduce-docs-manifest.md)
+- [Living Architecture & Intent Capture](living-architecture-intent-capture.md)
 - [Plan: Operating Contract + Trigger System + Playbooks](implement-operating-contract-and-triggers.md)
 - [Repo-centric wiki tooling](repo-centric-wiki-tooling.md)
 - [Rules in the published kit](rules-in-scaffold.md)
