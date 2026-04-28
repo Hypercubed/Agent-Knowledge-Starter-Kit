@@ -1,12 +1,12 @@
 ---
 id: plans-index
 title: "Plans index"
-last_updated: 2026-04-25
+last_updated: 2026-04-28
 ---
 
 # Plans
 
-One file per maintainer initiative or roadmap. New entries: follow the plan contract in [plans-as-first-class-artifacts.md](archive/plans-as-first-class-artifacts.md), then add a row below.
+One file per maintainer initiative or roadmap. New entries: follow the plan contract in [plans-as-first-class-artifacts.md](plans-as-first-class-artifacts.md), then add a row below.
 
 ## Index
 
@@ -15,6 +15,7 @@ One file per maintainer initiative or roadmap. New entries: follow the plan cont
 - [Agent role guidance](agent-role-guidance.md)
 - [Consumer-friendly upgrade path](consumer-upgrade-path.md)
 - [Guidance for out-of-repo knowledge trees](out-of-repo-trees.md)
+- [Harden routing architecture](harden-routing-architecture.md)
 - [Introduce Manifest-Based Docs Structure](introduce-docs-manifest.md)
 - [Living Architecture & Intent Capture](living-architecture-intent-capture.md)
 - [Plan: Operating Contract + Trigger System + Playbooks](implement-operating-contract-and-triggers.md)
