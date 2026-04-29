@@ -145,37 +145,6 @@ Example:
 
 ---
 
-## Agent roles
-
-### Coding agent
-
-Responsibilities:
-
-- implement code changes
-- run tests and validation
-- capture a session bundle at meaningful stopping points
-- optionally delegate to the learning agent
-
-### Learning agent
-
-Responsibilities:
-
-- read a completed session bundle from `.agents/sessions/`
-- classify candidate lessons
-- update the correct durable file under `.agents/`
-- keep `.agents/AGENTS.md` concise
-- record a maintenance log entry
-
-### Lint agent
-
-Responsibilities:
-
-- find duplication and contradictions in `.agents/`
-- identify stale or oversized guidance
-- recommend or apply minimal cleanup
-
----
-
 ## Durable knowledge files
 
 ### `.agents/AGENTS.md`
