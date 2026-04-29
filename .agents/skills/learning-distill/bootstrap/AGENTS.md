@@ -10,6 +10,12 @@ This kit was produced with the help of AI tools. It is provided **as-is**; **use
 
 This file contains concise, high-signal instructions for future agents working in this repository.
 
+## Routing Directives
+
+- **UPON STARTUP:** You MUST read `.agents/docs/index.md` before executing any file modifications. This ensures you understand the repository layout and available tools.
+- **WHEN DEBUGGING:** If you encounter a failing test, build error, or runtime exception, your FIRST action MUST be to execute `.agents/skills/docs-search` using the error output as your query.
+- **BEFORE ARCHITECTURAL CHANGES:** You MUST search `.agents/docs/decisions/` or read its `index.md` to ensure your proposed changes do not violate established design patterns.
+
 ## What belongs here
 
 - build and test commands

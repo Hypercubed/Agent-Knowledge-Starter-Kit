@@ -7,7 +7,7 @@ tags:
   - routing
   - architecture
   - hardening
-status: draft
+status: completed
 ---
 
 # Harden Routing Architecture
