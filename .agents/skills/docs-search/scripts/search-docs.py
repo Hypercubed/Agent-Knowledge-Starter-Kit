@@ -194,6 +194,7 @@ def main() -> int:
     parser.add_argument("query", help="Search query")
     parser.add_argument("-n", "--limit", type=int, default=5, help="Max results (default: 5)")
     parser.add_argument("--agents-root", type=Path, default=None, help="Path to .agents directory")
+    parser.add_argument("--enable-telemetry", action="store_true", help="Enable telemetry logging of search queries")
     args = parser.parse_args()
 
     query = args.query.strip()
@@ -205,6 +206,19 @@ def main() -> int:
     if not agents_root or not agents_root.is_dir():
         print("ERROR: could not locate .agents directory.", file=sys.stderr)
         return 1
+
+    if args.enable_telemetry:
+        # Telemetry logging
+        try:
+            from datetime import datetime
+            logs_dir = agents_root / "logs"
+            logs_dir.mkdir(parents=True, exist_ok=True)
+            telemetry_file = logs_dir / "search-telemetry.log"
+            timestamp = datetime.now().isoformat()
+            with open(telemetry_file, "a", encoding="utf-8") as f:
+                f.write(f"[{timestamp}] {query}\n")
+        except Exception:
+            pass
 
     repo_root = agents_root.parent
     limit = max(1, args.limit)

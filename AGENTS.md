@@ -12,6 +12,14 @@ These rules override everything else in this file when in conflict:
 
 ---
 
+## 0.5. Routing Directives
+
+- **UPON STARTUP:** You MUST read `.agents/docs/index.md` before executing any file modifications. This ensures you understand the repository layout and available tools.
+- **WHEN DEBUGGING:** If you encounter a failing test, build error, or runtime exception, your FIRST action MUST be to execute `.agents/skills/docs-search` using the error output as your query.
+- **BEFORE ARCHITECTURAL CHANGES:** You MUST search `.agents/docs/decisions/` or read its `index.md` to ensure your proposed changes do not violate established design patterns.
+
+---
+
 ## 1. Before writing code
 
 **Goal: understand the problem and the codebase before producing a diff.**

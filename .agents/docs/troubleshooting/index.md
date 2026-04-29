@@ -1,7 +1,7 @@
 ---
 id: troubleshooting-index
 title: "Troubleshooting index"
-last_updated: 2026-04-25
+last_updated: 2026-04-28
 ---
 
 # Troubleshooting
