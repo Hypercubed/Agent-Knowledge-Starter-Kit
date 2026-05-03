@@ -22,6 +22,7 @@ The AKSK is designed to manage a repository's durable knowledge layer (.agents/)
 2. **Vocabulary Distinction**: 
    - `Superseded` is used for decisions (since a decision is usually replaced by a new decision).
    - `Obsolete` is used for troubleshooting entries (since the tool, system, or pattern it describes simply no longer exists).
+3. **Docs Compilation Update**: Update `generate-durable-indexes.py` to check frontmatter (`status: superseded` or `status: obsolete`) and automatically group these files into the appropriate bottom sections using the triple-lock formatting, ensuring the script does not erase the deprecated state.
 
 ## Risks / Trade-offs
 

@@ -1,7 +1,7 @@
 ---
 id: troubleshooting-index
 title: "Troubleshooting index"
-last_updated: 2026-04-28
+last_updated: 2026-05-03
 ---
 
 # Troubleshooting
@@ -14,6 +14,7 @@ One file per recurring issue pattern. New entries: follow [Entry shape](../MAINT
 - [`example/.agents/` looks like a full mirror of root dogfood](example-agents-looks-like-full-dogfood-copy.md)
 - [Agent stuck in explanation loop](agent-stuck-in-explanation-loop.md)
 - [Antigravity: Lessons learned aren't visible to teammate's agents](antigravity-lessons-learned-aren-t-visible-to-teammate-s-agents.md)
+- [Browser subagent fails with invalid_args on view_file](browser-subagent-filesystem-access-error.md)
 - [Clean `git status` but you need touched paths for closeout](clean-git-status-but-you-need-touched-paths-for-closeout.md)
 - [Codex cannot write under `.agents/` during closeout or distill](codex-cannot-write-under-agents-during-closeout-or-distill.md)
 - [Comparing greenfield `example/.agents/` to this repo’s root `.agents/`](comparing-example-agents-to-root-agents.md)
@@ -23,6 +24,7 @@ One file per recurring issue pattern. New entries: follow [Entry shape](../MAINT
 - [Hermes Agent–specific: Dual skill namespace (`skill_view` returns wrong file)](hermes-agent-specific-dual-skill-namespace-skill-view-returns-wrong-file.md)
 - [Hermes Agent–specific: Suspected tool anomaly from a single weak run](hermes-agent-specific-suspected-tool-anomaly-from-a-single-weak-run.md)
 - [Maintainer-only skill appears as a portable kit skill](maintainer-skill-lives-under-agents-skills-by-mistake.md)
+- [npx skills add includes internal skills](npx-skills-add-internal-skills.md)
 - [Overlapping session bundles for one initiative](overlapping-session-bundles-for-one-initiative.md)
 - [Remark or bulk Markdown rewrite touched unwanted paths](remark-or-bulk-markdown-rewrite-unwanted-paths.md)
 - [Session Discovery Fails During Distillation or Closeout](session-discovery-fails-during-distillation-or-closeout.md)

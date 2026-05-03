@@ -18,9 +18,10 @@ We will update `.agents/docs/MAINTENANCE.md` and related `.agents/` documentatio
 - `deprecated-knowledge-convention`: Establish the triple-lock convention (Section heading, text prefix, strikethrough) for superseded and obsolete durable knowledge in index files.
 
 ### Modified Capabilities
-- `<existing-name>`: 
+- `docs-compile`: The `generate-durable-indexes.py` script will be updated to automatically group files marked as `superseded` or `obsolete` into the correct sections at the bottom of the index, applying the triple-lock formatting natively during generation.
 
 ## Impact
 
 - `.agents/docs/MAINTENANCE.md` will be updated to document the triple-lock convention.
+- `.agents/skills/docs-compile/scripts/generate-durable-indexes.py` will be modified to support the convention automatically.
 - `.agents/skills/docs-lint/SKILL.md` (and related contracts) may need minor updates if we automate verification of this new convention in the future, but the primary impact is on the standard `MAINTENANCE.md` rulebook.

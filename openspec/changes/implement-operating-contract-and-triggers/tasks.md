@@ -1,0 +1,31 @@
+# Tasks: Implement Operating Contract and Triggers
+
+- [ ] Create Operating Contract in `.agents/OPERATING_CONTRACT.md`
+  - Define mandatory phases: Discover, Align, Execute, Closeout
+  - Keep under 50 lines
+  - Use directive language
+- [ ] Define Trigger Schema in `.agents/triggers.yaml`
+  - Implement fixed event set (task-start, pre-execution, post-execution, task-closeout, error)
+  - Add initial trigger for task-closeout running update-docs
+  - Ensure YAML validity
+- [ ] Create Playbooks Directory `docs/playbooks/`
+  - Implement `update-docs.md` playbook with frontmatter and structure
+  - Implement `create-plan.md` playbook with frontmatter and structure
+  - Ensure each has unique ID and verification section
+- [ ] Define Rules Directory `docs/rules/` (Optional)
+  - Add 1-3 foundational rules
+  - Keep rules declarative and concise
+- [ ] Enable Discovery via ripgrep
+  - Ensure all playbooks have searchable IDs
+  - Validate trigger references resolve to valid playbooks
+  - Confirm no duplicate IDs
+- [ ] Integrate with Workflow
+  - Update agent instructions to read operating contract
+  - Implement trigger execution on matching events
+  - Validate full cycle: task → closeout → trigger → playbook
+- [ ] Final Verification
+  - Operating contract followed before execution
+  - Trigger fires on task-closeout
+  - update-docs playbook executes
+  - Plans/logs updated as expected
+  - No manual prompting required

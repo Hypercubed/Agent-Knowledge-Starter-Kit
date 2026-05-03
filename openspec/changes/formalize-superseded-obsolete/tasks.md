@@ -2,6 +2,7 @@
 
 - [ ] 1.1 Update `.agents/docs/MAINTENANCE.md` to document the Triple-Lock convention for deprecating durable knowledge in `index.md` files (Section Heading, Textual Prefix, Markdown Strikethrough).
 - [ ] 1.2 Update the vocabulary rules in `.agents/docs/MAINTENANCE.md` to explicitly distinguish between `status: superseded` for decisions and the `Obsolete` pattern for troubleshooting entries.
+- [ ] 1.3 Update `.agents/skills/docs-compile/scripts/generate-durable-indexes.py` to natively support the Triple-Lock convention, ensuring it retains `## Superseded` and `## Obsolete` sections and applies the correct textual prefixes and strikethroughs based on file metadata.
 
 ## 2. Validation & Closeout
 
