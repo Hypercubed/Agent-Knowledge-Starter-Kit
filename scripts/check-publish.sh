@@ -12,29 +12,11 @@
 
 set -u
 
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 ROOT_DIR="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
 cd "$ROOT_DIR" || exit 1
 
-failures=0
-warnings=0
-
-section() {
-  printf '\n== %s ==\n' "$1"
-}
-
-fail() {
-  failures=$((failures + 1))
-  printf 'FAIL: %s\n' "$1"
-}
-
-warn() {
-  warnings=$((warnings + 1))
-  printf 'WARN: %s\n' "$1"
-}
-
-pass() {
-  printf 'PASS: %s\n' "$1"
-}
+source "${SCRIPT_DIR}/utils.sh"
 
 timeout_cmd() {
   seconds="$1"
