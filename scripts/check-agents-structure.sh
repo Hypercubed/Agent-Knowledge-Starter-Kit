@@ -10,26 +10,8 @@ set -u
 target="${1:-.agents}"
 target="${target%/}"
 
-failures=0
-warnings=0
-
-section() {
-  printf '\n== %s ==\n' "$1"
-}
-
-fail() {
-  failures=$((failures + 1))
-  printf 'FAIL: %s\n' "$1"
-}
-
-warn() {
-  warnings=$((warnings + 1))
-  printf 'WARN: %s\n' "$1"
-}
-
-pass() {
-  printf 'PASS: %s\n' "$1"
-}
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+source "${SCRIPT_DIR}/utils.sh"
 
 in_git_repo() {
   git rev-parse --is-inside-work-tree >/dev/null 2>&1
