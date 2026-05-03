@@ -277,6 +277,10 @@ Outcome: updated Files: `.agents/playbooks/writing-integration-guides.md`; `.age
 
 ## Template
 
+### [2026-05-03] learning-distill | formalize-superseded-obsolete
+
+Outcome: updated Files: `.agents/docs/MAINTENANCE.md`; `.agents/skills/docs-compile/scripts/generate-durable-indexes.py`; `.agents/skills/learning-distill/bootstrap/docs/MAINTENANCE.md`; `.agents/skills/learning-distill/references/troubleshooting-frontmatter.schema.json`; `.agents/docs/log.md`; `.agents/sessions/20260503-224400-formalize-superseded-obsolete/summary.json` Accepted: 1 (Add rule that modifying frontmatter contract requires updating `learning-distill/references/` and `learning-distill/bootstrap/docs/MAINTENANCE.md`) Rejected: 0 Notes: Distilled the formalize-superseded-obsolete session.
+
 ### \[YYYY-MM-DD] learning-distill | <task-id>
 
 Outcome: updated Files: `.agents/AGENTS.md`; `.agents/docs/log.md` Accepted: 0 Rejected: 0 Notes: brief summary

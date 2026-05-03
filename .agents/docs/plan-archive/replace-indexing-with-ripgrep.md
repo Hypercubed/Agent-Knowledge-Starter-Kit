@@ -3,9 +3,9 @@ id: replace-indexing-with-ripgrep
 title: "Replace Indexing with ripgrep + Fallback Search"
 last_updated: 2026-04-22
 description: >
-Remove the custom indexing and search scripts and replace them with a
-ripgrep-based search approach with a layered fallback strategy, including
-npm/npx-based execution for maximum portability.
+  Remove the custom indexing and search scripts and replace them with a
+  ripgrep-based search approach with a layered fallback strategy, including
+  npm/npx-based execution for maximum portability.
 tags: [search, tooling, docs, workflow]
 status: completed
 ---
