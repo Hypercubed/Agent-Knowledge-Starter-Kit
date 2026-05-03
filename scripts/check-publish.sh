@@ -86,13 +86,13 @@ run_structure_check scaffold
 run_structure_check .agents
 
 section "Markdown Formatting"
-md_files="$(git ls-files '*.md')"
+mapfile -t md_files < <(git ls-files '*.md')
 if ! command -v npx >/dev/null 2>&1; then
   warn "npx is not installed; skipping Remark Markdown check."
-elif [ -z "$md_files" ]; then
+elif [ "${#md_files[@]}" -eq 0 ]; then
   pass "No tracked Markdown files found."
 elif command -v remark >/dev/null 2>&1; then
-  if timeout_cmd 60s remark $md_files --frail; then
+  if timeout_cmd 60s remark "${md_files[@]}" --frail; then
     pass "Remark Markdown check passed."
   else
     fail "Remark Markdown check failed."
@@ -104,18 +104,16 @@ fi
 section "Markdown Links"
 if ! command -v npx >/dev/null 2>&1; then
   warn "npx is not installed; skipping markdown-link-check."
-elif [ -z "$md_files" ]; then
+elif [ "${#md_files[@]}" -eq 0 ]; then
   pass "No tracked Markdown files found."
 elif npx_package_available markdown-link-check --help; then
   link_failed=0
-  while IFS= read -r md_file; do
+  for md_file in "${md_files[@]}"; do
     [ -z "$md_file" ] && continue
     if ! timeout_cmd 30s npx --no-install markdown-link-check --alive 200,0 "$md_file"; then
       link_failed=1
     fi
-  done <<EOF
-$md_files
-EOF
+  done
   if [ "$link_failed" -eq 0 ]; then
     pass "Markdown link check passed."
   else
