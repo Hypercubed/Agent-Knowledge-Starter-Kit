@@ -4,10 +4,10 @@ description: Archive a completed change in the experimental workflow. Use when t
 license: MIT
 compatibility: Requires openspec CLI.
 metadata:
+  internal: true
   author: openspec
   version: "1.0"
   generatedBy: "1.3.1"
-  internal: true
 ---
 
 Archive a completed change in the experimental workflow.

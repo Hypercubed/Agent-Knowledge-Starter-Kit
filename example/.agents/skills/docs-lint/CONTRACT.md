@@ -16,8 +16,6 @@ The lint pass is scoped to the repo’s `.agents/` knowledge layer, including at
 - `.agents/docs/troubleshooting/` (entries + `index.md`)
 - `.agents/playbooks/`
 
-Optional: `.agents/docs/plans/` when present.
-
 ## Commands used during a lint pass (optional skills)
 
 When sibling skills exist, typical **refresh-before-lint** commands are:

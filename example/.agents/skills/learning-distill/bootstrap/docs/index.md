@@ -2,7 +2,7 @@
 
 This file belongs in `.agents/docs/`.
 
-Durable knowledge uses separate markdown files per topic: architectural decisions under [`decisions/`](decisions/index.md); recurring issues under [`troubleshooting/`](troubleshooting/index.md); maintainer initiatives under `.agents/docs/plans/` when you add that folder (see [`write-plan`](../skills/write-plan/SKILL.md)). See [MAINTENANCE.md](MAINTENANCE.md) for frontmatter and workflow rules.
+Durable knowledge uses separate markdown files per topic: architectural decisions under [`decisions/`](decisions/index.md); recurring issues under [`troubleshooting/`](troubleshooting/index.md). See [MAINTENANCE.md](MAINTENANCE.md) for frontmatter and workflow rules.
 
 ## `.agents/AGENTS.md`
 
@@ -16,9 +16,7 @@ Durable rationale, tradeoffs, and architectural choices (one markdown file per d
 
 Recurring issue patterns, causes, fixes, and validation steps (one markdown file per pattern). Consult [index.md](troubleshooting/index.md) when debugging known classes of problems.
 
-## `.agents/docs/plans/`
 
-Maintainer roadmaps (one markdown file per plan). Scaffold with [`write-plan`](../skills/write-plan/SKILL.md). Plan contract: [MAINTENANCE.md § Frontmatter contract (plans)](MAINTENANCE.md#frontmatter-contract-plans) and [`write-plan` `CONTRACT.md`](../skills/write-plan/CONTRACT.md). The Agent Knowledge Starter kit’s extended narrative for plans lives only in that repository’s `.agents/docs/plans/plans-as-first-class-artifacts.md` (not copied by this bootstrap).
 
 ## `.agents/playbooks/`
 
@@ -35,7 +33,7 @@ Workflow definitions (each folder contains `SKILL.md`):
 - [`docs-lint`](../skills/docs-lint/SKILL.md) — periodic pass for duplication, drift, and index gaps.
 - [`docs-search`](../skills/docs-search/SKILL.md) — search durable knowledge via a local index built from markdown.
 - [`docs-compile`](../skills/docs-compile/SKILL.md) — optional regeneration of section `index.md` files under `.agents/docs/` and the docs-search cache.
-- [`write-plan`](../skills/write-plan/SKILL.md) — scaffold a new plan under `.agents/docs/plans/` with valid frontmatter.
+
 
 ## `.agents/docs/MAINTENANCE.md` and `log.md`
 

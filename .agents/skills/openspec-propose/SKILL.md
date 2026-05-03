@@ -4,10 +4,10 @@ description: Propose a new change with all artifacts generated in one step. Use 
 license: MIT
 compatibility: Requires openspec CLI.
 metadata:
+  internal: true
   author: openspec
   version: "1.0"
   generatedBy: "1.3.1"
-  internal: true
 ---
 
 Propose a new change - create the change and generate all artifacts in one step.
