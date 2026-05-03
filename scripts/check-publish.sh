@@ -107,16 +107,8 @@ if ! command -v npx >/dev/null 2>&1; then
 elif [ -z "$md_files" ]; then
   pass "No tracked Markdown files found."
 elif npx_package_available markdown-link-check --help; then
-  link_failed=0
-  while IFS= read -r md_file; do
-    [ -z "$md_file" ] && continue
-    if ! timeout_cmd 30s npx --no-install markdown-link-check --alive 200,0 "$md_file"; then
-      link_failed=1
-    fi
-  done <<EOF
-$md_files
-EOF
-  if [ "$link_failed" -eq 0 ]; then
+  # Passing all files to a single npx call avoids repeated startup costs.
+  if timeout_cmd 300s npx --no-install markdown-link-check --alive 200,0 $md_files; then
     pass "Markdown link check passed."
   else
     fail "Markdown link check failed."
