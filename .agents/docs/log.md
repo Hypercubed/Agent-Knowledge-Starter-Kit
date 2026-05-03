@@ -1,21 +1,20 @@
 # Knowledge Maintenance Log
 
-### [2026-05-03] learning-distill | migrate-plan-to-openspec-add-integrations
+### \[2026-05-03] learning-distill | migrate-plan-to-openspec-add-integrations
 
 Outcome: updated Files: `.agents/docs/troubleshooting/browser-subagent-filesystem-access-error.md`; `.agents/docs/troubleshooting/index.md`; `.agents/docs/log.md`; `.agents/sessions/20260503-122000-migrate-plan-to-openspec/summary.json` Accepted: 1 (added browser subagent troubleshooting) Rejected: 0 Notes: Distilled plan migration session; added troubleshooting for browser subagent filesystem limits.
 
-### [2026-05-03] learning-distill | fix-example-generation-exclusion
+### \[2026-05-03] learning-distill | fix-example-generation-exclusion
 
 Outcome: updated Files: `.agents/docs/troubleshooting/npx-skills-add-internal-skills.md`; `.agents/docs/troubleshooting/index.md`; `.agents/docs/log.md`; `.agents/sessions/20260503-121000-fix-example-generation/summary.json` Accepted: 1 (added npx skills add internal skill troubleshooting) Rejected: 0 Notes: Distilled example generation fix session; documented that npx skills add requires the internal flag at the top of the metadata block.
 
-### [2026-05-03] learning-distill | formalize-superseded-obsolete
+### \[2026-05-03] learning-distill | formalize-superseded-obsolete
 
 Outcome: no net durable edits Files: `.agents/docs/log.md`; `.agents/sessions/20260503-115500-formalize-superseded-obsolete/summary.json` Accepted: 0 Rejected: 1 (triple-lock convention was already added to MAINTENANCE.md) Notes: Distilled superseded/obsolete formalization session; changes were already integrated during the task.
 
-### [2026-04-25] learning-distill | t-20260425-140900-generate-example-verbose
+### \[2026-04-25] learning-distill | t-20260425-140900-generate-example-verbose
 
 Outcome: updated Files: `.agents/AGENTS.md`; `.agents/docs/troubleshooting/stalled-maintenance-scripts.md`; `.agents/docs/troubleshooting/index.md`; `.agents/docs/log.md`; `.agents/sessions/20260425-200900-generate-example-verbose/summary.json` Accepted: 2 (troubleshooting: stalled maintenance scripts; AGENTS feedback rule) Rejected: 0 Notes: Distilled session for verbose mode improvement; added troubleshooting for long-running scripts using npx and guidance for script feedback.
-
 
 ### \[2026-04-25] learning-distill | 20260425-120535-task-closeout
 

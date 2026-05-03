@@ -273,7 +273,7 @@ flowchart LR
 | **archive-plan**       | Move terminal plan to `archive/`; link sweep durable docs                                          | Second    |
 | **update-plan-status** | Bump `last_updated`, transition `status`, enforce lifecycle gates                                  | Third     |
 | **plan-to-playbook**   | Extract stable procedure to `playbooks/`; replace plan section with link                           | Fourth    |
-| **lint hooks**         | Extend `docs-lint` to warn on stale `active` plans and orphaned `anticipated_decisions`       | Deferred  |
+| **lint hooks**         | Extend `docs-lint` to warn on stale `active` plans and orphaned `anticipated_decisions`            | Deferred  |
 
 ### Existing skills to reuse
 
@@ -281,7 +281,7 @@ flowchart LR
 | ------------------ | ----------------------------------------------------------------------------- |
 | `task-closeout`    | Copy "required vs optional fields" style; enforce filename/id equality        |
 | `learning-distill` | Classification model informs `plan-to-playbook` criteria and completion gates |
-| `docs-lint`   | Path-hygiene patterns for `archive-plan` link sweep; metadata contract checks |
+| `docs-lint`        | Path-hygiene patterns for `archive-plan` link sweep; metadata contract checks |
 | `generate-example` | Canonical source for seeding `example/.agents/docs/plans/` bootstrap          |
 
 ## Phases

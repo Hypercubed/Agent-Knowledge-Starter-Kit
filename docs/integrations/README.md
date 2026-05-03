@@ -27,6 +27,7 @@ Before wiring a tool, install shared kit skills in the target repo with `npx ski
 - [Kilo Code](./kilo-code.md) - `AGENTS.md`, `kilo.json`, `.kilo/` wrappers, and kit routing
 - [OpenClaw](./openclaw.md) - startup files, memory, sessions, automation, and kit boundaries
 - [OpenCode](./opencode.md) - `AGENTS.md`, `opencode.json`, `.opencode/` wrappers, and native skill discovery
+- [OpenSpec](./openspec.md) - `.openspec.yaml`, `rules` blocks, prompt orchestration, and native workflow handoff
 - [Warp](./warp.md) - project/global rules, skills, Oz workflows, and kit routing
 - [Zo Computer](./zo-computer.md) - Zo-specific skill discovery, docs-search, and closeout workflow
 

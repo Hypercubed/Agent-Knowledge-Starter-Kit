@@ -4,11 +4,11 @@ title: "Browser subagent fails with invalid_args on view_file"
 last_updated: 2026-05-03
 ---
 
-# Browser subagent fails with invalid_args on view_file
+# Browser subagent fails with invalid\_args on view\_file
 
 ## Symptoms
 
-- Subagent error: "model output error: invalid tool call error (invalid_args) you may only view files in the allowlist".
+- Subagent error: "model output error: invalid tool call error (invalid\_args) you may only view files in the allowlist".
 - The subagent enters a retry loop trying to view or edit repository files.
 
 ## Fix

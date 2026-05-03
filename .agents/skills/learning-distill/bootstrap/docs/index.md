@@ -16,8 +16,6 @@ Durable rationale, tradeoffs, and architectural choices (one markdown file per d
 
 Recurring issue patterns, causes, fixes, and validation steps (one markdown file per pattern). Consult [index.md](troubleshooting/index.md) when debugging known classes of problems.
 
-
-
 ## `.agents/playbooks/`
 
 Durable procedures live under `.agents/playbooks/` (sibling of `.agents/docs/`, not inside it).
@@ -33,7 +31,6 @@ Workflow definitions (each folder contains `SKILL.md`):
 - [`docs-lint`](../skills/docs-lint/SKILL.md) — periodic pass for duplication, drift, and index gaps.
 - [`docs-search`](../skills/docs-search/SKILL.md) — search durable knowledge via a local index built from markdown.
 - [`docs-compile`](../skills/docs-compile/SKILL.md) — optional regeneration of section `index.md` files under `.agents/docs/` and the docs-search cache.
-
 
 ## `.agents/docs/MAINTENANCE.md` and `log.md`
 

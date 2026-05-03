@@ -13,6 +13,7 @@ status: completed
 # Harden Routing Architecture
 
 ## Phase 1: Hardening the Root AGENTS.md
+
 The goal here is to transform the root AGENTS.md from a passive map into an active traffic controller. Agents need explicit triggers to break them out of their default behavior (which is usually to immediately start writing code or guessing at fixes).
 
 Implement "On-Startup" Directives: Force the agent to ingest the project's architectural map immediately.
@@ -28,6 +29,7 @@ Enforce Architectural Compliance: Ensure that the Architectural Decision Records
 Action: Add a planning trigger: "BEFORE ARCHITECTURAL CHANGES: You MUST search .agents/docs/decisions/ or read its index.md to ensure your proposed changes do not violate established design patterns."
 
 ## Phase 2: Propagating Guidance to Consumers
+
 If other developers adopt the Starter Kit, they need this hardened routing out of the box, rather than having to discover the discoverability problem themselves.
 
 Option A: Update the INSTALL.md (Manual Route)
@@ -41,9 +43,11 @@ If your portable kit skills (like generate-example) use a bootstrap/ tree to ini
 Action: Ensure the default AGENTS.md copied into a consumer's repo already contains the strict "On-Startup", "When Debugging", and "Before Architectural Changes" directives. This makes the "pit of success" the default state.
 
 ## Phase 3: The Verification & Validation Plan
+
 To confidently publish v2.0, you need empirical evidence that agents are reading the fragmented knowledge base.
 
 ### 1. The Synthetic "Amnesia" Test (Unit Testing for Agents)
+
 Create a controlled environment to prove the routing logic fires correctly.
 
 Step A: Branch off develop into a sandboxed test branch.
@@ -57,6 +61,7 @@ Step D: Launch a fresh agent session (using Roo Code, OpenClaw, etc.) with a bla
 Success Criteria: Review the agent's tool execution trace. The test passes only if the agent executes docs-search (or reads the index) BEFORE it attempts to rewrite the broken code.
 
 ### 2. Skill Telemetry (Continuous Validation)
+
 Implement a lightweight, persistent way to monitor tool usage across general development.
 
 Action: Update the .agents/skills/docs-search script to silently append every search query and a timestamp to an ignored local file (e.g., .agents/logs/search-telemetry.log).

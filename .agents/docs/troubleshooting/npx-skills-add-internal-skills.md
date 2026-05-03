@@ -13,6 +13,7 @@ last_updated: 2026-05-03
 ## Fix
 
 If `npx skills add` includes skills marked as `internal: true`, check if:
+
 1. Duplicate definitions of the skill exist in other directories (e.g., `.github`, `scripts`) that lack the `internal` flag.
 2. The `internal: true` flag is placed at the very top of the `metadata` block in `SKILL.md` to ensure maximum compatibility with different versions of the `skills` CLI.
 

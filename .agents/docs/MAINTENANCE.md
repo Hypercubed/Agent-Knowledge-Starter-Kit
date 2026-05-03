@@ -45,8 +45,6 @@ Applies to every `*.md` file under `decisions/` and `troubleshooting/` **except*
 
 **Do not** put `status` on troubleshooting entries; lifecycle applies to decision records.
 
-
-
 ### Linking rules (for indexes, maps, and prose)
 
 - Link to another durable entry using a **relative** Markdown link to that file, for example `[Related topic](related-topic.md)` from a file in the same folder.
@@ -96,10 +94,10 @@ User-facing kit skills ship a machine-oriented `CONTRACT.md` beside `SKILL.md` s
 
 ### Precedence
 
-| When guidance overlaps                                                                                                                        | Authority                 |
-| --------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
+| When guidance overlaps                                                                                                             | Authority                 |
+| ---------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
 | Durable YAML for `decisions/` and `troubleshooting/`; logging; task bundle lifecycle; distillation policy; index prose conventions | This `MAINTENANCE.md`     |
-| Script paths, flags, generated filenames, session bundle artifacts                                                                            | The skill’s `CONTRACT.md` |
+| Script paths, flags, generated filenames, session bundle artifacts                                                                 | The skill’s `CONTRACT.md` |
 
 If a skill `CONTRACT.md` disagrees with this file on an overlapping topic (for example plan frontmatter wording), **this `MAINTENANCE.md` wins** until the skill contract is updated.
 
@@ -109,7 +107,7 @@ If a skill `CONTRACT.md` disagrees with this file on an overlapping topic (for e
 | ---------------- | ------------------------------------------------------- |
 | docs-search      | [`CONTRACT.md`](../skills/docs-search/CONTRACT.md)      |
 | docs-compile     | [`CONTRACT.md`](../skills/docs-compile/CONTRACT.md)     |
-| docs-lint   | [`CONTRACT.md`](../skills/docs-lint/CONTRACT.md)   |
+| docs-lint        | [`CONTRACT.md`](../skills/docs-lint/CONTRACT.md)        |
 | learning-distill | [`CONTRACT.md`](../skills/learning-distill/CONTRACT.md) |
 | task-closeout    | [`CONTRACT.md`](../skills/task-closeout/CONTRACT.md)    |
 
@@ -127,7 +125,7 @@ When adding a new skill that reads or writes `.agents/docs/`, add a row here and
 | ---------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------- | ------------------------------------------------------- |
 | docs-search                        | reads docs; fallback search mechanism                                | reads `.agents/docs/**/*.md` directly via scripts              | [`CONTRACT.md`](../skills/docs-search/CONTRACT.md)      |
 | docs-compile                       | reads docs; writes derived indexes                                   | writes `.agents/docs/*/index.md`                               | [`CONTRACT.md`](../skills/docs-compile/CONTRACT.md)     |
-| docs-lint                     | reads docs; may suggest or apply minimal edits                       | `.agents/AGENTS.md`, `.agents/docs/**`, `.agents/playbooks/**` | [`CONTRACT.md`](../skills/docs-lint/CONTRACT.md)   |
+| docs-lint                          | reads docs; may suggest or apply minimal edits                       | `.agents/AGENTS.md`, `.agents/docs/**`, `.agents/playbooks/**` | [`CONTRACT.md`](../skills/docs-lint/CONTRACT.md)        |
 | learning-distill                   | reads session bundles; writes durable docs and `.agents/docs/log.md` | `.agents/docs/**`, `.agents/AGENTS.md`, `.agents/playbooks/**` | [`CONTRACT.md`](../skills/learning-distill/CONTRACT.md) |
 | task-closeout                      | writes temporary bundle only; no durable docs edits                  | `.agents/sessions/**`                                          | [`CONTRACT.md`](../skills/task-closeout/CONTRACT.md)    |
 | generate-example (maintainer-only) | rebuilds `example/` mirror for validation/demo                       | `example/.agents/**` (generated output)                        | none (maintainer-only)                                  |
