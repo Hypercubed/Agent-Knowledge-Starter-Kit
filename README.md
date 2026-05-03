@@ -2,7 +2,7 @@
 
 A shareable, tool-agnostic starter kit for maintaining a compiled repo knowledge layer for coding agents.
 
-Durable plans, decisions, and troubleshooting patterns live as separate markdown files under `.agents/docs/plans/`, `.agents/docs/decisions/`, and `.agents/docs/troubleshooting/`, each with its own `index.md`.
+Durable decisions and troubleshooting patterns live as separate markdown files under `.agents/docs/decisions/` and `.agents/docs/troubleshooting/`, each with its own `index.md`.
 
 This pattern separates three concerns:
 
@@ -74,17 +74,15 @@ Follow [INSTALL.md](INSTALL.md). Run `npx skills add Hypercubed/Agent-Knowledge-
 Use the kit as a lightweight maintenance loop around normal agent work:
 
 1. **Start with the repo knowledge layer.** Keep a short root `AGENTS.md` or tool rule that points agents to `.agents/AGENTS.md` and `.agents/docs/index.md`. Put durable repo policy in `.agents/`, not in each tool's native config.
-2. **Plan multi-step work with `write-plan`.** For complex or multi-step tasks, run `write-plan` to create a durable roadmap under `.agents/docs/plans/` before writing code.
-3. **Do the implementation work normally.** Have the coding agent read the relevant durable guidance, use plans, playbooks, or files under `.agents/docs/troubleshooting/` when needed, and keep tool-specific prompts as thin wiring.
-4. **Close meaningful tasks with `task-closeout`.** At completion, blockage, or abandonment, invoke the repo-local `task-closeout` skill. It should write raw evidence and a structured bundle under `.agents/sessions/<folder>/`, which is usually gitignored. The canonical task/session identifier is the `task_id` field inside that bundle's `summary.json`; the folder name is only a sortable storage label.
-5. **Promote durable lessons with `learning-distill`.** After closeout, run a separate learning pass with `learning-distill`. Pass the session bundle path and use the `task_id` field in `summary.json` when referring to the task. Promote only stable, reusable lessons into `.agents/AGENTS.md`, `.agents/docs/`, or `.agents/playbooks/`. Update active plans in `.agents/docs/plans/` if milestones were completed. Leave one-off task history in `.agents/sessions/`.
-6. **Keep the knowledge layer clean with `docs-lint`.** Periodically invoke `docs-lint` to find duplicate, stale, contradictory, oversized, or uncategorized guidance before the layer becomes noisy.
-7. **Review the diff.** Treat durable knowledge changes like code: inspect what changed, make sure session bundles stayed temporary, and commit only the files that should become shared repo knowledge.
+2. **Do the implementation work normally.** Have the coding agent read the relevant durable guidance, use playbooks, or files under `.agents/docs/troubleshooting/` when needed, and keep tool-specific prompts as thin wiring.
+3. **Close meaningful tasks with `task-closeout`.** At completion, blockage, or abandonment, invoke the repo-local `task-closeout` skill. It should write raw evidence and a structured bundle under `.agents/sessions/<folder>/`, which is usually gitignored. The canonical task/session identifier is the `task_id` field inside that bundle's `summary.json`; the folder name is only a sortable storage label.
+4. **Promote durable lessons with `learning-distill`.** After closeout, run a separate learning pass with `learning-distill`. Pass the session bundle path and use the `task_id` field in `summary.json` when referring to the task. Promote only stable, reusable lessons into `.agents/AGENTS.md`, `.agents/docs/`, or `.agents/playbooks/`. Leave one-off task history in `.agents/sessions/`.
+5. **Keep the knowledge layer clean with `docs-lint`.** Periodically invoke `docs-lint` to find duplicate, stale, contradictory, oversized, or uncategorized guidance before the layer becomes noisy.
+6. **Review the diff.** Treat durable knowledge changes like code: inspect what changed, make sure session bundles stayed temporary, and commit only the files that should become shared repo knowledge.
 
 ```mermaid
 flowchart LR
-    A0[write-plan] --> A1[.agents/docs/plans/]
-    A1 --> A[Code task]
+    A[Code task]
     A --> B[task-closeout]
     B --> C[Session bundle<br/>.agents/sessions/&lt;folder&gt;<br/>summary.json<br/>active-task.md<br/>learning-candidate.md]
 
@@ -96,13 +94,11 @@ flowchart LR
     E -->|troubleshooting| H[.agents/docs/troubleshooting/]
     E -->|repo decision| I[.agents/docs/decisions/]
     E -->|playbook| J[.agents/playbooks/*]
-    E -->|plan update| J2[.agents/docs/plans/*]
 
     G --> K[index.md + log.md]
     H --> K
     I --> K
     J --> K
-    J2 --> K
 
     K --> L[Mark distilled]
     L --> M[docs-lint]

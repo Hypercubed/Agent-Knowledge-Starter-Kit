@@ -18,7 +18,7 @@ Initialization templates live only under this skill:
 - `bootstrap/sessions/README.md`
 - `bootstrap/AGENTS.md`
 
-Copy rules: **create missing files only**; do not overwrite existing consumer files. Do not create `.agents/docs/plans/` here (owned by **write-plan** when installed).
+Copy rules: **create missing files only**; do not overwrite existing consumer files.
 
 ## Writes (distillation)
 

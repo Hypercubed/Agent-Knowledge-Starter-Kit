@@ -9,19 +9,19 @@ This file belongs in `.agents/docs/`, alongside `.agents/AGENTS.md`.
 - Session bundles under `.agents/sessions/` are raw evidence.
 - Files in `.agents/` are synthesized durable knowledge.
 - Durable knowledge should be incremental, concise, and reviewable.
-- Architectural decisions live under `.agents/docs/decisions/` (one file per decision plus `index.md`). Troubleshooting patterns live under `.agents/docs/troubleshooting/` (one file per pattern plus `index.md`). Maintainer **plans** (initiatives and roadmaps) live under `.agents/docs/plans/` when you create that folder and add files (typically via **write-plan**). Each **entry** file in `decisions/`, `troubleshooting/`, and `plans/` carries YAML frontmatter so tools can parse metadata without reading the body. Session bundles under `.agents/sessions/` remain temporary evidence, not plans.
+- Architectural decisions live under `.agents/docs/decisions/` (one file per decision plus `index.md`). Troubleshooting patterns live under `.agents/docs/troubleshooting/` (one file per pattern plus `index.md`). Each **entry** file in `decisions/` and `troubleshooting/` carries YAML frontmatter so tools can parse metadata without reading the body. Session bundles under `.agents/sessions/` remain temporary evidence.
 
 ## Entry `id` and qualified graph references
 
-- **Document `id`:** for every entry file under `decisions/`, `troubleshooting/`, or `plans/` (excluding each folder’s `index.md`), frontmatter `id` **must equal** the filename stem (without `.md`), lowercase `[a-z0-9_-]`, **unique within that folder only**. Filenames do **not** encode a type prefix; disambiguation lives in **qualified references** (below) and in normal Markdown paths.
+- **Document `id`:** for every entry file under `decisions/` or `troubleshooting/` (excluding each folder’s `index.md`), frontmatter `id` **must equal** the filename stem (without `.md`), lowercase `[a-z0-9_-]`, **unique within that folder only**. Filenames do **not** encode a type prefix; disambiguation lives in **qualified references** (below) and in normal Markdown paths.
 
-- **Qualified reference** (for edges in YAML where the target kind is not obvious): `decisions/<slug>`, `troubleshooting/<slug>`, or `plans/<slug>` — the part after `/` is always the **same string** as that entry’s `id` / filename stem. Example: `depends_on: [decisions/example-upstream-topic, troubleshooting/example-known-failure]`.
+- **Qualified reference** (for edges in YAML where the target kind is not obvious): `decisions/<slug>` or `troubleshooting/<slug>` — the part after `/` is always the **same string** as that entry’s `id` / filename stem. Example: `depends_on: [decisions/example-upstream-topic, troubleshooting/example-known-failure]`.
 
 - **Markdown links:** keep using normal relative file paths (for example `../decisions/example-upstream-topic.md` from a plan); those already disambiguate by directory.
 
 ## Entry shape
 
-When adding a new markdown file under `decisions/` or `troubleshooting/`, follow the frontmatter and body headings used by existing entries in that folder, including the [Frontmatter contract](#frontmatter-contract-durable-entries) below. When adding a plan under `plans/`, follow the [Frontmatter contract (plans)](#frontmatter-contract-plans) and the portable rules in [`write-plan` `CONTRACT.md`](../skills/write-plan/CONTRACT.md) (see also [Portable skill contracts](#portable-skill-contracts)). During **knowledge-lint**, verify contracts by inspection (duplicate `id`, missing keys, scalar `tags` instead of a list, `status` only on decisions for durable entries, plan `status` vocabulary for `plans/`, and so on). You may also validate entry YAML against the provided JSON Schemas (`.agents/skills/learning-distill/references/decision-frontmatter.schema.json`, `.agents/skills/learning-distill/references/troubleshooting-frontmatter.schema.json`, and `.agents/skills/write-plan/references/plan-frontmatter.schema.json`).
+When adding a new markdown file under `decisions/` or `troubleshooting/`, follow the frontmatter and body headings used by existing entries in that folder, including the [Frontmatter contract](#frontmatter-contract-durable-entries) below. During **knowledge-lint**, verify contracts by inspection (duplicate `id`, missing keys, scalar `tags` instead of a list, `status` only on decisions for durable entries, and so on). You may also validate entry YAML against the provided JSON Schemas (`.agents/skills/learning-distill/references/decision-frontmatter.schema.json` and `.agents/skills/learning-distill/references/troubleshooting-frontmatter.schema.json`).
 
 ### Frontmatter contract (durable entries)
 
@@ -45,30 +45,7 @@ Applies to every `*.md` file under `decisions/` and `troubleshooting/` **except*
 
 **Do not** put `status` on troubleshooting entries; lifecycle applies to decision records.
 
-### Frontmatter contract (plans)
 
-The **write-plan** skill also ships a portable copy of this contract at `.agents/skills/write-plan/CONTRACT.md` for skill-only installs. Other user-facing skills ship their own `CONTRACT.md` files; see [Portable skill contracts](#portable-skill-contracts). You can validate this contract via JSON Schema using `.agents/skills/write-plan/references/plan-frontmatter.schema.json`.
-
-Applies to every `*.md` file under **`plans/`** and **`plans/archive/`**, except `plans/index.md` and any other index or README files unless they intentionally adopt plan frontmatter.
-
-Plan `id` values are **unique within** `plans/` and `plans/archive/` only. The same stem may appear under `decisions/` or `troubleshooting/`; use **qualified** `plans/…`, `decisions/…`, or `troubleshooting/…` references in plan metadata whenever the target kind matters.
-
-**Required keys (plans):**
-
-- `id`: stable slug, **must match** the filename without `.md`, lowercase `[a-z0-9_-]`.
-- `title`: short human title (quoted if it contains colons).
-- `last_updated`: ISO calendar date `YYYY-MM-DD`.
-- `description`: one or two sentences, machine-oriented (used by docs-search listings).
-- `tags`: non-empty YAML **list** of lowercase `[a-z0-9_-]` labels.
-- `status`: plan lifecycle, **distinct** from decision `status`. Allowed values: `draft`, `active`, `paused`, `completed`, `cancelled`, `superseded`, `archived` (all lowercase).
-
-**Optional keys (plans):** `kind` (`initiative` | `meta` | `exploration`), `anticipated_decisions` (planned **`decisions/<slug>`** pointers not yet filed), `outcome_decisions` (**`decisions/<slug>`** or **`troubleshooting/<slug>`** pointers), `supersedes` / `superseded_by` (**`plans/<slug>`** pointers), `related_plans` (other **`plans/<slug>`** pointers), `consumer_portable` (boolean), `author_kind`, `prompter`.
-
-**Cross-links to decisions or troubleshooting:** do **not** use a `related_decisions` YAML list. Add a **`## Related decisions`** section in the plan **body** with Markdown bullet links to `../decisions/<id>.md` or `../troubleshooting/<id>.md` (see `.agents/skills/write-plan/CONTRACT.md`).
-
-**Provenance:** use `author_kind` and `prompter` instead of legacy `writer` / `created` fields.
-
-**Archive:** when a plan is terminal, move `.agents/docs/plans/<id>.md` to `.agents/docs/plans/archive/<id>.md` (same basename; same `id` in frontmatter), bump `last_updated`, then sweep links in decisions, playbooks, indexes, and other plans.
 
 ### Linking rules (for indexes, maps, and prose)
 
@@ -121,7 +98,7 @@ User-facing kit skills ship a machine-oriented `CONTRACT.md` beside `SKILL.md` s
 
 | When guidance overlaps                                                                                                                        | Authority                 |
 | --------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
-| Durable YAML for `decisions/`, `troubleshooting/`, and `plans/`; logging; task bundle lifecycle; distillation policy; index prose conventions | This `MAINTENANCE.md`     |
+| Durable YAML for `decisions/` and `troubleshooting/`; logging; task bundle lifecycle; distillation policy; index prose conventions | This `MAINTENANCE.md`     |
 | Script paths, flags, generated filenames, session bundle artifacts                                                                            | The skill’s `CONTRACT.md` |
 
 If a skill `CONTRACT.md` disagrees with this file on an overlapping topic (for example plan frontmatter wording), **this `MAINTENANCE.md` wins** until the skill contract is updated.
@@ -135,7 +112,6 @@ If a skill `CONTRACT.md` disagrees with this file on an overlapping topic (for e
 | docs-lint   | [`CONTRACT.md`](../skills/docs-lint/CONTRACT.md)   |
 | learning-distill | [`CONTRACT.md`](../skills/learning-distill/CONTRACT.md) |
 | task-closeout    | [`CONTRACT.md`](../skills/task-closeout/CONTRACT.md)    |
-| write-plan       | [`CONTRACT.md`](../skills/write-plan/references/CONTRACT.md)       |
 
 ## Skills docs registry
 
@@ -154,7 +130,6 @@ When adding a new skill that reads or writes `.agents/docs/`, add a row here and
 | docs-lint                     | reads docs; may suggest or apply minimal edits                       | `.agents/AGENTS.md`, `.agents/docs/**`, `.agents/playbooks/**` | [`CONTRACT.md`](../skills/docs-lint/CONTRACT.md)   |
 | learning-distill                   | reads session bundles; writes durable docs and `.agents/docs/log.md` | `.agents/docs/**`, `.agents/AGENTS.md`, `.agents/playbooks/**` | [`CONTRACT.md`](../skills/learning-distill/CONTRACT.md) |
 | task-closeout                      | writes temporary bundle only; no durable docs edits                  | `.agents/sessions/**`                                          | [`CONTRACT.md`](../skills/task-closeout/CONTRACT.md)    |
-| write-plan                         | writes plan docs and contributes plan contract                       | `.agents/docs/plans/**`                                        | [`CONTRACT.md`](../skills/write-plan/references/CONTRACT.md)       |
 | generate-example (maintainer-only) | rebuilds `example/` mirror for validation/demo                       | `example/.agents/**` (generated output)                        | none (maintainer-only)                                  |
 
 ### Registry row template (for new skills)
@@ -171,7 +146,7 @@ Keep this row synchronized with that skill's initialization steps in `SKILL.md`.
 
 These policies stay centralized here because they are cross-skill and must not drift:
 
-- frontmatter contracts for durable entries and plans (above)
+- frontmatter contracts for durable entries (above)
 - precedence between this file and skill contracts ([Portable skill contracts](#portable-skill-contracts))
 - task bundle lifecycle boundaries
 - distillation logging constraints

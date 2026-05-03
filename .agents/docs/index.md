@@ -2,7 +2,7 @@
 
 This file belongs in `.agents/docs/`.
 
-Durable knowledge uses separate markdown files per topic: architectural decisions under [`decisions/`](decisions/index.md); recurring issues under [`troubleshooting/`](troubleshooting/index.md); maintainer initiatives under [`plans/`](plans/index.md). Decision and troubleshooting entry files include minimal YAML frontmatter (`id`, `title`, `last_updated`). Plans use the extended contract in [MAINTENANCE.md](MAINTENANCE.md#frontmatter-contract-plans) and the canonical narrative in [plans-as-first-class-artifacts.md](plans/archive/plans-as-first-class-artifacts.md).
+Durable knowledge uses separate markdown files per topic: architectural decisions under [`decisions/`](decisions/index.md); recurring issues under [`troubleshooting/`](troubleshooting/index.md). Decision and troubleshooting entry files include minimal YAML frontmatter (`id`, `title`, `last_updated`).
 
 ## `.agents/AGENTS.md`
 
@@ -15,10 +15,6 @@ Durable rationale, tradeoffs, and architectural choices (one markdown file per d
 ## `.agents/docs/troubleshooting/`
 
 Recurring issue patterns, causes, fixes, and validation steps (one markdown file per pattern). Consult [index.md](troubleshooting/index.md) when debugging known classes of problems.
-
-## `.agents/docs/plans/`
-
-Maintainer roadmaps and multi-step initiatives (one markdown file per plan). Consult [index.md](plans/index.md) for the full list. Plans are **plan-only** until implementation is requested; they are indexed by [`docs-search`](../skills/docs-search/SKILL.md) like the rest of `.agents/docs/`. Canonical contract: [plans-as-first-class-artifacts.md](plans/archive/plans-as-first-class-artifacts.md).
 
 ## `.agents/playbooks/`
 
@@ -42,7 +38,6 @@ Workflow definitions shipped with the kit (each folder contains `SKILL.md`, ofte
 - [`docs-lint`](../skills/docs-lint/SKILL.md) — periodic pass for duplication, drift, and index gaps.
 - [`docs-search`](../skills/docs-search/SKILL.md) — search durable `.agents/` knowledge via local index generation from markdown sources.
 - [`docs-compile`](../skills/docs-compile/SKILL.md) — optional regeneration of durable section `index.md` files under `.agents/docs/` and the docs-search cache.
-- [`write-plan`](../skills/write-plan/SKILL.md) — scaffold a new plan file under `.agents/docs/plans/` with valid frontmatter and stub sections.
 
 Maintainer-only (this repository):
 

@@ -128,28 +128,22 @@ For every task:
 
 ## 9. Self-improvement loop
 
-**This file is living. Keep it short by keeping it honest.**
+AKSK manages repo-specific knowledge and agent performance through a structured loop.
 
-After every session where the agent did something wrong:
-
-1. Ask: was the mistake because this file lacks a rule, or because the agent ignored a rule?
-2. If lacking: add the rule under "Project Learnings" below, written as concretely as possible ("Always use X for Y" not "be careful with Y").
-3. If ignored: the rule may be too long, too vague, or buried. Tighten it or move it up.
-4. Every few weeks, prune. For each line, ask: "Would removing this cause the agent to make a mistake?" If no, delete. Bloated AGENTS.md files get ignored wholesale.
-
-Boris Cherny (creator of Claude Code) keeps his team's file around 100 lines. Under 300 is a good ceiling. Over 500 and you are fighting your own config.
+After every session where you made a mistake or discovered a significant project pattern:
+1. **Analyze the root cause:** Was it a missing rule in `.agents/` or an ignored one?
+2. **Task Closeout:** Use `task-closeout` to bundle the session's insights under `.agents/sessions/`.
+3. **Distillation:** Use `learning-distill` to promote reusable lessons into durable `.agents/` knowledge.
+4. **Pruning:** Every few weeks, review this `AGENTS.md`. If a rule is no longer preventing mistakes, delete it. Keep it under 300 lines.
 
 ---
 
 ## 10. Repository Knowledge & Context
 
-For all project-specific context, conventions, and architectural rules, consult the compiled knowledge layer located in the `.agents/` directory.
+For all project-specific context, conventions, and architectural rules, consult the compiled knowledge layer in `.agents/`:
 
-- **Durable repo policy:** Read [`.agents/AGENTS.md`](.agents/AGENTS.md)
 - **Knowledge catalog:** Start at [`.agents/docs/index.md`](.agents/docs/index.md)
-- **Troubleshooting:** See `.agents/docs/troubleshooting/`
-- **Decisions & architecture:** See `.agents/docs/decisions/`
-- **Maintenance logging:** See `.agents/docs/log.md`
-- **Temporary task history:** Stored in `.agents/sessions/`
-
-When a session concludes, use the `task-closeout` and `learning-distill` tools to formally update the durable knowledge in `.agents/` rather than adding project-specific learnings to this top-level file.
+- **Durable repo policy:** [`.agents/AGENTS.md`](.agents/AGENTS.md)
+- **Troubleshooting:** See `.agents/docs/troubleshooting/` for recurring issue patterns.
+- **Architecture:** See `.agents/docs/decisions/` for rationale and tradeoffs.
+- **Maintenance:** Append-only distillation record in `.agents/docs/log.md`.

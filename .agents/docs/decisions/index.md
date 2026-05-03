@@ -16,7 +16,6 @@ One file per durable architectural or policy decision. New entries: follow [Entr
 - [GitHub Copilot as Rules-Based IDE Wiring tool](github-copilot-as-rules-based-ide-wiring-tool.md)
 - [Integration guides belong in `docs/integrations/`, not `.agents/`](integration-guides-belong-in-docs-integrations-not-agents.md)
 - [Kit installation guidance lives in root docs](kit-installation-guidance-lives-in-root-docs.md)
-- [Maintainer plans live under `.agents/docs/plans/`, not `.agents/plans/`](plans-live-under-docs-plans-not-agents-plans.md)
 - [Maintainer-only skills use `metadata.internal: true`](maintainer-skills-mark-internal-in-frontmatter.md)
 - [Optional `prior_session` in session `summary.json`](optional-prior-session-in-session-summary-json.md)
 - [Python preference for consumer-facing scripts](python-preference-for-consumer-scripts.md)
@@ -25,3 +24,7 @@ One file per durable architectural or policy decision. New entries: follow [Entr
 - [Shared integration patterns belong in `docs/integrations/patterns.md`](shared-integration-patterns-belong-in-docs-integrations-patterns-md.md)
 - [Single-tree architecture (`.agents/`)](single-tree-architecture-agents.md)
 - [Use the Routing Pattern for agentic tool bootstrap files](use-the-routing-pattern-for-agentic-tool-bootstrap-files.md)
+
+## Superseded
+
+- **[SUPERSEDED]** ~~[Maintainer plans live under `.agents/docs/plans/`, not `.agents/plans/`](plans-live-under-docs-plans-not-agents-plans.md)~~

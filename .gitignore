@@ -9,3 +9,8 @@ skills-lock.json
 # Python bytecode
 **/__pycache__/
 *.pyc
+
+.agent
+.github
+.kilocode
+.claude

@@ -51,10 +51,7 @@ Future agents should consult the compiled `.agents/` layer first, not rediscover
     │   ├── decisions/
     │   │   ├── index.md
     │   │   └── …
-    │   ├── plans/
-    │   │   ├── index.md
-    │   │   ├── archive/
-    │   │   └── …
+
     │   └── troubleshooting/
     │       ├── index.md
     │       └── …
@@ -159,16 +156,6 @@ Put here:
 - recurring high-confidence pitfalls
 - short checklists
 
-### `.agents/docs/plans/`
-
-Maintainer roadmaps and multi-step initiatives (one markdown file per plan; see `index.md` in that directory).
-
-Put here:
-
-- multi-step goals
-- active roadmaps
-- completed or archived initiatives
-
 ### `.agents/docs/decisions/`
 
 Durable rationale and architectural choices (one markdown file per decision; see `index.md` in that directory).
@@ -217,22 +204,19 @@ The schema and policy document for the knowledge layer.
 
 ## Task lifecycle
 
-1. A multi-step initiative may begin with `write-plan` to create a durable roadmap under `.agents/docs/plans/`.
-2. A coding task begins.
-3. The coding agent creates or adopts a stable `repo_id` and a task-specific `task_id`.
-4. At completion, blockage, or abandonment, the coding agent runs `task-closeout`.
-5. A structured task-closeout bundle is written to `.agents/sessions/<session-folder>/`.
-6. The canonical task/session identifier is recorded in the `task_id` field inside the bundle's `summary.json`.
-7. The learning agent runs `learning-distill` on that session bundle.
-8. Durable lessons and plan updates are written into `.agents/`.
-9. The learning agent appends a summary to `.agents/docs/log.md`.
-10. Periodically, the lint agent runs `docs-lint`.
+1. A coding task begins.
+2. The coding agent creates or adopts a stable `repo_id` and a task-specific `task_id`.
+3. At completion, blockage, or abandonment, the coding agent runs `task-closeout`.
+4. A structured task-closeout bundle is written to `.agents/sessions/<session-folder>/`.
+5. The canonical task/session identifier is recorded in the `task_id` field inside the bundle's `summary.json`.
+6. The learning agent runs `learning-distill` on that session bundle.
+7. Durable lessons are written into `.agents/`.
+8. The learning agent appends a summary to `.agents/docs/log.md`.
+9. Periodically, the lint agent runs `docs-lint`.
 
 ```mermaid
 flowchart TD
-    A0[Run skill: write-plan] --> A0b[Create .agents/docs/plans/&lt;id&gt;.md]
-    A0b --> A
-    A[Start coding task] --> C[Read durable knowledge first<br/>.agents/AGENTS.md<br/>.agents/docs/index.md<br/>plans / playbooks / troubleshooting/]
+    A[Start coding task] --> C[Read durable knowledge first<br/>.agents/AGENTS.md<br/>.agents/docs/index.md<br/>playbooks / troubleshooting/]
     C --> B[Coding agent does implementation work]
     B --> D{Meaningful stopping point?<br/>complete / blocked / abandoned}
     D -- No --> B
@@ -260,19 +244,19 @@ flowchart TD
     M --> M3[Troubleshooting]
     M --> M4[Repo decision]
     M --> M5[Playbook]
-    M --> M6[Plan update]
+
 
     M2 --> N1[Update .agents/AGENTS.md<br/>only if broad, stable, concise, actionable]
     M3 --> N2[Update .agents/docs/troubleshooting/]
     M4 --> N3[Update .agents/docs/decisions/]
     M5 --> N4[Update .agents/playbooks/*]
-    M6 --> N5[Update .agents/docs/plans/*]
+
 
     N1 --> O[Update .agents/docs/index.md if structure changed]
     N2 --> O
     N3 --> O
     N4 --> O
-    N5 --> O
+
 
     O --> P[Append concise maintenance entry<br/>to .agents/docs/log.md]
     P --> Q[Mark session bundle distilled]
@@ -306,7 +290,7 @@ A candidate lesson belongs in `.agents/AGENTS.md` only if it is:
 
 Otherwise it probably belongs in:
 
-- `.agents/docs/plans/` (or update an existing plan)
+
 - `.agents/docs/decisions/`
 - `.agents/docs/troubleshooting/`
 - `.agents/playbooks/`

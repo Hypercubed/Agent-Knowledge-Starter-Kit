@@ -10,7 +10,7 @@ tags:
 - docs-search
 - agents
 - layout
-status: accepted
+status: superseded
 depends_on:
 - decisions/single-tree-architecture-agents
 - decisions/docs-search-remains-canonical-over-host-native-search
@@ -20,7 +20,7 @@ depends_on:
 
 ### Status
 
-Accepted
+Superseded (The `write-plan` skill and `docs/plans/` directory infrastructure have been deprecated and removed. Maintainers are advised to manage plans manually.)
 
 ### Decision
 
