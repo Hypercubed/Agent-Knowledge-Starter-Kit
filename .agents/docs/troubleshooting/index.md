@@ -8,12 +8,6 @@ last_updated: 2026-05-16
 
 One file per recurring issue pattern. New entries: follow [Entry shape](../MAINTENANCE.md#entry-shape) in `MAINTENANCE.md`, then add a row below.
 
-## Quick Reference
-
-**Common patterns:** Agent behavior loops, tool-specific write restrictions, session discovery failures, path resolution issues
-**When to use docs-search:** Error messages, tool names (Codex, Gemini, Hermes, Zo), workflow keywords (closeout, distill, sessions)
-**Most critical:** [agent-stuck-in-explanation-loop.md](agent-stuck-in-explanation-loop.md), [session-discovery-fails-during-distillation-or-closeout.md](session-discovery-fails-during-distillation-or-closeout.md), [codex-cannot-write-under-agents-during-closeout-or-distill.md](codex-cannot-write-under-agents-during-closeout-or-distill.md)
-
 ## Index
 
 - **[`check-publish.sh` reports missing files while `generate-example` is running](check-publish-missing-files-while-generate-example-is-running.md)** — Validation can fail with transient missing-file errors when checks run while `generate-example` is actively rebuilding `example/`.

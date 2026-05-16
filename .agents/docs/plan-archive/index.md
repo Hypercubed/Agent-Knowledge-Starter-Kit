@@ -20,4 +20,5 @@ Each topic is a sibling markdown file (except this index). New entries: follow [
   - Tags: `plans`, `docs-search`, `skills`, `workflow`, `schema`, `kit`
 - **[Portable skill CONTRACT.md rollout](portable-skill-contracts.md)** — Add skill-local CONTRACT.md beside each user-facing kit skill, link from SKILL.md, and document the pattern and precedence in MAINTENANCE.md (repo and learning-distill bootstrap).
   - Tags: `skills`, `docs`, `maintenance`
-- **[replace indexing with ripgrep](replace-indexing-with-ripgrep.md)**
+- **[Replace Indexing with ripgrep + Fallback Search](replace-indexing-with-ripgrep.md)** — Remove the custom indexing and search scripts and replace them with a ripgrep-based search approach with a layered fallback strategy, including npm/npx-based execution for maximum portability.
+  - Tags: `search`, `tooling`, `docs`, `workflow`
