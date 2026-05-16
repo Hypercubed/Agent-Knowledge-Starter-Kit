@@ -60,6 +60,14 @@ When a durable knowledge entry is deprecated (`status: superseded` for decisions
 - Prefer **sibling** paths (`other-id.md`) or explicit relative paths (`../MAINTENANCE.md`) so links stay stable when the repo is checked out on different machines.
 - Avoid bare URLs as the only pointer when a durable repo file exists; URLs are fine for external references.
 
+### Curation and Quick References
+
+While `docs-compile` auto-generates the exhaustive alphabetical `## Index` at the bottom of index files, the space explicitly above `## Index` (the "blurb") is human-editable and preserved during regeneration. 
+
+Maintainers should use this space to curate a `## Quick Reference` section. The Quick Reference serves as a manually organized pinboard highlighting the most critical, foundational, or frequently encountered files (e.g., grouping core architecture decisions or severity-1 troubleshooting patterns). 
+
+When documenting a new, highly relevant feature or recurring failure, manually add its link to the `## Quick Reference` in the respective `index.md` file.
+
 ### Example (`decisions/`)
 
 ```yaml
