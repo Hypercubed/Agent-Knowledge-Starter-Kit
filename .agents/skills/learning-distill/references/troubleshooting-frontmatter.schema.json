@@ -38,6 +38,11 @@
         "pattern": "^(decisions|troubleshooting)/[a-z0-9_-]+$"
       },
       "description": "Qualified references to other durable entries."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["obsolete"],
+      "description": "Lifecycle status; troubleshooting entries may be marked as obsolete when no longer relevant."
     }
   },
   "required": ["id", "title", "last_updated", "description", "tags"],
