@@ -44,5 +44,7 @@ One file per durable architectural or policy decision. New entries: follow [Entr
   - Tags: `docs`, `integrations`, `architecture`
 - **[Single-tree architecture (`.agents/`)](single-tree-architecture-agents.md)** — Canonical kit knowledge and portable skills live only under root `.agents/`; the `example/` tree is generated illustration, not a second source of truth.
   - Tags: `architecture`, `agents`, `installation`
+- **[Use docs-capture for ad-hoc durable docs](use-docs-capture-for-ad-hoc-durable-docs.md)** — Direct ad-hoc documentation edits into the .agents/ layer should use the docs-capture skill to bypass full distillation.
+  - Tags: `knowledge`, `docs-capture`, `openspec`
 - **[Use the Routing Pattern for agentic tool bootstrap files](use-the-routing-pattern-for-agentic-tool-bootstrap-files.md)** — Bootstrap files for agentic tools should route to `.agents/AGENTS.md` and portable skills rather than embedding long forked guidance.
   - Tags: `agents`, `integrations`, `docs`

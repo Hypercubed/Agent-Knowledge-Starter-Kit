@@ -288,3 +288,7 @@ Outcome: updated Files: `.agents/AGENTS.md`; `.agents/docs/log.md` Accepted: 0 R
 ### \[YYYY-MM-DD] docs-lint
 
 Outcome: cleanup Files: `.agents/AGENTS.md`; `.agents/docs/log.md` Notes: brief summary
+
+### [2026-05-16] learning-distill | openspec-docs-capture
+
+Outcome: updated Files: `.agents/docs/decisions/use-docs-capture-for-ad-hoc-durable-docs.md`; `.agents/docs/decisions/index.md`; `.agents/docs/log.md`; `.agents/sessions/20260516-051800-openspec-docs-capture/summary.json` Accepted: 1 (decision to use docs-capture for immediate docs creation, bypassing task-closeout) Rejected: 0 Notes: Distilled the openspec-docs-capture session. Documented decision to use the direct documentation pipeline.
