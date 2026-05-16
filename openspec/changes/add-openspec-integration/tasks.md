@@ -1,7 +1,7 @@
 ## 1. Documentation
 
-- [ ] 1.1 Create the `docs/integrations/openspec.md` file.
-- [ ] 1.2 Write the guide detailing how consumers can add `rules` blocks to their `openspec/config.yaml` to trigger AKSK distillation on OpenSpec changes.
+- [x] 1.1 Create the `docs/integrations/openspec.md` file.
+- [x] 1.2 Write the guide detailing how consumers can add `rules` blocks to their `openspec/config.yaml` to trigger AKSK distillation on OpenSpec changes.
 - [ ] 1.3 Update `docs/integrations/README.md` to list OpenSpec alongside other tools.
 
 ## 2. Verification and Closeout
