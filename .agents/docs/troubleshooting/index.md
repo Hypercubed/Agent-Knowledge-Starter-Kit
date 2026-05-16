@@ -41,6 +41,8 @@ One file per recurring issue pattern. New entries: follow [Entry shape](../MAINT
   - Tags: `hermes`, `skills`, `tooling`
 - **[Hermes Agent–specific: Suspected tool anomaly from a single weak run](hermes-agent-specific-suspected-tool-anomaly-from-a-single-weak-run.md)** — A single flaky tool invocation in Hermes should be validated against the real filesystem before promoting it as a durable repo-wide incident pattern.
   - Tags: `hermes`, `tooling`, `debugging`
+- **[Index compilation drops human edits](index-compilation-drops-human-edits.md)** — Scripted auto-generation of indexes should preserve human-curated sections like Quick Reference rather than blindly overwriting the entire file.
+  - Tags: `knowledge`, `docs-compile`, `indexes`
 - **[Maintainer plan markdown landed under `learning-distill/bootstrap/`](maintainer-plans-files-placed-under-skill-bootstrap.md)** — Initiative or roadmap files (or stubs for `docs/plans/`) appear under `learning-distill/bootstrap/docs/` or another skill bootstrap tree; portable bootstrap must stay consumer-generic.
   - Tags: `plans`, `skills`, `docs`, `maintenance`
 - **[Maintainer-only skill appears as a portable kit skill](maintainer-skill-lives-under-agents-skills-by-mistake.md)** — Maintainer automation placed under `.agents/skills/` without `internal: true` can be picked up by consumer installs; mark it internal or relocate it.

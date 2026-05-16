@@ -343,21 +343,21 @@ def _resolve_index_template(folder: Path, kind: str) -> tuple[str, str, str, str
             "decisions-index",
             "Decisions index",
             "Decisions",
-            DECISIONS_BLURB,
+            parsed["blurb"] or DECISIONS_BLURB,
         )
     if kind == "troubleshooting":
         return (
             "troubleshooting-index",
             "Troubleshooting index",
             "Troubleshooting",
-            TROUBLESHOOTING_BLURB,
+            parsed["blurb"] or TROUBLESHOOTING_BLURB,
         )
     if kind == "plans":
         return (
             "plans-index",
             "Plans index",
             "Plans",
-            PLANS_BLURB,
+            parsed["blurb"] or PLANS_BLURB,
         )
     slug = _slug_for_index_id(folder)
     heading = parsed["heading"] or _default_heading(folder)

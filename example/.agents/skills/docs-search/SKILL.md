@@ -29,6 +29,13 @@ Default search output lists up to **5** matches; use `--limit 3` for top-3.
 1. **Search** — Run `search-docs.py "<query>"` to get ranked results (title, short description, path).
 2. **Read** — Open the reported file paths for full content.
 
+## When to use docs-search vs reading indexes
+
+- **Use indexes first** when browsing or exploring a topic area (e.g., "what troubleshooting patterns exist?")
+- **Use docs-search** when you have specific keywords, error messages, or tool names (e.g., "Codex write error")
+- **Indexes show:** All entries with descriptions and tags in one place
+- **Search finds:** Specific text matches across all content
+
 ## Example queries
 
 - `deployment steps`
