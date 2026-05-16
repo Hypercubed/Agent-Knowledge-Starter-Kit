@@ -67,8 +67,12 @@ def _read_frontmatter_block(path: Path) -> tuple[dict[str, Any], str]:
         return {}, text
     block = text[4:end]
     body = text[end + 5 :]
-    data = yaml.safe_load(block)
-    fm = data if isinstance(data, dict) else {}
+    try:
+        data = yaml.safe_load(block)
+        fm = data if isinstance(data, dict) else {}
+    except yaml.YAMLError as e:
+        print(f"ERROR: YAML parse error in {path}: {e}", file=sys.stderr)
+        return {}, text
     return fm, body
 
 
@@ -94,7 +98,7 @@ def _yaml_title_line(title: str) -> str:
 
 
 def _index_body_lines(
-    heading: str, blurb: str, entries: list[tuple[str, str]]
+    heading: str, blurb: str, entries: list[tuple[str, str, str, list[str]]]
 ) -> list[str]:
     lines: list[str] = [
         f"# {heading}",
@@ -104,8 +108,18 @@ def _index_body_lines(
         "## Index",
         "",
     ]
-    for title, filename in entries:
-        lines.append(f"- [{title}]({filename})")
+    for title, filename, description, tags in entries:
+        # Main entry line with title and description
+        if description:
+            lines.append(f"- **[{title}]({filename})** — {description}")
+        else:
+            lines.append(f"- **[{title}]({filename})**")
+        
+        # Tags line if present
+        if tags:
+            tag_str = ", ".join(f"`{tag}`" for tag in tags)
+            lines.append(f"  - Tags: {tag_str}")
+    
     lines.append("")
     return lines
 
@@ -116,7 +130,7 @@ def _render_index(
     index_title: str,
     heading: str,
     blurb: str,
-    entries: list[tuple[str, str]],
+    entries: list[tuple[str, str, str, list[str]]],
     last_updated: str,
 ) -> str:
     body = "\n".join(_index_body_lines(heading, blurb, entries))
@@ -245,6 +259,21 @@ def _collect_entries(folder: Path, kind: str) -> list[tuple[Path, dict[str, Any]
                     f"WARN: id {entry_id!r} should match [a-z0-9_-]+ ({path})",
                     file=sys.stderr,
                 )
+        
+        # Validate description field
+        description = fm.get("description")
+        if not description:
+            print(f"WARN: missing description in {path}", file=sys.stderr)
+        elif not isinstance(description, str):
+            print(f"WARN: description should be a string in {path}", file=sys.stderr)
+        
+        # Validate tags field
+        tags = fm.get("tags")
+        if not tags:
+            print(f"WARN: missing tags in {path}", file=sys.stderr)
+        elif not isinstance(tags, list):
+            print(f"WARN: tags should be a list in {path}", file=sys.stderr)
+        
         if kind == "decisions":
             status = fm.get("status")
             if status not in ("accepted", "superseded", "provisional"):
@@ -264,13 +293,24 @@ def _collect_entries(folder: Path, kind: str) -> list[tuple[Path, dict[str, Any]
 
 def _build_sorted_links(
     entries: list[tuple[Path, dict[str, Any]]],
-) -> list[tuple[str, str]]:
-    decorated: list[tuple[str, str, str]] = []
+) -> list[tuple[str, str, str, list[str]]]:
+    decorated: list[tuple[str, str, str, str, list[str]]] = []
     for path, fm in entries:
         title = _normalize_title(fm.get("title")) or path.stem.replace("-", " ")
-        decorated.append((title.casefold(), title, path.name))
+        description = fm.get("description", "")
+        if isinstance(description, str):
+            # Normalize whitespace in description
+            description = " ".join(description.split())
+        else:
+            description = ""
+        
+        tags = fm.get("tags", [])
+        if not isinstance(tags, list):
+            tags = []
+        
+        decorated.append((title.casefold(), title, path.name, description, tags))
     decorated.sort(key=lambda t: (t[0], t[2]))
-    return [(t[1], t[2]) for t in decorated]
+    return [(t[1], t[2], t[3], t[4]) for t in decorated]
 
 
 def _resolve_last_updated(
@@ -303,21 +343,21 @@ def _resolve_index_template(folder: Path, kind: str) -> tuple[str, str, str, str
             "decisions-index",
             "Decisions index",
             "Decisions",
-            DECISIONS_BLURB,
+            parsed["blurb"] or DECISIONS_BLURB,
         )
     if kind == "troubleshooting":
         return (
             "troubleshooting-index",
             "Troubleshooting index",
             "Troubleshooting",
-            TROUBLESHOOTING_BLURB,
+            parsed["blurb"] or TROUBLESHOOTING_BLURB,
         )
     if kind == "plans":
         return (
             "plans-index",
             "Plans index",
             "Plans",
-            PLANS_BLURB,
+            parsed["blurb"] or PLANS_BLURB,
         )
     slug = _slug_for_index_id(folder)
     heading = parsed["heading"] or _default_heading(folder)

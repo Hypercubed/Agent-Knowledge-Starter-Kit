@@ -21,7 +21,7 @@ This file belongs in `.agents/docs/`, alongside `.agents/AGENTS.md`.
 
 ## Entry shape
 
-When adding a new markdown file under `decisions/` or `troubleshooting/`, follow the frontmatter and body headings used by existing entries in that folder, including the [Frontmatter contract](#frontmatter-contract-durable-entries) below. During **knowledge-lint**, verify contracts by inspection (duplicate `id`, missing keys, scalar `tags` instead of a list, `status` only on decisions for durable entries, and so on). You may also validate entry YAML against the provided JSON Schemas (`.agents/skills/learning-distill/references/decision-frontmatter.schema.json` and `.agents/skills/learning-distill/references/troubleshooting-frontmatter.schema.json`).
+When adding a new markdown file under `decisions/` or `troubleshooting/`, follow the frontmatter and body headings used by existing entries in that folder, including the [Frontmatter contract](#frontmatter-contract-durable-entries) below. During **knowledge-lint**, verify contracts by inspection (duplicate `id`, missing keys, scalar `tags` instead of a list, `status` on decisions and troubleshooting, and so on). You may also validate entry YAML against the provided JSON Schemas (`.agents/skills/learning-distill/references/decision-frontmatter.schema.json` and `.agents/skills/learning-distill/references/troubleshooting-frontmatter.schema.json`).
 
 ### Frontmatter contract (durable entries)
 
@@ -43,7 +43,14 @@ Applies to every `*.md` file under `decisions/` and `troubleshooting/` **except*
 
 - `depends_on`: YAML **list** of **qualified references** to other durable entries: each item is `decisions/<slug>` or `troubleshooting/<slug>` (see [Entry `id` and qualified graph references](#entry-id-and-qualified-graph-references)). Use this when there is a hard dependency or ordering readers should follow. Omit the key when there is no explicit graph edge.
 
-**Do not** put `status` on troubleshooting entries; lifecycle applies to decision records.
+Troubleshooting entries may have `status: obsolete` if the pattern they describe is no longer relevant.
+
+### Triple-Lock Deprecation Strategy for indexes
+
+When a durable knowledge entry is deprecated (`status: superseded` for decisions, or `status: obsolete` for troubleshooting), it will be automatically moved to a deprecated section in its folder's `index.md` file during `docs-compile`. This strategy uses three semantic markers (the "Triple-Lock") to ensure tools and humans correctly identify inactive guidance:
+- **Section Headers:** The entry is moved to `## Superseded` or `## Obsolete` at the bottom of the index.
+- **Text Prefixes:** The list item is prefixed with `**[SUPERSEDED]**` or `**[OBSOLETE]**`.
+- **Markdown Strikethrough:** The link itself is struck through (e.g., `~~[Title](file.md)~~`).
 
 
 

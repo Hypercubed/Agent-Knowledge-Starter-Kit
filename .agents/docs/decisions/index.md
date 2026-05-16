@@ -8,6 +8,12 @@ last_updated: 2026-05-16
 
 One file per durable architectural or policy decision. New entries: follow [Entry shape](../MAINTENANCE.md#entry-shape) in `MAINTENANCE.md`, then add a row below.
 
+## Quick Reference
+
+**Core architecture:** [single-tree-architecture-agents.md](single-tree-architecture-agents.md), [sessions-directory-tracked-readme-with-ignored-bundles.md](sessions-directory-tracked-readme-with-ignored-bundles.md)
+**Tool integration:** [docs-search-remains-canonical-over-host-native-search.md](docs-search-remains-canonical-over-host-native-search.md), [github-copilot-as-rules-based-ide-wiring-tool.md](github-copilot-as-rules-based-ide-wiring-tool.md), [use-the-routing-pattern-for-agentic-tool-bootstrap-files.md](use-the-routing-pattern-for-agentic-tool-bootstrap-files.md)
+**Workflow policies:** [agents-do-not-stage-or-commit-changes.md](agents-do-not-stage-or-commit-changes.md), [regenerate-example-when-portable-kit-changes.md](regenerate-example-when-portable-kit-changes.md)
+
 ## Index
 
 - **[`docs-search` stays canonical for `.agents/` knowledge; host-native search is not the default fallback policy](docs-search-remains-canonical-over-host-native-search.md)** — Kit skills should not instruct agents to prefer each host product’s native workspace index or search first, with the `docs-search` Python tools only as fallback. Native search may complement general exploration but does not replace the explicit, scoped index contract for durable `.agents/` markdown.
