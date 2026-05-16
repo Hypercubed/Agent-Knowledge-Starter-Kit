@@ -1,0 +1,7 @@
+rules:
+  - name: AKSK Knowledge Persistence
+    description: Enforce AKSK documentation and constraint standards.
+    patterns:
+      - .agents/**/*.md
+      - docs/**/*.md
+    action: read-and-reference
