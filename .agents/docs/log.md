@@ -296,3 +296,4 @@ Outcome: updated Files: `.agents/docs/decisions/use-docs-capture-for-ad-hoc-dura
 ### [2026-05-16] learning-distill | docs-index-quick-ref-fix
 
 Outcome: updated Files: `.agents/docs/troubleshooting/index-compilation-drops-human-edits.md`; `.agents/docs/troubleshooting/index.md`; `.agents/docs/log.md`; `.agents/sessions/20260516-050400-quick-ref-index-fix/summary.json` Accepted: 1 (added troubleshooting note around preserving human-curated sections during automated index generation) Rejected: 0 Notes: Distilled the docs-index-quick-ref-fix session. Formalized troubleshooting around the `Quick Reference` loss.
+2026-05-16: Distilled OpenSpec integration (task_id: add-openspec-integration) into decisions/.

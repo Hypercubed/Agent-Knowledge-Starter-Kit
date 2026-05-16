@@ -26,6 +26,7 @@ Before wiring a tool, install shared kit skills in the target repo with `npx ski
 - [Hermes](./hermes.md) - Hermes memory, session recall, skill namespace caveats, and repo skill files
 - [Kilo Code](./kilo-code.md) - `AGENTS.md`, `kilo.json`, `.kilo/` wrappers, and kit routing
 - [OpenClaw](./openclaw.md) - startup files, memory, sessions, automation, and kit boundaries
+- [OpenSpec](./openspec.md) - OpenSpec integration for AKSK knowledge persistence.
 - [OpenCode](./opencode.md) - `AGENTS.md`, `opencode.json`, `.opencode/` wrappers, and native skill discovery
 - [Warp](./warp.md) - project/global rules, skills, Oz workflows, and kit routing
 - [Zo Computer](./zo-computer.md) - Zo-specific skill discovery, docs-search, and closeout workflow
