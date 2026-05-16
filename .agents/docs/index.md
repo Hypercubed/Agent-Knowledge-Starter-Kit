@@ -4,6 +4,18 @@ This file belongs in `.agents/docs/`.
 
 Durable knowledge uses separate markdown files per topic: architectural decisions under [`decisions/`](decisions/index.md); recurring issues under [`troubleshooting/`](troubleshooting/index.md). Decision and troubleshooting entry files include minimal YAML frontmatter (`id`, `title`, `last_updated`).
 
+## How to Navigate This Knowledge Layer
+
+1. **Start here:** Read this index to understand the overall structure
+2. **Check section indexes:** Each folder has an `index.md` with descriptions and tags for all entries
+3. **Use docs-search:** For keyword/error searches: `python .agents/skills/docs-search/scripts/search-docs.py "query"`
+4. **Read specific files:** Once you identify relevant entries from indexes or search results
+
+**Example workflow:**
+- Debugging? → Read [`troubleshooting/index.md`](troubleshooting/index.md) → Check Quick Reference → Find relevant pattern → Read full entry
+- Architectural question? → Read [`decisions/index.md`](decisions/index.md) → Check Quick Reference → Read decision file
+- General exploration? → Start with section indexes to see what's available
+
 ## `.agents/AGENTS.md`
 
 Compact instructions for future agents. Consult first for repo-wide operational guidance.
