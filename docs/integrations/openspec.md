@@ -1,41 +1,44 @@
-# OpenSpec Integration
+# OpenSpec Integration Guide
 
-Use this guide to connect OpenSpec with the Agent Knowledge Starter Kit (AKSK). For the shared integration model, read [Integration Patterns](./patterns.md).
+This guide describes how to integrate OpenSpec into the Agent Knowledge Starter Kit (AKSK). OpenSpec agents can be used to monitor, validate, or document AKSK projects while adhering to established knowledge-capture constraints.
 
-OpenSpec is an AI-native system for spec-driven development. Since OpenSpec natively supports instructing its agents via a configuration file, we can orchestrate the handoff between OpenSpec's workflow and AKSK's processes purely through prompt instructions in the `rules` block.
+> **CAUTION:** OpenSpec agents do not execute scripts. They read and interpret `SKILL.md` files to understand workflows and policies. Ensure your skills are well-documented for agent consumption.
 
-## Setup
+## Configuration
 
-1. Install starter skills in the target repo with `npx skills add Hypercubed/Agent-Knowledge-Starter-Kit`, then run each installed skill's initialization from its `SKILL.md` (see [`INSTALL.md`](../../INSTALL.md)).
-2. Configure OpenSpec to trigger AKSK skills during its workflow phases. Add the following rules blocks to your `openspec/config.yaml` or `.openspec.yaml` file.
+To integrate with OpenSpec, define a ruleset in your OpenSpec configuration that points agents to AKSK documentation.
 
 ### Example Configuration
 
+Add the following to your `openspec.yaml` (or equivalent configuration):
+
 ```yaml
 rules:
-  proposal: |
-    - **Before drafting architectural changes:** You MUST search `.agents/docs/decisions/` or run `python3 .agents/skills/docs-search/scripts/search-docs.py` to ensure your proposed changes do not violate established design patterns.
-    - Reference `.agents/AGENTS.md` to match existing patterns in the codebase.
-
-  tasks: |
-    - **Task Closeout:** After meaningful changes, debugging, or validation, you MUST capture the current task into a structured temporary session bundle under `.agents/sessions/` using the instructions in `.agents/skills/task-closeout/SKILL.md`.
-    - **Learning Distill:** At the end of implementation phases, read the completed temporary session bundle and distill durable repo knowledge into `.agents/` files using the instructions in `.agents/skills/learning-distill/SKILL.md`.
-    - Treat `.agents/AGENTS.md` as the primary durable instructions file. Keep changes minimal and focused as per the non-negotiables.
+  - name: "AKSK Documentation Awareness"
+    description: "Ensure agents follow AKSK knowledge capture standards."
+    patterns:
+      - ".agents/SKILL.md"
+      - ".agents/skills/**/*.md"
+    action: "read-and-reference"
 ```
+
+*Note: The paths above reflect a standard AKSK installation. If your project uses a custom directory structure for skills or agents, update these paths accordingly.*
 
 ## Workflow Integration
 
-- **Proposal/Design Phase (`rules: proposal`):** OpenSpec agents will use the `docs-search` skill to review existing architectural decisions and avoid violations before drafting specs.
-- **Implementation Phase (`rules: tasks`):** As OpenSpec implements tasks, the agents will use `task-closeout` to bundle execution evidence and then use `learning-distill` to promote any reusable lessons to the durable knowledge base under `.agents/`.
+When using OpenSpec agents in an AKSK workflow, follow these operational phases to ensure knowledge is captured correctly:
 
-## Caveats
+### 1. Proposal Phase
+The agent MUST generate a plan as a markdown file, typically saved to `.hermes/plans/`.
 
-- OpenSpec does not natively run bash scripts like `task-closeout.sh` automatically. Instead, the agents read the `SKILL.md` files (as specified in the rules) and perform the steps listed within them.
-- Ensure that paths mentioned in your `openspec/config.yaml` rules are relative to the project root and match your AKSK installation structure.
-- Depending on the specific OpenSpec agents, you might need to use strong directives like `MUST` to ensure they execute the documentation searches and closeout processes reliably.
+### 2. Implementation Phase
+The agent MUST reference relevant `SKILL.md` documents to understand constraints before taking action.
 
-## References
+### 3. Knowledge Distillation
+Upon completion of a task, the agent MUST distill the final approach or discovery into a new `SKILL.md` or update an existing one if the findings are durable.
 
-- [`README.md`](../../README.md)
-- [`INSTALL.md`](../../INSTALL.md)
-- [Integration Patterns](./patterns.md)
+## Best Practices
+
+- **Explicit Directions:** Use bolded **MUST** headers within your `SKILL.md` files to clearly convey imperative constraints to the agent.
+- **Pathing Awareness:** Always reference files using paths relative to the project root to ensure they are discoverable regardless of where the AKSK project is nested.
+- **Verification:** Always verify that an OpenSpec agent has "read" access to your skill directories before assigning tasks.
