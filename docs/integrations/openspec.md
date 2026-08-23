@@ -4,7 +4,7 @@ This guide describes how to integrate OpenSpec into this project to enhance agen
 
 ## 0. Prerequisites
 - **Node.js (LTS):** Required to run OpenSpec via `npx`.
-- **Project Structure:** Ensure your repository includes the `.agents/` directory (see [`.agents/docs/index.md`](../../.agents/docs/index.md)).
+- **Project Structure:** Ensure your repository includes the `.agents/` directory (see [`openwiki/index.md`](../../openwiki/index.md)).
 
 ## 1. Setup and Configuration
 Create a `openspec.yaml` in your project root. Ensure `read-and-reference` targets are scoped correctly to your project's knowledge base.
@@ -34,7 +34,7 @@ Integrate OpenSpec into your development lifecycle:
 
 ## 3. Troubleshooting
 - **Rule not active?** Confirm `openspec.yaml` is in the project root. Run `npx openspec status`.
-- **Path resolution fail?** Use absolute paths where possible, and avoid complex globbing. Check `.agents/docs/index.md` for known infrastructure patterns.
+- **Path resolution fail?** Use absolute paths where possible, and avoid complex globbing. Check `openwiki/index.md` for known infrastructure patterns.
 - **Permission denied?** Ensure the `node_modules` and `.openspec/` directories have standard read/write permissions.
 
 ## 4. Best Practices

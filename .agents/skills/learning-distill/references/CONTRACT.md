@@ -1,45 +1,35 @@
-# Learning distill contract
+# Learning Distill Contract
 
-Machine-oriented rules for **learning-distill** when only this skill folder is present. Distillation policy, logging rules, and durable entry YAML remain normative in [`.agents/docs/MAINTENANCE.md`](../../docs/MAINTENANCE.md). For precedence, see [Portable skill contracts](../../docs/MAINTENANCE.md#portable-skill-contracts).
+Machine-oriented scope, outputs, and write boundaries.
 
-## Inputs
+## Scope
 
-- One **session bundle** directory under `.agents/sessions/<bundle>/` (see [task-closeout `CONTRACT.md`](../task-closeout/CONTRACT.md) for bundle layout).
-- Existing durable tree: `.agents/AGENTS.md`, `.agents/docs/**`, `.agents/playbooks/`.
+Boundary: pages under `openwiki/` record facts and rationale. Requirements already codified in `openspec/specs/` are never duplicated as wiki pages; distillation cites them instead.
 
-**Canonical task identity:** read `task_id` from the bundle’s `summary.json`. Do not infer identity from the session folder name.
+- Reads: one session bundle under `.agents/sessions/<bundle>/`; `.agents/AGENTS.md`; `.agents/playbooks/`; `openwiki/INSTRUCTIONS.md`; curated pages under `openwiki/`.
+- Writes (wiki, only after fail-closed prerequisite checks pass):
+  - `openwiki/decisions/*.md`
+  - `openwiki/troubleshooting/*.md`
+  - `openwiki/<topic>.md` (descriptive lesson pages)
+  - deterministic index refresh via `aksk-bootstrap/scripts/sync_wiki_indexes.mjs`
+- Writes (.agents):
+  - `.agents/AGENTS.md` (only lessons meeting the AGENTS criteria)
+  - `.agents/playbooks/*.md`
+  - the bundle's own `summary.json` distillation flags
+- Never writes: OpenWiki-owned files (`index.md`, run metadata), `openspec/`, source code.
 
-## Bootstrap source path (this repo)
+## summary.json flags
 
-Initialization templates live only under this skill:
+Set `distilled: true` and `distillation_status` on the bundle when finished; keep `task_id` unchanged.
 
-- `bootstrap/docs/` — `MAINTENANCE.md`, `index.md`, `log.md`, `decisions/`, `troubleshooting/`
-- `bootstrap/playbooks/README.md`
-- `bootstrap/sessions/README.md`
-- `bootstrap/AGENTS.md`
+## Page frontmatter
 
-Copy rules: **create missing files only**; do not overwrite existing consumer files.
+OKF base (`type`, `title`, `description`, `tags`, `timestamp`) plus AKSK extensions:
 
-## Writes (distillation)
+| Field | Applies to | Values |
+| --- | --- | --- |
+| `aksk_status` | decision pages | `accepted`, `superseded`, `provisional` |
+| `aksk_superseded_by` | superseded pages | successor slug |
+| `aksk_depends_on` | any knowledge page | list of qualified slugs |
 
-Allowed durable targets include:
-
-- `.agents/AGENTS.md` (only for lessons meeting the skill’s AGENTS criteria)
-- `.agents/docs/decisions/*.md` and `decisions/index.md`
-- `.agents/docs/troubleshooting/*.md` and `troubleshooting/index.md`
-- `.agents/docs/index.md`
-- `.agents/playbooks/*.md`
-- **Append** a row to `.agents/docs/log.md` on each successful distillation (see `MAINTENANCE.md` Logging policy; no secrets or long raw dumps)
-- Update the bundle’s `summary.json` / distillation flags to mark the bundle processed (see `SKILL.md`)
-
-**Do not** modify application source code outside the knowledge layer.
-
-## Post-write index refresh
-
-After changing durable markdown, when optional skills exist:
-
-```bash
-python .agents/skills/docs-compile/scripts/docs-compile.py
-```
-
-Contract details: [docs-compile `CONTRACT.md`](../docs-compile/CONTRACT.md), [docs-search `CONTRACT.md`](../docs-search/CONTRACT.md).
+Entry identity is the filename stem, unique within its tree.

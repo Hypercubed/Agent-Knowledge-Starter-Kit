@@ -7,7 +7,7 @@ Based on Kilo's documented configuration and discovery model plus repo-local con
 ## Setup
 
 1. Install starter skills in the target repo with `npx skills add Hypercubed/Agent-Knowledge-Starter-Kit`, then run each installed skill's initialization from its `SKILL.md` (see [`INSTALL.md`](../../INSTALL.md)).
-2. Add a short root `AGENTS.md` that tells Kilo to read `.agents/AGENTS.md` and `.agents/docs/index.md`.
+2. Add a short root `AGENTS.md` that tells Kilo to read `.agents/AGENTS.md` and `openwiki/index.md`.
 3. Keep durable repo policy in `.agents/`, not in `.kilo/instructions.md` or agent prompts.
 4. Add `.kilo/` files only when Kilo-native commands, agents, or config add real convenience.
 5. Keep personal defaults in global Kilo config; commit only repo-specific wiring.
@@ -18,7 +18,7 @@ Based on Kilo's documented configuration and discovery model plus repo-local con
 This repo uses the Agent Knowledge Starter Kit.
 
 - Read `.agents/AGENTS.md` for durable repo guidance.
-- Use `.agents/docs/index.md` to find decisions, troubleshooting, and playbooks.
+- Use `openwiki/index.md` for decisions, troubleshooting, and architecture; `.agents/playbooks/` for procedures.
 - Keep raw task evidence in `.agents/sessions/`.
 - Do not duplicate long-lived policy into `.kilo/` files.
 ```
@@ -52,7 +52,7 @@ Read `.agents/skills/task-closeout/SKILL.md` and follow it exactly. Keep tempora
 ## Workflow
 
 1. Start from the repo root.
-2. Read root `AGENTS.md`, then `.agents/AGENTS.md` and `.agents/docs/index.md`.
+2. Read root `AGENTS.md`, then `.agents/AGENTS.md` and `openwiki/index.md`.
 3. Use `.kilo/command/*.md` and `.kilo/agent/*.md` as convenience wrappers only.
 4. Keep raw evidence in `.agents/sessions/`, then distill stable lessons into `.agents/`.
 

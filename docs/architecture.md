@@ -1,5 +1,7 @@
 # Architecture
 
+> **Peer dependencies (v2.0):** this kit requires Node >= 22 with globally installed `@fission-ai/openspec` (process/intent layer) and `openwiki` (descriptive knowledge layer), plus an initialized `openwiki/` wiki. Skills verify these prerequisites and fail fast with exact install instructions; nothing is auto-installed.
+
 ## Design principles
 
 ### 1. Raw evidence is not the same as durable knowledge
@@ -20,7 +22,7 @@ It should not contain:
 - speculative notes
 - one-off debugging details
 
-Those belong in `.agents/sessions/` bundles, `.agents/docs/troubleshooting/`, `.agents/playbooks/`, or `.agents/docs/decisions/`.
+Those belong in `.agents/sessions/` bundles, `openwiki/troubleshooting/`, `.agents/playbooks/`, or `openwiki/decisions/`.
 
 ### 3. Distillation should be a separate role
 
@@ -156,9 +158,9 @@ Put here:
 - recurring high-confidence pitfalls
 - short checklists
 
-### `.agents/docs/decisions/`
+### `openwiki/decisions/`
 
-Durable rationale and architectural choices (one markdown file per decision; see `index.md` in that directory).
+Durable rationale and architectural choices as curated OKF pages (one page per decision, with `aksk_status` lifecycle fields; indexed deterministically by OpenWiki tooling).
 
 Put here:
 
@@ -166,9 +168,9 @@ Put here:
 - tradeoffs and exceptions
 - decisions that may need explanation later
 
-### `.agents/docs/troubleshooting/`
+### `openwiki/troubleshooting/`
 
-Recurring failure and recovery patterns (one markdown file per pattern; see `index.md` in that directory).
+Recurring failure and recovery patterns as curated OKF pages (one page per pattern).
 
 Put here:
 
@@ -179,7 +181,7 @@ Put here:
 
 ### `.agents/playbooks/`
 
-Durable multi-step procedures (sibling of `.agents/docs/`, not inside `.agents/docs/`).
+Durable multi-step procedures.
 
 Put here:
 
@@ -188,17 +190,13 @@ Put here:
 - recurring maintenance procedures
 - workflows that require multiple ordered steps
 
-### `.agents/docs/index.md`
+### `openwiki/index.md`
 
-Catalog of knowledge assets and when to consult them.
+OpenWiki-owned catalog of knowledge assets and when to consult them; refreshed by deterministic index sync, never hand-edited.
 
-### `.agents/docs/log.md`
+### `openwiki/maintenance-format.md`
 
-Append-only record of maintenance actions.
-
-### `.agents/docs/MAINTENANCE.md`
-
-The schema and policy document for the knowledge layer.
+Curated schema and policy reference for the curated knowledge trees (see also `openwiki/overview.md`).
 
 ---
 
@@ -210,13 +208,13 @@ The schema and policy document for the knowledge layer.
 4. A structured task-closeout bundle is written to `.agents/sessions/<session-folder>/`.
 5. The canonical task/session identifier is recorded in the `task_id` field inside the bundle's `summary.json`.
 6. The learning agent runs `learning-distill` on that session bundle.
-7. Durable lessons are written into `.agents/`.
-8. The learning agent appends a summary to `.agents/docs/log.md`.
+7. Durable lessons are written into their routed homes: curated wiki trees for descriptive lessons, `.agents/AGENTS.md` or playbooks for prescriptive ones.
+8. The learning agent refreshes wiki indexes via `sync_wiki_indexes.mjs`; accountability lives in the bundle's distillation flags.
 9. Periodically, the lint agent runs `docs-lint`.
 
 ```mermaid
 flowchart TD
-    A[Start coding task] --> C[Read durable knowledge first<br/>.agents/AGENTS.md<br/>.agents/docs/index.md<br/>playbooks / troubleshooting/]
+    A[Start coding task] --> C[Read durable knowledge first<br/>.agents/AGENTS.md<br/>openwiki/index.md<br/>playbooks / openwiki/troubleshooting/]
     C --> B[Coding agent does implementation work]
     B --> D{Meaningful stopping point?<br/>complete / blocked / abandoned}
     D -- No --> B
@@ -247,19 +245,17 @@ flowchart TD
 
 
     M2 --> N1[Update .agents/AGENTS.md<br/>only if broad, stable, concise, actionable]
-    M3 --> N2[Update .agents/docs/troubleshooting/]
-    M4 --> N3[Update .agents/docs/decisions/]
+    M3 --> N2[Update openwiki/troubleshooting/]
+    M4 --> N3[Update openwiki/decisions/]
     M5 --> N4[Update .agents/playbooks/*]
 
 
-    N1 --> O[Update .agents/docs/index.md if structure changed]
+    N1 --> O[Run sync_wiki_indexes.mjs<br/>for deterministic index refresh]
     N2 --> O
     N3 --> O
     N4 --> O
 
-
-    O --> P[Append concise maintenance entry<br/>to .agents/docs/log.md]
-    P --> Q[Mark session bundle distilled]
+    O --> Q[Mark session bundle distilled<br/>accountability lives in summary.json flags]
 
     Q --> R[Periodic maintenance pass]
     R --> S[Run skill: docs-lint]
@@ -269,7 +265,7 @@ flowchart TD
         S --> U[Check contradictions]
         S --> V[Check stale or superseded guidance]
         S --> W[Check oversized AGENTS sections]
-        S --> X[Check missing index coverage]
+        S --> X[Check routing blocks and wiki coverage pairing]
         S --> Y[Recommend or apply minimal cleanup]
     end
 
@@ -291,7 +287,7 @@ A candidate lesson belongs in `.agents/AGENTS.md` only if it is:
 Otherwise it probably belongs in:
 
 
-- `.agents/docs/decisions/`
-- `.agents/docs/troubleshooting/`
+- `openwiki/decisions/`
+- `openwiki/troubleshooting/`
 - `.agents/playbooks/`
 - nowhere at all

@@ -19,7 +19,7 @@ Foundational mandates for this repository:
 
 - Durable repository knowledge and agent guidance live in `.agents/`.
 - Read and follow `.agents/AGENTS.md` at the start of every session.
-- Consult `.agents/docs/index.md` for decisions, troubleshooting, and playbooks.
+- Consult `openwiki/index.md` for decisions, troubleshooting, and architecture.
 - For task closeout, follow `.agents/skills/task-closeout/SKILL.md`.
 - Store temporary session evidence in `.agents/sessions/`; do not commit it unless explicitly asked.
 ```
@@ -39,7 +39,7 @@ Foundational mandates for this repository:
 - `GEMINI.md` should be strong routing into `.agents/`, but not the canonical policy store.
 - If Gemini file tools respect `.gitignore`, direct reads under `.agents/sessions/` may fail. Use an allowed shell read or explicit override when available.
 - Capture a Gemini session ID in closeout metadata only when it is clearly available, such as from `gemini --list-sessions`; otherwise omit it.
-- `save_memory(scope="project")` is private and not version-controlled. Shared lessons belong in `.agents/docs/`.
+- `save_memory(scope="project")` is private and not version-controlled. Shared lessons belong in the curated wiki trees.
 
 ## Workflow
 

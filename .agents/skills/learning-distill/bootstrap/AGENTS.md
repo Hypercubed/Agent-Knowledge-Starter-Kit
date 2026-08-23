@@ -12,9 +12,9 @@ This file contains concise, high-signal instructions for future agents working i
 
 ## Routing Directives
 
-- **UPON STARTUP:** You MUST read `.agents/docs/index.md` before executing any file modifications. This ensures you understand the repository layout and available tools.
-- **WHEN DEBUGGING:** If you encounter a failing test, build error, or runtime exception, your FIRST action MUST be to execute `.agents/skills/docs-search` using the error output as your query.
-- **BEFORE ARCHITECTURAL CHANGES:** You MUST search `.agents/docs/decisions/` or read its `index.md` to ensure your proposed changes do not violate established design patterns.
+- **UPON STARTUP:** You MUST read `openwiki/index.md` and `.agents/AGENTS.md` before executing any file modifications. This ensures you understand the repository layout and available tools.
+- **WHEN DEBUGGING:** If you encounter a failing test, build error, or runtime exception, your FIRST action MUST be to search durable knowledge for it: `grep -ri "<error or symptom>" openwiki/ .agents/` before debugging blind.
+- **BEFORE ARCHITECTURAL CHANGES:** You MUST search `openwiki/decisions/` for recorded decisions to ensure your proposed changes do not violate established design patterns.
 
 ## What belongs here
 
@@ -37,11 +37,11 @@ This file contains concise, high-signal instructions for future agents working i
 - Keep this file concise.
 - Prefer bullets over prose.
 - Add guidance only when it is stable and broadly useful.
-- Move rationale into a new or existing file under `.agents/docs/decisions/` (update `decisions/index.md` when adding a decision).
-- Move recurring failure details into a new or existing file under `.agents/docs/troubleshooting/` (update `troubleshooting/index.md` when adding a pattern).
-- Move multi-step procedures to `.agents/playbooks/` (sibling of `.agents/docs/`, not inside it).
+- Move rationale into curated OpenWiki decision pages under `openwiki/decisions/` (per `learning-distill`).
+- Move recurring failure details into curated pages under `openwiki/troubleshooting/`.
+- Move multi-step procedures to `.agents/playbooks/`.
 - Keep temporary task artifacts in `.agents/sessions/`, not in durable knowledge files.
-- Do not append to `.agents/docs/log.md` except when running **learning-distill** after a session bundle, or when the user explicitly asks you to record there.
+- Do not hand-edit OpenWiki-owned files (`openwiki/index.md`, run metadata); index refresh happens via the kit's sync script during distillation.
 
 ## Placeholder sections
 

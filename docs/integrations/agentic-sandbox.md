@@ -19,7 +19,7 @@ Agents with tool access (filesystem and shell) interact with the kit differently
 | :--- | :--- |
 | **Procedural Skills** | Read `.agents/skills/*/SKILL.md` and execute the steps using native tools (`write_file`, `run_in_bash_session`, etc.). |
 | **Scripted Skills** | Run the scripts under `.agents/skills/*/scripts/` directly in the shell. |
-| **Durable Docs** | Open and read `.agents/docs/` files to understand repo policy before starting work. |
+| **Durable Docs** | Browse `openwiki/index.md` and the curated trees to understand repo policy before starting work. |
 | **Session Bundles** | Use the `task-closeout` procedure to capture work state before finishing a task. |
 
 ## Scripted Skill Execution
@@ -29,12 +29,12 @@ When environment dependencies are met, agents should use the provided scripts to
 
 ### Search Knowledge Layer
 ```bash
-python3 .agents/skills/docs-search/scripts/search-docs.py "<query>"
+grep -ri "<query>" openwiki/
 ```
 
 ### Compile Durable Indexes
 ```bash
-python .agents/skills/docs-compile/scripts/docs-compile.py
+node .agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs
 ```
 
 ## Agent-Specific Caveats
@@ -49,7 +49,7 @@ python .agents/skills/docs-compile/scripts/docs-compile.py
 2. **Search**: Run `search-docs.py` to find relevant decisions or troubleshooting patterns.
 3. **Execute**: Perform the task following repo conventions.
 4. **Closeout**: Follow `.agents/skills/task-closeout/SKILL.md` to create a session bundle.
-5. **Distill (Optional)**: If acting as a learning agent, run `learning-distill` logic and refresh indexes with `docs-compile.py`.
+5. **Distill (Optional)**: If acting as a learning agent, run `learning-distill` logic and refresh wiki indexes with `sync_wiki_indexes.mjs`.
 
 ## References
 

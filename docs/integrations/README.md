@@ -29,7 +29,7 @@ Before wiring a tool, install shared kit skills in the target repo with `npx ski
 - [OpenSpec](./openspec.md) - OpenSpec integration for AKSK knowledge persistence.
 - [OpenCode](./opencode.md) - `AGENTS.md`, `opencode.json`, `.opencode/` wrappers, and native skill discovery
 - [Warp](./warp.md) - project/global rules, skills, Oz workflows, and kit routing
-- [Zo Computer](./zo-computer.md) - Zo-specific skill discovery, docs-search, and closeout workflow
+- [Zo Computer](./zo-computer.md) - Zo-specific skill discovery, knowledge search, and closeout workflow
 
 ## Planned guides
 

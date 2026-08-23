@@ -2,7 +2,7 @@
 
 A shareable, tool-agnostic starter kit for maintaining a compiled repo knowledge layer for coding agents.
 
-Durable decisions and troubleshooting patterns live as separate markdown files under `.agents/docs/decisions/` and `.agents/docs/troubleshooting/`, each with its own `index.md`.
+Durable decisions and troubleshooting patterns live as curated OKF pages under `openwiki/decisions/` and `openwiki/troubleshooting/`, indexed by OpenWiki tooling.
 
 This pattern separates three concerns:
 
@@ -41,6 +41,7 @@ You can install the kit manually, copy the pre-initialized `example/.agents/` in
 
 Manual install:
 
+0. Install the peer dependencies (manual steps; the kit never installs them): Node >= 22, then `npm i -g @fission-ai/openspec@latest` and `npm i -g openwiki@latest`, and initialize the repo wiki with `openwiki --init`. Skills verify these prerequisites and fail fast with exactly these instructions when missing.
 1. Install skills with `npx skills add Hypercubed/Agent-Knowledge-Starter-Kit`, then follow each installed `SKILL.md`'s **Skill initialization** once (see [INSTALL.md](INSTALL.md#skill-first-install-default)).
 2. If the project already has `.agents/`, merge instead of replacing; preserve repo-specific `rules/`, `playbooks/`, and `skills/`.
 3. Edit `.agents/AGENTS.md` with real build, test, and project conventions (or keep the template created by skill initialization until you are ready).
@@ -73,10 +74,10 @@ Follow [INSTALL.md](INSTALL.md). Run `npx skills add Hypercubed/Agent-Knowledge-
 
 Use the kit as a lightweight maintenance loop around normal agent work:
 
-1. **Start with the repo knowledge layer.** Keep a short root `AGENTS.md` or tool rule that points agents to `.agents/AGENTS.md` and `.agents/docs/index.md`. Put durable repo policy in `.agents/`, not in each tool's native config.
-2. **Do the implementation work normally.** Have the coding agent read the relevant durable guidance, use playbooks, or files under `.agents/docs/troubleshooting/` when needed, and keep tool-specific prompts as thin wiring.
+1. **Start with the repo knowledge layer.** Keep a short root `AGENTS.md` or tool rule that points agents to `.agents/AGENTS.md` and `openwiki/index.md` (the kit's `AKSK:ROUTING` block does this; attach it with `attach_section.mjs`). Put durable repo policy in `.agents/`, not in each tool's native config.
+2. **Do the implementation work normally.** Have the coding agent read the relevant durable guidance, use playbooks, or curated pages under `openwiki/troubleshooting/` when needed, and keep tool-specific prompts as thin wiring.
 3. **Close meaningful tasks with `task-closeout`.** At completion, blockage, or abandonment, invoke the repo-local `task-closeout` skill. It should write raw evidence and a structured bundle under `.agents/sessions/<folder>/`, which is usually gitignored. The canonical task/session identifier is the `task_id` field inside that bundle's `summary.json`; the folder name is only a sortable storage label.
-4. **Promote durable lessons with `learning-distill`.** After closeout, run a separate learning pass with `learning-distill`. Pass the session bundle path and use the `task_id` field in `summary.json` when referring to the task. Promote only stable, reusable lessons into `.agents/AGENTS.md`, `.agents/docs/`, or `.agents/playbooks/`. Leave one-off task history in `.agents/sessions/`.
+4. **Promote durable lessons with `learning-distill`.** After closeout, run a separate learning pass with `learning-distill`. Pass the session bundle path and use the `task_id` field in `summary.json` when referring to the task. Promote only stable, reusable lessons into `.agents/AGENTS.md`, the curated wiki trees, or `.agents/playbooks/`. Leave one-off task history in `.agents/sessions/`.
 5. **Keep the knowledge layer clean with `docs-lint`.** Periodically invoke `docs-lint` to find duplicate, stale, contradictory, oversized, or uncategorized guidance before the layer becomes noisy.
 6. **Review the diff.** Treat durable knowledge changes like code: inspect what changed, make sure session bundles stayed temporary, and commit only the files that should become shared repo knowledge.
 
@@ -91,8 +92,8 @@ flowchart LR
 
     E -->|ephemeral| F[Keep in session bundle]
     E -->|agent guidance| G[.agents/AGENTS.md]
-    E -->|troubleshooting| H[.agents/docs/troubleshooting/]
-    E -->|repo decision| I[.agents/docs/decisions/]
+    E -->|troubleshooting| H[openwiki/troubleshooting/]
+    E -->|repo decision| I[openwiki/decisions/]
     E -->|playbook| J[.agents/playbooks/*]
 
     G --> K[index.md + log.md]
@@ -120,8 +121,8 @@ Use this checklist:
 3. Add the portable maintenance skills if they are not already present: `task-closeout`, `learning-distill`, and `docs-lint`.
 4. Merge `.agents/AGENTS.md` by hand so stable repo guidance stays concise and temporary history stays out.
 5. Confirm session ignore rules. Prefer the kit default in `.agents/.gitignore`: `sessions/*` and `!sessions/README.md`. Use repo-root `.gitignore` patterns only as an alternative: `.agents/sessions/*` and `!.agents/sessions/README.md`.
-6. Optional: append a minimal adoption note to `.agents/docs/log.md` only if you use that file as a maintenance audit trail (see `.agents/docs/MAINTENANCE.md`, Logging policy). Record any durable rationale in a new or existing file under `.agents/docs/decisions/` (update `decisions/index.md` when adding a decision).
-7. Update `.agents/docs/index.md` so pre-existing repo-specific `rules/`, `playbooks/`, and `skills/` are discoverable.
+6. Record any durable rationale as a curated page under `openwiki/decisions/` (per the learning-distill contract).
+7. Run `node .agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs` so wiki indexes surface pre-existing repo-specific `rules/`, `playbooks/`, and `skills/` knowledge.
 
 If both root `AGENTS.md` and `.agents/AGENTS.md` exist, treat root `AGENTS.md` as the agent entrypoint for that checkout and `.agents/AGENTS.md` as the portable knowledge-layer file. Keep one source of truth for each instruction: root `AGENTS.md` should point agents into `.agents/` or contain only bootstrap guidance, while durable repo conventions live in `.agents/AGENTS.md`.
 

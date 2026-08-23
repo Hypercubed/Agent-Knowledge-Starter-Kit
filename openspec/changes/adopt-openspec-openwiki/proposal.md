@@ -9,19 +9,21 @@ This change treats OpenSpec and OpenWiki as **peer dependencies**: globally inst
 - Rewrite `learning-distill` so descriptive durable lessons become OpenWiki pages authored directly by the distilling agent in OKF format (following upstream guidance, with deterministic index refresh), while prescriptive agent-behavior lessons stay in `.agents/AGENTS.md`, playbooks, or decisions.
 - Add an AKSK curation contract to `openwiki/INSTRUCTIONS.md`: which page trees are AKSK-curated, preserve-and-link semantics under `--update`, and meaningful AKSK frontmatter extensions. The contract section is appended to the existing instructions file - OpenWiki-owned content is never replaced. A missing file means OpenWiki was never initialized: fail fast.
 - Verify peer-tool availability before use: skills and scripts that invoke `openspec` or `openwiki` check for the binary first and fail with the exact install/init commands when absent.
+- Add the `aksk-bootstrap` skill owning these preconditions (contract attachment, routing-note attachment, peer-tool verification), seeded to absorb tool installation and integration spreading in the follow-on bootstrap change.
 - Repurpose `docs-lint` into cross-tool lint: routing-block integrity, archived-change/wiki coverage pairing, stale-decision detection. Index-coverage checking moves out of scope (the wiki tooling owns indexes).
 - Slim `task-closeout`: add an `openspec_change` field to `summary.json`; spec updates move to `/opsx:archive` time instead of closeout time.
 - **BREAKING** Retire `docs-search` and `docs-compile` (superseded by OpenWiki index/query tooling); delete forked `openspec-*` skills and `opsx-*` workflow copies (native skills from `openspec init/update` replace them). Keep `openspec/config.yaml`.
 - Record decision entries: division of labor, distribution-stack context, ownership-partition policy, supersession of `repo-centric-wiki-tooling` and the extraction-based approach formerly proposed in `integrate-openwiki-skills`.
-- Explicitly deferred (non-goals): migrating the existing `.agents/docs/{decisions,troubleshooting}` KB into OpenWiki; any installation/bootstrap automation.
+- Consolidate the `.agents/docs/` knowledge base into curated OpenWiki trees (`openwiki/{decisions,troubleshooting}/`), delete hand-built indexes and `.agents/docs/log.md` (OpenWiki tooling owns indexing and run metadata), and remove the `.agents/docs/` tree. Playbooks, sessions, skills, and root guidance stay in `.agents/`. Consumer breakage is accepted: usage is personal-scale, hand-migration fine.
+- Explicitly deferred (non-goals): any installation/bootstrap automation.
 
 ## Capabilities
 
 ### New Capabilities
-- `distill-routing`: Output routing rules for `learning-distill` - descriptive knowledge goes to OpenWiki pages in OKF format with curated-page preservation semantics; prescriptive agent-behavior guidance stays in `.agents/`; missing prerequisites fail fast without writing.
+- `distill-routing`: Output routing rules for `learning-distill` - descriptive knowledge goes to OpenWiki pages in OKF format with curated-page preservation semantics, including decision and troubleshooting records under curated `openwiki/{decisions,troubleshooting}/` trees; prescriptive agent-behavior guidance stays in `.agents/`; missing prerequisites fail fast without writing.
 - `cross-tool-lint`: The repurposed `docs-lint` checks spanning AKSK and OpenWiki artifacts - routing-block integrity, archived-change/wiki coverage pairing, stale-decision detection - replacing index-coverage checks.
 - `closeout-change-linking`: `task-closeout` links session bundles to OpenSpec changes via an `openspec_change` field, and defers spec updates to archive time.
-- `wiki-contract`: Attachment of the AKSK curation contract into an existing `openwiki/INSTRUCTIONS.md` (append-only merge, stub-aware), plus peer-dependency preconditions for all AKSK skill invocations of `openspec`/`openwiki`.
+- `wiki-contract`: Attachment of the AKSK curation contract into an existing `openwiki/INSTRUCTIONS.md` (append-only merge, stub-aware), plus peer-dependency preconditions for all AKSK skill invocations of `openspec`/`openwiki`. The change also adds the marker-delimited AKSK routing-note attachment for root agent instruction files, owned by the new `aksk-bootstrap` skill.
 
 ### Modified Capabilities
 

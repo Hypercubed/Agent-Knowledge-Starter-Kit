@@ -10,8 +10,8 @@ Use before publishing, tagging, or handing this starter kit to another repo.
 4. When only validating a copied knowledge layer, run the portable structure check directly: `bash scripts/check-agents-structure.sh .agents`. After regenerating or hand-editing the full kit snapshot, optionally run `bash scripts/check-agents-structure.sh example/.agents` and treat any session-tracking mismatch as a known gap until the script and `example/` layout agree.
 5. Confirm ignored session bundles are local evidence only. For each validated tree, the only tracked file under `sessions/` should be `sessions/README.md`.
 6. Review the printed `.agents/` file list. It should contain only the distributable kit for this layout: portable `skills/` and the task-closeout example bundle files (plus shared docs and playbooks as shipped).
-7. If root `.agents/` changed, decide whether the same change belongs in the portable kit contract versus maintainer-only dogfood (for example `.agents/docs/plans/`). Consumer-generic behavior belongs in shared skills and docs; keep maintainer workflow notes in maintainer-facing paths unless you intend to promote them.
-8. When `.agents/docs/` durable entries changed and the optional `docs-compile` skill is installed, run `python .agents/skills/docs-compile/scripts/docs-compile.py` (see [`.agents/skills/docs-compile/SKILL.md`](../skills/docs-compile/SKILL.md)) so optional durable indexes and docs-search cache stay aligned before lint or publish.
+7. If root `.agents/` changed, decide whether the same change belongs in the portable kit contract versus maintainer-only dogfood (for example maintainer-only plan or session notes). Consumer-generic behavior belongs in shared skills and docs; keep maintainer workflow notes in maintainer-facing paths unless you intend to promote them.
+8. When curated wiki pages changed, run `node .agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs` so OpenWiki directory indexes cover them before lint or publish.
 9. Run `docs-lint` periodically, and before publishing after several agent-assisted edits, to find duplicated, stale, contradictory, oversized, or misplaced durable knowledge.
 10. Inspect `git status --short` and `git diff` before tagging or publishing.
 
@@ -48,7 +48,7 @@ Portable skills and shared docs under `.agents/` should read as if installed in 
 
 Leakage scans are not a substitute for reviewing the diff. They intentionally avoid broad terms such as `secret`, `token`, `maintainer`, `localhost`, and example session paths because this repo documents those concepts directly.
 
-Root `.agents/` may mix portable kit content with maintainer-only material (for example under `.agents/docs/plans/`). Do not copy maintainer-only content into published artifacts (skill packaging, generated `example/.agents/`) unless it is part of the portable kit contract.
+Root `.agents/` may mix portable kit content with maintainer-only material (for example maintainer-only plan notes). Do not copy maintainer-only content into published artifacts (skill packaging, generated `example/.agents/`) unless it is part of the portable kit contract.
 
 `scripts/check-agents-structure.sh` is the portable validator. It accepts a target directory (for example `.agents` or `example/.agents`) and checks the knowledge-layer shape without running this repo's README, root `docs/`, or publish leakage checks.
 

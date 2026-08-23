@@ -18,7 +18,7 @@ Verified against OpenAI Codex documentation on April 12, 2026. Re-check Codex do
 This repo uses the Agent Knowledge Starter Kit.
 
 - Read `.agents/AGENTS.md` for durable repo guidance.
-- Use `.agents/docs/index.md` to find decisions, troubleshooting, and playbooks.
+- Use `openwiki/index.md` for decisions, troubleshooting, and architecture; `.agents/playbooks/` for procedures.
 - Treat `.agents/skills/*/SKILL.md` as repo-local Codex skills.
 - Keep temporary task evidence in `.agents/sessions/`; promote only durable lessons back into `.agents/`.
 ```
@@ -43,7 +43,7 @@ This repo uses the Agent Knowledge Starter Kit.
 
 1. Launch Codex from the repo root or target working directory.
 2. Confirm root `AGENTS.md` routes into `.agents/`.
-3. Read `.agents/AGENTS.md` and `.agents/docs/index.md` before changing conventions.
+3. Read `.agents/AGENTS.md` and `openwiki/index.md` before changing conventions.
 4. Use repo-local skills for closeout, distillation, and linting.
 5. Verify with `git status --short` and targeted reads before finishing.
 

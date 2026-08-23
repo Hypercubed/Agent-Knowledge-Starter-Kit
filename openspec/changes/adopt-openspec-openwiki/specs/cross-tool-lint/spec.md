@@ -23,16 +23,16 @@ The lint pass SHALL pair archived OpenSpec changes with wiki coverage: for each 
 - **THEN** lint does not flag it
 
 ### Requirement: Stale decision detection
-The lint pass SHALL flag decision entries whose claims conflict with current repository reality (for example, referencing retired skills or superseded proposals still marked accepted) and suggest supersession updates.
+The lint pass SHALL flag curated knowledge pages under `openwiki/{decisions,troubleshooting}/` whose claims conflict with current repository reality (for example, referencing retired skills or entries still marked accepted via `aksk_status` after being superseded) and suggest supersession updates.
 
 #### Scenario: Decision references a retired skill
-- **WHEN** a decision entry still directs agents to use a skill that this kit retired
-- **THEN** lint flags the entry as stale and names the superseding source
+- **WHEN** a curated decision page still directs agents to use a skill that this kit retired
+- **THEN** lint flags the page as stale and names the superseding source
 
-### Requirement: Index coverage out of scope
-The lint pass MUST NOT fail repositories for missing or stale hand-maintained section indexes under `.agents/docs/`; index generation and log upkeep belong to the adopted wiki tooling.
+### Requirement: Index and log ownership out of scope
+The lint pass MUST NOT verify, regenerate, or require hand-maintained section indexes or activity logs; index generation and run metadata belong to OpenWiki tooling, and `.agents/docs/` (including its log) is removed by this change.
 
-#### Scenario: Missing section index
-- **WHEN** a section under `.agents/docs/` lacks an up-to-date `index.md`
-- **THEN** lint passes that check silently and does not report an error
+#### Scenario: Wiki index out of date
+- **WHEN** a wiki directory index does not reflect newly added pages because no sync has run
+- **THEN** lint reports it as informational guidance to rerun index sync, not as a failure
 

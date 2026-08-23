@@ -18,7 +18,7 @@ Based on current OpenCode documentation reviewed on April 12, 2026. Re-check Ope
 This repo uses the Agent Knowledge Starter Kit.
 
 - Read `.agents/AGENTS.md` for durable repo guidance.
-- Use `.agents/docs/index.md` to find decisions, troubleshooting, and playbooks.
+- Use `openwiki/index.md` for decisions, troubleshooting, and architecture; `.agents/playbooks/` for procedures.
 - Treat `.agents/skills/*/SKILL.md` as canonical repo-local workflows.
 - Keep temporary task evidence in `.agents/sessions/`; promote only durable lessons back into `.agents/`.
 ```
@@ -28,7 +28,7 @@ Optional `opencode.json`:
 ```json
 {
   "$schema": "https://opencode.ai/config.json",
-  "instructions": [".agents/AGENTS.md", ".agents/docs/index.md"]
+  "instructions": [".agents/AGENTS.md", "openwiki/index.md"]
 }
 ```
 

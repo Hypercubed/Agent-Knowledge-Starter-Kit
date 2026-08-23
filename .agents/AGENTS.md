@@ -1,9 +1,9 @@
 ## Routing Directives
 
-- **UPON STARTUP:** You MUST read `.agents/docs/index.md` before executing any file modifications. This ensures you understand the repository layout and available tools.
-- **WHEN EXPLORING KNOWLEDGE:** Read section index files (e.g., `.agents/docs/decisions/index.md`, `.agents/docs/troubleshooting/index.md`) BEFORE opening individual entries. Indexes contain descriptions and tags that help identify relevant files.
-- **WHEN DEBUGGING:** If you encounter a failing test, build error, or runtime exception, your FIRST action MUST be to execute `.agents/skills/docs-search` using the error output as your query.
-- **BEFORE ARCHITECTURAL CHANGES:** You MUST search `.agents/docs/decisions/` or read its `index.md` to ensure your proposed changes do not violate established design patterns.
+- **UPON STARTUP:** You MUST read `openwiki/index.md` and `.agents/AGENTS.md` before executing any file modifications. This ensures you understand the repository layout and available tools.
+- **WHEN EXPLORING KNOWLEDGE:** Start from `openwiki/index.md` and the directory indexes under `openwiki/decisions/` and `openwiki/troubleshooting/`. Indexes contain descriptions and tags that help identify relevant files.
+- **WHEN DEBUGGING:** If you encounter a failing test, build error, or runtime exception, your FIRST action MUST be to search durable knowledge for it: `grep -ri "<error or symptom>" openwiki/ .agents/` before debugging blind.
+- **BEFORE ARCHITECTURAL CHANGES:** You MUST search `openwiki/decisions/` for recorded decisions to ensure your proposed changes do not violate established design patterns.
 
 ## Project Learnings
 

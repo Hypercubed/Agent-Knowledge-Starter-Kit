@@ -18,7 +18,7 @@ Based on current Warp documentation reviewed on April 13, 2026. Re-check Warp an
 This repo uses the Agent Knowledge Starter Kit.
 
 - Read `.agents/AGENTS.md` for durable repo guidance.
-- Use `.agents/docs/index.md` to find decisions, troubleshooting, and playbooks.
+- Use `openwiki/index.md` for decisions, troubleshooting, and architecture; `.agents/playbooks/` for procedures.
 - Treat `.agents/skills/*/SKILL.md` as canonical repo-local workflows.
 - Keep temporary task evidence in `.agents/sessions/`; promote only durable lessons back into `.agents/`.
 ```

@@ -11,7 +11,7 @@ Keep one source of truth:
 - **Tool-native files** are wiring: root bootstrap files, project rules, command wrappers, local config, and runtime preferences.
 - **`.agents/` files** are durable repo knowledge: project guidance, decisions, troubleshooting, playbooks, portable skills, and session bundles.
 
-Do not copy long-lived repo policy into every tool's native config. Point the tool at `.agents/AGENTS.md`, `.agents/docs/index.md`, `.agents/playbooks/`, and `.agents/skills/` instead.
+Do not copy long-lived repo policy into every tool's native config. Point the tool at `.agents/AGENTS.md`, `openwiki/index.md`, `.agents/playbooks/`, and `.agents/skills/` instead.
 
 ## Adopting the kit
 
@@ -31,7 +31,7 @@ Use a short root `AGENTS.md` as the repo entrypoint:
 This repo uses the Agent Knowledge Starter Kit.
 
 - Read `.agents/AGENTS.md` for durable repo guidance.
-- Use `.agents/docs/index.md` to find decisions, troubleshooting, and playbooks.
+- Use `openwiki/index.md` for decisions, troubleshooting, and architecture; `.agents/playbooks/` for procedures.
 - Treat `.agents/skills/*/SKILL.md` as canonical repo-local workflows.
 - Keep temporary task evidence in `.agents/sessions/`; promote only durable lessons back into `.agents/`.
 ```
@@ -47,7 +47,7 @@ Use the tool's root instruction file as a thin router:
 - Claude Code: root `CLAUDE.md`
 - Gemini CLI: root `GEMINI.md`
 
-The bootstrap should say where the real repo knowledge lives. Native memory such as Claude auto-memory or Gemini `save_memory` is user-local and should not replace `.agents/docs/`.
+The bootstrap should say where the real repo knowledge lives. Native memory such as Claude auto-memory or Gemini `save_memory` is user-local and should not replace the curated wiki knowledge.
 
 ### Rules-Based IDE Wiring
 
@@ -63,7 +63,7 @@ Tools: [Hermes](./hermes.md), [Antigravity](./antigravity.md), [OpenClaw](./open
 
 Persistent assistants may have private memory, session recall, artifacts, automation, or runtime skills. Use those systems for local continuity and orchestration, not as the only copy of repo policy.
 
-At task boundaries, export durable evidence into `.agents/sessions/<folder>/` and run a later learning pass to promote stable lessons into `.agents/AGENTS.md`, `.agents/docs/`, or `.agents/playbooks/`.
+At task boundaries, export durable evidence into `.agents/sessions/<folder>/` and run a later learning pass to promote stable lessons into `.agents/AGENTS.md`, the curated wiki trees, or `.agents/playbooks/`.
 
 ## Quick Matrix
 
@@ -86,4 +86,4 @@ At task boundaries, export durable evidence into `.agents/sessions/<folder>/` an
 
 Native memory is useful during work, but `.agents/sessions/` is the shared task boundary. A closeout bundle should capture the important commands, changed files, validation, and learning candidates so another tool can distill durable knowledge later.
 
-Keep `.agents/sessions/` temporary and usually gitignored. Commit the promoted durable changes in `.agents/AGENTS.md`, `.agents/docs/`, and `.agents/playbooks/`.
+Keep `.agents/sessions/` temporary and usually gitignored. Commit the promoted durable changes in `.agents/AGENTS.md`, the curated wiki trees, and `.agents/playbooks/`.

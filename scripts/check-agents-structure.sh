@@ -61,13 +61,9 @@ section "Required Files"
   required_files="
 AGENTS.md
 .gitignore
-docs/MAINTENANCE.md
-docs/index.md
-docs/log.md
-docs/decisions/index.md
-docs/troubleshooting/index.md
 playbooks/README.md
 sessions/README.md
+skills/aksk-bootstrap/SKILL.md
 skills/docs-lint/SKILL.md
 skills/learning-distill/SKILL.md
 skills/task-closeout/SKILL.md

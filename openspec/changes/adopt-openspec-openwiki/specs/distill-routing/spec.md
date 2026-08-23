@@ -11,8 +11,15 @@ The distillation process SHALL write descriptive durable lessons (facts, rationa
 - **WHEN** a session bundle yields a descriptive lesson such as an architectural rationale
 - **THEN** distillation produces an OKF-format wiki page under `openwiki/` and triggers the wiki index update
 
+### Requirement: Decision and troubleshooting records are curated wiki pages
+Durable decision records and troubleshooting entries SHALL live as OKF pages under the curated `openwiki/{decisions,troubleshooting}/` trees, with lifecycle state in `aksk_status` frontmatter extension fields and entry identity in the filename stem.
+
+#### Scenario: Distilling a new repo decision
+- **WHEN** a session bundle yields a durable decision with rationale
+- **THEN** distillation creates or updates a page under `openwiki/decisions/` with `aksk_status` set, instead of writing under `.agents/docs/`
+
 ### Requirement: Prescriptive lessons stay in .agents
-The distillation process SHALL route prescriptive lessons (agent behavior rules, procedures) to `.agents/AGENTS.md`, playbooks, or decisions under `.agents/docs/`, and MUST NOT place them in `openwiki/`.
+The distillation process SHALL route prescriptive lessons (agent behavior rules, procedures) to `.agents/AGENTS.md` or playbooks, and MUST NOT place them in `openwiki/`.
 
 #### Scenario: Distilling a behavior rule
 - **WHEN** a session bundle yields a rule governing future agent behavior

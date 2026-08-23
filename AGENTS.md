@@ -12,14 +12,6 @@ These rules override everything else in this file when in conflict:
 
 ---
 
-## 0.5. Routing Directives
-
-- **UPON STARTUP:** You MUST read `.agents/docs/index.md` before executing any file modifications. This ensures you understand the repository layout and available tools.
-- **WHEN DEBUGGING:** If you encounter a failing test, build error, or runtime exception, your FIRST action MUST be to execute `.agents/skills/docs-search` using the error output as your query.
-- **BEFORE ARCHITECTURAL CHANGES:** You MUST search `.agents/docs/decisions/` or read its `index.md` to ensure your proposed changes do not violate established design patterns.
-
----
-
 ## 1. Before writing code
 
 **Goal: understand the problem and the codebase before producing a diff.**
@@ -126,28 +118,6 @@ For every task:
 
 ---
 
-## 9. Self-improvement loop
-
-AKSK manages repo-specific knowledge and agent performance through a structured loop.
-
-After every session where you made a mistake or discovered a significant project pattern:
-1. **Analyze the root cause:** Was it a missing rule in `.agents/` or an ignored one?
-2. **Task Closeout:** Use `task-closeout` to bundle the session's insights under `.agents/sessions/`.
-3. **Distillation:** Use `learning-distill` to promote reusable lessons into durable `.agents/` knowledge.
-4. **Pruning:** Every few weeks, review this `AGENTS.md`. If a rule is no longer preventing mistakes, delete it. Keep it under 300 lines.
-
----
-
-## 10. Repository Knowledge & Context
-
-For all project-specific context, conventions, and architectural rules, consult the compiled knowledge layer in `.agents/`:
-
-- **Knowledge catalog:** Start at [`.agents/docs/index.md`](.agents/docs/index.md)
-- **Durable repo policy:** [`.agents/AGENTS.md`](.agents/AGENTS.md)
-- **Troubleshooting:** See `.agents/docs/troubleshooting/` for recurring issue patterns.
-- **Architecture:** See `.agents/docs/decisions/` for rationale and tradeoffs.
-- **Maintenance:** Append-only distillation record in `.agents/docs/log.md`.
-
 <!-- OPENWIKI:START -->
 
 ## OpenWiki
@@ -160,3 +130,29 @@ This repository has a generated `openwiki/` evidence index. It is optional just-
 The scheduled OpenWiki GitHub Actions workflow refreshes the repository wiki. Do not hand-edit generated OpenWiki pages unless explicitly asked; prefer updating source code/docs and letting OpenWiki regenerate.
 
 <!-- OPENWIKI:END -->
+
+<!-- AKSK:ROUTING:BEGIN -->
+## Agent Knowledge Starter Kit
+
+This repo uses the Agent Knowledge Starter Kit (AKSK).
+
+- Read `.agents/AGENTS.md` for durable repo guidance.
+- Use `openwiki/index.md` for repo knowledge (decisions, troubleshooting, architecture) and `.agents/playbooks/` for procedures.
+- Before architectural changes, consult the recorded repo decisions in the knowledge layer.
+- When debugging, search durable knowledge first: `grep -ri "<symptom>" .agents/ openwiki/`.
+- For task closeout, follow `.agents/skills/task-closeout/SKILL.md`.
+- Keep temporary task evidence in `.agents/sessions/`; promote only durable lessons back into `.agents/`.
+<!-- AKSK:ROUTING:END -->
+
+
+
+<!-- AKSK:LIFECYCLE:BEGIN -->
+## Self-improvement loop
+
+This repository uses the AKSK knowledge loop. After every session where you made a mistake or discovered a significant project pattern:
+
+1. **Analyze the root cause** - was a rule missing from `.agents/AGENTS.md` or ignored?
+2. **Task closeout** - bundle the session under `.agents/sessions/` per [`.agents/skills/task-closeout/SKILL.md`](.agents/skills/task-closeout/SKILL.md).
+3. **Distillation** - promote durable lessons per [`.agents/skills/learning-distill/SKILL.md`](.agents/skills/learning-distill/SKILL.md): descriptive lessons become curated OpenWiki pages under `openwiki/`; behavior rules land in `.agents/AGENTS.md` or playbooks.
+4. **Pruning** - periodically review guidance files and delete rules that no longer prevent mistakes.
+<!-- AKSK:LIFECYCLE:END -->

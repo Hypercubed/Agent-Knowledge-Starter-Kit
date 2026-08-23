@@ -11,6 +11,16 @@ Create or update a target repo's `.agents/` knowledge layer from this starter ki
 - Source: this starter kit.
 - Target: the consuming repo's `.agents/` directory.
 
+## Prerequisites (manual, fail-fast)
+
+The kit is glue over two peer tools it never installs itself:
+
+- **Node >= 22**
+- `npm i -g @fission-ai/openspec@latest` (OpenSpec CLI)
+- `npm i -g openwiki@latest` (OpenWiki CLI), plus one-time repo initialization: `openwiki --init`
+
+Skills and scripts verify these prerequisites before acting and **fail fast** with exactly the commands above when something is missing. They never attempt installation. The `aksk-bootstrap` skill owns the checks (`check_peer_tools.mjs`) and wiki setup verification (`attach_wiki_contract.mjs`).
+
 ## Skill-first install (default)
 
 Install from `.agents/skills/` and use each skill's `bootstrap/` templates via that skill's initialization steps. A skill-first workflow is:
@@ -29,8 +39,9 @@ Skill **definitions** may live wherever your Skills CLI installs them (including
 **Suggested order when installing multiple skills**
 
 - **Closeout only:** run `task-closeout` initialization. It creates `.agents/sessions/` and session ignore rules; it does not create durable `docs/` or `AGENTS.md` scaffolding.
-- **Distillation or linting:** run `learning-distill` initialization first when you need the durable `.agents/docs/` and `.agents/playbooks/` scaffold (and a template `.agents/AGENTS.md` when missing). It also ensures `.agents/sessions/` and `.agents/.gitignore` session rules exist.
-- **Lint only (no distill):** run `docs-lint` initialization when you added lint without distill; it creates the same durable doc scaffold from its `bootstrap/` copy without touching session storage.
+- **Distillation or linting:** run `learning-distill` initialization first when you need the `.agents/playbooks/` scaffold (and a template `.agents/AGENTS.md` when missing). It also ensures `.agents/sessions/`, `.agents/.gitignore` session rules, and the wiki prerequisites (contract attached to `openwiki/INSTRUCTIONS.md`) are in place.
+- **Lint only (no distill):** no separate initialization needed; docs-lint owns no bootstrap templates.
+- **Either way:** attach the AKSK routing note to your root instruction file with `node .agents/skills/aksk-bootstrap/scripts/attach_section.mjs` so agents discover the knowledge layer.
 
 When in doubt after installing all three kit skills, run `learning-distill` initialization once, then proceed. The other skills' initialization steps remain safe no-ops or small merges (for example missing `.gitignore` lines).
 
@@ -50,7 +61,6 @@ If the target repo has no `.agents/` directory:
 3. Keep `.agents/.gitignore` tracked when the repo uses it; its `sessions/*` rules are sufficient for normal Git usage. If `.agents/` is not tracked, add equivalent session ignore rules at the repo root (see [Skill-first install](#skill-first-install-default)).
 4. Edit `.agents/AGENTS.md` with the repo's build, test, architecture, and workflow guidance (or start from the template created by skill initialization).
 5. Register `.agents/skills/*/SKILL.md` in the user's editor or agent product, if required.
-6. Optional audit trail: append a minimal adoption note to `.agents/docs/log.md` only if your team uses that file as a maintenance log (see `.agents/docs/MAINTENANCE.md`, Logging policy). Agents should not add `log.md` rows by default after a routine install.
 
 ## Existing `.agents/` Install
 
@@ -63,9 +73,7 @@ Use this merge checklist:
 3. Merge `.agents/AGENTS.md` by hand. Keep stable repo guidance concise; do not add session history or long rationale.
 4. Prefer the kit default `.agents/.gitignore` patterns: `sessions/*` and `!sessions/README.md`.
 5. Use repo-root `.gitignore` session patterns only if the repo intentionally does not track `.agents/.gitignore`: `.agents/sessions/*` and `!.agents/sessions/README.md`.
-6. Optional audit trail: append a minimal adoption note to `.agents/docs/log.md` only if your team uses that file as a maintenance log (see `.agents/docs/MAINTENANCE.md`, Logging policy). Agents should not add `log.md` rows by default after a routine merge.
-7. Record durable rationale or local policy choices in a new or existing file under `.agents/docs/decisions/` (update `decisions/index.md` when adding a decision).
-8. Update `.agents/docs/index.md` so pre-existing repo-specific `rules/`, `playbooks/`, and `skills/` are discoverable.
+7. Record durable rationale or local policy choices as curated pages under `openwiki/decisions/`, then run `node .agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs` so they are discoverable.
 
 ## Root `AGENTS.md` Relationship
 
@@ -84,5 +92,5 @@ Before finishing:
 1. Run `git status --short`.
 2. Confirm `.agents/sessions/README.md` is trackable and per-task session folders are ignored.
 3. Confirm existing repo-specific files were preserved.
-4. Confirm `.agents/docs/index.md` links to any preserved repo-specific knowledge assets.
+4. Run the wiki index sync (`node .agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs`) so preserved repo-specific knowledge assets are discoverable.
 5. Summarize changed files and any manual product-specific registration steps the user still needs to do.

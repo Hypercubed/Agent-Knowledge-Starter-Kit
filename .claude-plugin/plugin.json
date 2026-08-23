@@ -20,8 +20,6 @@
     "./.agents/skills/task-closeout",
     "./.agents/skills/learning-distill",
     "./.agents/skills/docs-lint",
-    "./.agents/skills/write-plan",
-    "./.agents/skills/docs-compile",
-    "./.agents/skills/docs-search"
+    "./.agents/skills/aksk-bootstrap"
   ]
 }

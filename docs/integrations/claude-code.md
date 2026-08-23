@@ -18,7 +18,7 @@ Written and verified against Claude Code behavior in this repository on April 12
 This repo uses the Agent Knowledge Starter Kit.
 
 - Read `.agents/AGENTS.md` for durable repo guidance.
-- Use `.agents/docs/index.md` to find decisions, troubleshooting, and playbooks.
+- Use `openwiki/index.md` for decisions, troubleshooting, and architecture; `.agents/playbooks/` for procedures.
 - For task closeout, follow `.agents/skills/task-closeout/SKILL.md`.
 - Keep temporary task evidence in `.agents/sessions/`; promote only durable lessons back into `.agents/`.
 ```
@@ -42,7 +42,7 @@ Read and follow `.agents/skills/task-closeout/SKILL.md`. Write the output bundle
 ## Claude-Specific Caveats
 
 - Claude Code does not automatically load `.agents/AGENTS.md`; route from root `CLAUDE.md`.
-- Auto-memory is private to the user and outside Git. Promote shared lessons into `.agents/docs/`.
+- Auto-memory is private to the user and outside Git. Promote shared lessons into the curated wiki trees.
 - `.claude/commands/` and `.agents/skills/` are separate registries. Command files should point at repo skills, not copy them.
 - Do not commit `.claude/settings.local.json` or credential-bearing local config.
 

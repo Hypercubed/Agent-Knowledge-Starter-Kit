@@ -22,7 +22,7 @@ This repo uses the Agent Knowledge Starter Kit.
 
 **Before starting work:**
 - Read `.agents/AGENTS.md` for durable repo guidance.
-- Use `.agents/docs/index.md` to find decisions, troubleshooting, and playbooks.
+- Use `openwiki/index.md` for decisions, troubleshooting, and architecture; `.agents/playbooks/` for procedures.
 
 **For task closeout:**
 - Follow `.agents/skills/task-closeout/SKILL.md` at meaningful task boundaries.
@@ -41,7 +41,7 @@ A root `.copilot-instructions.md` file is sometimes mentioned as a fallback, but
 | Repository instructions | `.github/copilot-instructions.md`                  | Repo-level agent instructions                 |
 | Reusable prompts        | `.github/prompts/*.prompt.md`                      | Prompt files for invoking skills or workflows |
 | Project instructions    | root `AGENTS.md`                                   | Plain markdown agent instructions             |
-| Kit knowledge           | `.agents/AGENTS.md`, `.agents/docs/index.md`       | Durable repo guidance and decision log        |
+| Kit knowledge           | `.agents/AGENTS.md`, `openwiki/index.md`           | Durable repo guidance and decision log        |
 | VS Code preferences     | `.vscode/settings.json`, `.vscode/extensions.json` | Editor settings, not repo policy              |
 | Workspace context       | VS Code Chat context panel, `@` file references    | File-scoped guidance during chat sessions     |
 
@@ -58,7 +58,7 @@ A root `.copilot-instructions.md` file is sometimes mentioned as a fallback, but
 
 1. Start VS Code with the repo open.
 2. Review `.github/copilot-instructions.md` at session start (it should route into `.agents/`).
-3. Open `.agents/AGENTS.md` and `.agents/docs/index.md` when repo policy matters; use `@` references in chat if context is unclear.
+3. Open `.agents/AGENTS.md` and `openwiki/index.md` when repo policy matters; use `@` references in chat if context is unclear.
 4. Use explicit prompts to follow `.agents/skills/*/SKILL.md` at task boundaries.
 5. Use Copilot Chat to read and understand guidance, but edit `.agents/` directly when durable knowledge changes.
 6. Keep personal editor preferences (themes, keybindings, extensions) in `.vscode/settings.json` and repo policy in `.agents/`.
@@ -68,13 +68,13 @@ A root `.copilot-instructions.md` file is sometimes mentioned as a fallback, but
 This workflow shows Copilot Chat and Claude Code working on the same repo with the kit:
 
 1. **Start in Copilot Chat** with a bug report or feature request.
-2. **Copilot reads** `.github/copilot-instructions.md` → routes to `.agents/AGENTS.md` and `.agents/docs/troubleshooting/` (see index there).
+2. **Copilot reads** `.github/copilot-instructions.md` → routes to `.agents/AGENTS.md` and the curated knowledge under `openwiki/troubleshooting/`.
 3. **Copilot suggests** changes and implementation strategy in chat.
 4. **Hand off to Claude Code** by switching to the Claude Code editor or pasting context.
 5. **Claude Code reads** root `CLAUDE.md` (separate from Copilot instructions) → routes to same `.agents/` files.
 6. **Claude Code implements** the changes and runs validation.
 7. **At meaningful stopping point**: Claude Code runs `task-closeout` to write `.agents/sessions/<timestamp>/`.
-8. **Later, run learning-distill**: On the session bundle to promote durable lessons into `.agents/AGENTS.md` and `.agents/docs/`.
+8. **Later, run learning-distill**: On the session bundle to promote durable lessons into `.agents/AGENTS.md` and the curated wiki trees.
 
 Both agents converge on the same `.agents/` tree, keeping knowledge centralized even though each tool has its own instruction file and context model.
 
@@ -83,4 +83,4 @@ Both agents converge on the same `.agents/` tree, keeping knowledge centralized 
 - [`README.md`](../../README.md)
 - [`INSTALL.md`](../../INSTALL.md)
 - [Integration Patterns](./patterns.md)
-- [`.agents/docs/troubleshooting/`](../../.agents/docs/troubleshooting/github-copilot-chat-context-not-in-focus.md) — Copilot Chat context visibility
+- [`openwiki/troubleshooting/github-copilot-chat-context-not-in-focus.md`](../../openwiki/troubleshooting/github-copilot-chat-context-not-in-focus.md) — Copilot Chat context visibility

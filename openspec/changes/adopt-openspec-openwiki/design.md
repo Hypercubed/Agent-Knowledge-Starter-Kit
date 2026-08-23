@@ -17,7 +17,6 @@ See proposal.md for motivation and capability list.
 **Non-Goals:**
 
 - Any installation, scaffolding, or provisioning automation (`aksk-bootstrap-system` owns that).
-- Migrating the existing `.agents/docs/{decisions,troubleshooting}` knowledge base into OpenWiki (explicitly deferred by the maintainer).
 - Deciding whether 2.0 releases with or without the bootstrap change; this change must stand alone as releasable documentation-wise (peer-dependency prerequisites stated in README/INSTALL).
 
 ## Decisions
@@ -56,6 +55,16 @@ One decision entry states the three-layer split (OpenSpec = process, OpenWiki = 
 
 *Verified against shipped v0.3.3:* prompts and OKF helpers are exported from `dist/`; the MCP lifecycle server and `integrations install` lanes exist only on unreleased main-branch source and are intentionally outside this change's dependency surface.
 
+### D7: Marked routing-note attachment owned by the bootstrap skill
+
+The kit's routing note for root agent instruction files (AGENTS.md, CLAUDE.md, GEMINI.md) ships as a marker-delimited template (`<!-- AKSK:ROUTING:BEGIN/END -->`) attached by a script in the `aksk-bootstrap` skill, mirroring the wiki-contract mechanism. Existing content is never replaced; re-runs are idempotent no-ops. Unlike `INSTRUCTIONS.md`, a missing root router file is created with only the note, because these files have no upstream initializer - AKSK is their owner of record. The note content matches the canonical block the integration guides instruct users to add manually. The same script generalizes to N managed sections: markers are read from the chosen template, so additional blocks (e.g. `AKSK:LIFECYCLE`, carrying the self-improvement-loop mandate that previously lived hand-merged in root files) attach through one mechanism and stay independently refreshable and lint-checkable.
+
+### D8: Knowledge base consolidates into curated wiki trees; logs and indexes dropped
+
+Decision records and troubleshooting entries move from `.agents/docs/` to curated OKF pages under `openwiki/{decisions,troubleshooting}/`, protected by the curation contract's preserve-and-link semantics. Lifecycle state rides in `aksk_status` frontmatter extensions; entry identity stays the filename stem. Hand-built section indexes are deleted - deterministic OpenWiki index sync owns indexing - and one curated overview page replaces the grouped Quick Reference. `.agents/docs/log.md` is deleted rather than migrated: OpenWiki reserves its own run metadata, and distillation accountability lives in bundle `summary.json` flags plus git history.
+
+*Rationale:* with portability dropped (AKSK hard-requires openspec and openwiki), keeping a parallel knowledge representation outside the OpenWiki flow guarantees drift; OpenWiki update runs already generate pages describing the knowledge layer. Consolidation leaves AKSK only judgment work: classification, routing, lint. Recorded as decision `knowledge-consolidation-into-openwiki`, which supersedes the location aspect of `single-tree-architecture-agents`. Breaking-change burden is accepted as low: usage is personal-scale and hand-migration is acceptable.
+
 ## Risks / Trade-offs
 
 - [Consumers adopt this change without the follow-on bootstrap] -> README/INSTALL state peer-dependency prerequisites as manual steps; every failure message prints its exact command, so manual adoption degrades to copy-paste, not guesswork.
@@ -66,6 +75,8 @@ One decision entry states the three-layer split (OpenSpec = process, OpenWiki = 
 - [Upstream changes the default INSTRUCTIONS.md stub wording] -> Stub matching is advisory; absence of the AKSK marker section is the authoritative no-contract signal (see Risks in D2's attachment semantics).
 
 ## Migration Plan
+
+**Sequencing rule:** template or pointer changes (routing-note bullet, contract trees, skill destinations) land together with the work that makes their targets real, and attached marker blocks in root files are refreshed only after those targets exist. Interim state between tasks here is acceptable only if old and new targets both resolve.
 
 1. Record decision entries (division of labor, distribution context, ownership partition, supersessions).
 2. Implement `wiki-contract` attachment + template; rewrite `learning-distill`; repurpose `docs-lint`; slim `task-closeout`.

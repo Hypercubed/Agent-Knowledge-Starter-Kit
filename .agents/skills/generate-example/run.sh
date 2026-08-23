@@ -25,23 +25,8 @@ echo
 echo "== Bootstrap required artifacts (simulating initialization) =="
 LD="${target}/.agents/skills/learning-distill"
 
-mkdir -p "${target}/.agents/playbooks" "${target}/.agents/docs" "${target}/.agents/sessions"
+mkdir -p "${target}/.agents/playbooks" "${target}/.agents/sessions"
 [[ -f "${target}/.agents/playbooks/README.md" ]] || cp "${LD}/bootstrap/playbooks/README.md" "${target}/.agents/playbooks/README.md"
-for f in index.md MAINTENANCE.md log.md; do
-  [[ -f "${target}/.agents/docs/${f}" ]] || cp "${LD}/bootstrap/docs/${f}" "${target}/.agents/docs/${f}"
-done
-sync_docs_subtree() {
-  local src_root="$1" dest_root="$2"
-  [[ -d "$src_root" ]] || return 0
-  mkdir -p "$dest_root"
-  while IFS= read -r -d '' f; do
-    rel="${f#"${src_root}/"}"
-    mkdir -p "$(dirname "${dest_root}/${rel}")"
-    [[ -f "${dest_root}/${rel}" ]] || cp "${src_root}/${rel}" "${dest_root}/${rel}"
-  done < <(find "$src_root" -type f -print0)
-}
-sync_docs_subtree "${LD}/bootstrap/docs/decisions" "${target}/.agents/docs/decisions"
-sync_docs_subtree "${LD}/bootstrap/docs/troubleshooting" "${target}/.agents/docs/troubleshooting"
 
 
 [[ -f "${target}/.agents/sessions/README.md" ]] || cp "${LD}/bootstrap/sessions/README.md" "${target}/.agents/sessions/README.md"

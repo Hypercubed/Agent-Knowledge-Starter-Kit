@@ -20,7 +20,7 @@ OpenClaw belongs to two patterns: it can use root `AGENTS.md` as a repo entrypoi
 This repo uses the Agent Knowledge Starter Kit.
 
 - Read `.agents/AGENTS.md` for durable repo guidance.
-- Use `.agents/docs/index.md` to find decisions, troubleshooting, and playbooks.
+- Use `openwiki/index.md` for decisions, troubleshooting, and architecture; `.agents/playbooks/` for procedures.
 - Treat `.agents/skills/*/SKILL.md` as canonical repo-local maintenance workflows.
 - Keep temporary task evidence in `.agents/sessions/`; promote only durable lessons back into `.agents/`.
 ```
@@ -46,7 +46,7 @@ This repo uses the Agent Knowledge Starter Kit.
 ## Workflow
 
 1. Start from the repo root so root `AGENTS.md` can route into `.agents/`.
-2. Read `.agents/AGENTS.md` and `.agents/docs/index.md`.
+2. Read `.agents/AGENTS.md` and `openwiki/index.md`.
 3. Use OpenClaw session tools, sub-agents, and automation for orchestration.
 4. At meaningful task boundaries, follow `.agents/skills/task-closeout/SKILL.md`.
 5. Run a later learning pass to promote only stable lessons into durable `.agents/` files.

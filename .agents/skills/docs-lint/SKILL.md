@@ -1,81 +1,52 @@
 ---
 name: docs-lint
-description: Check the `.agents/` knowledge layer for duplication, contradiction, staleness, oversized guidance, broken or stale links, missing index coverage, uncategorized or misplaced knowledge, and consistency between `decisions/` and `troubleshooting/` indexes and their entry files. Use as a periodic maintenance pass.
+description: Cross-tool lint pass guarding the wiring between AKSK and its adopted tools - routing-block integrity in root instruction files, archived-change/wiki coverage pairing, stale curated knowledge pages, plus duplication, contradiction, broken-link, and path-hygiene checks across `.agents/` and `openwiki/`. Use as a periodic maintenance pass.
 ---
 
 # Docs Lint
 
 ## Goal
 
-Keep the compiled repo knowledge layer coherent, minimal, and current.
+Keep the AKSK/OpenWiki knowledge wiring coherent: routing blocks intact, archived changes covered, curated pages truthful.
 
-Use **Inputs** and the checklist in this file as the maintainer verification list. Machine-oriented scope, outputs, and tool pointers: [`CONTRACT.md`](CONTRACT.md). Durable entry frontmatter, logging, and graph edge rules are normative in [`.agents/docs/MAINTENANCE.md`](../../docs/MAINTENANCE.md); when guidance overlaps, follow [Portable skill contracts](../../docs/MAINTENANCE.md#portable-skill-contracts).
+Machine-oriented scope: [`CONTRACT.md`](CONTRACT.md).
 
 ## Inputs
 
-- `.agents/AGENTS.md`
-- `.agents/docs/MAINTENANCE.md`
-- `.agents/docs/index.md`
-- `.agents/docs/log.md`
-- `.agents/docs/decisions/` (including `index.md` and per-decision markdown files)
-- `.agents/docs/troubleshooting/` (including `index.md` and per-pattern markdown files)
-- `.agents/playbooks/`
+- Root instruction files (`AGENTS.md`, `CLAUDE.md`, `GEMINI.md` when present) - marker blocks
+- `.agents/AGENTS.md`, `.agents/playbooks/`
+- `openwiki/INSTRUCTIONS.md`, curated trees under `openwiki/`
+- `openspec/changes/archive/` (for coverage pairing)
 
-## Skill initialization (before first lint pass)
+## Skill initialization
 
-Run this once per target repo after the skill files are present under `.agents/skills/docs-lint/`. Idempotent: safe to repeat.
-
-**Bootstrap source:** this kit keeps a **single** copy of scaffold templates under **learning-distill** at `.agents/skills/learning-distill/bootstrap/`. Run **learning-distill** skill initialization first when that skill is present; do not duplicate those files under **docs-lint**. If `learning-distill/` is missing from `.agents/skills/`, install or copy that skill before lint initialization, or copy missing templates from an upstream kit checkout.
-
-Let `LD` denote `.agents/skills/learning-distill`.
-
-1. Resolve the repo root (the directory that contains `.git/` in normal layouts).
-2. Ensure `.agents/` exists and `LD/bootstrap/` is present; otherwise stop and add **learning-distill** (see above).
-3. Ensure `.agents/playbooks/` exists. If `.agents/playbooks/README.md` is missing, copy `LD/bootstrap/playbooks/README.md` into place.
-4. Ensure `.agents/docs/` exists. For each of `index.md`, `MAINTENANCE.md`, and `log.md`, if the file is missing under `.agents/docs/`, copy it from `LD/bootstrap/docs/`. If `.agents/docs/decisions/index.md` or `.agents/docs/troubleshooting/index.md` is missing, copy the entire contents of `LD/bootstrap/docs/decisions/` or `LD/bootstrap/docs/troubleshooting/` respectively, creating only files that do not already exist (do not overwrite).
-5. If `.agents/AGENTS.md` is missing, copy `LD/bootstrap/AGENTS.md` into place. If it already exists, do not overwrite it.
-6. If `.agents/docs/MAINTENANCE.md` exists, ensure the **Skills docs registry** row for `docs-lint` is present and current (docs interaction, durable paths touched, and [`CONTRACT.md`](CONTRACT.md) link). Add the row when missing; update it when behavior changes.
-
-If `.agents/sessions/` or `.agents/.gitignore` session rules are missing, run **learning-distill** initialization steps for sessions and ignore rules, or **task-closeout** initialization when you need closeout-first layout.
-
-## Derived indexes and search (before lint)
-
-When `decisions/` or `troubleshooting/` entry files were added, removed, or renamed, attempt docs-compile first so optional durable indexes stay fresh:
-
-`python .agents/skills/docs-compile/scripts/docs-compile.py`
-
-If the `docs-compile` skill is not installed, continue linting and skip durable index freshness checks that depend on those optional index files.
-
-See [`.agents/skills/docs-compile/SKILL.md`](../docs-compile/SKILL.md).
-
-Use `search-docs.py "<topic>"` as a discovery tool during the checks below, particularly for duplicates, contradictions, and uncategorized knowledge.
+Ensure the shared scaffold via **learning-distill** initialization when that skill is present; this skill owns no bootstrap templates. No `.agents/docs/` scaffold exists anymore - durable knowledge lives in the wiki.
 
 ## Checks
 
-- **Duplicate guidance** — If docs-search is available, run `python3 .agents/skills/docs-search/scripts/search-docs.py` for key terms from each major guidance block in `AGENTS.md`, `decisions/`, and `troubleshooting/`. Treat results with multiple high-ranked hits on the same topic as candidates for deduplication. Do not rely solely on manual reading.
-- contradictions
-- stale or superseded rules
+### Wiring checks (fail the pass)
+
+- **Routing-block integrity** — In every root instruction file present, verify each managed block is intact and its targets exist:
+  - each `AKSK:*` block (`ROUTING`, `LIFECYCLE`): exactly one of each; targets named inside must exist. Refresh stale blocks with `node aksk-bootstrap/scripts/attach_section.mjs <root> <target> <template>`.
+  - `<!-- OPENWIKI:START/END -->`: never hand-edit; verify presence only.
+- **Wiki contract present** — `openwiki/INSTRUCTIONS.md` carries the `AKSK:WIKI-CONTRACT` markers; refresh with `attach_wiki_contract.mjs` if its template changed.
+- **Archived-change/wiki coverage pairing** — For each change under `openspec/changes/archive/`, descriptive outcomes must appear in `openwiki/` or be covered by a recorded deferral. Report uncovered archived changes. A deferral recorded on the change's summary page exempts it.
+- **Stale curated knowledge** — Pages under `openwiki/{decisions,troubleshooting}/` whose claims conflict with repository reality: references to retired skills, `aksk_status: accepted` on pages whose successor exists (`aksk_superseded_by` set), or dead `aksk_depends_on` targets. Flag with the superseding source.
+
+### Content checks (report, suggest)
+
+- duplication and contradictions between `.agents/AGENTS.md`, playbooks, and knowledge pages
 - oversized AGENTS sections
-- missing index coverage in `.agents/docs/index.md` for durable assets
-- broken links in indexes and cross-links between docs
-- when `decisions/index.md` or `troubleshooting/index.md` exists, verify listed files exist and align with entry files; always verify each entry file has frontmatter `id` aligned with its filename slug where applicable, **`id` values are unique within `decisions/` and within `troubleshooting/`**, and **`depends_on` entries use qualified `decisions/…` or `troubleshooting/…` form** (see [Entry `id` and qualified graph references](../../docs/MAINTENANCE.md#entry-id-and-qualified-graph-references) in `MAINTENANCE.md`)
-- **Durable entry metadata contract:** each `decisions/*.md` and `troubleshooting/*.md` entry (excluding each folder’s `index.md`) follows `.agents/docs/MAINTENANCE.md` — required `id`, `title`, `last_updated`, `description`, and YAML list `tags`; `decisions/` entries also have `status` (`accepted`, `superseded`, or `provisional`); no `status` on troubleshooting entries; `tags` is never a single scalar string meant to hold a list; optional `depends_on` is a YAML list when present. Confirm by reading frontmatter, not only prose, or by validating against `.agents/skills/learning-distill/references/decision-frontmatter.schema.json` and `.agents/skills/learning-distill/references/troubleshooting-frontmatter.schema.json`.
-- troubleshooting entries that should be decisions or playbooks
-- decisions that should be compressed into AGENTS guidance
-- **Uncategorized knowledge** — For content with no clear home, run `python3 .agents/skills/docs-search/scripts/search-docs.py "<content topic>"` to find semantically related existing entries. If a related entry exists, propose merging. If none exists, propose a new category.
-- **Mechanical path hygiene (especially after migrations or Replace All):** search for doubled `.agents/` path segments (for example `.agents/.agents` in paths) under `.agents/`, `README.md`, `INSTALL.md`, and `docs/`. Hits usually mean a bad global replace or copy/paste error.
+- broken relative links within `.agents/` and `openwiki/`
+- frontmatter contract of knowledge pages: filename stem unique per tree; decision pages carry `aksk_status`; validate against `learning-distill/references/*.schema.json`
+- troubleshooting entries that should be playbooks; decision pages that should compress into AGENTS guidance
+- **Path hygiene:** search for doubled `.agents/.agents` segments under `.agents/`, `README.md`, `INSTALL.md`, `docs/`
 
 ## Output
 
-Produce:
-
-- a lint report
-- optional minimal edits
-
-Do **not** append to `.agents/docs/log.md` as part of this skill unless the user explicitly asked for a log entry. Distillation logging belongs to **learning-distill**; see `.agents/docs/MAINTENANCE.md` (Logging policy).
+A lint report plus optional minimal edits. Do not modify OpenWiki-owned files; propose rerunning `sync_wiki_indexes.mjs` for index drift instead of failing.
 
 ## Constraints
 
-- Prefer reclassification and compression over adding more text.
-- Do not modify source code.
-- Do not delete knowledge without explicit justification.
+- Prefer reclassification and compression over adding text.
+- Do not modify source code; do not delete knowledge without explicit justification.

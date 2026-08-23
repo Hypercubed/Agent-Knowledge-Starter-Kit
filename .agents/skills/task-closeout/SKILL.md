@@ -9,7 +9,7 @@ description: Capture the current task into a structured temporary session bundle
 
 Create a temporary handoff packet for later learning extraction.
 
-Follow **Skill initialization** and **Procedure** below. Required filenames, `summary.json` expectations, and write scope are in [`CONTRACT.md`](CONTRACT.md). Session bundle policy at the kit level is in [`.agents/docs/MAINTENANCE.md`](../../docs/MAINTENANCE.md) (Task bundle policy); when guidance overlaps, follow [Portable skill contracts](../../docs/MAINTENANCE.md#portable-skill-contracts).
+Follow **Skill initialization** and **Procedure** below. Required filenames, `summary.json` expectations (including `openspec_change`), and write scope are in [`CONTRACT.md`](CONTRACT.md).
 
 ## Skill initialization (before first closeout)
 
@@ -58,6 +58,8 @@ Filled-in reference files live under `.agents/skills/task-closeout/example/task-
 - Record only candidate lessons in learning-candidate.md.
 - Distinguish clearly between what failed, what worked, and what is only a hypothesis.
 - Do not update `.agents/AGENTS.md` or any other durable repo knowledge file.
+- Record the associated OpenSpec change, if any, in `summary.json` under `openspec_change` (the change name from `openspec/changes/<name>/`). Omit the field when the session touched no OpenSpec change.
+- Never modify anything under `openspec/` during closeout of an in-flight change; spec updates happen at `/opsx:archive` time, not closeout time.
 - Do not edit files under `.agents/skills/` during closeout. Capture proposed skill or `MAINTENANCE.md` edits as text in the bundle; **learning-distill** applies kit-wide skill changes.
 - Treat the **whole maintainer conversation** as in-scope for `active-task.md` and `learning-candidate.md` unless the user explicitly limits closeout to one subtask (mistakes, reversals, and corrections—not only the last `git diff`).
 - Do not write narrative summaries longer than necessary.
@@ -74,7 +76,7 @@ Filled-in reference files live under `.agents/skills/task-closeout/example/task-
 7. Re-read the full session (or transcript) before drafting bundle prose so notes and lessons are not scoped to the final edit only.
 8. Write active-task.md.
 9. Write learning-candidate.md.
-10. Write summary.json with status, metadata, `repo_id`, `task_id`, and optional agent identifiers when available.
+10. Write summary.json with status, metadata, `repo_id`, `task_id`, `openspec_change` (when applicable), and optional agent identifiers when available.
 11. Mark the session bundle ready for distillation.
 
 ## Optional agent metadata
@@ -118,4 +120,5 @@ Record agent provenance whenever the active tool can supply it. Record session p
 - Candidate troubleshooting note
 - Candidate repo decision
 - Candidate playbook
+- Spec updates deferred to archive time (change name + what to fold in)
 - Confidence

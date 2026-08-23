@@ -23,7 +23,6 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "search": "python3 .agents/skills/docs-search/scripts/search-docs.py",
     "format": "remark \".agents/**/*.md\" --output",
     "check": "bash scripts/check-publish.sh"
   },
@@ -34,6 +33,5 @@
     "remark-gfm": "^4.0.1",
     "skills": "^1.5.1"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }

@@ -23,7 +23,7 @@ alwaysApply: true
 # Agent Knowledge Kit
 
 - Treat `.agents/AGENTS.md` as the primary durable instructions file.
-- Use `.agents/docs/index.md` to find decisions, troubleshooting, and playbooks.
+- Use `openwiki/index.md` for decisions, troubleshooting, and architecture; `.agents/playbooks/` for procedures.
 - Follow `.agents/skills/task-closeout/SKILL.md` when closing meaningful work.
 - Keep raw evidence in `.agents/sessions/`.
 
@@ -49,7 +49,7 @@ Do not duplicate long policy here; open the referenced paths when needed.
 ## Workflow
 
 1. Start Cursor Agent with the root bootstrap or always-on project rule in scope.
-2. Open `.agents/AGENTS.md` and `.agents/docs/index.md` when repo policy matters.
+2. Open `.agents/AGENTS.md` and `openwiki/index.md` when repo policy matters.
 3. Use glob-scoped rules only for extra local constraints.
 4. Edit `.agents/` first when durable guidance changes, then update Cursor rules only if routing changed.
 

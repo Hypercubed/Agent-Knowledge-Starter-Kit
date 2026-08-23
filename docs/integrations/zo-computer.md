@@ -11,7 +11,7 @@ Verified against Zo Computer behavior and documentation on April 21, 2026. Re-ch
 3. Keep durable repo knowledge in `.agents/`, not scattered across Zo workspace files.
 4. Mirror skills into `/home/workspace/Skills/` for Zo UI visibility: copy (or symlink) each skill from `.agents/skills/<name>/` to `/home/workspace/Skills/<name>/`. Zo scans `/home/workspace/Skills/` for `SKILL.md` files; it does not auto-discover skills nested inside `.agents/` or other repo subdirectories.
 5. Update `/home/workspace/AGENTS.md` to include the Skills Discovery section (see below). This ensures future agents in this workspace know to check both `.agents/skills/` and `/home/workspace/Skills/` when looking up skills.
-6. Verify docs-search works after install: `python3 .agents/skills/docs-search/scripts/search-docs.py "knowledge"`.
+6. Verify peer tools after install: `node .agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs openspec openwiki`.
 
 Root `AGENTS.md` example:
 
@@ -21,7 +21,7 @@ Root `AGENTS.md` example:
 This repo uses the Agent Knowledge Starter Kit.
 
 - Read `.agents/AGENTS.md` for durable repo guidance.
-- Use `.agents/docs/index.md` to find decisions, troubleshooting, and playbooks.
+- Use `openwiki/index.md` for decisions, troubleshooting, and architecture; `.agents/playbooks/` for procedures.
 - Treat `.agents/skills/*/SKILL.md` as canonical repo-local workflows.
 - Keep temporary task evidence in `.agents/sessions/`; promote only durable lessons back into `.agents/`.
 ```
@@ -41,7 +41,7 @@ Add this section to `/home/workspace/AGENTS.md` after install:
 | ---------------- | ------------------------------------- | ------------------------------------------------ |
 | Repo entrypoint  | root `AGENTS.md`                      | Bootstrap into `.agents/`                        |
 | Kit instructions | `.agents/AGENTS.md`                   | Durable repo guidance after root routing         |
-| Kit docs         | `.agents/docs/`, `.agents/playbooks/` | Decisions, troubleshooting, procedures           |
+| Kit docs         | `openwiki/{decisions,troubleshooting}/`, `.agents/playbooks/` | Decisions, troubleshooting, procedures |
 | Kit skills       | `.agents/skills/<name>/SKILL.md`      | Repo-local workflows (canonical definitions)     |
 | Zo Skills UI     | `/home/workspace/Skills/`             | Where Zo discovers and lists runnable skills     |
 | Zo Rules         | Zo Settings → AI → Rules              | User-wide behavioral preferences for Zo          |
@@ -59,15 +59,15 @@ Add this section to `/home/workspace/AGENTS.md` after install:
 
 1. Clone or open the repo in the Zo workspace.
 2. Confirm root `AGENTS.md` routes into `.agents/`.
-3. Read `.agents/AGENTS.md` and `.agents/docs/index.md` before changing conventions.
-4. Use repo-local skills for closeout, distillation, and linting — either via the Skills UI or by running the scripts directly (e.g. `python3 .agents/skills/docs-search/scripts/search-docs.py <query>`).
-5. After meaningful work, run `task-closeout` to capture session evidence in `.agents/sessions/`, then `learning-distill` to promote stable lessons into `.agents/docs/`.
-6. Rebuild derived artifacts: `python .agents/skills/docs-compile/scripts/docs-compile.py` regenerates durable indexes and the docs-search cache.
+3. Read `.agents/AGENTS.md` and `openwiki/index.md` before changing conventions.
+4. Use repo-local skills for closeout, distillation, and linting — follow each skill's `SKILL.md`.
+5. After meaningful work, run `task-closeout` to capture session evidence in `.agents/sessions/`, then `learning-distill` to promote stable lessons into the curated wiki trees.
+6. Rebuild derived artifacts: `node .agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs` regenerates OpenWiki directory indexes.
 
 ## Troubleshooting
 
 - **Skills not visible in UI:** Confirm the `SKILL.md` file exists under `/home/workspace/Skills/<skill-name>/SKILL.md` with valid YAML frontmatter (`name` and `description` are required).
-- **docs-search returns no results:** Broaden your query or check that `.agents/docs/` contains markdown files.
+- **Knowledge search finds nothing:** Broaden your query or check that `openwiki/` contains pages; wiki indexes refresh via `sync_wiki_indexes.mjs`.
 - **`.agents/AGENTS.md` not picked up:** Zo only auto-reads `AGENTS.md` relative to its working directory. Ensure the root `AGENTS.md` explicitly points to `.agents/AGENTS.md`.
 
 ## References
