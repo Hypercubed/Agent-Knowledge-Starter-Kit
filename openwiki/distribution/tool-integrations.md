@@ -1,0 +1,57 @@
+---
+type: distribution-page
+title: "Tool Integrations"
+description: "How docs/integrations/ wires AKSK into 15 agent products via four shared patterns, with the quick matrix, guide-writing playbook, and content-location decisions."
+tags: [integrations, agentic-tools, patterns, docs]
+timestamp: 2026-08-23T00:00:00Z
+---
+
+# Tool Integrations
+
+`docs/integrations/` is the user-facing layer that connects specific agent products to the kit. It is deliberately **outside** `.agents/` — decision `integration-guides-belong-in-docs-integrations-not-agents` keeps vendor how-tos out of the portable knowledge layer, and `kit-installation-guidance-lives-in-root-docs` does the same for install guidance.
+
+## The core pattern
+
+From [patterns.md](../../docs/integrations/patterns.md): keep one source of truth. Tool-native files (bootstrap files, project rules, command wrappers, local config) are *wiring*; `.agents/` files are *durable repo knowledge*. Never copy long-lived policy into each tool's native config — point the tool at `.agents/AGENTS.md`, `.agents/docs/index.md`, `.agents/playbooks/`, and `.agents/skills/`.
+
+## Four pattern groups
+
+| Pattern | Tools | Mechanism |
+| --- | --- | --- |
+| Root `AGENTS.md` native or compatible | Codex, OpenCode, Kilo Code, Warp, OpenClaw | short root AGENTS.md routes into `.agents/` |
+| Tool-specific bootstrap file | Claude Code (`CLAUDE.md`), Gemini CLI (`GEMINI.md`) | thin router; native memory stays user-local |
+| Rules-based IDE wiring | Cursor (`.cursor/rules/`), GitHub Copilot (`.github/copilot-instructions.md`) | short rule bodies referencing `.agents/` paths |
+| Persistent memory & runtime boundary | Hermes, Antigravity, OpenClaw, Agentic Sandbox | native memory for local continuity only; export durable evidence to `.agents/sessions/<folder>/` at task boundaries |
+
+## Quick matrix (condensed)
+
+The full comparison table in patterns.md maps every tool across bootstrap file, native config/storage, native memory/artifacts, skill behavior, and primary caveat. Representative rows:
+
+- **Claude Code** — `CLAUDE.md` + `.claude/commands/` wrappers; auto-memory must never become repo docs.
+- **Codex** — discovers repo `.agents/skills/` natively; sandbox may treat `.agents/` read-only during closeout (troubleshooting entry).
+- **Cursor / Copilot** — avoid duplicating long policy in rules/instruction files; nested `.agents/` files are not auto-visible.
+- **Hermes** — dual skill namespaces: runtime skills vs repo `.agents/skills/`; read the repo files from disk ([troubleshooting entry](../../.agents/docs/troubleshooting/hermes-agent-specific-dual-skill-namespace-skill-view-returns-wrong-file.md)).
+- **Agentic Sandbox** — execute procedural SKILL.md steps via tool calls or run scripts directly; needs PyYAML for scripted skills.
+
+**Session export rule:** native memory helps during work, but `.agents/sessions/` is the shared task boundary — a closeout bundle captures commands, changed files, validation, and learning candidates so any later tool can distill.
+
+## Available guides
+
+README lists per-tool pages: Integration Patterns (start here), Agentic Sandbox, Antigravity, Claude Code, Codex, Copilot, Cursor, Gemini CLI, Hermes, Kilo Code, OpenClaw, OpenSpec, OpenCode, Warp, Zo Computer. Planned: VS Code extensions (only after verification against real tool behavior). Each product page is a quick reference — exact filenames, minimal snippets, discovery/config table, unique caveats, verification date — while shared concepts live once in patterns.md (decision `shared-integration-patterns-belong-in-docs-integrations-patterns-md`).
+
+## Writing new guides — the playbook
+
+[`.agents/playbooks/writing-integration-guides.md`](../../.agents/playbooks/writing-integration-guides.md) governs guide authorship for convergent tools:
+
+1. Inventory the tool's native structures; map overlaps and gaps against kit conventions.
+2. Apply the Routing Pattern for high-precedence root instruction files.
+3. Present three integration options with trade-offs: kit-as-bridge, replicate, hybrid; prefer canonical skill files when the tool discovers them natively.
+4. Include a concrete two-tool workflow; verify claims by reproduction before documenting limitations.
+5. Update routing docs together (root README, integrations README, tracker) in one change.
+6. One post-dogfood refinement pass; if authoring from inside the target tool, note that session as the dogfood pass explicitly.
+7. Keep session-metadata guidance conservative — document `agent_session_id` capture only where the tool exposes it.
+8. Pitfalls: don't assume adoption, don't oversell, address namespace collisions, separate personal memory from repo knowledge, don't generalize single weak runs, no template residue.
+
+## Relationship to other layers
+
+Integration guides consume the vocabulary defined in the [knowledge layer](../architecture/knowledge-layer.md) and route users through [installation](packaging-and-install.md). Their maintenance workflow (closeout → distill → lint) is the same loop documented in [task lifecycle](../architecture/task-lifecycle.md); several troubleshooting entries originated as integration-guide dogfood sessions (Gemini, Hermes, Copilot, Zo).
