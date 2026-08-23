@@ -1,9 +1,15 @@
 ---
 type: distribution-page
 title: "Tool Integrations"
-description: "How docs/integrations/ wires AKSK into 15 agent products via four shared patterns, with the quick matrix, guide-writing playbook, and content-location decisions."
+description: "How docs/integrations/ wires AKSK into agent products via four shared patterns, with the quick matrix, guide-writing playbook, content-location decisions, and the pending routing-block attachment conversion."
 tags: [integrations, agentic-tools, patterns, docs]
-timestamp: 2026-08-23T00:00:00Z
+timestamp: 2026-08-23T19:30:00Z
+openwiki:
+  roles: [integration]
+  source_paths:
+    - docs/integrations/patterns.md
+    - docs/integrations/README.md
+    - .agents/playbooks/writing-integration-guides.md
 ---
 
 # Tool Integrations
@@ -12,7 +18,7 @@ timestamp: 2026-08-23T00:00:00Z
 
 ## The core pattern
 
-From [patterns.md](../../docs/integrations/patterns.md): keep one source of truth. Tool-native files (bootstrap files, project rules, command wrappers, local config) are *wiring*; `.agents/` files are *durable repo knowledge*. Never copy long-lived policy into each tool's native config — point the tool at `.agents/AGENTS.md`, `.agents/docs/index.md`, `.agents/playbooks/`, and `.agents/skills/`.
+From [patterns.md](../../docs/integrations/patterns.md): keep one source of truth. Tool-native files (bootstrap files, project rules, command wrappers, local config) are *wiring*; `.agents/` files are *durable repo knowledge*. Never copy long-lived policy into each tool's native config — point the tool at `.agents/AGENTS.md`, `openwiki/index.md`, `.agents/playbooks/`, and `.agents/skills/`.
 
 ## Four pattern groups
 
@@ -28,16 +34,18 @@ From [patterns.md](../../docs/integrations/patterns.md): keep one source of trut
 The full comparison table in patterns.md maps every tool across bootstrap file, native config/storage, native memory/artifacts, skill behavior, and primary caveat. Representative rows:
 
 - **Claude Code** — `CLAUDE.md` + `.claude/commands/` wrappers; auto-memory must never become repo docs.
-- **Codex** — discovers repo `.agents/skills/` natively; sandbox may treat `.agents/` read-only during closeout (troubleshooting entry).
+- **Codex** — discovers repo `.agents/skills/` natively; sandbox may treat `.agents/` read-only during closeout ([troubleshooting entry](../../openwiki/troubleshooting/codex-cannot-write-under-agents-during-closeout-or-distill.md)).
 - **Cursor / Copilot** — avoid duplicating long policy in rules/instruction files; nested `.agents/` files are not auto-visible.
-- **Hermes** — dual skill namespaces: runtime skills vs repo `.agents/skills/`; read the repo files from disk ([troubleshooting entry](../../.agents/docs/troubleshooting/hermes-agent-specific-dual-skill-namespace-skill-view-returns-wrong-file.md)).
-- **Agentic Sandbox** — execute procedural SKILL.md steps via tool calls or run scripts directly; needs PyYAML for scripted skills.
+- **Hermes** — dual skill namespaces: runtime skills vs repo `.agents/skills/`; read the repo files from disk ([troubleshooting entry](../../openwiki/troubleshooting/hermes-agent-specific-dual-skill-namespace-skill-view-returns-wrong-file.md)).
+- **Agentic Sandbox** — execute procedural SKILL.md steps via tool calls or run scripts directly.
 
-**Session export rule:** native memory helps during work, but `.agents/sessions/` is the shared task boundary — a closeout bundle captures commands, changed files, validation, and learning candidates so any later tool can distill.
+**Session export rule:** native memory helps during work, but `.agents/sessions/` is the shared task boundary — a closeout bundle captures commands, changed files, validation, and learning candidates so any later tool can distill. Promoted lessons commit to `.agents/AGENTS.md`, the curated wiki trees, or `.agents/playbooks/` — never back into a tool's private memory.
 
 ## Available guides
 
 README lists per-tool pages: Integration Patterns (start here), Agentic Sandbox, Antigravity, Claude Code, Codex, Copilot, Cursor, Gemini CLI, Hermes, Kilo Code, OpenClaw, OpenSpec, OpenCode, Warp, Zo Computer. Planned: VS Code extensions (only after verification against real tool behavior). Each product page is a quick reference — exact filenames, minimal snippets, discovery/config table, unique caveats, verification date — while shared concepts live once in patterns.md (decision `shared-integration-patterns-belong-in-docs-integrations-patterns-md`).
+
+All fifteen pages were updated during the 2.0 migration to route at `openwiki/index.md` instead of the deleted `.agents/docs/index.md`. A pending dogfood task (5.4) will convert their hand-written routing blocks into instructions to run the [aksk-bootstrap attachment](../skills/aksk-bootstrap.md) (`attach_section.mjs` + `AKSK:ROUTING` markers), noting its append-only idempotent behavior.
 
 ## Writing new guides — the playbook
 

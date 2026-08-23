@@ -3,36 +3,39 @@ type: inventory-page
 title: "Repository Inventory"
 description: "Top-to-bottom map of tracked trees and files in agent-knowledge-starter: what each area contains, who consumes it, and where its wiki page lives."
 tags: [inventory, layout, map, navigation]
-timestamp: 2026-08-23T18:30:00Z
+timestamp: 2026-08-23T19:30:00Z
+openwiki:
+  roles: [repository]
+  source_paths: [package.json]
 ---
 
 # Repository Inventory
 
-Counts below come from `git ls-files` (275 tracked files; session bundles are gitignored by design).
+Counts below come from `git ls-files` (310 tracked files; session bundles are gitignored by design).
 
 | Path | Tracked | Contents | Consumed by | Wiki page |
 | --- | --- | --- | --- | --- |
-| `openspec/` | 104 | change management: 14 active changes + dated archive + merged specs + `config.yaml` schema | OpenSpec CLI, maintainers | [OpenSpec workflow](../governance/openspec-workflow.md) |
-| `.agents/` | ~97 (excl. ignored sessions; four forked openspec-* skill folders deleted on disk, unstaged) | the portable knowledge layer: AGENTS.md, docs/, playbooks/, workflows/, skills/ (6 shipped + 4 being removed) | coding agents, skills CLI, consumers | [Knowledge layer](../architecture/knowledge-layer.md), [Skills system](../skills/index.md) |
+| `openspec/` | 125 | change management: 14 active changes + dated archive (+ six relocated maintainer plans) + merged specs + `config.yaml` schema | OpenSpec CLI, maintainers | [OpenSpec workflow](../governance/openspec-workflow.md) |
+| `openwiki/` | 75 | this wiki: generated pages plus AKSK-curated trees (`decisions/` 23 pages, `troubleshooting/` 24 pages, `overview.md`, `maintenance-format.md`) and the contract-carrying `INSTRUCTIONS.md` | coding agents, OpenWiki tooling, distillation | [Knowledge layer](../architecture/knowledge-layer.md), [overview](../overview.md) |
+| `.agents/` | 40 | the portable layer: AGENTS.md, playbooks/, workflows/, skills/ (4 shipped + internal generate-example); **no `docs/` tree** — knowledge moved to the wiki | coding agents, skills CLI, consumers | [Knowledge layer](../architecture/knowledge-layer.md), [Skills system](../skills/index.md) |
 | `docs/` | 17 | root-facing docs: architecture.md + integrations/ (16 pages) | humans adopting the kit | [Tool integrations](../distribution/tool-integrations.md) |
-| `example/` | 40 (README + skills-lock only; `.agents/` gitignored) | generated consumer-install illustration | humans evaluating the kit | [generate-example & scripts](../skills/generate-example-and-scripts.md) |
+| `example/` | 40 (README + skills-lock only; `.agents/` gitignored) | generated consumer-install illustration — currently stale vs shipped skills | humans evaluating the kit | [generate-example & scripts](../skills/generate-example-and-scripts.md) |
 | `scripts/` | 2 | `check-agents-structure.sh`, `check-publish.sh` | maintainers, consumers | [generate-example & scripts](../skills/generate-example-and-scripts.md) |
-| root files | — | README.md, INSTALL.md, AGENTS.md, CLAUDE.md, LICENSE, package.json, package-lock.json, openspec.yaml, .remarkrc.json, .gitignore | agents + tooling | [Agent entrypoints](../governance/agent-entrypoints.md) |
+| root files | — | README.md, INSTALL.md, AGENTS.md, CLAUDE.md, LICENSE, package.json, package-lock.json, openspec.yaml, .remarkrc.json, .gitignore, .claude-plugin/plugin.json | agents + tooling | [Agent entrypoints](../governance/agent-entrypoints.md) |
 
 ## Untracked / generated areas
 
 - **`.agents/sessions/<bundle>/`** — 46 task-closeout bundles; deliberately gitignored except README.
 - **`.github/workflows/openwiki-update.yml`** — present on disk, excluded by bare `.github` ignore rule ([entrypoints](../governance/agent-entrypoints.md)).
-- **`openwiki/`** — this wiki; `INSTRUCTIONS.md` is its scope brief, still the default stub (no AKSK curation contract attached yet).
-- **`skills-lock.json`, `example/skills-lock.json`, `.claude-plugin/plugin.json`** — local install receipts / plugin manifest with known drift ([packaging](../distribution/packaging-and-install.md)).
-- **`openspec/changes/{adopt-openspec-openwiki,aksk-bootstrap-system}/`** — untracked work-in-progress defining AKSK 2.0.
+- **`openwiki/.last-update.json`** — OpenWiki run metadata recording the last documented commit for update runs.
+- **`skills-lock.json`, `example/skills-lock.json`** — local install receipts, gitignored.
 - **`.kilo/`, `.vscode/`, `node_modules/`** — local tooling, ignored.
 
 ## Durable content census (dogfood state)
 
-The maintainer tree doubles as a live demonstration of the conventions it ships:
+The curated wiki trees double as a live demonstration of the conventions they ship:
 
-- `decisions/`: 17 entries — every one carries the full frontmatter contract; statuses span accepted/superseded/provisional with qualified `depends_on` edges (e.g., `openspec-documentation-enforcement`, added during the OpenSpec-integration dogfood pass).
-- `troubleshooting/`: 24 entries covering agent-behavior loops, per-tool quirks (Codex, Gemini, Hermes, Copilot, Zo), path/platform issues, sessions/gitignore discovery, and maintenance-script stalls.
-- `plan-archive/`: 6 historical plans retained after the OpenSpec migration (generic-index kind for docs-compile).
-- `log.md`: append-only distillation history back to April 2026 with accepted/rejected accounting.
+- `openwiki/decisions/`: 23 curated OKF pages — every one carries `aksk_status` with qualified `aksk_depends_on` edges where applicable (e.g., `node-single-runtime-for-kit-scripts` depends on superseded `python-preference-for-consumer-scripts`).
+- `openwiki/troubleshooting/`: 24 curated pages covering agent-behavior loops, per-tool quirks (Codex, Gemini, Hermes, Copilot, Zo), path/platform issues, sessions/gitignore discovery, and maintenance-script stalls.
+- `.agents/playbooks/`: five durable procedures (pre-publish, major-version-release, generate-example, writing-integration-guides, README).
+- No `log.md` exists anymore: distillation accountability lives in bundle `summary.json` flags plus git history.

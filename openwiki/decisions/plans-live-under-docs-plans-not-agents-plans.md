@@ -15,6 +15,8 @@ aksk_status: superseded
 aksk_depends_on:
 - decisions/single-tree-architecture-agents
 - decisions/docs-search-remains-canonical-over-host-native-search
+aksk_superseded_note: Maintainer plan files were removed; OpenSpec changes superseded
+  them. Retained as historical reference.
 ---
 
 # Maintainer plans live under `.agents/docs/plans/`, not `.agents/plans/`
@@ -39,8 +41,7 @@ The `docs-search` indexer walks **`.agents/docs/**/*.md`** (plus playbooks and `
 
 ### Consequences
 
-- New plans are authored at `.agents/docs/plans/<id>.md` with the plan frontmatter contract in [MAINTENANCE.md](../maintenance-format.md#frontmatter-contract-plans).
-- Retired plans move to `.agents/docs/plans/archive/<id>.md` with a link sweep across the repo.
+- Plans were historically authored under `.agents/docs/plans/` with a plan frontmatter contract formerly defined in `MAINTENANCE.md` (that section was retired with the knowledge-base consolidation).
 - References to `.agents/plans/` in operational docs should point at `.agents/docs/plans/` instead.
 
 ### Related initiative

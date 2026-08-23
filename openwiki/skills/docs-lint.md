@@ -1,56 +1,57 @@
 ---
 type: skill-reference
-title: "docs-lint Skill"
-description: "Checklist-driven periodic pass over the .agents/ knowledge layer for duplication, contradictions, staleness, oversized guidance, index gaps, and frontmatter contract violations."
-tags: [skills, docs-lint, lint, maintenance]
-timestamp: 2026-08-23T18:30:00Z
+title: "docs-lint Skill (Cross-Tool Lint)"
+description: "Periodic lint pass guarding the wiring between AKSK and its adopted tools: routing-block integrity in root instruction files, archived-change/wiki coverage pairing, stale curated knowledge pages, plus duplication, contradiction, broken-link, and path-hygiene checks across .agents/ and openwiki/."
+tags: [skills, docs-lint, lint, maintenance, cross-tool]
+timestamp: 2026-08-23T19:30:00Z
+openwiki:
+  roles: [testing, operations]
+  source_paths:
+    - .agents/skills/docs-lint/SKILL.md
+    - .agents/skills/docs-lint/CONTRACT.md
+    - openspec/changes/adopt-openspec-openwiki/specs/cross-tool-lint/spec.md
+  invariants: ["Wiring failures fail the pass; content issues are report-and-suggest only.", "Never writes OpenWiki-owned files; index drift is reported as advice to rerun sync_wiki_indexes.mjs.", "Index/log ownership is out of scope: OpenWiki tooling owns indexes; no activity log exists."]
 ---
 
-# docs-lint
+# docs-lint (cross-tool lint)
 
 **Folder:** `.agents/skills/docs-lint/` · **Files:** `SKILL.md`, `CONTRACT.md`, `bootstrap/README.md`
 
 ## Goal
 
-Keep the compiled repo knowledge layer coherent, minimal, and current. This is a **procedure-and-checklist skill only — no bundled executable script**. The maintainer (or agent) runs the checks by inspection, aided by sibling skills.
+Keep the wiring between AKSK and its adopted tools coherent: routing blocks intact, archived OpenSpec changes covered by wiki pages, curated knowledge truthful. This is a **procedure-and-checklist skill only — no bundled executable script**; the maintainer or agent runs the checks by inspection.
 
 ## Inputs (read-only scope)
 
-`.agents/AGENTS.md`, `.agents/docs/MAINTENANCE.md` + `index.md` + `log.md`, `.agents/docs/decisions/` and `troubleshooting/` with their entries and indexes, and `.agents/playbooks/`.
+Root instruction files and their marker blocks (`AGENTS.md`, `CLAUDE.md`, `GEMINI.md` when present); `.agents/AGENTS.md` and `.agents/playbooks/`; `openwiki/INSTRUCTIONS.md` and the curated trees under `openwiki/`; `openspec/changes/archive/` (for coverage pairing).
 
 ## Initialization — depends on learning-distill templates
 
-This kit keeps exactly **one** copy of scaffold templates under learning-distill's `bootstrap/`; docs-lint's own bootstrap folder contains only a README pointing there. Initialization requires learning-distill to be present (install or copy it first if missing), then performs the same copy-missing-only scaffold steps and adds its **Skills docs registry** row to `MAINTENANCE.md`. If sessions layout is also missing, it defers to learning-distill or task-closeout initialization.
-
-## Refresh before lint
-
-When durable entries were added, removed, or renamed, run the optional compiler first so indexes are fresh:
-
-```bash
-python .agents/skills/docs-compile/scripts/docs-compile.py
-```
-
-If docs-compile isn't installed, continue linting but skip freshness checks that depend on generated indexes. Use [docs-search](docs-search.md) (`search-docs.py "<topic>"`) as the discovery tool inside several checks below rather than relying on manual reading alone.
+This kit keeps exactly **one** copy of scaffold templates under learning-distill's `bootstrap/`; docs-lint's own bootstrap folder contains only a README pointing there. Initialization defers to [learning-distill](learning-distill.md) initialization. No `.agents/docs/` scaffold exists anymore — durable knowledge lives in the wiki.
 
 ## The checks
 
-- **Duplicate guidance** — search key terms from each major guidance block in AGENTS.md / decisions / troubleshooting; multiple high-ranked hits on one topic are dedup candidates.
-- Contradictions between entries.
-- Stale or superseded rules; troubleshooting entries that should be decisions/playbooks; decisions that should compress into AGENTS guidance.
-- Oversized AGENTS sections.
-- Missing index coverage in `.agents/docs/index.md`.
-- Broken links in indexes and cross-links.
-- **Index/entry alignment** — when section `index.md` files exist, verify listed files exist; each entry has frontmatter `id` aligned with filename slug; `id` values unique within each folder; `depends_on` uses qualified `decisions/…`/`troubleshooting/…` form.
-- **Durable entry metadata contract** — read frontmatter (not just prose) for required `id`, `title`, `last_updated`, `description`, list-typed `tags`; `status` present on decisions (`accepted|superseded|provisional`), absent on troubleshooting; optionally validate against the JSON Schemas under `learning-distill/references/`.
-- **Uncategorized knowledge** — search for related entries; propose merge if found, new category otherwise.
-- **Mechanical path hygiene** — grep for doubled `.agents/.agents` segments under `.agents/`, `README.md`, `INSTALL.md`, `docs/` (symptom of bad global replace); the same check hard-fails in `scripts/check-publish.sh`.
+### Wiring checks (fail the pass)
+
+- **Routing-block integrity** — in every root instruction file present, each managed block is intact and its targets exist: each `AKSK:*` block (`ROUTING`, `LIFECYCLE`) exactly once with existing targets; refresh stale blocks with `node aksk-bootstrap/scripts/attach_section.mjs <root> <target> <template>`. The `<!-- OPENWIKI:START/END -->` block is verified for presence only — never hand-edited.
+- **Wiki contract present** — `openwiki/INSTRUCTIONS.md` carries the `AKSK:WIKI-CONTRACT` markers; refresh via `attach_wiki_contract.mjs` if its template changed.
+- **Archived-change/wiki coverage pairing** — each change under `openspec/changes/archive/` must have descriptive outcomes represented in `openwiki/` or be exempted by a recorded deferral on the change's summary page.
+- **Stale curated knowledge** — pages under `openwiki/{decisions,troubleshooting}/` whose claims conflict with repository reality: references to retired skills, `aksk_status: accepted` on a page whose successor exists (`aksk_superseded_by` set), or dead `aksk_depends_on` targets. Flag with the superseding source.
+
+### Content checks (report, suggest)
+
+- Duplication and contradictions between `.agents/AGENTS.md`, playbooks, and knowledge pages; oversized AGENTS sections.
+- Broken relative links within `.agents/` and `openwiki/`.
+- Frontmatter contract of curated pages: filename stem unique per tree; decision pages carry `aksk_status`; validate against the JSON Schemas under `learning-distill/references/*.schema.json`.
+- Troubleshooting entries that should be playbooks; decision pages that should compress into AGENTS guidance.
+- **Path hygiene:** grep for doubled `.agents/.agents` segments under `.agents/`, `README.md`, `INSTALL.md`, `docs/` (symptom of bad global replace); the same check hard-fails in `scripts/check-publish.sh`.
+
+Index-coverage checking is explicitly out of scope: deterministic index sync owns indexes ([aksk-bootstrap](aksk-bootstrap.md)). When a directory index lags newly added pages, lint reports it as informational guidance to rerun `sync_wiki_indexes.mjs`, not as a failure.
 
 ## Outputs and constraints
 
-Produce a **lint report** plus optional minimal edits. Do **not** append to `.agents/docs/log.md` unless explicitly asked — distillation owns that file. Prefer reclassification and compression over adding text; do not modify source code; do not delete knowledge without explicit justification.
+Produce a **lint report** plus optional minimal edits to AKSK-owned files only (`.agents/AGENTS.md`, playbooks, curated page content). Never write OpenWiki-owned files (indexes, run metadata). Do not append to any log — none exists; prefer reclassification and compression over adding text; do not modify source code; do not delete knowledge without explicit justification.
 
-The contract's "Commands used during a lint pass" table documents the refresh/search commands as optional-skill integrations, keeping this folder self-describing even when installed alone.
+## Focused validation
 
-## Repurpose horizon (2.0)
-
-Active change `adopt-openspec-openwiki` converts this skill into a **cross-tool lint** (`cross-tool-lint` capability): routing-block integrity (root AGENTS.md / CLAUDE.md OpenWiki markers), archived-change↔wiki coverage pairing (with a recorded-deferral exemption), and stale-decision detection. Index-coverage checks move out of scope — the wiki tooling owns indexes once `docs-compile` retires. See [OpenSpec workflow](../governance/openspec-workflow.md).
+Run a pass after several agent-assisted edits and before publishing (step 9 of the [pre-publish playbook](../../.agents/playbooks/pre-publish.md)). Narrow mechanical pieces you can run directly: the doubled-path grep (`rg -n '\.agents/\.agents/' README.md INSTALL.md docs .agents`) and frontmatter schema validation against the JSON Schemas. Dogfood validation of the cross-tool checks against this repo's current state is open work — task 5.3 of the active pipeline ([OpenSpec workflow](../governance/openspec-workflow.md)).

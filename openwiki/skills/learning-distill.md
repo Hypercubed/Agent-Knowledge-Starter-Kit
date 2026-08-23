@@ -1,30 +1,52 @@
 ---
 type: skill-reference
 title: "learning-distill Skill"
-description: "Converts a gitignored session bundle into durable .agents/ knowledge via classification, duplication checks, minimal edits, log.md append, and index refresh."
-tags: [skills, learning-distill, distillation, knowledge]
-timestamp: 2026-08-23T18:30:00Z
+description: "Converts a gitignored session bundle into durable knowledge routed by kind: descriptive lessons become curated OKF wiki pages authored directly by the distilling agent under openwiki/, prescriptive lessons stay in .agents/; fail-closed prerequisites, deterministic index refresh, no log file."
+tags: [skills, learning-distill, distillation, knowledge, okf]
+timestamp: 2026-08-23T19:30:00Z
+openwiki:
+  roles: [workflow, domain]
+  source_paths:
+    - .agents/skills/learning-distill/SKILL.md
+    - .agents/skills/learning-distill/references/CONTRACT.md
+    - .agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs
+  symbols: ["createSystemPrompt", "validateOkfFrontmatter", "synchronizeWikiIndexes"]
+  invariants: ["Distillation fails closed before any wiki write when peer tools or the curation contract are missing.", "Descriptive lessons never go to .agents/; prescriptive rules never go to the wiki.", "Never invokes openwiki --update; index refresh is deterministic via sync_wiki_indexes.mjs."]
 ---
 
 # learning-distill
 
-**Folder:** `.agents/skills/learning-distill/` · **Files:** `SKILL.md`, `references/CONTRACT.md`, `references/*.schema.json`, `bootstrap/` (AGENTS.md, docs/, playbooks/, sessions/)
+**Folder:** `.agents/skills/learning-distill/` · **Files:** `SKILL.md`, `references/CONTRACT.md`, `references/*.schema.json`, `bootstrap/` (AGENTS.md, playbooks/, sessions/)
 
 ## Goal and inputs
 
-Convert raw task evidence into concise, durable repo knowledge. Inputs are one session bundle under `.agents/sessions/<bundle>/` (layout per [task-closeout](task-closeout.md)) plus the existing durable tree: `.agents/AGENTS.md`, `.agents/docs/MAINTENANCE.md`, `index.md`, `log.md`, `decisions/`, `troubleshooting/`, and `.agents/playbooks/`. The canonical identity is the bundle's `summary.json` `task_id` — never the folder name.
+Convert raw task evidence into concise durable knowledge, **routed by kind**:
 
-## Skill initialization — single scaffold source
+- **Descriptive** (facts, rationale, architecture, troubleshooting patterns, repo decisions) → curated OKF pages under `openwiki/{decisions,troubleshooting}/` and topical pages under `openwiki/`.
+- **Prescriptive** (agent behavior rules, procedures) → `.agents/AGENTS.md` or `.agents/playbooks/`.
 
-Initialization creates everything a consumer repo needs, copying from this skill's `bootstrap/` tree only files that don't already exist (never overwriting):
+Inputs: one session bundle under `.agents/sessions/<bundle>/` (layout per [task-closeout](task-closeout.md)), `.agents/AGENTS.md`, `.agents/playbooks/`, `openwiki/INSTRUCTIONS.md` (the curation contract), and existing curated pages. Canonical identity is the bundle's `summary.json` `task_id` — never the folder name.
 
-- `.agents/playbooks/README.md`
-- `.agents/docs/{index.md, MAINTENANCE.md, log.md}` and the full `decisions/` / `troubleshooting/` starter folders
-- `.agents/sessions/README.md`
-- `.agents/AGENTS.md` template
-- session ignore rules in `.agents/.gitignore`
+## Prerequisites (fail closed)
 
-Step 4a additionally keeps the **Skills docs registry** row for learning-distill current inside an existing `MAINTENANCE.md`. This bootstrap tree is the **canonical** template source for docs-lint initialization too — docs-lint never duplicates templates ([docs-lint](docs-lint.md)).
+Before writing any wiki output, verify; on failure stop without writing and print remediation:
+
+1. Peer binaries on PATH: `node .agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs openspec openwiki`
+2. `openwiki/INSTRUCTIONS.md` exists **and** carries the `AKSK:WIKI-CONTRACT` markers. If missing or stub-only, run `node .agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs`.
+
+Treating an absent contract as "nothing curated" could silently regenerate away hand-curated pages, so absence fails closed (design decision D3 of change `adopt-openspec-openwiki`).
+
+## Skill initialization (before first distillation)
+
+Idempotent, once per repo. Creates only what a consumer needs:
+
+- `.agents/playbooks/README.md` (from `bootstrap/playbooks/`)
+- `.agents/sessions/README.md` (from `bootstrap/sessions/`)
+- `.agents/AGENTS.md` template (copy-missing-only)
+- session ignore lines merged into `.agents/.gitignore` (`sessions/*`, `!sessions/README.md`)
+- runs the aksk-bootstrap peer-tool check and contract attachment so the wiki side is ready
+
+The kit's durable knowledge base lives in the wiki; this skill **no longer seeds any `.agents/docs/` scaffold**.
 
 ## Finding bundles under gitignore
 
@@ -33,59 +55,42 @@ Step 4a additionally keeps the **Skills docs registry** row for learning-distill
 - filesystem listing (`ls`, `find`, shell APIs) rather than an IDE index;
 - ripgrep with `--no-ignore-vcs` (or `--no-ignore` when scoped to the sessions subtree).
 
-Then open each candidate's `summary.json`: treat `task_id` as canonical and filter/prioritize using state fields (`distilled`, `status`, `distillation_status`) instead of folder names. This failure mode also has a durable entry at [`.agents/docs/troubleshooting/session-discovery-fails-during-distillation-or-closeout.md`](../../.agents/docs/troubleshooting/session-discovery-fails-during-distillation-or-closeout.md).
+Then open each candidate's `summary.json`: treat `task_id` as canonical and filter/prioritize using state fields (`distilled`, `status`, `distillation_status`) instead of folder names. This failure mode also has a curated entry at [`troubleshooting/session-discovery-fails-during-distillation-or-closeout`](../../openwiki/troubleshooting/session-discovery-fails-during-distillation-or-closeout.md).
 
 ## Procedure
 
-1. Locate the correct bundle per the invariant above; read its files.
-2. Read `summary.json`; use its `task_id` in notes and log entries.
-   2a. **Search before comparing:** with docs-search available, query each candidate lesson topic first — `python3 .agents/skills/docs-search/scripts/search-docs.py "<lesson topic>"` — then open returned paths as primary input to the compare/dedup steps. This avoids loading the whole `.agents/` tree into context.
+1. Locate and read the correct bundle per the invariant above; read `task_id` from `summary.json`.
+2. Search related existing knowledge with grep over `openwiki/` (page bodies are plain Markdown) before comparing manually. For decision- or requirement-shaped candidates, also search `openspec/specs/` — a rule already codified as a SHALL requirement there must **not** be duplicated as a wiki page.
 3. Compare candidates against existing knowledge; remove duplication.
 4. Classify each lesson.
-5. Draft minimal updates to the right destination(s).
-6. Update `.agents/docs/index.md` if structure changed.
-7. Append a concise, non-sensitive row to `.agents/docs/log.md`.
-8. Mark the bundle distilled (update its `summary.json` distillation flags).
+5. For wiki-bound lessons, load authoring guidance at runtime from the installed package — with `NPM_ROOT="$(npm root -g)"`, import `openwiki/dist/agent/prompt.js` and call `m.createSystemPrompt(process.argv[1] ?? "init")` (`init` for new pages, `update` for edits) — then author the page directly under the correct curated tree following OKF frontmatter rules, and validate it with `dist/okf/frontmatter.js`'s `validateOkfFrontmatter(file)`; fix every reported issue before continuing. The exact node one-liners are in [`SKILL.md`](../../.agents/skills/learning-distill/SKILL.md).
+6. Draft minimal updates to `.agents/AGENTS.md` or playbooks for prescriptive lessons.
+7. Refresh wiki indexes deterministically (never via the CLI): `node .agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs`.
+8. Mark the session bundle as distilled (its `summary.json` flags).
+
+There is no activity log to append; accountability lives in the bundle flags plus git history.
 
 ## Classification categories
-
-Each candidate becomes one of:
 
 | Category | Destination | Bar |
 | --- | --- | --- |
 | ephemeral | stays in bundle | one-off detail |
 | AGENTS guidance | `.agents/AGENTS.md` | high confidence, broadly useful, likely to recur, concise, actionable |
-| troubleshooting | `.agents/docs/troubleshooting/<slug>.md` | recurring failure + fix |
-| repo decision | `.agents/docs/decisions/<slug>.md` | rationale needing explanation later |
 | playbook | `.agents/playbooks/<name>.md` | multi-step procedure |
+| decision record | `openwiki/decisions/<slug>.md` | rationale needing explanation later |
+| troubleshooting record | `openwiki/troubleshooting/<slug>.md` | recurring failure + fix |
+| descriptive lesson | topical page under `openwiki/` | stable fact or pattern worth keeping |
 
-Entry-file rules: filename stem must equal frontmatter `id`; collision checks happen **only within** the target folder; `depends_on` uses qualified form `decisions/<slug>` or `troubleshooting/<slug>`. Validation against the JSON Schemas in `references/` (`decision-frontmatter.schema.json`, `troubleshooting-frontmatter.schema.json`) is available.
+Entry-file rules: filename stem is the identity, unique within its tree; page frontmatter is OKF base plus AKSK extensions (`aksk_status` on decisions, optional `aksk_superseded_by`, optional qualified `aksk_depends_on`) — see [knowledge layer](../architecture/knowledge-layer.md). Validation against the JSON Schemas in `references/` is available.
 
 ## Allowed writes (contract)
 
-- `.agents/AGENTS.md` (only lessons meeting the AGENTS criteria)
-- `.agents/docs/decisions/*.md` + its `index.md`
-- `.agents/docs/troubleshooting/*.md` + its `index.md`
-- `.agents/docs/index.md`, `.agents/playbooks/*.md`
-- append-only rows to `.agents/docs/log.md`
+- Wiki (only after prerequisite checks pass): `openwiki/decisions/*.md`, `openwiki/troubleshooting/*.md`, `openwiki/<topic>.md`; deterministic index sync via `sync_wiki_indexes.mjs`
+- `.agents/AGENTS.md` (only lessons meeting the AGENTS criteria) and `.agents/playbooks/*.md`
 - the bundle's own `summary.json` distillation flags
 
-**Never:** modify source code outside the knowledge layer; invent rules unsupported by evidence; expand AGENTS.md with narrative; copy secrets/private data into durable docs.
-
-## Post-write refresh
-
-After changing durable entries, run the optional compiler so human-oriented indexes stay aligned:
-
-```bash
-python .agents/skills/docs-compile/scripts/docs-compile.py
-```
-
-Details in [docs-compile](docs-compile.md); docs-lint depends on fresh indexes for its alignment checks.
+**Never:** OpenWiki-owned files (`index.md`, run metadata like `.last-update.json`) except through index sync; `openspec/`; source code outside the knowledge layer; invented rules unsupported by evidence; narrative expansion of AGENTS.md; secrets/private data anywhere durable.
 
 ## Evidence of behavior
 
-Real runs recorded in `.agents/docs/log.md` show accepted/rejected accounting, e.g. session `20260423-220116-deep-review-v2` produced two accepted lessons (a Windows ripgrep troubleshooting entry plus a major-version-release playbook step) with zero rejections; `formalize-superseded-obsolete` was distilled to "no net durable edits" because the change had landed during the task itself.
-
-## Rewrite horizon (2.0)
-
-Active change `adopt-openspec-openwiki` rewrites this skill around a descriptive/prescriptive split (`distill-routing` capability): **descriptive** lessons about the repository (facts, rationale, architecture, troubleshooting patterns) become OKF-format wiki pages under `openwiki/`, authored directly by the distilling agent using runtime-loaded upstream guidance and validated with OpenWiki's deterministic OKF helpers; **prescriptive** agent-behavior rules keep landing here in `.agents/`. Missing prerequisites (no `openwiki` binary, uninitialized wiki, no curation contract attached to `INSTRUCTIONS.md`) fail closed before any wiki write. See [OpenSpec workflow](../governance/openspec-workflow.md).
+The migration itself was distilled through this path: the curated trees now hold 23 decision pages and 24 troubleshooting pages migrated from the former `.agents/docs/` base, each carrying `aksk_status` (see [overview](../overview.md)). End-to-end dogfood validation of fresh distill runs (fail-closed triggers included) is still open work — task 5.2 of the active pipeline ([OpenSpec workflow](../governance/openspec-workflow.md)).

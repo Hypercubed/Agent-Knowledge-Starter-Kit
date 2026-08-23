@@ -63,7 +63,7 @@ Applies to every `*.md` file under `decisions/` and `troubleshooting/` **except*
 
 ### Linking rules (for indexes, maps, and prose)
 
-- Link to another durable entry using a **relative** Markdown link to that file, for example `[Title](<sibling-page>.md)` from a file in the same folder.
+- Link to another durable entry using a **relative** Markdown link to that file, for example a link titled `Title` whose href is the sibling page's filename.
 - Prefer **sibling** paths (`other-id.md`) or explicit relative paths (`../MAINTENANCE.md`) so links stay stable when the repo is checked out on different machines.
 - Avoid bare URLs as the only pointer when a durable repo file exists; URLs are fine for external references.
 
