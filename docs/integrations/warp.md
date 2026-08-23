@@ -12,16 +12,13 @@ Based on current Warp documentation reviewed on April 13, 2026. Re-check Warp an
 4. Keep repo-local reusable workflows in `.agents/skills/` so Warp can discover them as project skills where supported.
 5. Use Warp global rules only for cross-repo preferences.
 
-```markdown
-# AGENTS.md
+Attach the marker-delimited `AKSK:ROUTING` section rather than hand-writing this file:
 
-This repo uses the Agent Knowledge Starter Kit.
-
-- Read `.agents/AGENTS.md` for durable repo guidance.
-- Use `openwiki/index.md` for decisions, troubleshooting, and architecture; `.agents/playbooks/` for procedures.
-- Treat `.agents/skills/*/SKILL.md` as canonical repo-local workflows.
-- Keep temporary task evidence in `.agents/sessions/`; promote only durable lessons back into `.agents/`.
+```bash
+node .agents/skills/aksk-bootstrap/scripts/attach_section.mjs . AGENTS.md
 ```
+
+The attachment appends the section below any existing content, refreshes it in place when the kit's template changes, and is idempotent on re-run. Add tool-specific notes outside the markers - never edit between them.
 
 ## Discovery and Config
 

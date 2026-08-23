@@ -12,16 +12,13 @@ Verified against OpenAI Codex documentation on April 12, 2026. Re-check Codex do
 4. Leave portable kit skills under `.agents/skills/<name>/SKILL.md` so Codex can discover them.
 5. Use `~/.codex/config.toml` only for local sandbox, approval, profile, and similar user settings.
 
-```markdown
-# AGENTS.md
+Attach the marker-delimited `AKSK:ROUTING` section rather than hand-writing this file:
 
-This repo uses the Agent Knowledge Starter Kit.
-
-- Read `.agents/AGENTS.md` for durable repo guidance.
-- Use `openwiki/index.md` for decisions, troubleshooting, and architecture; `.agents/playbooks/` for procedures.
-- Treat `.agents/skills/*/SKILL.md` as repo-local Codex skills.
-- Keep temporary task evidence in `.agents/sessions/`; promote only durable lessons back into `.agents/`.
+```bash
+node .agents/skills/aksk-bootstrap/scripts/attach_section.mjs . AGENTS.md
 ```
+
+The attachment appends the section below any existing content, refreshes it in place when the kit's template changes, and is idempotent on re-run. Add tool-specific notes outside the markers - never edit between them.
 
 ## Discovery and Config
 

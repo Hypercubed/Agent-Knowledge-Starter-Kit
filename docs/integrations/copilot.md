@@ -13,24 +13,13 @@ Written and verified against GitHub Copilot Chat behavior in VS Code with agent 
 5. Use VS Code workspace settings (`.vscode/settings.json`) only for tool preferences, not policy.
 6. Optionally, add `.github/prompts/*.prompt.md` as reusable prompt files for invoking repo skills.
 
-Example `.github/copilot-instructions.md`:
+Attach the marker-delimited `AKSK:ROUTING` section to `.github/copilot-instructions.md` rather than hand-writing it:
 
-```markdown
-# Copilot Instructions
-
-This repo uses the Agent Knowledge Starter Kit.
-
-**Before starting work:**
-- Read `.agents/AGENTS.md` for durable repo guidance.
-- Use `openwiki/index.md` for decisions, troubleshooting, and architecture; `.agents/playbooks/` for procedures.
-
-**For task closeout:**
-- Follow `.agents/skills/task-closeout/SKILL.md` at meaningful task boundaries.
-
-**For session storage:**
-- Keep temporary task evidence in `.agents/sessions/`;
-- promote only durable lessons back into `.agents/`.
+```bash
+node .agents/skills/aksk-bootstrap/scripts/attach_section.mjs . .github/copilot-instructions.md
 ```
+
+The attachment appends below existing content, refreshes in place when the kit template changes, and is idempotent. Add Copilot-specific notes outside the markers.
 
 A root `.copilot-instructions.md` file is sometimes mentioned as a fallback, but this path is not confirmed in official VS Code Copilot documentation. Prefer `.github/copilot-instructions.md`.
 

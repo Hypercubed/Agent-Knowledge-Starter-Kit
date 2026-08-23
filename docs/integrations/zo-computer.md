@@ -15,18 +15,15 @@ Verified against Zo Computer behavior and documentation on April 21, 2026. Re-ch
 
 Root `AGENTS.md` example:
 
-```markdown
-# AGENTS.md
+Attach the marker-delimited `AKSK:ROUTING` section rather than hand-writing this file:
 
-This repo uses the Agent Knowledge Starter Kit.
-
-- Read `.agents/AGENTS.md` for durable repo guidance.
-- Use `openwiki/index.md` for decisions, troubleshooting, and architecture; `.agents/playbooks/` for procedures.
-- Treat `.agents/skills/*/SKILL.md` as canonical repo-local workflows.
-- Keep temporary task evidence in `.agents/sessions/`; promote only durable lessons back into `.agents/`.
+```bash
+node .agents/skills/aksk-bootstrap/scripts/attach_section.mjs . AGENTS.md
 ```
 
-Add this section to `/home/workspace/AGENTS.md` after install:
+The attachment appends the section below any existing content, refreshes it in place when the kit's template changes, and is idempotent on re-run. Add tool-specific notes outside the markers - never edit between them.
+
+Optionally add this Zo-specific discovery section to `/home/workspace/AGENTS.md` after install (outside the AKSK-managed markers):
 
 ```markdown
 ## Skills Discovery

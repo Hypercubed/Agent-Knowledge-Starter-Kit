@@ -14,16 +14,13 @@ OpenClaw belongs to two patterns: it can use root `AGENTS.md` as a repo entrypoi
 4. Keep repo-closeout and distillation workflows under `.agents/skills/` and `.agents/playbooks/`.
 5. Use OpenClaw memory, sessions, sub-agents, and automation as helpers around the repo knowledge layer.
 
-```markdown
-# AGENTS.md
+Attach the marker-delimited `AKSK:ROUTING` section rather than hand-writing this file:
 
-This repo uses the Agent Knowledge Starter Kit.
-
-- Read `.agents/AGENTS.md` for durable repo guidance.
-- Use `openwiki/index.md` for decisions, troubleshooting, and architecture; `.agents/playbooks/` for procedures.
-- Treat `.agents/skills/*/SKILL.md` as canonical repo-local maintenance workflows.
-- Keep temporary task evidence in `.agents/sessions/`; promote only durable lessons back into `.agents/`.
+```bash
+node .agents/skills/aksk-bootstrap/scripts/attach_section.mjs . AGENTS.md
 ```
+
+The attachment appends the section below any existing content, refreshes it in place when the kit's template changes, and is idempotent on re-run. Add tool-specific notes outside the markers - never edit between them.
 
 ## Discovery and Config
 

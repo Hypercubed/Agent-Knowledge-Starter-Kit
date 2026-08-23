@@ -12,17 +12,13 @@ Verified against Gemini CLI behavior in this repository on April 12, 2026.
 4. Treat Gemini `save_memory(scope="project")` as user-local memory, not shared repo docs.
 5. Instruct Gemini to read `.agents/skills/<name>/SKILL.md` directly when a repo workflow matters.
 
-```markdown
-# GEMINI.md
+Attach the marker-delimited `AKSK:ROUTING` section rather than hand-writing this file:
 
-Foundational mandates for this repository:
-
-- Durable repository knowledge and agent guidance live in `.agents/`.
-- Read and follow `.agents/AGENTS.md` at the start of every session.
-- Consult `openwiki/index.md` for decisions, troubleshooting, and architecture.
-- For task closeout, follow `.agents/skills/task-closeout/SKILL.md`.
-- Store temporary session evidence in `.agents/sessions/`; do not commit it unless explicitly asked.
+```bash
+node .agents/skills/aksk-bootstrap/scripts/attach_section.mjs . GEMINI.md
 ```
+
+The attachment appends the section below any existing content, refreshes it in place when the kit's template changes, and is idempotent on re-run. Add tool-specific notes outside the markers - never edit between them.
 
 ## Discovery and Config
 

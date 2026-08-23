@@ -34,9 +34,9 @@
 ## 5. Dogfood on this repository
 
 - [x] 5.1 Run the contract attachment against this repo's live `openwiki/INSTRUCTIONS.md` (currently the default stub); verify append-only merge, idempotent re-run, and stub recognition.
-- [ ] 5.2 Verify distill routing end-to-end: distill a session bundle; confirm OKF output lands in `openwiki/` with curated-page preservation and that fail-closed triggers correctly with tools absent.
-- [ ] 5.3 Run docs-lint cross-tool checks against the dogfooded state; confirm no false positives on hand-maintained indexes.
-- [ ] 5.4 Update every guide that instructs hand-adding a routing block (`docs/integrations/*.md`, `docs/integrations/patterns.md`, `INSTALL.md` where applicable): replace manual unmarked snippets with the `aksk-bootstrap` attachment (`attach_section.mjs` + `AKSK:ROUTING` markers), noting append-only idempotent behavior; run last so guides describe dogfood-verified behavior.
+- [x] 5.2 Verify distill routing end-to-end: distill a session bundle; confirm OKF output lands in `openwiki/` with curated-page preservation and that fail-closed triggers correctly with tools absent.
+- [x] 5.3 Run docs-lint cross-tool checks against the dogfooded state; confirm no false positives on hand-maintained indexes.
+- [x] 5.4 Update every guide that instructs hand-adding a routing block (`docs/integrations/*.md`, `docs/integrations/patterns.md`, `INSTALL.md` where applicable): replace manual unmarked snippets with the `aksk-bootstrap` attachment (`attach_section.mjs` + `AKSK:ROUTING` markers), noting append-only idempotent behavior; run last so guides describe dogfood-verified behavior.
 
 ## 6. Reconcile affected open changes (post-validation)
 

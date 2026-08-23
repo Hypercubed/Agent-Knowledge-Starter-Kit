@@ -30,6 +30,7 @@
 - [Maintainer-only skill appears as a portable kit skill](maintainer-skill-lives-under-agents-skills-by-mistake.md) - Maintainer automation placed under `.agents/skills/` without `internal: true` can be picked up by consumer installs; mark it internal or relocate it.
 
 - [npx skills add includes internal skills](npx-skills-add-internal-skills.md) - The skills CLI installs maintainer-internal skills unless they are marked internal; gate them with metadata.internal so npx skills add skips them.
+- [openwiki --update aborts when run from agent shells](openwiki-update-aborts-in-agent-shells.md) - Headless OpenWiki update runs abort with a generic 'Request was aborted' when launched from agent shells with command timeouts; run interactively and confirm via .last-update.json.
 - [Overlapping session bundles for one initiative](overlapping-session-bundles-for-one-initiative.md) - Multiple `.agents/sessions/` folders may describe related work, complicating which bundle to distill or how `prior_session` links should be read.
 
 - [Remark or bulk Markdown rewrite touched unwanted paths](remark-or-bulk-markdown-rewrite-unwanted-paths.md) - Wide Markdown formatter runs can touch many files; this pattern explains how to restore only the intended paths without discarding unrelated work.

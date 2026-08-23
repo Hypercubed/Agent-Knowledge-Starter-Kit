@@ -7,21 +7,18 @@ Based on Kilo's documented configuration and discovery model plus repo-local con
 ## Setup
 
 1. Install starter skills in the target repo with `npx skills add Hypercubed/Agent-Knowledge-Starter-Kit`, then run each installed skill's initialization from its `SKILL.md` (see [`INSTALL.md`](../../INSTALL.md)).
-2. Add a short root `AGENTS.md` that tells Kilo to read `.agents/AGENTS.md` and `openwiki/index.md`.
+2. Attach the AKSK routing note to root `AGENTS.md` (`attach_section.mjs . AGENTS.md`) so Kilo reads `.agents/AGENTS.md` and `openwiki/index.md`.
 3. Keep durable repo policy in `.agents/`, not in `.kilo/instructions.md` or agent prompts.
 4. Add `.kilo/` files only when Kilo-native commands, agents, or config add real convenience.
 5. Keep personal defaults in global Kilo config; commit only repo-specific wiring.
 
-```markdown
-# AGENTS.md
+Attach the marker-delimited `AKSK:ROUTING` section rather than hand-writing this file:
 
-This repo uses the Agent Knowledge Starter Kit.
-
-- Read `.agents/AGENTS.md` for durable repo guidance.
-- Use `openwiki/index.md` for decisions, troubleshooting, and architecture; `.agents/playbooks/` for procedures.
-- Keep raw task evidence in `.agents/sessions/`.
-- Do not duplicate long-lived policy into `.kilo/` files.
+```bash
+node .agents/skills/aksk-bootstrap/scripts/attach_section.mjs . AGENTS.md
 ```
+
+The attachment appends the section below any existing content, refreshes it in place when the kit's template changes, and is idempotent on re-run. Add tool-specific notes outside the markers - never edit between them.
 
 Example thin command:
 

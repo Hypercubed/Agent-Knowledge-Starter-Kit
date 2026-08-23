@@ -12,16 +12,13 @@ Based on current OpenCode documentation reviewed on April 12, 2026. Re-check Ope
 4. Let OpenCode discover `.agents/skills/` natively when available.
 5. Add `.opencode/commands/` or `.opencode/agents/` only for OpenCode-specific convenience.
 
-```markdown
-# AGENTS.md
+Attach the marker-delimited `AKSK:ROUTING` section rather than hand-writing this file:
 
-This repo uses the Agent Knowledge Starter Kit.
-
-- Read `.agents/AGENTS.md` for durable repo guidance.
-- Use `openwiki/index.md` for decisions, troubleshooting, and architecture; `.agents/playbooks/` for procedures.
-- Treat `.agents/skills/*/SKILL.md` as canonical repo-local workflows.
-- Keep temporary task evidence in `.agents/sessions/`; promote only durable lessons back into `.agents/`.
+```bash
+node .agents/skills/aksk-bootstrap/scripts/attach_section.mjs . AGENTS.md
 ```
+
+The attachment appends the section below any existing content, refreshes it in place when the kit's template changes, and is idempotent on re-run. Add tool-specific notes outside the markers - never edit between them.
 
 Optional `opencode.json`:
 

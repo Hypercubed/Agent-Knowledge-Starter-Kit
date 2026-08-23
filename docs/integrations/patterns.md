@@ -25,16 +25,13 @@ Tools: [Codex](./codex.md), [OpenCode](./opencode.md), [Kilo Code](./kilo-code.m
 
 Use a short root `AGENTS.md` as the repo entrypoint:
 
-```markdown
-# AGENTS.md
+Attach the marker-delimited `AKSK:ROUTING` section rather than hand-writing this file:
 
-This repo uses the Agent Knowledge Starter Kit.
-
-- Read `.agents/AGENTS.md` for durable repo guidance.
-- Use `openwiki/index.md` for decisions, troubleshooting, and architecture; `.agents/playbooks/` for procedures.
-- Treat `.agents/skills/*/SKILL.md` as canonical repo-local workflows.
-- Keep temporary task evidence in `.agents/sessions/`; promote only durable lessons back into `.agents/`.
+```bash
+node .agents/skills/aksk-bootstrap/scripts/attach_section.mjs . AGENTS.md
 ```
+
+The attachment appends the section below any existing content, refreshes it in place when the kit's template changes, and is idempotent on re-run. Add tool-specific notes outside the markers - never edit between them.
 
 Product-specific config such as `opencode.json`, `kilo.json`, Warp global rules, or OpenClaw startup/memory files should only add runtime behavior or point back to the canonical repo files.
 

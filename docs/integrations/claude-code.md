@@ -7,21 +7,18 @@ Written and verified against Claude Code behavior in this repository on April 12
 ## Setup
 
 1. Install starter skills in the target repo with `npx skills add Hypercubed/Agent-Knowledge-Starter-Kit`, then run each installed skill's initialization from its `SKILL.md` (see [`INSTALL.md`](../../INSTALL.md)).
-2. Add a short root `CLAUDE.md` that routes Claude Code into `.agents/`.
+2. Attach the AKSK routing note to root `CLAUDE.md` (`attach_section.mjs . CLAUDE.md`) so it routes Claude Code into `.agents/`.
 3. Keep durable repo policy in `.agents/`, not in `CLAUDE.md` or auto-memory.
 4. Keep personal preferences in `~/.claude/CLAUDE.md`.
 5. Add `.claude/commands/` only as thin wrappers around repo-local skills or playbooks.
 
-```markdown
-# CLAUDE.md
+Attach the marker-delimited `AKSK:ROUTING` section rather than hand-writing this file:
 
-This repo uses the Agent Knowledge Starter Kit.
-
-- Read `.agents/AGENTS.md` for durable repo guidance.
-- Use `openwiki/index.md` for decisions, troubleshooting, and architecture; `.agents/playbooks/` for procedures.
-- For task closeout, follow `.agents/skills/task-closeout/SKILL.md`.
-- Keep temporary task evidence in `.agents/sessions/`; promote only durable lessons back into `.agents/`.
+```bash
+node .agents/skills/aksk-bootstrap/scripts/attach_section.mjs . CLAUDE.md
 ```
+
+The attachment appends the section below any existing content, refreshes it in place when the kit's template changes, and is idempotent on re-run. Add tool-specific notes outside the markers - never edit between them.
 
 Optional command wrapper:
 
