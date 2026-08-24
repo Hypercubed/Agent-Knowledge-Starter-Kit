@@ -1,9 +1,9 @@
 ---
 type: distribution-page
 title: "Tool Integrations"
-description: "How docs/integrations/ wires AKSK into agent products via four shared patterns, with the quick matrix, guide-writing playbook, content-location decisions, and the pending routing-block attachment conversion."
+description: "How docs/integrations/ wires AKSK into agent products via four shared patterns, with the quick matrix, guide-writing playbook, content-location decisions, and the completed routing-block attachment conversion."
 tags: [integrations, agentic-tools, patterns, docs]
-timestamp: 2026-08-23T19:30:00Z
+timestamp: 2026-08-23T23:30:00Z
 openwiki:
   roles: [integration]
   source_paths:
@@ -24,7 +24,7 @@ From [patterns.md](../../docs/integrations/patterns.md): keep one source of trut
 
 | Pattern | Tools | Mechanism |
 | --- | --- | --- |
-| Root `AGENTS.md` native or compatible | Codex, OpenCode, Kilo Code, Warp, OpenClaw | short root AGENTS.md routes into `.agents/` |
+| Root `AGENTS.md` native or compatible | Codex, OpenCode, Kilo Code, Warp, OpenClaw | attach the `AKSK:ROUTING` section with `attach_section.mjs` instead of hand-writing a short root AGENTS.md |
 | Tool-specific bootstrap file | Claude Code (`CLAUDE.md`), Gemini CLI (`GEMINI.md`) | thin router; native memory stays user-local |
 | Rules-based IDE wiring | Cursor (`.cursor/rules/`), GitHub Copilot (`.github/copilot-instructions.md`) | short rule bodies referencing `.agents/` paths |
 | Persistent memory & runtime boundary | Hermes, Antigravity, OpenClaw, Agentic Sandbox | native memory for local continuity only; export durable evidence to `.agents/sessions/<folder>/` at task boundaries |
@@ -45,7 +45,7 @@ The full comparison table in patterns.md maps every tool across bootstrap file, 
 
 README lists per-tool pages: Integration Patterns (start here), Agentic Sandbox, Antigravity, Claude Code, Codex, Copilot, Cursor, Gemini CLI, Hermes, Kilo Code, OpenClaw, OpenSpec, OpenCode, Warp, Zo Computer. Planned: VS Code extensions (only after verification against real tool behavior). Each product page is a quick reference — exact filenames, minimal snippets, discovery/config table, unique caveats, verification date — while shared concepts live once in patterns.md (decision `shared-integration-patterns-belong-in-docs-integrations-patterns-md`).
 
-All fifteen pages were updated during the 2.0 migration to route at `openwiki/index.md` instead of the deleted `.agents/docs/index.md`. A pending dogfood task (5.4) will convert their hand-written routing blocks into instructions to run the [aksk-bootstrap attachment](../skills/aksk-bootstrap.md) (`attach_section.mjs` + `AKSK:ROUTING` markers), noting its append-only idempotent behavior.
+All fifteen pages were updated during the 2.0 migration to route at `openwiki/index.md` instead of the deleted `.agents/docs/index.md`. Dogfood task 5.4 then converted ten of them (patterns plus the nine guides that embed a bootstrap snippet: Claude Code, Codex, Copilot, Gemini CLI, Kilo Code, OpenClaw, OpenCode, Warp, Zo Computer) from hand-written routing blocks to instructions to run the [aksk-bootstrap attachment](../skills/aksk-bootstrap.md) (`attach_section.mjs` + `AKSK:ROUTING` markers), noting its append-only idempotent in-place refresh behavior. The remaining pages (Cursor rules, Hermes, Antigravity, Agentic Sandbox, OpenSpec) never carried a root-file routing snippet, so they have nothing to convert.
 
 ## Writing new guides — the playbook
 

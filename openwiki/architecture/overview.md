@@ -3,7 +3,7 @@ type: architecture-overview
 title: "AKSK Architecture Overview"
 description: "What the Agent Knowledge Starter Kit is, its peer-dependency design (OpenSpec + OpenWiki), the prescriptive-versus-curated knowledge split, and how closeout, distillation, and lint form a knowledge maintenance loop."
 tags: [architecture, overview, agents, knowledge-management]
-timestamp: 2026-08-23T19:30:00Z
+timestamp: 2026-08-23T23:30:00Z
 openwiki:
   roles: [architecture]
   source_paths: [docs/architecture.md, package.json]
@@ -65,7 +65,7 @@ These are normative in `/docs/architecture.md`:
 │                              #   aksk-bootstrap, generate-example (internal)
 ├── openwiki/                  # THE durable knowledge layer (curated OKF pages)
 │   ├── decisions/             # 23 decision records with aksk_status lifecycle
-│   ├── troubleshooting/       # 24 recurring failure patterns
+│   ├── troubleshooting/       # 26 recurring failure patterns
 │   ├── overview.md            # curated entry point
 │   └── maintenance-format.md  # curated schema reference
 ├── example/                   # generated consumer-install illustration (stale, see below)
@@ -85,12 +85,12 @@ A key duality documented in `/docs/architecture.md`: this GitHub repository is t
 ```text
 flowchart LR
     A["Code task"] --> B["task-closeout skill"]
-    B --> C["Session bundle<br/>.agents/sessions/folder"]
+    B --> C["Session bundle under<br/>.agents/sessions"]
     C --> D["learning-distill skill"]
     D --> E{"Classify lesson"}
     E -->|ephemeral| F["Keep in bundle"]
     E -->|prescriptive| G[".agents/AGENTS.md or playbook"]
-    E -->|descriptive| H["Curated wiki page<br/>openwiki decisions or troubleshooting"]
+    E -->|descriptive| H["Curated wiki page in<br/>openwiki decisions or troubleshooting"]
     G --> K["sync_wiki_indexes.mjs<br/>deterministic refresh"]
     H --> K
     K --> L["Mark bundle distilled"]
@@ -109,7 +109,7 @@ AKSK ships content rather than vendor-specific config: consumers register `.agen
 ## Governance context
 
 - **OpenSpec** manages intent/process artifacts (proposals, specs, tasks) under `openspec/`; see [OpenSpec workflow](../governance/openspec-workflow.md).
-- Step 1 of the 2.0 pipeline (`adopt-openspec-openwiki`) is now **largely implemented and dogfooded**: peer dependencies adopted, distillation rerouted to OKF pages, `docs-search`/`docs-compile` retired, the forked `openspec-*` skills deleted, and the knowledge base consolidated into this wiki's curated trees. Remaining open work: end-to-end dogfood validation (tasks 5.2–5.4) and reconciling six affected active changes. Step 2 (`aksk-bootstrap-system`) — automated installation and agent spreading — remains unstarted. Details and the truthfulness horizon are on the [governance page](../governance/openspec-workflow.md).
+- Step 1 of the 2.0 pipeline (`adopt-openspec-openwiki`) is **applied and archived**: peer dependencies adopted, distillation rerouted to OKF pages, `docs-search`/`docs-compile` retired, the forked `openspec-*` skills deleted, the knowledge base consolidated into this wiki's curated trees, and all six affected active changes reconciled; its four capabilities graduated to specs under `openspec/specs/`. Step 2 (`aksk-bootstrap-system`) and the newer `add-agents-md-bootstrap` proposal remain unstarted. Details and the truthfulness horizon are on the [governance page](../governance/openspec-workflow.md).
 - The three-layer division of labor (process / descriptive / experiential-curation) is recorded once in decision `openspec-openwiki-aksk-division-of-labor`.
 
 ## Scope boundaries

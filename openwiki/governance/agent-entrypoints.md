@@ -3,7 +3,7 @@ type: governance-page
 title: "Agent Entrypoints"
 description: "Root AGENTS.md with its three managed blocks (OPENWIKI, AKSK:ROUTING, AKSK:LIFECYCLE), the CLAUDE.md pointer, openspec.yaml rules, and the self-hosting OpenWiki workflow's tracking status."
 tags: [agents, entrypoints, routing, agentic-tools]
-timestamp: 2026-08-23T19:30:00Z
+timestamp: 2026-08-23T23:30:00Z
 openwiki:
   roles: [architecture, integration]
   source_paths: [AGENTS.md, CLAUDE.md, openspec.yaml, .agents/skills/aksk-bootstrap/scripts/attach_section.mjs]
@@ -16,7 +16,7 @@ Several root files exist solely to route coding agents into durable knowledge. T
 
 ## Root `AGENTS.md`
 
-The primary agent entrypoint for this checkout (~158 lines). Structure:
+The primary agent entrypoint for this checkout (~160 lines). Structure:
 
 - **§0 Non-negotiables** — behavioral overrides: no flattery/filler; disagree when you disagree; never fabricate paths/hashes/APIs/results; stop when confused; touch only what you must.
 - **§1–8** — working discipline: plan before editing; simplicity first; surgical diffs; verifiable goals; tool verification; session hygiene; direct communication style; when to ask vs proceed.
@@ -44,8 +44,10 @@ This scheduled workflow refreshes `openwiki/` daily (cron `0 8 * * *` plus manua
 
 - The scheduled-refresh loop described in AGENTS.md and in this wiki's own generation is **aspirational until committed**: on fresh clones the workflow does not exist.
 - Any fix requires un-ignoring at least `.github/workflows/openwiki-update.yml` in `.gitignore`.
-- Until then, wiki updates happen through local runs of the OpenWiki CLI rather than CI.
+- Until then, wiki updates happen through local interactive runs of the OpenWiki CLI rather than CI — and those runs abort when launched from agent shells with command timeouts (curated entry: [openwiki --update aborts when run from agent shells](../troubleshooting/openwiki-update-aborts-in-agent-shells.md)).
 
 ## Tool integration entrypoints (consumers)
 
-For adopters, the equivalent entrypoint set per tool (root `AGENTS.md` / `CLAUDE.md` / `GEMINI.md` / `.cursor/rules/` / `.github/copilot-instructions.md` …) is catalogued under [Tool integrations](../distribution/tool-integrations.md). The shared principle is identical: keep native files thin, point them at `.agents/`. Consumers attach the same `AKSK:ROUTING` block with `node .agents/skills/aksk-bootstrap/scripts/attach_section.mjs` instead of pasting unmarked snippets.
+For adopters, the equivalent entrypoint set per tool (root `AGENTS.md` / `CLAUDE.md` / `GEMINI.md` / `.cursor/rules/` / `.github/copilot-instructions.md` …) is catalogued under [Tool integrations](../distribution/tool-integrations.md). The shared principle is identical: keep native files thin, point them at `.agents/`. Consumers attach the same `AKSK:ROUTING` block with `node .agents/skills/aksk-bootstrap/scripts/attach_section.mjs` instead of pasting unmarked snippets — ten integration guides were converted to this instruction during dogfood task 5.4.
+
+**Future zones:** the active proposal [`add-agents-md-bootstrap`](openspec-workflow.md#proposal-add-agents-md-bootstrap--seed-consumer-agentsmd-new-unstarted) would add a first zone to consumer `AGENTS.md` files — a vendored behavioral baseline under `AKSK:AGENTS-BASELINE` markers, seeded before OpenWiki and AKSK blocks attach. Nothing on disk implements it yet; see [OpenSpec workflow](openspec-workflow.md).

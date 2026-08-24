@@ -156,3 +156,5 @@ This repository uses the AKSK knowledge loop. After every session where you made
 3. **Distillation** - promote durable lessons per [`.agents/skills/learning-distill/SKILL.md`](.agents/skills/learning-distill/SKILL.md): descriptive lessons become curated OpenWiki pages under `openwiki/`; behavior rules land in `.agents/AGENTS.md` or playbooks.
 4. **Pruning** - periodically review guidance files and delete rules that no longer prevent mistakes.
 <!-- AKSK:LIFECYCLE:END -->
+
+---

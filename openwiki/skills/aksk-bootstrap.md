@@ -3,7 +3,7 @@ type: skill-reference
 title: "aksk-bootstrap Skill"
 description: "Owns the peer-dependency preconditions between AKSK and its adopted tools: attaches the AKSK curation contract to openwiki/INSTRUCTIONS.md, attaches marker-delimited AKSK sections to root agent files, verifies openspec/openwiki binaries on PATH, and refreshes wiki indexes deterministically."
 tags: [skills, aksk-bootstrap, bootstrap, preconditions, wiki-contract]
-timestamp: 2026-08-23T19:30:00Z
+timestamp: 2026-08-23T23:30:00Z
 openwiki:
   roles: [integration, workflow, testing]
   change_kinds: [public-api]
@@ -14,7 +14,7 @@ openwiki:
     - .agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs
     - .agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs
   symbols: ["requireBinaries", "INSTALL_COMMANDS", "synchronizeWikiIndexes"]
-  test_paths: [openspec/changes/aksk-bootstrap-system/tasks.md]
+  test_paths: [openspec/changes/aksk-bootstrap-system/tasks.md, openspec/changes/add-agents-md-bootstrap/tasks.md]
   invariants: ["Never installs anything; every failure prints the exact remediation command and exits without writing.", "Attachment is append-only and idempotent: content outside AKSK markers is never replaced or removed.", "Only known peer tools (openspec, openwiki) are accepted; unknown names exit 2."]
 ---
 
@@ -61,8 +61,8 @@ One mechanism for N marker-delimited AKSK sections in root agent instruction fil
 Behavior contract:
 
 - Existing content is never replaced or removed; sections attach below it.
-- Idempotent and self-updating on re-run.
-- A missing target file **is created** containing only the attached section — root router files have no upstream initializer, so this script is their owner of record.
+- Idempotent and self-updating on re-run (template changes refresh the marked section in place).
+- A missing target file **is created** containing only the attached section — root router files have no upstream initializer today, so this script is their owner of record. That statement is scoped by the pending [`add-agents-md-bootstrap`](../governance/openspec-workflow.md#proposal-add-agents-md-bootstrap--seed-consumer-agentsmd-new-unstarted) proposal, which would add a behavioral seeding script that runs *before* this one; the append-only invariant here would stay intact.
 - Unknown template name exits 2.
 
 Root [`AGENTS.md`](../../AGENTS.md) currently carries both attached blocks below its OpenWiki-managed block; see [agent entrypoints](../governance/agent-entrypoints.md).

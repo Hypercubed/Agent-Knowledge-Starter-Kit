@@ -69,11 +69,7 @@ Applies to every `*.md` file under `decisions/` and `troubleshooting/` **except*
 
 ### Curation and Quick References
 
-While `docs-compile` auto-generates the exhaustive alphabetical `## Index` at the bottom of index files, the space explicitly above `## Index` (the "blurb") is human-editable and preserved during regeneration. 
-
-Maintainers should use this space to curate a `## Quick Reference` section. The Quick Reference serves as a manually organized pinboard highlighting the most critical, foundational, or frequently encountered files (e.g., grouping core architecture decisions or severity-1 troubleshooting patterns). 
-
-When documenting a new, highly relevant feature or recurring failure, manually add its link to the `## Quick Reference` in the respective `index.md` file.
+> **Superseded mechanism:** `docs-compile` and hand-curated `## Quick Reference` sections were retired by the OpenWiki consolidation. Indexes are now generated deterministically (`sync_wiki_indexes.mjs`); the curated entry point to the knowledge base is [`overview.md`](overview.md), not a per-folder blurb. The auto-pinning idea built on the old mechanism was closed without implementation (archived change `escalate-quick-reference`, 2026-08-23).
 
 ### Example (`decisions/`)
 

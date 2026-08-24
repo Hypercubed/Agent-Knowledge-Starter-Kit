@@ -3,7 +3,7 @@ type: knowledge-layer-contract
 title: "The Knowledge Layer: .agents/ and Curated Wiki Trees"
 description: "How AKSK 2.0 splits durable knowledge: prescriptive agent-behavior files under .agents/ (AGENTS.md, playbooks) versus curated OKF pages under openwiki/{decisions,troubleshooting}/ with aksk_* lifecycle frontmatter, plus the sessions model that feeds both."
 tags: [knowledge-layer, frontmatter, agents, documentation, okf]
-timestamp: 2026-08-23T19:30:00Z
+timestamp: 2026-08-23T23:30:00Z
 openwiki:
   roles: [architecture, domain]
   source_paths: [".agents/skills/learning-distill/references/CONTRACT.md", ".agents/skills/learning-distill/references/decision-frontmatter.schema.json", "docs/architecture.md"]
@@ -81,7 +81,7 @@ Per-task closeout bundles live under `.agents/sessions/YYYYMMDD-HHMMSS-short-top
 
 ## Superseding durable knowledge
 
-Lifecycle state rides in frontmatter: `aksk_status: superseded` plus `aksk_superseded_by` pointing at the successor slug (with a link). The triple-lock markdown convention (index-section move, bold marker, strikethrough) from change `formalize-superseded-obsolete` predates the consolidation; reconciling it against `aksk_status` is an open task (6.2 on the active pipeline), so treat the frontmatter route as authoritative today.
+Lifecycle state rides in frontmatter: `aksk_status: superseded` plus `aksk_superseded_by` pointing at the successor slug (with a link). The triple-lock markdown convention from change `formalize-superseded-obsolete` has been reconciled with this (task 6.2 of the archived step-1 change): the frontmatter lock is authoritative and replaces the former log-bookkeeping leg, while listings that surface a superseded page add the remaining locks — a bold `[SUPERSEDED]`/`[OBSOLETE]` prefix and strikethrough on the link. [docs-lint](../skills/docs-lint.md)'s stale-decision check verifies the convention against curated pages.
 
 ## Validation
 

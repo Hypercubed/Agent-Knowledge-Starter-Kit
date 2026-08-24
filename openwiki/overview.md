@@ -7,7 +7,7 @@ tags:
 - knowledge
 - navigation
 - overview
-timestamp: '2026-08-23T00:00:00Z'
+timestamp: '2026-08-23T23:30:00Z'
 ---
 # Knowledge overview
 
@@ -19,9 +19,9 @@ Curated AKSK knowledge: decision records, troubleshooting patterns, and the main
 - [Agent-tool ownership partition via receipts](decisions/agent-tool-ownership-partition.md) - When an installer receipt exists in a target agent's directory, that installing lane owns the directory and all other lanes skip it; AKSK never writes into another lane's owned directory.
 - [Agents do not stage or commit changes](decisions/agents-do-not-stage-or-commit-changes.md) - Coding agents should leave git staging and commits to the maintainer so history and review boundaries stay human-controlled.
 
-- [`docs-search` stays canonical for `.agents/` knowledge; host-native search is not the default fallback policy](decisions/docs-search-remains-canonical-over-host-native-search.md) - Kit skills should not instruct agents to prefer each host product’s native workspace index or search first, with the `docs-search` Python tools only as fallback. Native search may complement general exploration but does not replace the explicit, scoped index contract for durable `.agents/` markdown.
+- [`docs-search` stays canonical for `.agents/` knowledge; host-native search is not the default fallback policy](decisions/docs-search-remains-canonical-over-host-native-search.md) - **[SUPERSEDED]** Kit skills should not instruct agents to prefer each host product’s native workspace index or search first, with the `docs-search` Python tools only as fallback. Superseded by `knowledge-consolidation-into-openwiki`: the tools are retired; knowledge lookup is plain grep over curated wiki pages.
 
-- [Docs tooling scripts resolve target from override, then nearest `.agents`](decisions/docs-tooling-scripts-resolve-target-from-override-then-nearest-agents.md) - Docs-search and docs-compile scripts should not assume git-root coupling; they first honor explicit target overrides, then discover the nearest `.agents` from the current working directory.
+- [Docs tooling scripts resolve target from override, then nearest `.agents`](decisions/docs-tooling-scripts-resolve-target-from-override-then-nearest-agents.md) - **[SUPERSEDED]** Docs-search and docs-compile scripts should not assume git-root coupling; they first honor explicit target overrides, then discover the nearest `.agents`. Superseded by `knowledge-consolidation-into-openwiki`: both scripts are retired.
 
 - [GitHub Copilot as Rules-Based IDE Wiring tool](decisions/github-copilot-as-rules-based-ide-wiring-tool.md) - Treat GitHub Copilot as an IDE wiring layer that routes agents to repo-local rules and skills, not as a second knowledge store.
 
@@ -38,9 +38,9 @@ Curated AKSK knowledge: decision records, troubleshooting patterns, and the main
 - [OpenWiki integration distribution stack (v0.3.x reality)](decisions/openwiki-integration-distribution-stack.md) - Records how OpenWiki reaches coding agents as of shipped v0.3.x: skills-CLI bundle plus headless CLI and runtime-importable helpers work; MCP lifecycle server and integrations lanes are unreleased upstream.
 - [Optional `prior_session` in session `summary.json`](decisions/optional-prior-session-in-session-summary-json.md) - Session bundles may record an optional `prior_session` pointer in `summary.json` to chain related closeouts without merging bundle folders.
 
-- [Maintainer plans live under `.agents/docs/plans/`, not `.agents/plans/`](decisions/plans-live-under-docs-plans-not-agents-plans.md) - Canonical location for initiative and roadmap markdown is `.agents/docs/plans/` so plans are indexed by docs-search alongside decisions and troubleshooting.
+- [Maintainer plans live under `.agents/docs/plans/`, not `.agents/plans/`](decisions/plans-live-under-docs-plans-not-agents-plans.md) - **[SUPERSEDED]** Canonical location for initiative and roadmap markdown was `.agents/docs/plans/`; superseded because maintainer plan files were removed and OpenSpec changes replaced them.
 
-- [Python preference for consumer-facing scripts](decisions/python-preference-for-consumer-scripts.md) - Consumer-facing scripts and tooling in the repository should be implemented in Python to ensure cross-platform compatibility and consistent development experience.
+- [Python preference for consumer-facing scripts](decisions/python-preference-for-consumer-scripts.md) - **[SUPERSEDED]** Consumer-facing scripts were to be implemented in Python; superseded by `node-single-runtime-for-kit-scripts` (plain ESM `.mjs` on Node).
 - [Regenerate `example/` when the portable kit or bootstrap changes](decisions/regenerate-example-when-portable-kit-changes.md) - When portable `.agents/` templates or bootstrap behavior change, refresh the generated `example/` tree so the illustrated consumer install stays accurate.
 
 - [Sessions directory: tracked README with ignored bundles](decisions/sessions-directory-tracked-readme-with-ignored-bundles.md) - Track only `.agents/sessions/README.md` in git while per-task bundle folders stay ignored so temporary closeout evidence does not pollute history.
@@ -58,7 +58,7 @@ Curated AKSK knowledge: decision records, troubleshooting patterns, and the main
 - [Agent stuck in explanation loop](troubleshooting/agent-stuck-in-explanation-loop.md) - Recover from agents repeatedly describing processes instead of executing them.
 - [Antigravity: Lessons learned aren't visible to teammate's agents](troubleshooting/antigravity-lessons-learned-aren-t-visible-to-teammate-s-agents.md) - Local-only research in Antigravity does not automatically become durable repo knowledge teammates can load; distill lessons into tracked `.agents/` files.
 
-- [Browser subagent fails with invalid_args on view_file](troubleshooting/browser-subagent-filesystem-access-error.md) - 
+- [Browser subagent fails with invalid_args on view_file](troubleshooting/browser-subagent-filesystem-access-error.md) - Browser-only subagents reject local filesystem tool calls; use the main agent's core tools for repository file operations.
 - [`check-publish.sh` reports missing files while `generate-example` is running](troubleshooting/check-publish-missing-files-while-generate-example-is-running.md) - Validation can fail with transient missing-file errors when checks run while `generate-example` is actively rebuilding `example/`.
 
 - [Clean `git status` but you need touched paths for closeout](troubleshooting/clean-git-status-but-you-need-touched-paths-for-closeout.md) - After commits, the working tree is clean but **task-closeout** still needs an accurate list of paths touched in the session for the bundle record.
@@ -67,7 +67,7 @@ Curated AKSK knowledge: decision records, troubleshooting patterns, and the main
 
 - [Comparing greenfield `example/.agents/` to this repo’s root `.agents/`](troubleshooting/comparing-example-agents-to-root-agents.md) - Consumers expect `example/.agents/` to mirror a portable install; diffs against root `.agents/` usually mean the example tree needs regeneration or a doc fix.
 
-- [Docs tooling resolves wrong project root in nested `example/` or global installs](troubleshooting/docs-tooling-resolves-wrong-project-root-in-nested-example-or-global-installs.md) - Docs tooling may target the wrong project when scripts infer only git root; this entry describes override-first plus nearest-`.agents` resolution and checks.
+- [Docs tooling resolves wrong project root in nested `example/` or global installs](troubleshooting/docs-tooling-resolves-wrong-project-root-in-nested-example-or-global-installs.md) - **[OBSOLETE]** Docs tooling may target the wrong project when scripts infer only git root. Obsolete with the retired docs-search/docs-compile scripts; the entry is retained as historical reference.
 
 - [`example/.agents/` looks like a full mirror of root dogfood](troubleshooting/example-agents-looks-like-full-dogfood-copy.md) - The generated example tree contains large slices of this repository’s durable `.agents/docs/`, playbooks, or other maintainer paths instead of the minimal bootstrap-driven layout from generate-example.
 
@@ -79,12 +79,13 @@ Curated AKSK knowledge: decision records, troubleshooting patterns, and the main
 
 - [Hermes Agent–specific: Suspected tool anomaly from a single weak run](troubleshooting/hermes-agent-specific-suspected-tool-anomaly-from-a-single-weak-run.md) - A single flaky tool invocation in Hermes should be validated against the real filesystem before promoting it as a durable repo-wide incident pattern.
 
-- [Index compilation drops human edits](troubleshooting/index-compilation-drops-human-edits.md) - Scripted auto-generation of indexes should preserve human-curated sections like Quick Reference rather than blindly overwriting the entire file.
+- [Index compilation drops human edits](troubleshooting/index-compilation-drops-human-edits.md) - **[OBSOLETE]** Scripted auto-generation of indexes should preserve human-curated sections like Quick Reference. Obsolete: the docs-compile indexer is retired; OpenWiki's deterministic index sync preserves descriptions and never drops curated content outside reserved files.
 - [Maintainer plan markdown landed under `learning-distill/bootstrap/`](troubleshooting/maintainer-plans-files-placed-under-skill-bootstrap.md) - Initiative or roadmap files (or stubs for `docs/plans/`) appear under `learning-distill/bootstrap/docs/` or another skill bootstrap tree; portable bootstrap must stay consumer-generic.
 
 - [Maintainer-only skill appears as a portable kit skill](troubleshooting/maintainer-skill-lives-under-agents-skills-by-mistake.md) - Maintainer automation placed under `.agents/skills/` without `internal: true` can be picked up by consumer installs; mark it internal or relocate it.
 
-- [npx skills add includes internal skills](troubleshooting/npx-skills-add-internal-skills.md) - 
+- [npx skills add includes internal skills](troubleshooting/npx-skills-add-internal-skills.md) - The skills CLI installs maintainer-internal skills unless they are marked internal; gate them with metadata.internal so npx skills add skips them.
+- [openwiki --update aborts when run from agent shells](troubleshooting/openwiki-update-aborts-in-agent-shells.md) - Headless OpenWiki update runs abort with a generic 'Request was aborted' when launched from agent shells with command timeouts; run interactively and confirm via `.last-update.json`.
 - [Overlapping session bundles for one initiative](troubleshooting/overlapping-session-bundles-for-one-initiative.md) - Multiple `.agents/sessions/` folders may describe related work, complicating which bundle to distill or how `prior_session` links should be read.
 
 - [Remark or bulk Markdown rewrite touched unwanted paths](troubleshooting/remark-or-bulk-markdown-rewrite-unwanted-paths.md) - Wide Markdown formatter runs can touch many files; this pattern explains how to restore only the intended paths without discarding unrelated work.

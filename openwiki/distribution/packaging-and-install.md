@@ -3,7 +3,7 @@ type: distribution-page
 title: "Packaging and Install"
 description: "How the kit is packaged and adopted: manual peer-dependency prerequisites, skills CLI install, skill-first initialization, merge checklist for existing .agents/ trees, plugin.json registration, and known drift."
 tags: [packaging, installation, npm, adoption]
-timestamp: 2026-08-23T19:30:00Z
+timestamp: 2026-08-23T23:30:00Z
 openwiki:
   roles: [operations, integration]
   source_paths:
@@ -79,7 +79,7 @@ When both exist: root = agent entrypoint for that checkout; `.agents/AGENTS.md` 
 - **Aspirational `docs-capture`:** decision entry `use-docs-capture-for-ad-hoc-durable-docs` mandates a docs-capture skill "(once implemented)" whose proposal was archived unimplemented — treat it as recorded intent, not shipped capability.
 - **opsx-* workflow copies pending deletion:** `.agents/workflows/` still holds four forked OpenSpec command definitions slated for removal by step 1 of the pipeline ([OpenSpec workflow](../governance/openspec-workflow.md)).
 - **Example tree lags the shipped skills:** tracked `example/.agents/skills/` still contains the retired `docs-search`/`docs-compile` folders and a pre-consolidation `docs/` scaffold; regeneration is pending (task 3.3 of `aksk-bootstrap-system`).
-- **Bootstrap-first future:** under active change `aksk-bootstrap-system`, README/INSTALL will restate install as bootstrap-first with these manual peer-dependency steps as fallback. Until that change lands, this page's skill-first flow remains the shipped path.
+- **Bootstrap-first future:** under active change `aksk-bootstrap-system`, README/INSTALL will restate install as bootstrap-first with these manual peer-dependency steps as fallback. Until that change lands, this page's skill-first flow remains the shipped path. A second proposal, `add-agents-md-bootstrap`, would additionally seed a consumer repo's missing root `AGENTS.md` from a vendored behavioral baseline before AKSK sections attach ([OpenSpec workflow](../governance/openspec-workflow.md)).
 
 ## Example tree and upgrade path
 

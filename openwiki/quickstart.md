@@ -3,7 +3,7 @@ type: "Reference"
 title: "Agent Knowledge Starter Kit — Wiki Quickstart"
 description: "Entry point to the AKSK code wiki: what the kit produces, the knowledge-maintenance loop, a task-routing table from change intent to source anchors and validation commands, and known deferrals."
 tags: [quickstart, navigation, routing]
-timestamp: 2026-08-23T19:30:00Z
+timestamp: 2026-08-23T23:30:00Z
 ---
 
 # Agent Knowledge Starter Kit — Wiki Quickstart
@@ -13,35 +13,34 @@ This is the code wiki for **agent-knowledge-starter (AKSK)** v2.0.0, a shareable
 ## What this repo produces
 
 1. A **portable `.agents/` layer** — AGENTS.md guidance, playbooks/, workflows/, and four installable skills ([architecture overview](architecture/overview.md)).
-2. **A curated knowledge base in this wiki** — 23 decision pages and 24 troubleshooting pages under `openwiki/{decisions,troubleshooting}/`, indexed from the [knowledge overview](overview.md), authored by distillation and preserved across update runs ([schema](maintenance-format.md)).
+2. **A curated knowledge base in this wiki** — 23 decision pages and 26 troubleshooting pages under `openwiki/{decisions,troubleshooting}/`, indexed from the [knowledge overview](overview.md), authored by distillation and preserved across update runs ([schema](maintenance-format.md)).
 3. **The `aksk-bootstrap` skill** — Node scripts owning peer-tool verification, wiki-contract attachment, managed-block attachment, and deterministic index sync ([skills system](skills/index.md), [aksk-bootstrap](skills/aksk-bootstrap.md)).
 4. **Two validators** — `check-agents-structure.sh` (portable) and `check-publish.sh` (release wrapper) ([scripts](skills/generate-example-and-scripts.md)).
 5. **Adoption content** — INSTALL.md flow, peer-dependency prerequisites, 15 tool-integration guides ([packaging](distribution/packaging-and-install.md), [integrations](distribution/tool-integrations.md)).
-6. **Change governance** — OpenSpec-managed proposals/specs/tasks including the AKSK 2.0 pipeline (`adopt-openspec-openwiki`, largely implemented → `aksk-bootstrap-system`, unstarted) ([OpenSpec workflow](governance/openspec-workflow.md)).
+6. **Change governance** — OpenSpec-managed proposals/specs/tasks; 2.0 step 1 (`adopt-openspec-openwiki`) is applied and archived with four graduated specs under `openspec/specs/`; step 2 (`aksk-bootstrap-system`) and a new `add-agents-md-bootstrap` proposal are unstarted ([OpenSpec workflow](governance/openspec-workflow.md)).
 
 ## High-level map
 
-<!-- openwiki: mermaid parse failed and this diagram was converted to a text fence so it does not break rendering. Fix the diagram source and restore the mermaid fence. Parser error: Heuristic: an unescaped angle bracket inside a label breaks rendering; rephrase the label. -->
-```text
+```mermaid
 flowchart TD
     subgraph Entry["Agent entrypoints"]
-        RA["root AGENTS.md<br/>OPENWIKI + AKSK blocks"]
+        RA["root AGENTS.md with OPENWIKI and AKSK blocks"]
         CL["CLAUDE.md"]
         OY["openspec.yaml"]
     end
     subgraph KL["Knowledge surfaces"]
         AG[".agents/ AGENTS.md + playbooks"]
-        DX["openwiki/ curated decisions<br/>+ troubleshooting"]
+        DX["openwiki/ curated decisions + troubleshooting"]
     end
-    subgraph SK["Skills (.agents/skills/)"]
+    subgraph SK["Skills under .agents/skills/"]
         TC["task-closeout"]
         LD["learning-distill"]
         DL["docs-lint cross-tool"]
         AB["aksk-bootstrap"]
     end
-    SE[("sessions/<br/>gitignored bundles")]
-    OS["openspec/ changes+specs"]
-    VAL["scripts/ check-*"]
+    SE[("gitignored session bundles")]
+    OS["openspec/ changes + specs"]
+    VAL["check-agents-structure + check-publish"]
 
     RA --> AG
     RA --> DX
@@ -49,7 +48,7 @@ flowchart TD
     SE -->|"distill"| LD
     LD -->|"prescriptive"| AG
     LD -->|"descriptive OKF pages"| DX
-    AB -->|"verifies peers, attaches contract,<br/>syncs indexes"| DX
+    AB -->|"peer checks, contract attachment, index sync"| DX
     DL -->|"lints wiring of both"| KL
     OS -.->|"governs change work"| SK
     VAL -->|"validates"| AG
@@ -98,14 +97,13 @@ sequenceDiagram
 | Capture finished work | [task-closeout](skills/task-closeout.md) | `.agents/skills/task-closeout/{SKILL,CONTRACT}.md`, `example/task-bundle/` | bundle contains all five required files |
 | Turn bundles into durable knowledge | [learning-distill](skills/learning-distill.md) | `.agents/skills/learning-distill/{SKILL.md,references/}`, `references/CONTRACT.md` | OKF validation one-liner from SKILL.md step 5 |
 | Verify peer tools / attach contract or blocks | [aksk-bootstrap](skills/aksk-bootstrap.md) | `.agents/skills/aksk-bootstrap/scripts/*.mjs` | rerun attachment: idempotent no-op expected |
-<!-- openwiki: broken internal link [skills/aksk-bootstrap.md#index-sync] heading anchor "index-sync" does not exist in "skills/aksk-bootstrap.md". Fix the href or restore the target, then delete this comment. -->
-| Refresh wiki indexes after adding pages | [aksk-bootstrap §index sync](skills/aksk-bootstrap.md#index-sync) | `sync_wiki_indexes.mjs` | prints confirmation line; exits 2 when wiki missing |
+| Refresh wiki indexes after adding pages | [aksk-bootstrap §index sync](skills/aksk-bootstrap.md#index-sync--sync_wiki_indexesmjs) | `sync_wiki_indexes.mjs` | prints confirmation line; exits 2 when wiki missing |
 | Keep knowledge wiring coherent | [docs-lint](skills/docs-lint.md) | `.agents/skills/docs-lint/{SKILL,CONTRACT}.md` | lint report; doubled-path grep |
 | Rebuild `example/` | [generate-example & scripts](skills/generate-example-and-scripts.md) | `run.sh`, playbook `generate-example.md` | structure check on `example/.agents` |
 | Publish/release the kit | [packaging](distribution/packaging-and-install.md) | `scripts/check-publish.sh`, pre-publish playbook | `npm run check` clean exit |
 | Wire a new agent tool | [tool integrations](distribution/tool-integrations.md) | `docs/integrations/patterns.md`, writing-integration-guides playbook | link check; dogfood pass |
 | Propose a change properly | [OpenSpec workflow](governance/openspec-workflow.md) | `openspec/config.yaml`, active change folders | `npx openspec status` |
-| Know what shipped in 2.0 vs pending | [OpenSpec workflow §step 1](governance/openspec-workflow.md#step-1-adopt-openspec-openwiki--implemented-and-dogfooded) | `openspec/changes/adopt-openspec-openwiki/tasks.md` | unchecked checkboxes = remaining work |
+| Know what shipped in 2.0 vs pending | [OpenSpec workflow §graduated specs](governance/openspec-workflow.md#step-1-adopt-openspec-openwiki--applied-and-archived) | `openspec/specs/*/spec.md`, `openspec/changes/archive/2026-08-23-adopt-openspec-openwiki/tasks.md` | unchecked checkboxes in active changes = remaining work |
 
 ## Focused validation commands
 
@@ -127,7 +125,7 @@ There is no unit test suite (`npm test` intentionally fails); validation is scri
 | --- | --- | --- |
 | Per-tool integration guide deep dives (15 pages) | `docs/integrations/*.md` | summarized collectively in [Tool integrations](distribution/tool-integrations.md); each follows one shared template so per-page prose would be redundant |
 | Session bundle contents | `.agents/sessions/<bundle>/` | gitignored temporary evidence; format documented once in [task lifecycle](architecture/task-lifecycle.md) |
-| Individual decision/troubleshooting entries (23 + 24 pages) | `openwiki/{decisions,troubleshooting}/` | indexed exhaustively by their own generated `index.md` files; wiki links representative entries instead of duplicating them |
-| OpenSpec change-by-change summaries for all 14 active proposals | `openspec/changes/` | grouped thematically in [OpenSpec workflow](governance/openspec-workflow.md); read each folder for full artifacts |
+| Individual decision/troubleshooting entries (23 + 26 pages) | `openwiki/{decisions,troubleshooting}/` | indexed exhaustively by their own generated `index.md` files; wiki links representative entries instead of duplicating them |
+| OpenSpec change-by-change summaries for all 13 active proposals | `openspec/changes/` | grouped thematically in [OpenSpec workflow](governance/openspec-workflow.md); read each folder for full artifacts |
 | `example/` regeneration against the 2.0 skill set | `example/.agents/skills/` | tracked example still contains retired `docs-search`/`docs-compile` folders; regeneration is pending task 3.3 of `aksk-bootstrap-system` (see [packaging](distribution/packaging-and-install.md)) |
 | `.agents/workflows/opsx-*` retirement | `.agents/workflows/` | forked slash-command copies remain on disk pending deletion in favor of native `openspec init` output (task 4.2 remainder) |

@@ -3,10 +3,10 @@ type: task-lifecycle
 title: "Task Lifecycle and Session Bundles"
 description: "How task identity works (task_id in summary.json vs folder labels), the five-file closeout bundle with its optional openspec_change link, the closeout-to-distilled state machine, and how distillation now ends in deterministic wiki index sync instead of a log append."
 tags: [sessions, task-closeout, lifecycle, workflow]
-timestamp: 2026-08-23T19:30:00Z
+timestamp: 2026-08-23T23:30:00Z
 openwiki:
   roles: [workflow, architecture]
-  source_paths: [".agents/skills/task-closeout/CONTRACT.md", "openspec/changes/adopt-openspec-openwiki/specs/closeout-change-linking/spec.md"]
+  source_paths: [".agents/skills/task-closeout/CONTRACT.md", "openspec/specs/closeout-change-linking/spec.md"]
   invariants: ["task_id in summary.json is the canonical task identifier; folder names are sortable labels only.", "Closeout never edits openspec/; spec updates happen at /opsx:archive time."]
 ---
 
@@ -88,10 +88,10 @@ Invariants that hold across the loop:
 
 ## Worked end-to-end example
 
-The kit's example bundle doubles as a teaching artifact: `active-task.md` records a Monaco JSON worker fix (goal, outcome, files changed, commands run), while `learning-candidate.md` proposes one AGENTS update, one troubleshooting note, and one repo decision from the same evidence with `Confidence: high`. An OpenSpec change (`worked-lifecycle-example`) proposes expanding this into a compact narrative connecting closeout through classification to destinations; its reconciliation task would add the wiki leg (see [OpenSpec workflow](../governance/openspec-workflow.md)).
+The kit's example bundle doubles as a teaching artifact: `active-task.md` records a Monaco JSON worker fix (goal, outcome, files changed, commands run), while `learning-candidate.md` proposes one AGENTS update, one troubleshooting note, and one repo decision from the same evidence with `Confidence: high`. The reconciled OpenSpec change (`worked-lifecycle-example`) proposes expanding this into a compact narrative that now includes the wiki leg: descriptive lessons become curated OKF pages under `openwiki/{decisions,troubleshooting}/` (validated with OpenWiki's frontmatter checker, indexes refreshed via `sync_wiki_indexes.mjs`), prescriptive lessons update `.agents/AGENTS.md` or playbooks, and there is no separate log file — the bundle flags plus git history are the audit trail (see [OpenSpec workflow](../governance/openspec-workflow.md)).
 
 ## Related
 
 - Skill-level procedures: [task-closeout](../skills/task-closeout.md), [learning-distill](../skills/learning-distill.md)
 - Where promoted knowledge lands: [knowledge layer](knowledge-layer.md)
-- Proactive initialization of task state (proposed, not yet shipped): OpenSpec change `add-task-start` defines a `manifest.json`-based `task-start` capability that `task-closeout` would update rather than regenerate; its coordination with the new `openspec_change` field is open reconciliation work.
+- Proactive initialization of task state (proposed, not yet shipped): OpenSpec change `add-task-start` defines a `manifest.json`-based `task-start` capability that `task-closeout` would update rather than regenerate. Its reconciliation with the slimmed closeout is now written down: `task-start` initializes the manifest and must preserve/pass through the fields the 2.0 closeout added (`openspec_change`, distillation flags); sequencing is task-start owns creation → task-closeout owns finalization → learning-distill consumes only after closeout marks it ready, with no overlapping writers ([OpenSpec workflow](../governance/openspec-workflow.md)).

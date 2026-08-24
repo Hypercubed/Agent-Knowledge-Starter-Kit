@@ -3,7 +3,7 @@ type: skill-reference
 title: "task-closeout Skill"
 description: "Captures a finished, blocked, or abandoned task into a five-file temporary session bundle under .agents/sessions/ with canonical task_id identity and an optional openspec_change link in summary.json; never touches durable files or openspec/."
 tags: [skills, task-closeout, sessions, capture]
-timestamp: 2026-08-23T19:30:00Z
+timestamp: 2026-08-23T23:30:00Z
 openwiki:
   roles: [workflow]
   source_paths:
@@ -86,5 +86,5 @@ Record `agent` and/or `agent_session_id` whenever the active tool supplies them,
 
 - Reference bundle: `.agents/skills/task-closeout/example/task-bundle/` — all five files filled in for a fictional Monaco JSON worker fix, including the `openspec_change` field.
 - Structure enforcement: `scripts/check-agents-structure.sh` requires the four example-bundle text files plus `summary.json` to exist inside the shipped skill ([validation scripts](generate-example-and-scripts.md)).
-- Real-world usage: 46 bundles under `.agents/sessions/` in this dogfood repo follow the same shape.
-- Planned extension (unshipped): change `add-task-start` would have closeout update an existing `manifest.json` instead of generating metadata; its coordination with the new `openspec_change` field is open reconciliation work ([OpenSpec workflow](../governance/openspec-workflow.md)).
+- Real-world usage: 47 bundles under `.agents/sessions/` in this dogfood repo follow the same shape.
+- Planned extension (unshipped): change `add-task-start` would have closeout update an existing `manifest.json` instead of generating metadata; the reconciled proposal states that task-start manifests must preserve and pass through `openspec_change` and the distillation flags rather than redefine them, with strict sequencing (task-start creates → closeout finalizes → distill consumes) ([OpenSpec workflow](../governance/openspec-workflow.md)).

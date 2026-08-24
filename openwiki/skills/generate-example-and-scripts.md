@@ -3,7 +3,7 @@ type: maintainer-tooling
 title: "generate-example and Validation Scripts"
 description: "The internal generate-example skill and run.sh that rebuilds the example/ consumer illustration, plus the check-agents-structure.sh validator and check-publish.sh release wrapper."
 tags: [maintainer, validation, scripts, example, bash]
-timestamp: 2026-08-23T19:30:00Z
+timestamp: 2026-08-23T23:30:00Z
 openwiki:
   roles: [operations, testing]
   source_paths:
@@ -28,10 +28,10 @@ Rebuilds `/example/` as a clean illustration of a fully bootstrapped consumer in
 <!-- openwiki: mermaid parse failed and this diagram was converted to a text fence so it does not break rendering. Fix the diagram source and restore the mermaid fence. Parser error: Heuristic: an unescaped angle bracket inside a label breaks rendering; rephrase the label. -->
 ```text
 flowchart TD
-    A["rm -rf example/ && mkdir"] --> B["write example/README.md"]
+    A["rm -rf example/ and recreate"] --> B["write example/README.md"]
     B --> C["npx skills add repo-root<br/>--copy --agent cursor"]
     C --> D["simulate learning-distill init:<br/>playbooks README, sessions README,<br/>AGENTS.md when missing"]
-    D --> E["write .agents/.gitignore:<br/>sessions/* + !sessions/README.md"]
+    D --> E["write .agents/.gitignore with<br/>sessions rule pair"]
     E --> F["done"]
 ```
 

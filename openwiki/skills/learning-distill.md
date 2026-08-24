@@ -3,7 +3,7 @@ type: skill-reference
 title: "learning-distill Skill"
 description: "Converts a gitignored session bundle into durable knowledge routed by kind: descriptive lessons become curated OKF wiki pages authored directly by the distilling agent under openwiki/, prescriptive lessons stay in .agents/; fail-closed prerequisites, deterministic index refresh, no log file."
 tags: [skills, learning-distill, distillation, knowledge, okf]
-timestamp: 2026-08-23T19:30:00Z
+timestamp: 2026-08-23T23:30:00Z
 openwiki:
   roles: [workflow, domain]
   source_paths:
@@ -34,7 +34,7 @@ Before writing any wiki output, verify; on failure stop without writing and prin
 1. Peer binaries on PATH: `node .agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs openspec openwiki`
 2. `openwiki/INSTRUCTIONS.md` exists **and** carries the `AKSK:WIKI-CONTRACT` markers. If missing or stub-only, run `node .agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs`.
 
-Treating an absent contract as "nothing curated" could silently regenerate away hand-curated pages, so absence fails closed (design decision D3 of change `adopt-openspec-openwiki`).
+Treating an absent contract as "nothing curated" could silently regenerate away hand-curated pages, so absence fails closed (design decision D3 of the archived step-1 change `adopt-openspec-openwiki`, now spec'd under [`openspec/specs/distill-routing/`](../../openspec/specs/distill-routing/spec.md)).
 
 ## Skill initialization (before first distillation)
 
@@ -93,4 +93,4 @@ Entry-file rules: filename stem is the identity, unique within its tree; page fr
 
 ## Evidence of behavior
 
-The migration itself was distilled through this path: the curated trees now hold 23 decision pages and 24 troubleshooting pages migrated from the former `.agents/docs/` base, each carrying `aksk_status` (see [overview](../overview.md)). End-to-end dogfood validation of fresh distill runs (fail-closed triggers included) is still open work — task 5.2 of the active pipeline ([OpenSpec workflow](../governance/openspec-workflow.md)).
+The migration itself was distilled through this path: the curated trees now hold 23 decision pages and 26 troubleshooting pages migrated from (or grown after) the former `.agents/docs/` base, each carrying `aksk_status` (see [overview](../overview.md)). End-to-end dogfood validation of a fresh distill run — bundle selection, fail-closed triggers, OKF authoring, index sync, distilled flagging — was executed as bundle `20260823-240000-dogfood-distill-e2e` (task 5.2 of the archived step-1 change, [OpenSpec workflow](../governance/openspec-workflow.md)).
