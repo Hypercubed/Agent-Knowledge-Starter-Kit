@@ -1,3 +1,5 @@
+> **SUPERSEDED 2026-08-23** - closed without implementation. This change was built entirely on the retired `docs-compile` index generator and hand-built `## Quick Reference` blurbs. Under AKSK 2.0 those are replaced by OpenWiki's deterministic index sync (`okf/index-sync`), which has no curated-blurb mechanism; the hand-curated entry point role moved to `openwiki/overview.md`. Auto-pinning has no equivalent today; revisit only if OpenWiki grows a pinning concept. See `adopt-openspec-openwiki` decision `knowledge-consolidation-into-openwiki`.
+
 ## Why
 
 Currently, when the auto-indexing functionality generates `index.md` files (such as `decisions/index.md` or `troubleshooting/index.md`), it compiles an alphabetical directory but requires humans to manually curate the `## Quick Reference` list. I want `learning-distill` (or `docs-lint`) to algorithmically escalate critical, highly-relevant, or frequently accessed "Important" troubleshooting entries and decisions to the Quick Reference section on behalf of the maintainer.

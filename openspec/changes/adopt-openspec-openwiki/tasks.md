@@ -40,8 +40,8 @@
 
 ## 6. Reconcile affected open changes (post-validation)
 
-- [ ] 6.1 Revise `escalate-quick-reference`: remove all `docs-compile` script dependencies; re-express auto-pinning against OpenWiki-generated indexes or close as superseded if no equivalent exists.
-- [ ] 6.2 Revise `formalize-superseded-obsolete`: keep the triple-lock markdown convention minus its `.agents/docs/log.md` leg (the log is deleted; supersession state rides in `aksk_status` on curated wiki pages), delete the `docs-compile` automation requirement, fold triple-lock verification into the cross-tool-lint stale-decision check.
-- [ ] 6.3 Revise `worked-lifecycle-example`: extend the end-to-end loop with the wiki leg (descriptive lessons distill to OKF pages under `openwiki/`); `.agents/docs/` destinations shown for prescriptive lessons only.
-- [ ] 6.4 Revise `implement-operating-contract-and-triggers`: add an archive-time trigger consideration alongside the existing task-closeout trigger (spec updates move to `/opsx:archive`).
-- [ ] 6.5 Coordinate `add-task-start` with the slimmed `task-closeout`: reconcile manifest consumption with the added `openspec_change` field; sequence applies to avoid conflicts.
+- [x] 6.1 Revise `escalate-quick-reference`: remove all `docs-compile` script dependencies; re-express auto-pinning against OpenWiki-generated indexes or close as superseded if no equivalent exists.
+- [x] 6.2 Revise `formalize-superseded-obsolete`: keep the triple-lock markdown convention minus its `.agents/docs/log.md` leg (the log is deleted; supersession state rides in `aksk_status` on curated wiki pages), delete the `docs-compile` automation requirement, fold triple-lock verification into the cross-tool-lint stale-decision check.
+- [x] 6.3 Revise `worked-lifecycle-example`: extend the end-to-end loop with the wiki leg (descriptive lessons distill to OKF pages under `openwiki/`); `.agents/docs/` destinations shown for prescriptive lessons only.
+- [x] 6.4 Revise `implement-operating-contract-and-triggers`: add an archive-time trigger consideration alongside the existing task-closeout trigger (spec updates move to `/opsx:archive`).
+- [x] 6.5 Coordinate `add-task-start` with the slimmed `task-closeout`: reconcile manifest consumption with the added `openspec_change` field; sequence applies to avoid conflicts.

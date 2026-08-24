@@ -6,12 +6,12 @@ This spec formalizes the procedure for deprecating durable knowledge inside the 
 ## Requirements
 
 ### R1. Vocabulary Rules
-1. For architectural decisions (`.agents/docs/decisions/`): The term `Superseded` (and `[SUPERSEDED]`) MUST be used when deprecating a decision. The frontmatter MUST use `status: superseded`.
-2. For troubleshooting patterns (`.agents/docs/troubleshooting/`): The term `Obsolete` (and `[OBSOLETE]`) MUST be used when deprecating a pattern. Troubleshooting patterns DO NOT use the `status` field in their frontmatter.
+1. For architectural decisions (`openwiki/decisions/`): The term `Superseded` (and `[SUPERSEDED]`) MUST be used when deprecating a decision. The page frontmatter MUST carry the AKSK extension `aksk_status: superseded`.
+2. For troubleshooting patterns (`openwiki/troubleshooting/`): The term `Obsolete` (and `[OBSOLETE]`) MUST be used when deprecating a pattern; the page carries `aksk_status: superseded` with an `aksk_superseded_note` explaining why (troubleshooting pages otherwise omit lifecycle fields).
 
-### R2. Index File Representation (Triple-Lock)
-When an entry is deprecated, its representation in the respective `index.md` MUST conform to the following triple-lock format:
-1. **Section Heading**: The entry MUST be moved under a dedicated section at the bottom of the index (`## Superseded` or `## Obsolete`).
+### R2. Listing Representation (Triple-Lock)
+Wherever a deprecated entry is listed (the curated overview page or other curated pages linking to it), its representation MUST conform to the following triple-lock format:
+1. **Grouping**: Deprecated entries SHOULD be grouped under a dedicated heading (`## Superseded` or `## Obsolete`) at the bottom of the listing, or carry the textual lock inline where no grouping exists.
 2. **Textual Prefix**: The list item MUST begin with a bolded textual marker (`**[SUPERSEDED]**` or `**[OBSOLETE]**`).
 3. **Markdown Strikethrough**: The markdown link to the file MUST be fully enclosed in strikethrough tags (`~~[Link Title](file.md)~~`).
 
@@ -23,7 +23,7 @@ Example for a decision:
 ```
 
 ### R3. File Retention
-Deprecated files MUST remain in their respective directories (`decisions/` or `troubleshooting/`) and MUST NOT be deleted or moved to an `archive/` folder. This ensures `docs-search` and historical cross-links continue to function.
+Deprecated pages MUST remain in their respective curated directories (`openwiki/decisions/` or `openwiki/troubleshooting/`) and MUST NOT be deleted. This ensures historical context and cross-links continue to function; discovery is plain grep plus the wiki indexes (the retired `docs-search` no longer applies).
 
 ## Dependencies & Out of Scope
 - Out of scope: Automated migration scripts to proactively sweep for obsolete troubleshooting entries.
