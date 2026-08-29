@@ -6,7 +6,7 @@ okf_version: "0.2"
 
 - [Knowledge maintenance format](maintenance-format.md) - Schema, frontmatter contracts, and graph-edge rules for curated AKSK knowledge pages (decisions and troubleshooting).
 - [Knowledge overview](overview.md) - Entry point to AKSK-curated knowledge: decisions, troubleshooting patterns, and the maintenance format.
-- [AKSK Quickstart](quickstart.md) - Entry point routing by intent — what the kit ships, how the closeout → distill → sync → lint loop runs, and where to go next for bootstrap, knowledge curation, task lifecycle, validation and distribution.
+- [AKSK Quickstart](quickstart.md) - Entry-point routing by intent — what the kit ships, how the closeout → distill → sync → lint loop runs, and where to go next for bootstrap, knowledge curation, task lifecycle, validation and distribution.
 
 # Directories
 

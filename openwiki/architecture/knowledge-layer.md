@@ -1,28 +1,32 @@
 ---
 type: architecture
-title: "The Knowledge Layer: .agents/ and Curated Wiki Trees"
-description: "How AKSK splits durable knowledge between prescriptive .agents files and descriptive curated OpenWiki trees, plus ephemeral session bundles, preserve-and-link semantics, and lifecycle."
+title: 'The Knowledge Layer: .agents/ and Curated Wiki Trees'
+description: How AKSK splits durable knowledge between prescriptive .agents files and descriptive curated OpenWiki trees, plus ephemeral session bundles, preserve-and-link semantics, and lifecycle.
 tags: [knowledge-layer, agents, openwiki, curation, distillation]
 verified:
   - by: openwiki/0.4.3
-    at: 2026-08-29T05:55:55.370Z
+    at: 2026-08-29T21:15:47.181Z
 sources:
   - id: openwiki-source-62bd4cb693e4e881b3f88f6b
     resource: repo://.agents/.gitignore
   - id: openwiki-source-221b8d1823c4691ef36ad664
     resource: repo://.agents/AGENTS.md
-  - id: openwiki-source-91258832d1268abf511a23e4
-    resource: repo://.agents/playbooks/generate-example.md
   - id: openwiki-source-7a71f2c05c7f7289570ac205
     resource: repo://.agents/playbooks/major-version-release.md
   - id: openwiki-source-df46a321fce7026f92166a02
     resource: repo://.agents/playbooks/pre-publish.md
+  - id: openwiki-source-a05132b6a7d8998425d82b03
+    resource: repo://.agents/playbooks/writing-integration-guides.md
   - id: openwiki-source-7381bbb8d2e7fd02da7469ce
     resource: repo://.agents/skills/aksk-bootstrap/references/wiki-contract-template.md
+  - id: openwiki-source-5398a69cb2cf8d556809da57
+    resource: repo://.agents/skills/aksk-bootstrap/scripts/attach_section.mjs
   - id: openwiki-source-d56b5afb22742020f2ab6b59
     resource: repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs
   - id: openwiki-source-d1960e41bf9a48af26e81829
     resource: repo://.agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs
+  - id: openwiki-source-181fd64540d760eef80f754f
+    resource: repo://.agents/skills/aksk-bootstrap/scripts/init_agents_md.mjs
   - id: openwiki-source-dce50581779fda5dd507dc34
     resource: repo://.agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs
   - id: openwiki-source-dc8872a5e7d386c22ea2f135
@@ -49,25 +53,23 @@ sources:
     resource: repo://openspec/specs/distill-routing/spec.md
   - id: openwiki-source-53df649d4fbc85ef0839d164
     resource: repo://openspec/specs/wiki-contract/spec.md
-generated: { by: "openwiki/0.4.3", at: "2026-08-29T04:36:52.163Z" }
+generated: { by: "openwiki/0.4.3", at: "2026-08-29T21:15:47.181Z" }
 ---
 
 # The Knowledge Layer: `.agents/` and Curated Wiki Trees
 
-<!-- openwiki: broken internal link [task-lifecycle-and-distill.md] file "task-lifecycle-and-distill.md" does not exist. Fix the href or restore the target, then delete this comment. -->
-Durable knowledge lives in two complementary layers. **Prescriptive** guidance — how agents should behave — lives under `.agents/` as plain markdown. **Descriptive** knowledge — facts, rationale, decisions, troubleshooting patterns — lives as curated OKF pages under `openwiki/{decisions,troubleshooting}/` plus two curated root pages. Ephemeral evidence lives under `.agents/sessions/` and never becomes durable until distillation routes it. The former single-tree layout with `.agents/docs/`, hand-built indexes, and `log.md` was deleted by the consolidation (decision `knowledge-consolidation-into-openwiki`, which supersedes the location aspect of `single-tree-architecture-agents`). The lifecycle that writes into these layers is covered by [Task Lifecycle and Distillation](task-lifecycle-and-distill.md); the skills are indexed under [Skills](../skills/index.md).
+Durable knowledge lives in two complementary layers. **Prescriptive** guidance — how agents should behave — lives under `.agents/` as plain markdown. **Descriptive** knowledge — facts, rationale, decisions, troubleshooting patterns — lives as curated OKF pages under `openwiki/{decisions,troubleshooting}/` plus two curated root pages. Ephemeral evidence lives under `.agents/sessions/` and never becomes durable until distillation routes it. The former single-tree layout with `.agents/docs/`, hand-built indexes, and `log.md` was deleted by the consolidation (decision `knowledge-consolidation-into-openwiki`, which supersedes the location aspect of `single-tree-architecture-agents`). The lifecycle that writes into these layers is covered by [Task Lifecycle and Distillation](../workflows/task-lifecycle-and-distill.md); the skills are indexed under [Skills](../skills/index.md).
 
 ## Tree shape
 
 ```text
 .agents/                          # prescriptive layer + capture machinery
-├── AGENTS.md                     # portable routing directives + project learnings
+├── AGENTS.md                     # portable routing directives + project learnings + self-improvement loop
 ├── .gitignore                    # sessions/* + !sessions/README.md
 ├── playbooks/                    # durable multi-step procedures
 │   ├── README.md
 │   ├── pre-publish.md
 │   ├── major-version-release.md
-│   ├── generate-example.md
 │   └── writing-integration-guides.md
 ├── sessions/                     # ephemeral bundles (gitignored except README.md)
 │   └── README.md
@@ -90,16 +92,17 @@ openwiki/                         # descriptive layer (curated OKF concept pages
 
 ## `.agents/AGENTS.md` — prescriptive layer
 
-The portable file holds exactly two parts and must stay small:
+The portable file holds routing directives, project learnings, and the self-improvement loop summary and must stay small:
 
 - **Routing directives** — behavioral triggers: upon startup read `openwiki/index.md` and `.agents/AGENTS.md` before any file modification; on a failing test/build/runtime error, first search durable knowledge with `grep -ri "<error or symptom>" openwiki/ .agents/`; before architectural changes, search `openwiki/decisions/`.
-- **Project learnings** — short distilled rules (e.g., skill-renaming workflow; always include an initial "Starting..." message and a `--verbose` flag in npx-based scripts so agents do not assume hangs).
+- **Project learnings** — short distilled rules (e.g., skill-renaming workflow; always include an initial "Starting..." message and a `--verbose` flag in npx-based scripts so agents do not assume hangs; OpenWiki concurrency guard checking `openwiki/.run.json` before editing).
+- **Self-improvement loop** — summary of the closeout → distill → prune loop with pointers to the full loop in `.agents/AGENTS.md`, curated outcomes in `openwiki/decisions/` and `openwiki/troubleshooting/`, and procedures in `.agents/playbooks/`.
 
 Placement discipline: rationale goes to `openwiki/decisions/`, recurring failures to `openwiki/troubleshooting/`, multi-step procedures to `playbooks/`, temporary artifacts stay in `sessions/`. Distillation adds to this file only when a lesson is high-confidence, broadly useful, likely to recur, concise, and actionable; otherwise it routes elsewhere or stays ephemeral.
 
 ### Relationship to root `AGENTS.md`
 
-Root `AGENTS.md` is the checkout entrypoint. It is a stacked, marker-delimited file (see [AGENTS.md Zoning](../concepts/agents-md-zoning.md)): Zone 1 FerroxLabs behavioral baseline (`AKSK:AGENTS-BASELINE`), Zone 2 OpenWiki block (`OPENWIKI:START/END`), Zone 3a AKSK Routing (`AKSK:ROUTING`), Zone 3b AKSK Lifecycle (`AKSK:LIFECYCLE`). Each zone has one writer and one integrity check. The doctrine from `/INSTALL.md` is: root file = behavioral operating contract (how the agent works); `.agents/AGENTS.md` = portable repo knowledge (what the agent should know about this repo). Exactly one source of truth per instruction. Refreshing the baseline swaps only content between `AKSK:AGENTS-BASELINE` markers; OpenWiki and AKSK blocks remain byte-identical.
+Root `AGENTS.md` is the checkout entrypoint. It is a stacked, marker-delimited file (see [AGENTS.md Zoning](../concepts/agents-md-zoning.md)): Zone 1 FerroxLabs behavioral baseline (`AKSK:AGENTS-BASELINE`) owned by `init_agents_md.mjs`/`refresh_agents_baseline.mjs`, Zone 2 OpenWiki block (`OPENWIKI:START/END`) owned by OpenWiki tooling, Zone 3a AKSK Routing (`AKSK:ROUTING`) and Zone 3b AKSK Lifecycle (`AKSK:LIFECYCLE`) owned by `attach_section.mjs`. Each zone has one writer and one integrity check. The doctrine from `/INSTALL.md` is: root file = behavioral operating contract (how the agent works); `.agents/AGENTS.md` = portable repo knowledge (what the agent should know about this repo). Exactly one source of truth per instruction. A fully bootstrapped file contains all three families ordered baseline → OpenWiki → AKSK; in this repo the baseline zone has not yet been seeded so only OpenWiki and AKSK zones are present until `init_agents_md.mjs` runs. Refreshing the baseline swaps only content between `AKSK:AGENTS-BASELINE` markers; OpenWiki and AKSK blocks remain byte-identical.
 
 ## Curated wiki trees — descriptive layer
 
@@ -154,7 +157,7 @@ Distillation fails closed before any wiki write when the contract is absent — 
 
 ## Playbooks
 
-`.agents/playbooks/` holds durable multi-step procedures as prescriptive layer content. Shipped examples: `pre-publish.md` (validation sequence around `check-publish.sh`), `major-version-release.md` (deprecated-artifact grep, portability review, example regeneration), `generate-example.md` (the never-hand-copy rule), and `writing-integration-guides.md` (the integration-guide method). An active OpenSpec change (`adopt-workflows-taxonomy`) proposes merging this directory into `workflows/` under unified OpenSpec terminology — see [OpenSpec workflow](../governance/openspec-workflow.md). Playbooks are updated only by `learning-distill` for lessons that are durable procedures, not one-off steps.
+`.agents/playbooks/` holds durable multi-step procedures as prescriptive layer content. Shipped examples: `pre-publish.md` (validation sequence around `check-publish.sh`), `major-version-release.md` (deprecated-artifact grep, portability review, example regeneration), and `writing-integration-guides.md` (the integration-guide method). An active OpenSpec change (`adopt-workflows-taxonomy`) proposes merging this directory into `workflows/` under unified OpenSpec terminology — see [OpenSpec workflow](../governance/openspec-workflow.md). Playbooks are updated only by `learning-distill` for lessons that are durable procedures, not one-off steps.
 
 ## Sessions model — ephemeral layer
 
@@ -168,8 +171,7 @@ Per-task closeout bundles live under `.agents/sessions/YYYYMMDD-HHMMSS-short-top
 | `changed-files.txt` | Paths touched |
 | `validation.txt` | Checks run and outcomes |
 
-<!-- openwiki: broken internal link [task-lifecycle-and-distill.md] file "task-lifecycle-and-distill.md" does not exist. Fix the href or restore the target, then delete this comment. -->
-`.agents/.gitignore` ignores `sessions/*` while un-ignoring `sessions/README.md`, so the folder exists in fresh clones with zero bundle noise. Repositories that intentionally do not track `.agents/.gitignore` replicate the equivalent patterns in the repo-root `.gitignore` (`.agents/sessions/*` and `!.agents/sessions/README.md`). Bundle immutability after closeout is defined in [Task Lifecycle](task-lifecycle-and-distill.md): bundles are immutable except for `distilled`/`distillation_status` in `summary.json`. Session folder names are sortable storage labels only; canonical identity is always `task_id` from `summary.json`.
+`.agents/.gitignore` ignores `sessions/*` while un-ignoring `sessions/README.md`, so the folder exists in fresh clones with zero bundle noise. Repositories that intentionally do not track `.agents/.gitignore` replicate the equivalent patterns in the repo-root `.gitignore` (`.agents/sessions/*` and `!.agents/sessions/README.md`). Bundle immutability after closeout is defined in [Task Lifecycle](../architecture/task-lifecycle.md): bundles are immutable except for `distilled`/`distillation_status` in `summary.json`. Session folder names are sortable storage labels only; canonical identity is always `task_id` from `summary.json`.
 
 Bundle discovery must be ignore-blind (`ls`/`find` or `rg --no-ignore-vcs`), because gitignored paths are invisible to ignore-aware searches — see troubleshooting entry `session-discovery-fails-during-distillation-or-closeout`.
 
@@ -179,17 +181,19 @@ flowchart LR
     Bundle["Session bundle<br>.agents/sessions folder"] --> Classify{"Classify lesson"}
     Classify -->|ephemeral| Drop["Keep in bundle only"]
     Classify -->|prescriptive AGENTS| Agents[".agents/AGENTS.md<br>concise actionable rule"]
-    Classify -->|prescriptive playbook| Playbook[".agents/playbooks/*.md"]
-    Classify -->|descriptive decision| Decision["openwiki/decisions/slug.md<br>aksk_status + OKF"]
-    Classify -->|descriptive troubleshooting| Trouble["openwiki/troubleshooting/slug.md"]
-    Classify -->|descriptive topical| Topical["openwiki/topic.md"]
+    Classify -->|prescriptive playbook| Playbook[".agents/playbooks folder"]
+    Classify -->|descriptive decision| Decision["openwiki decisions slug<br>aksk_status plus OKF"]
+    Classify -->|descriptive troubleshooting| Trouble["openwiki troubleshooting slug"]
+    Classify -->|descriptive topical| Topical["openwiki topic page"]
     Decision --> Sync["sync_wiki_indexes.mjs"]
     Trouble --> Sync
     Topical --> Sync
     Agents --> Sync
     Playbook --> Sync
-    Sync --> Flagged["Bundle marked distilled<br>summary.json flags + git history"]
+    Sync --> Flagged["Bundle marked distilled<br>summary flags plus git history"]
 ```
+
+*Caption: distillation routing from ephemeral bundle through classification to durable homes and deterministic index sync.*
 
 ## Superseding durable knowledge
 
@@ -203,6 +207,31 @@ Distillation never invokes `openwiki --update`. Its write path is:
 2. **Author pages directly** — load authoring guidance at runtime from the global package (`openwiki/dist/agent/prompt.js`, `createSystemPrompt("init"|"update")`) and validate with `openwiki/dist/okf/frontmatter.js` (`validateOkfFrontmatter`); fix every reported issue before continuing.
 3. **Refresh indexes deterministically** — `node .agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs` locates the global package via `npm root -g`, imports `agent/docs-only-backend.js` and `okf/index-sync.js`, constructs `OpenWikiLocalShellBackend` with `docsOnly: true, virtualMode: true`, and calls `synchronizeWikiIndexes(backend, "repository")`. Curated bodies stay byte-identical while `openwiki/index.md` and directory indexes rebuild. Exits 2 with remediation when uninitialized or package missing.
 4. **Mark distilled** — set `distilled: true` and `distillation_status` on `summary.json`; accountability lives in bundle flags plus git history — there is no separate log file.
+
+```mermaid
+sequenceDiagram
+    participant Agent as Distilling agent
+    participant Check as check_peer_tools
+    participant Contract as INSTRUCTIONS contract
+    participant Prompt as prompt.js createSystemPrompt
+    participant Validate as frontmatter.js validateOkfFrontmatter
+    participant Sync as sync_wiki_indexes
+    participant Bundle as summary.json flags
+
+    Agent ->> Check: verify openspec and openwiki on PATH
+    Check -->> Agent: ok or exit 2 with install commands
+    Agent ->> Contract: verify AKSK WIKI-CONTRACT markers
+    Contract -->> Agent: ok or exit 2 pointing to attach
+    Agent ->> Prompt: load authoring guidance init or update
+    Prompt -->> Agent: system prompt
+    Agent ->> Validate: author page and validate frontmatter
+    Validate -->> Agent: fix issues then continue
+    Agent ->> Sync: synchronizeWikiIndexes via docsOnly backend
+    Sync -->> Agent: indexes rebuilt, bodies byte-identical
+    Agent ->> Bundle: set distilled true and distillation_status
+```
+
+*Caption: distillation control flow from fail-closed checks through authoring and deterministic index sync.*
 
 ## Invariants and failure semantics
 

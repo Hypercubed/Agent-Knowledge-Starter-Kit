@@ -1,133 +1,7 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:88267c0a060d52cbb95e49f83f59680d41756816df2e1bebf4016bec452196d5",
+  "pageVersion": "sha256:373ffa28abea7e7cf4f2541b25ec7b70cc5c8ae82f0404225f39d14653add818",
   "claims": [
-    {
-      "id": "claim_68b1be7edc2f46ea8945d9eb19d9c762",
-      "statement": "Agent spread selects exactly one lane per detected agent: `openwiki integrations install <codex|claude|opencode>` for v0.4.3 registry-supported hosts, otherwise the headless ladder where the agent directly drives `openwiki --init -p` / `openwiki --update -p`.",
-      "evidence": [
-        {
-          "resource": "repo://openspec/changes/aksk-bootstrap-system/design.md",
-          "version": "repo-file-v1:sha256:66d1a55d06fe844e801b90c627b2ce43dc0bf80394ec430da0b74fc12454eb83"
-        },
-        {
-          "resource": "repo://openspec/changes/aksk-bootstrap-system/specs/agent-integration-spread/spec.md",
-          "version": "repo-file-v1:sha256:2f57fcf2a1f7be3e033cb4d2009a39d430fd21ed29feaccdaf63cf506eb7e3c4"
-        }
-      ]
-    },
-    {
-      "id": "claim_58982393d1dc4fc68c8750ebc54423ec",
-      "statement": "The registry lane `openwiki integrations install <host>` atomically copies the skill bundle to the host skill directory and edits the host MCP config while writing a `.openwiki-install.json` receipt; the MCP is delivered as `openwiki mcp --host <target>` and without this registration the OpenWiki skill (sequence tools openwiki_begin/next_page/submit_page/finish) is inert.",
-      "evidence": [
-        {
-          "resource": "repo://openspec/changes/aksk-bootstrap-system/design.md",
-          "version": "repo-file-v1:sha256:66d1a55d06fe844e801b90c627b2ce43dc0bf80394ec430da0b74fc12454eb83"
-        }
-      ]
-    },
-    {
-      "id": "claim_72f6c0f0bbd94a8f8fba035188d48686",
-      "statement": "Receipt `.openwiki-install.json` records package, version (openwiki version), target, SHA-256 file hashes, and the exact mcpServerCommand (`openwiki` + `mcp --host <target>`); `openwiki integrations list` hash-verifies receipts and reports `installed`/`unchanged` vs `modified` (hash drift/hand-edits) vs `not-installed`.",
-      "evidence": [
-        {
-          "resource": "repo://openspec/changes/aksk-bootstrap-system/design.md",
-          "version": "repo-file-v1:sha256:66d1a55d06fe844e801b90c627b2ce43dc0bf80394ec430da0b74fc12454eb83"
-        },
-        {
-          "resource": "repo://openspec/changes/aksk-bootstrap-system/specs/agent-integration-spread/spec.md",
-          "version": "repo-file-v1:sha256:2f57fcf2a1f7be3e033cb4d2009a39d430fd21ed29feaccdaf63cf506eb7e3c4"
-        }
-      ]
-    },
-    {
-      "id": "claim_c53c881f023e43fab8b6550e01373ca6",
-      "statement": "Before touching any agent skill directory, spread enforces ownership partition via receipt: if `.openwiki-install.json` is present with matching target and intact hashes the host is treated as owned by the official lane, skipped entirely, and reported as such; `modified` requires explicit `--force` to overwrite (with backup path reported).",
-      "evidence": [
-        {
-          "resource": "repo://openspec/changes/aksk-bootstrap-system/design.md",
-          "version": "repo-file-v1:sha256:66d1a55d06fe844e801b90c627b2ce43dc0bf80394ec430da0b74fc12454eb83"
-        },
-        {
-          "resource": "repo://openspec/changes/aksk-bootstrap-system/specs/agent-integration-spread/spec.md",
-          "version": "repo-file-v1:sha256:2f57fcf2a1f7be3e033cb4d2009a39d430fd21ed29feaccdaf63cf506eb7e3c4"
-        }
-      ]
-    },
-    {
-      "id": "claim_bd121feb1da74f75ab60b4309c2593eb",
-      "statement": "Kit code never hardcodes agent skill paths; all targets are derived at runtime from the registry via `openwiki integrations list` / `inspectInstallation`; bootstrap prefers `openwiki integrations install` where supported to avoid maintaining a path matrix that drifts (e.g., codex `~/.agents/skills/` vs `~/.codex/skills/`).",
-      "evidence": [
-        {
-          "resource": "repo://openspec/changes/aksk-bootstrap-system/design.md",
-          "version": "repo-file-v1:sha256:66d1a55d06fe844e801b90c627b2ce43dc0bf80394ec430da0b74fc12454eb83"
-        }
-      ]
-    },
-    {
-      "id": "claim_603483e0b9254b0db90f775cb157e125",
-      "statement": "Installs source the bundle from the locally installed npm package at `<npm-root>/openwiki/integrations/openwiki` (not a tag-pinned GitHub tree); the receipt pins the openwiki version (`npm ls openwiki`) and updating is `npm i -g openwiki@latest` then re-run `openwiki integrations install <target>`, idempotent when version/hashes/command already match.",
-      "evidence": [
-        {
-          "resource": "repo://openspec/changes/aksk-bootstrap-system/design.md",
-          "version": "repo-file-v1:sha256:66d1a55d06fe844e801b90c627b2ce43dc0bf80394ec430da0b74fc12454eb83"
-        }
-      ]
-    },
-    {
-      "id": "claim_ff473a5031a04422bf15f4117d778edc",
-      "statement": "`openwiki integrations install` is transactional with staging, backup, and config-snapshot rollback; it rejects symlinked skill directories or any symlinked parent component and rejects non-directory parents, and cleans up the staging directory on failure so no half-install remains.",
-      "evidence": [
-        {
-          "resource": "repo://openspec/changes/aksk-bootstrap-system/design.md",
-          "version": "repo-file-v1:sha256:66d1a55d06fe844e801b90c627b2ce43dc0bf80394ec430da0b74fc12454eb83"
-        }
-      ]
-    },
-    {
-      "id": "claim_f14d3db4e5f24a93bf4d8eec4e3723aa",
-      "statement": "Per-host MCP config edits are registry-owned: codex `~/.codex/config.toml` (TOML installCodexMcpBlock with replaceableEntry detection), claude `~/.claude.json` or `.mcp.json` (JSON), opencode `~/.config/opencode/opencode.jsonc` (JSONC); the installer snapshots configs and rolls back on commit failure.",
-      "evidence": [
-        {
-          "resource": "repo://openspec/changes/aksk-bootstrap-system/design.md",
-          "version": "repo-file-v1:sha256:66d1a55d06fe844e801b90c627b2ce43dc0bf80394ec430da0b74fc12454eb83"
-        }
-      ]
-    },
-    {
-      "id": "claim_ceae4d0d5c20498dac88eab67001d8c5",
-      "statement": "Global ordering is enforced: `openwiki@latest` must be installed and resolvable on PATH before registering `openwiki mcp --host <target>` in host configs; verification is via `openwiki integrations list` returning `installed`/`unchanged` after install.",
-      "evidence": [
-        {
-          "resource": "repo://openspec/changes/aksk-bootstrap-system/design.md",
-          "version": "repo-file-v1:sha256:66d1a55d06fe844e801b90c627b2ce43dc0bf80394ec430da0b74fc12454eb83"
-        }
-      ]
-    },
-    {
-      "id": "claim_f0578bf629b84dd48abe864bb5905f1b",
-      "statement": "Bootstrap uses a two-lane execution model (EXECUTE when it can run locally vs INSTRUCT when sandboxed) with never-half-install semantics: a step that cannot execute prints the exact remaining copy-paste commands and exits clean without partial state, and idempotency is by detection of observable state (tools on PATH, `openspec/` present, markers, receipts) not a journal file.",
-      "evidence": [
-        {
-          "resource": "repo://openspec/changes/aksk-bootstrap-system/design.md",
-          "version": "repo-file-v1:sha256:66d1a55d06fe844e801b90c627b2ce43dc0bf80394ec430da0b74fc12454eb83"
-        },
-        {
-          "resource": "repo://openspec/changes/aksk-bootstrap-system/specs/aksk-bootstrap/spec.md",
-          "version": "repo-file-v1:sha256:cd17cd27d7a571de426612c0628f8dcd200b82b95d21704490eae11d56ade2c9"
-        }
-      ]
-    },
-    {
-      "id": "claim_9814ec1823e84be6977f0dc20a0932b9",
-      "statement": "After spread completes a per-agent report is produced naming each detected agent, the lane chosen (`openwiki integrations install <host>` vs headless), the outcome (`installed`/`unchanged`/`modified` via `openwiki integrations list`), and installer details including backup path on `--force`.",
-      "evidence": [
-        {
-          "resource": "repo://openspec/changes/aksk-bootstrap-system/specs/agent-integration-spread/spec.md",
-          "version": "repo-file-v1:sha256:2f57fcf2a1f7be3e033cb4d2009a39d430fd21ed29feaccdaf63cf506eb7e3c4"
-        }
-      ]
-    },
     {
       "id": "claim_7445282c16954c01a98dbae63d7fed9a",
       "statement": "Shared integration patterns under `docs/integrations/patterns.md` codify that tool-native files are wiring (bootstrap files, rules, MCP config, local preferences) and `.agents/` files are the durable source of truth; product guides keep exact filenames/snippets while shared decisions live once in patterns.md.",
@@ -147,10 +21,290 @@
           "version": "repo-file-v1:sha256:5d74e3de6dd6ac75bdd5874362475df5a3ceabe794a680de8b1dad2276f8cc90"
         }
       ]
+    },
+    {
+      "id": "claim_b4007103c18c411dbd8a8e8f9462fa3d",
+      "statement": "Agent spread selects exactly one lane per host that should receive integration: `openwiki integrations install <codex|claude|opencode>` for v0.4.3 registry-supported hosts (skill+MCP+receipt atomically), otherwise `npx skills add -g -a <self-reported> langchain-ai/openwiki --full-depth` plus `npx add-mcp -g -a <host>` or `openwiki mcp --host <target>`; default is `~/.agents/skills` (universal, Codex) plus the self-reported host, extra hosts or --all only when the user explicitly asked at install time.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/changes/canonical-universal-install/specs/agent-integration-spread/spec.md",
+          "version": "repo-file-v1:sha256:c7823e7f1a87322932478821ba8b1c2277e9531b18be1130790d87c202ca5706"
+        }
+      ]
+    },
+    {
+      "id": "claim_d0792c32523f4461a2f27a0ff5ca7f7c",
+      "statement": "The registry lane `openwiki integrations install <host>` atomically copies the skill bundle to the host skill directory and edits the host MCP config while writing a `.openwiki-install.json` receipt; the MCP is delivered as `openwiki mcp --host <target>` and without this registration the OpenWiki skill (sequence tools openwiki_begin/next_page/submit_page/finish) is inert.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/specs/agent-integration-spread/spec.md",
+          "version": "repo-file-v1:sha256:1a056445a40a54a1a3133332b90af43f52e521d7aa38f8726cf7333f79740618"
+        }
+      ]
+    },
+    {
+      "id": "claim_3c2c14bdfe0a4ade94a7d9b3b8ec2eba",
+      "statement": "Receipt `.openwiki-install.json` records package, version (openwiki version), target, SHA-256 file hashes, and the exact mcpServerCommand (`openwiki` + `mcp --host <target>`); `openwiki integrations list` hash-verifies receipts and reports `installed`/`unchanged` vs `modified` (hash drift/hand-edits) vs `not-installed`.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/specs/agent-integration-spread/spec.md",
+          "version": "repo-file-v1:sha256:1a056445a40a54a1a3133332b90af43f52e521d7aa38f8726cf7333f79740618"
+        }
+      ]
+    },
+    {
+      "id": "claim_1a6a6bce05624a018224408c0e7af16e",
+      "statement": "Before touching any agent skill directory, spread enforces ownership partition via receipt: if `.openwiki-install.json` is present with matching target and intact hashes the host is treated as owned by the official lane, skipped entirely, and reported as such; `modified` requires explicit `--force` to overwrite (with backup path reported).",
+      "evidence": [
+        {
+          "resource": "repo://openspec/specs/agent-integration-spread/spec.md",
+          "version": "repo-file-v1:sha256:1a056445a40a54a1a3133332b90af43f52e521d7aa38f8726cf7333f79740618"
+        }
+      ]
+    },
+    {
+      "id": "claim_97dc6e76039741fc93a76a18a0731182",
+      "statement": "Kit code never hardcodes agent skill paths; all targets are derived at runtime from the registry via `openwiki integrations list` / `inspectInstallation`; bootstrap prefers `openwiki integrations install` where supported to avoid maintaining a path matrix that drifts (e.g., codex `~/.agents/skills/` vs `~/.codex/skills/`).",
+      "evidence": [
+        {
+          "resource": "repo://openspec/specs/agent-integration-spread/spec.md",
+          "version": "repo-file-v1:sha256:1a056445a40a54a1a3133332b90af43f52e521d7aa38f8726cf7333f79740618"
+        }
+      ]
+    },
+    {
+      "id": "claim_e0c737a177634fba907bff25aa5f134e",
+      "statement": "Installs source the bundle from the locally installed npm package at `<npm-root>/openwiki/integrations/openwiki` (not a tag-pinned GitHub tree); the receipt pins the openwiki version (`npm ls openwiki`) and updating is `npm i -g openwiki@latest` then re-run `openwiki integrations install <target>`, idempotent when version/hashes/command already match.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/specs/agent-integration-spread/spec.md",
+          "version": "repo-file-v1:sha256:1a056445a40a54a1a3133332b90af43f52e521d7aa38f8726cf7333f79740618"
+        }
+      ]
+    },
+    {
+      "id": "claim_d386f3f352094806b49c8929961bc163",
+      "statement": "`openwiki integrations install` is transactional with staging, backup, and config-snapshot rollback; it rejects symlinked skill directories or any symlinked parent component and rejects non-directory parents, and cleans up the staging directory on failure so no half-install remains.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/specs/agent-integration-spread/spec.md",
+          "version": "repo-file-v1:sha256:1a056445a40a54a1a3133332b90af43f52e521d7aa38f8726cf7333f79740618"
+        }
+      ]
+    },
+    {
+      "id": "claim_b2351a227ae042b383fb579286a28ea5",
+      "statement": "Per-host MCP config edits are registry-owned: codex `~/.codex/config.toml` (TOML installCodexMcpBlock with replaceableEntry detection), claude `~/.claude.json` or `.mcp.json` (JSON), opencode `~/.config/opencode/opencode.jsonc` (JSONC); the installer snapshots configs and rolls back on commit failure.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/specs/agent-integration-spread/spec.md",
+          "version": "repo-file-v1:sha256:1a056445a40a54a1a3133332b90af43f52e521d7aa38f8726cf7333f79740618"
+        }
+      ]
+    },
+    {
+      "id": "claim_d93a1ddbcf7b49dd91a32835ddc47bf6",
+      "statement": "Global ordering is enforced: `openwiki@latest` must be installed and resolvable on PATH before registering `openwiki mcp --host <target>` in host configs; verification is via `openwiki integrations list` returning `installed`/`unchanged` after install.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/specs/agent-integration-spread/spec.md",
+          "version": "repo-file-v1:sha256:1a056445a40a54a1a3133332b90af43f52e521d7aa38f8726cf7333f79740618"
+        }
+      ]
+    },
+    {
+      "id": "claim_d4f858295c28438aa615cb24fdb7119d",
+      "statement": "Bootstrap uses a two-lane execution model (EXECUTE when it can run locally vs INSTRUCT when sandboxed) with never-half-install semantics: a step that cannot execute prints the exact remaining copy-paste commands and exits clean without partial state, and idempotency is by detection of observable state (tools on PATH, `openspec/` present, markers, receipts) not a journal file.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/specs/agent-integration-spread/spec.md",
+          "version": "repo-file-v1:sha256:1a056445a40a54a1a3133332b90af43f52e521d7aa38f8726cf7333f79740618"
+        }
+      ]
+    },
+    {
+      "id": "claim_667c2a162e4a4d60902f2e379805748e",
+      "statement": "After spread completes a per-agent report is produced naming each detected agent, the lane chosen (`openwiki integrations install <host>` vs headless), the outcome (`installed`/`unchanged`/`modified` via `openwiki integrations list`), and installer details including backup path on `--force`.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/specs/agent-integration-spread/spec.md",
+          "version": "repo-file-v1:sha256:1a056445a40a54a1a3133332b90af43f52e521d7aa38f8726cf7333f79740618"
+        }
+      ]
+    },
+    {
+      "id": "claim_1853b59069b64d64818594b04f6eb585",
+      "statement": "Canonical user store is `~/.agents/skills` (universal, Codex default) plus the self-reported host's skill directory, installed via `npx skills add -g -a <self-reported> <source>` for the AKSK kit and for `langchain-ai/openwiki --full-depth` when that lifecycle skill is needed; extra agents are installed only if the user explicitly asked for `-a <other>` or `--all` at install time.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
+          "version": "repo-file-v1:sha256:d1ff10af0b2478c38c764c9c67c7679d789281866375ef830eadc6aeffd9e244"
+        },
+        {
+          "resource": "repo://openspec/changes/canonical-universal-install/specs/canonical-user-skills-scope/spec.md",
+          "version": "repo-file-v1:sha256:f1160ef5df943f07c1740ae68b9ea54161d45bfbeed0bda140b10bab9de2ff64"
+        }
+      ]
+    },
+    {
+      "id": "claim_5d926c5f08524829ad06611667f7e929",
+      "statement": "`npx` is required for skill installs; the `git clone --depth 1 && cp -r .agents/skills` fallback lane is removed and when `npx` is unavailable bootstrap reports the missing prerequisite via the INSTRUCT lane and does not silently fall back to a copy.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
+          "version": "repo-file-v1:sha256:d1ff10af0b2478c38c764c9c67c7679d789281866375ef830eadc6aeffd9e244"
+        },
+        {
+          "resource": "repo://openspec/changes/canonical-universal-install/specs/canonical-user-skills-scope/spec.md",
+          "version": "repo-file-v1:sha256:f1160ef5df943f07c1740ae68b9ea54161d45bfbeed0bda140b10bab9de2ff64"
+        }
+      ]
+    },
+    {
+      "id": "claim_e22767669fa9440dacdc9e733172ca8a",
+      "statement": "Skill installs use versions from the install version list `references/versions.json` via `versionsFromPackageJson()` (caret range, e.g. `^1.11.0` / `^0.4.3`) when invoking `npx skills add -g -a <self-reported> <source>` for the kit and for `langchain-ai/openwiki`, falling back to `@latest` only when the entry is unpinned.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
+          "version": "repo-file-v1:sha256:d1ff10af0b2478c38c764c9c67c7679d789281866375ef830eadc6aeffd9e244"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap.mjs",
+          "version": "repo-file-v1:sha256:c138021a59557655b9deff17fe7e83e539dd4484f71edab4570a255cd5680135"
+        },
+        {
+          "resource": "repo://openspec/changes/canonical-universal-install/specs/canonical-user-skills-scope/spec.md",
+          "version": "repo-file-v1:sha256:f1160ef5df943f07c1740ae68b9ea54161d45bfbeed0bda140b10bab9de2ff64"
+        }
+      ]
+    },
+    {
+      "id": "claim_60a6404c09a043dea4dd17272874cc3f",
+      "statement": "Verification including `verify-install` treats `~/.agents/skills/<name>/SKILL.md` plus the self-reported host's mirror as the canonical assertion for the default lane; repo-local `./.agents/skills` is an override not the default, and `openwiki integrations list` (user scope) vs `list --project` (repo override) is the scope distinction.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/changes/canonical-universal-install/specs/agent-integration-spread/spec.md",
+          "version": "repo-file-v1:sha256:c7823e7f1a87322932478821ba8b1c2277e9531b18be1130790d87c202ca5706"
+        },
+        {
+          "resource": "repo://openspec/changes/canonical-universal-install/specs/canonical-user-skills-scope/spec.md",
+          "version": "repo-file-v1:sha256:f1160ef5df943f07c1740ae68b9ea54161d45bfbeed0bda140b10bab9de2ff64"
+        }
+      ]
+    },
+    {
+      "id": "claim_b0ed65acdea04358ba5d52f10dd3cf5c",
+      "statement": "For hosts outside `codex|claude|opencode`, openwiki spread installs the lifecycle skill via `npx skills add -g -a <self-reported> langchain-ai/openwiki --full-depth` and the MCP via `npx add-mcp` (neon-solutions/add-mcp) or `openwiki mcp --host <target>` as the unified fallback, verified via `openwiki integrations list` vs headless CLI.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
+          "version": "repo-file-v1:sha256:d1ff10af0b2478c38c764c9c67c7679d789281866375ef830eadc6aeffd9e244"
+        },
+        {
+          "resource": "repo://openspec/changes/canonical-universal-install/specs/agent-integration-spread/spec.md",
+          "version": "repo-file-v1:sha256:c7823e7f1a87322932478821ba8b1c2277e9531b18be1130790d87c202ca5706"
+        }
+      ]
+    },
+    {
+      "id": "claim_bc6ba6ab460b4adf968e0d63e71efbd5",
+      "statement": "Bootstrap per-repo lane verifies required skills are present in `~/.agents/skills` plus the self-reported host's directory (`npx skills add -g -a <self-reported> <source>` if missing) before scaffolding, with openwiki skill via `openwiki integrations install <self-reported>` when that host is supported otherwise the `npx` plus `openwiki mcp --host` / `add-mcp` chooser.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
+          "version": "repo-file-v1:sha256:d1ff10af0b2478c38c764c9c67c7679d789281866375ef830eadc6aeffd9e244"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap.mjs",
+          "version": "repo-file-v1:sha256:c138021a59557655b9deff17fe7e83e539dd4484f71edab4570a255cd5680135"
+        },
+        {
+          "resource": "repo://openspec/changes/canonical-universal-install/specs/aksk-bootstrap/spec.md",
+          "version": "repo-file-v1:sha256:144e0da3f210ba50679600378ac20cb00aa4e1a1f9ecab2cf06eb6b5df33b35c"
+        }
+      ]
+    },
+    {
+      "id": "claim_6ee1886717d642089813b1e29177b096",
+      "statement": "The kit is packaged as `agent-knowledge-starter` with `package.json` defining `scripts.check` as `bash scripts/check-publish.sh` and pinning `openwiki ^0.4.3` and `@fission-ai/openspec ^1.11.0`; `.claude-plugin/plugin.json` lists the four distributable skills (aksk-bootstrap, task-closeout, learning-distill, docs-lint) and excludes maintainer-only `internal:true` skills.",
+      "evidence": [
+        {
+          "resource": "repo://.claude-plugin/plugin.json",
+          "version": "repo-file-v1:sha256:02a96bb36f19741de380937b5acd40113238891c1ea6364b6f3ec5b674f71cd1"
+        },
+        {
+          "resource": "repo://package.json",
+          "version": "repo-file-v1:sha256:9345af173a6d4f9a5742118ee068537e22eb1f89df0b4abcb09b0a91d7c9b478"
+        },
+        {
+          "resource": "repo://scripts/check-publish.sh",
+          "version": "repo-file-v1:sha256:79a6e2a286f683115ddd172d2f0d25be4c53c42d9ab0524a0c8b59ab2f0c13ae"
+        }
+      ]
+    },
+    {
+      "id": "claim_951b55c838064587900ca51b880f9c9c",
+      "statement": "Install lanes require exactly two supported paths — preferred agent-assisted via `aksk-bootstrap` (npx skills add then bootstrap.mjs EXECUTE/INSTRUCT) and manual fallback via `npx skills add` — and forbid an `example/` directory or `generate-example` skill/playbook as an install method; bootstrap templates are the source of truth and `scripts/check-publish.sh` validates only root `.agents`.",
+      "evidence": [
+        {
+          "resource": "repo://INSTALL.md",
+          "version": "repo-file-v1:sha256:b5a2f79f8aef83b87ed9e80d70e991bc9c1e8ef60e2f90497e961d3644bfd238"
+        },
+        {
+          "resource": "repo://openspec/specs/install-lanes/spec.md",
+          "version": "repo-file-v1:sha256:6844223a2824d9556c085d4b4c7dc319e38339450944cd2e0c40ea82ab76f777"
+        },
+        {
+          "resource": "repo://package.json",
+          "version": "repo-file-v1:sha256:9345af173a6d4f9a5742118ee068537e22eb1f89df0b4abcb09b0a91d7c9b478"
+        }
+      ]
+    },
+    {
+      "id": "claim_e065de7afc7e4f7fa074d673489479f4",
+      "statement": "`scripts/check-publish.sh` is the publish guard: it validates root `.agents` only via `scripts/check-agents-structure.sh .agents`, then runs remark formatting, markdown-link-check per file, rg leakage scans, and doubled `.agents/.agents` hygiene; there is no `example/*` bypass and no `example/.agents` validation target.",
+      "evidence": [
+        {
+          "resource": "repo://scripts/check-publish.sh",
+          "version": "repo-file-v1:sha256:79a6e2a286f683115ddd172d2f0d25be4c53c42d9ab0524a0c8b59ab2f0c13ae"
+        }
+      ]
+    },
+    {
+      "id": "claim_8c5007d3a11442a5992b1b206b514f0c",
+      "statement": "Versions for skill-installable packages are pinned in `.agents/skills/aksk-bootstrap/references/versions.json` via `versionsFromPackageJson()` as caret ranges (openwiki ^0.4.3, @fission-ai/openspec ^1.11.0) with consumer `package.json` checked first for override, falling back to `@latest` only when unpinned; `@ferroxlabs/agents-md` is pinned by SHA 90c7198cfa97ff1868f0600952098fee7fc86ef9 in the same file and vendored baseline.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/references/versions.json",
+          "version": "repo-file-v1:sha256:8c3f99ea217c8a4123b06dc3dce364bb8ceed59b76097b502cdb33853437831a"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap.mjs",
+          "version": "repo-file-v1:sha256:c138021a59557655b9deff17fe7e83e539dd4484f71edab4570a255cd5680135"
+        },
+        {
+          "resource": "repo://package.json",
+          "version": "repo-file-v1:sha256:9345af173a6d4f9a5742118ee068537e22eb1f89df0b4abcb09b0a91d7c9b478"
+        }
+      ]
+    },
+    {
+      "id": "claim_7a5df9f86eed4237a4e1918bb3305f6a",
+      "statement": "OpenWiki evidence exclusion uses rooted ignores: `.openwikiignore` contains anchored `/example/` (root only, not bare `example/`) and `.agents/sessions/` with `!.agents/sessions/README.md` re-include; root `example/` is a generated consumer-install illustration and `.agents/sessions/` bundles are temporary evidence, neither citable as `repo://` evidence after ignore.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/.gitignore",
+          "version": "repo-file-v1:sha256:9d3e8002bee34dc78f45dbda50b0668070123c114e1bf70f2f902a61fa049353"
+        },
+        {
+          "resource": "repo://.openwikiignore",
+          "version": "repo-file-v1:sha256:effd958d13169f8643fddd94488d617c0694235d3221a8c7f28fb82a8182c939"
+        }
+      ]
     }
   ],
   "verification": {
     "by": "openwiki/0.4.3",
-    "at": "2026-08-29T04:36:52.163Z"
+    "at": "2026-08-29T21:15:47.181Z"
   }
 }

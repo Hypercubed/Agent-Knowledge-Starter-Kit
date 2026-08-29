@@ -6,7 +6,7 @@ Verified against OpenAI Codex documentation on April 12, 2026. Re-check Codex do
 
 ## Setup
 
-1. Install starter skills in the target repo with `npx skills add Hypercubed/Agent-Knowledge-Starter-Kit`, then run each installed skill's initialization from its `SKILL.md` (see [`INSTALL.md`](../../INSTALL.md)).
+1. Install starter skills with `npx skills add -g -a <self-reported> Hypercubed/Agent-Knowledge-Starter-Kit` (where `<self-reported>` is your host id; universal is `~/.agents/skills`, which Codex reads natively; `npx` required), then run each installed skill's initialization from its `SKILL.md` (see [`INSTALL.md`](../../INSTALL.md)). Extra `-a <other>`/`--all` only when the user asked.
 2. Keep a short root `AGENTS.md` that routes Codex into `.agents/`.
 3. Keep durable repo policy in `.agents/`, not in Codex home or local config.
 4. Leave portable kit skills under `.agents/skills/<name>/SKILL.md` so Codex can discover them.

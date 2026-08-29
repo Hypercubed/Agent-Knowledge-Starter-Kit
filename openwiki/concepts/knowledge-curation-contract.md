@@ -2,10 +2,15 @@
 type: concept
 title: Knowledge Curation Contract
 description: How AKSK curates OpenWiki knowledge — curated trees, the INSTRUCTIONS.md attachment contract, preserve-and-link update semantics, aksk_* frontmatter extensions, and the descriptive versus prescriptive routing that distillation enforces.
-tags: [knowledge, curation, openwiki, distill-routing, wiki-contract]
+tags:
+- knowledge
+- curation
+- openwiki
+- distill-routing
+- wiki-contract
 verified:
   - by: openwiki/0.4.3
-    at: 2026-08-29T04:36:52.163Z
+    at: 2026-08-29T20:18:58.499Z
 sources:
   - id: openwiki-source-7381bbb8d2e7fd02da7469ce
     resource: repo://.agents/skills/aksk-bootstrap/references/wiki-contract-template.md
@@ -29,7 +34,7 @@ sources:
     resource: repo://openspec/specs/distill-routing/spec.md
   - id: openwiki-source-53df649d4fbc85ef0839d164
     resource: repo://openspec/specs/wiki-contract/spec.md
-generated: { by: "openwiki/0.4.3", at: "2026-08-29T04:18:18.736Z" }
+generated: { by: "openwiki/0.4.3", at: "2026-08-29T20:18:58.499Z" }
 ---
 
 # Knowledge Curation Contract
@@ -122,23 +127,24 @@ Body shape is conventional rather than schema-enforced: decision entries use `##
 
 `learning-distill` is the enforcement point of the curation contract. Its routing is specified by the `distill-routing` capability: **descriptive lessons about the repository become curated wiki pages; prescriptive lessons about agent behavior stay inside `.agents/`**.
 
-<!-- openwiki: mermaid parse failed and this diagram was converted to a text fence so it does not break rendering. Fix the diagram source and restore the mermaid fence. Parser error: Heuristic: an unescaped angle bracket inside a label breaks rendering; rephrase the label. -->
-```text
+```mermaid
 flowchart LR
-  Bundle["Session bundle\n.agents/sessions folder"] --> Classify{"Classify lesson"}
+  Bundle["Session bundle - .agents/sessions"] --> Classify{"Classify lesson"}
   Classify -->|ephemeral| Drop["Keep in bundle only"]
-  Classify -->|prescriptive<br>AGENTS guidance| Agents[".agents/AGENTS.md<br>small, actionable rule"]
-  Classify -->|prescriptive<br>multi-step| Playbook[".agents/playbooks/*.md"]
-  Classify -->|descriptive<br>decision| Decision["openwiki/decisions/<slug>.md<br>aksk_status + OKF"]
-  Classify -->|descriptive<br>troubleshooting| Trouble["openwiki/troubleshooting/<slug>.md"]
-  Classify -->|descriptive<br>topical| Topical["openwiki/<topic>.md"]
-  Decision --> Sync["sync_wiki_indexes.mjs\ndeterministic refresh"]
+  Classify -->|prescriptive AGENTS guidance| Agents[".agents/AGENTS.md - small actionable rule"]
+  Classify -->|prescriptive multi-step| Playbook[".agents/playbooks"]
+  Classify -->|descriptive decision| Decision["openwiki/decisions slug - aksk_status plus OKF"]
+  Classify -->|descriptive troubleshooting| Trouble["openwiki/troubleshooting slug"]
+  Classify -->|descriptive topical| Topical["openwiki topic page"]
+  Decision --> Sync["sync_wiki_indexes.mjs - deterministic refresh"]
   Trouble --> Sync
   Topical --> Sync
   Agents --> Sync
   Playbook --> Sync
   Sync --> Flagged["Bundle marked distilled"]
 ```
+
+*Caption: distill-routing — descriptive lessons become curated OKF pages, prescriptive lessons stay in .agents, indexes refresh deterministically.*
 
 ### Classification bar
 

@@ -5,7 +5,7 @@ description: "How task-closeout builds the five-file session bundle under .agent
 tags: [skills, task-closeout, sessions, capture]
 verified:
   - by: openwiki/0.4.3
-    at: 2026-08-29T04:36:52.163Z
+    at: 2026-08-29T20:18:58.499Z
 sources:
   - id: openwiki-source-df185c9f1c40982e16f27741
     resource: repo://.agents/skills/task-closeout/bootstrap/sessions/README.md
@@ -13,13 +13,15 @@ sources:
     resource: repo://.agents/skills/task-closeout/CONTRACT.md
   - id: openwiki-source-764361c18355af2544814f55
     resource: repo://.agents/skills/task-closeout/SKILL.md
+  - id: openwiki-source-30179ef0180d39bd7ef5bef7
+    resource: repo://openspec/changes/add-task-start/design.md
   - id: openwiki-source-c13ebc2b6ebca535d0e7e2e3
     resource: repo://openspec/changes/add-task-start/proposal.md
   - id: openwiki-source-86a9b374cb99ed0befc3bb8d
     resource: repo://openspec/specs/closeout-change-linking/spec.md
   - id: openwiki-source-2361cff43709905e22758cbb
     resource: repo://scripts/check-agents-structure.sh
-generated: { by: "openwiki/0.4.3", at: "2026-08-29T04:36:52.163Z" }
+generated: { by: "openwiki/0.4.3", at: "2026-08-29T20:18:58.499Z" }
 ---
 
 # task-closeout Skill
@@ -116,17 +118,16 @@ Record `agent` and/or `agent_session_id` whenever the active tool supplies them,
 
 ## Mechanisms and control flow
 
-<!-- openwiki: mermaid parse failed and this diagram was converted to a text fence so it does not break rendering. Fix the diagram source and restore the mermaid fence. Parser error: Heuristic: an unescaped angle bracket inside a label breaks rendering; rephrase the label. -->
-```text
+```mermaid
 flowchart TD
-    A[Determine repo_id + task_id] --> B[Create session folder<br/>YYYYMMDD-HHMMSS-short-topic]
-    B --> C[Collect changed files<br/>git status → fallback log/diff when clean]
-    C --> D[Collect commands & validation results]
-    D --> E[Re-read full session/transcript<br/>whole conversation in scope]
-    E --> F[Write active-task.md<br/>observable facts only]
-    F --> G[Write learning-candidate.md<br/>candidates + deferred specs]
-    G --> H[Write changed-files.txt + validation.txt]
-    H --> I[Write summary.json<br/>task_id, openspec_change, prior_session, flags]
+    A[Determine repo_id and task_id] --> B[Create session folder YYYYMMDD-HHMMSS-short-topic]
+    B --> C[Collect changed files via git status with fallback to log diff when clean]
+    C --> D[Collect commands and validation results]
+    D --> E[Re-read full session transcript whole conversation in scope]
+    E --> F[Write active-task.md observable facts only]
+    F --> G[Write learning-candidate.md candidates plus deferred specs]
+    G --> H[Write changed-files.txt and validation.txt]
+    H --> I[Write summary.json with task_id openspec_change prior_session flags]
     I --> J[Mark bundle ready for distillation]
 ```
 
@@ -183,7 +184,7 @@ stateDiagram-v2
 ```
 
 - **This skill → `learning-distill` → `sync_wiki_indexes.mjs` → `docs-lint`.** `task-closeout` captures raw evidence; `learning-distill` consumes via `task_id`, classifies, and routes; `sync_wiki_indexes.mjs` rebuilds catalogs deterministically; `docs-lint` verifies wiring, coverage pairing via `openspec_change`, and curated-tree integrity. One writer per zone, no overlapping writers.
-- **Proposed `task-start` sequencing (unshipped, `add-task-start`):** task-start would own `manifest.json` creation, closeout would own finalization, distill would consume only after finalization — preserving `openspec_change` and distillation flags with strict ordering. The reconciled proposal requires task-start manifests to pass those fields through rather than redefine them.
+- **Proposed `task-start` sequencing (unshipped, `add-task-start`):** `task-start` would own creation by seeding `summary.json` with `task_id` (canonical), `created_at`, `status in_progress`, and optional `openspec_change`/`repo_id`/`agent` fields; `task-closeout` would own finalization by detecting the seeded file, preserving `task_id` and any seeded `openspec_change`, then appending `completed_at`, final `status` (`completed`/`blocked`/`abandoned`), git metadata and distillation flags plus the remaining four bundle files; `learning-distill` would consume only after finalization. Strict ordering is `start → work → closeout → distill` with no overlapping writers and `summary.json` as the single source of truth. When invoked without a prior `task-start`, closeout retains its current generation fallback. The reconciled proposal requires `task-start` to preserve and pass through `openspec_change` and distillation flags rather than redefining them.
 - **Host awareness:** many tools hide `sessions/` because it is gitignored. Discovery during distillation must use an ignore-blind method (`ls`/`find` or `rg --no-ignore-vcs`), then filter `summary.json` by `task_id`/`distilled`/`status`, not by folder name.
 
 ## Invariants and failure semantics
@@ -216,7 +217,7 @@ Then open each candidate's `summary.json`, treat `task_id` as canonical, and fil
 - **New `summary.json` metadata:** add optional fields alongside `prior_session` without changing the `task_id` contract; preserve `openspec_change` and distillation flags through any `task-start` sequencing (creation → finalization → consume).
 - **Cloud persistence:** mirror `.agents/sessions/` to durable storage for ephemeral runners; restore the same path shape before distillation so `task_id`-based joins still work.
 - **Adding a curated tree or marker family** affects distillation destinations, not bundle storage — no bundle-layout change required.
-- **Proposed `task-start` (`add-task-start`):** closeout would update an existing `manifest.json` rather than generating metadata, with the reconciled constraint that `task-start` **must preserve and pass through** `openspec_change` and distillation flags.
+- **Proposed `task-start` (`add-task-start`):** closeout would finalize an existing seeded `summary.json` rather than generating identity from scratch, with the reconciled constraint that `task-start` **must preserve and pass through** `openspec_change` and distillation flags and that `summary.json` remains the single source of truth.
 
 ## Configuration and operations
 

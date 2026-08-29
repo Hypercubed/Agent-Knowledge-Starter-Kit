@@ -1,0 +1,222 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:41f5003eee3751e5488377c4b1d70ca1b32847d1fab6e844c9c3d536f40fe5b5",
+  "claims": [
+    {
+      "id": "claim_d742f69f1891457c871b563d39b05ac5",
+      "statement": "Root AGENTS.md is the checkout entrypoint router: it holds behavioral contract sections 0-8 (non-negotiables, simplicity, surgical diffs, goal-driven execution) plus three managed blocks OPENWIKI:START/END, AKSK:ROUTING, AKSK:LIFECYCLE and delegates durable guidance to .agents/AGENTS.md and openwiki/index.md.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/AGENTS.md",
+          "version": "repo-file-v1:sha256:d85b5e6cae3cc52731325e8b6193efdec270ec9f479e32f6c253b716dc994ed3"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/references/lifecycle-template.md",
+          "version": "repo-file-v1:sha256:0d6f5afce645ff08c1747173471603c8c78dc0f488cca0bf032c02057af0924b"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/references/routing-note-template.md",
+          "version": "repo-file-v1:sha256:7daa0b08b9a8cae6510c448134bfb4f7b1373132970b66916e7c6076c353e683"
+        },
+        {
+          "resource": "repo://AGENTS.md",
+          "version": "repo-file-v1:sha256:afe5a9d27b2def63d734ef9e34b69605bb23975c953c1276b0fbba98797192ea"
+        }
+      ]
+    },
+    {
+      "id": "claim_267a2cfb16d44c9483714d0bb12539c5",
+      "statement": ".agents/AGENTS.md is the portable prescriptive knowledge-layer file that must stay small and carries three sections: routing directives, project learnings, and self-improvement loop summary, working standalone in consumer installs.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/AGENTS.md",
+          "version": "repo-file-v1:sha256:d85b5e6cae3cc52731325e8b6193efdec270ec9f479e32f6c253b716dc994ed3"
+        },
+        {
+          "resource": "repo://INSTALL.md",
+          "version": "repo-file-v1:sha256:b5a2f79f8aef83b87ed9e80d70e991bc9c1e8ef60e2f90497e961d3644bfd238"
+        }
+      ]
+    },
+    {
+      "id": "claim_37b6c33fd41a4c618ec70e577b8fc8ac",
+      "statement": "Upon startup agents MUST read both .agents/AGENTS.md and openwiki/index.md before executing any file modifications; when exploring knowledge they start from openwiki/index.md and the decisions/troubleshooting directory indexes.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/AGENTS.md",
+          "version": "repo-file-v1:sha256:d85b5e6cae3cc52731325e8b6193efdec270ec9f479e32f6c253b716dc994ed3"
+        },
+        {
+          "resource": "repo://AGENTS.md",
+          "version": "repo-file-v1:sha256:afe5a9d27b2def63d734ef9e34b69605bb23975c953c1276b0fbba98797192ea"
+        }
+      ]
+    },
+    {
+      "id": "claim_e31ddd5309ec40a2b07becdf12fd2807",
+      "statement": "openwiki/index.md is a generated JIT catalog owned by OpenWiki tooling and never hand-edited, while openwiki/overview.md is a curated entry point indexing decisions and troubleshooting trees preserved across update runs under the AKSK curation contract.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/AGENTS.md",
+          "version": "repo-file-v1:sha256:d85b5e6cae3cc52731325e8b6193efdec270ec9f479e32f6c253b716dc994ed3"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
+          "version": "repo-file-v1:sha256:d1ff10af0b2478c38c764c9c67c7679d789281866375ef830eadc6aeffd9e244"
+        },
+        {
+          "resource": "repo://AGENTS.md",
+          "version": "repo-file-v1:sha256:afe5a9d27b2def63d734ef9e34b69605bb23975c953c1276b0fbba98797192ea"
+        }
+      ]
+    },
+    {
+      "id": "claim_49a097dd18f44001a545df2909b0baa5",
+      "statement": "Root AGENTS.md zoning order is FerroxLabs baseline (AKSK:AGENTS-BASELINE) → OpenWiki (OPENWIKI:START/END) → AKSK routing (AKSK:ROUTING) → AKSK lifecycle (AKSK:LIFECYCLE); in this repo baseline sections 0-8 are hand-authored inline without markers — the pre-seed state before init_agents_md.mjs vendors the baseline zone.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
+          "version": "repo-file-v1:sha256:d1ff10af0b2478c38c764c9c67c7679d789281866375ef830eadc6aeffd9e244"
+        },
+        {
+          "resource": "repo://AGENTS.md",
+          "version": "repo-file-v1:sha256:afe5a9d27b2def63d734ef9e34b69605bb23975c953c1276b0fbba98797192ea"
+        }
+      ]
+    },
+    {
+      "id": "claim_de1b5a71224e47a6af61490947b70f65",
+      "statement": "attach_section.mjs is the sole writer for AKSK:ROUTING and AKSK:LIFECYCLE blocks: it reads markers from the template at runtime via markersOf(), is idempotent and self-updating (trimmed compare then regex swap between markers), creates the target file if missing, and never touches content outside its marker pair.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
+          "version": "repo-file-v1:sha256:d1ff10af0b2478c38c764c9c67c7679d789281866375ef830eadc6aeffd9e244"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/references/lifecycle-template.md",
+          "version": "repo-file-v1:sha256:0d6f5afce645ff08c1747173471603c8c78dc0f488cca0bf032c02057af0924b"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/references/routing-note-template.md",
+          "version": "repo-file-v1:sha256:7daa0b08b9a8cae6510c448134bfb4f7b1373132970b66916e7c6076c353e683"
+        }
+      ]
+    },
+    {
+      "id": "claim_d9832212d63440cc91fefb0911f072b5",
+      "statement": "CLAUDE.md demonstrates the thin-bootstrap routing pattern: its entire body is an OPENWIKI:START/END block linking to AGENTS.md rather than duplicating guidance, as required by the use-the-routing-pattern decision.",
+      "evidence": [
+        {
+          "resource": "repo://AGENTS.md",
+          "version": "repo-file-v1:sha256:afe5a9d27b2def63d734ef9e34b69605bb23975c953c1276b0fbba98797192ea"
+        },
+        {
+          "resource": "repo://CLAUDE.md",
+          "version": "repo-file-v1:sha256:31060379798cd019458c941e0c10846d7b7ad856616f025414ea67f326bfe1d6"
+        }
+      ]
+    },
+    {
+      "id": "claim_2547a2eb0e9b4ef98ff2977e6808b646",
+      "statement": "When debugging a failing test, build error, or runtime exception, the agent's FIRST action MUST be to search durable knowledge with grep -ri \"<symptom>\" openwiki/ .agents/ before debugging blind, mandated by both root AGENTS.md AKSK:ROUTING block and .agents/AGENTS.md routing directives.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/AGENTS.md",
+          "version": "repo-file-v1:sha256:d85b5e6cae3cc52731325e8b6193efdec270ec9f479e32f6c253b716dc994ed3"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/references/routing-note-template.md",
+          "version": "repo-file-v1:sha256:7daa0b08b9a8cae6510c448134bfb4f7b1373132970b66916e7c6076c353e683"
+        },
+        {
+          "resource": "repo://AGENTS.md",
+          "version": "repo-file-v1:sha256:afe5a9d27b2def63d734ef9e34b69605bb23975c953c1276b0fbba98797192ea"
+        }
+      ]
+    },
+    {
+      "id": "claim_a422a47a82b14899acf245b3b674c130",
+      "statement": "Before architectural changes agents MUST search openwiki/decisions/ for recorded decisions to avoid violating established design patterns, and distillation must check openspec/specs/ so wiki pages never duplicate SHALL requirements.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/AGENTS.md",
+          "version": "repo-file-v1:sha256:d85b5e6cae3cc52731325e8b6193efdec270ec9f479e32f6c253b716dc994ed3"
+        },
+        {
+          "resource": "repo://AGENTS.md",
+          "version": "repo-file-v1:sha256:afe5a9d27b2def63d734ef9e34b69605bb23975c953c1276b0fbba98797192ea"
+        }
+      ]
+    },
+    {
+      "id": "claim_99064f2b95d94ef08bf11b6a549e9b01",
+      "statement": "OpenWiki concurrency guard requires checking test -f openwiki/.run.json before editing when openwiki may be active; editing mid-run leaves openwiki/.last-update.json with status interrupted and forces the next run to re-plan.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/AGENTS.md",
+          "version": "repo-file-v1:sha256:d85b5e6cae3cc52731325e8b6193efdec270ec9f479e32f6c253b716dc994ed3"
+        }
+      ]
+    },
+    {
+      "id": "claim_2d6ec0deda3541a9a103b0c6240a296d",
+      "statement": "Bootstrap composition order is deterministic: global npm i -g lane (Node >=22, openspec/openwiki caret from references/versions.json) → init_agents_md.mjs seeds baseline zone → OpenWiki tooling attaches OPENWIKI block → attach_section.mjs appends ROUTING then LIFECYCLE, each script idempotent so reruns only touch changed zones.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
+          "version": "repo-file-v1:sha256:d1ff10af0b2478c38c764c9c67c7679d789281866375ef830eadc6aeffd9e244"
+        },
+        {
+          "resource": "repo://INSTALL.md",
+          "version": "repo-file-v1:sha256:b5a2f79f8aef83b87ed9e80d70e991bc9c1e8ef60e2f90497e961d3644bfd238"
+        }
+      ]
+    },
+    {
+      "id": "claim_1bc9114dcff646f9b1473d2c3063830c",
+      "statement": ".github is listed as a bare pattern in .gitignore and .github/workflows is absent on disk, so any scheduled openwiki code --update workflow is not tracked and does not run on fresh clones; wiki updates happen via local openwiki --update or sync_wiki_indexes.mjs.",
+      "evidence": [
+        {
+          "resource": "repo://.gitignore",
+          "version": "repo-file-v1:sha256:da408bffe9ec6710b48647b9801a8f6810fd6e75c8cdd40adc11352a3918172d"
+        },
+        {
+          "resource": "repo://AGENTS.md",
+          "version": "repo-file-v1:sha256:afe5a9d27b2def63d734ef9e34b69605bb23975c953c1276b0fbba98797192ea"
+        }
+      ]
+    },
+    {
+      "id": "claim_4d3c4e0ece454170bc0317273c07e064",
+      "statement": "Consumer tool integrations under docs/integrations/ follow the same thin-router invariant: keep native files thin and point at .agents/; preferred path is EXECUTE lane via bootstrap.mjs handling routing-block and curation-contract attachment and per-agent spread, with per-tool guides as INSTRUCT manual fallback and without hardcoding skill paths.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
+          "version": "repo-file-v1:sha256:d1ff10af0b2478c38c764c9c67c7679d789281866375ef830eadc6aeffd9e244"
+        },
+        {
+          "resource": "repo://docs/integrations/README.md",
+          "version": "repo-file-v1:sha256:e8a891cb9c07a729a5ebe6b1ebfed5ebbe04953e89804aa6a8631a8ba602db76"
+        }
+      ]
+    },
+    {
+      "id": "claim_e72d7b06c6394c4ca53f798298daf314",
+      "statement": "Marker ownership is strict: content between any AKSK:* markers and OPENWIKI:START/END is owned by its writer and hand edits are corrected by rerunning the owning script; docs-lint enforces exactly one block per family, byte-intact routing/lifecycle, OPENWIKI presence-only, and baseline→OpenWiki→AKSK order.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
+          "version": "repo-file-v1:sha256:d1ff10af0b2478c38c764c9c67c7679d789281866375ef830eadc6aeffd9e244"
+        },
+        {
+          "resource": "repo://AGENTS.md",
+          "version": "repo-file-v1:sha256:afe5a9d27b2def63d734ef9e34b69605bb23975c953c1276b0fbba98797192ea"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.4.3",
+    "at": "2026-08-29T20:18:58.499Z"
+  }
+}

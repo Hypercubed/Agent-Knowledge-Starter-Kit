@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:bf9e930e5584ef818504a24c24debb459b13ffdb0804b61665022be5d74e28a3",
+  "pageVersion": "sha256:b5f541d5b08d96130e5084c5afb8c76ebd7b3f793ee99f45e5e356cd512777fb",
   "claims": [
     {
       "id": "claim_78205c2258ff4df9800b473f2b469877",
@@ -239,10 +239,50 @@
           "version": "repo-file-v1:sha256:49652da05170553f9da86c06f6398b071732fd109b3c4e946195f3e52e685db0"
         }
       ]
+    },
+    {
+      "id": "claim_3d13bbf6e38b4dc399739223f06c5e0e",
+      "statement": "The add-task-start change under openspec/changes/add-task-start/ is Proposal-only and not yet archived to openspec/specs/task-start/; it must be labeled as proposal and is not an active capability until archived, with task-start owning creation (seeding summary.json with task_id, created_at, status:in_progress and optional openspec_change) and task-closeout owning finalization while preserving task_id and openspec_change with fallback generation when no seed exists.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/changes/add-task-start/design.md",
+          "version": "repo-file-v1:sha256:a4bd4394e5adacc4cf5eff661c878294f2f4670ac34fa4651aa56c32fc3d3085"
+        },
+        {
+          "resource": "repo://openspec/changes/add-task-start/proposal.md",
+          "version": "repo-file-v1:sha256:02e824d855bc2e10f7e793cb78ba79fba3f5c9e7e6312f160f38071965f7aad0"
+        },
+        {
+          "resource": "repo://openspec/changes/add-task-start/specs/task-start/spec.md",
+          "version": "repo-file-v1:sha256:152355639b97c963756eca910de7e41e01b8d70b5ea9cbb484382fa95f8cd51d"
+        }
+      ]
+    },
+    {
+      "id": "claim_e114d080149849f591845c11febfb16b",
+      "statement": "Durable knowledge writes to openwiki/, .agents/AGENTS.md, .agents/playbooks/, and .agents/skills/ occur only during learning-distill after fail-closed prerequisites pass; task-start and task-closeout write only under .agents/sessions/<session-folder>/ (plus idempotent README.md/.gitignore init) and record proposed durable changes as prose in the bundle for learning-distill to apply.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/learning-distill/SKILL.md",
+          "version": "repo-file-v1:sha256:c9bcbfa4bd0ac7f4f20aff039397460570eac461b054ed3a303caf0ddba9683f"
+        },
+        {
+          "resource": "repo://.agents/skills/learning-distill/references/CONTRACT.md",
+          "version": "repo-file-v1:sha256:49652da05170553f9da86c06f6398b071732fd109b3c4e946195f3e52e685db0"
+        },
+        {
+          "resource": "repo://.agents/skills/task-closeout/CONTRACT.md",
+          "version": "repo-file-v1:sha256:b4cdbb24ec28ec8c391f1e06e8afd8fdda22a80dab3209ebd8a7a52b01ebc344"
+        },
+        {
+          "resource": "repo://openspec/changes/add-task-start/specs/task-start/spec.md",
+          "version": "repo-file-v1:sha256:152355639b97c963756eca910de7e41e01b8d70b5ea9cbb484382fa95f8cd51d"
+        }
+      ]
     }
   ],
   "verification": {
     "by": "openwiki/0.4.3",
-    "at": "2026-08-29T04:36:52.163Z"
+    "at": "2026-08-29T21:15:47.181Z"
   }
 }

@@ -1,3 +1,3 @@
 # Files
 
-- [Repository Inventory](repository-inventory.md) - Top-to-bottom map of tracked trees and files in agent-knowledge-starter: what each area contains, who consumes it, and where its wiki page lives.
+- [Repository Inventory](repository-inventory.md) - File-level map of agent-knowledge-starter: manifests, entrypoints, .agents portable layer, openspec and openwiki scaffolds, and validator scripts for safe change scoping.

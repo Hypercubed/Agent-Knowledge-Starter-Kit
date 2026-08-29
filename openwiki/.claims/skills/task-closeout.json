@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:f333240d9938b3ddcca7e185178c0bb2f4ae2105ccb84cf3b378f1fcead1fbcc",
+  "pageVersion": "sha256:a77202856aa5c1ab3c838a45d15ae33c72bebd1ea9e06bcfb96e974df1f851e4",
   "claims": [
     {
       "id": "claim_b2013f359db94f62b0d1f3fc04fee2f6",
@@ -184,17 +184,25 @@
     },
     {
       "id": "claim_c445dfa7f0d845b383a3fb8cce18c3e3",
-      "statement": "Proposed task-start sequencing is strict: task-start owns manifest.json creation, task-closeout owns finalization, learning-distill consumes only after closeout marks ready, with no overlapping writers and must preserve and pass through openspec_change and distillation flags.",
+      "statement": "Proposed task-start sequencing is strict: task-start owns creation by seeding summary.json with task_id, created_at, status in_progress and optional openspec_change/repo_id/agent, task-closeout owns finalization by detecting the seeded summary.json and preserving task_id and openspec_change while appending completed_at, final status, git metadata and distillation flags plus the remaining bundle files, learning-distill consumes only after closeout marks ready with no overlapping writers and summary.json as single source of truth; when invoked without a prior task-start closeout retains its generation fallback and must preserve and pass through openspec_change and distillation flags.",
       "evidence": [
         {
+          "resource": "repo://.agents/skills/task-closeout/SKILL.md",
+          "version": "repo-file-v1:sha256:82cbf908b431614f53821bdd2f2a063e2705e0f31827cc893d4ff13903c042fe"
+        },
+        {
+          "resource": "repo://openspec/changes/add-task-start/design.md",
+          "version": "repo-file-v1:sha256:a4bd4394e5adacc4cf5eff661c878294f2f4670ac34fa4651aa56c32fc3d3085"
+        },
+        {
           "resource": "repo://openspec/changes/add-task-start/proposal.md",
-          "version": "repo-file-v1:sha256:cc18e88fad0a2cdc5fb912ae657e895dd3a19e8032b03a0f3940184766622d86"
+          "version": "repo-file-v1:sha256:02e824d855bc2e10f7e793cb78ba79fba3f5c9e7e6312f160f38071965f7aad0"
         }
       ]
     }
   ],
   "verification": {
     "by": "openwiki/0.4.3",
-    "at": "2026-08-29T04:36:52.163Z"
+    "at": "2026-08-29T20:18:58.499Z"
   }
 }

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:661f8c27152467c4b5f8ee5ea0d32de4715f02d2e1f424bf375cfcaaa003af13",
+  "pageVersion": "sha256:5fb17ec52c5c4286012e1dc3f845c5dfad16dab27e8f08e4d22aabdcd582a2f9",
   "claims": [
     {
       "id": "claim_5abe14d0e94c4ea5a879d67cecf5a919",
@@ -44,7 +44,7 @@
       "evidence": [
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
-          "version": "repo-file-v1:sha256:41f35665ae6e6340a623e48fab9748c980490c8fca74ef505b29f9556220e8a3"
+          "version": "repo-file-v1:sha256:d1ff10af0b2478c38c764c9c67c7679d789281866375ef830eadc6aeffd9e244"
         },
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs",
@@ -198,7 +198,7 @@
       "evidence": [
         {
           "resource": "repo://.agents/skills/docs-lint/SKILL.md",
-          "version": "repo-file-v1:sha256:07d289654569ee79013a053eda29c89012cc28c6ec1f76c6c796630654125e3b"
+          "version": "repo-file-v1:sha256:856a7d6e0c608fe3bd7de1f17c0a380ecd911dd2f10cc496ab720c5e670cf172"
         },
         {
           "resource": "repo://.agents/skills/learning-distill/SKILL.md",
@@ -213,6 +213,6 @@
   ],
   "verification": {
     "by": "openwiki/0.4.3",
-    "at": "2026-08-29T04:36:52.163Z"
+    "at": "2026-08-29T20:18:58.499Z"
   }
 }

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:7aa9fdca9adaf0e70b050b9ecfef5777bb6022b303f6efab2a0723bdeed0e8b5",
+  "pageVersion": "sha256:19c47f537fcfdecaa0d8597495c1e08534ed3bcec20682d70860fbe58e6e1323",
   "claims": [
     {
       "id": "claim_41476b89d3b145b997294afc63c1eb05",
@@ -20,7 +20,7 @@
         },
         {
           "resource": "repo://.agents/skills/docs-lint/SKILL.md",
-          "version": "repo-file-v1:sha256:07d289654569ee79013a053eda29c89012cc28c6ec1f76c6c796630654125e3b"
+          "version": "repo-file-v1:sha256:856a7d6e0c608fe3bd7de1f17c0a380ecd911dd2f10cc496ab720c5e670cf172"
         }
       ]
     },
@@ -30,7 +30,7 @@
       "evidence": [
         {
           "resource": "repo://.agents/skills/docs-lint/SKILL.md",
-          "version": "repo-file-v1:sha256:07d289654569ee79013a053eda29c89012cc28c6ec1f76c6c796630654125e3b"
+          "version": "repo-file-v1:sha256:856a7d6e0c608fe3bd7de1f17c0a380ecd911dd2f10cc496ab720c5e670cf172"
         },
         {
           "resource": "repo://.agents/skills/docs-lint/bootstrap/README.md",
@@ -48,37 +48,15 @@
         },
         {
           "resource": "repo://.agents/skills/docs-lint/SKILL.md",
-          "version": "repo-file-v1:sha256:07d289654569ee79013a053eda29c89012cc28c6ec1f76c6c796630654125e3b"
+          "version": "repo-file-v1:sha256:856a7d6e0c608fe3bd7de1f17c0a380ecd911dd2f10cc496ab720c5e670cf172"
         },
         {
           "resource": "repo://AGENTS.md",
-          "version": "repo-file-v1:sha256:87cc3112b68d102afd7a8eca06dc704cb40db8c4a2dc1ef9d89691cba2e690ae"
+          "version": "repo-file-v1:sha256:afe5a9d27b2def63d734ef9e34b69605bb23975c953c1276b0fbba98797192ea"
         },
         {
           "resource": "repo://openspec/specs/cross-tool-lint/spec.md",
           "version": "repo-file-v1:sha256:eada3fe878a6aee3460d00e46df16bb6ecd90d1185ace104ecea080b5819450c"
-        }
-      ]
-    },
-    {
-      "id": "claim_02fcbf257031456f8e0156e76ee24872",
-      "statement": "docs-lint treats three marker families as independent integrity units: shipped AKSK:ROUTING/LIFECYCLE and OPENWIKI:START/END, plus proposal-only AKSK:AGENTS-BASELINE (vendored with provenance header, checked only when present) — OPENWIKI blocks are verified for presence only and never hand-edited, while a stale baseline capture older than six months surfaces as informational advice not a blocking failure.",
-      "evidence": [
-        {
-          "resource": "repo://.agents/skills/docs-lint/SKILL.md",
-          "version": "repo-file-v1:sha256:07d289654569ee79013a053eda29c89012cc28c6ec1f76c6c796630654125e3b"
-        },
-        {
-          "resource": "repo://AGENTS.md",
-          "version": "repo-file-v1:sha256:87cc3112b68d102afd7a8eca06dc704cb40db8c4a2dc1ef9d89691cba2e690ae"
-        },
-        {
-          "resource": "repo://openspec/changes/add-agents-md-bootstrap/design.md",
-          "version": "repo-file-v1:sha256:7f5086630b23fc8c38d1b783a59eee21b813ecce287e51f4a1988fea7c70a825"
-        },
-        {
-          "resource": "repo://openspec/changes/add-agents-md-bootstrap/proposal.md",
-          "version": "repo-file-v1:sha256:a8b0517630bccd7f0427465979e814ff3cec85ae3545bdddf2880f84c0403f05"
         }
       ]
     },
@@ -88,7 +66,7 @@
       "evidence": [
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
-          "version": "repo-file-v1:sha256:41f35665ae6e6340a623e48fab9748c980490c8fca74ef505b29f9556220e8a3"
+          "version": "repo-file-v1:sha256:d1ff10af0b2478c38c764c9c67c7679d789281866375ef830eadc6aeffd9e244"
         },
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs",
@@ -96,7 +74,7 @@
         },
         {
           "resource": "repo://.agents/skills/docs-lint/SKILL.md",
-          "version": "repo-file-v1:sha256:07d289654569ee79013a053eda29c89012cc28c6ec1f76c6c796630654125e3b"
+          "version": "repo-file-v1:sha256:856a7d6e0c608fe3bd7de1f17c0a380ecd911dd2f10cc496ab720c5e670cf172"
         }
       ]
     },
@@ -110,7 +88,7 @@
         },
         {
           "resource": "repo://.agents/skills/docs-lint/SKILL.md",
-          "version": "repo-file-v1:sha256:07d289654569ee79013a053eda29c89012cc28c6ec1f76c6c796630654125e3b"
+          "version": "repo-file-v1:sha256:856a7d6e0c608fe3bd7de1f17c0a380ecd911dd2f10cc496ab720c5e670cf172"
         },
         {
           "resource": "repo://openspec/specs/cross-tool-lint/spec.md",
@@ -132,7 +110,7 @@
         },
         {
           "resource": "repo://.agents/skills/docs-lint/SKILL.md",
-          "version": "repo-file-v1:sha256:07d289654569ee79013a053eda29c89012cc28c6ec1f76c6c796630654125e3b"
+          "version": "repo-file-v1:sha256:856a7d6e0c608fe3bd7de1f17c0a380ecd911dd2f10cc496ab720c5e670cf172"
         },
         {
           "resource": "repo://openspec/specs/cross-tool-lint/spec.md",
@@ -146,7 +124,7 @@
       "evidence": [
         {
           "resource": "repo://.agents/skills/docs-lint/SKILL.md",
-          "version": "repo-file-v1:sha256:07d289654569ee79013a053eda29c89012cc28c6ec1f76c6c796630654125e3b"
+          "version": "repo-file-v1:sha256:856a7d6e0c608fe3bd7de1f17c0a380ecd911dd2f10cc496ab720c5e670cf172"
         },
         {
           "resource": "repo://openspec/changes/formalize-superseded-obsolete/proposal.md",
@@ -168,11 +146,11 @@
         },
         {
           "resource": "repo://.agents/skills/docs-lint/SKILL.md",
-          "version": "repo-file-v1:sha256:07d289654569ee79013a053eda29c89012cc28c6ec1f76c6c796630654125e3b"
+          "version": "repo-file-v1:sha256:856a7d6e0c608fe3bd7de1f17c0a380ecd911dd2f10cc496ab720c5e670cf172"
         },
         {
           "resource": "repo://scripts/check-publish.sh",
-          "version": "repo-file-v1:sha256:0fbbd52ac81d5128e679aed263b53b2b308202e05ffc654d94ea104ff8e92d8f"
+          "version": "repo-file-v1:sha256:79a6e2a286f683115ddd172d2f0d25be4c53c42d9ab0524a0c8b59ab2f0c13ae"
         }
       ]
     },
@@ -182,11 +160,11 @@
       "evidence": [
         {
           "resource": "repo://.agents/playbooks/pre-publish.md",
-          "version": "repo-file-v1:sha256:63546b392ff5f3568a3adf51425e2e10bf546aea49c154afb2a7fe68a25b35b4"
+          "version": "repo-file-v1:sha256:372826cd967b2df96bb56bd265fd6d7fa0cc000a24bf90c0ab070bbabc43beb1"
         },
         {
           "resource": "repo://.agents/skills/docs-lint/SKILL.md",
-          "version": "repo-file-v1:sha256:07d289654569ee79013a053eda29c89012cc28c6ec1f76c6c796630654125e3b"
+          "version": "repo-file-v1:sha256:856a7d6e0c608fe3bd7de1f17c0a380ecd911dd2f10cc496ab720c5e670cf172"
         },
         {
           "resource": "repo://scripts/check-agents-structure.sh",
@@ -194,13 +172,31 @@
         },
         {
           "resource": "repo://scripts/check-publish.sh",
-          "version": "repo-file-v1:sha256:0fbbd52ac81d5128e679aed263b53b2b308202e05ffc654d94ea104ff8e92d8f"
+          "version": "repo-file-v1:sha256:79a6e2a286f683115ddd172d2f0d25be4c53c42d9ab0524a0c8b59ab2f0c13ae"
+        }
+      ]
+    },
+    {
+      "id": "claim_3fca362a58df4595bcd7bd5a65df78ca",
+      "statement": "docs-lint treats three marker families as independent integrity units: shipped AKSK:ROUTING/LIFECYCLE and OPENWIKI:START/END, plus proposal-only AKSK:AGENTS-BASELINE (vendored with provenance header, checked only when present) — OPENWIKI blocks are verified for presence only and never hand-edited, while a stale baseline capture older than six months surfaces as informational advice not a blocking failure.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/docs-lint/SKILL.md",
+          "version": "repo-file-v1:sha256:856a7d6e0c608fe3bd7de1f17c0a380ecd911dd2f10cc496ab720c5e670cf172"
+        },
+        {
+          "resource": "repo://AGENTS.md",
+          "version": "repo-file-v1:sha256:afe5a9d27b2def63d734ef9e34b69605bb23975c953c1276b0fbba98797192ea"
+        },
+        {
+          "resource": "repo://openspec/specs/agents-md-bootstrap/spec.md",
+          "version": "repo-file-v1:sha256:b85557c6a55d6e807f6f46c17ae73962575eda9ddb798b13025cbb8e2fe07c13"
         }
       ]
     }
   ],
   "verification": {
     "by": "openwiki/0.4.3",
-    "at": "2026-08-29T04:36:52.163Z"
+    "at": "2026-08-29T20:18:58.499Z"
   }
 }

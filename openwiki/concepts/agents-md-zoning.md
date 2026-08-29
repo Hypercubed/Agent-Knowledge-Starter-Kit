@@ -1,221 +1,159 @@
 ---
 type: concept
-title: AGENTS.md Zoning and Baseline
-description: How root AGENTS.md is split into marker-delimited zones, which zones are shipped today, and the proposal-only FerroxLabs baseline that would add a vendored behavioral contract with isolated refresh and combine semantics.
-tags: [agents-md, baseline, zoning, markers, aksk-bootstrap]
+title: AGENTS.md Zoning and Markers
+description: Marker-delimited zoning of root AGENTS.md into FerroxLabs baseline (AKSK:AGENTS-BASELINE), OpenWiki (OPENWIKI:START/END), and AKSK routing/lifecycle (AKSK:ROUTING/LIFECYCLE) — ownership, order, and isolation guarantees.
+tags:
+- agents-md
+- zoning
+- baseline
+- bootstrap
 verified:
   - by: openwiki/0.4.3
-    at: 2026-08-29T04:36:52.163Z
+    at: 2026-08-29T20:18:58.499Z
 sources:
+  - id: openwiki-source-f62b29e03158ee0b0736e6c7
+    resource: repo://.agents/skills/aksk-bootstrap/references/agents-md-baseline-template.md
   - id: openwiki-source-0294ec7c02cfa2beeca87331
     resource: repo://.agents/skills/aksk-bootstrap/references/routing-note-template.md
   - id: openwiki-source-5398a69cb2cf8d556809da57
     resource: repo://.agents/skills/aksk-bootstrap/scripts/attach_section.mjs
+  - id: openwiki-source-5ffa21d5a23117c638ca72b7
+    resource: repo://.agents/skills/aksk-bootstrap/scripts/bootstrap.mjs
+  - id: openwiki-source-181fd64540d760eef80f754f
+    resource: repo://.agents/skills/aksk-bootstrap/scripts/init_agents_md.mjs
+  - id: openwiki-source-67d81b3c5bf101f8b3eb3d2a
+    resource: repo://.agents/skills/aksk-bootstrap/scripts/refresh_agents_baseline.mjs
   - id: openwiki-source-dc8872a5e7d386c22ea2f135
     resource: repo://.agents/skills/aksk-bootstrap/SKILL.md
+  - id: openwiki-source-5af7f373fcb21f142106673c
+    resource: repo://.agents/skills/docs-lint/SKILL.md
   - id: openwiki-source-8037e2358a2c4f9b2c722a11
     resource: repo://AGENTS.md
-  - id: openwiki-source-b6e79252193061d60ba3d3fd
-    resource: repo://openspec/changes/add-agents-md-bootstrap/design.md
-  - id: openwiki-source-d41529889f3599c07d9ebea6
-    resource: repo://openspec/changes/add-agents-md-bootstrap/proposal.md
-  - id: openwiki-source-36b26de7796cfb15924f3fb9
-    resource: repo://openspec/changes/add-agents-md-bootstrap/specs/agents-md-bootstrap/spec.md
-  - id: openwiki-source-01e5ef396f81ed8bdfc16f89
-    resource: repo://openspec/changes/add-agents-md-bootstrap/tasks.md
-generated: { by: "openwiki/0.4.3", at: "2026-08-29T04:36:52.163Z" }
+  - id: openwiki-source-f7767c74e12e946558d335f1
+    resource: repo://openspec/specs/agents-md-bootstrap/spec.md
+generated: { by: "openwiki/0.4.3", at: "2026-08-29T20:18:58.499Z" }
 ---
 
-# AGENTS.md Zoning and Baseline
+# AGENTS.md Zoning and Markers
 
-Root `AGENTS.md` is a stacked, marker-delimited file where each content family has one writer, one marker pair, and one integrity check. Today the shipped file carries two families — OpenWiki and AKSK. A proposal would add a third family at the top — the FerroxLabs behavioral baseline — without letting any writer rewrite another zone.
+Root `AGENTS.md` is a stacked, marker-delimited file with isolated ownership and deterministic upstream-first order. Three families, each owned by one writer and validated independently:
 
-> **Proposal-only scope:** The FerroxLabs baseline, its vendored template, `init_agents_md.mjs`, and `refresh_agents_baseline.mjs` are described in `openspec/changes/add-agents-md-bootstrap/**` and are **not yet in `openspec/specs/**`**. The rest of this page labels that material explicitly and does not present it as shipped.
+| Order | Zone | Markers | Owner | Content |
+| --- | --- | --- | --- | --- |
+| 1 | FerroxLabs baseline | `<!-- AKSK:AGENTS-BASELINE:BEGIN -->` / `<!-- AKSK:AGENTS-BASELINE:END -->` | `.agents/skills/aksk-bootstrap/scripts/init_agents_md.mjs` (seed) + `refresh_agents_baseline.mjs` (update) | Vendored behavioral operating contract — non-negotiables, surgical changes, goal-driven execution — with provenance header inside the block (source URL, capture date, MIT license notice, refresh pointer) |
+| 2 | OpenWiki | `<!-- OPENWIKI:START -->` / `<!-- OPENWIKI:END -->` | OpenWiki tooling (`openwiki --init` / `--update`, `sync_wiki_indexes.mjs`) | Knowledge-layer routing header — generated evidence index pointer. **Never hand-edit** this block. |
+| 3a | AKSK routing | `<!-- AKSK:ROUTING:BEGIN -->` / `<!-- AKSK:ROUTING:END -->` | `.agents/skills/aksk-bootstrap/scripts/attach_section.mjs` + `routing-note-template.md` | Thin discovery pointers into `.agents/` and `openwiki/` |
+| 3b | AKSK lifecycle | `<!-- AKSK:LIFECYCLE:BEGIN -->` / `<!-- AKSK:LIFECYCLE:END -->` | `attach_section.mjs` + `lifecycle-template.md` | Self-improvement loop mandate (closeout → distill → prune) |
 
-## Zone stack and order
-
-Shipped state (observed in the repository) contains two families. The proposal adds a baseline family at the top, yielding three families in a fully bootstrapped file:
+A **fully bootstrapped** file contains exactly one block per family ordered **baseline → OpenWiki → AKSK**. In this repo the baseline zone has not yet been seeded — current `AGENTS.md` contains only `OPENWIKI:START/END` and the two `AKSK:*` blocks until `init_agents_md.mjs` runs (see [The Knowledge Layer](../architecture/knowledge-layer.md)). Zone isolation is strict: refreshing one zone never rewrites another, and `docs-lint` reports damage per-family.
 
 <!-- openwiki: mermaid parse failed and this diagram was converted to a text fence so it does not break rendering. Fix the diagram source and restore the mermaid fence. Parser error: Heuristic: an unescaped angle bracket inside a label breaks rendering; rephrase the label. -->
 ```text
 flowchart TB
-  B["Zone 1 - FerroxLabs baseline - Proposal-only<br>AKSK AGENTS-BASELINE markers<br>Owned by init_agents_md.mjs and refresh_agents_baseline.mjs<br>Vendored template plus provenance header"]
-  O["Zone 2 - OpenWiki block - Shipped<br>OPENWIKI START END markers<br>Owned by OpenWiki tooling<br>Generated evidence index"]
-  R["Zone 3a - AKSK Routing - Shipped<br>AKSK ROUTING markers<br>Thin pointers into .agents and openwiki"]
-  L["Zone 3b - AKSK Lifecycle - Shipped<br>AKSK LIFECYCLE markers<br>Self-improvement loop mandate"]
-
-  B --> O --> R --> L
+  B["Zone 1 · FerroxLabs baseline<br>AKSK:AGENTS-BASELINE<br>init_agents_md / refresh_agents_baseline"] --> O["Zone 2 · OpenWiki<br>OPENWIKI:START/END<br>OpenWiki tooling — never hand-edit"]
+  O --> R["Zone 3a · AKSK Routing<br>AKSK:ROUTING"]
+  R --> L["Zone 3b · AKSK Lifecycle<br>AKSK:LIFECYCLE"]
 ```
 
-*Stacked zone order for a fully bootstrapped AGENTS.md: proposal-only baseline on top, then shipped OpenWiki and AKSK families.*
+## Vendored baseline template
 
-| Zone | Markers | Owner script / tool | Status | Content |
-| --- | --- | --- | --- | --- |
-| FerroxLabs behavioral baseline | `<!-- AKSK:AGENTS-BASELINE:BEGIN -->` / `<!-- AKSK:AGENTS-BASELINE:END -->` | `init_agents_md.mjs` (seed) + `refresh_agents_baseline.mjs` (update) | **Proposal-only** | ~200-line operating contract: anti-sycophancy, verification loops, surgical diffs, sections 0–9 |
-| OpenWiki | `<!-- OPENWIKI:START -->` / `<!-- OPENWIKI:END -->` | OpenWiki tooling (`openwiki --update` / wiki attachment) | Shipped | Generated evidence index — optional just-in-time context, not required startup reading |
-| AKSK Routing | `<!-- AKSK:ROUTING:BEGIN -->` / `<!-- AKSK:ROUTING:END -->` | `attach_section.mjs` with `routing-note-template.md` | Shipped | Discovery pointers: read `.agents/AGENTS.md`, use `openwiki/index.md`, search durable knowledge first |
-| AKSK Lifecycle | `<!-- AKSK:LIFECYCLE:BEGIN -->` / `<!-- AKSK:LIFECYCLE:END -->` | `attach_section.mjs` with `lifecycle-template.md` | Shipped | Self-improvement loop: analyze → closeout → distill → prune |
+The FerroxLabs baseline is vendored offline at `.agents/skills/aksk-bootstrap/references/agents-md-baseline-template.md`. Its body is wrapped in `AKSK:AGENTS-BASELINE` markers and the provenance header inside the block carries upstream source URL (`https://raw.githubusercontent.com/FerroxLabs/agents-md/main/AGENTS.md`), capture date (`YYYY-MM-DD`), MIT license notice, and refresh pointer (`node .agents/skills/aksk-bootstrap/scripts/refresh_agents_baseline.mjs`). No network access is required to seed — the template is the offline-safe source of truth and the live `AGENTS.md` baseline zone is a verbatim copy when seeded.
 
-Ordering matters for fresh files. The proposal defines the order baseline → OpenWiki → AKSK; in combine-merge mode the result should be reordered to this sequence per the generated `COMBINE.md` brief. The current live `AGENTS.md` follows OpenWiki → AKSK order today — the baseline markers are not yet present — but the proposal preserves that relative order and inserts the baseline above OpenWiki so no existing zone moves.
+Markers are read from the template at runtime via `markersOf()`, never hard-coded. The `AKSK:` prefix signals kit ownership; provenance inside the header identifies the actual upstream even if the vendor changes.
 
-Markers follow the kit convention: each template carries its own `<!-- AKSK:*:BEGIN/END -->` pair and scripts read markers from the template at runtime, never hard-code them. That makes marker renames a template-only change and lets `docs-lint` treat each zone as an independent integrity unit.
+## `init_agents_md.mjs` — baseline zone owner
 
-## Vendored baseline and provenance header — Proposal-only
-
-> This section describes `openspec/changes/add-agents-md-bootstrap/**` (not yet in `openspec/specs/**`).
-
-The proposal vendors the upstream FerroxLabs `AGENTS.md` (`https://raw.githubusercontent.com/FerroxLabs/agents-md/main/AGENTS.md`) offline at
-
-```
-.agents/skills/aksk-bootstrap/references/agents-md-baseline-template.md
+```bash
+node .agents/skills/aksk-bootstrap/scripts/init_agents_md.mjs [repo-root]          # seed when missing
+node .agents/skills/aksk-bootstrap/scripts/init_agents_md.mjs [repo-root] --replace # overwrite with baseline
+node .agents/skills/aksk-bootstrap/scripts/init_agents_md.mjs [repo-root] --combine # stage for LLM merge
 ```
 
-whose body is the upstream content wrapped in the `AKSK:AGENTS-BASELINE` block. Inside that block, the first lines are a provenance header containing upstream source URL, capture date, MIT license notice, and a pointer to the refresh command. Seeding would never touch the network; file creation copies the vendored block verbatim including the header. The `AKSK:` prefix is intentional — kit scripts own every block they write, and provenance inside the header identifies the actual upstream origin even if the source changes vendor later.
+Mechanism and control flow:
 
-In the current repository this template file does not yet exist — `references/` contains `routing-note-template.md`, `lifecycle-template.md`, and `wiki-contract-template.md` only — so the offline-safe seeding guarantee remains a proposed invariant, not an observed one.
+- **Missing `AGENTS.md`** (no flag) → creates it containing the vendored baseline wrapped in `AKSK:AGENTS-BASELINE` markers including provenance header. Exits 0. With `--replace`/`--combine` on a missing file → exits 2 (flags require an existing file).
+- **Existing file with matching baseline block** (trailing-whitespace and newline-at-EOF normalized compare via `normalize()`) → idempotent no-op, exits 0, no rewrite.
+- **Existing non-matching file with no flag** → **fails closed**: exits 2, no writes, prints `Replace AGENTS.md with the FerroxLabs baseline, or combine both using the LLM?` plus the two flags. Never overwrites silently. Mirrors the fail-fast-with-remediation convention; the agent relays the question to the user rather than prompting via stdin.
+- **`--replace`** → overwrites `AGENTS.md` with the marked baseline section (provenance header included). Caller must then re-attach OpenWiki and `AKSK:ROUTING`/`LIFECYCLE` below it to restore other zones.
+- **`--combine`** → never modifies the original. Stages `existing.md` (current file), `baseline.md` (vendored baseline wrapped), and generated `COMBINE.md` brief under `.agents/sessions/agents-md-combine/<timestamp>/` and prints agent merge instructions. The brief constrains the LLM: preserve project-specific learnings and filled-in sections 10–11, prefer baseline structure for sections 0–9, keep every `AKSK:*` and `OPENWIKI` marker block verbatim, and produce final order baseline → OpenWiki → AKSK.
 
-This satisfies the kit's never-installs / offline-safe invariant the proposal targets: a fresh repo on an airplane would get the same baseline as CI.
+Markers are extracted from the template via `markersOf()` (`AKSK:[A-Z-]+:BEGIN/END` regex, BEGIN/END name must match). Invalid template or target-is-directory exits 2.
 
-## Script ownership
+## `refresh_agents_baseline.mjs` — opt-in vendored updater
 
-### `attach_section.mjs` — routing and lifecycle owner — Shipped
+```bash
+node .agents/skills/aksk-bootstrap/scripts/refresh_agents_baseline.mjs        # fetch upstream + swap baseline zone in vendored template
+node .agents/skills/aksk-bootstrap/scripts/refresh_agents_baseline.mjs --check # validate upstream without writing
+```
+
+Fetches `https://raw.githubusercontent.com/FerroxLabs/agents-md/main/AGENTS.md` (via `curl -fsSL`) to memory, validates, then swaps only content between `AKSK:AGENTS-BASELINE` markers in the **vendored template** (`.agents/skills/aksk-bootstrap/references/agents-md-baseline-template.md`), updating the capture date. Other zones are byte-identical by construction — the template contains only the baseline block, and repo `AGENTS.md` files are never touched by this script (re-run `init_agents_md.mjs` to propagate).
+
+Validation before any write: non-empty, >5 KB, starts with `# AGENTS.md`, contains anchors `Non-negotiables`, `Before writing code`, `Surgical changes`, `Goal-driven execution`. Offline or validation failure → exits non-zero with remediation and the previously vendored baseline remains byte-identical and usable. `--check` validates without writing. Normalized compare prevents churn when capture date is unchanged.
+
+## `attach_section.mjs` — AKSK routing/lifecycle owner (N-template mechanism)
 
 ```bash
 node .agents/skills/aksk-bootstrap/scripts/attach_section.mjs [repo-root] [target-file-name] [template-name]
+# defaults: AGENTS.md + routing-note-template.md
 ```
 
-The existing N-template mechanism: markers are parsed from `references/routing-note-template.md` (`AKSK:ROUTING`) or `references/lifecycle-template.md` (`AKSK:LIFECYCLE`) via `markersOf()`, which extracts the `AKSK:*` BEGIN/END pair with a regex and normalizes whitespace. Behavior is append-only outside markers:
+Single mechanism for N marker-delimited AKSK sections. Each template under `references/` carries its own `<!-- AKSK:<NAME>:BEGIN/END -->` pair; `markersOf()` parses `BEGIN`/`END` at runtime (normalizing BEGIN whitespace) — no hard-coded marker list. Known templates:
 
-- Existing content is never replaced or removed; sections attach below it.
-- Idempotent and self-updating: re-running is a no-op when `match.trim() === section.trim()`, otherwise only the marked block is refreshed in place via `refresh()` with a dot-all regex `BEGIN.*?END`.
-- A missing target file is created containing only the attached section — before the baseline work, this made `attach_section.mjs` the owner of record for empty router files.
-- Unknown template names exit 2 with `error: unknown template`.
+| Template | Markers | Content |
+| --- | --- | --- |
+| `routing-note-template.md` (default) | `AKSK:ROUTING` | Thin discovery pointers into `.agents/` and `openwiki/` |
+| `lifecycle-template.md` | `AKSK:LIFECYCLE` | Self-improvement loop mandate |
 
-The implementation reads the template file, derives markers at runtime, checks whether the target is a directory (exit 2), and either creates, refreshes, or appends. No network access, no mutation outside the marker pair.
+Behavior contract (all templates):
 
-### `init_agents_md.mjs` — baseline owner — Proposal-only
+- Existing content outside markers is never replaced or removed; new sections attach below it.
+- Idempotent and self-updating: re-running is a no-op when the attached section equals the template (trimmed compare), or an in-place refresh of only that marked block (`refresh()` swaps between the marker pair via regex) when the template changed.
+- Missing target file → creates it containing only the attached section (root router files have no upstream initializer, so this script is their owner of record).
+- Target is a directory or unknown template name → exits 2.
 
-> This section describes `openspec/changes/add-agents-md-bootstrap/**` (not yet in `openspec/specs/**`).
+This is the sole writer for `AKSK:ROUTING` and `AKSK:LIFECYCLE` and is invoked by `bootstrap.mjs` after baseline and OpenWiki.
 
-One deterministic command for seeding, upgrading, or combining `AGENTS.md`:
+## Bootstrap composition order
+
+Deterministic order enforced by `bootstrap.mjs` per-repo lane:
+
+1. **Global lane** `npm i -g` in user scope (caret from `references/versions.json` / `package.json`, skip when present)
+2. `init_agents_md.mjs` seeds baseline first
+3. OpenWiki attaches its `OPENWIKI:START/END` block below baseline (via OpenWiki tooling)
+4. `attach_section.mjs` appends `ROUTING` then `LIFECYCLE` below OpenWiki
+
+Each script is idempotent, so reruns after a template change only touch the zone whose template changed. The order guarantees the FerroxLabs contract is topmost, knowledge routing is central, and the AKSK self-improvement loop is appended last. If `AGENTS.md` already exists with a non-matching baseline, `bootstrap.mjs` surfaces the replace-vs-combine question and exits clean without partial state from that step (never-half-install).
+
+## Justification and thin-router exception
+
+The behavioral baseline lives in root `AGENTS.md` as a **scoped exception** to the thin-router invariant (decision `use-the-routing-pattern-for-agentic-tool-bootstrap-files` and spec `agents-md-bootstrap`): the routing-pattern decision requires root files to stay thin and route repo knowledge to `.agents/` and `openwiki/`, but the FerroxLabs baseline is a behavioral operating contract (verification loops, surgical diffs, working-code discipline) not repo knowledge. Routing and lifecycle blocks still attach below it, preserving single source of truth. The baseline content itself predates the kit — this repo's own root `AGENTS.md` carried full behavioral content below OpenWiki/AKSK blocks before vending.
+
+## Zone isolation, invariants, and lint
+
+- **Exactly one block per family** in any root instruction file present (`AGENTS.md`, `CLAUDE.md`, `GEMINI.md`). Damage to one family's markers is reported for that family only.
+- **Byte-identical guarantees**: `refresh_agents_baseline.mjs` and `init_agents_md.mjs --combine` leave zones other than `AKSK:AGENTS-BASELINE` untouched; `attach_section.mjs` `refresh()` swaps only between its marker pair.
+- **Docs-lint wiring checks** (fail the pass): each `AKSK:*` block exactly one and byte-intact (content equals template after trimming) and targets named inside exist on disk; `AKSK:AGENTS-BASELINE` additionally requires provenance header (source URL, capture date, MIT notice, refresh pointer); `OPENWIKI:START/END` is presence-only (never hand-edited) with required order baseline → OpenWiki → AKSK; stale vendored capture date (>6 months) surfaced as informational advice, not a blocking failure (validate via `refresh_agents_baseline.mjs --check`).
+- **`--combine` preserves learnings**: merge keeps project-specific learnings and filled-in sections verbatim and keeps all marker blocks verbatim; only `sessions/README.md` is tracked, `sessions/[0-9]*` is gitignored.
+
+## Extension points and operations
+
+- **New marker family**: add `references/<name>-template.md` with its `<!-- AKSK:NAME:BEGIN/END -->` pair — `attach_section.mjs` picks it up via `markersOf()` with no code change — then extend `docs-lint`'s routing-block table.
+- **New baseline source**: keep the `AKSK:` prefix; only the provenance header inside the block and `refresh_agents_baseline.mjs` validation anchors need updating.
+- **Tool wiring beyond `AGENTS.md`**: product overlays (`CLAUDE.md`, `GEMINI.md`, `.cursor/rules/`, `.github/copilot-instructions.md`) reuse the same `attach_section.mjs` mechanism with a different target filename.
+
+Focused validation:
 
 ```bash
-node .agents/skills/aksk-bootstrap/scripts/init_agents_md.mjs [repo-root]
-node .agents/skills/aksk-bootstrap/scripts/init_agents_md.mjs [repo-root] --replace
-node .agents/skills/aksk-bootstrap/scripts/init_agents_md.mjs [repo-root] --combine
+node .agents/skills/aksk-bootstrap/scripts/init_agents_md.mjs          # seed + idempotency
+node .agents/skills/aksk-bootstrap/scripts/refresh_agents_baseline.mjs --check # upstream valid?
+node .agents/skills/aksk-bootstrap/scripts/attach_section.mjs . AGENTS.md routing-note-template.md  # idempotent attach
+bash scripts/check-agents-structure.sh .agents && node .agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs
+# docs-lint wiring: baseline provenance, routing/lifecycle exactly-one, OPENWIKI presence, order baseline→OpenWiki→AKSK
 ```
-
-Proposed behavior contract:
-
-- **Missing file:** creates `AGENTS.md` containing the marked baseline section (markers read from the template) and exits 0. No network access.
-- **Idempotent re-run:** if the marked baseline section already matches the vendored template (comparison normalizes trailing whitespace and newline-at-EOF), reports success as a no-op without rewriting.
-- **Existing file, no flag:** does not write anything. Exits 2 naming the conflict and printing the exact question the agent must relay to the user — *Replace AGENTS.md with the FerroxLabs baseline, or combine both using the LLM?* — plus the two flags that encode each answer. No interactive stdin; fail-fast with remediation, matching `check_peer_tools.mjs` conventions.
-- **`--replace`:** overwrites `AGENTS.md` with the marked baseline section including the provenance header.
-- **`--combine`:** never modifies the original. Stages the current `AGENTS.md`, the vendored baseline, and a generated `COMBINE.md` merge brief side-by-side under `.agents/sessions/agents-md-combine/<timestamp>/` and prints instructions for the agent to produce the merged file with the LLM. The brief constrains the merge: preserve project-specific learnings and filled-in context, prefer baseline structure for sections 0–9, keep all `AKSK:*` and `OPENWIKI` marker blocks verbatim.
-
-<!-- openwiki: mermaid parse failed and this diagram was converted to a text fence so it does not break rendering. Fix the diagram source and restore the mermaid fence. Parser error: Heuristic: an unescaped angle bracket inside a label breaks rendering; rephrase the label. -->
-```text
-flowchart TD
-  A["init_agents_md.mjs - Proposal-only"] --> B{"root AGENTS.md exists?"}
-  B -- no --> C["attach marked baseline incl provenance header"]
-  C --> Z["exit 0"]
-  B -- yes --> D{"marked section matches template?"}
-  D -- yes --> Z
-  D -- no --> E["exit 2 - name conflict<br>print replace vs combine options"]
-  E --> F["--replace"]
-  E --> G["--combine"]
-  F --> H["overwrite with marked baseline"]
-  G --> I["stage existing plus baseline plus COMBINE brief<br>under .agents/sessions - print instructions"]
-  H --> J["openwiki block attaches then attach_section adds ROUTING and LIFECYCLE below"]
-  I --> J
-```
-
-*Proposed conflict-resolution flow for `init_agents_md.mjs`: fail-fast exit 2 with flags, never silent overwrite.*
-
-`init_agents_md.mjs` is intentionally separate from `attach_section.mjs`. The latter has an append-only invariant — existing content is never replaced — while seeding introduces replace/combine semantics that would muddy that contract.
-
-### `refresh_agents_baseline.mjs` — baseline updater — Proposal-only
-
-> This section describes `openspec/changes/add-agents-md-bootstrap/**` (not yet in `openspec/specs/**`).
-
-```bash
-node .agents/skills/aksk-bootstrap/scripts/refresh_agents_baseline.mjs
-```
-
-Opt-in updater, never run implicitly:
-
-1. Fetches upstream to a temp file.
-2. Validates response is non-empty and contains expected section anchors.
-3. Swaps only the content between `AKSK:AGENTS-BASELINE` markers in the vendored template, updates the provenance header date, and leaves all other zones in the consumer's `AGENTS.md` byte-identical.
-4. On offline or validation failure, exits non-zero with remediation and leaves the previously vendored baseline intact and usable.
-
-### OpenWiki — middle zone owner — Shipped
-
-The `<!-- OPENWIKI:START -->` / `<!-- OPENWIKI:END -->` block is owned by OpenWiki, not by AKSK. It is the generated catalog that `openwiki --update` or `sync_wiki_indexes.mjs` refreshes. Agents treat it as generated evidence, not durable policy. The block in `AGENTS.md` explicitly notes *Do not hand-edit generated OpenWiki pages unless explicitly asked; prefer updating source code/docs and letting OpenWiki regenerate.*
-
-### Composition order — Proposal-only for the full stack
-
-The supported bootstrap sequence the proposal defines is deterministic:
-
-1. `init_agents_md.mjs` — seeds baseline (or resolves conflict). **Proposal-only.**
-2. OpenWiki attachment — inserts its block below baseline. Shipped mechanism.
-3. `attach_section.mjs` routing, then lifecycle — append below OpenWiki. Shipped mechanism.
-
-Every script is idempotent, so re-running the full sequence after an upstream template refresh only touches the zone whose template changed. Today steps 2–3 are the shipped path; step 1 would become the prefix once the proposal lands.
-
-## Why the behavioral contract lives in root while repo knowledge routes away
-
-The decision *Use the Routing Pattern for agentic tool bootstrap files* states that root router files should stay thin and route to `.agents/` to avoid forking durable guidance. That invariant targets *repo knowledge* — project-specific decisions, troubleshooting, and playbooks that belong under `.agents/` and `openwiki/`.
-
-The proposal argues the FerroxLabs baseline is different: it is a *behavioral operating contract* — how the agent works (no flattery, disagree when wrong, verify before claiming done, surgical diffs, context hygiene). It is not repo knowledge and therefore does not fork it. The routing and lifecycle blocks would still attach below it, so the repo-specific pointers that route to `.agents/AGENTS.md`, `openwiki/index.md`, and `.agents/playbooks/` remain thin and authoritative. Design D5 records this as a scoped amendment to the routing-pattern decision rather than a new contradictory decision: behavioral baseline in root is the exception; durable repo guidance remains routed. This reconciliation is proposal-only until the decision page is amended and the spec is promoted to `openspec/specs/**`.
-
-## Invariants and failure semantics
-
-- **Marker integrity is load-bearing.** Each zone is validated independently. Damaging one zone's markers is reported for that family only; fixing it never rewrites another zone. Shipped for `AKSK:ROUTING`/`AKSK:LIFECYCLE` and `OPENWIKI`; the proposal extends the same treatment to `AKSK:AGENTS-BASELINE` with provenance-URL presence.
-- **Zone isolation.** Refreshing a zone swaps only content between its markers. Other zones remain byte-identical. Shipped for routing/lifecycle via `refresh()`; the proposal extends the guarantee to baseline refresh and combine staging.
-- **No silent overwrite — Proposal-only.** An existing `AGENTS.md` would block seeding until explicitly resolved with `--replace` or `--combine`. The original is recoverable from git in any case, and `--replace` requires the explicit flag that only exists after the conflict message was shown. Today `attach_section.mjs` already upholds a weaker form: it never replaces content outside markers.
-- **LLM combine is staged, not applied — Proposal-only.** The script never modifies the original during combine; the agent produces the merged file and presents the diff to the user before writing, per the upstream install guidance. The `COMBINE.md` brief instructs the LLM to keep markers verbatim and preserve section 10/11 user edits.
-- **Provenance survives seeding — Proposal-only.** Every seeded file carries the header, so drift is visible without network access.
-- **Fail-fast, offline-safe.** Missing-file and unknown-template cases exit 2 with remediation; the proposed offline refresh would exit non-zero without corrupting the vendored baseline; trailing-whitespace normalization prevents false-negative idempotency from formatting-only diffs.
-- **Marker ownership is strict.** Content between `AKSK:*` markers is owned by the writer that created it; hand-editing is corrected by rerunning the owning script. `OPENWIKI:START/END` blocks are never hand-edited.
-
-## Operations and validation
-
-### Shipped verification
-
-Current verification exercises the shipped path:
-
-- `attach_section.mjs` idempotency: attaching the same template twice no-ops; changing the template refreshes only the marked block.
-- Missing target creation: invoking with a non-existent `AGENTS.md` creates a file containing only the requested section.
-- Unknown template: exit 2 with remediation.
-- Lint pass: wiring checks for `AKSK:ROUTING`/`AKSK:LIFECYCLE` remain green.
-
-### Proposed bootstrap verification (tasks 6.1–6.5) — Proposal-only
-
-> The change's verification matrix in `openspec/changes/add-agents-md-bootstrap/tasks.md` maps to spec scenarios in `specs/agents-md-bootstrap/spec.md`; not yet in `openspec/specs/**`.
-
-- **Fresh repo:** temp dir with no `AGENTS.md` → run `init_agents_md.mjs` → file created with marked baseline + header → re-run → no-op → run OpenWiki attach then `attach_section.mjs` → all three zones present, distinct, ordered baseline → OpenWiki → AKSK.
-- **Existing file:** temp dir with custom `AGENTS.md` → run init → exit 2, file untouched → `--replace` → replaced with marked baseline → restore original, `--combine` → staged bundle exists under `.agents/sessions/agents-md-combine/<timestamp>/`, original untouched.
-- **Zone isolation:** modify content outside baseline markers, re-run init → only baseline zone considered → damage one zone's markers → `docs-lint` reports that family.
-- **Lint pass:** `bash scripts/check-agents-structure.sh .agents` and the `docs-lint` skill pass; no regressions in existing `AKSK:ROUTING`/`AKSK:LIFECYCLE` wiring checks.
-
-### Extended wiring checks — Proposal-only extension
-
-`docs-lint` today integrity-checks the shipped families. The proposal extends it to all three:
-
-- `AKSK:AGENTS-BASELINE` — exactly one block, markers intact, provenance header with source URL present. **Proposal-only.**
-- `OPENWIKI:START/END` — presence only, never hand-edited. Shipped.
-- `AKSK:ROUTING` / `AKSK:LIFECYCLE` — exactly one of each, targets named inside exist, stale blocks refreshed via `attach_section.mjs`. Shipped.
-
-A `docs-lint` run that reports a missing or damaged block prints the refresh command for that family; index drift in `openwiki/` is fixed by rerunning `sync_wiki_indexes.mjs`, not by hand-editing.
-
-### Staleness and hygiene
-
-The proposed vendored baseline capture date in the provenance header makes drift observable. A capture older than six months would be surfaced as informational advice, not a blocking failure, so CI does not break on age alone. Byte-compare idempotency normalizes trailing whitespace and newline-at-EOF to avoid churn from formatters like `remark`. This staleness advice is proposal-only; no such date exists in the shipped `references/` templates.
 
 ## Related
 
-- Architecture overview — zone stack from root router to portable prescriptive to curated descriptive.
-- `use-the-routing-pattern-for-agentic-tool-bootstrap-files` — thin-router invariant and its proposed scoped baseline exception.
-- `aksk-bootstrap` skill — contract attachment, managed-section attachment, and peer-tool verification entrypoints.
-- `docs-lint` skill — wiring checks that fail the pass versus content checks that report.
+- Baseline template: `.agents/skills/aksk-bootstrap/references/agents-md-baseline-template.md` — routing templates: `routing-note-template.md`, `lifecycle-template.md`
+- Scripts: `init_agents_md.mjs`, `refresh_agents_baseline.mjs`, `attach_section.mjs`, `bootstrap.mjs` (`SKILL.md` orchestrator)
+- Spec: `openspec/specs/agents-md-bootstrap/spec.md` — archived proposal: `openspec/changes/archive/2026-08-29-add-agents-md-bootstrap/`
+- Decisions: `use-the-routing-pattern-for-agentic-tool-bootstrap-files` — workflows: [Bootstrap and Attachment](../workflows/bootstrap-and-attachment.md), [Validation and Lint](../operations/validation-and-lint.md) — layers: [Knowledge Layer](../architecture/knowledge-layer.md)

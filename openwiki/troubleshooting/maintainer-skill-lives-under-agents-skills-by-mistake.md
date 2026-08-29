@@ -27,7 +27,7 @@ A skill meant only for this repository’s maintenance is present under `.agents
 
 #### Fix
 
-- Add `metadata.internal: true` to the skill’s YAML frontmatter (see [`.agents/skills/generate-example/SKILL.md`](../../.agents/skills/generate-example/SKILL.md) and the repo decision [Maintainer-only skills use `metadata.internal: true`](../decisions/maintainer-skills-mark-internal-in-frontmatter.md)), **or** remove the skill from the paths that ship to consumers per your publishing process.
+- Add `metadata.internal: true` to the skill’s YAML frontmatter (see `.agents/skills/generate-example/SKILL.md`) and the repo decision [Maintainer-only skills use `metadata.internal: true`](../decisions/maintainer-skills-mark-internal-in-frontmatter.md)), **or** remove the skill from the paths that ship to consumers per your publishing process.
 - Keep portable kit skills free of repo-private scripts unless they are clearly part of the shared contract.
 
 #### Validation

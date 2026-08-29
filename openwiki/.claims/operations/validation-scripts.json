@@ -1,0 +1,206 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:2e4e88d390b034468c2f40f88cb4c35f907d3bdced5b47e7fffbc40bfb2be32e",
+  "claims": [
+    {
+      "id": "claim_dee0e43303744c76bfbea9ecfce48094",
+      "statement": "check-agents-structure.sh is a portable validator scoped to a single positional target argument defaulting to .agents and normalized via ${target%/}; nothing outside that directory is inspected.",
+      "evidence": [
+        {
+          "resource": "repo://scripts/check-agents-structure.sh#L10-L13",
+          "version": "repo-lines-v1:sha256:e0a1408a5aed7b3c773ed6201b9141d85110bae83d0b576eef49f879be890b93:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTZlZDM0OGU0M2Y1Y2Y0ZmFiZTBhZDQ0MDE0YTM5YTZhODg5MWI2NzY5N2E2NGM1N2ZkZjFkZWVhODI4MmY1OCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZGViYTNjMGYxMmY4YmU5NWNhYWI1NzM5NjIzMWNiNWNiYzM0MTY2Mzg4ZGY0YzY4ZmU5MWQ0NGE5OGUxNGRhMiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDc4YjRlZjdiYmFiNWFkNDlmNWFkZGFhMDExM2QyMjdjYjI5MmZjNmE4YjViZDJiMWNlNjI1ZmU0N2ZiOTFlZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYWM5YWVmZDk4OGU2MjlhOTM0MzYxZmI0Mjg2ZGM4ZWE0YWEzYzU4OGEwOTM2ZGE3ZjEwNjI1NjBkOWM2YzliOCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_5af5abe22474425fac3fa088d76d2a5e",
+      "statement": "The portable validator asserts a fixed required-files manifest as regular files (-f) including AGENTS.md, .gitignore, playbooks/README.md, sessions/README.md, the four skills (aksk-bootstrap, docs-lint, learning-distill, task-closeout) and the five task-closeout example bundle files under skills/task-closeout/example/task-bundle/.",
+      "evidence": [
+        {
+          "resource": "repo://scripts/check-agents-structure.sh#L60-L86",
+          "version": "repo-lines-v1:sha256:10075897f8900245fd915f97886db6c4871979d02b029525db006ee4138a8852:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUxOTk5OTI1OTkzOWJiMjQ5NDNhN2ZlNjVlYTg5ZTkzYmYyZDkxOWNmODUwNzY5YThhNzJiY2QwOGMyOWQ3NTgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJhMjFjNWIzYmZmMDI5OWMwMTYxNDcwNDY4ZjM1NWU1YjRhZmNmMTdhNWY1OTNhYjY4Mzk0ZWY3YWYzMTljZGMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU5MjE3MTA4ZjMwZDMwZWUwYWZkOTNlMzE2NTI2YTY4MTU4NDU2NmUwZGFlMmUyYjY0ZDdjMjg5NThmNGM3MGQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU5ZjE4NjE5MDMwMjhmNmU4ZjEzODAxN2MxNjY3MGRkNGIyNzQ2NDAwYWEyZTc1MjI2NDNhOGIwNWZkYmFhY2MifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_8c0014a077d644f3b9a25224865178f8",
+      "statement": "Session tracking is git-aware: inside a worktree it compares git ls-files -- target/sessions (sorted) for exact equality against target/sessions/README.md and reports ignored bundles via git status --short --ignored; outside git it warns and skips, and when the sessions directory is absent it passes with a skip message.",
+      "evidence": [
+        {
+          "resource": "repo://scripts/check-agents-structure.sh#L88-L113",
+          "version": "repo-lines-v1:sha256:f15e316d105c3fe9aac2fc10aeb307eba520eead5bb0721d25c7a23fcfe3e158:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU4ZTIzODYzNDhhZjRmZGNjYzYxN2FkNjBkZmQ4MTE5MTY2ZjUwODg3MTFmZDRkNjMzMDViMGY3NDgzZjA0MTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM3NjlkMjM3Y2Q0MjBiOWQzOGI5ODFhMGE0ZjY3NzAxOTBhNGE4M2RjYTFmZTU2YzRmNWJhMWUyY2JjMGVmNzYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE2MmVkYWE1ZWQwMzYwNjg4NDUxODg4NGVmOTViNDA4ZTcxNzMyZTJlNDQyNWQ5NDc5ZDRhOWZhMWJkNzAzY2MiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI3MDFjYjJkZTI5M2QwNGQ1ZTQ4YWZlOGEzMDE5M2NiYzNjMDcxNTk1ZjEzODhjN2IwYjQ1OTNmZjE2MTMyMWMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_0c74e29dc90e49afb56de790095f0652",
+      "statement": "Skill frontmatter validation finds every target/skills/**/SKILL.md sorted and requires line 1 to be --- and the first 12 lines to contain ^name: and ^description: with no YAML parsing; missing SKILL.md files is a blocking failure.",
+      "evidence": [
+        {
+          "resource": "repo://scripts/check-agents-structure.sh#L115-L139",
+          "version": "repo-lines-v1:sha256:ec9527204c91e7716e18a3f36751076f277b91d23efa562c8d469e2d90571d6e:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY1Njg1YjMxNjA0NjI3MWUzOGEzYjYyNDI5ZDQzYjc0NWNhMmUwMWY2ZjkwYjJhNDk1ZmE0ZTZmZmM1ZTgwZjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM3NjlkMjM3Y2Q0MjBiOWQzOGI5ODFhMGE0ZjY3NzAxOTBhNGE4M2RjYTFmZTU2YzRmNWJhMWUyY2JjMGVmNzYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU0OTlmMjIxMDBiODc4NTQ5NTQwZTk4ZmFjMTdlNTRjMzc5ZDliYjY4ODZhZGQ2ODg4ODBlZGRhZDRmYzc1NTQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQ5NTk3OWExMmRjNjU4YjJkYWVmYzI1OTIxOTFkMWEzYTJhYTFiYmQ4MDllNDc0M2UzNzE2M2FiNmE4Y2ZjODcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_2aefcff663b64eac92ef13a5cbaa452e",
+      "statement": "JSON enumeration uses git ls-files -- target filtered to .json when in git else find target with prune on target/sessions/[0-9]*; when jq is present each file is validated with jq empty, when absent validation is skipped with WARN, and an empty file set passes.",
+      "evidence": [
+        {
+          "resource": "repo://scripts/check-agents-structure.sh#L141-L165",
+          "version": "repo-lines-v1:sha256:8b333bb019f46d1050db263dd68b52469b7142da021da361fa4dd31358c717ba:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc0M2Q2YzQ3OGRlYzBkZTVkZjExNmZkOGZlMjJiMjQ0YzI2Yzk2NjFkYWFjNWFkNGY2M2MxOGExYjBiZGQyOGEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM3NjlkMjM3Y2Q0MjBiOWQzOGI5ODFhMGE0ZjY3NzAxOTBhNGE4M2RjYTFmZTU2YzRmNWJhMWUyY2JjMGVmNzYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk1MGM4ZTM4OTUyNjg3MDM1MWM0OTk1MWE3ODAxZDg4OTRiZjUwMjY3ZDc4NGFlZDJiY2QxZDRlZmZmNDNkMzciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImEwODg5ZGYxMzI1YmNlZTUxYTc3MTg4YjNjM2U1YjhhOTg2NGRmZmEzMjkyZThjNDk3YTMzNzE1ZDAwZjllNGQifQ"
+        },
+        {
+          "resource": "repo://scripts/check-agents-structure.sh#L43-L48",
+          "version": "repo-lines-v1:sha256:579ef5c59861f92733ba4121b2ac09033d791bee23944432c60c5f1c01d8eb40:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOWJmZGQxODM0MDVlMGFjMmI5NTU3ODQ4NjE5YWNiMWZmYzBiN2Y2Njc3MTU2NzQ4YWJkNDA2YjJlMzc3M2ZjMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzVmYzkwZmY4YTQ0MTRjNTQ0MWQwZjY3N2M1Y2JmZGEzOGI0NzRlNTFiZmQ1NTlhNTU1OWRlMGY4NzcwNTUyNCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiM2M1YTZhYjlmZTQ3MDgyMTU4ZGUwNmQ4NTE1YThmYTBmMTM4MGQzNmFjNjA3YTExODEyNTM2OWMyZjcxNmFhOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOGQ0YTcwMmFlOGI2ZTFmYWUxNGM3NGQ3MWViYTQzZjllYjY2NzE4YTE3NjJmNjE1M2FkNjE4MWJlNWZkM2JiOCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_c3f312dce8fa4b999057a23294b26c5d",
+      "statement": "check-publish.sh determines ROOT_DIR via git rev-parse --show-toplevel falling back to pwd, cds there, and delegates structure to check-agents-structure.sh on root .agents only; it never validates example/.agents because example is retired.",
+      "evidence": [
+        {
+          "resource": "repo://scripts/check-publish.sh#L15-L17",
+          "version": "repo-lines-v1:sha256:209a9061d7443869977a9db2c50c06e2ef99449d96fe68a9ff339dd356e8ff6a:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDBhZjQwZjMxZTU0MjA3YmViYzhkMGQyNmJmYTY2NTRhZDRmZWU5NTk5NGVhZDJlYWFlODM0NmM1MjQ3YmE1NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDc4YjRlZjdiYmFiNWFkNDlmNWFkZGFhMDExM2QyMjdjYjI5MmZjNmE4YjViZDJiMWNlNjI1ZmU0N2ZiOTFlZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzlmNGFjNzgxYmFkNjRiMTNiMjcwYmRhZTQ5NjVjZTUzZmM5OTU4NzdlODRkYTg4NjhmNTk4MWEwYWQ5YmQxYiJ9"
+        },
+        {
+          "resource": "repo://scripts/check-publish.sh#L71-L86",
+          "version": "repo-lines-v1:sha256:26a384b1f245ce7a7d1f7e12a4e26c5a11e1b141fcc5ebb5e63e9f3e5360e1a2:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg3YjlmM2JmZDY1OGZkMGViYmIyNzIxZGY2MWRmYTBhODllMTMxZjcwMzk2YmUxMTllOGZkNzNkNGM3YTgyODEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZkNzJiZDkxNDQwMzA4ZTgzYjg1ZWE0MmRiMTEyYjNkNThkY2IyZjg1NGZhYTBjNDIwOGYyZDkwZWY5YjVmZGUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImRhMWEwMDk1MjI5ZGI3OGRlZjQ5ZmFiMzlkMjNjYmFkMDJhN2Q3ZjkwY2Q4MWQ1YzA2OTdiNjUxNmU5YjUzMWMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_2cfb6a2228b3493c8a910d5047e987f5",
+      "statement": "The Markdown Formatting section probes remark via timeout 60s using either a local remark binary or npx --no-install remark --frail with .remarkrc.json configuring remark-frontmatter and remark-gfm and style settings; violations fail the check and unavailable npx/remark degrades to WARN skip.",
+      "evidence": [
+        {
+          "resource": "repo://.remarkrc.json",
+          "version": "repo-file-v1:sha256:9092eda4ced23098771881d4af0033319cba9ae2b78012129fcbf09177f43fec"
+        },
+        {
+          "resource": "repo://scripts/check-publish.sh#L87-L107",
+          "version": "repo-lines-v1:sha256:225cf1c18a0e3bae6fb2bb3091ebc5f7bb0f19fd15d4a180e9bd9591a07f30c0:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE1OGIyNjI0NWNkMWQxY2QwNDJiZmY0MjIwMWZjN2ViZDFiY2E5NDIzYzZhMjg2NTU2MjY0ZDBkNDI2NjQxY2UiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM3NjlkMjM3Y2Q0MjBiOWQzOGI5ODFhMGE0ZjY3NzAxOTBhNGE4M2RjYTFmZTU2YzRmNWJhMWUyY2JjMGVmNzYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzOTZiNjI5NTQxZmQxYmU4ODAyNDUzNTVlY2I1ZGMyYzMyOGRjMjhhNjUyNzZjZGZjZThiZDViZWI2NmNiZTAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImZkNjNjOTc4YWM0NWZmMTkxYzZkNTU1MzMwYTUxOTJjMDkyYzBkODZmM2I0MjEzODVlMTYzOThjZDhlNjRlMzIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e37ec29379dc47da9da4c963051de869",
+      "statement": "The Markdown Links section probes npx --no-install markdown-link-check --alive 200,0 per tracked *.md file bounded by timeout 30s per file, failing if any file fails and warning plus skipping when npx or the package is unavailable; --alive 200,0 tolerates offline status 0 for external URLs.",
+      "evidence": [
+        {
+          "resource": "repo://scripts/check-publish.sh#L109-L131",
+          "version": "repo-lines-v1:sha256:26aac05233efd90e2d58a693832e361dc6ba4ae4d8358a12a912620c383269e4:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjlkNjY2ZmRiNDQ5YjZhMTc4YThlMjViZjEwZTZiZWE1N2JhZDg5MDM5ZTEwNDU2NGU0MzRlYzYwMWQwMTgyOWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM3NjlkMjM3Y2Q0MjBiOWQzOGI5ODFhMGE0ZjY3NzAxOTBhNGE4M2RjYTFmZTU2YzRmNWJhMWUyY2JjMGVmNzYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQ1NmRkMTE5MTAxMjUwOGJjNzEyNTg4ZTBiZmQ1NzgzMGYyNzdkMDYyMWM0MTYzNWUzMmJkYzJlMmU2MmIwNDEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFjMTA3ZDJlNjFlZjhmZmQ2NjE2YTE4Nzc5NjQ3MmE3ZGM1YWQ3NzIwMGJiNzNlZTAwNjY2ZTNjZWIxMDZmYmIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_92f339f02f744af283c56d7a5cb39286",
+      "statement": "Published Files List is informational output from find .agents -maxdepth 4 -type f sorted, intended for reviewer verification of the distributable surface.",
+      "evidence": [
+        {
+          "resource": "repo://scripts/check-publish.sh#L133-L135",
+          "version": "repo-lines-v1:sha256:8bd5190eb02e71d985038198549ef6bd66b09b00ba128d250d62a27428eab32e:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTllYzE0ODcyY2QwYTVmNzY2NzA4ZWY5MThhMmE4YjBhZmQyNzkwM2M2NmYyMjNiNDEzYjFkNzc1N2ZjNmNlZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZWIwM2ZiMzBmYjZjYzE1YWEyYjIwMDhmODI0Mzk3NDAzYTU3MjE5OTRhZGYzOWQ0ZGVkODljOTFmODJhMmQwOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiM2Y0ZWVkYWQ2ZGY2YzRhY2Q4ZDQ2MjEwMjkwMjMwZDIyMTM5ZGUwZGViMDJiODFhZDkyYzMwYWNkYjA3MDdmOSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_4f7c5bd2376b43fb944803f377eef211",
+      "statement": "Publish Leakage Scans run rg -n --hidden --glob '!*sessions/[0-9]*' with high-signal secret and local-path patterns (Bearer, sk-, ghp_, github_pat_, AWS_ACCESS_KEY_ID, PRIVATE KEY, /home/, C:\\Users\\) over README.md INSTALL.md docs .agents and produce WARN on hits never hard FAIL.",
+      "evidence": [
+        {
+          "resource": "repo://scripts/check-publish.sh#L136-L144",
+          "version": "repo-lines-v1:sha256:0ee2b2742f782be4ec5cca0b3471b92061eb36c34002bb61879b49e0e94457f7:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNWQ5NDcyNGI1YmIzMDA1YTljNjYwYTFlNzM5NzQ5ZWUzOGQ3MDQyMzViNjUyMTJhYjRlNWQ0M2IxYWY3OWU4MyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzc2OWQyMzdjZDQyMGI5ZDM4Yjk4MWEwYTRmNjc3MDE5MGE0YTgzZGNhMWZlNTZjNGY1YmExZTJjYmMwZWY3NiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOGJkNTE5MGViMDJlNzFkOTg1MDM4MTk4NTQ5ZWY2YmQ2NmIwOWIwMGJhMTI4ZDI1MGQ2MmEyNzQyOGVhYjMyZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiN2RhYzkwNDg4ZjQyMmVmMmFjNjQyOTFiN2Q4NmMxZWRhZWNiODdiMjI3MjY1NWZmMGY5YmI5ZTc1YTU2Zjc2NCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_0a226f7b5fc2495287f788f2ba4f2040",
+      "statement": "Knowledge path hygiene runs rg -n --hidden --glob '!*sessions/[0-9]*' for the pattern \\.agents/\\.agents/ over README.md INSTALL.md docs .agents and hard-fails when hits are found, indicating a doubled prefix from a bad global replace.",
+      "evidence": [
+        {
+          "resource": "repo://scripts/check-publish.sh#L146-L158",
+          "version": "repo-lines-v1:sha256:ac8b01527cbe53ccd245fd7f5ae688be190b893c653c72180928dd273b819e57:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE0ZDVlZjg1NzJjYzlmNWMzNjIwYjhjMDczMjMxNjlhODU3ZDJiMjRlNDY0NjdmNTNmNTMxZTc3NDkwZTUyNjciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM3NjlkMjM3Y2Q0MjBiOWQzOGI5ODFhMGE0ZjY3NzAxOTBhNGE4M2RjYTFmZTU2YzRmNWJhMWUyY2JjMGVmNzYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU5MmNhZGQ2M2VkYTA0Y2UzZmQ2OTY2NDBhNWU1YWFmYmFhYTI4ZmViYWY3YjgxOWRhNTI1NmUyYmVkMDU2YTQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImEwODg5ZGYxMzI1YmNlZTUxYTc3MTg4YjNjM2U1YjhhOTg2NGRmZmEzMjkyZThjNDk3YTMzNzE1ZDAwZjllNGQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_45f9eb7904d2459f8e194b6a30fb3694",
+      "statement": "Every npx probe uses npx --no-install plus an optional timeout wrapper: timeout_cmd delegates to timeout when available and npx_package_available gates with timeout 15s; no validator installs tools and missing jq, rg, npx, or remark degrades to WARN rather than false pass or fail.",
+      "evidence": [
+        {
+          "resource": "repo://scripts/check-agents-structure.sh#L142-L144",
+          "version": "repo-lines-v1:sha256:2c92be5bc3ffea50c9560266b43c7db2ec12c680ebba8ca37b2faba6795b6cbb:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzEwYTdmYmYyZTg2MWE0NmUyMWJiNzU3Y2JmNTVhM2ZlODU3NmFlMzI2ZDUxNmVjMjlhNGNlNGYxY2YxZTk0MyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODVlZjRhNzAzNjZkNTgyYzAwZDJlNjQ5NTgxOTAwODAyZTY3MTg2NWNhZmVmZTdhYTU5YmQxMTM3NmQ3NTU0OCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYTA3MTlmZjRhZDJlMDEwMTc2ODg4NTExNzlhOTgzMWM2MDk5MjJjZDk1OGU0MTYzMjJkNDlkNzRlZTc4MjhiZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjVhYzYwNGExZjUzNDI3OTVjN2I2N2E2MTA1OGE5NWVhNGI0OWU3MjZlZjFhM2UzNzc0MmRmNDljZjhhYzU3NyJ9"
+        },
+        {
+          "resource": "repo://scripts/check-publish.sh#L39-L56",
+          "version": "repo-lines-v1:sha256:359147897697502f6e8a7e86ea3aa4f8a0b537468c3165dde2ebfaca8d6cf89f:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk0MDYwNjM5OTc0NWI1NTZjNjA1OWNhZDkxMTM5YTM3M2I1NWNjOWMxNTE0ZDhiZWUwYTIwMjc5MTU0NGYxYjIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA4ZDdiOWY3ZmQxZDkzMTU2ZmUzNjUzMWI5NDA5N2NmZjhmMDNkNzExNTQzMzlkNDYwODExZjRjOWNiOGUyYjgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI3NjI1ODIyMzc5NjM0ZGMzMDEwOGI4ODcxYmNhZDFmODU4NjcyZTUwNDI5Zjc0MmNlZjIwMzRiNmRmOGJhNTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d846c3f6499d4a399a0c7a47e64d95f3",
+      "statement": "Both scripts maintain failures and warnings counters via fail/warn/pass helpers, print Failures and Warnings in the summary, and exit 0 only when failures == 0; warnings never block publishing but require manual review.",
+      "evidence": [
+        {
+          "resource": "repo://scripts/check-agents-structure.sh#L167-L177",
+          "version": "repo-lines-v1:sha256:192f22a31b06449004abbc6765df8e27a4ee187b7fe5e0ff42cf0dd014239520:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVjZTY5Y2MyMDc5MDI5Njk4MzU3MGI1NGJiNjM1YzkzMzZhMTcwOTk3ZmY4ZmQ1YWZmMWU2OTkwYzE3ZjhiYTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBjNjg2OGMyYzQ0ZjA1MzYxOWNlZjFjYzM4M2UxZDUzMDc0M2I1NzRjYTE5MmFjZTkxNjhhOWNjZjQ2YTg2ZTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQxM2JhOWZiMzg0Yjg4NDFjNmU1OTAzZGExYThmMmY3OGYwOWVhZjczNDNjMDU3NmFmMzE1N2Y1MTg2MDlhZmMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://scripts/check-agents-structure.sh#L20-L33",
+          "version": "repo-lines-v1:sha256:1ae0bc654387c36a2938b78f33aed095d3202fd998781a4515cbf4e31256352e:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM2YTFmY2Q1NGUyYzlhMzlkNDIzMTg3M2I0MWI5NTYxZGY4YzQ4NDJhMTlhNDlkMWU4MWM3Y2I5YWZhM2Y4MmEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNlNTRkOTQ2NDVmYmZkM2U5ZDYxYzMwNjU1OTJlMzM3ZWJkNmMxN2YxNDIxN2ZjODliNGFlZWI5YzlkNTIxZmYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdhMDY2NzRmMzg3YWEzNDg5YjYwOThiZDhmNzI1ZDdjNDc3ODMxMjA1ZjQ4NTc4MDRkYzE5OTM1MTkzM2NkNGMifQ"
+        },
+        {
+          "resource": "repo://scripts/check-publish.sh#L160-L170",
+          "version": "repo-lines-v1:sha256:1668ac5b8ad8cfeb4ea4791938db89976e585abea50343144ca711d474302d27:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVjZTY5Y2MyMDc5MDI5Njk4MzU3MGI1NGJiNjM1YzkzMzZhMTcwOTk3ZmY4ZmQ1YWZmMWU2OTkwYzE3ZjhiYTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBjNjg2OGMyYzQ0ZjA1MzYxOWNlZjFjYzM4M2UxZDUzMDc0M2I1NzRjYTE5MmFjZTkxNjhhOWNjZjQ2YTg2ZTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQxM2JhOWZiMzg0Yjg4NDFjNmU1OTAzZGExYThmMmY3OGYwOWVhZjczNDNjMDU3NmFmMzE1N2Y1MTg2MDlhZmMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_cd4b1e2d25f14e6e83c00e6cf9a9163c",
+      "statement": "The repository SHALL NOT contain an example/ directory or the maintainer-only generate-example skill/playbook and docs/scripts SHALL NOT reference example as an install path or validation target; bootstrap/ templates are the source of truth per the install-lanes spec.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/specs/install-lanes/spec.md#L22-L31",
+          "version": "repo-lines-v1:sha256:a0f7f7363fd10e8cd8f4f3502cb352d664eb8460e433e4c327ae53b635774020:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJjMzZlZTAxNmU5Njk5ZmIxNzRmNDU2MzAxMDNhN2EwNzBkYzU5MGFhNGE4ZjgzOTlmZmMzZjlkMGI0MzZiYjkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgzZTRlMzk0ODFmMzU0OWJhZWViMjM5ZWNiYzgwNGNjYzZiMTlkNDJlZjc3ZGRkMDI1NTVmMDM1NzY3NjU1OTciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImIzZDVhM2M5ZjljNjQ5NTE5ZDIwODFhOTI2ZjVlYmIxYTU4YzhkZDg0NjViYzVjM2QwOWQ0M2VkOTQyMGJlY2QiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://scripts/check-publish.sh#L84-L86",
+          "version": "repo-lines-v1:sha256:e396b629541fd1be880245355ecb5dc2c328dc28a65276cdfce8bd5beb66cbe0:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzIxM2NjMGQ0NTRmMDA3MWE0NTI4ODFkYzY1M2RmNTQ5OGU0YTcyZjYzYzdmNTQ2YTgyYzc4OTUwMzEwMmJjZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODQ2NWYwNDczN2NlZjQ4NmQ4Y2RiY2QzOTMzOWRjNzZhZGFhNWY4YzcxNjVjYmRhY2M3ODA1NjRjNGViODIyOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZGExYTAwOTUyMjlkYjc4ZGVmNDlmYWIzOWQyM2NiYWQwMmE3ZDdmOTBjZDgxZDVjMDY5N2I2NTE2ZTliNTMxYyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_95cdf6f2239b4e64992bd5aae9c3f94a",
+      "statement": "package.json wires scripts.check to bash scripts/check-publish.sh and scripts.format to remark over .agents, devDependencies supply remark-cli plus remark-frontmatter/remark-gfm and markdown-link-check probed via npx --no-install, while jq and rg are system CLIs not npm dependencies; .remarkrc.json configures bullet, rule, emphasis and the two remark plugins.",
+      "evidence": [
+        {
+          "resource": "repo://.remarkrc.json#L1-L11",
+          "version": "repo-lines-v1:sha256:9092eda4ced23098771881d4af0033319cba9ae2b78012129fcbf09177f43fec:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE2ZmIwOGZkYTFhY2I5NTdiNjExNmJkMzc4MTFhMWZlNDFhMDE2MTFjMDYzMWVkYmY3ODZkNjg4OWEyN2E1NWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQxMGIzNmFhNzRhNTliY2Y0YTg4MTg1ODM3ZjY1OGFmYWYzNjQ2ZWZmMmJiMTZjMzkyOGQwZTkzMzVlOTQ1ZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://package.json#L24-L37",
+          "version": "repo-lines-v1:sha256:78fbfe2004d7bbb3f1a33529adb0a3626879f6630ebd7a8db265d7d15dc1927c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM0ODMzZDU5NDljMDNhNDBjYTk1MjQ5MTYxMGE2NjU5NjQ0YjNhYTQ2NjM2MmY3OTkwMjBkYmYxOTgxNTQ3ZGIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRkNWNkMmZiNGYzZGY4ODQ1MTUyNTViMzk1MjNmMmY4YjU0NzJiZWVhOWY1NjZmZmNhMjA0ZGI4MDI1NjEwNDEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY3YjgyYmQ1Mzk3Y2RmMzdjMGQ4MmY4YTg3MGRhZWFmZmEwZmZmM2M2ODJjZGI0YTUwNGI1MzczMzIwZjk5Y2UiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoyLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjVjYzYxOGNjNWI1M2IwYzM1YTllYmI4NzQ3ZjRlYTJjMDRkODY5NGU1MzFlNDQ0Y2JmZjRmMjdkMjdjZWNkMTMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_fe06bb62bef047a9809c457db6761299",
+      "statement": "The .gitignore contract enforced by session tracking is sessions/* with negated !sessions/README.md, ensuring only sessions/README.md is tracked while numeric session bundles under sessions/[0-9]* remain ignored local evidence.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/.gitignore",
+          "version": "repo-file-v1:sha256:9d3e8002bee34dc78f45dbda50b0668070123c114e1bf70f2f902a61fa049353"
+        },
+        {
+          "resource": "repo://.agents/playbooks/pre-publish.md#L5-L12",
+          "version": "repo-lines-v1:sha256:045adfa10a1b5169879142e9140f08f1075bef0b1124051895aa035d4e5c6492:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTkzNWRhNjRmZGI1OWZjOWJmOGE4NDZmYjdmMjJjMTQxNTZlOGFiZDc4NDIxMjQxNDk4NjljNTEzNWU3NTU0ZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZGEyMzE4MThiZjgzOTE5OTg2MDE3YmIzNTZkMjgwMGU0YzFiYWJkMzQwNDc4NTU5OTE5ZjFiOTk1MGRmNDVjMiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMmFkY2JlZjQwMjlhYWMyZjQyYTQwOWQ1MmIwZDM5NGE2YzRmYWUyNzhhNzJkOWVlNjAyNDY4NmYwNzc3ZTE4OCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzFkOTgwZjZhM2RjMjUwNDE5YzQzMjk4ZTdiZDQyZmM0MmM5MjA4MTRiN2Y3YjIwN2ExZTA0MGIyNTY0YmNhYiJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.4.3",
+    "at": "2026-08-29T20:18:58.499Z"
+  }
+}

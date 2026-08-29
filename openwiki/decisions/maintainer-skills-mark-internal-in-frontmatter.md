@@ -9,8 +9,8 @@ tags:
 - skills
 - maintenance
 - release
-timestamp: '2026-04-19T00:00:00Z'
 aksk_status: accepted
+generated: { by: "openwiki/0.4.3", at: "2026-08-29T20:18:58.499Z" }
 ---
 
 # Maintainer-only skills use `metadata.internal: true`
@@ -29,5 +29,6 @@ The Skills format supports marking a skill as internal so default consumer insta
 
 ### Consequences
 
+<!-- openwiki: broken internal link [../../.agents/skills/generate-example/SKILL.md] file "../../.agents/skills/generate-example/SKILL.md" does not exist. Fix the href or restore the target, then delete this comment. -->
 - Any skill that must not ship as part of the default portable contract sets **`metadata.internal: true`** in YAML frontmatter. In this repo, [`.agents/skills/generate-example/SKILL.md`](../../.agents/skills/generate-example/SKILL.md) is the reference pattern.
 - Before merging a new skill, decide whether the audience is every adopter or this repository only, and set frontmatter accordingly.

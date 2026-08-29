@@ -43,6 +43,17 @@ This file contains concise, high-signal instructions for future agents working i
 - Keep temporary task artifacts in `.agents/sessions/`, not in durable knowledge files.
 - Do not hand-edit OpenWiki-owned files (`openwiki/index.md`, run metadata); index refresh happens via the kit's sync script during distillation.
 
+## Self-improvement loop
+
+This repository uses the AKSK knowledge loop for durable learning:
+
+1. **Analyze** — was a rule missing from `.agents/AGENTS.md` or ignored?
+2. **Closeout** — bundle the session under `.agents/sessions/` per `task-closeout`.
+3. **Distill** — promote stable lessons: decisions/troubleshooting to `openwiki/`, behavior rules to `.agents/AGENTS.md` or playbooks.
+4. **Prune** — remove guidance that no longer prevents mistakes.
+
+See `.agents/AGENTS.md` for the full loop and `openwiki/` for curated decisions.
+
 ## Placeholder sections
 
 ### Build and test

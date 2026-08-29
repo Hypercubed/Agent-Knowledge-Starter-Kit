@@ -1,154 +1,134 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:d95d58942e3438306d322419ccb2705fb6dd2320a09d39b2fb45e0d6d9853c37",
+  "pageVersion": "sha256:4a85912f8f4e04a836a05f227891ecf675904dc0b8c3fb2e6fcc44882b23fe73",
   "claims": [
-    {
-      "id": "claim_9202c19b423149d3bb8419fcc9531364",
-      "statement": "Per the proposal in openspec/changes/add-agents-md-bootstrap/** (not yet in openspec/specs/**), a fully bootstrapped root AGENTS.md would be a zoned file with three marker-delimited families ordered baseline → OpenWiki → AKSK: FerroxLabs behavioral baseline inside AKSK:AGENTS-BASELINE, OpenWiki inside OPENWIKI:START/END, and AKSK routing (AKSK:ROUTING) plus lifecycle (AKSK:LIFECYCLE), each with exactly one block and strict marker ownership; shipped state contains only the OpenWiki and AKSK families in that relative order.",
-      "evidence": [
-        {
-          "resource": "repo://AGENTS.md#L121-L160",
-          "version": "repo-lines-v1:sha256:28d0f89cf59ce65f86a4565bbbf38e17d87fe2ee988bc2592a36da01d2b83285:eyJzZWxlY3RlZExpbmVDb3VudCI6NDAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVmMTgwZjljMTI2OTAzYmNjMzMxYWE5NTQ1NmU0OTQ0NGE3ZDRkMDExZThhMmE4M2Y1ZGM4NzAyMzkxODEyZDAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY1MmQ3MTExMDNkNTBhNDM3ODMwYzZmYmNkMDRmYjRiYWI0OWEwZjgyZjZkMjZkMWM3OTFjNmU4NDg4ZGQwOTAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAwMWYyZWMxNzU5M2MxMDU0ZWI0NjM2N2Q4NDUzZWYyNGExNzNjZTk2YjcxMTdkOTFmOWE2OGQ0NGZlZjhiMDEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
-        },
-        {
-          "resource": "repo://openspec/changes/add-agents-md-bootstrap/design.md#L69-L80",
-          "version": "repo-lines-v1:sha256:1df1fc1c91a29b66c239a976a7fc3c37cf48249e59be1bf02d448ff0b6500c88:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRjMTk5YjdlZDIyN2ZiOGMxNDg0ZDU5OWU1MDQ5M2YxNjZiMTFiYzlhYWQ3NDgwYmVmNjI5ZmIzZTExNGRlYTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFjNWIxNTAyYTIwMjM1OTYzMTQ4OTExNGU5MmM0NDkxYTcwMTgyOTVkYWUzNzQ0OGFhNzA2N2IyYTQ2NDIwOGIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM3ZTQzMDEyNjg0MjQyMjY5MDExNTNhOGZjMjU3ZjczYTkzZTNjMzA4OGU1MmY4OGFjMTdiZjlkYWFiMWFlNGYifQ"
-        },
-        {
-          "resource": "repo://openspec/changes/add-agents-md-bootstrap/specs/agents-md-bootstrap/spec.md#L21-L34",
-          "version": "repo-lines-v1:sha256:98d0c61302cb750e315639d2c9abff8e9b3484151cc9b6736a66ae80f4d9a163:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZiNTk2MTgwY2ExMGMxNTZlMTQyM2Q1NDRmZGNlZjA4ZGNkNDYyMTJlMmI4OGY2ZTMyYWE5Yjk0OWE3N2VmYjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjMyNmJjNjAxZmE3N2RjZjE2MTU1MmZhZjI3NjA1YmU2ZGQ0YWNlZmViYTMyMTliZjhjZmY4MmM5YmVkMzI5NGEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImVmMTBiYjVmYzk2NWI2MWY2NTE3NTQwOTZiM2Y1YmRmOGYxYTM0OTIzZWRkNDE2MDc5YTQxZTc3YjU5MDYwZGYifQ"
-        }
-      ]
-    },
-    {
-      "id": "claim_d5599b1846b348148b9686ef7b4db499",
-      "statement": "The proposal vendors the FerroxLabs baseline offline at .agents/skills/aksk-bootstrap/references/agents-md-baseline-template.md with its body wrapped in AKSK:AGENTS-BASELINE markers and a provenance header inside the block containing upstream source URL, capture date, MIT license notice, and refresh pointer; seeding would copy the vendored block verbatim with no network access — in the current repository this template file does not yet exist (proposal-only, not yet in openspec/specs/**).",
-      "evidence": [
-        {
-          "resource": "repo://openspec/changes/add-agents-md-bootstrap/design.md#L35-L36",
-          "version": "repo-lines-v1:sha256:853366fa55b437a3a7f23ae47a5f74fd62f3ba40aa8a3105bb208be6f7db7866:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzUxMDAyZTA3ODcxMjE1Yjc1YTc0YjczOTI3NWM0MDY2ZGUxODI2OTA5MTU3NDNmMTRmOGE5MWE0M2YxMGE4OSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNTQ4MGFiOTRjODEwY2Y5OWM5YzE4NGYzODBlYWVmNjY1NWM0ZjE1YWFmNzk0MDgzY2ZlOGNiZmMyZTYzYjc3NCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYmRmMTcwZmViNWVjM2U0M2Q0MmE2OTU3NTdjOTJkOGExZjQ0MTE5NjQxZjAxZWIxMTkyZjMyNzk2Y2FlNGYxMyJ9"
-        },
-        {
-          "resource": "repo://openspec/changes/add-agents-md-bootstrap/proposal.md#L9-L10",
-          "version": "repo-lines-v1:sha256:82c9cbad57730fc8938840879d527bd1693907b898387072efa4275cf9c156f2:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiM2RlODkyNTI3NWRiZTQ1YjkyMzgyYzIzMDE0MWVkNTI1OWJjYWFmYWU1NWIwOTBmMjE2YTgyYWE4MDU1OWVkNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNGQzM2E1OTc3M2Q5MzM3NWQ2OTExYzE1YTJlNDhmYjRiNTFmOGViMTY3ZTRmZmVhN2NlMzZiYmQxZDA5ODcwNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNWJmZmVmMjRkZWIwNzUzMjU0YzIyZjUxYTkwODg2ZGNiNDcyNDdiZTg1MmI5ZDAyZjMwNmJlOWFmZjlkODVkNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjNhOTU4ZTMwYWMxZTFhNDY3ZWJhODgyMTYyZGVjOTRkMDRhZGFjODM4ZGNmZjZmZGE0MzA2ODE0ZTg1ZGI0NyJ9"
-        },
-        {
-          "resource": "repo://openspec/changes/add-agents-md-bootstrap/tasks.md#L3-L4",
-          "version": "repo-lines-v1:sha256:ef6baac48afbd36d4231dac65dc177b6d7f1d272e115b8dbbe9bc8da70eeffc6:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzg0ZTZiODc0MjcyYWZjZjQ5NTczMzdlMGI2ZGM4ODJkZjA0NmIyYzlhYWE3MWZlMzM0YjBkZWFkMDEzMjE4YyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZWU1MGM4ODU2ODFiYzFiN2JhZWQ5ZDc0MjhhMjAyMTI1YjBhNDAxNDg5MzUxYWJiM2ZjYjg3NWI5OTliZDdmMSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjIsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZmZkMDU2OTExZGI4ZjJlYjRlOTM2MTEzOWMxNDY5MjI0ZmUyMzI4MmZmODI1ZTc2OGE2NzJkMGJkZWQyZTRhMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDM5YWVmYTU4YWQ4NDYxYzZjYWRlODIyMjhlNDMwYmMxZDZlYzQ2Y2Y1ZWY3M2ZlMjg2MGExZmY0NzYzMmE1NiJ9"
-        }
-      ]
-    },
-    {
-      "id": "claim_ff8b02eaa522455b8555d595c2cca013",
-      "statement": "Proposed init_agents_md.mjs (not yet in repo, defined in openspec/changes/add-agents-md-bootstrap/**, not yet in openspec/specs/**) would own the baseline zone: it creates a missing AGENTS.md from the vendored template, is idempotent via trailing-whitespace-normalized compare (no-op when marked section matches), and on conflict with an existing non-matching file exits 2 without writes printing the replace-vs-combine question; --replace overwrites with the marked baseline including header and --combine stages existing content, baseline, and a COMBINE.md brief under .agents/sessions/agents-md-combine/<timestamp>/, never modifying the original itself.",
-      "evidence": [
-        {
-          "resource": "repo://openspec/changes/add-agents-md-bootstrap/design.md#L41-L53",
-          "version": "repo-lines-v1:sha256:bfb631e4d602a3b795e7b64abf5ada0050a472744db4f3fa80e6e7be02275f70:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY0NjQzNDQwMzUzZGVhMmQ1ZjJmMTc4ZTBjM2JjMTIyZDViZjY0NDdmMjJjNTA5MmJhYWY3MmFmZTc1NzRkZGMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ3YzA2YzU2MWQ1YzMyNzM0MzY4NTI2OGE0NmIzMzkxZjM5OThlZWU4OTBkMmJlNTFmMGQyMWNjNGE1M2FlNmQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZlYmIyNmM4NzllNGY2YzJiMThhOWE0MjdmM2MxN2NmZDdlYzE3ZDMzNTE2OWE3MTRkYzEwZDE1YjNhMGZmMjIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImZkZjE4NGU0MzQ3MTNmN2ZiYmRjMjJjNjg1Yzc3NjE4MzBhZDY2NTJlMzYyNzJlZmZkMzc5M2ZjYjVmYmMwMGEifQ"
-        },
-        {
-          "resource": "repo://openspec/changes/add-agents-md-bootstrap/specs/agents-md-bootstrap/spec.md#L35-L53",
-          "version": "repo-lines-v1:sha256:562f284d74acbff7723c95c4f21c05bc671e911de2d1c0ed5b17d66171894455:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIzNjkwOWY4ZmRkNDYzZjhjZmJjNTEyYjFkNjUyOTVhNjI1ZGQ0Nzg3NjQ0ZGQzZTBmOTdlZGRmODQwMDYyZTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZmMTk0NDk2NzEyZmYwNDI0OWNjNDQzNWY5ZjFkNTI5OTAzMDMwOTgyZGU3ZTZhMDMyOTJjMTEyYjU5OTFmNGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAzYTA1NDY3YzE3MjEzMDk1MWVhNGI3NDEwZjQ0ZWY2Mjg2NWZlZDMzZjI4NTQ2ZjE3ODc3YWNjYzVhODkxYTIifQ"
-        },
-        {
-          "resource": "repo://openspec/changes/add-agents-md-bootstrap/tasks.md#L8-L13",
-          "version": "repo-lines-v1:sha256:f670a3d5ed72ffad104a208e5624f3f6ddb0e7699bd0a42c0d9c1c47685a73f1:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMWJiMDhhNDM3ZDYyMzg5ZGEyODZhZTRjOGQwZDEyYjYzZmU2ZmUwNWY4YzY1MDcxMjJiM2NmOTQ3ZTU3YjZiZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDM5YWVmYTU4YWQ4NDYxYzZjYWRlODIyMjhlNDMwYmMxZDZlYzQ2Y2Y1ZWY3M2ZlMjg2MGExZmY0NzYzMmE1NiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOGY5ZWZiZTJjNmJkMzE3YzkyNTJjYjdhZDM5MzZjN2NiM2ZlZmZhZmU4N2VjMDkyYjliNThkOGRiNjZiOGNkMSJ9"
-        }
-      ]
-    },
     {
       "id": "claim_aeaec157b10041778c72aa7f1df72ed0",
       "statement": "attach_section.mjs owns the AKSK ROUTING and LIFECYCLE zones via a single N-template mechanism: markers are parsed at runtime from the template file (markersOf reading AKSK:* BEGIN/END), existing content outside markers is never replaced or removed, reruns are idempotent (no-op when section matches or in-place refresh of only that marked block), missing target file is created containing only the attached section, and unknown template name exits 2.",
       "evidence": [
         {
-          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md#L36-L55",
-          "version": "repo-lines-v1:sha256:df2d79476f2ef1fb9842cb5c65eecacf9e244daaf8cacc91b57b5c1e1f81238f:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJhOWI2NGI2YjVjMzUwMWIwZGY4ZDI5ZWMwZTA4OTU4Yzk3MjkzOTZlYjljZTcxNjIwY2UwMTQ2NDRjMjgyZjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQ4OWRjMjNkNDllZmI1NTEzMzg0Y2I4NDlmMjJlMDBlNTM5OWMyNDJlMmEzZDcxMmM3OTdiODA5N2ZkY2YyNzkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjgxYmE2YWIzNzI3YTBmZDFiOWQxZTg0NDgzNzg3MjM0M2YxYjk0MzA1OTkxMjdjMzJiNDliZmJjNGNlYWE1NTAifQ"
+          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
+          "version": "repo-file-v1:sha256:d1ff10af0b2478c38c764c9c67c7679d789281866375ef830eadc6aeffd9e244"
         },
         {
-          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_section.mjs#L26-L34",
-          "version": "repo-lines-v1:sha256:f1ec779ea96810c4286a155b77cbf7c045e3519a77f38ce739129a1730bcc11e:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMmU5OTE5MTllODJhYzI2NGUxYzQzYmQ5MjJjNjMwZjc3NjZkZDgyNmU0N2ExYjE1ZjE0N2RkNzRiMzJmMWQxMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzU1ZDk5MjBlZmExNjZjNzMyZjIzMmZhYTUwY2IzZWVjYzBlOTIyNjQ2YzZlYWJjMDBjMDYzMDVjNmM2YzBlNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMmNlOTg5NTQwMzE4ZGFiNzQ5YTJjNDc3ZWY0NWRhY2M4ZjY0MzBiZWY5N2M2YjMxMGVhODM4MzExNGM4MDFiYyJ9"
-        },
-        {
-          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_section.mjs#L43-L85",
-          "version": "repo-lines-v1:sha256:801a4a27c5f900aba5a43aee461f491ad4b0c290cf0c4b84c8e18d3e620d05cb:eyJzZWxlY3RlZExpbmVDb3VudCI6NDMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc4YjljOThmMDYyN2UxZjUyMjk4ODcxNTI2OTdjNGZjYmNhYzA4ZmQ0ZTQyMmE3YTg0NGNiNGQxYjBkOTc4MWUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZkNDAxYTZjZjM2ODMxYjVhM2M3ODM1Y2U4NGNjYzEwZWY2MWQ3MDZhYjU4ODJiYzczZDQ5MjZlMTA2OTRhYzgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQ1OWZmNDM0NDljMzM4NjhkODY2YTQ5YTMxZGRhZGMwNTc5YzNkODNkNjg5MGJmYzEyOTQ1MmUwNTRmYTVhYWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_section.mjs",
+          "version": "repo-file-v1:sha256:782278eefae9ddef14dda790324bcf7df3eb9f37244e105c41e47a897f80ad71"
         }
       ]
     },
     {
-      "id": "claim_6cd61a73107947b08f7d81934a9476ee",
-      "statement": "Proposed refresh_agents_baseline.mjs (not yet in repo, defined in openspec/changes/add-agents-md-bootstrap/**, not yet in openspec/specs/**) is the opt-in vendored-baseline updater: it fetches upstream to a temp file, validates non-empty and expected section anchors, swaps only content between AKSK:AGENTS-BASELINE markers and updates provenance date leaving OpenWiki and AKSK zones byte-identical; offline or validation failure exits non-zero with remediation and leaves the previously vendored baseline intact.",
+      "id": "claim_7071a83745964069a8f4a879b42834e6",
+      "statement": "A fully bootstrapped root AGENTS.md is a zoned file with three marker-delimited families ordered baseline → OpenWiki → AKSK: FerroxLabs behavioral baseline inside AKSK:AGENTS-BASELINE, OpenWiki inside OPENWIKI:START/END, and AKSK routing (AKSK:ROUTING) plus lifecycle (AKSK:LIFECYCLE), each with exactly one block and strict marker ownership; in this repo the baseline zone has not yet been seeded so current AGENTS.md contains only OpenWiki and AKSK zones until init_agents_md.mjs runs.",
       "evidence": [
         {
-          "resource": "repo://openspec/changes/add-agents-md-bootstrap/design.md#L35-L36",
-          "version": "repo-lines-v1:sha256:853366fa55b437a3a7f23ae47a5f74fd62f3ba40aa8a3105bb208be6f7db7866:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzUxMDAyZTA3ODcxMjE1Yjc1YTc0YjczOTI3NWM0MDY2ZGUxODI2OTA5MTU3NDNmMTRmOGE5MWE0M2YxMGE4OSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNTQ4MGFiOTRjODEwY2Y5OWM5YzE4NGYzODBlYWVmNjY1NWM0ZjE1YWFmNzk0MDgzY2ZlOGNiZmMyZTYzYjc3NCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYmRmMTcwZmViNWVjM2U0M2Q0MmE2OTU3NTdjOTJkOGExZjQ0MTE5NjQxZjAxZWIxMTkyZjMyNzk2Y2FlNGYxMyJ9"
+          "resource": "repo://.agents/skills/aksk-bootstrap/references/agents-md-baseline-template.md",
+          "version": "repo-file-v1:sha256:c4199b96108dd134067e2ce6beaf66bb8fa3bf59b6fa4a1dec86577959c54737"
         },
         {
-          "resource": "repo://openspec/changes/add-agents-md-bootstrap/specs/agents-md-bootstrap/spec.md#L54-L65",
-          "version": "repo-lines-v1:sha256:f9ca32ac814260fc82edc026ba2f81944a31bf0f7c8c08588f51dd64643a5b1a:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVkNzYxYjVlNzY1MzFiNzA4NzdlN2ZkYTMzZjk0NzQ4MjYxN2QxMzBkYmQyYTlhZTdjZmI4ZWM4MTFhN2ZiZjIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk0NzUwYzM0NzFkZGNjZDRmYzM2OTFiNzI0NDcxNTI2OTk1MDViOWMzODMyZjkxNzA1MjBlZDI1ZThkNmM1NTgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjMxNzFmZjI0Njk0YTE3YmY3ZDg4ZjU3NGUyMjE4YWFlOTAwMzg4NDg0MTIxYTNjMTliOTllYjE0Y2M5MDMyNTciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc1ODcyZThiOTE5ZDAyYmFkMTgzZTIxOTA5NTk2MmZhNzkyNDc5NDNlZTllNjI3YTIzNWIyMTZmMzkxOWQ5ZjUifQ"
+          "resource": "repo://AGENTS.md",
+          "version": "repo-file-v1:sha256:afe5a9d27b2def63d734ef9e34b69605bb23975c953c1276b0fbba98797192ea"
         },
         {
-          "resource": "repo://openspec/changes/add-agents-md-bootstrap/tasks.md#L16-L17",
-          "version": "repo-lines-v1:sha256:d6a6f04f9984d7cecb4cb64690c64f0dfbcd8b13099d777aa8b2177595eaa44e:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDZmNzMwZTAxNTFhNDk0Yzg5YzgwNTUyYTJkNDAzYWM5MTg1ZDgxNDhhZDkxN2Q2ZDMyNGE3OTgyZTk0ZWFlMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTFhZDY2MTYzNmZhZjNjZGEzYWNkOWY5MTk4NDIzNmU2ODQxM2ExOWFkYTQ0N2RjZmM1ZWY3YzBlMTkzODZmOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZWExMjZjNWJhYjE2OTQ2YzY4NzdmZmVhYTk0Y2Q3ZTgxMDRlZjNhOTMwNTA5MGE2MzM1ZmQ4N2RkMmQ0MTI0NiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMWYxODM2Nzc3N2U4MGNlZjY3Njg4NWZhZmE1NjhiMzNmYzMyOWUyY2MwZjNjNWE4N2VjZjI2NWM1ODZmNWY5OCJ9"
+          "resource": "repo://openspec/specs/agents-md-bootstrap/spec.md",
+          "version": "repo-file-v1:sha256:b85557c6a55d6e807f6f46c17ae73962575eda9ddb798b13025cbb8e2fe07c13"
         }
       ]
     },
     {
-      "id": "claim_f645c96737ff4a46a30606d494058fba",
-      "statement": "Proposed bootstrap composition order is deterministic: init_agents_md.mjs seeds the baseline first, then OpenWiki attaches its OPENWIKI:START/END block below baseline, then attach_section.mjs appends ROUTING and LIFECYCLE below OpenWiki; shipped order is OpenWiki then attach_section (baseline step is proposal-only, not yet in openspec/specs/**); each script is idempotent so reruns after a template change only touch the zone whose template changed.",
+      "id": "claim_e5f09d31439a43c795f3b3a738ea55d9",
+      "statement": "The FerroxLabs baseline is vendored offline at .agents/skills/aksk-bootstrap/references/agents-md-baseline-template.md with its body wrapped in AKSK:AGENTS-BASELINE markers and a provenance header inside the block containing upstream source URL, capture date, MIT license notice, and refresh pointer; seeding copies the vendored block verbatim with no network access.",
       "evidence": [
         {
-          "resource": "repo://AGENTS.md#L121-L160",
-          "version": "repo-lines-v1:sha256:28d0f89cf59ce65f86a4565bbbf38e17d87fe2ee988bc2592a36da01d2b83285:eyJzZWxlY3RlZExpbmVDb3VudCI6NDAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVmMTgwZjljMTI2OTAzYmNjMzMxYWE5NTQ1NmU0OTQ0NGE3ZDRkMDExZThhMmE4M2Y1ZGM4NzAyMzkxODEyZDAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY1MmQ3MTExMDNkNTBhNDM3ODMwYzZmYmNkMDRmYjRiYWI0OWEwZjgyZjZkMjZkMWM3OTFjNmU4NDg4ZGQwOTAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAwMWYyZWMxNzU5M2MxMDU0ZWI0NjM2N2Q4NDUzZWYyNGExNzNjZTk2YjcxMTdkOTFmOWE2OGQ0NGZlZjhiMDEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+          "resource": "repo://.agents/skills/aksk-bootstrap/references/agents-md-baseline-template.md",
+          "version": "repo-file-v1:sha256:c4199b96108dd134067e2ce6beaf66bb8fa3bf59b6fa4a1dec86577959c54737"
         },
         {
-          "resource": "repo://openspec/changes/add-agents-md-bootstrap/design.md#L29-L30",
-          "version": "repo-lines-v1:sha256:ff271335c9cfdfc51aee2001bff0281dd34d9e80e26086f8a7554751267fba3e:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNGQ4MzdlMDZjODI5MzQzNDFmZDU5ZDdmYTNlZGM5MjQzMjA2MDk3NDVlMDgxZDEwYmQyMzJiODAxMzVhZWM5MyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYzcxZDQ4MWYzNzI1Zjg2ZThkMTZmYjYxNjI2Y2I2N2FlMDhmMWE0YTRkNTdkZTdhMjgzODc2NmJlNDhlMWZlYiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZmZjNWRjMmRiMjU1MmVjNzk4ZjhiYTliZWU1ZmQwMTU4MDU0YTEwOWQxYjUxOWJhODRjMmQ1N2I4YmRhNTNkOCJ9"
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/init_agents_md.mjs",
+          "version": "repo-file-v1:sha256:2d219bd05a1526cb557a4bbf977dad1ba314e6c2117c32189e0326489d036810"
         },
         {
-          "resource": "repo://openspec/changes/add-agents-md-bootstrap/tasks.md#L22-L23",
-          "version": "repo-lines-v1:sha256:cce7b459a764c73951db57276174cadb67b4714f5eeafb3cf1fc8d0417873032:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzFlNWY2MjE1NTE0MGIwNDE2NTJiNzc0ZTViNTJlNDc5MzlmMzRmMTFlZTU0MjMzNGM4ZTZmNDBiNzc4YTczNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYjJjM2I5M2UzMzRjOWE5NDVlMzUwYzg5YTNlNjA0ZjZiMGExYWViYTA0ZGUwOTQ4MjQ1NzFlMzg3MDRiYTU4NyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjg2NjY0NGY3NDE3YTE0ZTI3NzI4MzEzMzYyMDdkMGUzZmNlYTYzM2RmNWVmMWViMWI2ZTE3NjVmNzkzY2M2MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOWEzMTQxMmE1Yzc3OWY4OGZiMTRjMDhkODQ0YTk4N2IwNDQzNTkyMWExZjg1MGNhZDk5ODgxNGYwOWRiODRjZCJ9"
+          "resource": "repo://openspec/specs/agents-md-bootstrap/spec.md",
+          "version": "repo-file-v1:sha256:b85557c6a55d6e807f6f46c17ae73962575eda9ddb798b13025cbb8e2fe07c13"
         }
       ]
     },
     {
-      "id": "claim_5bfdd778a2ca449f9030040707ac315e",
-      "statement": "The proposal justifies the behavioral baseline living in root AGENTS.md as a scoped exception to the thin-router invariant: the routing-pattern decision requires root files to stay thin and route repo knowledge to .agents/ and openwiki/, but the FerroxLabs baseline is a behavioral operating contract (verification loops, surgical diffs) not repo knowledge; routing and lifecycle blocks would still attach below it to preserve the single source of truth (proposal-only, not yet in openspec/specs/**).",
+      "id": "claim_b8f5ce84680f44a4bbf5f407c18096d5",
+      "statement": "init_agents_md.mjs owns the baseline zone: it creates a missing AGENTS.md from the vendored template, is idempotent via trailing-whitespace-normalized compare (no-op when marked section matches), and on conflict with an existing non-matching file exits 2 without writes printing the replace-vs-combine question; --replace overwrites with the marked baseline including header and --combine stages existing content, baseline, and a COMBINE.md brief under .agents/sessions/agents-md-combine/<timestamp>/, never modifying the original itself.",
       "evidence": [
         {
-          "resource": "repo://.agents/skills/aksk-bootstrap/references/routing-note-template.md#L1-L12",
-          "version": "repo-lines-v1:sha256:7daa0b08b9a8cae6510c448134bfb4f7b1373132970b66916e7c6076c353e683:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc0YWEzNzhjZGRjMzk4MzkyNWUyNDdjMDcxMGJkNWQwOTM4MTQ3ZjNjM2JiYjllMGMxOTIyZTViMzdhNjJkNjMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImViYzc4ZDRiMDlmZGM2Yjg2NzVkMjJiMTkxN2FhNzg1ZmM0MzlkYzBmZWZjMTc5ZTA5OWUzNGY1Y2FmNDMzNWMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/init_agents_md.mjs",
+          "version": "repo-file-v1:sha256:2d219bd05a1526cb557a4bbf977dad1ba314e6c2117c32189e0326489d036810"
         },
         {
-          "resource": "repo://openspec/changes/add-agents-md-bootstrap/design.md#L65-L68",
-          "version": "repo-lines-v1:sha256:23472ff7e7e591c8194afbb91818924557aa3d52b26219acc61ae319262a42b3:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzllOTA4YjE4MGYyNDI0NmM0NTMxMmQxZmU0NDZhODI3NGZlMzUxNmU4NDhmYjE5OTA1ODAyMzEzNjA0YzlmMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTQ0NGY5NDc4YjIwNTgxNTM3MWNiYjkzODQ4NzRiZDJiYmY1ZDhhYWQ0MTY2MTAxNWQ5MjRlNzAyZjJjNTE0OSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMmQ4NTMxMmViZWE0OWVjZmMxZGMyYTQzMTc1NmRkOGNlM2I3YTE4ZDA5MTMyZTNjMWYwMjZkMDk5ZDM4YTVhYiJ9"
-        },
-        {
-          "resource": "repo://openspec/changes/add-agents-md-bootstrap/proposal.md#L28-L29",
-          "version": "repo-lines-v1:sha256:fd75e3a11f447e588d772c9cc4d21a32a4d6363cf187fc7b6d5e302a2cdb1ceb:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTVkYWM3YTRjYjM4Y2JjOGE2MWE3N2I5NmE5MWQ2NTk3YmRkODIyMGNhODZiYWE3OGNkZmEwM2U5ODcxMmE2NiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzIwY2QxOWE3OWNhZWMyMTdlNGNkYTc3ZTcyMGMzZmMzYjVkNjE2NDlmNmYwZmE5ZjFkMDFhNDJiNWFjZDk2NyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNTUwMzhkYzFkODRhOTY2NWVhMDJhNjM5NjY2NGZhZDM5MDg2NzY2ZjU4MTI3M2RiMWQzMmQ0MDA1NzQyZTFiNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+          "resource": "repo://openspec/specs/agents-md-bootstrap/spec.md",
+          "version": "repo-file-v1:sha256:b85557c6a55d6e807f6f46c17ae73962575eda9ddb798b13025cbb8e2fe07c13"
         }
       ]
     },
     {
-      "id": "claim_232bfa0fb3934ca38577757f4a4e5d20",
-      "statement": "Zone isolation and marker integrity are load-bearing: docs-lint integrity-checks each family independently (shipped: AKSK:ROUTING/LIFECYCLE exactly-one and targets exist, OPENWIKI presence-only; proposal extends to AKSK:AGENTS-BASELINE with provenance source URL — not yet in openspec/specs/**), refresh or combine keeps other zones byte-identical, combine preserves project-specific learnings and keeps marker blocks verbatim, and a stale vendored capture date (>6 months) would be surfaced as informational advice per the proposal.",
+      "id": "claim_e1a02dc663654018b964a7c4a1a19e32",
+      "statement": "refresh_agents_baseline.mjs is the opt-in vendored-baseline updater: it fetches upstream to a temp file, validates non-empty and expected section anchors, swaps only content between AKSK:AGENTS-BASELINE markers and updates provenance date leaving OpenWiki and AKSK zones byte-identical; offline or validation failure exits non-zero with remediation and leaves the previously vendored baseline intact.",
       "evidence": [
         {
-          "resource": "repo://openspec/changes/add-agents-md-bootstrap/design.md#L79-L80",
-          "version": "repo-lines-v1:sha256:f0feb7bee3cf791f37846278037ff5e839ccd23c9412cd0c14757b1cd747b0f5:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTZkZDFlZGU0OTc2NGJjZjIwOTdjNWVlNGY5YzIxZTIwMjExYWVmZjdmYjExMmFhMDVhMTVjNDkwMTI0MmY4MSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWUzOTJmZjJmZjA1YjBhNzM4ZDFmZTkwNmE0OTIwYTU2YWM5YzNlZmYyNjRjYzBkOTNjZTYwYjczNDQ4YjllZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYzdlNDMwMTI2ODQyNDIyNjkwMTE1M2E4ZmMyNTdmNzNhOTNlM2MzMDg4ZTUyZjg4YWMxN2JmOWRhYWIxYWU0ZiJ9"
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/refresh_agents_baseline.mjs",
+          "version": "repo-file-v1:sha256:30e756b9d5316dc90c7718ff42776ea5be3ab2f6dc64c45eb63d2475c94e4fc7"
         },
         {
-          "resource": "repo://openspec/changes/add-agents-md-bootstrap/design.md#L83-L88",
-          "version": "repo-lines-v1:sha256:4038ac22a5a48659fabc0b829d9c7461514e24517023263713162092aea7e0dc:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTMzOTFkMmQxZWQzNjczMTYxNzBjZDRlMjIxNTQ0NjUxNzcxNTBkOTBhN2Q2MDQ1ZDM1YmRjM2U5MTAxNDA1YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMmZlM2RmZDEzN2U0ODdmYzY0NjNjMmY2ZGYyYzljNTUyNTc5ZTE4MDExZmJkOTcwODMxODdlNTU3OGZlODNlZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNmNlMGFlYjA2MjVjNmVhYzM3MmQ2OTEzZjMxNDFhODE1MTFkMWZjOTJhZDJiYmJhZjdlZDYxMDY4ZDNhYjUyZCJ9"
+          "resource": "repo://openspec/specs/agents-md-bootstrap/spec.md",
+          "version": "repo-file-v1:sha256:b85557c6a55d6e807f6f46c17ae73962575eda9ddb798b13025cbb8e2fe07c13"
+        }
+      ]
+    },
+    {
+      "id": "claim_318e0afb535f4f37bea7c00a3e0986ff",
+      "statement": "Bootstrap composition order is deterministic: init_agents_md.mjs seeds the baseline first, then OpenWiki attaches its OPENWIKI:START/END block below baseline, then attach_section.mjs appends ROUTING and LIFECYCLE below OpenWiki; each script is idempotent so reruns after a template change only touch the zone whose template changed.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap.mjs",
+          "version": "repo-file-v1:sha256:c138021a59557655b9deff17fe7e83e539dd4484f71edab4570a255cd5680135"
         },
         {
-          "resource": "repo://openspec/changes/add-agents-md-bootstrap/proposal.md#L12-L13",
-          "version": "repo-lines-v1:sha256:7e4fec66c64cbdd5bff948ec14b2c30aa91934d31390a096aaea68dbcb2fed12:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjQ1YWQ0OTNjZGMyMGRhODM2MTQ5ZDE0NTViNTFmMGU1NjAxMDdhNDg2ZjllYjI4ZTkyMzI3MDMxMjdlMjUwYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzM1MjQzNDlkMjkwZjY0NWVkOWY4ZmM1MTVlNDE3YzU3MzkzZDJmZTEzMDhkMGU1MWQ5ZDVlNWY4NWQ3MjIxOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNGMyYzBjNTIwMWI4YjRhMDI0NWZiMTY1NTVjYTQ0MzNkYThhOGIwMjJmYjE1ZDU3MGU1ZTc5NDhjZGYyMDgxZiJ9"
+          "resource": "repo://AGENTS.md",
+          "version": "repo-file-v1:sha256:afe5a9d27b2def63d734ef9e34b69605bb23975c953c1276b0fbba98797192ea"
+        },
+        {
+          "resource": "repo://openspec/specs/agents-md-bootstrap/spec.md",
+          "version": "repo-file-v1:sha256:b85557c6a55d6e807f6f46c17ae73962575eda9ddb798b13025cbb8e2fe07c13"
+        }
+      ]
+    },
+    {
+      "id": "claim_dda516a93f51450c8b52333ab02ce50b",
+      "statement": "The behavioral baseline lives in root AGENTS.md as a scoped exception to the thin-router invariant: the routing-pattern decision requires root files to stay thin and route repo knowledge to .agents/ and openwiki/, but the FerroxLabs baseline is a behavioral operating contract not repo knowledge; routing and lifecycle blocks still attach below it to preserve single source of truth.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/references/routing-note-template.md",
+          "version": "repo-file-v1:sha256:7daa0b08b9a8cae6510c448134bfb4f7b1373132970b66916e7c6076c353e683"
+        },
+        {
+          "resource": "repo://openspec/specs/agents-md-bootstrap/spec.md",
+          "version": "repo-file-v1:sha256:b85557c6a55d6e807f6f46c17ae73962575eda9ddb798b13025cbb8e2fe07c13"
+        }
+      ]
+    },
+    {
+      "id": "claim_5260440be06b454f98a8e5147c9be7b6",
+      "statement": "Zone isolation and marker integrity are load-bearing: docs-lint integrity-checks each family independently (AKSK:AGENTS-BASELINE with provenance source URL, AKSK:ROUTING/LIFECYCLE exactly-one and targets exist, OPENWIKI presence-only), refresh or combine keeps other zones byte-identical, combine preserves project-specific learnings and keeps marker blocks verbatim, and a stale vendored capture date (>6 months) is surfaced as informational advice.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/docs-lint/SKILL.md",
+          "version": "repo-file-v1:sha256:856a7d6e0c608fe3bd7de1f17c0a380ecd911dd2f10cc496ab720c5e670cf172"
+        },
+        {
+          "resource": "repo://openspec/specs/agents-md-bootstrap/spec.md",
+          "version": "repo-file-v1:sha256:b85557c6a55d6e807f6f46c17ae73962575eda9ddb798b13025cbb8e2fe07c13"
         }
       ]
     }
   ],
   "verification": {
     "by": "openwiki/0.4.3",
-    "at": "2026-08-29T04:36:52.163Z"
+    "at": "2026-08-29T20:18:58.499Z"
   }
 }

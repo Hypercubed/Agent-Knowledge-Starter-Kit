@@ -7,7 +7,7 @@ Use before publishing, tagging, or handing this starter kit to another repo.
 1. Run the deterministic publish checker from anywhere in the repository: `bash scripts/check-publish.sh`.
 2. Treat a non-zero exit as blocking. Fix invalid structure, broken links, tracked session artifacts, or Markdown formatting before publishing.
 3. Review warnings manually. Leakage scan hits are not automatic failures; the scan is intentionally narrow and is only a backstop for obvious starter-repo leakage, credentials, or local machine paths.
-4. When only validating a copied knowledge layer, run the portable structure check directly: `bash scripts/check-agents-structure.sh .agents`. After regenerating or hand-editing the full kit snapshot, optionally run `bash scripts/check-agents-structure.sh example/.agents` and treat any session-tracking mismatch as a known gap until the script and `example/` layout agree.
+4. When only validating a copied knowledge layer, run the portable structure check directly: `bash scripts/check-agents-structure.sh .agents` against the target copy.
 5. Confirm ignored session bundles are local evidence only. For each validated tree, the only tracked file under `sessions/` should be `sessions/README.md`.
 6. Review the printed `.agents/` file list. It should contain only the distributable kit for this layout: portable `skills/` and the task-closeout example bundle files (plus shared docs and playbooks as shipped).
 7. If root `.agents/` changed, decide whether the same change belongs in the portable kit contract versus maintainer-only dogfood (for example maintainer-only plan or session notes). Consumer-generic behavior belongs in shared skills and docs; keep maintainer workflow notes in maintainer-facing paths unless you intend to promote them.
@@ -48,8 +48,8 @@ Portable skills and shared docs under `.agents/` should read as if installed in 
 
 Leakage scans are not a substitute for reviewing the diff. They intentionally avoid broad terms such as `secret`, `token`, `maintainer`, `localhost`, and example session paths because this repo documents those concepts directly.
 
-Root `.agents/` may mix portable kit content with maintainer-only material (for example maintainer-only plan notes). Do not copy maintainer-only content into published artifacts (skill packaging, generated `example/.agents/`) unless it is part of the portable kit contract.
+Root `.agents/` may mix portable kit content with maintainer-only material (for example maintainer-only plan notes). Do not copy maintainer-only content into published artifacts (skill packaging) unless it is part of the portable kit contract.
 
-`scripts/check-agents-structure.sh` is the portable validator. It accepts a target directory (for example `.agents` or `example/.agents`) and checks the knowledge-layer shape without running this repo's README, root `docs/`, or publish leakage checks.
+`scripts/check-agents-structure.sh` is the portable validator. It accepts a target directory (for example `.agents`) and checks the knowledge-layer shape without running this repo's README, root `docs/`, or publish leakage checks.
 
 `scripts/check-publish.sh` is the starter-repo publish wrapper. It runs the portable validator on **root `.agents/` only**, then performs this repo's release hygiene checks (Markdown, links, leakage scans, and the printed `.agents/` file list).

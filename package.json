@@ -31,7 +31,9 @@
     "remark-cli": "^12.0.1",
     "remark-frontmatter": "^5.0.0",
     "remark-gfm": "^4.0.1",
-    "skills": "^1.5.1"
+    "skills": "^1.5.1",
+    "@fission-ai/openspec": "^1.11.0",
+    "openwiki": "^0.4.3"
   },
   "dependencies": {}
 }

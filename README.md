@@ -35,40 +35,33 @@ This is intentionally generic. It should work with any system that supports user
 
 ## Quick start
 
-### For humans
+### Ask your agent to install (preferred)
 
-You can install the kit manually, copy the pre-initialized `example/.agents/` into a fresh repo, or ask an agent to do it.
-
-Manual install:
-
-0. Install the peer dependencies (manual steps; the kit never installs them): Node >= 22, then `npm i -g @fission-ai/openspec@latest` and `npm i -g openwiki@latest`, and initialize the repo wiki with `openwiki --init`. Skills verify these prerequisites and fail fast with exactly these instructions when missing.
-1. Install skills with `npx skills add Hypercubed/Agent-Knowledge-Starter-Kit`, then follow each installed `SKILL.md`'s **Skill initialization** once (see [INSTALL.md](INSTALL.md#skill-first-install-default)).
-2. If the project already has `.agents/`, merge instead of replacing; preserve repo-specific `rules/`, `playbooks/`, and `skills/`.
-3. Edit `.agents/AGENTS.md` with real build, test, and project conventions (or keep the template created by skill initialization until you are ready).
-4. Wire `.agents/skills/*/SKILL.md` into your editor or agent product. Use [`.agents/AGENTS.md`](.agents/AGENTS.md) and [`docs/architecture.md`](docs/architecture.md) for repo-wide and role-boundary guidance.
-
-Copy the example (fresh repo):
-
-1. Create a new empty repository (or project folder).
-2. Copy this repository’s [`example/.agents/`](example/.agents/) directory into your project root as `.agents/`. You do not need anything else from [`example/`](example/) (for example its README).
-3. Wire `.agents/skills/*/SKILL.md` into your tools (see [`INSTALL.md`](INSTALL.md)).
-
-Agent-assisted install:
+Give your agent this prompt:
 
 ```text
-Install the Agent Knowledge Starter Kit into this repo. Prefer using
-`npx skills add Hypercubed/Agent-Knowledge-Starter-Kit`. If npx is
-unavailable, you can clone the repository to a temporary folder and copy
-the `.agents/skills/` directory manually. Next, read the kit's INSTALL.md
-and follow the setup instructions (including running each skill's
-initialization). Preserve any existing repo-specific `.agents/` content.
-Finally, summarize the changed files and any manual tool-integration
-steps I still need to do.
+Install the Agent Knowledge Starter Kit into this repo:
+
+1. npx skills add -g -a <self-reported> Hypercubed/Agent-Knowledge-Starter-Kit --skill aksk-bootstrap
+   (or npx skills add -g -a <self-reported> <path-to-kit> --skill aksk-bootstrap with a local checkout;
+   <self-reported> is your host id, universal is ~/.agents/skills, npx required)
+2. Run the aksk-bootstrap skill.
+
+See INSTALL.md for overrides. Everything else (peer tools, openspec/openwiki init, routing/contract, integration spread) is owned by aksk-bootstrap.
 ```
 
-### For agents
+### Manual install
 
-Follow [INSTALL.md](INSTALL.md). Run `npx skills add Hypercubed/Agent-Knowledge-Starter-Kit` to install the skills. Then run each installed skill's initialization from its `SKILL.md`. If `.agents/` already exists, merge conservatively and preserve existing repo-specific knowledge.
+From the target repo:
+
+```bash
+npx skills add -g Hypercubed/Agent-Knowledge-Starter-Kit --skill aksk-bootstrap
+# or: npx skills add -g <path-to-kit> --skill aksk-bootstrap
+```
+
+Add `-a <your-agent>` (e.g. `-a codex`) if you also want the host-specific mirror alongside `~/.agents/skills` ( `-g` already targets `~/.agents/skills` ).
+
+Then run the `aksk-bootstrap` skill. See [INSTALL.md](INSTALL.md) for overrides and [`.agents/skills/aksk-bootstrap/SKILL.md`](.agents/skills/aksk-bootstrap/SKILL.md) for the full contract.
 
 ## How to use this kit
 

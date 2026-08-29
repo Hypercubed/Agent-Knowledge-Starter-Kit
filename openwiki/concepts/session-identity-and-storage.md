@@ -1,11 +1,11 @@
 ---
 type: concept
 title: Session Identity and Storage
-description: How task-closeout identifies sessions via task_id in summary.json, stores temporary bundles under .agents/sessions with gitignore rules, supports optional prior_session chaining, and keeps bundles repo-local until distillation promotes lessons to durable .agents/ or openwiki/.
+description: How task-closeout identifies sessions via task_id in summary.json, stores temporary bundles under .agents/sessions with gitignore and openwikiignore rules, supports optional prior_session chaining, and keeps bundles repo-local until distillation promotes lessons to durable .agents/ or openwiki/.
 tags: [sessions, task-closeout, gitignore, task-id, storage]
 verified:
   - by: openwiki/0.4.3
-    at: 2026-08-29T04:36:52.163Z
+    at: 2026-08-29T21:15:47.181Z
 sources:
   - id: openwiki-source-62bd4cb693e4e881b3f88f6b
     resource: repo://.agents/.gitignore
@@ -21,14 +21,24 @@ sources:
     resource: repo://.agents/skills/task-closeout/example/task-bundle/summary.json
   - id: openwiki-source-764361c18355af2544814f55
     resource: repo://.agents/skills/task-closeout/SKILL.md
+  - id: openwiki-source-e119253b3c3737247dc63f2a
+    resource: repo://.openwikiignore
   - id: openwiki-source-115b2dad781e2a2c5b5a980d
     resource: repo://docs/architecture.md
-generated: { by: "openwiki/0.4.3", at: "2026-08-29T04:36:52.163Z" }
+  - id: openwiki-source-30179ef0180d39bd7ef5bef7
+    resource: repo://openspec/changes/add-task-start/design.md
+  - id: openwiki-source-c13ebc2b6ebca535d0e7e2e3
+    resource: repo://openspec/changes/add-task-start/proposal.md
+  - id: openwiki-source-bfc58f79a96e2ed041bc3436
+    resource: repo://openspec/changes/add-task-start/specs/task-start/spec.md
+  - id: openwiki-source-86a9b374cb99ed0befc3bb8d
+    resource: repo://openspec/specs/closeout-change-linking/spec.md
+generated: { by: "openwiki/0.4.3", at: "2026-08-29T21:15:47.181Z" }
 ---
 
 # Session Identity and Storage
 
-Session bundles are **temporary working memory**. They capture raw evidence for one task at a stopping point and stay local under `.agents/sessions/` until a separate `learning-distill` pass promotes only stable, reusable lessons to durable homes under `.agents/` (prescriptive rules) or `openwiki/` (descriptive knowledge). Bundles never become durable themselves and never land in commits.
+Session bundles are **temporary working memory**. They capture raw evidence for one task at a stopping point and stay local under `.agents/sessions/` until a separate `learning-distill` pass promotes only stable, reusable lessons to durable homes under `.agents/` (prescriptive rules) or `openwiki/` (descriptive knowledge). Bundles never become durable themselves, never land in commits, and are excluded from OpenWiki evidence by `.openwikiignore`.
 
 ## Canonical identity vs storage label
 
@@ -52,13 +62,12 @@ Optional provenance fields `agent` and `agent_session_id` are independent — re
 
 The folder slug is lowercase, short, and tied to the task goal. If two bundles start in the same second, extend the slug rather than changing the timestamp format. One bundle per folder; reuse a folder only for the bundle it was created for.
 
-<!-- openwiki: mermaid parse failed and this diagram was converted to a text fence so it does not break rendering. Fix the diagram source and restore the mermaid fence. Parser error: Heuristic: an unescaped angle bracket inside a label breaks rendering; rephrase the label. -->
-```text
+```mermaid
 flowchart LR
-  A["Folder name<br/>YYYYMMDD-HHMMSS-slug<br/>(sortable label)"] --- B["summary.json task_id<br/>(canonical)"]
-  B --- C["repo_id<br/>(project context)"]
-  B --- D["prior_session<br/>(optional chain)"]
-  B --- E["agent / agent_session_id<br/>(optional provenance)"]
+  A["Folder name YYYYMMDD-HHMMSS-slug sortable label"] --- B["summary.json task_id canonical"]
+  B --- C["repo_id project context"]
+  B --- D["prior_session optional chain"]
+  B --- E["agent and agent_session_id optional provenance"]
 ```
 
 *Caption: canonical identity lives in `summary.json`; the folder name is only a label.*
@@ -71,7 +80,7 @@ flowchart LR
 .agents/sessions/YYYYMMDD-HHMMSS-short-topic/
 ```
 
-Each folder holds exactly one five-file closeout packet. `task-closeout` is the sole writer of this tree and never touches `openwiki/**`, `.agents/AGENTS.md`, `.agents/playbooks/**`, `.agents/skills/**`, or `openspec/` for in-flight changes.
+Each folder holds exactly one five-file closeout packet. `task-closeout` is the sole writer of this tree today and never touches `openwiki/**`, `.agents/AGENTS.md`, `.agents/playbooks/**`, `.agents/skills/**`, or `openspec/` for in-flight changes. A **Proposal-only** `task-start` change would split ownership (creation vs finalization) — see below.
 
 | File | Role |
 | --- | --- |
@@ -100,7 +109,7 @@ A filled reference lives at `.agents/skills/task-closeout/example/task-bundle/`:
 }
 ```
 
-`openspec_change` records the associated `openspec/changes/<name>/` when applicable; closeout never edits `openspec/` itself — spec updates are deferred to `/opsx:archive` time.
+`openspec_change` records the associated `openspec/changes/<name>/` when applicable; closeout never edits `openspec/` itself — spec updates are deferred to `/opsx:archive` time per `closeout-change-linking`.
 
 ### Why repo-local and temporary
 
@@ -114,20 +123,22 @@ stateDiagram-v2
     [*] --> Captured: task-closeout writes 5 files
     Captured --> Ready: status complete/blocked/abandoned
     Ready --> Distilling: learning-distill reads task_id
-    Distilling --> Distilled: lessons promoted/rejected<br/>indexes synced
+    Distilling --> Distilled: lessons promoted or rejected and indexes synced
     Distilled --> [*]
     note right of Captured
         summary.json distilled=false
         bundle immutable except
-        status/distillation fields
+        status and distillation fields
     end note
 ```
 
 *Caption: temporary bundle lifecycle; distillation marks `distilled` and routes durable lessons out of the bundle.*
 
-## Gitignore contract
+## Gitignore contract and OpenWiki ignore
 
-`.agents/.gitignore` (paths relative to `.agents/`) carries:
+Two layers keep bundles local and out of evidence.
+
+**Git layer — `.agents/.gitignore`** (paths relative to `.agents/`) carries:
 
 ```gitignore
 sessions/*
@@ -141,6 +152,26 @@ Effect:
 - Skill initialization (`task-closeout` and `learning-distill` idempotent setup) ensures the directory, the README, and these two ignore lines exist, merging without removing unrelated rules. If `.agents/.gitignore` is not tracked and the repo relies on root `.gitignore`, equivalent patterns must exist there as `.agents/sessions/*` and `!.agents/sessions/README.md`.
 
 Violating the contract shows up as `Unexpected files under .agents/sessions in git status` or a missing tracked README (`git ls-files` check in `check-agents-structure.sh`).
+
+**OpenWiki layer — `.openwikiignore`** (defense in depth beyond git) carries:
+
+```gitignore
+# Temporary session evidence — not source truth (keep README)
+.agents/sessions/
+!.agents/sessions/README.md
+
+# Anchored to repo root; nested example/ folders are not ignored
+/example/
+```
+
+Effect:
+
+- `.agents/sessions/` bundles are excluded from `openwiki --update` fingerprinting and from Claim evidence resolution. Citing a path under `.agents/sessions/` (except `README.md`) as `repo://.agents/sessions/.../summary.json` fails with `Evidence path is excluded by .openwikiignore`.
+- The `!` re-include keeps `.agents/sessions/README.md` citable — it is the only tracked file there. Last-match-wins negation mirrors the git pairing.
+- `/example/` is slash-anchored so only the root demo tree is ignored; nested `foo/example/bar.md` remains visible.
+- When a path is added to `.openwikiignore`, existing `openwiki/.claims/**/*.json` and page frontmatter `repo://` sources under that prefix are retargeted to the generator or canonical file.
+
+Do not cite files under `.agents/sessions/` (except `README.md`) as source truth; treat them as ephemeral working memory referenced only by prose, with `task_id` joins done at runtime via filesystem.
 
 ## Optional `prior_session` chaining
 
@@ -163,7 +194,7 @@ Consequences:
 
 ## Finding bundles under gitignore
 
-Because bundles are ignored, ignore-aware searches may report no bundles when they exist:
+Because bundles are ignored by both git and OpenWiki, ignore-aware searches may report no bundles when they exist:
 
 - Use at least one **ignore-blind** method: filesystem listing (`ls`, `find`, shell APIs) or ripgrep with `--no-ignore-vcs` (or `--no-ignore` scoped to the sessions subtree).
 - Then open each candidate's `summary.json`, treat `task_id` as canonical, and filter/prioritize by state fields (`distilled`, `status`, `distillation_status`). Never select a bundle from its folder name.
@@ -176,10 +207,21 @@ Because bundles are ignored, ignore-aware searches may report no bundles when th
 | `task_id` in `summary.json` is canonical; folder name is label only | Cross-tool joins break, distillation picks wrong bundle |
 | Write scope: closeout writes only under `.agents/sessions/<folder>/` | Durable knowledge or `openspec/` corrupted mid-task |
 | Immutability after closeout except `summary.json` distillation flags | Audit trail lost; promotion becomes untraceable |
-| Gitignore pairing `sessions/*` + `!sessions/README.md` | Bundles leak into commits or README becomes untracked |
+| Gitignore pairing `sessions/*` + `!sessions/README.md` and openwikiignore `.agents/sessions/` + `!.agents/sessions/README.md` | Bundles leak into commits or become citable evidence, or README becomes untracked |
 | Bundles are temporary; only distilled lessons become durable | Repo accumulates stale evidence; `.agents/AGENTS.md` bloat |
+| Never cite `.agents/sessions/<bundle>/*` as Claim evidence | `openwiki --update` aborts with excluded evidence path |
 
 All bootstrap and peer-tool scripts are offline-safe and fail closed with remediation rather than silent fallback — missing `openwiki --init` or missing global `openwiki`/`openspec` binaries block distillation before any wiki write.
+
+## Proposal-only task-start sequencing
+
+`add-task-start` is a **Proposal-only** change under `openspec/changes/add-task-start/` (proposal + `specs/task-start/spec.md` + design). It has **not** been archived to `openspec/specs/task-start/` and must be labeled as proposal until archive completes. Today the enforced lifecycle remains `work → task-closeout → learning-distill`.
+
+If adopted, the intended ownership is exclusive and `summary.json` remains the single source of truth:
+
+- `task-start` **owns creation**: creates `.agents/sessions/YYYYMMDD-HHMMSS-short-topic/`, ensures `.agents/sessions/README.md` and `.agents/.gitignore` entries exist, and **seeds `summary.json`** with `task_id` (canonical), `created_at`, `status: in_progress`, and optional `openspec_change`/`repo_id`/`agent`/`agent_session_id`. It does not yet contain `completed_at` or final validation/changed-files content.
+- `task-closeout` **owns finalization**: detects the seeded `summary.json`, **preserves `task_id` (and `openspec_change` if seeded)**, appends `completed_at`, final `status` (`completed`/`blocked`/`abandoned`), git metadata and distillation flags, then writes the remaining four bundle files. When invoked without a prior `task-start`, it retains its current generation fallback.
+- **No other writer mutates the bundle** and **no durable writes happen at start or closeout**: only `task-start` (creation) → `task-closeout` (finalization) → `learning-distill` (consume + mark `distilled`/`distillation_status`) touch `summary.json`; proposed durable changes stay as prose inside the bundle. Strict sequencing is `start → work → closeout → distill`.
 
 ## Configuration and operations
 
@@ -187,6 +229,7 @@ All bootstrap and peer-tool scripts are offline-safe and fail closed with remedi
 | --- | --- | --- |
 | Sessions dir present | `ls -la .agents/sessions/` | README tracked, bundles exist locally but untracked |
 | Gitignore correct | `cat .agents/.gitignore` | Contains `sessions/*` and `!sessions/README.md` |
+| OpenWiki ignore correct | `cat .openwikiignore` | Contains `.agents/sessions/` + `!.agents/sessions/README.md` and anchored `/example/` |
 | Tracked file check | `git ls-files .agents/sessions/README.md` | Exactly one file tracked there |
 | Portable shape | `bash scripts/check-agents-structure.sh .agents` | Required bundle scaffold, JSON validity, frontmatter markers |
 | Bundle discovery | `rg --no-ignore-vcs summary.json .agents/sessions/` or `find .agents/sessions -name summary.json` | Ignore-blind enumeration works |
@@ -195,7 +238,7 @@ Skill initialization is idempotent — safe to repeat when copying only `task-cl
 
 ## Extension points
 
-- **New bundle metadata**: add optional fields to `summary.json` alongside `prior_session` without changing the `task_id` contract; preserve `openspec_change` and distillation flags through any `task-start` sequencing (proposed `add-task-start`: creation → finalization → consume).
+- **New bundle metadata**: add optional fields to `summary.json` alongside `prior_session` without changing the `task_id` contract; preserve `openspec_change` and distillation flags through any `task-start` sequencing (proposal `add-task-start`: creation → finalization → consume).
 - **Cloud persistence**: mirror `.agents/sessions/` to durable storage for ephemeral runners; restore same path shape before distillation so `task_id`-based joins still work.
 - **Adding a curated tree** or marker family affects distillation destinations, not bundle storage — no bundle-layout change required.
 
@@ -203,5 +246,5 @@ Skill initialization is idempotent — safe to repeat when copying only `task-cl
 
 - Procedures: [task-closeout](../skills/task-closeout.md), [learning-distill](../skills/learning-distill.md)
 - Lifecycle: [Task Lifecycle and Session Bundles](../architecture/task-lifecycle.md), [Task Lifecycle and Distillation](../workflows/task-lifecycle-and-distill.md)
-- Decisions: [Optional prior_session in session summary.json](../decisions/optional-prior-session-in-session-summary-json.md), [Sessions directory: tracked README with ignored bundles](../decisions/sessions-directory-tracked-readme-with-ignored-bundles.md)
+- Decisions: [Optional prior_session in session summary.json](../decisions/optional-prior-session-in-session-summary-json.md), [Sessions directory: tracked README with ignored bundles](../decisions/sessions-directory-tracked-readme-with-ignored-bundles.md), [Root-anchored .openwikiignore for generated trees](../decisions/root-anchored-openwikiignore-for-generated-trees.md)
 - Troubleshooting: [Overlapping session bundles for one initiative](../troubleshooting/overlapping-session-bundles-for-one-initiative.md), [Session discovery fails during distillation or closeout](../troubleshooting/session-discovery-fails-during-distillation-or-closeout.md)

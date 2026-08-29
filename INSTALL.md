@@ -11,21 +11,27 @@ Create or update a target repo's `.agents/` knowledge layer from this starter ki
 - Source: this starter kit.
 - Target: the consuming repo's `.agents/` directory.
 
-## Prerequisites (manual, fail-fast)
+## Prerequisites
 
-The kit is glue over two peer tools it never installs itself:
+### Agent-assisted via aksk-bootstrap (preferred)
+
+An agent clones the kit to a temporary location if needed and runs `node .agents/skills/aksk-bootstrap/scripts/bootstrap.mjs [repo-root]` (EXECUTE lane). It preflights Node >= 22, installs the peer tools once per user in user scope (`npm i -g @fission-ai/openspec@^1.11.0 openwiki@^0.4.3` (caret from `references/versions.json`) — `npm i -g` per-user, not repo-local `npx` or `node_modules`), bootstraps the repo on demand (`openspec init --tools none`, `.agents/` scaffold, curation-contract and routing-block attachment), and spreads OpenWiki integration per lane ladder. When local execution is not possible it prints the exact remaining commands (INSTRUCT lane) and exits clean without partial state. This is the recommended entry for both fresh and existing repos.
+
+### Manual fallback via npx skills add (fail-fast when bootstrap INSTRUCT lane is used)
+
+The kit is glue over two peer tools. When the bootstrap INSTRUCT lane prints them, install manually:
 
 - **Node >= 22**
-- `npm i -g @fission-ai/openspec@latest` (OpenSpec CLI)
-- `npm i -g openwiki@latest` (OpenWiki CLI), plus one-time repo initialization: `openwiki --init`
+- `npm i -g @fission-ai/openspec@latest` (OpenSpec CLI, user scope `npm i -g`)
+- `npm i -g openwiki@latest` (OpenWiki CLI, user scope `npm i -g`), plus one-time repo initialization: `openwiki --init`
 
-Skills and scripts verify these prerequisites before acting and **fail fast** with exactly the commands above when something is missing. They never attempt installation. The `aksk-bootstrap` skill owns the checks (`check_peer_tools.mjs`) and wiki setup verification (`attach_wiki_contract.mjs`).
+Skills and scripts verify these prerequisites before acting and **fail fast** with exactly the commands above when something is missing. `aksk-bootstrap` owns the checks (`check_peer_tools.mjs`), wiki setup verification (`attach_wiki_contract.mjs`), and the bootstrap orchestrator (`bootstrap.mjs`); other skills call into it rather than reimplementing.
 
 ## Skill-first install (default)
 
 Install from `.agents/skills/` and use each skill's `bootstrap/` templates via that skill's initialization steps. A skill-first workflow is:
 
-1. Run `npx skills add Hypercubed/Agent-Knowledge-Starter-Kit` in the target repo to place shared skills under `.agents/skills/`. Alternative: copy from `.agents/skills/<skill-name>/` manually. Preserve each skill folder layout, including any `bootstrap/` subdirectory shipped beside `SKILL.md`.
+1. Run `npx skills add -g -a <self-reported> Hypercubed/Agent-Knowledge-Starter-Kit` in the target repo to place shared skills under `~/.agents/skills` plus your host dir (`universal` is `~/.agents/skills`; `<self-reported>` is your host id; `npx` required; caret versions from `references/versions.json`, `@latest` only when unpinned; for openwiki use `--full-depth` or `openwiki integrations install <self-reported>` when that host is supported). `.claude-plugin/plugin.json` lists the 4 user skills and is loaded by default (remote without a ref fetches `main`, use `@develop` until merged). Extra `-a <other>`/`--all` only when the user explicitly asked at install time. Alternative (override A): without `-g` to keep repo-local `./.agents/skills` when you intend that override. Preserve each skill folder layout, including any `bootstrap/` subdirectory shipped beside `SKILL.md`.
 
    **Do not delete or rename** a skill’s `bootstrap/` directory after initialization (or ever): idempotent re-runs, peer skills, and scripts expect those paths under the original `bootstrap/` name. Initialization steps only copy **from** `bootstrap/` into the repo; they must not remove the skill’s `bootstrap/` tree. Some skills also ship runtime templates under `assets/`.
 
@@ -56,7 +62,7 @@ When in doubt after installing all three kit skills, run `learning-distill` init
 
 If the target repo has no `.agents/` directory:
 
-1. Run `npx skills add Hypercubed/Agent-Knowledge-Starter-Kit` to install shared skills into `.agents/skills/`. Alternative: copy `.agents/skills/` manually.
+1. Run `npx skills add -g -a <self-reported> Hypercubed/Agent-Knowledge-Starter-Kit` from the target repo to install shared skills into `~/.agents/skills` plus your host dir (override A for repo-local `./.agents/skills` is without `-g`; other hosts only with consent). Alternative: copy `.agents/skills/` manually into the same user-scoped locations.
 2. Run **Skill initialization** from each installed skill's `SKILL.md` (see [Skill-first install](#skill-first-install-default)).
 3. Keep `.agents/.gitignore` tracked when the repo uses it; its `sessions/*` rules are sufficient for normal Git usage. If `.agents/` is not tracked, add equivalent session ignore rules at the repo root (see [Skill-first install](#skill-first-install-default)).
 4. Edit `.agents/AGENTS.md` with the repo's build, test, architecture, and workflow guidance (or start from the template created by skill initialization).

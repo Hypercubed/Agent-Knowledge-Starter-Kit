@@ -7,7 +7,7 @@ tags:
 - knowledge
 - navigation
 - overview
-timestamp: '2026-08-23T23:30:00Z'
+generated: { by: "openwiki/0.4.3", at: "2026-08-29T20:18:58.499Z" }
 ---
 # Knowledge overview
 
@@ -59,16 +59,19 @@ Curated AKSK knowledge: decision records, troubleshooting patterns, and the main
 - [Antigravity: Lessons learned aren't visible to teammate's agents](troubleshooting/antigravity-lessons-learned-aren-t-visible-to-teammate-s-agents.md) - Local-only research in Antigravity does not automatically become durable repo knowledge teammates can load; distill lessons into tracked `.agents/` files.
 
 - [Browser subagent fails with invalid_args on view_file](troubleshooting/browser-subagent-filesystem-access-error.md) - Browser-only subagents reject local filesystem tool calls; use the main agent's core tools for repository file operations.
+<!-- openwiki: broken internal link [troubleshooting/check-publish-missing-files-while-generate-example-is-running.md] file "troubleshooting/check-publish-missing-files-while-generate-example-is-running.md" does not exist. Fix the href or restore the target, then delete this comment. -->
 - [`check-publish.sh` reports missing files while `generate-example` is running](troubleshooting/check-publish-missing-files-while-generate-example-is-running.md) - Validation can fail with transient missing-file errors when checks run while `generate-example` is actively rebuilding `example/`.
 
 - [Clean `git status` but you need touched paths for closeout](troubleshooting/clean-git-status-but-you-need-touched-paths-for-closeout.md) - After commits, the working tree is clean but **task-closeout** still needs an accurate list of paths touched in the session for the bundle record.
 
 - [Codex cannot write under `.agents/` during closeout or distill](troubleshooting/codex-cannot-write-under-agents-during-closeout-or-distill.md) - Codex runs may treat `.agents/` as read-only or require extra approval when creating session bundles or updating durable knowledge during workflows.
 
+<!-- openwiki: broken internal link [troubleshooting/comparing-example-agents-to-root-agents.md] file "troubleshooting/comparing-example-agents-to-root-agents.md" does not exist. Fix the href or restore the target, then delete this comment. -->
 - [Comparing greenfield `example/.agents/` to this repo’s root `.agents/`](troubleshooting/comparing-example-agents-to-root-agents.md) - Consumers expect `example/.agents/` to mirror a portable install; diffs against root `.agents/` usually mean the example tree needs regeneration or a doc fix.
 
 - [Docs tooling resolves wrong project root in nested `example/` or global installs](troubleshooting/docs-tooling-resolves-wrong-project-root-in-nested-example-or-global-installs.md) - **[OBSOLETE]** Docs tooling may target the wrong project when scripts infer only git root. Obsolete with the retired docs-search/docs-compile scripts; the entry is retained as historical reference.
 
+<!-- openwiki: broken internal link [troubleshooting/example-agents-looks-like-full-dogfood-copy.md] file "troubleshooting/example-agents-looks-like-full-dogfood-copy.md" does not exist. Fix the href or restore the target, then delete this comment. -->
 - [`example/.agents/` looks like a full mirror of root dogfood](troubleshooting/example-agents-looks-like-full-dogfood-copy.md) - The generated example tree contains large slices of this repository’s durable `.agents/docs/`, playbooks, or other maintainer paths instead of the minimal bootstrap-driven layout from generate-example.
 
 - [Gemini CLI not following durable guidance](troubleshooting/gemini-cli-not-following-durable-guidance.md) - Gemini CLI sessions may skip playbooks and `.agents/docs/` entries unless bootstrap files and explicit pointers are wired the way the kit expects.

@@ -23,6 +23,7 @@
 - [OpenWiki integration distribution stack (v0.3.x reality)](openwiki-integration-distribution-stack.md) - Records how OpenWiki reaches coding agents as of shipped v0.3.x: skills-CLI bundle plus headless CLI and runtime-importable helpers work; MCP lifecycle server and integrations lanes are unreleased upstream.
 - [Optional `prior_session` in session `summary.json`](optional-prior-session-in-session-summary-json.md) - Session bundles may record an optional `prior_session` pointer in `summary.json` to chain related closeouts without merging bundle folders.
 
+- [Pin global tool versions via caret in package.json and bundled versions.json](pin-global-tool-versions-via-caret-and-bundled-versions-json.md) - Global installs use caret ranges from package.json copied to bundled references/versions.json for consumer delivery; non-npm GitHub sources pin by commit SHA with vendored fallback.
 - [Maintainer plans live under `.agents/docs/plans/`, not `.agents/plans/`](plans-live-under-docs-plans-not-agents-plans.md) - Canonical location for initiative and roadmap markdown is `.agents/docs/plans/` so plans are indexed by docs-search alongside decisions and troubleshooting.
 
 - [Python preference for consumer-facing scripts](python-preference-for-consumer-scripts.md) - Consumer-facing scripts and tooling in the repository should be implemented in Python to ensure cross-platform compatibility and consistent development experience.

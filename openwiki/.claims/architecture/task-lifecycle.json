@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:bb8a6b2763a5006f0e691bbbea8b3d3c31479c704ba9b87d2f3297826a4b8061",
+  "pageVersion": "sha256:ac2e6ef5b5d359990e4544e0b3b3c9aba12dc56fc7b5c6f87b33b52555b728cb",
   "claims": [
     {
       "id": "claim_b50003ce03584a45a9f1307c08fa9d46",
@@ -273,10 +273,46 @@
           "version": "repo-lines-v1:sha256:775543c05eb10d6305884ea51c909ffd6be4fb8d1fce4cc0a6410ee12037ee34:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZmUyMmFkMzEzODg5N2M4YzBkOTY3YzBjYjNiZjFiYWU5ZGMxY2I5MzI4Nzg0MDRkZDY3ZjY0NDVkMWU3MjFmZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYmEyYWI2ODc2ZTBkNzllOTgwNmM1NTMwMmI0YWRhZjRjZGExMmU3YzFiYzUzNzY3OWZiODI0ZWVjOTU1MjYxOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODBmNjkyZTliMWQwMzJlMThjYWM5OWI2ZWJkZTNiODdlYmY4MzkzODk5MWI3MjJmM2Y1OWVjMjc2ZTMyZjE5ZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMjkyN2ExYmZiYzA5MjgxZmU3YmI5YjU3MmQ0NGMzMWE1YmRmMTNlYjU0OWNjOGUwYzc1MjNjM2UzM2Q4NzE3MiJ9"
         }
       ]
+    },
+    {
+      "id": "claim_41666858b8a04af1a2884e29d3298957",
+      "statement": "add-task-start is Proposal-only until archived to specs: its capability lives under openspec/changes/add-task-start/ (proposal.md, specs/task-start/spec.md, design.md) and has not been promoted to openspec/specs/task-start/; it must be labeled Proposal-only.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/changes/add-task-start/design.md#L1-L10",
+          "version": "repo-lines-v1:sha256:07623049b755146b942c2e716e422d91d6f35a39c3d321540a4241fbb8c371eb:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRlMzYzNGRiYjgwMWE3M2I3MGU4OWVkNzc1NDZjNzdiMTA5M2JiODhjOWU0NzkxOGU5NjY1OTRkYTQ5OTRhZjkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUxNjdhMTJlNmY4N2FkMDMxZWMwMTVjNmY4M2VhY2ZjODZkMWY2YWFiNTZiNTZhYjhmZWY5MWQxMDFmNGJlNTgifQ"
+        },
+        {
+          "resource": "repo://openspec/changes/add-task-start/proposal.md",
+          "version": "repo-file-v1:sha256:02e824d855bc2e10f7e793cb78ba79fba3f5c9e7e6312f160f38071965f7aad0"
+        },
+        {
+          "resource": "repo://openspec/changes/add-task-start/specs/task-start/spec.md",
+          "version": "repo-file-v1:sha256:152355639b97c963756eca910de7e41e01b8d70b5ea9cbb484382fa95f8cd51d"
+        }
+      ]
+    },
+    {
+      "id": "claim_a9643996121d4678b4409bc0094dad66",
+      "statement": "Exclusive mutation ownership: task-start owns creation by seeding .agents/sessions/YYYYMMDD-HHMMSS-short-topic/summary.json with task_id, created_at, status in_progress and optional openspec_change/repo_id/agent, and task-closeout owns finalization by preserving task_id and openspec_change while adding completed_at, final status, git metadata and distillation flags plus the remaining four bundle files; no other writer mutates the bundle, with fallback generation when no seed exists, and neither writes durable openwiki/.agents/AGENTS.md.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/changes/add-task-start/design.md#L17-L22",
+          "version": "repo-lines-v1:sha256:6e2c1c0df79639c6de4354513ce15b8d0fef158fe4f90fe22e3ca2bc4d7a3865:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMWY2ZGNmZDI5OWZmNDcxMzI4OWYzZDJmMWYyNzM1ODhlMGUzN2UwNTZiNmI1NTA2NjViZWZlZDI0YTljYTE3ZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMmMzN2QyNWUzYWIwMTMwM2EwOGM5MTE3MmNiNDViNzEyMDQ5YTJmZGFkNzE2NzJkMzMxYjI4NTI5MjAxMTk4ZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMGM2MWNiMmNkNmMwZDIzNWMwZTQwODhjNjM2YzVmMTVlZjg0ZjkzMjhlMDhmODk3YTE2OWNjNzViMjIyNjNiNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiY2UwYTY3ZjY1ZDFiODZhOWVlMTEwMGI0ZTJkOTNlM2Q2NjY4ZWJlZDBiMWM2ZTM0MzQ0MDNkMTFhYzZmYWEyMSJ9"
+        },
+        {
+          "resource": "repo://openspec/changes/add-task-start/proposal.md#L16-L25",
+          "version": "repo-lines-v1:sha256:135a2b92b450961a6b9dbd00a6701f51debbfb31df75c278b292f417d75bd5cc:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNlNzZkZWJiODAwYjQ3OTJhNTdlZGY1YWIyNDMyZjJhMGZhZmY5YjVjNjRiNTUxOTJjODBlNDBlZTQyMWMzNjIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMxMjllNTBmNDI1NmI3NWI0MzMxMDg2YTEyYmNiYWUwMGVlYTBiMDM3ODI2NTJkODEwMWQ4NjU5ZjUwMjdkNDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImYyMTY2NGE2MjgzNmJlMDE0ZmRjMzk2ZmVjZDIyM2ZhMDAyYjViNDY1NTgxZWI3MmZmMTZkY2Q5NjY4NWIxZGUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://openspec/changes/add-task-start/specs/task-start/spec.md#L3-L29",
+          "version": "repo-lines-v1:sha256:65117203557dd5bf98ddcccb37f7ac50870a2bcc9f258482d4bdc634da6351ea:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNhZDc3NjZlMzkzZWU0OTJlZjc4NGIzMGJlMWI4ODJiYmQ1ZmJiMGEyNDE0N2U2Mzg3NTJjMDg2MmU0ZTlkYmUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI1ZTQ1MmJmNDkxZmI1ZDg1OGJiNGMzMjJkMTEzNGNiNTUzYWMxMzBmNjk3MmE5ZDE0NGUyMTc2NzRmMmJlZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjoyLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFjOTdjNjg1MTMwMjY2NGUyZDg1YWJjODQ5ZDM0YmMwZDgxMTJmNDFkZjg3ZDZkZjAyNGEwMzhiYjMxYTU0MTIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
     }
   ],
   "verification": {
     "by": "openwiki/0.4.3",
-    "at": "2026-08-29T04:36:52.163Z"
+    "at": "2026-08-29T20:18:58.499Z"
   }
 }

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:f5423f5d4e961eea60da1e355e445e4026bc4f0ecc62570f0885e3986bf793f2",
+  "pageVersion": "sha256:53f5cf525f72711f84b386b28e1fe4c9f985e8e54e581e35a6e3032577fc91d9",
   "claims": [
     {
       "id": "claim_79872787536c40a598012048819c0481",
@@ -108,7 +108,7 @@
         },
         {
           "resource": "repo://.agents/skills/learning-distill/bootstrap/AGENTS.md",
-          "version": "repo-file-v1:sha256:08ffd28cb5c113c740cd816bafee6adc2674d803b22bee932801917b58f7b360"
+          "version": "repo-file-v1:sha256:113d2a482bc084c44b732792c9bb86dd6ff0445406b52d8976c9368b8d365043"
         }
       ]
     },
@@ -196,7 +196,7 @@
     },
     {
       "id": "claim_7e9b9dcd59154fb9b0832147973b84ec",
-      "statement": "Curation contract declares preserve-and-link for curated trees decisions/, troubleshooting/, overview.md, maintenance-format.md: a scheduled openwiki --update keeps AKSK-authored bodies and links generated material to them, and every aksk_* frontmatter field survives round-trips.",
+      "statement": "Curation contract declares preserve-and-link curated trees; aksk_* frontmatter survives round-trips. Write decisions/troubleshooting only via this skill's deterministic index refresh.",
       "evidence": [
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/references/wiki-contract-template.md",
@@ -243,6 +243,6 @@
   ],
   "verification": {
     "by": "openwiki/0.4.3",
-    "at": "2026-08-29T04:36:52.163Z"
+    "at": "2026-08-29T20:18:58.499Z"
   }
 }

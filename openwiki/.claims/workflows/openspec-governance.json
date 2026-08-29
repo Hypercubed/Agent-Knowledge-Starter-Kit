@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:68dd0329c79d46c83aa204bd7f3c1279fe98e99c1d538546af3fbb3f4927ab4d",
+  "pageVersion": "sha256:3f31913a840e0a9e8d4d006d340092acd66bb19338427e372d193d9db2b4b083",
   "claims": [
     {
       "id": "claim_1cac42cc404d4a7083bad7e557eb6a96",
@@ -23,54 +23,6 @@
       ]
     },
     {
-      "id": "claim_6ce0964973e54ea2bc0ca389b635ed0a",
-      "statement": "An active change lives at openspec/changes/<kebab-name>/ with .openspec.yaml receipt, proposal.md, design.md, tasks.md and optional delta specs at specs/<capability>/spec.md using ADDED/MODIFIED/REMOVED/RENAMED delta semantics.",
-      "evidence": [
-        {
-          "resource": "repo://openspec/changes/add-agents-md-bootstrap/.openspec.yaml",
-          "version": "repo-file-v1:sha256:cef97c66dca8a4822d16808d0c827486f612c60b5fa247f48cdf6eb25f768e94"
-        },
-        {
-          "resource": "repo://openspec/changes/add-agents-md-bootstrap/proposal.md",
-          "version": "repo-file-v1:sha256:a8b0517630bccd7f0427465979e814ff3cec85ae3545bdddf2880f84c0403f05"
-        },
-        {
-          "resource": "repo://openspec/changes/add-agents-md-bootstrap/specs/agents-md-bootstrap/spec.md",
-          "version": "repo-file-v1:sha256:38593679d0a40bb9f3b53f3ab43d38ccf4773486782e93c6b92a888112703a92"
-        },
-        {
-          "resource": "repo://openspec/changes/add-agents-md-bootstrap/tasks.md",
-          "version": "repo-file-v1:sha256:16e321ca200604331bc554893b561f30752d3f5750063871f034e6d10a127890"
-        },
-        {
-          "resource": "repo://openspec/config.yaml",
-          "version": "repo-file-v1:sha256:995f99110b1bf362ab6caeaa0d0d0b9a68e72225875a41bb49a2013a2158ec57"
-        }
-      ]
-    },
-    {
-      "id": "claim_fb32dffa1171415f919ee62bb459b88f",
-      "statement": "Graduated SHALL requirements reside at openspec/specs/<capability>/spec.md; in-flight delta requirements reside at openspec/changes/<name>/specs/<capability>/spec.md and are only promoted to graduated specs via the archive sync step.",
-      "evidence": [
-        {
-          "resource": "repo://openspec/changes/add-agents-md-bootstrap/specs/agents-md-bootstrap/spec.md",
-          "version": "repo-file-v1:sha256:38593679d0a40bb9f3b53f3ab43d38ccf4773486782e93c6b92a888112703a92"
-        },
-        {
-          "resource": "repo://openspec/specs/closeout-change-linking/spec.md",
-          "version": "repo-file-v1:sha256:b5ca10a3db5605ffcf5a66efb0ac6bb98f0a3c1ef0d9617ce888db3ae4354e60"
-        },
-        {
-          "resource": "repo://openspec/specs/cross-tool-lint/spec.md",
-          "version": "repo-file-v1:sha256:eada3fe878a6aee3460d00e46df16bb6ecd90d1185ace104ecea080b5819450c"
-        },
-        {
-          "resource": "repo://openspec/specs/wiki-contract/spec.md",
-          "version": "repo-file-v1:sha256:419a050c5007c1916753365f2ad64108e320e9af160426e7fb4cc38c0508a5be"
-        }
-      ]
-    },
-    {
       "id": "claim_c6acdf87d76444c98c90601665448e23",
       "statement": "Archived changes are frozen under openspec/changes/archive/YYYY-MM-DD-<name>/ via move of the full change directory including .openspec.yaml; legacy archive entries also exist as flat *.md files.",
       "evidence": [
@@ -85,24 +37,6 @@
         {
           "resource": "repo://openspec/specs/closeout-change-linking/spec.md",
           "version": "repo-file-v1:sha256:b5ca10a3db5605ffcf5a66efb0ac6bb98f0a3c1ef0d9617ce888db3ae4354e60"
-        }
-      ]
-    },
-    {
-      "id": "claim_7bf0ec872b8e4cdeb1fa7af52aefc010",
-      "statement": "opsx:propose scaffolds with openspec new change, polls openspec status --json for applyRequires and artifacts, and loops openspec instructions <artifact-id> --json rendering template to outputPath until all applyRequires are done.",
-      "evidence": [
-        {
-          "resource": "repo://openspec/changes/add-agents-md-bootstrap/.openspec.yaml",
-          "version": "repo-file-v1:sha256:cef97c66dca8a4822d16808d0c827486f612c60b5fa247f48cdf6eb25f768e94"
-        },
-        {
-          "resource": "repo://openspec/changes/archive/2026-08-23-adopt-openspec-openwiki/tasks.md",
-          "version": "repo-file-v1:sha256:ad545cf039502028e4b28986eaa13a0d418fc902b64a470138b672dbc0e1e316"
-        },
-        {
-          "resource": "repo://openspec/config.yaml",
-          "version": "repo-file-v1:sha256:995f99110b1bf362ab6caeaa0d0d0b9a68e72225875a41bb49a2013a2158ec57"
         }
       ]
     },
@@ -172,7 +106,7 @@
       "evidence": [
         {
           "resource": "repo://.agents/skills/docs-lint/SKILL.md",
-          "version": "repo-file-v1:sha256:07d289654569ee79013a053eda29c89012cc28c6ec1f76c6c796630654125e3b"
+          "version": "repo-file-v1:sha256:856a7d6e0c608fe3bd7de1f17c0a380ecd911dd2f10cc496ab720c5e670cf172"
         },
         {
           "resource": "repo://openspec/specs/cross-tool-lint/spec.md",
@@ -283,10 +217,246 @@
           "version": "repo-file-v1:sha256:995f99110b1bf362ab6caeaa0d0d0b9a68e72225875a41bb49a2013a2158ec57"
         }
       ]
+    },
+    {
+      "id": "claim_ed49d9e77bd74be6840589f0cd299bdb",
+      "statement": "An active change lives at openspec/changes/<kebab-name>/ with .openspec.yaml receipt, proposal.md, design.md, tasks.md and optional delta specs at specs/<capability>/spec.md using ADDED/MODIFIED/REMOVED/RENAMED delta semantics.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/config.yaml",
+          "version": "repo-file-v1:sha256:995f99110b1bf362ab6caeaa0d0d0b9a68e72225875a41bb49a2013a2158ec57"
+        },
+        {
+          "resource": "repo://openspec/specs/agents-md-bootstrap/spec.md",
+          "version": "repo-file-v1:sha256:b85557c6a55d6e807f6f46c17ae73962575eda9ddb798b13025cbb8e2fe07c13"
+        }
+      ]
+    },
+    {
+      "id": "claim_408403f6067047e9818a9a64c0182718",
+      "statement": "Graduated SHALL requirements reside at openspec/specs/<capability>/spec.md; in-flight delta requirements reside at openspec/changes/<name>/specs/<capability>/spec.md and are only promoted to graduated specs via the archive sync step.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/specs/agents-md-bootstrap/spec.md",
+          "version": "repo-file-v1:sha256:b85557c6a55d6e807f6f46c17ae73962575eda9ddb798b13025cbb8e2fe07c13"
+        },
+        {
+          "resource": "repo://openspec/specs/closeout-change-linking/spec.md",
+          "version": "repo-file-v1:sha256:b5ca10a3db5605ffcf5a66efb0ac6bb98f0a3c1ef0d9617ce888db3ae4354e60"
+        },
+        {
+          "resource": "repo://openspec/specs/cross-tool-lint/spec.md",
+          "version": "repo-file-v1:sha256:eada3fe878a6aee3460d00e46df16bb6ecd90d1185ace104ecea080b5819450c"
+        },
+        {
+          "resource": "repo://openspec/specs/wiki-contract/spec.md",
+          "version": "repo-file-v1:sha256:419a050c5007c1916753365f2ad64108e320e9af160426e7fb4cc38c0508a5be"
+        }
+      ]
+    },
+    {
+      "id": "claim_c22469feeced4c8483f960f077c9abc8",
+      "statement": "opsx:propose scaffolds with openspec new change, polls openspec status --json for applyRequires and artifacts, and loops openspec instructions <artifact-id> --json rendering template to outputPath until all applyRequires are done.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/changes/archive/2026-08-23-adopt-openspec-openwiki/tasks.md",
+          "version": "repo-file-v1:sha256:ad545cf039502028e4b28986eaa13a0d418fc902b64a470138b672dbc0e1e316"
+        },
+        {
+          "resource": "repo://openspec/config.yaml",
+          "version": "repo-file-v1:sha256:995f99110b1bf362ab6caeaa0d0d0b9a68e72225875a41bb49a2013a2158ec57"
+        },
+        {
+          "resource": "repo://openspec/specs/agents-md-bootstrap/spec.md",
+          "version": "repo-file-v1:sha256:b85557c6a55d6e807f6f46c17ae73962575eda9ddb798b13025cbb8e2fe07c13"
+        }
+      ]
+    },
+    {
+      "id": "claim_2300ce0dd8a040818d025b30c93a62b2",
+      "statement": "openspec/changes/canonical-universal-install is Proposal-only: its delta specs (ADDED canonical-user-skills-scope, MODIFIED aksk-bootstrap and agent-integration-spread) are not yet graduated; openspec/specs/** remains truth and still describes the repo-local default until opsx:archive sync promotes the deltas.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/changes/canonical-universal-install/.openspec.yaml",
+          "version": "repo-file-v1:sha256:f4a1a5ebcaf832a382f8bba53f7c81d9fa7e1a92b3d01f6b7d8fc34e77619b07"
+        },
+        {
+          "resource": "repo://openspec/changes/canonical-universal-install/design.md",
+          "version": "repo-file-v1:sha256:436b515cabebd46beab15d25de2401ac1c0b0e0ba6a24030e57da4c37d4ebcac"
+        },
+        {
+          "resource": "repo://openspec/changes/canonical-universal-install/proposal.md",
+          "version": "repo-file-v1:sha256:641920026ae4713d450f9df8bceefc01cbdb00526ae6e06fa68c6be14f16fe29"
+        },
+        {
+          "resource": "repo://openspec/specs/closeout-change-linking/spec.md",
+          "version": "repo-file-v1:sha256:b5ca10a3db5605ffcf5a66efb0ac6bb98f0a3c1ef0d9617ce888db3ae4354e60"
+        }
+      ]
+    },
+    {
+      "id": "claim_cf9d07c3ad0f4fa4a6c1eb4ff2737c69",
+      "statement": "The canonical-universal-install proposal makes ~/.agents/skills (universal, Codex default) plus the self-reported current host the canonical skill store via npx skills add -g -a <self-reported> <source> for Hypercubed/Agent-Knowledge-Starter-Kit and langchain-ai/openwiki (--full-depth); extra -a <other> or --all only when the user explicitly asked at install time, with no persistent consent artifact.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/changes/canonical-universal-install/design.md",
+          "version": "repo-file-v1:sha256:436b515cabebd46beab15d25de2401ac1c0b0e0ba6a24030e57da4c37d4ebcac"
+        },
+        {
+          "resource": "repo://openspec/changes/canonical-universal-install/proposal.md",
+          "version": "repo-file-v1:sha256:641920026ae4713d450f9df8bceefc01cbdb00526ae6e06fa68c6be14f16fe29"
+        },
+        {
+          "resource": "repo://openspec/changes/canonical-universal-install/specs/canonical-user-skills-scope/spec.md",
+          "version": "repo-file-v1:sha256:f1160ef5df943f07c1740ae68b9ea54161d45bfbeed0bda140b10bab9de2ff64"
+        }
+      ]
+    },
+    {
+      "id": "claim_1e50befbe7da492c89933ab655b56110",
+      "statement": "The canonical-universal-install proposal removes the git clone --depth 1 && cp -r .agents/skills fallback lane and makes npx required; bootstrap reports missing npx as a prerequisite in the INSTRUCT lane rather than silently copying.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/changes/canonical-universal-install/design.md",
+          "version": "repo-file-v1:sha256:436b515cabebd46beab15d25de2401ac1c0b0e0ba6a24030e57da4c37d4ebcac"
+        },
+        {
+          "resource": "repo://openspec/changes/canonical-universal-install/proposal.md",
+          "version": "repo-file-v1:sha256:641920026ae4713d450f9df8bceefc01cbdb00526ae6e06fa68c6be14f16fe29"
+        },
+        {
+          "resource": "repo://openspec/changes/canonical-universal-install/specs/canonical-user-skills-scope/spec.md",
+          "version": "repo-file-v1:sha256:f1160ef5df943f07c1740ae68b9ea54161d45bfbeed0bda140b10bab9de2ff64"
+        }
+      ]
+    },
+    {
+      "id": "claim_9328cf6609d5406c9372233c5c9a7e07",
+      "statement": "Skill installs under the canonical-universal-install proposal use versions read from references/versions.json via versionsFromPackageJson() (caret range, fallback @latest only when unpinned) for both the kit and langchain-ai/openwiki.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/changes/canonical-universal-install/design.md",
+          "version": "repo-file-v1:sha256:436b515cabebd46beab15d25de2401ac1c0b0e0ba6a24030e57da4c37d4ebcac"
+        },
+        {
+          "resource": "repo://openspec/changes/canonical-universal-install/specs/canonical-user-skills-scope/spec.md",
+          "version": "repo-file-v1:sha256:f1160ef5df943f07c1740ae68b9ea54161d45bfbeed0bda140b10bab9de2ff64"
+        }
+      ]
+    },
+    {
+      "id": "claim_f5d81bb346e843ffbcbe70b35797c390",
+      "statement": "Verification under the canonical-universal-install proposal treats ~/.agents/skills/<name>/SKILL.md plus the self-reported host mirror as canonical for the default lane; repo-local ./.agents/skills becomes an explicit override, not the default.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/changes/canonical-universal-install/specs/canonical-user-skills-scope/spec.md",
+          "version": "repo-file-v1:sha256:f1160ef5df943f07c1740ae68b9ea54161d45bfbeed0bda140b10bab9de2ff64"
+        }
+      ]
+    },
+    {
+      "id": "claim_7516ba08d70e40579cb6b952afcef1e7",
+      "statement": "The canonical-universal-install delta for aksk-bootstrap narrows bootstrap to two verbs (verify CLIs on PATH via npm i -g then verify skills in ~/.agents/skills plus self-reported host via npx skills add -g -a <self-reported>) and installs the openwiki lifecycle skill via openwiki integrations install <self-reported> when that host is in codex|claude|opencode, otherwise via npx plus openwiki mcp --host or npx add-mcp chooser.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/changes/canonical-universal-install/design.md",
+          "version": "repo-file-v1:sha256:436b515cabebd46beab15d25de2401ac1c0b0e0ba6a24030e57da4c37d4ebcac"
+        },
+        {
+          "resource": "repo://openspec/changes/canonical-universal-install/specs/aksk-bootstrap/spec.md",
+          "version": "repo-file-v1:sha256:144e0da3f210ba50679600378ac20cb00aa4e1a1f9ecab2cf06eb6b5df33b35c"
+        }
+      ]
+    },
+    {
+      "id": "claim_0b18d7faaff04b559b281033e6a182da",
+      "statement": "The canonical-universal-install delta for agent-integration-spread collapses the spread to universal+current by default (Codex is universal) and selects per-host between openwiki integrations install <host> when supported and the unified npx skills add -g -a <self-reported> langchain-ai/openwiki --full-depth plus npx add-mcp -g -a <host> ladder otherwise, verified via openwiki integrations list (user scope) versus list --project (repo override).",
+      "evidence": [
+        {
+          "resource": "repo://openspec/changes/canonical-universal-install/design.md",
+          "version": "repo-file-v1:sha256:436b515cabebd46beab15d25de2401ac1c0b0e0ba6a24030e57da4c37d4ebcac"
+        },
+        {
+          "resource": "repo://openspec/changes/canonical-universal-install/specs/agent-integration-spread/spec.md",
+          "version": "repo-file-v1:sha256:c7823e7f1a87322932478821ba8b1c2277e9531b18be1130790d87c202ca5706"
+        }
+      ]
+    },
+    {
+      "id": "claim_da6f3a9fcd4546f68a13cb5683ac03c6",
+      "statement": "openspec/changes/add-task-start is Proposal-only: its ADDED task-start capability and MODIFIED task-closeout deltas are not yet graduated; openspec/specs/** remains truth and the shipped lifecycle remains work -> task-closeout generation fallback until opsx:archive sync promotes the deltas.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/changes/add-task-start/proposal.md",
+          "version": "repo-file-v1:sha256:02e824d855bc2e10f7e793cb78ba79fba3f5c9e7e6312f160f38071965f7aad0"
+        },
+        {
+          "resource": "repo://openspec/changes/add-task-start/specs/task-start/spec.md",
+          "version": "repo-file-v1:sha256:152355639b97c963756eca910de7e41e01b8d70b5ea9cbb484382fa95f8cd51d"
+        },
+        {
+          "resource": "repo://openspec/specs/closeout-change-linking/spec.md",
+          "version": "repo-file-v1:sha256:b5ca10a3db5605ffcf5a66efb0ac6bb98f0a3c1ef0d9617ce888db3ae4354e60"
+        }
+      ]
+    },
+    {
+      "id": "claim_d8fb285cc2ba4ed79ed9130798658882",
+      "statement": "The add-task-start proposal's task-start seeds .agents/sessions/YYYYMMDD-HHMMSS-short-topic/summary.json with task_id (canonical), created_at, status in_progress and optional openspec_change/repo_id/agent/agent_session_id, idempotently ensuring .agents/sessions/README.md and .agents/.gitignore entries sessions/* plus !sessions/README.md exist.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/changes/add-task-start/design.md",
+          "version": "repo-file-v1:sha256:a4bd4394e5adacc4cf5eff661c878294f2f4670ac34fa4651aa56c32fc3d3085"
+        },
+        {
+          "resource": "repo://openspec/changes/add-task-start/proposal.md",
+          "version": "repo-file-v1:sha256:02e824d855bc2e10f7e793cb78ba79fba3f5c9e7e6312f160f38071965f7aad0"
+        },
+        {
+          "resource": "repo://openspec/changes/add-task-start/specs/task-start/spec.md",
+          "version": "repo-file-v1:sha256:152355639b97c963756eca910de7e41e01b8d70b5ea9cbb484382fa95f8cd51d"
+        }
+      ]
+    },
+    {
+      "id": "claim_a7988af731a3415580461c36e4db4f97",
+      "statement": "The add-task-start proposal makes task-closeout finalize the seeded summary.json preserving task_id and openspec_change, appending completed_at, final status, git metadata and distillation flags and writing the remaining bundle files; when no seed exists closeout retains its current generation fallback.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/changes/add-task-start/design.md",
+          "version": "repo-file-v1:sha256:a4bd4394e5adacc4cf5eff661c878294f2f4670ac34fa4651aa56c32fc3d3085"
+        },
+        {
+          "resource": "repo://openspec/changes/add-task-start/proposal.md",
+          "version": "repo-file-v1:sha256:02e824d855bc2e10f7e793cb78ba79fba3f5c9e7e6312f160f38071965f7aad0"
+        },
+        {
+          "resource": "repo://openspec/changes/add-task-start/specs/task-start/spec.md",
+          "version": "repo-file-v1:sha256:152355639b97c963756eca910de7e41e01b8d70b5ea9cbb484382fa95f8cd51d"
+        }
+      ]
+    },
+    {
+      "id": "claim_6c50ce4c71744176badea3571b3114ba",
+      "statement": "add-task-start enforces exclusive ownership and sequencing task-start owns creation then task-closeout owns finalization then learning-distill consumes, with no durable writes at start or closeout to openwiki, .agents/AGENTS.md, .agents/playbooks or .agents/skills — proposed durable changes stay as prose inside the bundle.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/changes/add-task-start/design.md",
+          "version": "repo-file-v1:sha256:a4bd4394e5adacc4cf5eff661c878294f2f4670ac34fa4651aa56c32fc3d3085"
+        },
+        {
+          "resource": "repo://openspec/changes/add-task-start/proposal.md",
+          "version": "repo-file-v1:sha256:02e824d855bc2e10f7e793cb78ba79fba3f5c9e7e6312f160f38071965f7aad0"
+        },
+        {
+          "resource": "repo://openspec/changes/add-task-start/specs/task-start/spec.md",
+          "version": "repo-file-v1:sha256:152355639b97c963756eca910de7e41e01b8d70b5ea9cbb484382fa95f8cd51d"
+        }
+      ]
     }
   ],
   "verification": {
     "by": "openwiki/0.4.3",
-    "at": "2026-08-29T04:36:52.163Z"
+    "at": "2026-08-29T21:15:47.181Z"
   }
 }

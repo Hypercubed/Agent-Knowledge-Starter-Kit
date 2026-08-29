@@ -5,7 +5,7 @@ description: How OpenSpec governs intent and process — openspec.yaml and spec-
 tags: [openspec, governance, workflow, specs, changes]
 verified:
   - by: openwiki/0.4.3
-    at: 2026-08-29T04:36:52.163Z
+    at: 2026-08-29T21:15:47.181Z
 sources:
   - id: openwiki-source-5398a69cb2cf8d556809da57
     resource: repo://.agents/skills/aksk-bootstrap/scripts/attach_section.mjs
@@ -21,14 +21,12 @@ sources:
     resource: repo://.agents/skills/task-closeout/SKILL.md
   - id: openwiki-source-75cf85a44e08ef6c1c96b347
     resource: repo://openspec.yaml
-  - id: openwiki-source-7567615b79bc7102ef4941ce
-    resource: repo://openspec/changes/add-agents-md-bootstrap/.openspec.yaml
-  - id: openwiki-source-d41529889f3599c07d9ebea6
-    resource: repo://openspec/changes/add-agents-md-bootstrap/proposal.md
-  - id: openwiki-source-36b26de7796cfb15924f3fb9
-    resource: repo://openspec/changes/add-agents-md-bootstrap/specs/agents-md-bootstrap/spec.md
-  - id: openwiki-source-01e5ef396f81ed8bdfc16f89
-    resource: repo://openspec/changes/add-agents-md-bootstrap/tasks.md
+  - id: openwiki-source-30179ef0180d39bd7ef5bef7
+    resource: repo://openspec/changes/add-task-start/design.md
+  - id: openwiki-source-c13ebc2b6ebca535d0e7e2e3
+    resource: repo://openspec/changes/add-task-start/proposal.md
+  - id: openwiki-source-bfc58f79a96e2ed041bc3436
+    resource: repo://openspec/changes/add-task-start/specs/task-start/spec.md
   - id: openwiki-source-5f3d44600622b137a3e5c877
     resource: repo://openspec/changes/archive/2026-08-23-adopt-openspec-openwiki/.openspec.yaml
   - id: openwiki-source-3e1811396a656bb08f1eb927
@@ -37,8 +35,22 @@ sources:
     resource: repo://openspec/changes/archive/2026-08-23-adopt-openspec-openwiki/tasks.md
   - id: openwiki-source-49be4d0097fbe26b35c8d39d
     resource: repo://openspec/changes/archive/add-knowledge-search.md
+  - id: openwiki-source-ecf3e3e6d3946148b78db293
+    resource: repo://openspec/changes/canonical-universal-install/.openspec.yaml
+  - id: openwiki-source-7ba4f01e3797f49e37ef0adc
+    resource: repo://openspec/changes/canonical-universal-install/design.md
+  - id: openwiki-source-545e83dfac0165c5342cef38
+    resource: repo://openspec/changes/canonical-universal-install/proposal.md
+  - id: openwiki-source-90838e50b13f4d86fb3f6a42
+    resource: repo://openspec/changes/canonical-universal-install/specs/agent-integration-spread/spec.md
+  - id: openwiki-source-0311402371adf5cfcd658a84
+    resource: repo://openspec/changes/canonical-universal-install/specs/aksk-bootstrap/spec.md
+  - id: openwiki-source-7c39b0010ecc4bc50c9c670f
+    resource: repo://openspec/changes/canonical-universal-install/specs/canonical-user-skills-scope/spec.md
   - id: openwiki-source-38af7bdd34d817fbd3c29077
     resource: repo://openspec/config.yaml
+  - id: openwiki-source-f7767c74e12e946558d335f1
+    resource: repo://openspec/specs/agents-md-bootstrap/spec.md
   - id: openwiki-source-86a9b374cb99ed0befc3bb8d
     resource: repo://openspec/specs/closeout-change-linking/spec.md
   - id: openwiki-source-dc51f338f00dcd0763b107a6
@@ -47,7 +59,7 @@ sources:
     resource: repo://openspec/specs/distill-routing/spec.md
   - id: openwiki-source-53df649d4fbc85ef0839d164
     resource: repo://openspec/specs/wiki-contract/spec.md
-generated: { by: "openwiki/0.4.3", at: "2026-08-29T04:36:52.163Z" }
+generated: { by: "openwiki/0.4.3", at: "2026-08-29T21:15:47.181Z" }
 ---
 
 # OpenSpec Governance
@@ -56,7 +68,7 @@ OpenSpec is the intent and process layer of this repository. It owns *what* shou
 
 The mechanism is specification-driven change management: every meaningful unit of work is a **change** with explicit artifacts (`proposal.md`, `design.md`, `tasks.md`, delta specs), driven by four `opsx` agent workflows and validated at archive time. Graduated requirements live under `openspec/specs/`; in-flight deltas live under the change itself. Archived changes are paired with wiki coverage by `docs-lint`.
 
-> **Contract note:** Only `openspec/specs/**` is the current contract. `openspec/changes/archive/**` is historical. Active entries under `openspec/changes/<name>/` are proposals, not yet graduated.
+> **Contract note:** Only `openspec/specs/**` is the current contract. `openspec/changes/archive/**` is historical. Active entries under `openspec/changes/<name>/` are proposals, not yet graduated — cite them as **Proposal-only** until `opsx:archive` promotes deltas via spec sync.
 
 ## Configuration — two YAML entrypoints
 
@@ -120,7 +132,7 @@ openspec/changes/<kebab-name>/
 * `proposal.md` is mandatory. `design.md` and `tasks.md` are generated in dependency order via `openspec instructions <artifact> --change <name> --json`.
 * Delta specs are capability-scoped. They use delta semantics against the corresponding `openspec/specs/<capability>/spec.md` — the main spec is never edited while the change is active.
 
-Example active set (13 at time of writing): `add-agents-md-bootstrap`, `aksk-bootstrap-system`, `add-task-start`, `implement-operating-contract-and-triggers`, `adopt-workflows-taxonomy`, plus eight supporting proposals. Each carries the shape above.
+Example active set (12 at time of writing): `canonical-universal-install`, `add-task-start`, `adopt-workflows-taxonomy`, `implement-operating-contract-and-triggers`, `add-integrations`, plus seven supporting proposals. Each carries the shape above.
 
 ### Graduated versus delta specs
 
@@ -130,9 +142,44 @@ Example active set (13 at time of writing): `add-agents-md-bootstrap`, `aksk-boo
 | `openspec/specs/<cap>/spec.md` | graduated | durable SHALL requirements for the repo | `opsx:archive` sync step |
 | `openspec/changes/archive/YYYY-MM-DD-<name>/` | archived | frozen record of what shipped | `opsx:archive` move |
 
-Six capabilities are currently graduated: two pre-2.0 (`openspec-integration`, `remove-write-plan`) and four from the applied `adopt-openspec-openwiki` change (`wiki-contract`, `distill-routing`, `cross-tool-lint`, `closeout-change-linking`). Requirements live only here — distillation never duplicates a SHALL as a wiki page; it cites the capability instead (see [Knowledge Curation Contract](../concepts/knowledge-curation-contract.md)).
+Ten capabilities are currently graduated: `openspec-integration`, `remove-write-plan` (pre-2.0), plus `wiki-contract`, `distill-routing`, `cross-tool-lint`, `closeout-change-linking` (from `adopt-openspec-openwiki`), `install-lanes`, `aksk-bootstrap`, `agent-integration-spread`, and `agents-md-bootstrap` (from the 2026-08-29 wave). Requirements live only here — distillation never duplicates a SHALL as a wiki page; it cites the capability instead (see [Knowledge Curation Contract](../concepts/knowledge-curation-contract.md)).
 
 Legacy hand-authored proposals predating the structured spec format survive as flat files under `openspec/changes/archive/*.md` with the same intent but without delta semantics.
+
+### Pending proposal: `canonical-universal-install` (Proposal-only)
+
+`openspec/specs/**` remains truth. `openspec/changes/canonical-universal-install/` is **not** yet graduated — do not treat its deltas as contract until archived.
+
+What it proposes (BREAKING):
+
+* **Canonical store:** `~/.agents/skills` (universal, Codex default) plus the self-reported current host's dir (`~/.codex/skills`, `~/.claude/skills`, etc.) via `npx skills add -g -a <self-reported> <source>`. Applies to `Hypercubed/Agent-Knowledge-Starter-Kit` and `langchain-ai/openwiki` (`--full-depth` for openwiki). Extra `-a <other>` or `--all` only when the user explicitly asked at install time — no wide spread by default, no persistent consent artifact.
+* **`npx` required, clone fallback removed:** `git clone --depth 1 && cp -r .agents/skills` is deleted. Missing `npx` is reported as a prerequisite in the bootstrap INSTRUCT lane, not silently copied.
+* **Delta specs (proposal-only):** `ADDED` `canonical-user-skills-scope` with `~/.agents/skills` canonical, `npx` required, universal+current default, `references/versions.json` via `versionsFromPackageJson()` for version pins (caret, fallback `@latest`), and verification asserting `~/.agents/skills/<name>/SKILL.md`; `MODIFIED` `aksk-bootstrap` (two verbs: verify CLIs then verify skills in canonical store, `openwiki integrations install <self-reported>` when that host is in `codex|claude|opencode` else `npx` + `openwiki mcp`/`add-mcp` chooser) and `MODIFIED` `agent-integration-spread` (same universal+current scoping, `openwiki integrations install` vs `npx skills add -g` + `npx add-mcp` ladder, verified via `openwiki integrations list` vs `list --project`).
+
+Until `opsx:archive` promotes these deltas, the graduated specs `install-lanes`, `aksk-bootstrap`, and `agent-integration-spread` still describe the repo-local `./.agents/skills` default with clone fallback and headless `openwiki --init -p` ladder. Treat any `~/.agents/skills` language outside the proposal directory as preview.
+
+### Pending proposal: `add-task-start` (Proposal-only)
+
+`openspec/specs/**` remains truth. `openspec/changes/add-task-start/` is **not** yet graduated — do not treat its deltas as contract until archived.
+
+What it proposes:
+
+* **New capability `task-start`:** Proactive initialization before work begins. Creates `.agents/sessions/YYYYMMDD-HHMMSS-short-topic/` (sortable label, not identity) and seeds `summary.json` per `task-closeout/CONTRACT.md` with `task_id` (canonical), `created_at`, `status: in_progress`, and optional `openspec_change`, `repo_id`, `agent`, `agent_session_id`. Does not yet contain `completed_at`, final validation, or changed-files content. Idempotently ensures `.agents/sessions/README.md` and `.agents/.gitignore` entries (`sessions/*`, `!sessions/README.md`) exist.
+* **Modified `task-closeout` continuity:** Closeout detects the seeded `summary.json` and finalizes it in place — preserving `task_id` (and `openspec_change` if seeded) and appending `completed_at`, final `status` (`completed`/`blocked`/`abandoned`), git metadata, `openspec_change`, and distillation flags, then writing the remaining four bundle files (`active-task.md`, `learning-candidate.md`, `changed-files.txt`, `validation.txt`). When invoked without a prior `task-start`, it retains its current generation fallback.
+* **Exclusive ownership and strict sequencing:** `task-start` owns creation, `task-closeout` owns finalization, `learning-distill` consumes the finalized bundle only after closeout marks it ready. No other writer mutates the bundle. No durable writes happen at start or closeout — `openwiki/`, `.agents/AGENTS.md`, `.agents/playbooks/`, `.agents/skills/` are untouched; proposed durable changes stay as prose inside the bundle for distillation.
+* **Config and routing update (proposal-only):** Updates `openspec/config.yaml` context (replace stale `.agents/docs/` references with `openwiki/` + `.agents/sessions/` (gitignored) + `.agents/AGENTS.md`) and `.agents/AGENTS.md` routing/lifecycle to include `task-start` as the mandatory start-of-task trigger alongside the existing `task-closeout` end trigger.
+
+```mermaid
+stateDiagram-v2
+    [*] --> Started: task-start seeds summary.json (in_progress)
+    Started --> Working: agent does work
+    Working --> Closed: task-closeout finalizes bundle
+    Closed --> Distilled: learning-distill promotes lessons
+    Distilled --> [*]
+    Working --> Closed: task-closeout fallback (no prior start)
+```
+
+Until `opsx:archive` promotes this delta, the shipped lifecycle remains `work → task-closeout → learning-distill` with `task-closeout` creating the bundle from scratch.
 
 ## The four opsx workflows
 
@@ -204,11 +251,12 @@ Archiving freezes intent. But intent without descriptive follow-through is debt.
 
 ### The archive tree
 
-`openspec/changes/archive/` is date-prefixed (`YYYY-MM-DD-<name>/`) plus the legacy flat-file entries. Three waves are visible:
+`openspec/changes/archive/` is date-prefixed (`YYYY-MM-DD-<name>/`) plus the legacy flat-file entries. Four waves are visible:
 
 * **2026-05-16** — `add-openspec-integration` (adopted OpenSpec itself).
 * **2026-07-18/19** — five wiki-related proposals marked Overcome-By-Events by `integrate-openwiki-skills`, plus `remove-write-plan`.
 * **2026-08-23** — `adopt-openspec-openwiki` archived as fully applied (four specs graduated), plus superseded retirements (`integrate-openwiki-skills`, `aksk-install-tools`, `aksk-openspec-bridge`, `escalate-quick-reference`).
+* **2026-08-29** — `add-agents-md-bootstrap` (seed `AGENTS.md` from vendored baseline), `aksk-bootstrap-system` (orchestrator skill + deterministic `bootstrap.mjs`), and `reorder-install-lanes-drop-example` (lanes reordered, `example/` removed).
 
 Each archived directory preserves proposal/design/tasks and delta specs as the audit trail.
 
@@ -265,7 +313,7 @@ Preflight before any `openspec`/`openwiki` use: `node .agents/skills/aksk-bootst
 ## Relationships and extension points
 
 * **OpenSpec ↔ OpenWiki** — peer dependencies, never installed by AKSK. The `wiki-contract` spec appends the curation contract to `openwiki/INSTRUCTIONS.md`; OpenWiki honors `AKSK-curated` trees as preserve-and-link. See [Knowledge Curation Contract](../concepts/knowledge-curation-contract.md).
-* **OpenSpec ↔ Task Lifecycle** — task-closeout links bundles to changes via `summary.json:openspec_change` and defers spec edits to archive time per `closeout-change-linking`. The bundle identity is `summary.json:task_id`. See [Task Lifecycle and Session Bundles](../architecture/task-lifecycle.md).
+* **OpenSpec ↔ Task Lifecycle** — task-closeout links bundles to changes via `summary.json:openspec_change` and defers spec edits to archive time per `closeout-change-linking`. The bundle identity is `summary.json:task_id`; `add-task-start` (Proposal-only) would split identity creation vs finalization. See [Task Lifecycle and Session Bundles](../architecture/task-lifecycle.md) and [Session Identity and Storage](../concepts/session-identity-and-storage.md).
 * **OpenSpec ↔ Validation** — `cross-tool-lint` consumes the archive tree for coverage pairing; `check-agents-structure.sh` / `check-publish.sh` guard portable structure independently of OpenSpec. See [Validation and Cross-Tool Lint](../operations/validation-and-lint.md).
 
 **Adding a new capability:**

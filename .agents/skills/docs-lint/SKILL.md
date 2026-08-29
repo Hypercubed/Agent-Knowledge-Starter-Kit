@@ -27,8 +27,9 @@ Ensure the shared scaffold via **learning-distill** initialization when that ski
 ### Wiring checks (fail the pass)
 
 - **Routing-block integrity** — In every root instruction file present, verify each managed block is intact and its targets exist:
+  - `AKSK:AGENTS-BASELINE` (FerroxLabs baseline): exactly one block when `AGENTS.md` was seeded; contains provenance header (source URL, capture date, MIT notice, refresh pointer). Flag missing or damaged block; refresh via `node .agents/skills/aksk-bootstrap/scripts/init_agents_md.mjs --replace` or `refresh_agents_baseline.mjs` for staleness (agent compares `Captured: YYYY-MM-DD` >6 months old; no dedicated lint script — use `refresh_agents_baseline.mjs --check` to validate).
   - each `AKSK:*` block (`ROUTING`, `LIFECYCLE`): exactly one of each; targets named inside must exist. Refresh stale blocks with `node aksk-bootstrap/scripts/attach_section.mjs <root> <target> <template>`.
-  - `<!-- OPENWIKI:START/END -->`: never hand-edit; verify presence only.
+  - `<!-- OPENWIKI:START/END -->`: never hand-edit; verify presence only; zoned order must be baseline → OpenWiki → AKSK.
 - **Wiki contract present** — `openwiki/INSTRUCTIONS.md` carries the `AKSK:WIKI-CONTRACT` markers; refresh with `attach_wiki_contract.mjs` if its template changed.
 - **Archived-change/wiki coverage pairing** — For each change under `openspec/changes/archive/`, descriptive outcomes must appear in `openwiki/` or be covered by a recorded deferral. Report uncovered archived changes. A deferral recorded on the change's summary page exempts it.
 - **Stale curated knowledge** — Pages under `openwiki/{decisions,troubleshooting}/` whose claims conflict with repository reality: references to retired skills, `aksk_status: accepted` on pages whose successor exists (`aksk_superseded_by` set), or dead `aksk_depends_on` targets. Flag with the superseding source.

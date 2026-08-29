@@ -1,15 +1,11 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:35997907ec0d2f07099e0ae2e26deb7d9b7d80b469ec9288db345ec86d1a5981",
+  "pageVersion": "sha256:69d280afd3c6a52ec268bf394ae25078701e5458763fa287551ca6957a30510d",
   "claims": [
     {
       "id": "claim_d5bc64cd77bb40caab10b557e958823c",
-      "statement": "check-agents-structure.sh is the portable validator that accepts a single target argument defaulting to .agents, normalizes it via ${target%/}, and scopes all checks strictly to that tree to allow validating example/.agents or any copied knowledge layer.",
+      "statement": "check-agents-structure.sh is the portable validator that accepts a single target argument defaulting to .agents, normalizes it via ${target%/}, and scopes all checks strictly to that tree to allow validating any isolated or copied knowledge layer.",
       "evidence": [
-        {
-          "resource": "repo://.agents/playbooks/pre-publish.md",
-          "version": "repo-file-v1:sha256:63546b392ff5f3568a3adf51425e2e10bf546aea49c154afb2a7fe68a25b35b4"
-        },
         {
           "resource": "repo://scripts/check-agents-structure.sh",
           "version": "repo-file-v1:sha256:3e4540194712f502f811a64d86a32c4e44d0a262a4ffebd018c8b867d96abe12"
@@ -52,15 +48,15 @@
     },
     {
       "id": "claim_489e82b0b3404bed8ea428626298de29",
-      "statement": "check-publish.sh is the starter-repo release wrapper that cds to git rev-parse --show-toplevel (or pwd) and delegates to check-agents-structure.sh on root .agents only, then adds starter-repo-only hygiene sections and exits 1 when failures>0 (warnings never block).",
+      "statement": "check-publish.sh is the starter-repo release wrapper that cds to git rev-parse --show-toplevel (or pwd) and delegates to check-agents-structure.sh on root .agents only (example/ is not a validation target per install-lanes spec), then adds starter-repo-only hygiene sections and exits 1 when failures>0 (warnings never block).",
       "evidence": [
         {
           "resource": "repo://package.json",
-          "version": "repo-file-v1:sha256:2daf434a993f024a4baa7b8bb1f60d9b40a48388f9b63486f038fbb72bf7c55a"
+          "version": "repo-file-v1:sha256:9345af173a6d4f9a5742118ee068537e22eb1f89df0b4abcb09b0a91d7c9b478"
         },
         {
           "resource": "repo://scripts/check-publish.sh",
-          "version": "repo-file-v1:sha256:0fbbd52ac81d5128e679aed263b53b2b308202e05ffc654d94ea104ff8e92d8f"
+          "version": "repo-file-v1:sha256:79a6e2a286f683115ddd172d2f0d25be4c53c42d9ab0524a0c8b59ab2f0c13ae"
         }
       ]
     },
@@ -74,21 +70,21 @@
         },
         {
           "resource": "repo://package.json",
-          "version": "repo-file-v1:sha256:2daf434a993f024a4baa7b8bb1f60d9b40a48388f9b63486f038fbb72bf7c55a"
+          "version": "repo-file-v1:sha256:9345af173a6d4f9a5742118ee068537e22eb1f89df0b4abcb09b0a91d7c9b478"
         },
         {
           "resource": "repo://scripts/check-publish.sh",
-          "version": "repo-file-v1:sha256:0fbbd52ac81d5128e679aed263b53b2b308202e05ffc654d94ea104ff8e92d8f"
+          "version": "repo-file-v1:sha256:79a6e2a286f683115ddd172d2f0d25be4c53c42d9ab0524a0c8b59ab2f0c13ae"
         }
       ]
     },
     {
       "id": "claim_bd5dd7cf107e4a0aacac870ae11f2ab9",
-      "statement": "Markdown link section runs npx --no-install markdown-link-check --alive 200,0 per tracked *.md excluding example/* bounded by timeout 30s per file; --alive 200,0 keeps offline/CSP status 0 from failing every external URL; any file failure increments failures.",
+      "statement": "Markdown link section runs npx --no-install markdown-link-check --alive 200,0 per tracked *.md bounded by timeout 30s per file; --alive 200,0 keeps offline/CSP status 0 from failing every external URL; any file failure increments failures.",
       "evidence": [
         {
           "resource": "repo://scripts/check-publish.sh",
-          "version": "repo-file-v1:sha256:0fbbd52ac81d5128e679aed263b53b2b308202e05ffc654d94ea104ff8e92d8f"
+          "version": "repo-file-v1:sha256:79a6e2a286f683115ddd172d2f0d25be4c53c42d9ab0524a0c8b59ab2f0c13ae"
         }
       ]
     },
@@ -98,7 +94,7 @@
       "evidence": [
         {
           "resource": "repo://scripts/check-publish.sh",
-          "version": "repo-file-v1:sha256:0fbbd52ac81d5128e679aed263b53b2b308202e05ffc654d94ea104ff8e92d8f"
+          "version": "repo-file-v1:sha256:79a6e2a286f683115ddd172d2f0d25be4c53c42d9ab0524a0c8b59ab2f0c13ae"
         }
       ]
     },
@@ -108,11 +104,11 @@
       "evidence": [
         {
           "resource": "repo://package.json",
-          "version": "repo-file-v1:sha256:2daf434a993f024a4baa7b8bb1f60d9b40a48388f9b63486f038fbb72bf7c55a"
+          "version": "repo-file-v1:sha256:9345af173a6d4f9a5742118ee068537e22eb1f89df0b4abcb09b0a91d7c9b478"
         },
         {
           "resource": "repo://scripts/check-publish.sh",
-          "version": "repo-file-v1:sha256:0fbbd52ac81d5128e679aed263b53b2b308202e05ffc654d94ea104ff8e92d8f"
+          "version": "repo-file-v1:sha256:79a6e2a286f683115ddd172d2f0d25be4c53c42d9ab0524a0c8b59ab2f0c13ae"
         }
       ]
     },
@@ -122,57 +118,21 @@
       "evidence": [
         {
           "resource": "repo://.agents/playbooks/pre-publish.md",
-          "version": "repo-file-v1:sha256:63546b392ff5f3568a3adf51425e2e10bf546aea49c154afb2a7fe68a25b35b4"
+          "version": "repo-file-v1:sha256:372826cd967b2df96bb56bd265fd6d7fa0cc000a24bf90c0ab070bbabc43beb1"
         },
         {
           "resource": "repo://scripts/check-publish.sh",
-          "version": "repo-file-v1:sha256:0fbbd52ac81d5128e679aed263b53b2b308202e05ffc654d94ea104ff8e92d8f"
-        }
-      ]
-    },
-    {
-      "id": "claim_2909e35162d44f2c87bf3f76e1f0cf56",
-      "statement": "generate-example is maintainer-only (internal: true) not distributed to consumers with canonical reference .agents/playbooks/generate-example.md; run.sh from repo root removes and recreates example/, runs npx skills add <repo_root> -y --copy --agent cursor for user-facing skills only, simulates learning-distill init by copying bootstrap templates into example/.agents (playbooks/README.md, sessions/README.md, AGENTS.md when missing) and writes example/.agents/.gitignore with sessions/* and !sessions/README.md.",
-      "evidence": [
-        {
-          "resource": "repo://.agents/playbooks/generate-example.md",
-          "version": "repo-file-v1:sha256:375429b126a432bfc40056882bdb83984991955f314630dfbd78eef6e034ad8a"
-        },
-        {
-          "resource": "repo://.agents/skills/generate-example/SKILL.md",
-          "version": "repo-file-v1:sha256:b44767b79617179b0dc32e993c712ac2f4be677a13c130601ff707118b447c5a"
-        },
-        {
-          "resource": "repo://.agents/skills/generate-example/run.sh",
-          "version": "repo-file-v1:sha256:3fbc1613dc785b28eee55ee8128abfbd226b7515ecdfdea62e14f4eb577cc4de"
-        }
-      ]
-    },
-    {
-      "id": "claim_b9fa49a7dbc44a7783425d1fc46eb49f",
-      "statement": "The regeneration invariant requires regenerating example/ whenever the portable kit or bootstrap templates change and verifying wiring blocks and structure (check-agents-structure.sh on example/.agents and docs-lint) before publish; example/ must remain disposable and must not be populated by copying the full dogfood .agents tree or curated wiki content.",
-      "evidence": [
-        {
-          "resource": "repo://.agents/playbooks/generate-example.md",
-          "version": "repo-file-v1:sha256:375429b126a432bfc40056882bdb83984991955f314630dfbd78eef6e034ad8a"
-        },
-        {
-          "resource": "repo://.agents/skills/generate-example/SKILL.md",
-          "version": "repo-file-v1:sha256:b44767b79617179b0dc32e993c712ac2f4be677a13c130601ff707118b447c5a"
-        },
-        {
-          "resource": "repo://.agents/skills/generate-example/run.sh",
-          "version": "repo-file-v1:sha256:3fbc1613dc785b28eee55ee8128abfbd226b7515ecdfdea62e14f4eb577cc4de"
+          "version": "repo-file-v1:sha256:79a6e2a286f683115ddd172d2f0d25be4c53c42d9ab0524a0c8b59ab2f0c13ae"
         }
       ]
     },
     {
       "id": "claim_233302f2a2c847458e12777fc85231cd",
-      "statement": "Major-version-release playbook requires three checks for a major release: aggressively grep the entire repo for deprecated artifact names (e.g., docs-search-index.json), review platform portability of new Python/bash scripts for cross-platform paths, and regenerate example/ via the generator playbook and ensure kit layout health.",
+      "statement": "Major-version-release playbook requires three checks for a major release: aggressively grep the entire repo for deprecated artifact names (e.g., docs-search-index.json), review platform portability of new Python/bash scripts for cross-platform paths, and ensure kit layout is healthy via bash scripts/check-agents-structure.sh .agents and bash scripts/check-publish.sh.",
       "evidence": [
         {
           "resource": "repo://.agents/playbooks/major-version-release.md",
-          "version": "repo-file-v1:sha256:c9935039a8e3ce0fd72c2894a17471484781bad5549428cca22fb3ecf3a223df"
+          "version": "repo-file-v1:sha256:423c748e01e6da481eecce150067a8ed325f3763a0c4983cd2352eac7adf1193"
         }
       ]
     },
@@ -182,7 +142,7 @@
       "evidence": [
         {
           "resource": "repo://.agents/playbooks/pre-publish.md",
-          "version": "repo-file-v1:sha256:63546b392ff5f3568a3adf51425e2e10bf546aea49c154afb2a7fe68a25b35b4"
+          "version": "repo-file-v1:sha256:372826cd967b2df96bb56bd265fd6d7fa0cc000a24bf90c0ab070bbabc43beb1"
         },
         {
           "resource": "repo://scripts/check-agents-structure.sh",
@@ -190,13 +150,35 @@
         },
         {
           "resource": "repo://scripts/check-publish.sh",
-          "version": "repo-file-v1:sha256:0fbbd52ac81d5128e679aed263b53b2b308202e05ffc654d94ea104ff8e92d8f"
+          "version": "repo-file-v1:sha256:79a6e2a286f683115ddd172d2f0d25be4c53c42d9ab0524a0c8b59ab2f0c13ae"
+        }
+      ]
+    },
+    {
+      "id": "claim_efb09d4dd9e744c3824fafcea5fe7068",
+      "statement": "After reorder-install-lanes-drop-example and canonical-universal-install, example/.agents and the maintainer-only generate-example skill/playbook are removed; bootstrap/ templates are the source of truth and no validator, playbook, or npm script references example/ as an install or validation target — any residual example/ on disk is excluded from validation per the install-lanes spec.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/playbooks/major-version-release.md",
+          "version": "repo-file-v1:sha256:423c748e01e6da481eecce150067a8ed325f3763a0c4983cd2352eac7adf1193"
+        },
+        {
+          "resource": "repo://.agents/playbooks/pre-publish.md",
+          "version": "repo-file-v1:sha256:372826cd967b2df96bb56bd265fd6d7fa0cc000a24bf90c0ab070bbabc43beb1"
+        },
+        {
+          "resource": "repo://scripts/check-agents-structure.sh",
+          "version": "repo-file-v1:sha256:3e4540194712f502f811a64d86a32c4e44d0a262a4ffebd018c8b867d96abe12"
+        },
+        {
+          "resource": "repo://scripts/check-publish.sh",
+          "version": "repo-file-v1:sha256:79a6e2a286f683115ddd172d2f0d25be4c53c42d9ab0524a0c8b59ab2f0c13ae"
         }
       ]
     }
   ],
   "verification": {
     "by": "openwiki/0.4.3",
-    "at": "2026-08-29T04:36:52.163Z"
+    "at": "2026-08-29T20:18:58.499Z"
   }
 }

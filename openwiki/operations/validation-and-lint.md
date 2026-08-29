@@ -2,10 +2,15 @@
 type: operations
 title: Validation and Cross-Tool Lint
 description: Deterministic validators (check-agents-structure.sh vs check-publish.sh) and the docs-lint cross-tool wiring pass — routing-block integrity, wiki coverage pairing, and stale-page detection.
-tags: [validation, lint, docs-lint, check-publish, cross-tool]
+tags:
+- validation
+- lint
+- docs-lint
+- check-publish
+- cross-tool
 verified:
   - by: openwiki/0.4.3
-    at: 2026-08-29T04:18:18.736Z
+    at: 2026-08-29T21:15:47.181Z
 sources:
   - id: openwiki-source-df46a321fce7026f92166a02
     resource: repo://.agents/playbooks/pre-publish.md
@@ -21,6 +26,8 @@ sources:
     resource: repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs
   - id: openwiki-source-d1960e41bf9a48af26e81829
     resource: repo://.agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs
+  - id: openwiki-source-67d81b3c5bf101f8b3eb3d2a
+    resource: repo://.agents/skills/aksk-bootstrap/scripts/refresh_agents_baseline.mjs
   - id: openwiki-source-dce50581779fda5dd507dc34
     resource: repo://.agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs
   - id: openwiki-source-dc8872a5e7d386c22ea2f135
@@ -41,7 +48,7 @@ sources:
     resource: repo://scripts/check-agents-structure.sh
   - id: openwiki-source-5d609834bdc11b93524d04a9
     resource: repo://scripts/check-publish.sh
-generated: { by: "openwiki/0.4.3", at: "2026-08-29T04:18:18.736Z" }
+generated: { by: "openwiki/0.4.3", at: "2026-08-29T21:15:47.181Z" }
 ---
 
 # Validation and Cross-Tool Lint
@@ -95,6 +102,8 @@ flowchart LR
   HYG -.-> SUM
 ```
 
+*Caption: release wrapper delegation to portable shape check plus starter-repo hygiene gates.*
+
 **Additional sections beyond delegation:**
 
 | Section | Tooling | Failure semantics |
@@ -117,13 +126,13 @@ All `npx` probes use `npx --no-install` plus an optional `timeout` wrapper: if t
 
 - **Reads:** root instruction files and their marker blocks (`AGENTS.md`, `CLAUDE.md`, `GEMINI.md` when present); `.agents/AGENTS.md` and `.agents/playbooks/`; `openwiki/INSTRUCTIONS.md` and the curated trees under `openwiki/`; `openspec/changes/archive/` (for coverage pairing).
 - **Writes:** reports and minimal edits to AKSK-owned files only (`.agents/AGENTS.md`, playbooks, curated page content). Never writes OpenWiki-owned files (directory indexes, `.last-update.json`, `.run.json`) or content inside marker blocks except by rerunning the owning `aksk-bootstrap` script.
-- **Out of scope by design:** hand-maintained section indexes and activity logs. `openwiki/{decisions,troubleshooting}/index.md` is owned by deterministic `sync_wiki_indexes.mjs`; `.agents/docs/` (including `log.md`) was deleted during knowledge consolidation. Index drift is reported as *informational guidance to rerun sync*, not as a wiring failure.
+- **Out of scope by design:** hand-maintained section indexes and activity logs. `openwiki/{decisions,troubleshooting}/index.md` is owned by deterministic `sync_wiki_indexes.mjs`; `.agents/docs/` (including `log.md`) was deleted during knowledge consolidation. Index drift is reported as *informational guidance to rerun sync*, not as a wiring failure — lint must not replace OpenWiki-owned content.
 
 ### Wiring checks (fail the pass)
 
 #### 1. Routing-block integrity — all three AGENTS.md zones
 
-Every root instruction file present is checked independently. Each managed block must appear **exactly once**, be byte-intact, and any link targets named inside must exist on disk.
+Every root instruction file present is checked independently. Each managed block must appear **exactly once**, be byte-intact, and any link targets named inside must exist on disk. Zoned order for a fully bootstrapped `AGENTS.md` is baseline → OpenWiki → AKSK (routing → lifecycle).
 
 | Zone | Markers | Owner script | Repair action |
 | --- | --- | --- | --- |
@@ -138,8 +147,8 @@ flowchart TB
   Skip["Skip file"]
   Check{"For each family:\nAKSK:AGENTS-BASELINE\nOPENWIKI:START/END\nAKSK:ROUTING / LIFECYCLE"}
   Count{"Exactly one block?"}
-  Intact{"Markers intact\n& content == template?"}
-  Targets{"Targets named inside\n.exist on disk?"}
+  Intact{"Markers intact\nand content == template?"}
+  Targets{"Targets named inside\nexist on disk?"}
   Fail["FAIL: missing / duplicated\nor broken block\n+ repair action"]
   Pass["PASS"]
 
@@ -154,13 +163,33 @@ flowchart TB
   Targets -->|yes| Pass
 ```
 
-Marker parsing is template-driven: `markersOf()` extracts `<!-- AKSK:*:BEGIN -->` from the template itself, not from a hard-coded list. Zone isolation is strict — damage to one family's markers is reported for that family only and fixing it never rewrites another zone. Ordering for a fully bootstrapped `AGENTS.md` is baseline → OpenWiki → routing → lifecycle.
+*Caption: routing-block integrity decision flow per instruction file and per zone family.*
 
-The baseline is vendored at `.agents/skills/aksk-bootstrap/references/agents-md-baseline-template.md` with a provenance header (upstream URL, capture date, MIT notice, refresh pointer). Seeding never touches the network; offline refresh validates the fetched response before swapping only the content between baseline markers. A capture older than six months surfaces as informational advice, not a blocking failure.
+Marker parsing is template-driven: `markersOf()` extracts `<!-- AKSK:*:BEGIN -->` from the template itself, not from a hard-coded list. Zone isolation is strict — damage to one family's markers is reported for that family only and fixing it never rewrites another zone.
+
+The baseline is vendored at `.agents/skills/aksk-bootstrap/references/agents-md-baseline-template.md` with a provenance header (upstream URL, capture date, MIT notice, refresh pointer). Seeding never touches the network; offline refresh validates the fetched response before swapping only the content between baseline markers. Staleness is not a hard failure: the agent compares `Captured: YYYY-MM-DD` in the provenance header — older than six months surfaces as informational advice. Validate without writing via:
+
+```bash
+node .agents/skills/aksk-bootstrap/scripts/refresh_agents_baseline.mjs --check
+```
+
+On network or validation failure the vendored copy stays byte-identical.
+
+Stale AKSK routing/lifecycle blocks (marker present but content differs from the current `references/*-template.md`) are refreshed in place via:
+
+```bash
+node .agents/skills/aksk-bootstrap/scripts/attach_section.mjs [repo-root] [target-file] [template-name]
+```
+
+The script is idempotent — no-op when the marked section already matches the template — and never touches content outside the markers.
 
 #### 2. Wiki contract present
 
-`openwiki/INSTRUCTIONS.md` must carry the `<!-- AKSK:WIKI-CONTRACT:BEGIN/END -->` markers. The section is attached via `attach_wiki_contract.mjs` from `references/wiki-contract-template.md`: append-only, idempotent by marker detection, stub-aware, never replacing OpenWiki-owned content. If the file is missing the script exits 2 printing the verbatim prerequisite `openwiki --init` with no writes. On kit upgrade where the template changed, only the content between markers is refreshed.
+`openwiki/INSTRUCTIONS.md` must carry the `<!-- AKSK:WIKI-CONTRACT:BEGIN/END -->` markers. The section is attached via `attach_wiki_contract.mjs` from `references/wiki-contract-template.md`: append-only, idempotent by marker detection, stub-aware, never replacing OpenWiki-owned content. If the file is missing the script exits 2 printing the verbatim prerequisite `openwiki --init` with no writes. On kit upgrade where the template changed, only the content between markers is refreshed — contract drift is repaired by rerunning the same attachment command:
+
+```bash
+node .agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs [repo-root]
+```
 
 #### 3. Archived-change ↔ wiki coverage pairing
 
@@ -188,7 +217,7 @@ Pages under `openwiki/{decisions,troubleshooting}/` are checked against reposito
 
 ### Output, constraints, and index ownership
 
-- Produces a **lint report** plus optional minimal edits to AKSK-owned files only. Proposes rerunning `node .agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs` for index drift instead of failing — indexes are rebuilt deterministically via `OpenWikiLocalShellBackend` (`docsOnly: true`, `virtualMode: true`) without invoking the LLM.
+- Produces a **lint report** plus optional minimal edits to AKSK-owned files only. Proposes rerunning `node .agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs` for index drift instead of failing — indexes are rebuilt deterministically via `OpenWikiLocalShellBackend` (`docsOnly: true`, `virtualMode: true`) without invoking the LLM. Lint never writes OpenWiki-owned files.
 - **Never writes OpenWiki-owned files** (directory indexes, run metadata) and never appends to a log — none exists. Accountability after lint lives in git history and session bundle flags.
 - **Prefers reclassification and compression** over adding text; does not modify source code; does not delete curated knowledge without explicit justification and a recorded successor or deferral.
 
@@ -214,8 +243,10 @@ Pages under `openwiki/{decisions,troubleshooting}/` are checked against reposito
 | Copied example snapshot | `bash scripts/check-agents-structure.sh example/.agents` | Example packaging did not leak maintainer-only files |
 | Release hygiene | `bash scripts/check-publish.sh` | Full format + links + leakage + doubled-path gates |
 | Doubled-path hygiene (quick) | `rg -n '\.agents/\.agents/' README.md INSTALL.md docs .agents` | Same pattern lint and publish share; publish hard-fails |
+| Baseline staleness (>6 months) | `node .agents/skills/aksk-bootstrap/scripts/refresh_agents_baseline.mjs --check` | Upstream validity without writing; reports capture age |
+| Stale AKSK block refresh | `node .agents/skills/aksk-bootstrap/scripts/attach_section.mjs` | Idempotent refresh of routing/lifecycle markers from template |
+| Wiki contract drift | `node .agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs` | Idempotent refresh of AKSK:WIKI-CONTRACT from template |
 | Frontmatter schema | `validateOkfFrontmatter` against `learning-distill/references/*.schema.json` | Curated page contract before merge |
-| Wiki contract attachment (idempotent) | `node .agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs` | Marker presence without touching OpenWiki content |
 | Index resync (deterministic) | `node .agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs` | Directory indexes reflect newly distilled pages |
 
 Run a full docs-lint pass after several agent-assisted edits and before publishing (step 9 of the pre-publish playbook). The deterministic validators are cheap enough for CI on every push; docs-lint is the periodic maintenance pass.

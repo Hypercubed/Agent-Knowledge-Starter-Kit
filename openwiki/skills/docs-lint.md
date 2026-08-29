@@ -1,11 +1,16 @@
 ---
 type: skill-reference
-title: "docs-lint Skill (Cross-Tool Lint)"
-description: "Periodic coherence guard that verifies routing-block integrity in root instruction files, pairs archived OpenSpec changes with wiki coverage, flags stale curated pages, and reports duplication, broken links, and path hygiene across .agents/ and openwiki/."
-tags: [skills, docs-lint, lint, maintenance, cross-tool]
+title: docs-lint Skill (Cross-Tool Lint)
+description: Periodic coherence guard that verifies routing-block integrity in root instruction files, pairs archived OpenSpec changes with wiki coverage, flags stale curated pages, and reports duplication, broken links, and path hygiene across .agents/ and openwiki/.
+tags:
+- skills
+- docs-lint
+- lint
+- maintenance
+- cross-tool
 verified:
   - by: openwiki/0.4.3
-    at: 2026-08-29T04:36:52.163Z
+    at: 2026-08-29T20:18:58.499Z
 sources:
   - id: openwiki-source-df46a321fce7026f92166a02
     resource: repo://.agents/playbooks/pre-publish.md
@@ -25,19 +30,17 @@ sources:
     resource: repo://.agents/skills/docs-lint/SKILL.md
   - id: openwiki-source-8037e2358a2c4f9b2c722a11
     resource: repo://AGENTS.md
-  - id: openwiki-source-b6e79252193061d60ba3d3fd
-    resource: repo://openspec/changes/add-agents-md-bootstrap/design.md
-  - id: openwiki-source-d41529889f3599c07d9ebea6
-    resource: repo://openspec/changes/add-agents-md-bootstrap/proposal.md
   - id: openwiki-source-54b54b9f7eb380534f682bb3
     resource: repo://openspec/changes/formalize-superseded-obsolete/proposal.md
+  - id: openwiki-source-f7767c74e12e946558d335f1
+    resource: repo://openspec/specs/agents-md-bootstrap/spec.md
   - id: openwiki-source-dc51f338f00dcd0763b107a6
     resource: repo://openspec/specs/cross-tool-lint/spec.md
   - id: openwiki-source-2361cff43709905e22758cbb
     resource: repo://scripts/check-agents-structure.sh
   - id: openwiki-source-5d609834bdc11b93524d04a9
     resource: repo://scripts/check-publish.sh
-generated: { by: "openwiki/0.4.3", at: "2026-08-29T04:36:52.163Z" }
+generated: { by: "openwiki/0.4.3", at: "2026-08-29T20:18:58.499Z" }
 ---
 
 # docs-lint (cross-tool lint)
@@ -54,7 +57,7 @@ This is the periodic maintenance pass. Deterministic bash validators (`check-age
 
 **Reads:** root instruction files and their marker blocks (`AGENTS.md`, `CLAUDE.md`, `GEMINI.md` when present); `.agents/AGENTS.md` and `.agents/playbooks/`; `openwiki/INSTRUCTIONS.md` and the curated trees under `openwiki/`; `openspec/changes/archive/` for coverage pairing. Declared in `CONTRACT.md` as the machine-oriented scope.
 
-**Writes:** a lint report plus optional minimal edits to AKSK-owned files only (`.agents/AGENTS.md`, playbooks, curated page content). Never writes OpenWiki-owned files (directory `index.md` catalogs, `.last-update.json`, `.run.json`) or content inside marker blocks except by rerunning the owning `aksk-bootstrap` script (`attach_section.mjs`, `attach_wiki_contract.mjs`). On index drift it proposes rerunning `sync_wiki_indexes.mjs` rather than hand-editing indexes. No log is appended — `.agents/docs/` and its log were deleted during knowledge consolidation; accountability lives in git history and session bundle flags.
+**Writes:** a lint report plus optional minimal edits to AKSK-owned files only (`.agents/AGENTS.md`, playbooks, curated page content). Never writes OpenWiki-owned files (directory `index.md` catalogs, `.last-update.json`, `.run.json`) or content inside marker blocks except by rerunning the owning `aksk-bootstrap` script (`attach_section.mjs`, `attach_wiki_contract.mjs`). On index drift it proposes rerunning `sync_wiki_indexes.mjs` rather than hand-editing indexes. No log is appended — `.agents/docs/` and its log were deleted during knowledge consolidation; accountability lives in git history and session bundle flags (`summary.json:distilled`, `distillation_status`).
 
 **Ownership by design:** index/log ownership belongs to OpenWiki tooling. Lint reports stale coverage (e.g., a wiki directory index lagging newly added pages) as **informational guidance to rerun `sync_wiki_indexes.mjs`**, not as a wiring failure.
 

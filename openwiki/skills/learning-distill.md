@@ -1,11 +1,16 @@
 ---
 type: skill-reference
-title: "learning-distill Skill"
-description: "Converts a gitignored session bundle into durable knowledge routed by kind: descriptive lessons become curated OKF wiki pages under openwiki/, prescriptive lessons stay in .agents/; fail-closed prerequisites, deterministic index refresh, no log file."
-tags: [skills, learning-distill, distillation, knowledge, okf]
+title: learning-distill Skill
+description: 'Converts a gitignored session bundle into durable knowledge routed by kind: descriptive lessons become curated OKF wiki pages under openwiki/, prescriptive lessons stay in .agents/; fail-closed prerequisites, deterministic index refresh, no log file.'
+tags:
+- skills
+- learning-distill
+- distillation
+- knowledge
+- okf
 verified:
   - by: openwiki/0.4.3
-    at: 2026-08-29T04:36:52.163Z
+    at: 2026-08-29T20:18:58.499Z
 sources:
   - id: openwiki-source-7381bbb8d2e7fd02da7469ce
     resource: repo://.agents/skills/aksk-bootstrap/references/wiki-contract-template.md
@@ -31,7 +36,7 @@ sources:
     resource: repo://.agents/skills/task-closeout/SKILL.md
   - id: openwiki-source-eeb2cc49563df1de1086bb7e
     resource: repo://openspec/specs/distill-routing/spec.md
-generated: { by: "openwiki/0.4.3", at: "2026-08-29T04:36:52.163Z" }
+generated: { by: "openwiki/0.4.3", at: "2026-08-29T20:18:58.499Z" }
 ---
 
 # learning-distill
@@ -127,29 +132,30 @@ Cross-references between knowledge pages use relative Markdown links; superseded
 
 ## Procedure — control flow
 
-<!-- openwiki: mermaid parse failed and this diagram was converted to a text fence so it does not break rendering. Fix the diagram source and restore the mermaid fence. Parser error: Heuristic: an unescaped angle bracket inside a label breaks rendering; rephrase the label. -->
-```text
+```mermaid
 flowchart LR
-    Locate["Locate bundle<br/>ignore-blind ls/find<br/>or rg --no-ignore-vcs"] --> ReadID["Read summary.json<br/>task_id canonical"]
-    ReadID --> Prereq{"Prerequisites<br/>check_peer_tools<br/>+ AK SK contract?"}
-    Prereq -->|fail| Stop["Stop — no writes<br/>print remediation"]
-    Prereq -->|pass| Search["Search existing knowledge<br/>grep openwiki/ plain MD<br/>+ openspec/specs/ for<br/>decision-shaped candidates"]
-    Search --> Dedupe["Compare & deduplicate"]
-    Dedupe --> Classify{"Classify lesson"}
-    Classify -->|ephemeral| Keep["Keep in bundle only"]
-    Classify -->|AGENTS| Agents["Draft .agents/AGENTS.md<br/>small actionable rule"]
-    Classify -->|playbook| PB["Draft .agents/playbooks/*.md"]
-    Classify -->|decision| Dec["Author openwiki/decisions/slug.md<br/>aksk_status + OKF"]
-    Classify -->|troubleshooting| Tr["Author openwiki/troubleshooting/slug.md"]
-    Classify -->|topical| Top["Author openwiki/topic.md"]
-    Dec --> Validate["Validate via validateOkfFrontmatter<br/>fix every issue"]
-    Tr --> Validate
-    Top --> Validate
-    Validate --> Sync["sync_wiki_indexes.mjs<br/>deterministic refresh"]
-    Agents --> Sync
-    PB --> Sync
-    Sync --> Flag["Mark bundle distilled<br/>summary.json distilled + distillation_status"]
+  Locate["Locate bundle ignore-blind ls or find or rg no-ignore-vcs"] --> ReadID["Read summary.json task_id canonical"]
+  ReadID --> Prereq{"Prerequisites check peer tools and AKSK contract"}
+  Prereq -->|fail| Stop["Stop no writes print remediation"]
+  Prereq -->|pass| Search["Search existing knowledge grep openwiki plus openspec for decision candidates"]
+  Search --> Dedupe["Compare and deduplicate"]
+  Dedupe --> Classify{"Classify lesson"}
+  Classify -->|ephemeral| Keep["Keep in bundle only"]
+  Classify -->|AGENTS| Agents["Draft AGENTS md small actionable rule"]
+  Classify -->|playbook| PB["Draft playbooks"]
+  Classify -->|decision| Dec["Author decisions slug md aksk_status plus OKF"]
+  Classify -->|troubleshooting| Tr["Author troubleshooting slug md"]
+  Classify -->|topical| Top["Author topic md"]
+  Dec --> Validate["Validate via validateOkfFrontmatter fix every issue"]
+  Tr --> Validate
+  Top --> Validate
+  Validate --> Sync["sync_wiki_indexes mjs deterministic refresh"]
+  Agents --> Sync
+  PB --> Sync
+  Sync --> Flag["Mark bundle distilled summary distilled plus distillation_status"]
 ```
+
+*Caption: distillation control flow from bundle discovery through fail-closed prerequisites, search and deduplication, kind-based routing, OKF validation, deterministic index sync, and distilled flag.*
 
 Steps in detail:
 

@@ -4,17 +4,11 @@
 - [Antigravity: Lessons learned aren't visible to teammate's agents](antigravity-lessons-learned-aren-t-visible-to-teammate-s-agents.md) - Local-only research in Antigravity does not automatically become durable repo knowledge teammates can load; distill lessons into tracked `.agents/` files.
 
 - [Browser subagent fails with invalid_args on view_file](browser-subagent-filesystem-access-error.md) - Browser subagents cannot access the filesystem directly; route file reads and writes through the main agent or shell-capable tooling.
-- [`check-publish.sh` reports missing files while `generate-example` is running](check-publish-missing-files-while-generate-example-is-running.md) - Validation can fail with transient missing-file errors when checks run while `generate-example` is actively rebuilding `example/`.
-
 - [Clean `git status` but you need touched paths for closeout](clean-git-status-but-you-need-touched-paths-for-closeout.md) - After commits, the working tree is clean but **task-closeout** still needs an accurate list of paths touched in the session for the bundle record.
 
 - [Codex cannot write under `.agents/` during closeout or distill](codex-cannot-write-under-agents-during-closeout-or-distill.md) - Codex runs may treat `.agents/` as read-only or require extra approval when creating session bundles or updating durable knowledge during workflows.
 
-- [Comparing greenfield `example/.agents/` to this repo’s root `.agents/`](comparing-example-agents-to-root-agents.md) - Consumers expect `example/.agents/` to mirror a portable install; diffs against root `.agents/` usually mean the example tree needs regeneration or a doc fix.
-
 - [Docs tooling resolves wrong project root in nested `example/` or global installs](docs-tooling-resolves-wrong-project-root-in-nested-example-or-global-installs.md) - Docs tooling may target the wrong project when scripts infer only git root; this entry describes override-first plus nearest-`.agents` resolution and checks.
-
-- [`example/.agents/` looks like a full mirror of root dogfood](example-agents-looks-like-full-dogfood-copy.md) - The generated example tree contains large slices of this repository’s durable `.agents/docs/`, playbooks, or other maintainer paths instead of the minimal bootstrap-driven layout from generate-example.
 
 - [Gemini CLI not following durable guidance](gemini-cli-not-following-durable-guidance.md) - Gemini CLI sessions may skip playbooks and `.agents/docs/` entries unless bootstrap files and explicit pointers are wired the way the kit expects.
 
@@ -29,6 +23,7 @@
 
 - [Maintainer-only skill appears as a portable kit skill](maintainer-skill-lives-under-agents-skills-by-mistake.md) - Maintainer automation placed under `.agents/skills/` without `internal: true` can be picked up by consumer installs; mark it internal or relocate it.
 
+- [npm install from GitHub fails when repo has no package.json](npm-install-from-github-fails-without-package-json.md) - Installing a non-npm GitHub repo (e.g., FerroxLabs/agents-md) as a devDep via `github:FerroxLabs/agents-md#sha` fails ENOENT package.json — keep it vendored with SHA in versions.json instead.
 - [npx skills add includes internal skills](npx-skills-add-internal-skills.md) - The skills CLI installs maintainer-internal skills unless they are marked internal; gate them with metadata.internal so npx skills add skips them.
 - [OpenWiki evidence path excluded by .openwikiignore](openwiki-evidence-path-excluded-by-ignore.md) - Fixes Evidence path is excluded by .openwikiignore after adding generated paths to ignore — retarget claims/frontmatter sources to canonical files and re-verify with a walk.
 - [openwiki --update aborts when run from agent shells](openwiki-update-aborts-in-agent-shells.md) - Headless OpenWiki update runs abort with a generic 'Request was aborted' when launched from agent shells with command timeouts; run interactively and confirm via .last-update.json.

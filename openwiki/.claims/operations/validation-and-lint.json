@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:6b05ce093485aaaf7c48c9fccc3f6b03774dc2c51b886bacdc7e94cad9ecb210",
+  "pageVersion": "sha256:d375270b78ae1f6451656bd0ca55fc176578701a818e8ea9f438bf79302ac5d8",
   "claims": [
     {
       "id": "claim_0c33ebaa376c45eaba7e5fbfab9f6bd7",
@@ -12,7 +12,7 @@
         },
         {
           "resource": "repo://scripts/check-publish.sh",
-          "version": "repo-file-v1:sha256:0fbbd52ac81d5128e679aed263b53b2b308202e05ffc654d94ea104ff8e92d8f"
+          "version": "repo-file-v1:sha256:79a6e2a286f683115ddd172d2f0d25be4c53c42d9ab0524a0c8b59ab2f0c13ae"
         }
       ]
     },
@@ -42,15 +42,15 @@
       "evidence": [
         {
           "resource": "repo://.agents/playbooks/pre-publish.md",
-          "version": "repo-file-v1:sha256:63546b392ff5f3568a3adf51425e2e10bf546aea49c154afb2a7fe68a25b35b4"
+          "version": "repo-file-v1:sha256:372826cd967b2df96bb56bd265fd6d7fa0cc000a24bf90c0ab070bbabc43beb1"
         },
         {
           "resource": "repo://package.json",
-          "version": "repo-file-v1:sha256:2daf434a993f024a4baa7b8bb1f60d9b40a48388f9b63486f038fbb72bf7c55a"
+          "version": "repo-file-v1:sha256:9345af173a6d4f9a5742118ee068537e22eb1f89df0b4abcb09b0a91d7c9b478"
         },
         {
           "resource": "repo://scripts/check-publish.sh",
-          "version": "repo-file-v1:sha256:0fbbd52ac81d5128e679aed263b53b2b308202e05ffc654d94ea104ff8e92d8f"
+          "version": "repo-file-v1:sha256:79a6e2a286f683115ddd172d2f0d25be4c53c42d9ab0524a0c8b59ab2f0c13ae"
         }
       ]
     },
@@ -64,7 +64,7 @@
         },
         {
           "resource": "repo://scripts/check-publish.sh",
-          "version": "repo-file-v1:sha256:0fbbd52ac81d5128e679aed263b53b2b308202e05ffc654d94ea104ff8e92d8f"
+          "version": "repo-file-v1:sha256:79a6e2a286f683115ddd172d2f0d25be4c53c42d9ab0524a0c8b59ab2f0c13ae"
         }
       ]
     },
@@ -74,11 +74,11 @@
       "evidence": [
         {
           "resource": "repo://.agents/skills/docs-lint/SKILL.md",
-          "version": "repo-file-v1:sha256:07d289654569ee79013a053eda29c89012cc28c6ec1f76c6c796630654125e3b"
+          "version": "repo-file-v1:sha256:856a7d6e0c608fe3bd7de1f17c0a380ecd911dd2f10cc496ab720c5e670cf172"
         },
         {
           "resource": "repo://scripts/check-publish.sh",
-          "version": "repo-file-v1:sha256:0fbbd52ac81d5128e679aed263b53b2b308202e05ffc654d94ea104ff8e92d8f"
+          "version": "repo-file-v1:sha256:79a6e2a286f683115ddd172d2f0d25be4c53c42d9ab0524a0c8b59ab2f0c13ae"
         }
       ]
     },
@@ -92,7 +92,7 @@
         },
         {
           "resource": "repo://.agents/skills/docs-lint/SKILL.md",
-          "version": "repo-file-v1:sha256:07d289654569ee79013a053eda29c89012cc28c6ec1f76c6c796630654125e3b"
+          "version": "repo-file-v1:sha256:856a7d6e0c608fe3bd7de1f17c0a380ecd911dd2f10cc496ab720c5e670cf172"
         },
         {
           "resource": "repo://openspec/specs/cross-tool-lint/spec.md",
@@ -110,7 +110,7 @@
         },
         {
           "resource": "repo://.agents/skills/docs-lint/SKILL.md",
-          "version": "repo-file-v1:sha256:07d289654569ee79013a053eda29c89012cc28c6ec1f76c6c796630654125e3b"
+          "version": "repo-file-v1:sha256:856a7d6e0c608fe3bd7de1f17c0a380ecd911dd2f10cc496ab720c5e670cf172"
         },
         {
           "resource": "repo://openspec/specs/cross-tool-lint/spec.md",
@@ -124,7 +124,7 @@
       "evidence": [
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/references/lifecycle-template.md",
-          "version": "repo-file-v1:sha256:62059f84c2a4171067c4b66ea7f75f4357652eb7d65ff07f20c8be703d09fd54"
+          "version": "repo-file-v1:sha256:0d6f5afce645ff08c1747173471603c8c78dc0f488cca0bf032c02057af0924b"
         },
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/references/routing-note-template.md",
@@ -136,11 +136,11 @@
         },
         {
           "resource": "repo://.agents/skills/docs-lint/SKILL.md",
-          "version": "repo-file-v1:sha256:07d289654569ee79013a053eda29c89012cc28c6ec1f76c6c796630654125e3b"
+          "version": "repo-file-v1:sha256:856a7d6e0c608fe3bd7de1f17c0a380ecd911dd2f10cc496ab720c5e670cf172"
         },
         {
           "resource": "repo://AGENTS.md",
-          "version": "repo-file-v1:sha256:87cc3112b68d102afd7a8eca06dc704cb40db8c4a2dc1ef9d89691cba2e690ae"
+          "version": "repo-file-v1:sha256:afe5a9d27b2def63d734ef9e34b69605bb23975c953c1276b0fbba98797192ea"
         }
       ]
     },
@@ -150,15 +150,15 @@
       "evidence": [
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
-          "version": "repo-file-v1:sha256:41f35665ae6e6340a623e48fab9748c980490c8fca74ef505b29f9556220e8a3"
+          "version": "repo-file-v1:sha256:d1ff10af0b2478c38c764c9c67c7679d789281866375ef830eadc6aeffd9e244"
         },
         {
           "resource": "repo://.agents/skills/docs-lint/SKILL.md",
-          "version": "repo-file-v1:sha256:07d289654569ee79013a053eda29c89012cc28c6ec1f76c6c796630654125e3b"
+          "version": "repo-file-v1:sha256:856a7d6e0c608fe3bd7de1f17c0a380ecd911dd2f10cc496ab720c5e670cf172"
         },
         {
           "resource": "repo://AGENTS.md",
-          "version": "repo-file-v1:sha256:87cc3112b68d102afd7a8eca06dc704cb40db8c4a2dc1ef9d89691cba2e690ae"
+          "version": "repo-file-v1:sha256:afe5a9d27b2def63d734ef9e34b69605bb23975c953c1276b0fbba98797192ea"
         }
       ]
     },
@@ -176,7 +176,7 @@
         },
         {
           "resource": "repo://.agents/skills/docs-lint/SKILL.md",
-          "version": "repo-file-v1:sha256:07d289654569ee79013a053eda29c89012cc28c6ec1f76c6c796630654125e3b"
+          "version": "repo-file-v1:sha256:856a7d6e0c608fe3bd7de1f17c0a380ecd911dd2f10cc496ab720c5e670cf172"
         }
       ]
     },
@@ -186,7 +186,7 @@
       "evidence": [
         {
           "resource": "repo://.agents/skills/docs-lint/SKILL.md",
-          "version": "repo-file-v1:sha256:07d289654569ee79013a053eda29c89012cc28c6ec1f76c6c796630654125e3b"
+          "version": "repo-file-v1:sha256:856a7d6e0c608fe3bd7de1f17c0a380ecd911dd2f10cc496ab720c5e670cf172"
         },
         {
           "resource": "repo://openspec/specs/cross-tool-lint/spec.md",
@@ -200,7 +200,7 @@
       "evidence": [
         {
           "resource": "repo://.agents/skills/docs-lint/SKILL.md",
-          "version": "repo-file-v1:sha256:07d289654569ee79013a053eda29c89012cc28c6ec1f76c6c796630654125e3b"
+          "version": "repo-file-v1:sha256:856a7d6e0c608fe3bd7de1f17c0a380ecd911dd2f10cc496ab720c5e670cf172"
         },
         {
           "resource": "repo://openspec/specs/cross-tool-lint/spec.md",
@@ -218,7 +218,7 @@
         },
         {
           "resource": "repo://.agents/skills/docs-lint/SKILL.md",
-          "version": "repo-file-v1:sha256:07d289654569ee79013a053eda29c89012cc28c6ec1f76c6c796630654125e3b"
+          "version": "repo-file-v1:sha256:856a7d6e0c608fe3bd7de1f17c0a380ecd911dd2f10cc496ab720c5e670cf172"
         },
         {
           "resource": "repo://openspec/specs/cross-tool-lint/spec.md",
@@ -236,7 +236,7 @@
         },
         {
           "resource": "repo://.agents/skills/docs-lint/SKILL.md",
-          "version": "repo-file-v1:sha256:07d289654569ee79013a053eda29c89012cc28c6ec1f76c6c796630654125e3b"
+          "version": "repo-file-v1:sha256:856a7d6e0c608fe3bd7de1f17c0a380ecd911dd2f10cc496ab720c5e670cf172"
         },
         {
           "resource": "repo://openspec/specs/cross-tool-lint/spec.md",
@@ -258,13 +258,63 @@
         },
         {
           "resource": "repo://scripts/check-publish.sh",
-          "version": "repo-file-v1:sha256:0fbbd52ac81d5128e679aed263b53b2b308202e05ffc654d94ea104ff8e92d8f"
+          "version": "repo-file-v1:sha256:79a6e2a286f683115ddd172d2f0d25be4c53c42d9ab0524a0c8b59ab2f0c13ae"
+        }
+      ]
+    },
+    {
+      "id": "claim_518631ca7edb414a89fb21f4fdb053e3",
+      "statement": "Staleness of the vendored FerroxLabs baseline is probed with refresh_agents_baseline.mjs --check which validates upstream without writing; a Captured date older than six months surfaces as informational advice, not a blocking failure, and the script leaves the vendored template byte-identical on network or validation failure.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
+          "version": "repo-file-v1:sha256:d1ff10af0b2478c38c764c9c67c7679d789281866375ef830eadc6aeffd9e244"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/refresh_agents_baseline.mjs",
+          "version": "repo-file-v1:sha256:30e756b9d5316dc90c7718ff42776ea5be3ab2f6dc64c45eb63d2475c94e4fc7"
+        },
+        {
+          "resource": "repo://.agents/skills/docs-lint/SKILL.md",
+          "version": "repo-file-v1:sha256:856a7d6e0c608fe3bd7de1f17c0a380ecd911dd2f10cc496ab720c5e670cf172"
+        }
+      ]
+    },
+    {
+      "id": "claim_220b05e2095149418e35a49de86fba3a",
+      "statement": "Stale AKSK routing and lifecycle blocks are refreshed in place via attach_section.mjs which extracts markers from the template via markersOf() and replaces only the content between BEGIN/END, remaining idempotent when already current and never touching content outside markers.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/references/lifecycle-template.md",
+          "version": "repo-file-v1:sha256:0d6f5afce645ff08c1747173471603c8c78dc0f488cca0bf032c02057af0924b"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/references/routing-note-template.md",
+          "version": "repo-file-v1:sha256:7daa0b08b9a8cae6510c448134bfb4f7b1373132970b66916e7c6076c353e683"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_section.mjs",
+          "version": "repo-file-v1:sha256:782278eefae9ddef14dda790324bcf7df3eb9f37244e105c41e47a897f80ad71"
+        }
+      ]
+    },
+    {
+      "id": "claim_ac9755ffcdc045c49c13ee261384e12c",
+      "statement": "Wiki contract drift on kit upgrade is repaired by rerunning attach_wiki_contract.mjs which detects the existing AKSK:WIKI-CONTRACT markers and refreshes only the marked section from wiki-contract-template.md, remaining idempotent and append-only when absent.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/references/wiki-contract-template.md",
+          "version": "repo-file-v1:sha256:74fb36e2fba836d594bed925a1301ced9532c54846eb38a829b9a55de2881e00"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs",
+          "version": "repo-file-v1:sha256:cd684c5946d746b89ec10f1bd965951f271ddeb5aec9515f83d9288b8ba0ac05"
         }
       ]
     }
   ],
   "verification": {
     "by": "openwiki/0.4.3",
-    "at": "2026-08-29T04:18:18.736Z"
+    "at": "2026-08-29T21:15:47.181Z"
   }
 }

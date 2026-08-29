@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-08-29T05:56:46.932Z",
+  "updatedAt": "2026-08-29T21:51:03.312Z",
   "command": "update",
-  "gitHead": "2891ce44a2ec09efecdff8530b815f742e7bf8d8",
-  "model": "host-agent/prime-agent",
+  "gitHead": "6d46ba53b95a1a25883d65077493aa9ba3e80c9b",
+  "model": "meta/muse-spark-1.2-contributor",
   "status": "complete",
   "language": "en"
 }

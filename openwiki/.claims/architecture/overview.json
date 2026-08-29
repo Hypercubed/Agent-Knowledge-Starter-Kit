@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:0d98ff956d2ed9ad2cfdd0247222bcb4aa5011c03de47cb7961b60836b86296d",
+  "pageVersion": "sha256:b5b7a76c2ae9aebd54399a75d1c7996c830970c9fb39821078acf08032b43410",
   "claims": [
     {
       "id": "claim_b518d50cd3b74f918ffaba935d72b623",
@@ -8,17 +8,25 @@
       "evidence": [
         {
           "resource": "repo://package.json",
-          "version": "repo-file-v1:sha256:2daf434a993f024a4baa7b8bb1f60d9b40a48388f9b63486f038fbb72bf7c55a"
+          "version": "repo-file-v1:sha256:9345af173a6d4f9a5742118ee068537e22eb1f89df0b4abcb09b0a91d7c9b478"
         }
       ]
     },
     {
       "id": "claim_1b060ba3e51248e1bb30ddd184bb9185",
-      "statement": "OpenSpec (@fission-ai/openspec) and OpenWiki (openwiki plus openwiki --init) are peer dependencies that AKSK never installs; skills verify them via node .agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs and fail fast on exit 2 printing exact npm i -g install commands.",
+      "statement": "OpenSpec (@fission-ai/openspec) and OpenWiki (openwiki plus openwiki --init) are peer dependencies; every skill verifies them via node .agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs and fails fast on exit 2 printing exact npm i -g install commands, except the deterministic bootstrap orchestrator which installs missing tools per-user via npm i -g with caret ranges from references/versions.json via versionsFromPackageJson().",
       "evidence": [
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
-          "version": "repo-file-v1:sha256:41f35665ae6e6340a623e48fab9748c980490c8fca74ef505b29f9556220e8a3"
+          "version": "repo-file-v1:sha256:d1ff10af0b2478c38c764c9c67c7679d789281866375ef830eadc6aeffd9e244"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/references/versions.json",
+          "version": "repo-file-v1:sha256:8c3f99ea217c8a4123b06dc3dce364bb8ceed59b76097b502cdb33853437831a"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap.mjs",
+          "version": "repo-file-v1:sha256:c138021a59557655b9deff17fe7e83e539dd4484f71edab4570a255cd5680135"
         },
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs",
@@ -28,8 +36,16 @@
     },
     {
       "id": "claim_3f6fd341e4fd40e29a80f9fd6a44eb26",
-      "statement": "Node >=22 is the single required runtime for all four .mjs kit scripts (check_peer_tools, attach_wiki_contract, attach_section, sync_wiki_indexes) per the node-single-runtime decision.",
+      "statement": "Node >=22 is the single required runtime for all .mjs kit scripts under .agents/skills/aksk-bootstrap/scripts (bootstrap, check_peer_tools, attach_wiki_contract, attach_section, sync_wiki_indexes, init_agents_md, refresh_agents_baseline) per the node-single-runtime decision.",
       "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap.mjs",
+          "version": "repo-file-v1:sha256:c138021a59557655b9deff17fe7e83e539dd4484f71edab4570a255cd5680135"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/init_agents_md.mjs",
+          "version": "repo-file-v1:sha256:2d219bd05a1526cb557a4bbf977dad1ba314e6c2117c32189e0326489d036810"
+        },
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs",
           "version": "repo-file-v1:sha256:85c6e19effcad0d70b581ea2144ded924babe38897ade26f0abf0d2668e76e58"
@@ -42,19 +58,19 @@
     },
     {
       "id": "claim_c0f0c27e9b4d4c4b946437985636b734",
-      "statement": "Repository authority is split into four zones: root router (AGENTS.md plus CLAUDE.md/GEMINI.md when present), portable prescriptive (.agents/), curated descriptive (openwiki/ decisions/troubleshooting), and process/intent (openspec/), with tooling validating all zones.",
+      "statement": "Repository authority is split into four zones: root router (AGENTS.md with marker-delimited zones), portable prescriptive (.agents/), curated descriptive (openwiki/ decisions/troubleshooting), and process/intent (openspec/), with tooling validating all zones.",
       "evidence": [
         {
           "resource": "repo://.agents/AGENTS.md",
-          "version": "repo-file-v1:sha256:032f48c8e478b5f0d1fa425237a8252539fdd712da64714fe504be5bfdabba72"
+          "version": "repo-file-v1:sha256:d85b5e6cae3cc52731325e8b6193efdec270ec9f479e32f6c253b716dc994ed3"
         },
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
-          "version": "repo-file-v1:sha256:41f35665ae6e6340a623e48fab9748c980490c8fca74ef505b29f9556220e8a3"
+          "version": "repo-file-v1:sha256:d1ff10af0b2478c38c764c9c67c7679d789281866375ef830eadc6aeffd9e244"
         },
         {
           "resource": "repo://AGENTS.md",
-          "version": "repo-file-v1:sha256:87cc3112b68d102afd7a8eca06dc704cb40db8c4a2dc1ef9d89691cba2e690ae"
+          "version": "repo-file-v1:sha256:afe5a9d27b2def63d734ef9e34b69605bb23975c953c1276b0fbba98797192ea"
         },
         {
           "resource": "repo://openspec/config.yaml",
@@ -64,15 +80,23 @@
     },
     {
       "id": "claim_c07765869ad149309c3ca6e6d12df606",
-      "statement": "Root AGENTS.md is entrypoint-routed via marker-delimited managed sections AKSK:ROUTING, AKSK:LIFECYCLE and OPENWIKI:START/END; routing and lifecycle markers are owned by attach_section.mjs and append below existing content without replacement.",
+      "statement": "Root AGENTS.md is entrypoint-routed via marker-delimited managed sections ordered AKSK:AGENTS-BASELINE then OPENWIKI:START/END then AKSK:ROUTING and AKSK:LIFECYCLE; baseline is owned by init_agents_md.mjs/refresh_agents_baseline.mjs, routing and lifecycle markers are owned by attach_section.mjs, which appends below existing content without replacement and preserves content outside markers.",
       "evidence": [
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_section.mjs",
           "version": "repo-file-v1:sha256:782278eefae9ddef14dda790324bcf7df3eb9f37244e105c41e47a897f80ad71"
         },
         {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/init_agents_md.mjs",
+          "version": "repo-file-v1:sha256:2d219bd05a1526cb557a4bbf977dad1ba314e6c2117c32189e0326489d036810"
+        },
+        {
           "resource": "repo://AGENTS.md",
-          "version": "repo-file-v1:sha256:87cc3112b68d102afd7a8eca06dc704cb40db8c4a2dc1ef9d89691cba2e690ae"
+          "version": "repo-file-v1:sha256:afe5a9d27b2def63d734ef9e34b69605bb23975c953c1276b0fbba98797192ea"
+        },
+        {
+          "resource": "repo://openspec/specs/agents-md-bootstrap/spec.md",
+          "version": "repo-file-v1:sha256:b85557c6a55d6e807f6f46c17ae73962575eda9ddb798b13025cbb8e2fe07c13"
         }
       ]
     },
@@ -82,7 +106,7 @@
       "evidence": [
         {
           "resource": "repo://.agents/AGENTS.md",
-          "version": "repo-file-v1:sha256:032f48c8e478b5f0d1fa425237a8252539fdd712da64714fe504be5bfdabba72"
+          "version": "repo-file-v1:sha256:d85b5e6cae3cc52731325e8b6193efdec270ec9f479e32f6c253b716dc994ed3"
         },
         {
           "resource": "repo://.agents/playbooks/README.md",
@@ -135,8 +159,8 @@
           "version": "repo-file-v1:sha256:c9bcbfa4bd0ac7f4f20aff039397460570eac461b054ed3a303caf0ddba9683f"
         },
         {
-          "resource": "repo://docs/architecture.md",
-          "version": "repo-file-v1:sha256:692aca26c14e1ce3f100cb1e8f43d4c5d42fd8a53b737119314cee006a96db13"
+          "resource": "repo://openspec/specs/distill-routing/spec.md",
+          "version": "repo-file-v1:sha256:e28bea24fa9cd8c4b89b739d0ec8569785ad150088bd6544872fb4ded04d86a9"
         }
       ]
     },
@@ -145,12 +169,12 @@
       "statement": "attach_wiki_contract.mjs appends the section from references/wiki-contract-template.md between AKSK:WIKI-CONTRACT markers to an existing openwiki/INSTRUCTIONS.md, never creates the file, exits 2 with openwiki --init remediation when missing, is idempotent/self-updating, and detects the default stub.",
       "evidence": [
         {
-          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
-          "version": "repo-file-v1:sha256:41f35665ae6e6340a623e48fab9748c980490c8fca74ef505b29f9556220e8a3"
-        },
-        {
           "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs",
           "version": "repo-file-v1:sha256:cd684c5946d746b89ec10f1bd965951f271ddeb5aec9515f83d9288b8ba0ac05"
+        },
+        {
+          "resource": "repo://openspec/specs/wiki-contract/spec.md",
+          "version": "repo-file-v1:sha256:419a050c5007c1916753365f2ad64108e320e9af160426e7fb4cc38c0508a5be"
         }
       ]
     },
@@ -186,15 +210,15 @@
     },
     {
       "id": "claim_04c6540e090c4b3883bae10120cfcc4c",
-      "statement": "scripts/check-publish.sh is the release hygiene wrapper (exposed as npm run check) that delegates to check-agents-structure.sh and additionally runs remark formatting, markdown-link-check per file excluding example/, rg secret and path leakage scans, and doubled .agents/.agents path hygiene, degrading to warnings when optional tools are absent.",
+      "statement": "scripts/check-publish.sh is the release hygiene wrapper (exposed as npm run check) that delegates to check-agents-structure.sh and additionally runs remark formatting, markdown-link-check per file, rg secret and path leakage scans, and doubled .agents/.agents path hygiene, degrading to warnings when optional tools are absent.",
       "evidence": [
         {
           "resource": "repo://package.json",
-          "version": "repo-file-v1:sha256:2daf434a993f024a4baa7b8bb1f60d9b40a48388f9b63486f038fbb72bf7c55a"
+          "version": "repo-file-v1:sha256:9345af173a6d4f9a5742118ee068537e22eb1f89df0b4abcb09b0a91d7c9b478"
         },
         {
           "resource": "repo://scripts/check-publish.sh",
-          "version": "repo-file-v1:sha256:0fbbd52ac81d5128e679aed263b53b2b308202e05ffc654d94ea104ff8e92d8f"
+          "version": "repo-file-v1:sha256:79a6e2a286f683115ddd172d2f0d25be4c53c42d9ab0524a0c8b59ab2f0c13ae"
         }
       ]
     },
@@ -204,7 +228,7 @@
       "evidence": [
         {
           "resource": "repo://.agents/skills/docs-lint/SKILL.md",
-          "version": "repo-file-v1:sha256:07d289654569ee79013a053eda29c89012cc28c6ec1f76c6c796630654125e3b"
+          "version": "repo-file-v1:sha256:856a7d6e0c608fe3bd7de1f17c0a380ecd911dd2f10cc496ab720c5e670cf172"
         },
         {
           "resource": "repo://.agents/skills/learning-distill/SKILL.md",
@@ -228,7 +252,7 @@
     },
     {
       "id": "claim_f60c41f3ba4a455b92163483594ad656",
-      "statement": "docs-lint wiring checks fail the pass for damaged or duplicated routing blocks, missing wiki curation contract, archived openspec/changes/archive entries without openwiki coverage or recorded deferral, and stale curated pages with dead dependencies or superseded status; content checks only report duplication, contradictions, broken links, frontmatter violations and path hygiene, and lint never writes OpenWiki-owned files.",
+      "statement": "docs-lint wiring checks fail the pass for damaged or duplicated routing blocks (including AKSK:AGENTS-BASELINE provenance), missing wiki curation contract, archived openspec/changes/archive entries without openwiki coverage or recorded deferral, and stale curated pages with dead dependencies or superseded status; content checks only report duplication, contradictions, broken links, frontmatter violations and path hygiene, and lint never writes OpenWiki-owned files.",
       "evidence": [
         {
           "resource": "repo://.agents/skills/docs-lint/CONTRACT.md",
@@ -236,7 +260,7 @@
         },
         {
           "resource": "repo://.agents/skills/docs-lint/SKILL.md",
-          "version": "repo-file-v1:sha256:07d289654569ee79013a053eda29c89012cc28c6ec1f76c6c796630654125e3b"
+          "version": "repo-file-v1:sha256:856a7d6e0c608fe3bd7de1f17c0a380ecd911dd2f10cc496ab720c5e670cf172"
         }
       ]
     },
@@ -251,26 +275,84 @@
         {
           "resource": "repo://openspec/config.yaml",
           "version": "repo-file-v1:sha256:995f99110b1bf362ab6caeaa0d0d0b9a68e72225875a41bb49a2013a2158ec57"
+        },
+        {
+          "resource": "repo://openspec/specs/distill-routing/spec.md",
+          "version": "repo-file-v1:sha256:e28bea24fa9cd8c4b89b739d0ec8569785ad150088bd6544872fb4ded04d86a9"
         }
       ]
     },
     {
       "id": "claim_9201f8d5a6c840debcb5c757a971159a",
-      "statement": "This repository is the starter kit rooted in its own .agents/ as source of truth for generic templates; a consumer's .agents/ becomes the contract after adoption and example/ is a generated illustration (via generate-example) not a second source and must be regenerated when portable templates or bootstrap change.",
+      "statement": "This repository is the starter kit rooted in its own .agents/ as source of truth for generic templates; a consumer's .agents/ becomes the contract after adoption and there is no example/ distribution path — shipped install lanes are agent-assisted via bootstrap and fallback npx skills add per install-lanes spec.",
       "evidence": [
-        {
-          "resource": "repo://.agents/playbooks/generate-example.md",
-          "version": "repo-file-v1:sha256:375429b126a432bfc40056882bdb83984991955f314630dfbd78eef6e034ad8a"
-        },
         {
           "resource": "repo://docs/architecture.md",
           "version": "repo-file-v1:sha256:692aca26c14e1ce3f100cb1e8f43d4c5d42fd8a53b737119314cee006a96db13"
+        },
+        {
+          "resource": "repo://openspec/specs/install-lanes/spec.md",
+          "version": "repo-file-v1:sha256:6844223a2824d9556c085d4b4c7dc319e38339450944cd2e0c40ea82ab76f777"
+        }
+      ]
+    },
+    {
+      "id": "claim_7749e04aea4f4dd996acf9eda2d87469",
+      "statement": "bootstrap.mjs is the deterministic orchestrator with preflight detection (Node major, openspec/openwiki on PATH, .agents/openspec/openwiki trees, openwiki integrations list receipts), two verbs (verify CLIs via npm i -g caret from references/versions.json skipping present tools, then verify skills plus per-repo openspec init and contract/routing attachment), never half-installs and prints exact INSTRUCT remaining commands on failure without partial state from the failed step.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap.mjs",
+          "version": "repo-file-v1:sha256:c138021a59557655b9deff17fe7e83e539dd4484f71edab4570a255cd5680135"
+        },
+        {
+          "resource": "repo://openspec/specs/aksk-bootstrap/spec.md",
+          "version": "repo-file-v1:sha256:e77c17daefa5454ea64591838d3fdaf7f6c1c39dfe5d51291c556c132e30df14"
+        }
+      ]
+    },
+    {
+      "id": "claim_585206b468ad4f6c8a7ced2eb7dbc4b1",
+      "statement": "init_agents_md.mjs seeds a missing root AGENTS.md with the vendored FerroxLabs baseline wrapped in AKSK:AGENTS-BASELINE markers with provenance header, is idempotent when the marked section matches, exits 2 with no writes on existing non-matching files, supports --replace to overwrite and --combine to stage existing plus baseline under .agents/sessions/agents-md-combine/<timestamp>/, and refresh_agents_baseline.mjs fetches upstream and swaps only that marker zone.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/init_agents_md.mjs",
+          "version": "repo-file-v1:sha256:2d219bd05a1526cb557a4bbf977dad1ba314e6c2117c32189e0326489d036810"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/refresh_agents_baseline.mjs",
+          "version": "repo-file-v1:sha256:30e756b9d5316dc90c7718ff42776ea5be3ab2f6dc64c45eb63d2475c94e4fc7"
+        },
+        {
+          "resource": "repo://openspec/specs/agents-md-bootstrap/spec.md",
+          "version": "repo-file-v1:sha256:b85557c6a55d6e807f6f46c17ae73962575eda9ddb798b13025cbb8e2fe07c13"
+        }
+      ]
+    },
+    {
+      "id": "claim_52c8f5678f434994a4d425372f6aca2d",
+      "statement": "Shipped install lanes are agent-assisted via aksk-bootstrap (EXECUTE/INSTRUCT) as preferred and npx skills add as fallback; proposal-only content from openspec/changes/canonical-universal-install (canonical user store ~/.agents/skills universal+current, npx required, no clone fallback) and openspec/changes/add-task-start (task-start seeding summary.json before closeout) must not be presented as canonical.",
+      "evidence": [
+        {
+          "resource": "repo://INSTALL.md",
+          "version": "repo-file-v1:sha256:b5a2f79f8aef83b87ed9e80d70e991bc9c1e8ef60e2f90497e961d3644bfd238"
+        },
+        {
+          "resource": "repo://openspec/changes/add-task-start/proposal.md",
+          "version": "repo-file-v1:sha256:02e824d855bc2e10f7e793cb78ba79fba3f5c9e7e6312f160f38071965f7aad0"
+        },
+        {
+          "resource": "repo://openspec/changes/canonical-universal-install/proposal.md",
+          "version": "repo-file-v1:sha256:641920026ae4713d450f9df8bceefc01cbdb00526ae6e06fa68c6be14f16fe29"
+        },
+        {
+          "resource": "repo://openspec/specs/install-lanes/spec.md",
+          "version": "repo-file-v1:sha256:6844223a2824d9556c085d4b4c7dc319e38339450944cd2e0c40ea82ab76f777"
         }
       ]
     }
   ],
   "verification": {
     "by": "openwiki/0.4.3",
-    "at": "2026-08-29T05:55:55.370Z"
+    "at": "2026-08-29T21:15:47.181Z"
   }
 }

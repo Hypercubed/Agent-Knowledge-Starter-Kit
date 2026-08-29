@@ -7,6 +7,16 @@
 
 ## Project Learnings
 
-- **Skill renaming workflow:** When renaming a skill, use shell tools to locate all path and string references, update the SKILL.md frontmatter, and regenerate the example. Add a note under "Recurring pitfalls" in AGENTS.md for this pattern.
+- **Skill renaming workflow:** When renaming a skill, use shell tools to locate all path and string references and update the SKILL.md frontmatter. Add a note under "Recurring pitfalls" in AGENTS.md for this pattern.
 - **Maintenance script feedback:** When writing scripts (especially those using `npx`), always include an initial "Starting..." message and a `--verbose` flag to prevent agents from assuming a hang during background execution.
 - **OpenWiki concurrency guard:** Before editing files when `openwiki` may be active, check `test -f openwiki/.run.json && echo "openwiki running: $(jq -r .phase openwiki/.run.json)"`; if running, wait or notify the user — editing mid-run leaves `openwiki/.last-update.json: status: "interrupted"` and forces the next run to re-plan (source fingerprint drift).
+
+## Self-improvement loop
+
+This repository uses the AKSK knowledge loop for durable learning:
+
+1. **Analyze** — was a rule missing from `.agents/AGENTS.md` or ignored?
+2. **Closeout** — bundle the session under `.agents/sessions/` per `task-closeout`.
+3. **Distill** — promote stable lessons: decisions/troubleshooting to `openwiki/`, behavior rules to `.agents/AGENTS.md` or playbooks.
+4. **Prune** — remove guidance that no longer prevents mistakes.
+

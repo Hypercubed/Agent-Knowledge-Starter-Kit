@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:4e45f325bbe57f83beb3039f71a95483a9f7f84af5e95a8f86330c6f6b87f24f",
+  "pageVersion": "sha256:01ff6486e5366d573af9f0cf8e90505be55d51327b0c8d2c1a3854d974c1e2e8",
   "claims": [
     {
       "id": "claim_fa1401ed6e854cafb7b357b79db691a8",
@@ -8,15 +8,15 @@
       "evidence": [
         {
           "resource": "repo://.agents/AGENTS.md",
-          "version": "repo-file-v1:sha256:032f48c8e478b5f0d1fa425237a8252539fdd712da64714fe504be5bfdabba72"
+          "version": "repo-file-v1:sha256:d85b5e6cae3cc52731325e8b6193efdec270ec9f479e32f6c253b716dc994ed3"
         },
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/references/wiki-contract-template.md",
           "version": "repo-file-v1:sha256:74fb36e2fba836d594bed925a1301ced9532c54846eb38a829b9a55de2881e00"
         },
         {
-          "resource": "repo://docs/architecture.md",
-          "version": "repo-file-v1:sha256:692aca26c14e1ce3f100cb1e8f43d4c5d42fd8a53b737119314cee006a96db13"
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs",
+          "version": "repo-file-v1:sha256:cd684c5946d746b89ec10f1bd965951f271ddeb5aec9515f83d9288b8ba0ac05"
         },
         {
           "resource": "repo://openspec/specs/distill-routing/spec.md",
@@ -26,11 +26,11 @@
     },
     {
       "id": "claim_7b3aa527d52542f19c09274cf3c3a5e5",
-      "statement": ".agents/AGENTS.md contains exactly two parts — routing directives (upon startup read openwiki/index.md and .agents/AGENTS.md; when debugging grep openwiki/ .agents/ first; before architectural changes search openwiki/decisions/) and short project learnings — and must stay small; lessons are promoted there only when high-confidence, broadly useful, likely to recur, concise, and actionable.",
+      "statement": ".agents/AGENTS.md contains routing directives (upon startup read openwiki/index.md and .agents/AGENTS.md; when debugging grep openwiki/ .agents/ first; before architectural changes search openwiki/decisions/), project learnings (short distilled rules), and self-improvement loop summary, and must stay small; lessons are promoted there only when high-confidence, broadly useful, likely to recur, concise, and actionable.",
       "evidence": [
         {
           "resource": "repo://.agents/AGENTS.md",
-          "version": "repo-file-v1:sha256:032f48c8e478b5f0d1fa425237a8252539fdd712da64714fe504be5bfdabba72"
+          "version": "repo-file-v1:sha256:d85b5e6cae3cc52731325e8b6193efdec270ec9f479e32f6c253b716dc994ed3"
         },
         {
           "resource": "repo://.agents/skills/learning-distill/SKILL.md",
@@ -44,15 +44,23 @@
     },
     {
       "id": "claim_5308d6bb3391445daa1695d25caa1001",
-      "statement": "Root AGENTS.md is a stacked marker-delimited file with isolated ownership: FerroxLabs baseline (AKSK:AGENTS-BASELINE) owned by init_agents_md.mjs/refresh_agents_baseline.mjs, OpenWiki block (OPENWIKI:START/END) owned by OpenWiki tooling, AKSK Routing (AKSK:ROUTING) and Lifecycle (AKSK:LIFECYCLE) owned by attach_section.mjs; refreshing one zone never rewrites another and each zone is validated independently.",
+      "statement": "Root AGENTS.md is a stacked marker-delimited file with isolated ownership: FerroxLabs baseline (AKSK:AGENTS-BASELINE) owned by init_agents_md.mjs/refresh_agents_baseline.mjs, OpenWiki block (OPENWIKI:START/END) owned by OpenWiki tooling, AKSK Routing (AKSK:ROUTING) and Lifecycle (AKSK:LIFECYCLE) owned by attach_section.mjs; a fully bootstrapped file contains all three families ordered baseline → OpenWiki → AKSK, refreshing one zone never rewrites another and each zone is validated independently.",
       "evidence": [
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
-          "version": "repo-file-v1:sha256:41f35665ae6e6340a623e48fab9748c980490c8fca74ef505b29f9556220e8a3"
+          "version": "repo-file-v1:sha256:d1ff10af0b2478c38c764c9c67c7679d789281866375ef830eadc6aeffd9e244"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_section.mjs",
+          "version": "repo-file-v1:sha256:782278eefae9ddef14dda790324bcf7df3eb9f37244e105c41e47a897f80ad71"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/init_agents_md.mjs",
+          "version": "repo-file-v1:sha256:2d219bd05a1526cb557a4bbf977dad1ba314e6c2117c32189e0326489d036810"
         },
         {
           "resource": "repo://AGENTS.md",
-          "version": "repo-file-v1:sha256:87cc3112b68d102afd7a8eca06dc704cb40db8c4a2dc1ef9d89691cba2e690ae"
+          "version": "repo-file-v1:sha256:afe5a9d27b2def63d734ef9e34b69605bb23975c953c1276b0fbba98797192ea"
         }
       ]
     },
@@ -167,10 +175,6 @@
           "version": "repo-file-v1:sha256:74fb36e2fba836d594bed925a1301ced9532c54846eb38a829b9a55de2881e00"
         },
         {
-          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs",
-          "version": "repo-file-v1:sha256:cd684c5946d746b89ec10f1bd965951f271ddeb5aec9515f83d9288b8ba0ac05"
-        },
-        {
           "resource": "repo://.agents/skills/learning-distill/SKILL.md",
           "version": "repo-file-v1:sha256:c9bcbfa4bd0ac7f4f20aff039397460570eac461b054ed3a303caf0ddba9683f"
         },
@@ -182,19 +186,19 @@
     },
     {
       "id": "claim_c4850ca2f7894446ac18dbef5f0fde13",
-      "statement": ".agents/playbooks/ holds durable multi-step procedures; shipped examples include pre-publish.md, major-version-release.md, generate-example.md and writing-integration-guides.md, written only by learning-distill for procedural lessons.",
+      "statement": ".agents/playbooks/ holds durable multi-step procedures; shipped examples include pre-publish.md, major-version-release.md and writing-integration-guides.md, written only by learning-distill for procedural lessons.",
       "evidence": [
         {
-          "resource": "repo://.agents/playbooks/generate-example.md",
-          "version": "repo-file-v1:sha256:375429b126a432bfc40056882bdb83984991955f314630dfbd78eef6e034ad8a"
-        },
-        {
           "resource": "repo://.agents/playbooks/major-version-release.md",
-          "version": "repo-file-v1:sha256:c9935039a8e3ce0fd72c2894a17471484781bad5549428cca22fb3ecf3a223df"
+          "version": "repo-file-v1:sha256:423c748e01e6da481eecce150067a8ed325f3763a0c4983cd2352eac7adf1193"
         },
         {
           "resource": "repo://.agents/playbooks/pre-publish.md",
-          "version": "repo-file-v1:sha256:63546b392ff5f3568a3adf51425e2e10bf546aea49c154afb2a7fe68a25b35b4"
+          "version": "repo-file-v1:sha256:372826cd967b2df96bb56bd265fd6d7fa0cc000a24bf90c0ab070bbabc43beb1"
+        },
+        {
+          "resource": "repo://.agents/playbooks/writing-integration-guides.md",
+          "version": "repo-file-v1:sha256:d8a34ad925b3bb3b1051f9eccea5308bb6dde79291425d2bfc9a1fe686355cf2"
         },
         {
           "resource": "repo://.agents/skills/learning-distill/references/CONTRACT.md",
@@ -217,10 +221,6 @@
         {
           "resource": "repo://.agents/skills/task-closeout/SKILL.md",
           "version": "repo-file-v1:sha256:82cbf908b431614f53821bdd2f2a063e2705e0f31827cc893d4ff13903c042fe"
-        },
-        {
-          "resource": "repo://docs/architecture.md",
-          "version": "repo-file-v1:sha256:692aca26c14e1ce3f100cb1e8f43d4c5d42fd8a53b737119314cee006a96db13"
         }
       ]
     },
@@ -244,7 +244,7 @@
       "evidence": [
         {
           "resource": "repo://.agents/skills/docs-lint/SKILL.md",
-          "version": "repo-file-v1:sha256:07d289654569ee79013a053eda29c89012cc28c6ec1f76c6c796630654125e3b"
+          "version": "repo-file-v1:sha256:856a7d6e0c608fe3bd7de1f17c0a380ecd911dd2f10cc496ab720c5e670cf172"
         },
         {
           "resource": "repo://.agents/skills/learning-distill/SKILL.md",
@@ -295,10 +295,6 @@
           "version": "repo-file-v1:sha256:49652da05170553f9da86c06f6398b071732fd109b3c4e946195f3e52e685db0"
         },
         {
-          "resource": "repo://docs/architecture.md",
-          "version": "repo-file-v1:sha256:692aca26c14e1ce3f100cb1e8f43d4c5d42fd8a53b737119314cee006a96db13"
-        },
-        {
           "resource": "repo://openspec/specs/distill-routing/spec.md",
           "version": "repo-file-v1:sha256:e28bea24fa9cd8c4b89b739d0ec8569785ad150088bd6544872fb4ded04d86a9"
         }
@@ -325,6 +321,6 @@
   ],
   "verification": {
     "by": "openwiki/0.4.3",
-    "at": "2026-08-29T05:55:55.370Z"
+    "at": "2026-08-29T21:15:47.181Z"
   }
 }

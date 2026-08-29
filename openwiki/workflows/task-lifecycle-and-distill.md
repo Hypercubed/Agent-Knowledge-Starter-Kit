@@ -1,11 +1,11 @@
 ---
 type: workflow
 title: Task Lifecycle and Distillation
-description: Traces the task-closeout bundle lifecycle through learning-distill routing, curation-contract prerequisites, deterministic index sync, and lint verification — covering canonical task_id identity, openspec_change linking, descriptive→OpenWiki versus prescriptive→.agents routing, and failure semantics.
+description: Traces the task-closeout bundle lifecycle through learning-distill routing, curation-contract prerequisites, deterministic index sync, and lint verification — covering canonical task_id identity, openspec_change linking, Proposal-only task-start seeding, descriptive→OpenWiki versus prescriptive→.agents routing, and failure semantics.
 tags: [task-lifecycle, task-closeout, learning-distill, curation-contract, sync-wiki-indexes]
 verified:
   - by: openwiki/0.4.3
-    at: 2026-08-29T04:36:52.163Z
+    at: 2026-08-29T21:15:47.181Z
 sources:
   - id: openwiki-source-d56b5afb22742020f2ab6b59
     resource: repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs
@@ -23,16 +23,24 @@ sources:
     resource: repo://.agents/skills/task-closeout/example/task-bundle/summary.json
   - id: openwiki-source-764361c18355af2544814f55
     resource: repo://.agents/skills/task-closeout/SKILL.md
+  - id: openwiki-source-30179ef0180d39bd7ef5bef7
+    resource: repo://openspec/changes/add-task-start/design.md
+  - id: openwiki-source-c13ebc2b6ebca535d0e7e2e3
+    resource: repo://openspec/changes/add-task-start/proposal.md
+  - id: openwiki-source-bfc58f79a96e2ed041bc3436
+    resource: repo://openspec/changes/add-task-start/specs/task-start/spec.md
   - id: openwiki-source-86a9b374cb99ed0befc3bb8d
     resource: repo://openspec/specs/closeout-change-linking/spec.md
   - id: openwiki-source-eeb2cc49563df1de1086bb7e
     resource: repo://openspec/specs/distill-routing/spec.md
-generated: { by: "openwiki/0.4.3", at: "2026-08-29T04:36:52.163Z" }
+generated: { by: "openwiki/0.4.3", at: "2026-08-29T20:18:58.499Z" }
 ---
 
 # Task Lifecycle and Distillation
 
-Every substantive unit of agent work moves through a fixed loop: **capture** at a stopping point, **distill** into durable knowledge routed by kind, **sync** wiki indexes deterministically, and **lint** the wiring. This page traces `closeout → distill → index sync → lint`, linking session-bundle layout, canonical identity, OpenSpec change linkage, the descriptive→OpenWiki / prescriptive→`.agents` split, curation-contract prerequisites, and `sync_wiki_indexes.mjs`.
+Every substantive unit of agent work moves through a fixed loop: **capture** at a stopping point, **distill** into durable knowledge routed by kind, **sync** wiki indexes deterministically, and **lint** the wiring. When adopted, a proactive **task-start** would seed state at the beginning; until then the enforced loop is `work → closeout → distill → sync → lint`. This page traces `task-start (Proposal-only) → closeout → distill → index sync → lint`, linking session-bundle layout, canonical identity, OpenSpec change linkage, the descriptive→OpenWiki / prescriptive→`.agents` split, curation-contract prerequisites, and `sync_wiki_indexes.mjs`.
+
+> **Proposal-only: `add-task-start`** — `task-start` lives only under `openspec/changes/add-task-start/` (proposal + `specs/task-start/spec.md` + design) and has **not** been archived to `openspec/specs/task-start/`. It is not an active capability until archived. Durable writes (`openwiki/`, `.agents/AGENTS.md`, `.agents/playbooks/`, `.agents/skills/`) happen **only during `learning-distill`**, never during `task-start` or `task-closeout` — start/closeout write only under `.agents/sessions/<session-folder>/` (plus idempotent `README.md`/`.gitignore` init) and record proposed durable changes as prose in the bundle.
 
 Skill procedures are indexed at [task-closeout](../skills/task-closeout.md) and [learning-distill](../skills/learning-distill.md); the complementary data contract is [Knowledge Curation Contract](../concepts/knowledge-curation-contract.md) and the knowledge-layer shape is [The Knowledge Layer](../architecture/knowledge-layer.md).
 
@@ -81,6 +89,17 @@ When the session worked on an OpenSpec change, `summary.json` records its name i
 - If no change was involved, the field is absent or null and closeout succeeds normally.
 - **Closeout never edits `openspec/`** for in-flight changes. `learning-candidate.md` notes pending spec updates ("Spec updates deferred to archive time") for `/opsx:archive` to fold in. Archiving moves the change to `openspec/changes/archive/YYYY-MM-DD-<name>/` and optionally syncs delta specs via `openspec-sync-specs`. This gives `docs-lint`'s archived-change ↔ wiki coverage pairing a natural join key.
 
+## Proposed task-start (Proposal-only)
+
+`add-task-start` is **Proposal-only** and must be labeled as such. Until archived, do not treat `task-start` as an active skill or capability.
+
+If adopted, intended ownership is exclusive and **no durable writes** occur at start:
+
+- **`task-start` owns creation**: creates `.agents/sessions/YYYYMMDD-HHMMSS-short-topic/`, ensures `.agents/sessions/README.md` and `.agents/.gitignore` entries (`sessions/*`, `!sessions/README.md`) exist, and **seeds `summary.json`** with `task_id` (canonical), `created_at`, `status: in_progress`, and optionally `openspec_change`/`repo_id`/`agent`/`agent_session_id`. It does **not** yet contain `completed_at` or final validation/changed-files content, which are reserved for closeout.
+- **`task-closeout` owns finalization**: detects the seeded `summary.json`, **preserves `task_id` (and `openspec_change` if seeded)**, appends `completed_at`, final `status` (`completed`/`blocked`/`abandoned`), git metadata, and distillation flags, then writes the remaining four bundle files. When invoked without a prior `task-start`, it retains its current generation fallback.
+- **Strict sequencing**: `task-start` → work → `task-closeout` → `learning-distill` → `sync_wiki_indexes.mjs` → `docs-lint`. Only `task-start` (creation) → `task-closeout` (finalization) → `learning-distill` (consume + mark `distilled`/`distillation_status`) touch `summary.json`; durable updates remain owned exclusively by `learning-distill`.
+- **No other writer mutates the bundle**: only the three lifecycle owners touch `summary.json`; nothing else writes durable knowledge during start/closeout.
+
 ## State machine
 
 ```mermaid
@@ -99,9 +118,9 @@ stateDiagram-v2
     end note
 ```
 
-*Caption: bundle states enforced by the task-closeout contract (immutable after closeout except status/distillation fields) and learning-distill's final step (mark distilled). There is no activity log to append — accountability lives in bundle flags plus git history.*
+*Caption: bundle states enforced by the task-closeout contract (immutable after closeout except status/distillation fields) and learning-distill's final step (mark distilled). There is no activity log to append — accountability lives in bundle flags plus git history. Proposal would prepend `Started (task-start seeds summary.json in_progress) --> Working --> Captured` before this diagram.*
 
-Lifecycle ordering:
+Lifecycle ordering (enforced today):
 
 1. Coding task begins; agent creates or adopts `repo_id` and `task_id`.
 2. At completion, blockage, or abandonment, agent runs `task-closeout` → five files written.
@@ -110,9 +129,13 @@ Lifecycle ordering:
 5. Learning agent runs `sync_wiki_indexes.mjs` then marks `summary.json` `distilled: true` / `distillation_status`.
 6. Periodically, lint agent runs `docs-lint` and deterministic validators.
 
+*Proposal path (not yet enforced): `task-start` would seed `summary.json` with `status in_progress` at step 1, making the bundle discoverable from the moment work begins, before step 2 finalizes it. Closeout would then preserve `task_id`/`openspec_change` rather than generating new identity.*
+
 ## Write scope and immutability
 
 - **task-closeout** writes only under `.agents/sessions/<session-folder>/`. It never creates or edits `.agents/AGENTS.md`, `openwiki/**`, `.agents/playbooks/**`, files under `.agents/skills/**`, or anything under `openspec/` for in-flight changes. Proposed skill or policy changes are recorded as prose inside the bundle for `learning-distill` to apply.
+- **Proposed `task-start`** (if adopted) would likewise write only under `.agents/sessions/<session-folder>/` plus idempotent init artifacts (`.agents/sessions/README.md`, `.agents/.gitignore` entries). It never creates or edits durable knowledge (`openwiki/`, `.agents/AGENTS.md`, `.agents/playbooks/`, `.agents/skills/`).
+- **Durable writes are exclusive to `learning-distill`**: only `learning-distill` may edit `.agents/AGENTS.md`, `.agents/playbooks/`, and curated `openwiki/**` trees, and only after fail-closed prerequisites pass. Start and closeout capture prose proposals; distill promotes them.
 - **After closeout** the bundle is **immutable except status / distillation-related fields** in `summary.json` that a later tool updates (`distilled`, `distillation_status`). All other files remain frozen.
 - **No secrets upward**: neither bundles nor promoted pages may carry credentials, personal data, or long raw dumps. `learning-distill` rejects low-confidence or one-off lessons.
 
@@ -251,6 +274,7 @@ Then open each candidate's `summary.json` and filter by `task_id` canonical iden
 | Wiki uninitialized for index sync | `sync_wiki_indexes.mjs` | Exit `2`, `openwiki --init` hint, no index writes |
 | Global `openwiki` package missing | `sync_wiki_indexes.mjs` | Exit `2`, `npm i -g openwiki@latest` |
 | Spec updates during closeout | `closeout-change-linking` contract | Closeout leaves `openspec/` untouched; records deferral in `learning-candidate.md` for archive time |
+| `task-start` invoked without durables | Proposal guard | Writes only under `.agents/sessions/<folder>/` + init artifacts; no durable knowledge created |
 
 All bootstrap scripts are offline-safe and never attempt installation — they verify and exit with remediation. `check-publish.sh` gates optional probes (`remark`, `jq`, `rg`, `markdown-link-check`) behind `--no-install` and `timeout` so missing tools degrade to `WARN` skip rather than false pass/fail.
 
@@ -265,7 +289,8 @@ Pre-publish playbook sequences: refresh indexes → run `docs-lint` → run `che
 
 ## Relationships
 
-- **task-closeout ↔ learning-distill** — closeout captures and marks ready; distill consumes only after closeout marks ready, with strict write-scope separation and no overlapping writers. Reconciliation with proposed `task-start` (`add-task-start`): task-start owns `manifest.json` creation, closeout owns finalization, distill consumes only after finalization, preserving `openspec_change` and distillation flags.
+- **task-closeout ↔ learning-distill** — closeout captures and marks ready; distill consumes only after closeout marks ready, with strict write-scope separation and no overlapping writers. Reconciliation with proposed `task-start` (`add-task-start`): task-start owns `manifest.json` creation, closeout owns finalization, distill consumes only after finalization, preserving `openspec_change` and distillation flags. Until archived, enforced lifecycle remains `coding → task-closeout → learning-distill`.
+- **Proposed `task-start` → closeout → distill** — if adopted, `task-start` seeds `summary.json` (`task_id`, `created_at`, `status: in_progress`, optional `openspec_change`); closeout finalizes the same file preserving identity; distill consumes only after finalization. Fallback: closeout generates identity when no seed exists.
 - **OpenSpec ↔ bundles** — `openspec_change` links bundles to intent; coverage pairing closes the loop for archived changes.
 - **OpenWiki ↔ curated trees** — `INSTRUCTIONS.md` contract declares `openwiki/{decisions,troubleshooting}/`, `overview.md`, `maintenance-format.md` as AKSK-curated preserve-and-link targets; `distill-routing` enforces the zone boundary.
 - **Validation ↔ curation** — validators own structure; `docs-lint` owns wiring; neither regenerates indexes.
@@ -295,3 +320,4 @@ Pre-publish playbook sequences: refresh indexes → run `docs-lint` → run `che
 - Knowledge contracts: [Knowledge Curation Contract](../concepts/knowledge-curation-contract.md), [The Knowledge Layer](../architecture/knowledge-layer.md)
 - Governance: [OpenSpec Governance](../workflows/openspec-governance.md), [Validation and Cross-Tool Lint](../operations/validation-and-lint.md)
 - Architecture: [Task Lifecycle and Session Bundles](../architecture/task-lifecycle.md)
+- Proposal: `openspec/changes/add-task-start/` (task-start spec, proposal, design)
