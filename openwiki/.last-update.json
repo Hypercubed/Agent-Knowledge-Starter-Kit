@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-08-24T03:47:23.097Z",
+  "updatedAt": "2026-08-29T05:56:46.932Z",
   "command": "update",
-  "gitHead": "a982cc0ffb267369ac2e23c61310547b927d0e30",
-  "model": "stealth/ox-alpha",
+  "gitHead": "2891ce44a2ec09efecdff8530b815f742e7bf8d8",
+  "model": "host-agent/prime-agent",
   "status": "complete",
   "language": "en"
 }

@@ -1,0 +1,276 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:0d98ff956d2ed9ad2cfdd0247222bcb4aa5011c03de47cb7961b60836b86296d",
+  "claims": [
+    {
+      "id": "claim_b518d50cd3b74f918ffaba935d72b623",
+      "statement": "AKSK is a shareable tool-agnostic starter kit (package.json name agent-knowledge-starter version 2.0.0) that ships markdown conventions and agent skills, has empty dependencies, no runtime service or database, and npm test intentionally fails.",
+      "evidence": [
+        {
+          "resource": "repo://package.json",
+          "version": "repo-file-v1:sha256:2daf434a993f024a4baa7b8bb1f60d9b40a48388f9b63486f038fbb72bf7c55a"
+        }
+      ]
+    },
+    {
+      "id": "claim_1b060ba3e51248e1bb30ddd184bb9185",
+      "statement": "OpenSpec (@fission-ai/openspec) and OpenWiki (openwiki plus openwiki --init) are peer dependencies that AKSK never installs; skills verify them via node .agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs and fail fast on exit 2 printing exact npm i -g install commands.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
+          "version": "repo-file-v1:sha256:41f35665ae6e6340a623e48fab9748c980490c8fca74ef505b29f9556220e8a3"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs",
+          "version": "repo-file-v1:sha256:9e84b52d6090e6714eeb102744587b00efb05412a41f5bb042cf1be47b0e3823"
+        }
+      ]
+    },
+    {
+      "id": "claim_3f6fd341e4fd40e29a80f9fd6a44eb26",
+      "statement": "Node >=22 is the single required runtime for all four .mjs kit scripts (check_peer_tools, attach_wiki_contract, attach_section, sync_wiki_indexes) per the node-single-runtime decision.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs",
+          "version": "repo-file-v1:sha256:85c6e19effcad0d70b581ea2144ded924babe38897ade26f0abf0d2668e76e58"
+        },
+        {
+          "resource": "repo://docs/architecture.md",
+          "version": "repo-file-v1:sha256:692aca26c14e1ce3f100cb1e8f43d4c5d42fd8a53b737119314cee006a96db13"
+        }
+      ]
+    },
+    {
+      "id": "claim_c0f0c27e9b4d4c4b946437985636b734",
+      "statement": "Repository authority is split into four zones: root router (AGENTS.md plus CLAUDE.md/GEMINI.md when present), portable prescriptive (.agents/), curated descriptive (openwiki/ decisions/troubleshooting), and process/intent (openspec/), with tooling validating all zones.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/AGENTS.md",
+          "version": "repo-file-v1:sha256:032f48c8e478b5f0d1fa425237a8252539fdd712da64714fe504be5bfdabba72"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
+          "version": "repo-file-v1:sha256:41f35665ae6e6340a623e48fab9748c980490c8fca74ef505b29f9556220e8a3"
+        },
+        {
+          "resource": "repo://AGENTS.md",
+          "version": "repo-file-v1:sha256:87cc3112b68d102afd7a8eca06dc704cb40db8c4a2dc1ef9d89691cba2e690ae"
+        },
+        {
+          "resource": "repo://openspec/config.yaml",
+          "version": "repo-file-v1:sha256:995f99110b1bf362ab6caeaa0d0d0b9a68e72225875a41bb49a2013a2158ec57"
+        }
+      ]
+    },
+    {
+      "id": "claim_c07765869ad149309c3ca6e6d12df606",
+      "statement": "Root AGENTS.md is entrypoint-routed via marker-delimited managed sections AKSK:ROUTING, AKSK:LIFECYCLE and OPENWIKI:START/END; routing and lifecycle markers are owned by attach_section.mjs and append below existing content without replacement.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_section.mjs",
+          "version": "repo-file-v1:sha256:782278eefae9ddef14dda790324bcf7df3eb9f37244e105c41e47a897f80ad71"
+        },
+        {
+          "resource": "repo://AGENTS.md",
+          "version": "repo-file-v1:sha256:87cc3112b68d102afd7a8eca06dc704cb40db8c4a2dc1ef9d89691cba2e690ae"
+        }
+      ]
+    },
+    {
+      "id": "claim_9db7c576990b46288a405e558d619512",
+      "statement": ".agents/AGENTS.md is the portable prescriptive source of truth and must stay small (no session history, long rationale, failed experiments); durable multi-step procedures belong in .agents/playbooks/ not in AGENTS.md.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/AGENTS.md",
+          "version": "repo-file-v1:sha256:032f48c8e478b5f0d1fa425237a8252539fdd712da64714fe504be5bfdabba72"
+        },
+        {
+          "resource": "repo://.agents/playbooks/README.md",
+          "version": "repo-file-v1:sha256:9cb96782f8744e1fed39b54b8dd86b0a18aefd930353aedf1a2b7ccf0a288db9"
+        },
+        {
+          "resource": "repo://docs/architecture.md",
+          "version": "repo-file-v1:sha256:692aca26c14e1ce3f100cb1e8f43d4c5d42fd8a53b737119314cee006a96db13"
+        }
+      ]
+    },
+    {
+      "id": "claim_7218e00fde1c4dbc9c456c525d2aef4c",
+      "statement": ".agents/sessions/ is gitignored with sessions/* and !sessions/README.md and only sessions/README.md is tracked; check-agents-structure.sh verifies this via git ls-files and git status --ignored.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/.gitignore",
+          "version": "repo-file-v1:sha256:9d3e8002bee34dc78f45dbda50b0668070123c114e1bf70f2f902a61fa049353"
+        },
+        {
+          "resource": "repo://scripts/check-agents-structure.sh",
+          "version": "repo-file-v1:sha256:3e4540194712f502f811a64d86a32c4e44d0a262a4ffebd018c8b867d96abe12"
+        }
+      ]
+    },
+    {
+      "id": "claim_624a5bc9ff014b23ba6479605fd54c1d",
+      "statement": "Each task-closeout session folder is a sortable label YYYYMMDD-HHMMSS-short-topic (not canonical identity); the canonical task identifier is task_id in summary.json and each bundle must contain summary.json, active-task.md, learning-candidate.md, changed-files.txt and validation.txt.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/task-closeout/CONTRACT.md",
+          "version": "repo-file-v1:sha256:b4cdbb24ec28ec8c391f1e06e8afd8fdda22a80dab3209ebd8a7a52b01ebc344"
+        },
+        {
+          "resource": "repo://.agents/skills/task-closeout/SKILL.md",
+          "version": "repo-file-v1:sha256:82cbf908b431614f53821bdd2f2a063e2705e0f31827cc893d4ff13903c042fe"
+        },
+        {
+          "resource": "repo://docs/architecture.md",
+          "version": "repo-file-v1:sha256:692aca26c14e1ce3f100cb1e8f43d4c5d42fd8a53b737119314cee006a96db13"
+        }
+      ]
+    },
+    {
+      "id": "claim_9ec4b1cc738f4bb280886214263d6b05",
+      "statement": "Curated descriptive knowledge lives only as OKF pages under openwiki/ (decisions/ with aksk_status accepted/superseded/provisional, troubleshooting/, overview.md and maintenance-format.md) and carries AKSK extensions aksk_superseded_by and aksk_depends_on with qualified refs decisions/<slug> or troubleshooting/<slug>.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/learning-distill/SKILL.md",
+          "version": "repo-file-v1:sha256:c9bcbfa4bd0ac7f4f20aff039397460570eac461b054ed3a303caf0ddba9683f"
+        },
+        {
+          "resource": "repo://docs/architecture.md",
+          "version": "repo-file-v1:sha256:692aca26c14e1ce3f100cb1e8f43d4c5d42fd8a53b737119314cee006a96db13"
+        }
+      ]
+    },
+    {
+      "id": "claim_22942413f2bf4361bc78c1909cb146c3",
+      "statement": "attach_wiki_contract.mjs appends the section from references/wiki-contract-template.md between AKSK:WIKI-CONTRACT markers to an existing openwiki/INSTRUCTIONS.md, never creates the file, exits 2 with openwiki --init remediation when missing, is idempotent/self-updating, and detects the default stub.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
+          "version": "repo-file-v1:sha256:41f35665ae6e6340a623e48fab9748c980490c8fca74ef505b29f9556220e8a3"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs",
+          "version": "repo-file-v1:sha256:cd684c5946d746b89ec10f1bd965951f271ddeb5aec9515f83d9288b8ba0ac05"
+        }
+      ]
+    },
+    {
+      "id": "claim_137f7366b8e94da1ae8413d15b4ac13f",
+      "statement": "attach_section.mjs provides one mechanism for N marker-delimited root sections (routing-note-template.md AKSK:ROUTING and lifecycle-template.md AKSK:LIFECYCLE), reads markers from the template, is idempotent and self-updating, preserves content outside markers, creates a missing target file containing only the section, and exits 2 on unknown template.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_section.mjs",
+          "version": "repo-file-v1:sha256:782278eefae9ddef14dda790324bcf7df3eb9f37244e105c41e47a897f80ad71"
+        }
+      ]
+    },
+    {
+      "id": "claim_3cd93a7814434c2184a21b85cfa870ee",
+      "statement": "sync_wiki_indexes.mjs refreshes all OpenWiki directory indexes deterministically without invoking openwiki --update or an LLM by locating the global openwiki package via npm root -g, importing agent/docs-only-backend.js and okf/index-sync.js, constructing OpenWikiLocalShellBackend with docsOnly true and virtualMode true, and calling synchronizeWikiIndexes; it exits 2 when openwiki/ is uninitialized or the package is missing.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs",
+          "version": "repo-file-v1:sha256:85c6e19effcad0d70b581ea2144ded924babe38897ade26f0abf0d2668e76e58"
+        }
+      ]
+    },
+    {
+      "id": "claim_3c8291bad2934f349319b00b891308f0",
+      "statement": "scripts/check-agents-structure.sh validates target existence, required files (AGENTS.md, .gitignore, playbooks/README.md, sessions/README.md, four SKILL.md files and task-closeout example bundle), session tracking (only README tracked), SKILL.md YAML frontmatter name/description, and JSON validity via jq when available.",
+      "evidence": [
+        {
+          "resource": "repo://scripts/check-agents-structure.sh",
+          "version": "repo-file-v1:sha256:3e4540194712f502f811a64d86a32c4e44d0a262a4ffebd018c8b867d96abe12"
+        }
+      ]
+    },
+    {
+      "id": "claim_04c6540e090c4b3883bae10120cfcc4c",
+      "statement": "scripts/check-publish.sh is the release hygiene wrapper (exposed as npm run check) that delegates to check-agents-structure.sh and additionally runs remark formatting, markdown-link-check per file excluding example/, rg secret and path leakage scans, and doubled .agents/.agents path hygiene, degrading to warnings when optional tools are absent.",
+      "evidence": [
+        {
+          "resource": "repo://package.json",
+          "version": "repo-file-v1:sha256:2daf434a993f024a4baa7b8bb1f60d9b40a48388f9b63486f038fbb72bf7c55a"
+        },
+        {
+          "resource": "repo://scripts/check-publish.sh",
+          "version": "repo-file-v1:sha256:0fbbd52ac81d5128e679aed263b53b2b308202e05ffc654d94ea104ff8e92d8f"
+        }
+      ]
+    },
+    {
+      "id": "claim_a7d09add20e1447bbe35cfce1ee60d65",
+      "statement": "Maintenance loop comprises four phases with distinct write ownership: task-closeout captures evidence only under .agents/sessions/, learning-distill classifies and promotes to .agents/ or openwiki/ curated trees, sync_wiki_indexes.mjs deterministically refreshes indexes, and docs-lint performs periodic coherence checks.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/docs-lint/SKILL.md",
+          "version": "repo-file-v1:sha256:07d289654569ee79013a053eda29c89012cc28c6ec1f76c6c796630654125e3b"
+        },
+        {
+          "resource": "repo://.agents/skills/learning-distill/SKILL.md",
+          "version": "repo-file-v1:sha256:c9bcbfa4bd0ac7f4f20aff039397460570eac461b054ed3a303caf0ddba9683f"
+        },
+        {
+          "resource": "repo://.agents/skills/task-closeout/SKILL.md",
+          "version": "repo-file-v1:sha256:82cbf908b431614f53821bdd2f2a063e2705e0f31827cc893d4ff13903c042fe"
+        }
+      ]
+    },
+    {
+      "id": "claim_564ae98fda224e39b74060826506c4c3",
+      "statement": "learning-distill fails closed requiring peer tools on PATH and openwiki/INSTRUCTIONS.md to carry AKSK:WIKI-CONTRACT markers before any wiki writes, classifies lessons into ephemeral/AGENTS guidance/playbook/decision record/troubleshooting record/descriptive lesson, never invokes openwiki --update, validates pages at runtime via openwiki/dist/okf/frontmatter.js and loads authoring guidance from openwiki/dist/agent/prompt.js.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/learning-distill/SKILL.md",
+          "version": "repo-file-v1:sha256:c9bcbfa4bd0ac7f4f20aff039397460570eac461b054ed3a303caf0ddba9683f"
+        }
+      ]
+    },
+    {
+      "id": "claim_f60c41f3ba4a455b92163483594ad656",
+      "statement": "docs-lint wiring checks fail the pass for damaged or duplicated routing blocks, missing wiki curation contract, archived openspec/changes/archive entries without openwiki coverage or recorded deferral, and stale curated pages with dead dependencies or superseded status; content checks only report duplication, contradictions, broken links, frontmatter violations and path hygiene, and lint never writes OpenWiki-owned files.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/docs-lint/CONTRACT.md",
+          "version": "repo-file-v1:sha256:3bae3d47a4602f7c79554be89a91246e6a05553720c09ce5e31949e9a5bd3d2a"
+        },
+        {
+          "resource": "repo://.agents/skills/docs-lint/SKILL.md",
+          "version": "repo-file-v1:sha256:07d289654569ee79013a053eda29c89012cc28c6ec1f76c6c796630654125e3b"
+        }
+      ]
+    },
+    {
+      "id": "claim_e107015ad316459d890e75848cbb63e4",
+      "statement": "Invariants enforced by lint and distillation: durable descriptive knowledge lives only in curated openwiki/ pages while .agents/ holds only prescriptive guidance, and candidate decisions that duplicate SHALL requirements already codified in openspec/specs/ must cite the spec instead of creating a wiki page.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/learning-distill/SKILL.md",
+          "version": "repo-file-v1:sha256:c9bcbfa4bd0ac7f4f20aff039397460570eac461b054ed3a303caf0ddba9683f"
+        },
+        {
+          "resource": "repo://openspec/config.yaml",
+          "version": "repo-file-v1:sha256:995f99110b1bf362ab6caeaa0d0d0b9a68e72225875a41bb49a2013a2158ec57"
+        }
+      ]
+    },
+    {
+      "id": "claim_9201f8d5a6c840debcb5c757a971159a",
+      "statement": "This repository is the starter kit rooted in its own .agents/ as source of truth for generic templates; a consumer's .agents/ becomes the contract after adoption and example/ is a generated illustration (via generate-example) not a second source and must be regenerated when portable templates or bootstrap change.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/playbooks/generate-example.md",
+          "version": "repo-file-v1:sha256:375429b126a432bfc40056882bdb83984991955f314630dfbd78eef6e034ad8a"
+        },
+        {
+          "resource": "repo://docs/architecture.md",
+          "version": "repo-file-v1:sha256:692aca26c14e1ce3f100cb1e8f43d4c5d42fd8a53b737119314cee006a96db13"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.4.3",
+    "at": "2026-08-29T05:55:55.370Z"
+  }
+}

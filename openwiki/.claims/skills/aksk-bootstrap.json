@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:f50aeecc20163719493806d2c36f476b04d73fc870357645a08ca05f0ba046a1",
+  "claims": [
+    {
+      "id": "claim_0654682c923844d3b670552d005254f5",
+      "statement": "attach_wiki_contract.mjs appends the templated curation section from references/wiki-contract-template.md between <!-- AKSK:WIKI-CONTRACT:BEGIN --> / <!-- AKSK:WIKI-CONTRACT:END --> markers to an existing openwiki/INSTRUCTIONS.md, never creates the file or directories, and fails fast with exit 2 printing the verbatim prerequisite `openwiki --init` when the file is missing.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
+          "version": "repo-file-v1:sha256:41f35665ae6e6340a623e48fab9748c980490c8fca74ef505b29f9556220e8a3"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/references/wiki-contract-template.md",
+          "version": "repo-file-v1:sha256:74fb36e2fba836d594bed925a1301ced9532c54846eb38a829b9a55de2881e00"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs",
+          "version": "repo-file-v1:sha256:cd684c5946d746b89ec10f1bd965951f271ddeb5aec9515f83d9288b8ba0ac05"
+        }
+      ]
+    },
+    {
+      "id": "claim_f4c8dbaa3d1c4838abad7814cc79be87",
+      "statement": "attach_wiki_contract.mjs is idempotent and self-updating: when markers are present it compares the marked block trimmed to the template trimmed, no-ops with 'already up to date' when equal, otherwise refreshes only the marked block in place via dot-all regex and leaves all content outside markers untouched; stub-aware logging distinguishes the default stub case.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs#L22-L52",
+          "version": "repo-lines-v1:sha256:821c899662cb6c7100cd3f0c965c09738a7b06d5101f628ccd2265d837e76789:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNlM2FkNjI2YmNhMzYyNDZhZGQ1MWFkNzMxZTA3YjQ2Y2QzNzYzYmRlZWNmNGMzNDVhZDkzYzNkOWNjMTBlNjkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjBjNDM5YjAyM2IzNTBiMjg1NzU1NTMxYzg1Y2Y5ODY1ZWRkMmRjYjc3MGQ1NGRkNmUxOTY2NDIwNDljNDFlMjYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY5ZDgxNGM5NzQ5ZGVkYzA1Y2Q1NjMyZWI5NGEwYTllY2MyYmI0ZThlNzg3MjRjNDAyNjk5NzU2NTVkZDNiZmIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_05afa2814ee247d889eaa433624edd6b",
+      "statement": "attach_section.mjs is a generic one-mechanism-for-N-sections attacher where the template owns its markers; markersOf() extracts the AKSK:[A-Z-]+ BEGIN/END pair from the template at runtime via regex and normalizes whitespace, defaults are AGENTS.md and routing-note-template.md, and shipped templates are routing-note-template.md (AKSK:ROUTING) and lifecycle-template.md (AKSK:LIFECYCLE).",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/references/lifecycle-template.md",
+          "version": "repo-file-v1:sha256:62059f84c2a4171067c4b66ea7f75f4357652eb7d65ff07f20c8be703d09fd54"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/references/routing-note-template.md",
+          "version": "repo-file-v1:sha256:7daa0b08b9a8cae6510c448134bfb4f7b1373132970b66916e7c6076c353e683"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_section.mjs",
+          "version": "repo-file-v1:sha256:782278eefae9ddef14dda790324bcf7df3eb9f37244e105c41e47a897f80ad71"
+        }
+      ]
+    },
+    {
+      "id": "claim_ba252491dba4492cb2dadbad20b1ac30",
+      "statement": "attach_section.mjs creates a missing target file containing only the templated section, exits 2 for unknown template names and for a target that is a directory, otherwise appends below existing content with normalized newline or refreshes only the marked block when present (trimmed equality for idempotency), never replacing content outside markers.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_section.mjs#L43-L85",
+          "version": "repo-lines-v1:sha256:801a4a27c5f900aba5a43aee461f491ad4b0c290cf0c4b84c8e18d3e620d05cb:eyJzZWxlY3RlZExpbmVDb3VudCI6NDMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc4YjljOThmMDYyN2UxZjUyMjk4ODcxNTI2OTdjNGZjYmNhYzA4ZmQ0ZTQyMmE3YTg0NGNiNGQxYjBkOTc4MWUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZkNDAxYTZjZjM2ODMxYjVhM2M3ODM1Y2U4NGNjYzEwZWY2MWQ3MDZhYjU4ODJiYzczZDQ5MjZlMTA2OTRhYzgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQ1OWZmNDM0NDljMzM4NjhkODY2YTQ5YTMxZGRhZGMwNTc5YzNkODNkNjg5MGJmYzEyOTQ1MmUwNTRmYTVhYWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_0b7b6ed877874daa8659754ebe334c9d",
+      "statement": "check_peer_tools.mjs verifies only the allowlisted peer tools openspec and openwiki via INSTALL_COMMANDS mapping to exact commands npm i -g @fission-ai/openspec@latest and npm i -g openwiki@latest; onPath scans PATH directories (with PATHEXT on win32), missing() rejects unknown names with 'unknown peer tool(s)' and exits 2, and requireBinaries prints one error per missing tool plus install commands and exits 2, never attempting installation.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs",
+          "version": "repo-file-v1:sha256:9e84b52d6090e6714eeb102744587b00efb05412a41f5bb042cf1be47b0e3823"
+        }
+      ]
+    },
+    {
+      "id": "claim_8b8f636271eb453ca036d6a45d94a021",
+      "statement": "sync_wiki_indexes.mjs refreshes all OpenWiki directory indexes deterministically with no LLM and no CLI run by resolving npm root -g via spawnSync, asserting openwiki/ and <npm-root>/openwiki/dist exist (exit 2 with remediation otherwise), dynamically importing agent/docs-only-backend.js (OpenWikiLocalShellBackend with docsOnly:true virtualMode:true maxOutputBytes 100_000 timeout 120) and okf/index-sync.js (synchronizeWikiIndexes) and calling synchronizeWikiIndexes(backend, \"repository\").",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs",
+          "version": "repo-file-v1:sha256:85c6e19effcad0d70b581ea2144ded924babe38897ade26f0abf0d2668e76e58"
+        }
+      ]
+    },
+    {
+      "id": "claim_ed02677f9f324c02bb3545e242f0f1d7",
+      "statement": "All four helpers are deterministic Node ESM .mjs scripts that share the kit invariants: never install tools, fail fast with exit 2 printing exact remediation, append-only and idempotent (trimmed marker-block compare), and zone-isolated refresh where updating one marker family leaves other zones byte-identical.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
+          "version": "repo-file-v1:sha256:41f35665ae6e6340a623e48fab9748c980490c8fca74ef505b29f9556220e8a3"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_section.mjs",
+          "version": "repo-file-v1:sha256:782278eefae9ddef14dda790324bcf7df3eb9f37244e105c41e47a897f80ad71"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs",
+          "version": "repo-file-v1:sha256:cd684c5946d746b89ec10f1bd965951f271ddeb5aec9515f83d9288b8ba0ac05"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs",
+          "version": "repo-file-v1:sha256:9e84b52d6090e6714eeb102744587b00efb05412a41f5bb042cf1be47b0e3823"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs",
+          "version": "repo-file-v1:sha256:85c6e19effcad0d70b581ea2144ded924babe38897ade26f0abf0d2668e76e58"
+        }
+      ]
+    },
+    {
+      "id": "claim_315b1bc0063b4dec9a772182e425af28",
+      "statement": "aksk-bootstrap is a precondition provider: learning-distill and docs-lint delegate PATH verification via check_peer_tools.mjs and wiki-contract presence via attach_wiki_contract.mjs before any wiki writes, and docs-lint integrity-checks each AKSK:* marker family independently; sync_wiki_indexes.mjs is the only sanctioned index-refresh path for distillation (step 7).",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
+          "version": "repo-file-v1:sha256:41f35665ae6e6340a623e48fab9748c980490c8fca74ef505b29f9556220e8a3"
+        },
+        {
+          "resource": "repo://.agents/skills/docs-lint/SKILL.md",
+          "version": "repo-file-v1:sha256:07d289654569ee79013a053eda29c89012cc28c6ec1f76c6c796630654125e3b"
+        },
+        {
+          "resource": "repo://.agents/skills/learning-distill/SKILL.md",
+          "version": "repo-file-v1:sha256:c9bcbfa4bd0ac7f4f20aff039397460570eac461b054ed3a303caf0ddba9683f"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.4.3",
+    "at": "2026-08-29T04:36:52.163Z"
+  }
+}

@@ -1,0 +1,248 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:f5423f5d4e961eea60da1e355e445e4026bc4f0ecc62570f0885e3986bf793f2",
+  "claims": [
+    {
+      "id": "claim_79872787536c40a598012048819c0481",
+      "statement": "learning-distill routes descriptive lessons (facts, rationale, architecture, troubleshooting patterns) to curated OKF pages under openwiki/{decisions,troubleshooting}/ and topical openwiki/ pages, and routes prescriptive lessons (agent behavior rules, procedures) to .agents/AGENTS.md or .agents/playbooks; descriptive never goes to .agents/ and prescriptive never goes to the wiki.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/learning-distill/SKILL.md",
+          "version": "repo-file-v1:sha256:c9bcbfa4bd0ac7f4f20aff039397460570eac461b054ed3a303caf0ddba9683f"
+        },
+        {
+          "resource": "repo://.agents/skills/learning-distill/references/CONTRACT.md",
+          "version": "repo-file-v1:sha256:49652da05170553f9da86c06f6398b071732fd109b3c4e946195f3e52e685db0"
+        },
+        {
+          "resource": "repo://openspec/specs/distill-routing/spec.md",
+          "version": "repo-file-v1:sha256:e28bea24fa9cd8c4b89b739d0ec8569785ad150088bd6544872fb4ded04d86a9"
+        }
+      ]
+    },
+    {
+      "id": "claim_a83e0c5235784fafbfb924360b576c02",
+      "statement": "Distillation fails closed before any wiki write by verifying openspec and openwiki binaries on PATH via check_peer_tools.mjs and that openwiki/INSTRUCTIONS.md carries AKSK:WIKI-CONTRACT markers; on failure it stops without writing and prints exact remediation (npm i -g commands or attach_wiki_contract.mjs / openwiki --init).",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs",
+          "version": "repo-file-v1:sha256:cd684c5946d746b89ec10f1bd965951f271ddeb5aec9515f83d9288b8ba0ac05"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs",
+          "version": "repo-file-v1:sha256:9e84b52d6090e6714eeb102744587b00efb05412a41f5bb042cf1be47b0e3823"
+        },
+        {
+          "resource": "repo://.agents/skills/learning-distill/SKILL.md",
+          "version": "repo-file-v1:sha256:c9bcbfa4bd0ac7f4f20aff039397460570eac461b054ed3a303caf0ddba9683f"
+        },
+        {
+          "resource": "repo://openspec/specs/distill-routing/spec.md",
+          "version": "repo-file-v1:sha256:e28bea24fa9cd8c4b89b739d0ec8569785ad150088bd6544872fb4ded04d86a9"
+        }
+      ]
+    },
+    {
+      "id": "claim_dc00a5e089ed4f52b1a269bc04e52f0d",
+      "statement": "Canonical task/session identity is summary.json task_id, never the .agents/sessions/<bundle> folder name; folder names are sortable YYYYMMDD-HHMMSS-short-topic labels and filtering prioritizes summary.json state fields distilled, status, distillation_status.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/learning-distill/SKILL.md",
+          "version": "repo-file-v1:sha256:c9bcbfa4bd0ac7f4f20aff039397460570eac461b054ed3a303caf0ddba9683f"
+        },
+        {
+          "resource": "repo://.agents/skills/task-closeout/CONTRACT.md",
+          "version": "repo-file-v1:sha256:b4cdbb24ec28ec8c391f1e06e8afd8fdda22a80dab3209ebd8a7a52b01ebc344"
+        },
+        {
+          "resource": "repo://.agents/skills/task-closeout/SKILL.md",
+          "version": "repo-file-v1:sha256:82cbf908b431614f53821bdd2f2a063e2705e0f31827cc893d4ff13903c042fe"
+        }
+      ]
+    },
+    {
+      "id": "claim_95a1037c92ba4e7ea70f7a76d242fe56",
+      "statement": "Per-task folders under .agents/sessions/ are gitignored via .agents/.gitignore entries sessions/* and !sessions/README.md (or root .gitignore equivalents); bundle discovery must be ignore-blind using filesystem listing (ls/find) or ripgrep --no-ignore-vcs, otherwise agents may falsely conclude no bundles exist.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/learning-distill/SKILL.md",
+          "version": "repo-file-v1:sha256:c9bcbfa4bd0ac7f4f20aff039397460570eac461b054ed3a303caf0ddba9683f"
+        },
+        {
+          "resource": "repo://.agents/skills/task-closeout/SKILL.md",
+          "version": "repo-file-v1:sha256:82cbf908b431614f53821bdd2f2a063e2705e0f31827cc893d4ff13903c042fe"
+        }
+      ]
+    },
+    {
+      "id": "claim_bb723525505c481fa95f7effab187873",
+      "statement": "Distillation never invokes openwiki --update; it authors wiki pages directly by loading runtime guidance from the globally installed package openwiki/dist/agent/prompt.js createSystemPrompt(init|update) and validates frontmatter via openwiki/dist/okf/frontmatter.js validateOkfFrontmatter, fixing every issue before continuing.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/learning-distill/SKILL.md",
+          "version": "repo-file-v1:sha256:c9bcbfa4bd0ac7f4f20aff039397460570eac461b054ed3a303caf0ddba9683f"
+        },
+        {
+          "resource": "repo://.agents/skills/learning-distill/references/CONTRACT.md",
+          "version": "repo-file-v1:sha256:49652da05170553f9da86c06f6398b071732fd109b3c4e946195f3e52e685db0"
+        }
+      ]
+    },
+    {
+      "id": "claim_7c7106f41b4641e8a9418117ed7830d9",
+      "statement": "Wiki indexes are refreshed deterministically only via sync_wiki_indexes.mjs, which locates the global package via npm root -g, imports agent/docs-only-backend.js and okf/index-sync.js, constructs OpenWikiLocalShellBackend with docsOnly:true virtualMode:true maxOutputBytes 100_000 timeout 120 and calls synchronizeWikiIndexes(backend, repository), keeping curated bodies byte-identical.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs",
+          "version": "repo-file-v1:sha256:85c6e19effcad0d70b581ea2144ded924babe38897ade26f0abf0d2668e76e58"
+        }
+      ]
+    },
+    {
+      "id": "claim_3129046f688b407094033e6ed6e477d1",
+      "statement": "Skill initialization is idempotent and once per repo: ensures .agents/, .agents/playbooks/ and .agents/sessions/ exist, copies missing bootstrap README/AGENTS templates copy-missing-only, merges exactly sessions/* and !sessions/README.md into .agents/.gitignore, then runs peer-tool check and contract attachment; it no longer seeds any .agents/docs/ scaffold.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/learning-distill/SKILL.md",
+          "version": "repo-file-v1:sha256:c9bcbfa4bd0ac7f4f20aff039397460570eac461b054ed3a303caf0ddba9683f"
+        },
+        {
+          "resource": "repo://.agents/skills/learning-distill/bootstrap/AGENTS.md",
+          "version": "repo-file-v1:sha256:08ffd28cb5c113c740cd816bafee6adc2674d803b22bee932801917b58f7b360"
+        }
+      ]
+    },
+    {
+      "id": "claim_97b4541859d34b95b2c541e5da407eda",
+      "statement": "Allowed writes after prerequisites pass are limited to openwiki/decisions/*.md, openwiki/troubleshooting/*.md, openwiki/<topic>.md plus deterministic index sync, and .agents/AGENTS.md, .agents/playbooks/*.md, and the bundle summary.json distilled flags; it never writes OpenWiki-owned index.md/.last-update.json/.run.json except via sync, never writes openspec/ or source code, and never invents unsupported rules or copies secrets.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/learning-distill/SKILL.md",
+          "version": "repo-file-v1:sha256:c9bcbfa4bd0ac7f4f20aff039397460570eac461b054ed3a303caf0ddba9683f"
+        },
+        {
+          "resource": "repo://.agents/skills/learning-distill/references/CONTRACT.md",
+          "version": "repo-file-v1:sha256:49652da05170553f9da86c06f6398b071732fd109b3c4e946195f3e52e685db0"
+        }
+      ]
+    },
+    {
+      "id": "claim_154c1c518a8d4a7580a40446357b1a1d",
+      "statement": "Curated pages follow OKF base fields type,title,description,tags,timestamp plus AKSK extensions aksk_status required on decision pages (accepted|superseded|provisional), optional aksk_superseded_by successor slug and optional aksk_depends_on list of qualified refs decisions/<slug> or troubleshooting/<slug>; additional aksk_* properties are allowed and preserved round-trip.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/learning-distill/SKILL.md",
+          "version": "repo-file-v1:sha256:c9bcbfa4bd0ac7f4f20aff039397460570eac461b054ed3a303caf0ddba9683f"
+        },
+        {
+          "resource": "repo://.agents/skills/learning-distill/references/CONTRACT.md",
+          "version": "repo-file-v1:sha256:49652da05170553f9da86c06f6398b071732fd109b3c4e946195f3e52e685db0"
+        },
+        {
+          "resource": "repo://.agents/skills/learning-distill/references/decision-frontmatter.schema.json",
+          "version": "repo-file-v1:sha256:068c1f19b3331e7774301a2cce84932ba0170dee621b49f7f8c15e4bd371ca6e"
+        },
+        {
+          "resource": "repo://.agents/skills/learning-distill/references/troubleshooting-frontmatter.schema.json",
+          "version": "repo-file-v1:sha256:fd96602252757e402d31aa3d6f3b38f8b8f7bcfe5412ef0fe48ff66b7626bb38"
+        }
+      ]
+    },
+    {
+      "id": "claim_8fb8dd2c29f34cc09cb615edfa13202a",
+      "statement": "Entry identity is the filename stem lowercase [a-z0-9_-] unique within its tree; filenames carry no type prefix, disambiguation is via qualified references and relative Markdown links, and renames must update all inbound aksk_depends_on/aksk_superseded_by references.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/learning-distill/SKILL.md",
+          "version": "repo-file-v1:sha256:c9bcbfa4bd0ac7f4f20aff039397460570eac461b054ed3a303caf0ddba9683f"
+        },
+        {
+          "resource": "repo://.agents/skills/learning-distill/references/CONTRACT.md",
+          "version": "repo-file-v1:sha256:49652da05170553f9da86c06f6398b071732fd109b3c4e946195f3e52e685db0"
+        }
+      ]
+    },
+    {
+      "id": "claim_efe65b10be544d219b4b13db52f96389",
+      "statement": "If a candidate decision restates a SHALL requirement already codified in openspec/specs/, distillation must not create or extend a wiki page and must cite the spec capability instead; procedure requires grep over openwiki/ and, for decision-shaped candidates, over openspec/specs/ before authoring.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/learning-distill/SKILL.md",
+          "version": "repo-file-v1:sha256:c9bcbfa4bd0ac7f4f20aff039397460570eac461b054ed3a303caf0ddba9683f"
+        },
+        {
+          "resource": "repo://.agents/skills/learning-distill/references/CONTRACT.md",
+          "version": "repo-file-v1:sha256:49652da05170553f9da86c06f6398b071732fd109b3c4e946195f3e52e685db0"
+        },
+        {
+          "resource": "repo://openspec/specs/distill-routing/spec.md",
+          "version": "repo-file-v1:sha256:e28bea24fa9cd8c4b89b739d0ec8569785ad150088bd6544872fb4ded04d86a9"
+        }
+      ]
+    },
+    {
+      "id": "claim_05df2dcf0b304e93a43a677690ff0121",
+      "statement": "Curation contract attachment is owned by attach_wiki_contract.mjs which reads references/wiki-contract-template.md verbatim bounded by AKSK:WIKI-CONTRACT BEGIN/END markers; it appends below existing content if absent (stub-aware), no-ops if already equal, refreshes only between markers on template change, and exits 2 with openwiki --init if openwiki/INSTRUCTIONS.md does not exist.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/references/wiki-contract-template.md",
+          "version": "repo-file-v1:sha256:74fb36e2fba836d594bed925a1301ced9532c54846eb38a829b9a55de2881e00"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs",
+          "version": "repo-file-v1:sha256:cd684c5946d746b89ec10f1bd965951f271ddeb5aec9515f83d9288b8ba0ac05"
+        }
+      ]
+    },
+    {
+      "id": "claim_7e9b9dcd59154fb9b0832147973b84ec",
+      "statement": "Curation contract declares preserve-and-link for curated trees decisions/, troubleshooting/, overview.md, maintenance-format.md: a scheduled openwiki --update keeps AKSK-authored bodies and links generated material to them, and every aksk_* frontmatter field survives round-trips.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/references/wiki-contract-template.md",
+          "version": "repo-file-v1:sha256:74fb36e2fba836d594bed925a1301ced9532c54846eb38a829b9a55de2881e00"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs",
+          "version": "repo-file-v1:sha256:cd684c5946d746b89ec10f1bd965951f271ddeb5aec9515f83d9288b8ba0ac05"
+        },
+        {
+          "resource": "repo://openspec/specs/distill-routing/spec.md",
+          "version": "repo-file-v1:sha256:e28bea24fa9cd8c4b89b739d0ec8569785ad150088bd6544872fb4ded04d86a9"
+        }
+      ]
+    },
+    {
+      "id": "claim_f2c9b1f53050430cb367516d8257b0de",
+      "statement": "Procedure order is locate bundle ignore-blind, search existing knowledge and deduplicate, classify per six-category table (ephemeral, AGENTS guidance, playbook, decision, troubleshooting, descriptive lesson), author wiki pages directly with OKF validation, draft minimal .agents updates, run sync_wiki_indexes.mjs, then mark summary.json distilled:true and distillation_status; there is no separate log file and accountability is bundle flags plus git history.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/learning-distill/SKILL.md",
+          "version": "repo-file-v1:sha256:c9bcbfa4bd0ac7f4f20aff039397460570eac461b054ed3a303caf0ddba9683f"
+        },
+        {
+          "resource": "repo://.agents/skills/learning-distill/references/CONTRACT.md",
+          "version": "repo-file-v1:sha256:49652da05170553f9da86c06f6398b071732fd109b3c4e946195f3e52e685db0"
+        }
+      ]
+    },
+    {
+      "id": "claim_c47ce905bc4b41019a968a9c24c0db37",
+      "statement": "Task-closeout writes exactly five files per bundle (summary.json, active-task.md, learning-candidate.md, changed-files.txt, validation.txt) under .agents/sessions/<session-folder>/ and the bundle is immutable after closeout except for distilled/distillation_status in summary.json; closeout never edits wiki, durable docs, playbooks, or openspec/ in-flight.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/task-closeout/CONTRACT.md",
+          "version": "repo-file-v1:sha256:b4cdbb24ec28ec8c391f1e06e8afd8fdda22a80dab3209ebd8a7a52b01ebc344"
+        },
+        {
+          "resource": "repo://.agents/skills/task-closeout/SKILL.md",
+          "version": "repo-file-v1:sha256:82cbf908b431614f53821bdd2f2a063e2705e0f31827cc893d4ff13903c042fe"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.4.3",
+    "at": "2026-08-29T04:36:52.163Z"
+  }
+}

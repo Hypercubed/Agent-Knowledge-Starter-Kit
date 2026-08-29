@@ -1,45 +1,84 @@
 ---
-type: "Reference"
-title: "Agent Knowledge Starter Kit — Wiki Quickstart"
-description: "Entry point to the AKSK code wiki: what the kit produces, the knowledge-maintenance loop, a task-routing table from change intent to source anchors and validation commands, and known deferrals."
-tags: [quickstart, navigation, routing]
-timestamp: 2026-08-23T23:30:00Z
+type: guide
+title: AKSK Quickstart
+description: Entry point routing by intent — what the kit ships, how the closeout → distill → sync → lint loop runs, and where to go next for bootstrap, knowledge curation, task lifecycle, validation and distribution.
+tags: [quickstart, navigation, routing, aksk]
+sources:
+  - id: openwiki-source-221b8d1823c4691ef36ad664
+    resource: repo://.agents/AGENTS.md
+  - id: openwiki-source-5398a69cb2cf8d556809da57
+    resource: repo://.agents/skills/aksk-bootstrap/scripts/attach_section.mjs
+  - id: openwiki-source-d56b5afb22742020f2ab6b59
+    resource: repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs
+  - id: openwiki-source-d1960e41bf9a48af26e81829
+    resource: repo://.agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs
+  - id: openwiki-source-dce50581779fda5dd507dc34
+    resource: repo://.agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs
+  - id: openwiki-source-dc8872a5e7d386c22ea2f135
+    resource: repo://.agents/skills/aksk-bootstrap/SKILL.md
+  - id: openwiki-source-5af7f373fcb21f142106673c
+    resource: repo://.agents/skills/docs-lint/SKILL.md
+  - id: openwiki-source-7fe0106a3a83528f5b3d3755
+    resource: repo://.agents/skills/learning-distill/SKILL.md
+  - id: openwiki-source-764361c18355af2544814f55
+    resource: repo://.agents/skills/task-closeout/SKILL.md
+  - id: openwiki-source-8037e2358a2c4f9b2c722a11
+    resource: repo://AGENTS.md
+  - id: openwiki-source-115b2dad781e2a2c5b5a980d
+    resource: repo://docs/architecture.md
+  - id: openwiki-source-096a781fb160ef979fa31121
+    resource: repo://INSTALL.md
+  - id: openwiki-source-5b54a58d1b51cd490b0e7162
+    resource: repo://package.json
+  - id: openwiki-source-23775c3de52f3ab95a13cb8b
+    resource: repo://README.md
+  - id: openwiki-source-2361cff43709905e22758cbb
+    resource: repo://scripts/check-agents-structure.sh
+  - id: openwiki-source-5d609834bdc11b93524d04a9
+    resource: repo://scripts/check-publish.sh
+generated: { by: "openwiki/0.4.3", at: "2026-08-29T04:36:52.163Z" }
+verified:
+  - by: openwiki/0.4.3
+    at: 2026-08-29T05:55:55.370Z
 ---
 
-# Agent Knowledge Starter Kit — Wiki Quickstart
+# AKSK Quickstart
 
-This is the code wiki for **agent-knowledge-starter (AKSK)** v2.0.0, a shareable, tool-agnostic starter kit for maintaining a compiled repo knowledge layer for coding agents. There is no application to run: the kit is glue over two globally installed peer tools — **OpenSpec** (process/intent) and **OpenWiki** (descriptive knowledge, which generates this wiki). The "runtime" is agent behavior driven by markdown skills, marker-delimited contracts, four Node ESM helper scripts, and two bash validation scripts. The repository is also its own best consumer — the maintainer `.agents/` tree dogfoods every convention the kit ships.
+The **Agent Knowledge Starter Kit (AKSK) v2.0.0** is not an application to run — it is glue over two globally installed peer tools and a portable knowledge layer. `openwiki/` is optional just-in-time context, not required startup reading; source code and `.agents/skills/**/SKILL.md` + `CONTRACT.md` files are authoritative.
 
-## What this repo produces
+- **Peer tools (never installed by the kit):** Node >= 22, `openwiki` (descriptive knowledge under `openwiki/`, initialized once with `openwiki --init`), `@fission-ai/openspec` (intent/process under `openspec/`). Scripts verify and fail fast with exact `npm i -g …` commands.
+- **Runtime:** agent behavior driven by markdown skills, marker-delimited contracts, four Node ESM helpers under `.agents/skills/aksk-bootstrap/scripts/` and two bash validators under `scripts/`. `dependencies` is empty; `npm test` intentionally fails.
 
-1. A **portable `.agents/` layer** — AGENTS.md guidance, playbooks/, workflows/, and four installable skills ([architecture overview](architecture/overview.md)).
-2. **A curated knowledge base in this wiki** — 23 decision pages and 26 troubleshooting pages under `openwiki/{decisions,troubleshooting}/`, indexed from the [knowledge overview](overview.md), authored by distillation and preserved across update runs ([schema](maintenance-format.md)).
-3. **The `aksk-bootstrap` skill** — Node scripts owning peer-tool verification, wiki-contract attachment, managed-block attachment, and deterministic index sync ([skills system](skills/index.md), [aksk-bootstrap](skills/aksk-bootstrap.md)).
-4. **Two validators** — `check-agents-structure.sh` (portable) and `check-publish.sh` (release wrapper) ([scripts](skills/generate-example-and-scripts.md)).
-5. **Adoption content** — INSTALL.md flow, peer-dependency prerequisites, 15 tool-integration guides ([packaging](distribution/packaging-and-install.md), [integrations](distribution/tool-integrations.md)).
-6. **Change governance** — OpenSpec-managed proposals/specs/tasks; 2.0 step 1 (`adopt-openspec-openwiki`) is applied and archived with four graduated specs under `openspec/specs/`; step 2 (`aksk-bootstrap-system`) and a new `add-agents-md-bootstrap` proposal are unstarted ([OpenSpec workflow](governance/openspec-workflow.md)).
+This repo is its own best consumer — the maintainer `.agents/` tree dogfoods every convention the kit ships.
+
+## What the kit ships
+
+1. **Portable `.agents/` layer** — compact `AGENTS.md`, `playbooks/`, `skills/` and gitignored `sessions/`. Durable prescriptive rules only; no session history or long rationale.
+2. **Curated wiki under `openwiki/`** — `decisions/` and `troubleshooting/` trees plus `overview.md` / `maintenance-format.md`, authored as OKF pages by distillation and preserved across `openwiki --update` via preserve-and-link. Browse the index at [Knowledge overview](overview.md), not duplicated here.
+3. **`aksk-bootstrap` skill** — owns peer-tool verification (`check_peer_tools.mjs`), wiki-contract attachment (`attach_wiki_contract.mjs`), managed-block attachment (`attach_section.mjs`), and deterministic index sync (`sync_wiki_indexes.mjs`).
+4. **Two validators** — `check-agents-structure.sh` (portable, runs on any `.agents` tree) and `check-publish.sh` (release wrapper, `npm run check`).
+5. **Adoption content** — `INSTALL.md` skill-first flow (`npx skills add Hypercubed/Agent-Knowledge-Starter-Kit`), guides under `docs/integrations/` and the shared [patterns](../../docs/integrations/patterns.md).
+6. **Change governance** — OpenSpec proposals/specs/tasks under `openspec/`; `openspec.yaml` declares `schema: spec-driven`.
+
+Details live under [System Overview](architecture/overview.md).
 
 ## High-level map
 
 ```mermaid
 flowchart TD
     subgraph Entry["Agent entrypoints"]
-        RA["root AGENTS.md with OPENWIKI and AKSK blocks"]
-        CL["CLAUDE.md"]
-        OY["openspec.yaml"]
+        RA["root AGENTS.md - AKSK ROUTING + LIFECYCLE + OPENWIKI"]
+        AG[".agents AGENTS.md + playbooks"]
+        DX["openwiki curated decisions + troubleshooting - optional JIT"]
     end
-    subgraph KL["Knowledge surfaces"]
-        AG[".agents/ AGENTS.md + playbooks"]
-        DX["openwiki/ curated decisions + troubleshooting"]
-    end
-    subgraph SK["Skills under .agents/skills/"]
+    subgraph SK["Skills under .agents/skills"]
         TC["task-closeout"]
         LD["learning-distill"]
-        DL["docs-lint cross-tool"]
+        DL["docs-lint"]
         AB["aksk-bootstrap"]
     end
-    SE[("gitignored session bundles")]
-    OS["openspec/ changes + specs"]
+    SE[("gitignored session bundles - .agents/sessions")]
+    OS["openspec changes + specs"]
     VAL["check-agents-structure + check-publish"]
 
     RA --> AG
@@ -47,27 +86,16 @@ flowchart TD
     TC -->|"writes bundle"| SE
     SE -->|"distill"| LD
     LD -->|"prescriptive"| AG
-    LD -->|"descriptive OKF pages"| DX
-    AB -->|"peer checks, contract attachment, index sync"| DX
-    DL -->|"lints wiring of both"| KL
-    OS -.->|"governs change work"| SK
+    LD -->|"descriptive OKF"| DX
+    AB -->|"peer checks, contract attach, index sync"| DX
+    DL -->|"lints wiring of both"| Entry
+    OS -.->|"governs change"| SK
     VAL -->|"validates"| AG
 ```
 
-*Caption: the maintenance loop at a glance; solid arrows are dataflow, dashed is governance.*
+*Solid arrows are dataflow, dashed is governance.*
 
-## Core concepts
-
-| Concept | One-liner | Canonical page |
-| --- | --- | --- |
-| Peer dependencies | OpenSpec + OpenWiki are global tools AKSK verifies and never installs; missing prerequisites fail fast with exact commands | [Packaging](distribution/packaging-and-install.md) |
-| Descriptive vs prescriptive split | facts/rationale/troubleshooting → curated OKF pages under `openwiki/`; agent-behavior rules → `.agents/AGENTS.md` or playbooks | [learning-distill](skills/learning-distill.md) |
-| Curated trees + curation contract | `decisions/` and `troubleshooting/` are AKSK-curated, preserve-and-link, with `aksk_status` frontmatter; contract lives in `INSTRUCTIONS.md` markers | [Knowledge layer](architecture/knowledge-layer.md) |
-| Task identity | `task_id` in `summary.json` is canonical; folder names are sortable labels; optional `openspec_change` links bundles to changes | [Task lifecycle](architecture/task-lifecycle.md) |
-| Routing pattern + managed blocks | tool bootstrap files stay thin; `AKSK:ROUTING` / `AKSK:LIFECYCLE` blocks attach via script, never by hand | [Agent entrypoints](governance/agent-entrypoints.md) |
-| Cross-tool lint | docs-lint guards wiring: intact marker blocks, archived-change↔wiki coverage pairing, stale curated pages | [docs-lint](skills/docs-lint.md) |
-
-## Maintenance loop (the kit's core workflow)
+## Maintenance loop
 
 ```mermaid
 sequenceDiagram
@@ -78,54 +106,49 @@ sequenceDiagram
     participant X as docs-lint
 
     C->>B: task-closeout writes summary.json<br/>task_id, openspec_change, candidates
-    L->>B: read via ignore-bypassing listing<br/>select by task_id/distilled state
-    L->>L: fail-closed prerequisite checks<br/>peer tools + curation contract
+    L->>B: read via ignore-bypassing listing<br/>select by task_id / distilled state
+    L->>L: fail-closed prerequisites<br/>peer tools + AKSK:WIKI-CONTRACT
     L->>W: author descriptive OKF pages directly
-    L->>C: prescriptive rules into .agents/
+    L->>C: prescriptive rules → .agents/AGENTS.md or playbooks
     L->>W: sync_wiki_indexes.mjs refresh
     L->>B: mark bundle distilled
     X->>W: periodic pass: routing blocks,<br/>coverage pairing, stale pages
 ```
 
-*Caption: closeout → distill → index sync → lint; details in [task lifecycle](architecture/task-lifecycle.md).*
+1. **Closeout** — `task-closeout` captures raw evidence. Canonical `task_id` lives in `summary.json`; folder name `YYYYMMDD-HHMMSS-slug` is only a sortable label.
+2. **Distill** — `learning-distill` classifies by kind (descriptive → `openwiki/`, prescriptive → `.agents/`) and never invokes `openwiki --update`.
+3. **Sync** — `sync_wiki_indexes.mjs` rebuilds `openwiki/index.md` and directory indexes deterministically via `OpenWikiLocalShellBackend`.
+4. **Lint** — `docs-lint` guards wiring. Validators prove file shape in CI.
 
-## Task routing table
+Full sequencing, bundle shape, and routing rules: [Task Lifecycle and Distill](workflows/task-lifecycle-and-distill.md).
+
+## Where to go next — task routing
+
+Do not duplicate the curated decision/troubleshooting catalogs — follow the links to their indexes.
 
 | If you want to… | Read | Source anchors | Validate with |
 | --- | --- | --- | --- |
-| Understand why `.agents/` looks this way | [Architecture overview](architecture/overview.md) + [knowledge layer](architecture/knowledge-layer.md) | `docs/architecture.md`, `.agents/skills/learning-distill/SKILL.md` | `bash scripts/check-agents-structure.sh .agents` |
-| Capture finished work | [task-closeout](skills/task-closeout.md) | `.agents/skills/task-closeout/{SKILL,CONTRACT}.md`, `example/task-bundle/` | bundle contains all five required files |
-| Turn bundles into durable knowledge | [learning-distill](skills/learning-distill.md) | `.agents/skills/learning-distill/{SKILL.md,references/}`, `references/CONTRACT.md` | OKF validation one-liner from SKILL.md step 5 |
-| Verify peer tools / attach contract or blocks | [aksk-bootstrap](skills/aksk-bootstrap.md) | `.agents/skills/aksk-bootstrap/scripts/*.mjs` | rerun attachment: idempotent no-op expected |
-| Refresh wiki indexes after adding pages | [aksk-bootstrap §index sync](skills/aksk-bootstrap.md#index-sync--sync_wiki_indexesmjs) | `sync_wiki_indexes.mjs` | prints confirmation line; exits 2 when wiki missing |
-| Keep knowledge wiring coherent | [docs-lint](skills/docs-lint.md) | `.agents/skills/docs-lint/{SKILL,CONTRACT}.md` | lint report; doubled-path grep |
-| Rebuild `example/` | [generate-example & scripts](skills/generate-example-and-scripts.md) | `run.sh`, playbook `generate-example.md` | structure check on `example/.agents` |
-| Publish/release the kit | [packaging](distribution/packaging-and-install.md) | `scripts/check-publish.sh`, pre-publish playbook | `npm run check` clean exit |
-| Wire a new agent tool | [tool integrations](distribution/tool-integrations.md) | `docs/integrations/patterns.md`, writing-integration-guides playbook | link check; dogfood pass |
-| Propose a change properly | [OpenSpec workflow](governance/openspec-workflow.md) | `openspec/config.yaml`, active change folders | `npx openspec status` |
-| Know what shipped in 2.0 vs pending | [OpenSpec workflow §graduated specs](governance/openspec-workflow.md#step-1-adopt-openspec-openwiki--applied-and-archived) | `openspec/specs/*/spec.md`, `openspec/changes/archive/2026-08-23-adopt-openspec-openwiki/tasks.md` | unchecked checkboxes in active changes = remaining work |
+| Understand zone authority | [System Overview](architecture/overview.md) · [AGENTS.md Zoning](concepts/agents-md-zoning.md) | `docs/architecture.md`, `.agents/AGENTS.md`, `AGENTS.md` markers | `bash scripts/check-agents-structure.sh .agents` |
+| Bootstrap a repo / attach blocks | [Bootstrap and Block Attachment](workflows/bootstrap-and-attachment.md) | `.agents/skills/aksk-bootstrap/scripts/*.mjs`, `references/*-template.md` | `node .agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs openspec openwiki` |
+| Curate durable knowledge | [Knowledge Curation Contract](concepts/knowledge-curation-contract.md) | `openwiki/INSTRUCTIONS.md` (`AKSK:WIKI-CONTRACT`), `openwiki/overview.md`, `openwiki/maintenance-format.md` | `node .agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs` (idempotent no-op if attached) |
+| Capture finished work | [Task Lifecycle and Distill](workflows/task-lifecycle-and-distill.md) · `.agents/skills/task-closeout/SKILL.md` | `.agents/skills/task-closeout/CONTRACT.md`, `example/task-bundle/` | bundle contains `summary.json` + 4 companion files |
+| Promote bundles to durable docs | [Task Lifecycle and Distill](workflows/task-lifecycle-and-distill.md) · `.agents/skills/learning-distill/SKILL.md` | `.agents/skills/learning-distill/references/CONTRACT.md`, `learning-distill/references/*.schema.json` | `NPM_ROOT=$(npm root -g) node --input-type=module -e '...validateOkfFrontmatter...'` then `node .agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs` |
+| Refresh wiki indexes | [Bootstrap and Attachment](workflows/bootstrap-and-attachment.md) | `.agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs` | prints `Wiki indexes synchronized under …`; exits 2 if `openwiki/` missing |
+| Keep wiring coherent | [Validation and Release](operations/validation-and-release.md) | `.agents/skills/docs-lint/SKILL.md` + `CONTRACT.md`, `scripts/check-publish.sh` | `bash scripts/check-publish.sh` / `npm run check` |
+| Ship / distribute the kit | [Distribution and Agent Spread](integrations/distribution-and-agent-spread.md) | `package.json` (`name: agent-knowledge-starter`), `docs/integrations/patterns.md`, `.agents/playbooks/` | `bash scripts/check-agents-structure.sh example/.agents` |
+| Govern changes with OpenSpec | [OpenSpec Governance](workflows/openspec-governance.md) | `openspec.yaml`, `openspec/changes/`, `openspec/specs/` | `npx openspec status` |
+| Browse decisions / fixes | [Knowledge overview](overview.md) | `openwiki/decisions/` · `openwiki/troubleshooting/` | `rg -ri "<symptom>" openwiki/ .agents/` (openwiki is JIT, grep the sources) |
 
 ## Focused validation commands
 
 ```bash
-bash scripts/check-agents-structure.sh .agents         # portable structure validator (jq optional)
+bash scripts/check-agents-structure.sh .agents         # portable shape (jq optional)
 bash scripts/check-publish.sh                          # full release hygiene (remark, links, leakage scans)
 npm run check                                          # same via package.json
 npm run format                                         # remark over .agents/**/*.md
-node .agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs openspec openwiki   # preconditions
-node .agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs                    # deterministic index refresh
-rg -ri "<symptom>" .agents/ openwiki/                  # durable-knowledge lookup (plain grep; docs-search was retired)
+node .agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs openspec openwiki
+node .agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs
+rg -ri "<symptom>" .agents/ openwiki/                  # durable-knowledge lookup
 ```
 
-There is no unit test suite (`npm test` intentionally fails); validation is script-driven plus agent-executed skill procedures. A pytest suite for scripts exists only as the active proposal `add-script-tests`.
-
-## Backlog / known deferrals
-
-| Item | Anchor | Reason |
-| --- | --- | --- |
-| Per-tool integration guide deep dives (15 pages) | `docs/integrations/*.md` | summarized collectively in [Tool integrations](distribution/tool-integrations.md); each follows one shared template so per-page prose would be redundant |
-| Session bundle contents | `.agents/sessions/<bundle>/` | gitignored temporary evidence; format documented once in [task lifecycle](architecture/task-lifecycle.md) |
-| Individual decision/troubleshooting entries (23 + 26 pages) | `openwiki/{decisions,troubleshooting}/` | indexed exhaustively by their own generated `index.md` files; wiki links representative entries instead of duplicating them |
-| OpenSpec change-by-change summaries for all 13 active proposals | `openspec/changes/` | grouped thematically in [OpenSpec workflow](governance/openspec-workflow.md); read each folder for full artifacts |
-| `example/` regeneration against the 2.0 skill set | `example/.agents/skills/` | tracked example still contains retired `docs-search`/`docs-compile` folders; regeneration is pending task 3.3 of `aksk-bootstrap-system` (see [packaging](distribution/packaging-and-install.md)) |
-| `.agents/workflows/opsx-*` retirement | `.agents/workflows/` | forked slash-command copies remain on disk pending deletion in favor of native `openspec init` output (task 4.2 remainder) |
+There is no unit test suite (`npm test` exits 1 by design); validation is script-driven plus agent-executed skill procedures. Use the routing table above to pick the minimal probe for your intent.

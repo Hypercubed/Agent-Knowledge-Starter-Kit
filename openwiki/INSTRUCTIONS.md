@@ -1,5 +1,19 @@
 A code wiki for this repository.
 
+## OpenSpec source of truth
+
+- `openspec/specs/**` is the current contract. Cite it as evidence for shipped behavior. Each `spec.md` under `openspec/specs/<capability>/` is the authoritative requirement set for that capability.
+- `openspec/changes/**` are pending proposals — not current behavior. When a wiki page cites evidence from `openspec/changes/<name>/`, label it **Proposal-only (not yet in `openspec/specs/**`)** and do not present delta requirements (`ADDED`/`MODIFIED`/`REMOVED`) as shipped behavior.
+- `openspec/changes/archive/**` is historical. Only cite an archived change as source of truth after `openspec archive <name>` has graduated its specs to `openspec/specs/**`.
+
+## Generated demo output
+
+Treat `example/` at the repository root as a generated consumer-install illustration — not source truth. Do not cite files under `example/` as evidence for shipped behavior, and do not present its contents as canonical implementation. OpenWiki ignores only the root `example/` via `.openwikiignore` (`/example/`); nested `example/` folders are not ignored.
+
+## Temporary session evidence
+
+Treat `.agents/sessions/` as temporary closeout bundles — not source truth. Do not cite files under `.agents/sessions/` (except `.agents/sessions/README.md`) as evidence for shipped behavior, and do not present bundle contents as canonical implementation. Bundles are local working memory until distilled; OpenWiki ignores them via `.openwikiignore`.
+
 <!-- AKSK:WIKI-CONTRACT:BEGIN -->
 ## AKSK curation contract
 

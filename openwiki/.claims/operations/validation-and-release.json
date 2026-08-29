@@ -1,0 +1,202 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:35997907ec0d2f07099e0ae2e26deb7d9b7d80b469ec9288db345ec86d1a5981",
+  "claims": [
+    {
+      "id": "claim_d5bc64cd77bb40caab10b557e958823c",
+      "statement": "check-agents-structure.sh is the portable validator that accepts a single target argument defaulting to .agents, normalizes it via ${target%/}, and scopes all checks strictly to that tree to allow validating example/.agents or any copied knowledge layer.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/playbooks/pre-publish.md",
+          "version": "repo-file-v1:sha256:63546b392ff5f3568a3adf51425e2e10bf546aea49c154afb2a7fe68a25b35b4"
+        },
+        {
+          "resource": "repo://scripts/check-agents-structure.sh",
+          "version": "repo-file-v1:sha256:3e4540194712f502f811a64d86a32c4e44d0a262a4ffebd018c8b867d96abe12"
+        }
+      ]
+    },
+    {
+      "id": "claim_ff48e0f5bdd24036b6e1bfb34623a723",
+      "statement": "The portable validator asserts a fixed required-files manifest with -f checks for AGENTS.md, .gitignore, playbooks/README.md, sessions/README.md, skills/aksk-bootstrap, docs-lint, learning-distill, task-closeout SKILL.md files plus the task-closeout example bundle files (summary.json, active-task.md, learning-candidate.md, changed-files.txt, validation.txt); missing entries increment failures.",
+      "evidence": [
+        {
+          "resource": "repo://scripts/check-agents-structure.sh",
+          "version": "repo-file-v1:sha256:3e4540194712f502f811a64d86a32c4e44d0a262a4ffebd018c8b867d96abe12"
+        }
+      ]
+    },
+    {
+      "id": "claim_dc246e4560ed4e3b835b426c2d0bb215",
+      "statement": "Session tracking is git-aware: inside a git worktree it compares git ls-files -- target/sessions sorted against the single expected file target/sessions/README.md via exact string equality and reports ignored bundles via git status --short --ignored; outside git it warns and skips tracked/ignored checks, enforcing that only README.md is tracked.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/.gitignore",
+          "version": "repo-file-v1:sha256:9d3e8002bee34dc78f45dbda50b0668070123c114e1bf70f2f902a61fa049353"
+        },
+        {
+          "resource": "repo://scripts/check-agents-structure.sh",
+          "version": "repo-file-v1:sha256:3e4540194712f502f811a64d86a32c4e44d0a262a4ffebd018c8b867d96abe12"
+        }
+      ]
+    },
+    {
+      "id": "claim_6e478a8e0e4c4ba9a3580f1acaae82e4",
+      "statement": "Skill frontmatter validation finds target/skills/**/SKILL.md and checks line 1 is --- and that first 12 lines contain ^name: and ^description:; JSON enumeration uses git ls-files or find with prune on sessions/[0-9]* and validates with jq empty when jq is on PATH otherwise warns and skips.",
+      "evidence": [
+        {
+          "resource": "repo://scripts/check-agents-structure.sh",
+          "version": "repo-file-v1:sha256:3e4540194712f502f811a64d86a32c4e44d0a262a4ffebd018c8b867d96abe12"
+        }
+      ]
+    },
+    {
+      "id": "claim_489e82b0b3404bed8ea428626298de29",
+      "statement": "check-publish.sh is the starter-repo release wrapper that cds to git rev-parse --show-toplevel (or pwd) and delegates to check-agents-structure.sh on root .agents only, then adds starter-repo-only hygiene sections and exits 1 when failures>0 (warnings never block).",
+      "evidence": [
+        {
+          "resource": "repo://package.json",
+          "version": "repo-file-v1:sha256:2daf434a993f024a4baa7b8bb1f60d9b40a48388f9b63486f038fbb72bf7c55a"
+        },
+        {
+          "resource": "repo://scripts/check-publish.sh",
+          "version": "repo-file-v1:sha256:0fbbd52ac81d5128e679aed263b53b2b308202e05ffc654d94ea104ff8e92d8f"
+        }
+      ]
+    },
+    {
+      "id": "claim_984e96f307bb49b9a86f51185d6cb126",
+      "statement": "Markdown formatting section in check-publish.sh probes remark via npx --no-install remark --frail with .remarkrc.json (remark-frontmatter + remark-gfm) bounded by timeout 60s; it fails on violations and warns/skips when npx/remark unavailable.",
+      "evidence": [
+        {
+          "resource": "repo://.remarkrc.json",
+          "version": "repo-file-v1:sha256:9092eda4ced23098771881d4af0033319cba9ae2b78012129fcbf09177f43fec"
+        },
+        {
+          "resource": "repo://package.json",
+          "version": "repo-file-v1:sha256:2daf434a993f024a4baa7b8bb1f60d9b40a48388f9b63486f038fbb72bf7c55a"
+        },
+        {
+          "resource": "repo://scripts/check-publish.sh",
+          "version": "repo-file-v1:sha256:0fbbd52ac81d5128e679aed263b53b2b308202e05ffc654d94ea104ff8e92d8f"
+        }
+      ]
+    },
+    {
+      "id": "claim_bd5dd7cf107e4a0aacac870ae11f2ab9",
+      "statement": "Markdown link section runs npx --no-install markdown-link-check --alive 200,0 per tracked *.md excluding example/* bounded by timeout 30s per file; --alive 200,0 keeps offline/CSP status 0 from failing every external URL; any file failure increments failures.",
+      "evidence": [
+        {
+          "resource": "repo://scripts/check-publish.sh",
+          "version": "repo-file-v1:sha256:0fbbd52ac81d5128e679aed263b53b2b308202e05ffc654d94ea104ff8e92d8f"
+        }
+      ]
+    },
+    {
+      "id": "claim_4317df443baf403fa5d0990682ffcbfd",
+      "statement": "Publish leakage scans use rg --hidden --glob '!*sessions/[0-9]*' for high-signal secrets (Bearer, sk-, ghp_, github_pat_, AWS_*, BEGIN PRIVATE KEY, /home/, C:\\Users\\) over README.md INSTALL.md docs .agents as warning-only, while the doubled-path hygiene scan for \\.agents/\\.agents/ over the same paths is a hard fail indicating a bad global replace.",
+      "evidence": [
+        {
+          "resource": "repo://scripts/check-publish.sh",
+          "version": "repo-file-v1:sha256:0fbbd52ac81d5128e679aed263b53b2b308202e05ffc654d94ea104ff8e92d8f"
+        }
+      ]
+    },
+    {
+      "id": "claim_8ad4dfccfccf4570ae5607a6bacd6783",
+      "statement": "package.json wires npm run check to bash scripts/check-publish.sh and format to remark over .agents/**/*.md, with devDependencies markdown-link-check, remark-cli, remark-frontmatter, remark-gfm, and skills; jq and rg are system CLIs (apt/brew/choco) not npm dependencies.",
+      "evidence": [
+        {
+          "resource": "repo://package.json",
+          "version": "repo-file-v1:sha256:2daf434a993f024a4baa7b8bb1f60d9b40a48388f9b63486f038fbb72bf7c55a"
+        },
+        {
+          "resource": "repo://scripts/check-publish.sh",
+          "version": "repo-file-v1:sha256:0fbbd52ac81d5128e679aed263b53b2b308202e05ffc654d94ea104ff8e92d8f"
+        }
+      ]
+    },
+    {
+      "id": "claim_40006416ea9d47078af0e3c7075abf55",
+      "statement": "Pre-publish playbook (.agents/playbooks/pre-publish.md) sequences check-publish.sh as blocking, requires only sessions/README.md tracked, review of find .agents -maxdepth 4 file list, separation of portable kit contract vs maintainer-only dogfood, sync_wiki_indexes.mjs after wiki edits, docs-lint before publish, and git status/diff before tagging; leakage hits are intentionally narrow and never auto-fail.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/playbooks/pre-publish.md",
+          "version": "repo-file-v1:sha256:63546b392ff5f3568a3adf51425e2e10bf546aea49c154afb2a7fe68a25b35b4"
+        },
+        {
+          "resource": "repo://scripts/check-publish.sh",
+          "version": "repo-file-v1:sha256:0fbbd52ac81d5128e679aed263b53b2b308202e05ffc654d94ea104ff8e92d8f"
+        }
+      ]
+    },
+    {
+      "id": "claim_2909e35162d44f2c87bf3f76e1f0cf56",
+      "statement": "generate-example is maintainer-only (internal: true) not distributed to consumers with canonical reference .agents/playbooks/generate-example.md; run.sh from repo root removes and recreates example/, runs npx skills add <repo_root> -y --copy --agent cursor for user-facing skills only, simulates learning-distill init by copying bootstrap templates into example/.agents (playbooks/README.md, sessions/README.md, AGENTS.md when missing) and writes example/.agents/.gitignore with sessions/* and !sessions/README.md.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/playbooks/generate-example.md",
+          "version": "repo-file-v1:sha256:375429b126a432bfc40056882bdb83984991955f314630dfbd78eef6e034ad8a"
+        },
+        {
+          "resource": "repo://.agents/skills/generate-example/SKILL.md",
+          "version": "repo-file-v1:sha256:b44767b79617179b0dc32e993c712ac2f4be677a13c130601ff707118b447c5a"
+        },
+        {
+          "resource": "repo://.agents/skills/generate-example/run.sh",
+          "version": "repo-file-v1:sha256:3fbc1613dc785b28eee55ee8128abfbd226b7515ecdfdea62e14f4eb577cc4de"
+        }
+      ]
+    },
+    {
+      "id": "claim_b9fa49a7dbc44a7783425d1fc46eb49f",
+      "statement": "The regeneration invariant requires regenerating example/ whenever the portable kit or bootstrap templates change and verifying wiring blocks and structure (check-agents-structure.sh on example/.agents and docs-lint) before publish; example/ must remain disposable and must not be populated by copying the full dogfood .agents tree or curated wiki content.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/playbooks/generate-example.md",
+          "version": "repo-file-v1:sha256:375429b126a432bfc40056882bdb83984991955f314630dfbd78eef6e034ad8a"
+        },
+        {
+          "resource": "repo://.agents/skills/generate-example/SKILL.md",
+          "version": "repo-file-v1:sha256:b44767b79617179b0dc32e993c712ac2f4be677a13c130601ff707118b447c5a"
+        },
+        {
+          "resource": "repo://.agents/skills/generate-example/run.sh",
+          "version": "repo-file-v1:sha256:3fbc1613dc785b28eee55ee8128abfbd226b7515ecdfdea62e14f4eb577cc4de"
+        }
+      ]
+    },
+    {
+      "id": "claim_233302f2a2c847458e12777fc85231cd",
+      "statement": "Major-version-release playbook requires three checks for a major release: aggressively grep the entire repo for deprecated artifact names (e.g., docs-search-index.json), review platform portability of new Python/bash scripts for cross-platform paths, and regenerate example/ via the generator playbook and ensure kit layout health.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/playbooks/major-version-release.md",
+          "version": "repo-file-v1:sha256:c9935039a8e3ce0fd72c2894a17471484781bad5549428cca22fb3ecf3a223df"
+        }
+      ]
+    },
+    {
+      "id": "claim_7668146745b54fd0804f57c64ee52015",
+      "statement": "Operational invariants: all npx probes use --no-install gated by timeout (15s availability, 60s remark, 30s per link file) and never install; missing jq/npx/rg degrades to WARN not false pass/fail; portability requires only bash/sed/grep/find plus git for session tracking; failures block publish while warnings require manual review.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/playbooks/pre-publish.md",
+          "version": "repo-file-v1:sha256:63546b392ff5f3568a3adf51425e2e10bf546aea49c154afb2a7fe68a25b35b4"
+        },
+        {
+          "resource": "repo://scripts/check-agents-structure.sh",
+          "version": "repo-file-v1:sha256:3e4540194712f502f811a64d86a32c4e44d0a262a4ffebd018c8b867d96abe12"
+        },
+        {
+          "resource": "repo://scripts/check-publish.sh",
+          "version": "repo-file-v1:sha256:0fbbd52ac81d5128e679aed263b53b2b308202e05ffc654d94ea104ff8e92d8f"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.4.3",
+    "at": "2026-08-29T04:36:52.163Z"
+  }
+}

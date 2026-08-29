@@ -1,0 +1,206 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:7aa9fdca9adaf0e70b050b9ecfef5777bb6022b303f6efab2a0723bdeed0e8b5",
+  "claims": [
+    {
+      "id": "claim_41476b89d3b145b997294afc63c1eb05",
+      "statement": "docs-lint is a procedure-and-checklist skill with no bundled executable script; its inputs are declared read-only and its writes are constrained to a lint report plus minimal edits to AKSK-owned files (.agents/AGENTS.md, playbooks, curated page content), never to OpenWiki-owned directory indexes, run metadata, or content inside marker blocks except via the owning aksk-bootstrap attachment scripts.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_section.mjs",
+          "version": "repo-file-v1:sha256:782278eefae9ddef14dda790324bcf7df3eb9f37244e105c41e47a897f80ad71"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs",
+          "version": "repo-file-v1:sha256:85c6e19effcad0d70b581ea2144ded924babe38897ade26f0abf0d2668e76e58"
+        },
+        {
+          "resource": "repo://.agents/skills/docs-lint/CONTRACT.md",
+          "version": "repo-file-v1:sha256:3bae3d47a4602f7c79554be89a91246e6a05553720c09ce5e31949e9a5bd3d2a"
+        },
+        {
+          "resource": "repo://.agents/skills/docs-lint/SKILL.md",
+          "version": "repo-file-v1:sha256:07d289654569ee79013a053eda29c89012cc28c6ec1f76c6c796630654125e3b"
+        }
+      ]
+    },
+    {
+      "id": "claim_7b92c115c3db4416a191466873437023",
+      "statement": "docs-lint owns no scaffold templates; canonical templates live once under learning-distill/bootstrap and docs-lint/bootstrap contains only a README pointer, so initialization defers to learning-distill and no .agents/docs scaffold exists.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/docs-lint/SKILL.md",
+          "version": "repo-file-v1:sha256:07d289654569ee79013a053eda29c89012cc28c6ec1f76c6c796630654125e3b"
+        },
+        {
+          "resource": "repo://.agents/skills/docs-lint/bootstrap/README.md",
+          "version": "repo-file-v1:sha256:fc9b159bb8a6f769b4f1c58fdf966f76e4580081c3206861ed19c80e59fc2a18"
+        }
+      ]
+    },
+    {
+      "id": "claim_271826fe81e9454193007fc8cb7a7fd5",
+      "statement": "Routing-block integrity is verified independently per root instruction file present (AGENTS.md, CLAUDE.md, GEMINI.md): each managed AKSK:ROUTING and AKSK:LIFECYCLE block must appear exactly once, be byte-intact versus its template, and have link targets that exist on disk; repair is via attach_section.mjs which derives markers from the template via markersOf() and refreshes only between markers (zone-isolated).",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_section.mjs",
+          "version": "repo-file-v1:sha256:782278eefae9ddef14dda790324bcf7df3eb9f37244e105c41e47a897f80ad71"
+        },
+        {
+          "resource": "repo://.agents/skills/docs-lint/SKILL.md",
+          "version": "repo-file-v1:sha256:07d289654569ee79013a053eda29c89012cc28c6ec1f76c6c796630654125e3b"
+        },
+        {
+          "resource": "repo://AGENTS.md",
+          "version": "repo-file-v1:sha256:87cc3112b68d102afd7a8eca06dc704cb40db8c4a2dc1ef9d89691cba2e690ae"
+        },
+        {
+          "resource": "repo://openspec/specs/cross-tool-lint/spec.md",
+          "version": "repo-file-v1:sha256:eada3fe878a6aee3460d00e46df16bb6ecd90d1185ace104ecea080b5819450c"
+        }
+      ]
+    },
+    {
+      "id": "claim_02fcbf257031456f8e0156e76ee24872",
+      "statement": "docs-lint treats three marker families as independent integrity units: shipped AKSK:ROUTING/LIFECYCLE and OPENWIKI:START/END, plus proposal-only AKSK:AGENTS-BASELINE (vendored with provenance header, checked only when present) — OPENWIKI blocks are verified for presence only and never hand-edited, while a stale baseline capture older than six months surfaces as informational advice not a blocking failure.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/docs-lint/SKILL.md",
+          "version": "repo-file-v1:sha256:07d289654569ee79013a053eda29c89012cc28c6ec1f76c6c796630654125e3b"
+        },
+        {
+          "resource": "repo://AGENTS.md",
+          "version": "repo-file-v1:sha256:87cc3112b68d102afd7a8eca06dc704cb40db8c4a2dc1ef9d89691cba2e690ae"
+        },
+        {
+          "resource": "repo://openspec/changes/add-agents-md-bootstrap/design.md",
+          "version": "repo-file-v1:sha256:7f5086630b23fc8c38d1b783a59eee21b813ecce287e51f4a1988fea7c70a825"
+        },
+        {
+          "resource": "repo://openspec/changes/add-agents-md-bootstrap/proposal.md",
+          "version": "repo-file-v1:sha256:a8b0517630bccd7f0427465979e814ff3cec85ae3545bdddf2880f84c0403f05"
+        }
+      ]
+    },
+    {
+      "id": "claim_3ca3322a21844f8580656bcd613f414f",
+      "statement": "Wiki-contract presence requires openwiki/INSTRUCTIONS.md to carry AKSK:WIKI-CONTRACT markers attached via attach_wiki_contract.mjs from wiki-contract-template.md; the script is append-only, idempotent and stub-aware, exits 2 with a verbatim openwiki --init prerequisite if the file is missing, and refreshes only between markers on template upgrade.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
+          "version": "repo-file-v1:sha256:41f35665ae6e6340a623e48fab9748c980490c8fca74ef505b29f9556220e8a3"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs",
+          "version": "repo-file-v1:sha256:cd684c5946d746b89ec10f1bd965951f271ddeb5aec9515f83d9288b8ba0ac05"
+        },
+        {
+          "resource": "repo://.agents/skills/docs-lint/SKILL.md",
+          "version": "repo-file-v1:sha256:07d289654569ee79013a053eda29c89012cc28c6ec1f76c6c796630654125e3b"
+        }
+      ]
+    },
+    {
+      "id": "claim_2940f0c004cd45f2bd3ce5f7c929d975",
+      "statement": "Archived-change/wiki coverage pairing walks openspec/changes/archive/*/ and requires descriptive outcomes to appear in openwiki/ or be exempted by a recorded deferral on that change's summary page; worked deferrals exist in this repo and lint does not flag deferred changes.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/docs-lint/CONTRACT.md",
+          "version": "repo-file-v1:sha256:3bae3d47a4602f7c79554be89a91246e6a05553720c09ce5e31949e9a5bd3d2a"
+        },
+        {
+          "resource": "repo://.agents/skills/docs-lint/SKILL.md",
+          "version": "repo-file-v1:sha256:07d289654569ee79013a053eda29c89012cc28c6ec1f76c6c796630654125e3b"
+        },
+        {
+          "resource": "repo://openspec/specs/cross-tool-lint/spec.md",
+          "version": "repo-file-v1:sha256:eada3fe878a6aee3460d00e46df16bb6ecd90d1185ace104ecea080b5819450c"
+        }
+      ]
+    },
+    {
+      "id": "claim_9cb319ce3b3841dca895687a631c75b4",
+      "statement": "Index and log ownership is out of scope for docs-lint: OpenWiki tooling owns index generation via sync_wiki_indexes.mjs (OpenWikiLocalShellBackend docsOnly:true virtualMode:true plus synchronizeWikiIndexes) and .agents/docs/log.md was deleted; lint reports wiki index drift as informational guidance to rerun sync_wiki_indexes.mjs, never as a wiring failure, and never writes OpenWiki-owned files.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs",
+          "version": "repo-file-v1:sha256:85c6e19effcad0d70b581ea2144ded924babe38897ade26f0abf0d2668e76e58"
+        },
+        {
+          "resource": "repo://.agents/skills/docs-lint/CONTRACT.md",
+          "version": "repo-file-v1:sha256:3bae3d47a4602f7c79554be89a91246e6a05553720c09ce5e31949e9a5bd3d2a"
+        },
+        {
+          "resource": "repo://.agents/skills/docs-lint/SKILL.md",
+          "version": "repo-file-v1:sha256:07d289654569ee79013a053eda29c89012cc28c6ec1f76c6c796630654125e3b"
+        },
+        {
+          "resource": "repo://openspec/specs/cross-tool-lint/spec.md",
+          "version": "repo-file-v1:sha256:eada3fe878a6aee3460d00e46df16bb6ecd90d1185ace104ecea080b5819450c"
+        }
+      ]
+    },
+    {
+      "id": "claim_f943c734bf7b4609b06529ac45091abb",
+      "statement": "Stale curated knowledge detection flags pages under openwiki/{decisions,troubleshooting}/ that reference retired skills, carry aksk_status: accepted while aksk_superseded_by is set, or have dead aksk_depends_on targets with no matching filename stem; it verifies the triple-lock convention that frontmatter aksk_status: superseded is authoritative while listings add bold [SUPERSEDED]/[OBSOLETE] prefix and strikethrough, naming the superseding source for the fix.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/docs-lint/SKILL.md",
+          "version": "repo-file-v1:sha256:07d289654569ee79013a053eda29c89012cc28c6ec1f76c6c796630654125e3b"
+        },
+        {
+          "resource": "repo://openspec/changes/formalize-superseded-obsolete/proposal.md",
+          "version": "repo-file-v1:sha256:a689f1ab2dd7108a47590887280df07e1760b42270b23675372a7c524d1f069b"
+        },
+        {
+          "resource": "repo://openspec/specs/cross-tool-lint/spec.md",
+          "version": "repo-file-v1:sha256:eada3fe878a6aee3460d00e46df16bb6ecd90d1185ace104ecea080b5819450c"
+        }
+      ]
+    },
+    {
+      "id": "claim_482a40031088475a805cf17dca0bc4c6",
+      "statement": "Content checks are report-and-suggest only and do not fail the pass: duplication/contradictions between .agents/AGENTS.md, playbooks and knowledge pages, oversized AGENTS sections, broken relative links within .agents/ and openwiki/, curated-page frontmatter contract (filename stem unique per tree, decision pages carry aksk_status, validated against learning-distill JSON Schemas via validateOkfFrontmatter), misplaced troubleshooting/decision content, and path hygiene.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/docs-lint/CONTRACT.md",
+          "version": "repo-file-v1:sha256:3bae3d47a4602f7c79554be89a91246e6a05553720c09ce5e31949e9a5bd3d2a"
+        },
+        {
+          "resource": "repo://.agents/skills/docs-lint/SKILL.md",
+          "version": "repo-file-v1:sha256:07d289654569ee79013a053eda29c89012cc28c6ec1f76c6c796630654125e3b"
+        },
+        {
+          "resource": "repo://scripts/check-publish.sh",
+          "version": "repo-file-v1:sha256:0fbbd52ac81d5128e679aed263b53b2b308202e05ffc654d94ea104ff8e92d8f"
+        }
+      ]
+    },
+    {
+      "id": "claim_7661709d62c54985958f9f3518340bc4",
+      "statement": "Path hygiene scans for doubled .agents/.agents segments under .agents, README.md, INSTALL.md and docs; docs-lint reports hits while scripts/check-publish.sh hard-fails on the same pattern, and the pre-publish playbook sequences deterministic index refresh via sync_wiki_indexes.mjs then docs-lint then check-publish.sh.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/playbooks/pre-publish.md",
+          "version": "repo-file-v1:sha256:63546b392ff5f3568a3adf51425e2e10bf546aea49c154afb2a7fe68a25b35b4"
+        },
+        {
+          "resource": "repo://.agents/skills/docs-lint/SKILL.md",
+          "version": "repo-file-v1:sha256:07d289654569ee79013a053eda29c89012cc28c6ec1f76c6c796630654125e3b"
+        },
+        {
+          "resource": "repo://scripts/check-agents-structure.sh",
+          "version": "repo-file-v1:sha256:3e4540194712f502f811a64d86a32c4e44d0a262a4ffebd018c8b867d96abe12"
+        },
+        {
+          "resource": "repo://scripts/check-publish.sh",
+          "version": "repo-file-v1:sha256:0fbbd52ac81d5128e679aed263b53b2b308202e05ffc654d94ea104ff8e92d8f"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.4.3",
+    "at": "2026-08-29T04:36:52.163Z"
+  }
+}

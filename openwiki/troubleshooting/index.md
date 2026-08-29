@@ -30,6 +30,7 @@
 - [Maintainer-only skill appears as a portable kit skill](maintainer-skill-lives-under-agents-skills-by-mistake.md) - Maintainer automation placed under `.agents/skills/` without `internal: true` can be picked up by consumer installs; mark it internal or relocate it.
 
 - [npx skills add includes internal skills](npx-skills-add-internal-skills.md) - The skills CLI installs maintainer-internal skills unless they are marked internal; gate them with metadata.internal so npx skills add skips them.
+- [OpenWiki evidence path excluded by .openwikiignore](openwiki-evidence-path-excluded-by-ignore.md) - Fixes Evidence path is excluded by .openwikiignore after adding generated paths to ignore — retarget claims/frontmatter sources to canonical files and re-verify with a walk.
 - [openwiki --update aborts when run from agent shells](openwiki-update-aborts-in-agent-shells.md) - Headless OpenWiki update runs abort with a generic 'Request was aborted' when launched from agent shells with command timeouts; run interactively and confirm via .last-update.json.
 - [Overlapping session bundles for one initiative](overlapping-session-bundles-for-one-initiative.md) - Multiple `.agents/sessions/` folders may describe related work, complicating which bundle to distill or how `prior_session` links should be read.
 

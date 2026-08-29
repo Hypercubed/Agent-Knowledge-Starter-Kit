@@ -1,0 +1,5 @@
+# Files
+
+- [Bootstrap and Attachment Workflow](bootstrap-and-attachment.md) - End-to-end AKSK bootstrap from preflight (Node >=22, tools on PATH, repo and receipt detection) through global npm install, per-repo scaffold (openspec init, .agents, contract attachment, AGENTS.md routing merge), and OpenWiki integration spread (registry vs headless) with never-half-install and receipt-based ownership partition.
+- [OpenSpec Governance](openspec-governance.md) - How OpenSpec governs intent and process — openspec.yaml and spec-driven config, change anatomy, the four opsx workflows, graduated versus delta specs, and archived-change to wiki coverage.
+- [Task Lifecycle and Distillation](task-lifecycle-and-distill.md) - Traces the task-closeout bundle lifecycle through learning-distill routing, curation-contract prerequisites, deterministic index sync, and lint verification — covering canonical task_id identity, openspec_change linking, descriptive→OpenWiki versus prescriptive→.agents routing, and failure semantics.

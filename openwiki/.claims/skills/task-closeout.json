@@ -1,0 +1,200 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:f333240d9938b3ddcca7e185178c0bb2f4ae2105ccb84cf3b378f1fcead1fbcc",
+  "claims": [
+    {
+      "id": "claim_b2013f359db94f62b0d1f3fc04fee2f6",
+      "statement": "task-closeout writes only under .agents/sessions/<session-folder>/ and never creates or edits .agents/AGENTS.md, openwiki/**, .agents/playbooks/**, .agents/skills/**, or openspec/ for in-flight changes; proposed durable or skill changes are captured as prose inside the bundle for learning-distill to apply.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/task-closeout/CONTRACT.md",
+          "version": "repo-file-v1:sha256:b4cdbb24ec28ec8c391f1e06e8afd8fdda22a80dab3209ebd8a7a52b01ebc344"
+        },
+        {
+          "resource": "repo://.agents/skills/task-closeout/SKILL.md",
+          "version": "repo-file-v1:sha256:82cbf908b431614f53821bdd2f2a063e2705e0f31827cc893d4ff13903c042fe"
+        },
+        {
+          "resource": "repo://openspec/specs/closeout-change-linking/spec.md",
+          "version": "repo-file-v1:sha256:b5ca10a3db5605ffcf5a66efb0ac6bb98f0a3c1ef0d9617ce888db3ae4354e60"
+        }
+      ]
+    },
+    {
+      "id": "claim_d12f61541b4748b1afa445583c76be86",
+      "statement": "Each bundle directory must contain exactly five files with fixed roles: summary.json, active-task.md, learning-candidate.md, changed-files.txt, and validation.txt.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/task-closeout/CONTRACT.md",
+          "version": "repo-file-v1:sha256:b4cdbb24ec28ec8c391f1e06e8afd8fdda22a80dab3209ebd8a7a52b01ebc344"
+        },
+        {
+          "resource": "repo://.agents/skills/task-closeout/SKILL.md",
+          "version": "repo-file-v1:sha256:82cbf908b431614f53821bdd2f2a063e2705e0f31827cc893d4ff13903c042fe"
+        }
+      ]
+    },
+    {
+      "id": "claim_ed9809e0de794e66a1490c8b1729b9a1",
+      "statement": "summary.json contractual minimum is a required stable string task_id as canonical task/session identifier; optional repo_id, optional openspec_change when an OpenSpec change was worked, optional prior_session, optional agent/agent_session_id, git metadata (branch, head_commit, workspace_root), timestamps and distillation flags distilled/distillation_status; include openspec_change when applicable and do not modify specs during closeout.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/task-closeout/CONTRACT.md",
+          "version": "repo-file-v1:sha256:b4cdbb24ec28ec8c391f1e06e8afd8fdda22a80dab3209ebd8a7a52b01ebc344"
+        },
+        {
+          "resource": "repo://.agents/skills/task-closeout/SKILL.md",
+          "version": "repo-file-v1:sha256:82cbf908b431614f53821bdd2f2a063e2705e0f31827cc893d4ff13903c042fe"
+        },
+        {
+          "resource": "repo://openspec/specs/closeout-change-linking/spec.md",
+          "version": "repo-file-v1:sha256:b5ca10a3db5605ffcf5a66efb0ac6bb98f0a3c1ef0d9617ce888db3ae4354e60"
+        }
+      ]
+    },
+    {
+      "id": "claim_84f30676acb644bcaf664f4d8cc6dfb6",
+      "statement": "Canonical identity is summary.json task_id; the folder name YYYYMMDD-HHMMSS-short-topic is only a sortable storage label, one bundle per folder, never used to infer identity.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/task-closeout/CONTRACT.md",
+          "version": "repo-file-v1:sha256:b4cdbb24ec28ec8c391f1e06e8afd8fdda22a80dab3209ebd8a7a52b01ebc344"
+        },
+        {
+          "resource": "repo://.agents/skills/task-closeout/SKILL.md",
+          "version": "repo-file-v1:sha256:82cbf908b431614f53821bdd2f2a063e2705e0f31827cc893d4ff13903c042fe"
+        }
+      ]
+    },
+    {
+      "id": "claim_706bf66ce5b54f8baf5662b4a551062b",
+      "statement": "When a session worked on an OpenSpec change, summary.json records that change name in openspec_change per closeout-change-linking; when no change was involved the field is absent or null and closeout succeeds; closeout leaves openspec/ untouched for in-flight changes and notes pending spec updates in learning-candidate.md for /opsx:archive time.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/task-closeout/SKILL.md",
+          "version": "repo-file-v1:sha256:82cbf908b431614f53821bdd2f2a063e2705e0f31827cc893d4ff13903c042fe"
+        },
+        {
+          "resource": "repo://openspec/specs/closeout-change-linking/spec.md",
+          "version": "repo-file-v1:sha256:b5ca10a3db5605ffcf5a66efb0ac6bb98f0a3c1ef0d9617ce888db3ae4354e60"
+        }
+      ]
+    },
+    {
+      "id": "claim_91557e9e276945ad9d15de198189d833",
+      "statement": "summary.json may contain an optional prior_session path pointer to an earlier bundle directory to chain related closeouts without reopening or merging earlier packets, which stay append-only after closeout.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/task-closeout/CONTRACT.md",
+          "version": "repo-file-v1:sha256:b4cdbb24ec28ec8c391f1e06e8afd8fdda22a80dab3209ebd8a7a52b01ebc344"
+        },
+        {
+          "resource": "repo://.agents/skills/task-closeout/SKILL.md",
+          "version": "repo-file-v1:sha256:82cbf908b431614f53821bdd2f2a063e2705e0f31827cc893d4ff13903c042fe"
+        }
+      ]
+    },
+    {
+      "id": "claim_3c80862dca1347b88c4067d9148533e0",
+      "statement": "Optional provenance fields agent and agent_session_id are recorded independently whenever the active tool supplies them, mirrored as Agent and Agent Session ID sections in active-task.md, and never invented or looked up outside the tool's session history.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/task-closeout/SKILL.md",
+          "version": "repo-file-v1:sha256:82cbf908b431614f53821bdd2f2a063e2705e0f31827cc893d4ff13903c042fe"
+        }
+      ]
+    },
+    {
+      "id": "claim_0fe7add8539e4fa3b7a790f791e70b15",
+      "statement": "changed-files.txt derivation falls back when git status is clean: use git log -1 --name-only for latest commit, widen to git log -N --name-only or git diff --name-only <base>..HEAD to match task scope so evidence is accurate after commits.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/task-closeout/SKILL.md",
+          "version": "repo-file-v1:sha256:82cbf908b431614f53821bdd2f2a063e2705e0f31827cc893d4ff13903c042fe"
+        },
+        {
+          "resource": "repo://scripts/check-agents-structure.sh",
+          "version": "repo-file-v1:sha256:3e4540194712f502f811a64d86a32c4e44d0a262a4ffebd018c8b867d96abe12"
+        }
+      ]
+    },
+    {
+      "id": "claim_6b0f07d92dff4daf81a2ce2a726b6024",
+      "statement": "validation.txt records checks run and outcomes as machine-checkable evidence, mirrored in active-task.md Commands Run and Validation sections, while learning-candidate.md separates what failed, what worked, and reusable pattern with Confidence.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/task-closeout/CONTRACT.md",
+          "version": "repo-file-v1:sha256:b4cdbb24ec28ec8c391f1e06e8afd8fdda22a80dab3209ebd8a7a52b01ebc344"
+        },
+        {
+          "resource": "repo://.agents/skills/task-closeout/SKILL.md",
+          "version": "repo-file-v1:sha256:82cbf908b431614f53821bdd2f2a063e2705e0f31827cc893d4ff13903c042fe"
+        }
+      ]
+    },
+    {
+      "id": "claim_e00f0ce007544bfb9c5ee15d766e0a3e",
+      "statement": "Skill initialization is idempotent per repo: resolve repo root, ensure .agents/sessions/ exists, copy bootstrap/sessions/README.md if missing, ensure .agents/.gitignore contains sessions/* and !sessions/README.md merging without removing unrelated rules or replicate as .agents/sessions/* and !.agents/sessions/README.md in root gitignore when .agents/.gitignore is not tracked; it does not create durable AGENTS.md, playbooks, or wiki content.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/task-closeout/SKILL.md",
+          "version": "repo-file-v1:sha256:82cbf908b431614f53821bdd2f2a063e2705e0f31827cc893d4ff13903c042fe"
+        },
+        {
+          "resource": "repo://.agents/skills/task-closeout/bootstrap/sessions/README.md",
+          "version": "repo-file-v1:sha256:20efcb28be8a69e3e8673f51f8276bcdb9a441187fd20c3aa45f9b2fd29a8c27"
+        },
+        {
+          "resource": "repo://scripts/check-agents-structure.sh",
+          "version": "repo-file-v1:sha256:3e4540194712f502f811a64d86a32c4e44d0a262a4ffebd018c8b867d96abe12"
+        }
+      ]
+    },
+    {
+      "id": "claim_b6a4113d17fd4d9088580d20793f95dc",
+      "statement": "After closeout the bundle is immutable except for status/distillation-related fields in summary.json (distilled, distillation_status, status) that a later tool may update; all other files remain frozen.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/task-closeout/CONTRACT.md",
+          "version": "repo-file-v1:sha256:b4cdbb24ec28ec8c391f1e06e8afd8fdda22a80dab3209ebd8a7a52b01ebc344"
+        },
+        {
+          "resource": "repo://.agents/skills/task-closeout/SKILL.md",
+          "version": "repo-file-v1:sha256:82cbf908b431614f53821bdd2f2a063e2705e0f31827cc893d4ff13903c042fe"
+        }
+      ]
+    },
+    {
+      "id": "claim_c45690e355794627a015c1547eabedab",
+      "statement": "Per-task folders under .agents/sessions/ are gitignored via sessions/* + !sessions/README.md (only README.md tracked), so discovery during distillation must use ignore-blind methods such as filesystem listing ls/find or ripgrep --no-ignore-vcs/--no-ignore and then filter by summary.json task_id/distilled/status not folder name.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/task-closeout/SKILL.md",
+          "version": "repo-file-v1:sha256:82cbf908b431614f53821bdd2f2a063e2705e0f31827cc893d4ff13903c042fe"
+        },
+        {
+          "resource": "repo://.agents/skills/task-closeout/bootstrap/sessions/README.md",
+          "version": "repo-file-v1:sha256:20efcb28be8a69e3e8673f51f8276bcdb9a441187fd20c3aa45f9b2fd29a8c27"
+        },
+        {
+          "resource": "repo://scripts/check-agents-structure.sh",
+          "version": "repo-file-v1:sha256:3e4540194712f502f811a64d86a32c4e44d0a262a4ffebd018c8b867d96abe12"
+        }
+      ]
+    },
+    {
+      "id": "claim_c445dfa7f0d845b383a3fb8cce18c3e3",
+      "statement": "Proposed task-start sequencing is strict: task-start owns manifest.json creation, task-closeout owns finalization, learning-distill consumes only after closeout marks ready, with no overlapping writers and must preserve and pass through openspec_change and distillation flags.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/changes/add-task-start/proposal.md",
+          "version": "repo-file-v1:sha256:cc18e88fad0a2cdc5fb912ae657e895dd3a19e8032b03a0f3940184766622d86"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.4.3",
+    "at": "2026-08-29T04:36:52.163Z"
+  }
+}

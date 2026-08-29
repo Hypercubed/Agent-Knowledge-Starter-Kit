@@ -2,20 +2,20 @@
 
 `adopt-openspec-openwiki` (applied before this change) rewired AKSK's skills onto OpenSpec and OpenWiki as peer dependencies with fail-fast preconditions and defined the curation-contract attachment for `openwiki/INSTRUCTIONS.md`. This change automates what that change requires doing by hand: installing the tools globally, initializing a repo, scaffolding `.agents/`, attaching the contract, and wiring agents.
 
-Verified constraints that shape the design:
+Verified constraints that shape the design (openwiki v0.4.3, Node >=22):
 
-- The OpenWiki skill bundle (`integrations/openwiki/`) requires MCP sequence tools (`openwiki_begin/finish/inspect_claims/resolve_claims`); a skill install without MCP registration is inert.
-- Official install lanes exist only for claude (`~/.claude/skills/openwiki` + `~/.claude.json` or `.mcp.json`) and codex (`~/.agents/skills/openwiki` + `~/.codex/config.toml`). Other agents go through generic vehicles.
-- `.openwiki-install.json` receipts record version, target, SHA-256 hashes, and the MCP command; openwiki rejects symlinked targets and hash-verifies receipts. The skills CLI symlinks skill dirs - installing both into one destination breaks one of them.
-- Known ecosystem path discrepancy: openwiki puts codex user-scope skills at `~/.agents/skills/`; vercel-labs/skills documents `~/.codex/skills/`. We must not maintain our own path matrix.
-- `add-mcp` writes agent configs without checking that the binary exists, and silently drops capability-gated fields per agent with warnings.
-- Registry installers (Smithery, mcp-get) are remote-oriented and the wrong shape for a locally-run tool; they are excluded.
+- The OpenWiki skill bundle (`integrations/openwiki/`) requires MCP sequence tools (`openwiki_begin` / `openwiki_submit_plan` / `openwiki_next_page` / `openwiki_submit_page` / `openwiki_finish`); a skill install without MCP registration is inert. The MCP is delivered as `openwiki mcp --host <codex|claude|opencode>` via the installed config.
+- Official install lanes are `openwiki integrations install <codex|claude|opencode>` (v0.4.3 registry: `HOST_TARGETS` with user/project scopes). Each install **atomically** copies the skill bundle to the host's skill directory and edits the host's MCP config: codex (`~/.agents/skills/openwiki` + `~/.codex/config.toml` TOML), claude (`~/.claude/skills/openwiki` + `~/.claude.json` or `.mcp.json`), opencode (`~/.config/opencode/skills/openwiki` + `~/.config/opencode/opencode.jsonc`). `openwiki integrations list` reports `installed|modified|not-installed`; `uninstall` is transactional with config rollback.
+- `.openwiki-install.json` receipts record `package`, `version` (openwiki version), `target`, SHA-256 file hashes, and the exact `mcpServerCommand` (`openwiki` + `mcp --host <target>`); openwiki rejects symlinked skill dirs or parent components, rejects non-directory parents, hash-verifies receipts, and detects `modified` installs that require `--force` to overwrite. Installing two managers into one destination is prevented by this check.
+- Known ecosystem path discrepancy: openwiki puts codex user-scope skills at `~/.agents/skills/`; vercel-labs/skills documents `~/.codex/skills/`. We must not maintain our own path matrix; derive paths from the registry and let `openwiki integrations install` own them.
+- `openwiki integrations install` is transactional with staging, backup, and config-snapshot rollback; there is no separate `npx skills add` or `add-mcp` step. The installer copies from the installed npm package's `integrations/openwiki` directory, not a tag-pinned GitHub tree.
+- Registry installers (Smithery, mcp-get) and `npx skills add` / `add-mcp` are remote-oriented or superseded and the wrong shape for a locally-run tool; they are excluded.
 
 ## Goals / Non-Goals
 
 **Goals:**
 
-- One idempotent bootstrap entry point (skill + deterministic Python script) that takes any repo from bare to fully wired, reusing the prerequisite change's finalized skill set and contract template.
+- One idempotent bootstrap entry point (skill + deterministic JS script) that takes any repo from bare to fully wired, reusing the prerequisite change's finalized skill set and contract template.
 - Clean separation of ownership: global installs once per user; per-repo work is scaffolding and wiring only.
 - Agent integration spread that respects official lanes and never lets two managers own the same destination.
 
@@ -40,19 +40,19 @@ Every bootstrap step derives "done?" from observable state: tools on PATH, `open
 
 *Alternative considered:* a state file recording completed steps. Rejected: it drifts from reality when users change things manually, which is exactly the failure mode docs-lint then has to catch.
 
-### D3: Ownership partition enforced by receipt
+### D3: Ownership partition enforced by receipt (installer-owned)
 
-Before touching an agent's skill directory, check for `.openwiki-install.json`. Receipt present -> official lane owns that agent; skip and report. This prevents the symlink-vs-receipt collision documented above and means we never guess install formats for officially supported agents.
+Before touching an agent's skill directory, inspect via `openwiki integrations list` / `inspectInstallation`. Receipt `.openwiki-install.json` present with matching `target` and intact hashes -> that host's official lane owns the destination; skip and report (or require `--force` to overwrite `modified`). The installer enforces symlink rejection, non-directory-parent checks, and `installed` vs `modified` vs `not-installed` status, so bootstrap never guesses install formats for supported hosts.
 
-### D4: Lane ladder for integration spread
+### D4: Lane ladder for integration spread (v0.4.3 registry)
 
-Per detected agent, pick exactly one lane: (1) official `openwiki integrations install claude|codex`; (2) `add-mcp` + `npx skills add <repo>/tree/<tag>/integrations/openwiki` for MCP-capable agents; (3) headless ladder - the agent drives `openwiki --init -p` / `--update -p` directly. Ordering matters because `add-mcp` does not verify binary existence: globally install `openwiki` first, register MCP second, and verify the registered command resolves afterwards.
+Per detected agent, pick exactly one lane: (1) `openwiki integrations install <codex|claude|opencode>` for the three supported hosts (installer atomically installs skill + MCP config `openwiki mcp --host <target>` and writes the receipt; `list` verifies `installed`); (2) headless ladder for all other agents — the agent drives `openwiki --init -p` / `--update -p` directly. There is no intermediate `add-mcp` + `npx skills add` lane. Ordering still matters: globally install `openwiki@latest` first so the `openwiki` command registered in host configs resolves, then run `integrations install`, then verify via `openwiki integrations list`.
 
-*Alternative considered:* always use add-mcp for uniformity. Rejected: it would fight the official lanes' receipt/hash verification and break uninstall integrity.
+*Alternative considered:* always use a generic `add-mcp` + `npx skills add` for uniformity. Rejected: it would fight the installer's receipt/hash verification, transactional rollback, and symlink checks, and is superseded by the v0.4.3 `integrations` registry.
 
-### D5: Pin the skill bundle by tag
+### D5: Bundle source is the installed npm package (no tag pin)
 
-Spread installs reference `langchain-ai/openwiki/tree/<tag>/integrations/openwiki` rather than the moving default branch, so a repo's bootstrapped state corresponds to a known bundle version. Whether `skills update` tracks tag-pinned sources correctly is open question OQ2; if not, document update = re-run bootstrap with a new tag.
+Spread installs copy the canonical skill from the locally installed `openwiki` package (`<npm-root>/openwiki/integrations/openwiki`), not a tag-pinned `langchain-ai/openwiki/tree/<tag>/integrations/openwiki` URL. The installed receipt records the `openwiki` version and file hashes, so a repo's bootstrapped state corresponds to a known bundle version via `npm ls openwiki`. Updating = `npm i -g openwiki@latest` then re-run `openwiki integrations install <target>` (or re-run bootstrap); idempotent when version/hashes/command already match. No `npx skills add` tag pin or `skills update` tracking.
 
 ### D6: Reuse, never redefine, the prerequisite change's artifacts
 
@@ -60,18 +60,18 @@ The contract template, skill set, and attach semantics come from `adopt-openspec
 
 ## Risks / Trade-offs
 
-- [`add-mcp` writes configs even when the binary is missing] -> Global install precedes registration (D4); post-registration verification step reports unresolved commands.
-- [`add-mcp` drops capability-gated fields per agent with warnings] -> Warnings are captured verbatim into the per-agent spread report instead of being swallowed.
-- [Codex TOML config may not survive add-mcp re-runs idempotently (OQ3)] -> Until verified, the spread treats an existing codex MCP entry as done and skips rewriting it.
-- [Path matrices differ between upstream tools and will keep drifting] -> Never hardcode agent paths; derive targets from detected receipts/configs at runtime (D3), and prefer official lanes where they exist.
-- [Tag-pinned skills CLI source may not update cleanly (OQ2)] -> Fallback documented: updating = re-running bootstrap with a bumped tag; idempotent by D2.
+- [Installer rejects symlinked or non-directory skill parents] -> Derived from registry at runtime (D3); user must fix filesystem before re-running.
+- [`modified` skill/config (hash drift or hand-edits) refuses without `--force`] -> Reported as `modified` via `openwiki integrations list`; bootstrap reports and skips unless `--force` is explicit, preserving uninstall integrity and backup creation.
+- [Codex TOML / Claude JSON / Opencode JSONC edits may conflict with concurrent hand-edits] -> Installer snapshots config and rolls back on commit failure; partial installs are cleaned up via staging directory removal.
+- [Path matrices differ between upstream tools and will keep drifting] -> Never hardcode agent paths; derive targets from the registry and `openwiki integrations list` at runtime (D3), and prefer `integrations install` where supported.
+- [Updating requires npm package bump] -> Documented: `npm i -g openwiki@latest` then re-run `openwiki integrations install <target>` (idempotent when already `installed`); D2 keeps re-runs no-op.
 - [Bootstrap built against a skill set that later changes] -> D6 keeps one source of truth; skill changes reroute through the prerequisite change first.
 
 ## Migration Plan
 
 1. Verify `adopt-openspec-openwiki` is applied and its dogfood validation passed.
 2. Run the OQ experiments; record findings as troubleshooting entries.
-3. Build the Python bootstrap script (preflight, global lane, per-repo scaffold with contract attachment, spread, INSTRUCT fallback) and the `aksk-bootstrap` skill wrapper.
+3. Build the JS bootstrap script (`*.mjs`, Node >=22; preflight, global lane, per-repo scaffold with contract attachment, spread, INSTRUCT fallback) and the `aksk-bootstrap` skill wrapper.
 4. Regenerate `example/`; revise integration guides around the bootstrap-first path.
 5. Release timing (with or without the prerequisite change as 2.0) is a maintainer decision deferred outside planning; the major-version-release playbook executes whenever that decision lands.
 
@@ -79,6 +79,6 @@ Rollback: all phases land as reviewable commits; consumer repos that ran an earl
 
 ## Open Questions
 
-- OQ1: Does bare `openwiki mcp` (generic stdio mode) serve the ~17 non-claude/codex agents, or does `--host` accept other values? Determines the exact `add-mcp` invocation string; no spec impact.
-- OQ2: Does `npx skills add .../tree/<tag>/integrations/openwiki` pin correctly, and does `skills update` track the pinned tag? Affects D5 documentation, not behavior contracts.
-- OQ3: Is `add-mcp` safe to re-run against codex TOML config (idempotent merge)? Until answered, spread skips existing entries (see Risks).
+- OQ1 (resolved in v0.4.3): `openwiki mcp --host <codex|claude|opencode>` serves the three supported hosts via `openwiki integrations install`. No generic bare `openwiki mcp` stdio lane for other agents; they use the headless `openwiki --init -p` / `--update -p` ladder. No spec impact beyond D4.
+- OQ2 (obsolete in v0.4.3): Tag-pinned `npx skills add .../tree/<tag>/integrations/openwiki` removed. Bundle now comes from the installed npm package; `skills update` tracking is irrelevant. Updating = `npm i -g openwiki@latest` + re-run `integrations install`.
+- OQ3 (resolved in v0.4.3): `openwiki integrations install` handles codex TOML idempotently via `installCodexMcpBlock` with `replaceableEntry` detection and config-snapshot rollback; re-run when `installed` returns `unchanged`.

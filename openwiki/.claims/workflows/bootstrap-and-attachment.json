@@ -1,0 +1,360 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:1b23fc883217cd01a5003b05ce032b8ea6f289c6d756b882eb349e6b0ee637dc",
+  "claims": [
+    {
+      "id": "claim_76d4be37d8ec4eef91d1f945edc67b80",
+      "statement": "All bootstrap scripts are deterministic Node .mjs that never install software and fail fast with exit 2 plus exact remediation commands.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
+          "version": "repo-file-v1:sha256:41f35665ae6e6340a623e48fab9748c980490c8fca74ef505b29f9556220e8a3"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_section.mjs",
+          "version": "repo-file-v1:sha256:782278eefae9ddef14dda790324bcf7df3eb9f37244e105c41e47a897f80ad71"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs",
+          "version": "repo-file-v1:sha256:cd684c5946d746b89ec10f1bd965951f271ddeb5aec9515f83d9288b8ba0ac05"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs",
+          "version": "repo-file-v1:sha256:9e84b52d6090e6714eeb102744587b00efb05412a41f5bb042cf1be47b0e3823"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs",
+          "version": "repo-file-v1:sha256:85c6e19effcad0d70b581ea2144ded924babe38897ade26f0abf0d2668e76e58"
+        }
+      ]
+    },
+    {
+      "id": "claim_26b27cf890654db7a96fade40c9cce6c",
+      "statement": "Bootstrap attachments are idempotent via trailing-whitespace and newline-at-EOF normalized byte-compare; re-running when the marked section already matches the template is a no-op without rewrite.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_section.mjs",
+          "version": "repo-file-v1:sha256:782278eefae9ddef14dda790324bcf7df3eb9f37244e105c41e47a897f80ad71"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs",
+          "version": "repo-file-v1:sha256:cd684c5946d746b89ec10f1bd965951f271ddeb5aec9515f83d9288b8ba0ac05"
+        },
+        {
+          "resource": "repo://openspec/changes/add-agents-md-bootstrap/design.md",
+          "version": "repo-file-v1:sha256:7f5086630b23fc8c38d1b783a59eee21b813ecce287e51f4a1988fea7c70a825"
+        }
+      ]
+    },
+    {
+      "id": "claim_48074129d2a44fd88c33e5f01724c183",
+      "statement": "When root AGENTS.md already exists and does not match the vendored baseline, init_agents_md.mjs does not write, exits 2 naming the conflict and printing the verbatim question Replace AGENTS.md with the FerroxLabs baseline, or combine both using the LLM? plus --replace and --combine flags, without using stdin.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/changes/add-agents-md-bootstrap/design.md",
+          "version": "repo-file-v1:sha256:7f5086630b23fc8c38d1b783a59eee21b813ecce287e51f4a1988fea7c70a825"
+        },
+        {
+          "resource": "repo://openspec/changes/add-agents-md-bootstrap/specs/agents-md-bootstrap/spec.md",
+          "version": "repo-file-v1:sha256:38593679d0a40bb9f3b53f3ab43d38ccf4773486782e93c6b92a888112703a92"
+        }
+      ]
+    },
+    {
+      "id": "claim_4e39f8b24e99475ba79ba2e9a1bbdeac",
+      "statement": "With --replace, init_agents_md.mjs overwrites root AGENTS.md with the vendored baseline wrapped in AKSK:AGENTS-BASELINE markers including the provenance header.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/changes/add-agents-md-bootstrap/design.md",
+          "version": "repo-file-v1:sha256:7f5086630b23fc8c38d1b783a59eee21b813ecce287e51f4a1988fea7c70a825"
+        },
+        {
+          "resource": "repo://openspec/changes/add-agents-md-bootstrap/specs/agents-md-bootstrap/spec.md",
+          "version": "repo-file-v1:sha256:38593679d0a40bb9f3b53f3ab43d38ccf4773486782e93c6b92a888112703a92"
+        }
+      ]
+    },
+    {
+      "id": "claim_ebedd1737bc642cd82d11bc0b0cada73",
+      "statement": "With --combine, init_agents_md.mjs never modifies the original; it stages the existing AGENTS.md, the vendored baseline, and a generated COMBINE.md merge brief side-by-side under .agents/sessions/agents-md-combine/<timestamp>/ and prints agent instructions for LLM merge.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/changes/add-agents-md-bootstrap/design.md",
+          "version": "repo-file-v1:sha256:7f5086630b23fc8c38d1b783a59eee21b813ecce287e51f4a1988fea7c70a825"
+        },
+        {
+          "resource": "repo://openspec/changes/add-agents-md-bootstrap/specs/agents-md-bootstrap/spec.md",
+          "version": "repo-file-v1:sha256:38593679d0a40bb9f3b53f3ab43d38ccf4773486782e93c6b92a888112703a92"
+        }
+      ]
+    },
+    {
+      "id": "claim_88a174df7f4d4426908b6a9db8d14d00",
+      "statement": "The FerroxLabs baseline is vendored offline at .agents/skills/aksk-bootstrap/references/agents-md-baseline-template.md wrapped in AKSK:AGENTS-BASELINE markers with a provenance header containing upstream URL, capture date, MIT license notice and refresh pointer; seeding never touches the network and copies the block verbatim.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/changes/add-agents-md-bootstrap/design.md",
+          "version": "repo-file-v1:sha256:7f5086630b23fc8c38d1b783a59eee21b813ecce287e51f4a1988fea7c70a825"
+        },
+        {
+          "resource": "repo://openspec/changes/add-agents-md-bootstrap/proposal.md",
+          "version": "repo-file-v1:sha256:a8b0517630bccd7f0427465979e814ff3cec85ae3545bdddf2880f84c0403f05"
+        },
+        {
+          "resource": "repo://openspec/changes/add-agents-md-bootstrap/specs/agents-md-bootstrap/spec.md",
+          "version": "repo-file-v1:sha256:38593679d0a40bb9f3b53f3ab43d38ccf4773486782e93c6b92a888112703a92"
+        }
+      ]
+    },
+    {
+      "id": "claim_95bce6434f754786a7eca423cc6d6c85",
+      "statement": "refresh_agents_baseline.mjs is opt-in only: it fetches upstream to a temp file, validates non-empty and expected section anchors, swaps only content between AKSK:AGENTS-BASELINE markers in the vendored template and updates the provenance header date, leaving other zones byte-identical; offline or validation failure exits non-zero and leaves the previously vendored baseline intact.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/changes/add-agents-md-bootstrap/design.md",
+          "version": "repo-file-v1:sha256:7f5086630b23fc8c38d1b783a59eee21b813ecce287e51f4a1988fea7c70a825"
+        },
+        {
+          "resource": "repo://openspec/changes/add-agents-md-bootstrap/specs/agents-md-bootstrap/spec.md",
+          "version": "repo-file-v1:sha256:38593679d0a40bb9f3b53f3ab43d38ccf4773486782e93c6b92a888112703a92"
+        }
+      ]
+    },
+    {
+      "id": "claim_e6c914139061405e975b93a902234662",
+      "statement": "A fully bootstrapped AGENTS.md contains exactly one block per family ordered baseline → OpenWiki → AKSK Routing → AKSK Lifecycle with distinct markers AKSK:AGENTS-BASELINE, OPENWIKI:START/END, AKSK:ROUTING, AKSK:LIFECYCLE; refreshing one zone leaves other zones byte-identical and docs-lint checks each zone as an independent integrity unit.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/references/lifecycle-template.md",
+          "version": "repo-file-v1:sha256:62059f84c2a4171067c4b66ea7f75f4357652eb7d65ff07f20c8be703d09fd54"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/references/routing-note-template.md",
+          "version": "repo-file-v1:sha256:7daa0b08b9a8cae6510c448134bfb4f7b1373132970b66916e7c6076c353e683"
+        },
+        {
+          "resource": "repo://AGENTS.md",
+          "version": "repo-file-v1:sha256:87cc3112b68d102afd7a8eca06dc704cb40db8c4a2dc1ef9d89691cba2e690ae"
+        },
+        {
+          "resource": "repo://openspec/changes/add-agents-md-bootstrap/design.md",
+          "version": "repo-file-v1:sha256:7f5086630b23fc8c38d1b783a59eee21b813ecce287e51f4a1988fea7c70a825"
+        }
+      ]
+    },
+    {
+      "id": "claim_7630ea70a14f40608bc9ad061a64f5f6",
+      "statement": "Templates carry their own BEGIN/END marker pairs and scripts read markers from the template at runtime via markersOf rather than hard-coding them; this makes zone renames template-only changes.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/references/lifecycle-template.md",
+          "version": "repo-file-v1:sha256:62059f84c2a4171067c4b66ea7f75f4357652eb7d65ff07f20c8be703d09fd54"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/references/routing-note-template.md",
+          "version": "repo-file-v1:sha256:7daa0b08b9a8cae6510c448134bfb4f7b1373132970b66916e7c6076c353e683"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_section.mjs",
+          "version": "repo-file-v1:sha256:782278eefae9ddef14dda790324bcf7df3eb9f37244e105c41e47a897f80ad71"
+        }
+      ]
+    },
+    {
+      "id": "claim_57aaa988dc414e9c93e231f35103da06",
+      "statement": "Supported bootstrap order is deterministic: init_agents_md.mjs seeds baseline first, then OpenWiki block attaches below it, then attach_section.mjs appends ROUTING and LIFECYCLE below OpenWiki; init is a separate script from attach_section.mjs to preserve attach_section's append-only invariant that existing content is never replaced.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
+          "version": "repo-file-v1:sha256:41f35665ae6e6340a623e48fab9748c980490c8fca74ef505b29f9556220e8a3"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_section.mjs",
+          "version": "repo-file-v1:sha256:782278eefae9ddef14dda790324bcf7df3eb9f37244e105c41e47a897f80ad71"
+        },
+        {
+          "resource": "repo://openspec/changes/add-agents-md-bootstrap/design.md",
+          "version": "repo-file-v1:sha256:7f5086630b23fc8c38d1b783a59eee21b813ecce287e51f4a1988fea7c70a825"
+        }
+      ]
+    },
+    {
+      "id": "claim_1032c5967e7f48209f589c16b1cb2bae",
+      "statement": "attach_section.mjs is append-only outside markers, idempotent and self-updating via in-place refresh when the template changed, creates a missing target file containing only the attached section, and exits 2 on unknown template name or when the target is a directory.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_section.mjs",
+          "version": "repo-file-v1:sha256:782278eefae9ddef14dda790324bcf7df3eb9f37244e105c41e47a897f80ad71"
+        }
+      ]
+    },
+    {
+      "id": "claim_91e46289ced443b6a7f3100e61163a8f",
+      "statement": "attach_wiki_contract.mjs never creates openwiki/INSTRUCTIONS.md; if missing it exits 2 naming the verbatim prerequisite openwiki --init with no writes, otherwise appends the wiki-contract section below existing content stub-aware, and is idempotent by refreshing only content between AKSK:WIKI-CONTRACT markers.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs",
+          "version": "repo-file-v1:sha256:cd684c5946d746b89ec10f1bd965951f271ddeb5aec9515f83d9288b8ba0ac05"
+        }
+      ]
+    },
+    {
+      "id": "claim_9a7c977d71484c2c8048c2049f172ba4",
+      "statement": "check_peer_tools.mjs verifies peer binaries via PATH directory scan with PATHEXT on Windows, exports INSTALL_COMMANDS mapping openspec to npm i -g @fission-ai/openspec@latest and openwiki to npm i -g openwiki@latest, rejects unknown tool names with exit 2 before lookup, and on missing tools prints one error per tool plus install commands then exits 2.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs",
+          "version": "repo-file-v1:sha256:9e84b52d6090e6714eeb102744587b00efb05412a41f5bb042cf1be47b0e3823"
+        }
+      ]
+    },
+    {
+      "id": "claim_22a71aa43c4e45938f652b1492ee9878",
+      "statement": "sync_wiki_indexes.mjs refreshes OpenWiki directory indexes deterministically with no LLM and no CLI run by locating the global package via npm root -g and dynamically importing OpenWikiLocalShellBackend with docsOnly true and virtualMode true plus synchronizeWikiIndexes; it exits 2 with remediation when openwiki/ is missing or the package is not installed globally.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs",
+          "version": "repo-file-v1:sha256:85c6e19effcad0d70b581ea2144ded924babe38897ade26f0abf0d2668e76e58"
+        }
+      ]
+    },
+    {
+      "id": "claim_0344d9017eaa43febb9dd336af53ebca",
+      "statement": "Combine staging uses .agents/sessions/agents-md-combine/<timestamp>/ which is gitignored where only sessions/README.md is tracked, and the generated COMBINE.md brief constrains LLM merge to preserve project-specific learnings and sections 10-11, prefer baseline structure for sections 0-9, and keep AKSK and OPENWIKI marker blocks verbatim.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/changes/add-agents-md-bootstrap/design.md",
+          "version": "repo-file-v1:sha256:7f5086630b23fc8c38d1b783a59eee21b813ecce287e51f4a1988fea7c70a825"
+        },
+        {
+          "resource": "repo://scripts/check-agents-structure.sh",
+          "version": "repo-file-v1:sha256:3e4540194712f502f811a64d86a32c4e44d0a262a4ffebd018c8b867d96abe12"
+        }
+      ]
+    },
+    {
+      "id": "claim_9eaac735ef2a4c5fbb1fce15c42652e8",
+      "statement": "Bootstrap preflight (Proposal-only) detects before any write the Node.js major version (>=22 required), whether openspec and openwiki resolve on PATH, whether .agents/, openspec/, openwiki/ exist in the target repo, and whether OpenWiki install receipts .openwiki-install.json exist in known skill directories, reports this state before acting, and stops before installing on Node <22.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/changes/aksk-bootstrap-system/design.md",
+          "version": "repo-file-v1:sha256:66d1a55d06fe844e801b90c627b2ce43dc0bf80394ec430da0b74fc12454eb83"
+        },
+        {
+          "resource": "repo://openspec/changes/aksk-bootstrap-system/proposal.md",
+          "version": "repo-file-v1:sha256:da5bc3d7def1621b2852286801561ea6db801971e5dc4c9b2a9e331198fb2e19"
+        },
+        {
+          "resource": "repo://openspec/changes/aksk-bootstrap-system/specs/aksk-bootstrap/spec.md",
+          "version": "repo-file-v1:sha256:cd17cd27d7a571de426612c0628f8dcd200b82b95d21704490eae11d56ade2c9"
+        }
+      ]
+    },
+    {
+      "id": "claim_215e483a8adf44f3a1c06e4520e996f0",
+      "statement": "Bootstrap global lane (Proposal-only) installs @fission-ai/openspec@latest and openwiki@latest globally once per user via npm i -g, skips any tool already at a compatible version and reports detected versions, and verifies openwiki resolves before registering openwiki mcp --host targets.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/changes/aksk-bootstrap-system/design.md",
+          "version": "repo-file-v1:sha256:66d1a55d06fe844e801b90c627b2ce43dc0bf80394ec430da0b74fc12454eb83"
+        },
+        {
+          "resource": "repo://openspec/changes/aksk-bootstrap-system/specs/aksk-bootstrap/spec.md",
+          "version": "repo-file-v1:sha256:cd17cd27d7a571de426612c0628f8dcd200b82b95d21704490eae11d56ade2c9"
+        }
+      ]
+    },
+    {
+      "id": "claim_2b38575bd39e46bebbd71e7a11ec9f36",
+      "statement": "Bootstrap per-repo lane (Proposal-only) runs openspec init when missing, scaffolds a minimal .agents/ tree from kit templates, attaches the AKSK curation contract to openwiki/INSTRUCTIONS.md with append-only merge, and merges a thin routing block into root AGENTS.md preserving any existing OPENWIKI:START/END block; a bare repo creates all three and a fully bootstrapped re-run changes nothing.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/changes/aksk-bootstrap-system/design.md",
+          "version": "repo-file-v1:sha256:66d1a55d06fe844e801b90c627b2ce43dc0bf80394ec430da0b74fc12454eb83"
+        },
+        {
+          "resource": "repo://openspec/changes/aksk-bootstrap-system/specs/aksk-bootstrap/spec.md",
+          "version": "repo-file-v1:sha256:cd17cd27d7a571de426612c0628f8dcd200b82b95d21704490eae11d56ade2c9"
+        }
+      ]
+    },
+    {
+      "id": "claim_0c5033eb4f4e4999b38cb297b0caf187",
+      "statement": "Bootstrap never half-installs (Proposal-only): when any step cannot be executed locally it prints the exact remaining copy-paste commands and exits clean without partial state from the failed step and without continuing past a failed prerequisite, via a two-lane EXECUTE versus INSTRUCT model.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/changes/aksk-bootstrap-system/design.md",
+          "version": "repo-file-v1:sha256:66d1a55d06fe844e801b90c627b2ce43dc0bf80394ec430da0b74fc12454eb83"
+        },
+        {
+          "resource": "repo://openspec/changes/aksk-bootstrap-system/proposal.md",
+          "version": "repo-file-v1:sha256:da5bc3d7def1621b2852286801561ea6db801971e5dc4c9b2a9e331198fb2e19"
+        },
+        {
+          "resource": "repo://openspec/changes/aksk-bootstrap-system/specs/aksk-bootstrap/spec.md",
+          "version": "repo-file-v1:sha256:cd17cd27d7a571de426612c0628f8dcd200b82b95d21704490eae11d56ade2c9"
+        }
+      ]
+    },
+    {
+      "id": "claim_74bfeb4f032f4080b62a228e2f6bef26",
+      "statement": "Integration spread (Proposal-only) selects per detected agent openwiki integrations install <codex|claude|opencode> for supported hosts (atomic skill plus MCP config openwiki mcp --host <target> with .openwiki-install.json receipt) versus the headless ladder openwiki --init -p / --update -p for agents without a supported host, with no intermediate add-mcp plus npx skills add lane.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/changes/aksk-bootstrap-system/design.md",
+          "version": "repo-file-v1:sha256:66d1a55d06fe844e801b90c627b2ce43dc0bf80394ec430da0b74fc12454eb83"
+        },
+        {
+          "resource": "repo://openspec/changes/aksk-bootstrap-system/specs/agent-integration-spread/spec.md",
+          "version": "repo-file-v1:sha256:2f57fcf2a1f7be3e033cb4d2009a39d430fd21ed29feaccdaf63cf506eb7e3c4"
+        }
+      ]
+    },
+    {
+      "id": "claim_4d478b13f1ad4ab1bfd17ec121939ad5",
+      "statement": "Spread enforces ownership partition by receipt (Proposal-only): before integrating it inspects via openwiki integrations list / inspectInstallation and skips any agent whose skill directory contains .openwiki-install.json with matching target and intact hashes (installed/unchanged), reports modified on hash drift and requires --force with backup to overwrite, treating the official lane as owner.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/changes/aksk-bootstrap-system/design.md",
+          "version": "repo-file-v1:sha256:66d1a55d06fe844e801b90c627b2ce43dc0bf80394ec430da0b74fc12454eb83"
+        },
+        {
+          "resource": "repo://openspec/changes/aksk-bootstrap-system/specs/agent-integration-spread/spec.md",
+          "version": "repo-file-v1:sha256:2f57fcf2a1f7be3e033cb4d2009a39d430fd21ed29feaccdaf63cf506eb7e3c4"
+        }
+      ]
+    },
+    {
+      "id": "claim_43d6fb40cd8f43708ce386b5d22ef36c",
+      "statement": "Spread produces a per-agent report (Proposal-only) naming each detected agent, the lane chosen, whether the action succeeded as installed/unchanged/modified via openwiki integrations list, and any installer output including backup path on --force.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/changes/aksk-bootstrap-system/design.md",
+          "version": "repo-file-v1:sha256:66d1a55d06fe844e801b90c627b2ce43dc0bf80394ec430da0b74fc12454eb83"
+        },
+        {
+          "resource": "repo://openspec/changes/aksk-bootstrap-system/specs/agent-integration-spread/spec.md",
+          "version": "repo-file-v1:sha256:2f57fcf2a1f7be3e033cb4d2009a39d430fd21ed29feaccdaf63cf506eb7e3c4"
+        }
+      ]
+    },
+    {
+      "id": "claim_815acd83619f41b89f14b547bdffaf56",
+      "statement": "Registry bundle source (Proposal-only) is the locally installed npm package at <npm-root>/openwiki/integrations/openwiki not a tag-pinned URL; the receipt records package, version, target, SHA-256 hashes and exact mcpServerCommand, update is npm i -g openwiki@latest then re-run integrations install idempotent, with transactional staging, symlink and non-directory parent rejection, and config snapshot rollback.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/changes/aksk-bootstrap-system/design.md",
+          "version": "repo-file-v1:sha256:66d1a55d06fe844e801b90c627b2ce43dc0bf80394ec430da0b74fc12454eb83"
+        },
+        {
+          "resource": "repo://openspec/changes/aksk-bootstrap-system/specs/agent-integration-spread/spec.md",
+          "version": "repo-file-v1:sha256:2f57fcf2a1f7be3e033cb4d2009a39d430fd21ed29feaccdaf63cf506eb7e3c4"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.4.3",
+    "at": "2026-08-29T04:36:52.163Z"
+  }
+}

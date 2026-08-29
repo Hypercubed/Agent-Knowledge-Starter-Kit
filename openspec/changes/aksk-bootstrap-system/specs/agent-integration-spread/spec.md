@@ -1,19 +1,19 @@
 ## Purpose
 
-Spreads OpenWiki's coding-agent integration across the agents detected on a user's machine using the skills CLI and MCP registration tools, preferring official lanes, enforcing single-owner destinations, and falling back to headless CLI usage for agents without MCP support.
+Spreads OpenWiki's coding-agent integration across the agents detected on a user's machine using `openwiki integrations install` (v0.4.3+; skill + MCP atomically) for supported hosts and falling back to headless CLI usage for agents without a supported integration, enforcing single-owner destinations via install receipts.
 
 ## ADDED Requirements
 
 ### Requirement: Integration lane selection
-The integration spread SHALL select, per detected agent: the official `openwiki integrations install claude|codex` lane when that agent's official install path applies, otherwise MCP registration via the `add-mcp` CLI for agents supporting arbitrary stdio commands, otherwise the headless ladder (agent drives `openwiki --init -p` / `--update -p` directly) for agents with neither.
+The integration spread SHALL select, per detected agent: `openwiki integrations install <codex|claude|opencode>` (v0.4.3 registry; skill + MCP config `openwiki mcp --host <target>` installed atomically with `.openwiki-install.json` receipt) when that host is supported, otherwise the headless ladder (agent drives `openwiki --init -p` / `--update -p` directly) for agents with no supported integration.
 
-#### Scenario: Claude Code detected
-- **WHEN** Claude Code is detected among installed agents
-- **THEN** the spread uses the official claude lane rather than registering via add-mcp
+#### Scenario: Supported host detected (codex|claude|opencode)
+- **WHEN** a supported host (codex, claude, or opencode) is detected among installed agents
+- **THEN** the spread uses `openwiki integrations install <host>` for that host rather than headless CLI
 
-#### Scenario: Agent without MCP support
-- **WHEN** a detected agent supports neither the official lanes nor stdio MCP registration
-- **THEN** the spread records that agent for headless CLI operation instead of failing
+#### Scenario: Agent without supported integration
+- **WHEN** a detected agent has no supported `openwiki integrations install` host (not codex|claude|opencode)
+- **THEN** the spread records that agent for headless CLI operation (`openwiki --init -p` / `--update -p`) instead of failing
 
 ### Requirement: Ownership partition by receipt
 Before spreading integration into any agent's skill directory, the spread SHALL skip any agent whose target skill directory already contains an `.openwiki-install.json` receipt, treating the official lane as the owner of that agent, and SHALL report the skip and its reason.
@@ -27,9 +27,9 @@ Before spreading integration into any agent's skill directory, the spread SHALL 
 - **THEN** the spread integrates that agent through its selected lane
 
 ### Requirement: Spread result report
-After running, the integration spread SHALL produce a per-agent report naming each detected agent, the lane chosen, whether the action succeeded, and any warnings emitted by the registration tool (for example dropped capability fields), so the user can verify or finish steps manually.
+After running, the integration spread SHALL produce a per-agent report naming each detected agent, the lane chosen (`openwiki integrations install <host>` vs headless), whether the action succeeded (`installed`/`unchanged`/`modified` via `openwiki integrations list`), and any installer output (including backup path on `--force`), so the user can verify or finish steps manually.
 
 #### Scenario: Mixed-agent machine
-- **WHEN** the spread completes on a machine with officially supported, MCP-capable, and unsupported agents
-- **THEN** the report shows one line per agent with lane, outcome, and warnings
+- **WHEN** the spread completes on a machine with supported (codex|claude|opencode) and unsupported agents
+- **THEN** the report shows one line per agent with lane, outcome (`installed`/`unchanged`/`modified`), and installer details
 

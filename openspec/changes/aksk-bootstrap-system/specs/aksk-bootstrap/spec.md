@@ -1,6 +1,6 @@
 ## Purpose
 
-Installs and wires OpenSpec and OpenWiki into a repository through one idempotent orchestrator skill plus a deterministic Python script: preflight detection, a once-per-user global install lane, per-repo scaffolding, and a clean-exit instruct fallback when local execution is not possible.
+Installs and wires OpenSpec and OpenWiki into a repository through one idempotent orchestrator skill plus a deterministic JS script (Node): preflight detection, a once-per-user global install lane, per-repo scaffolding, and a clean-exit instruct fallback when local execution is not possible.
 
 ## ADDED Requirements
 
@@ -16,7 +16,7 @@ The bootstrap flow SHALL detect, before making any change: the Node.js major ver
 - **THEN** it stops before installing anything and prints the required Node version and how to upgrade
 
 ### Requirement: Global tool installation lane
-The bootstrap flow SHALL install `@fission-ai/openspec@latest` and `openwiki` globally once per user, and SHALL skip installation for any tool already present at a compatible version.
+The bootstrap flow SHALL install `@fission-ai/openspec@latest` and `openwiki@latest` globally once per user (Node >=22 for openwiki), and SHALL skip installation for any tool already present at a compatible version.
 
 #### Scenario: First global install
 - **WHEN** neither tool is globally installed

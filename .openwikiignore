@@ -1,0 +1,7 @@
+# Generated demo output — not source truth (root only)
+# Anchored to repo root; nested example/ folders are not ignored
+/example/
+
+# Temporary session evidence — not source truth (keep README)
+.agents/sessions/
+!.agents/sessions/README.md

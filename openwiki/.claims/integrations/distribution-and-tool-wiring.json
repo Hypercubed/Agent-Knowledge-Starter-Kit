@@ -1,0 +1,298 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:43ffec4d71e3a1b3fb4e475a5fc72f1eb80fe84ca50e01b97b125121ad5c2a58",
+  "claims": [
+    {
+      "id": "claim_cffd9d90e59441e59f31886d4025df68",
+      "statement": "The kit ships content (markdown layout and conventions) not a runtime service: package.json name agent-knowledge-starter v2.0.0 has empty dependencies, devDependencies are skills/remark/markdown-link-check, and scripts are format/check with test intentionally erroring.",
+      "evidence": [
+        {
+          "resource": "repo://INSTALL.md",
+          "version": "repo-file-v1:sha256:9f95f8939a292c27f207cdd6a8ba576c2ac65c52fedac966b10d4a56a3812744"
+        },
+        {
+          "resource": "repo://README.md",
+          "version": "repo-file-v1:sha256:e5750cefd0ff6d75ce0aa166374f03014cebc21e655f24e81468c93f23daad6c"
+        },
+        {
+          "resource": "repo://package.json",
+          "version": "repo-file-v1:sha256:2daf434a993f024a4baa7b8bb1f60d9b40a48388f9b63486f038fbb72bf7c55a"
+        }
+      ]
+    },
+    {
+      "id": "claim_a6f87a3c1ddf4d54af296f9cbaf23153",
+      "statement": "Peer dependencies are Node >=22 plus global openspec (@fission-ai/openspec) and openwiki with openwiki --init; no script ever installs them and missing tools fail fast printing exact npm i -g commands and exiting 2.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs",
+          "version": "repo-file-v1:sha256:9e84b52d6090e6714eeb102744587b00efb05412a41f5bb042cf1be47b0e3823"
+        },
+        {
+          "resource": "repo://INSTALL.md",
+          "version": "repo-file-v1:sha256:9f95f8939a292c27f207cdd6a8ba576c2ac65c52fedac966b10d4a56a3812744"
+        },
+        {
+          "resource": "repo://README.md",
+          "version": "repo-file-v1:sha256:e5750cefd0ff6d75ce0aa166374f03014cebc21e655f24e81468c93f23daad6c"
+        },
+        {
+          "resource": "repo://docs/architecture.md",
+          "version": "repo-file-v1:sha256:692aca26c14e1ce3f100cb1e8f43d4c5d42fd8a53b737119314cee006a96db13"
+        }
+      ]
+    },
+    {
+      "id": "claim_b08b0f04dc23470e85f337af793c0662",
+      "statement": "check_peer_tools.mjs exports INSTALL_COMMANDS, onPath, missing, requireBinaries; standalone and importable; unknown tool names exit 2 naming the unknown tool, missing tools print one error per tool plus install commands and exit 2, PATH-only check.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
+          "version": "repo-file-v1:sha256:41f35665ae6e6340a623e48fab9748c980490c8fca74ef505b29f9556220e8a3"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs",
+          "version": "repo-file-v1:sha256:9e84b52d6090e6714eeb102744587b00efb05412a41f5bb042cf1be47b0e3823"
+        }
+      ]
+    },
+    {
+      "id": "claim_cb9ca57fa8e54c64968da6e2627cd072",
+      "statement": "Distribution is via Skills CLI: npx skills add Hypercubed/Agent-Knowledge-Starter-Kit installs .agents/skills/* and skips metadata.internal:true folders; each skill's bootstrap/ must be preserved because initialization copies from it and idempotent re-runs depend on the original name; --all flag sprays into every known agent directory.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/generate-example/SKILL.md",
+          "version": "repo-file-v1:sha256:b44767b79617179b0dc32e993c712ac2f4be677a13c130601ff707118b447c5a"
+        },
+        {
+          "resource": "repo://INSTALL.md",
+          "version": "repo-file-v1:sha256:9f95f8939a292c27f207cdd6a8ba576c2ac65c52fedac966b10d4a56a3812744"
+        },
+        {
+          "resource": "repo://README.md",
+          "version": "repo-file-v1:sha256:e5750cefd0ff6d75ce0aa166374f03014cebc21e655f24e81468c93f23daad6c"
+        },
+        {
+          "resource": "repo://package.json",
+          "version": "repo-file-v1:sha256:2daf434a993f024a4baa7b8bb1f60d9b40a48388f9b63486f038fbb72bf7c55a"
+        }
+      ]
+    },
+    {
+      "id": "claim_ab34506dbf574122bc822e46b65fbc0b",
+      "statement": "Skill-first install flow requires running each installed SKILL.md Skill initialization once (copy-missing-only), suggested order task-closeout for closeout-only else learning-distill first, then attaching AKSK routing note via attach_section.mjs and registering SKILL.md paths; definitions may live globally but outputs belong under target repo .agents/.",
+      "evidence": [
+        {
+          "resource": "repo://INSTALL.md",
+          "version": "repo-file-v1:sha256:9f95f8939a292c27f207cdd6a8ba576c2ac65c52fedac966b10d4a56a3812744"
+        },
+        {
+          "resource": "repo://README.md",
+          "version": "repo-file-v1:sha256:e5750cefd0ff6d75ce0aa166374f03014cebc21e655f24e81468c93f23daad6c"
+        },
+        {
+          "resource": "repo://docs/integrations/patterns.md",
+          "version": "repo-file-v1:sha256:5d74e3de6dd6ac75bdd5874362475df5a3ceabe794a680de8b1dad2276f8cc90"
+        }
+      ]
+    },
+    {
+      "id": "claim_149b6d05761b43a3984a92c8b23ddfc4",
+      "statement": "Single .agents tree is the source of truth for durable repo knowledge; root AGENTS.md is the checkout entrypoint that routes into .agents/AGENTS.md, durable guidance is never duplicated into tool-native config, and tool switching does not invalidate knowledge because on-disk layout is stable.",
+      "evidence": [
+        {
+          "resource": "repo://INSTALL.md",
+          "version": "repo-file-v1:sha256:9f95f8939a292c27f207cdd6a8ba576c2ac65c52fedac966b10d4a56a3812744"
+        },
+        {
+          "resource": "repo://docs/architecture.md",
+          "version": "repo-file-v1:sha256:692aca26c14e1ce3f100cb1e8f43d4c5d42fd8a53b737119314cee006a96db13"
+        },
+        {
+          "resource": "repo://docs/integrations/patterns.md",
+          "version": "repo-file-v1:sha256:5d74e3de6dd6ac75bdd5874362475df5a3ceabe794a680de8b1dad2276f8cc90"
+        }
+      ]
+    },
+    {
+      "id": "claim_701f14614aa44a9391564da9d8a20f69",
+      "statement": "example/.agents is a disposable generated illustration not a second source of truth; it must be regenerated when portable kit content or bootstrap behavior changes and never populated by copying the dogfood curated wiki.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/playbooks/generate-example.md",
+          "version": "repo-file-v1:sha256:375429b126a432bfc40056882bdb83984991955f314630dfbd78eef6e034ad8a"
+        },
+        {
+          "resource": "repo://.agents/skills/generate-example/SKILL.md",
+          "version": "repo-file-v1:sha256:b44767b79617179b0dc32e993c712ac2f4be677a13c130601ff707118b447c5a"
+        },
+        {
+          "resource": "repo://.agents/skills/generate-example/run.sh",
+          "version": "repo-file-v1:sha256:3fbc1613dc785b28eee55ee8128abfbd226b7515ecdfdea62e14f4eb577cc4de"
+        }
+      ]
+    },
+    {
+      "id": "claim_761f8aba018042fea2b7874009f85018",
+      "statement": "generate-example/run.sh rebuilds example/ by rm -rf and recreate, writing README stub, running npx skills add repo-root --copy --agent cursor, simulating learning-distill init by copying bootstrap templates for playbooks/README, sessions/README and AGENTS.md when missing, and writing .agents/.gitignore with sessions/* and !sessions/README.md; internal skill is excluded because Skills CLI skips metadata.internal:true.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/playbooks/generate-example.md",
+          "version": "repo-file-v1:sha256:375429b126a432bfc40056882bdb83984991955f314630dfbd78eef6e034ad8a"
+        },
+        {
+          "resource": "repo://.agents/skills/generate-example/SKILL.md",
+          "version": "repo-file-v1:sha256:b44767b79617179b0dc32e993c712ac2f4be677a13c130601ff707118b447c5a"
+        },
+        {
+          "resource": "repo://.agents/skills/generate-example/run.sh",
+          "version": "repo-file-v1:sha256:3fbc1613dc785b28eee55ee8128abfbd226b7515ecdfdea62e14f4eb577cc4de"
+        }
+      ]
+    },
+    {
+      "id": "claim_89a12526be7147d5867e29887404e8ed",
+      "statement": "attach_section.mjs is the single append-only idempotent mechanism for N marker-delimited root sections; markers are read from the template (routing-note-template.md AKSK:ROUTING, lifecycle-template.md AKSK:LIFECYCLE), content outside markers is never replaced, re-runs are no-op when current or refresh in place when template changed, missing target file is created, unknown template exits 2.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
+          "version": "repo-file-v1:sha256:41f35665ae6e6340a623e48fab9748c980490c8fca74ef505b29f9556220e8a3"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/references/routing-note-template.md",
+          "version": "repo-file-v1:sha256:7daa0b08b9a8cae6510c448134bfb4f7b1373132970b66916e7c6076c353e683"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_section.mjs",
+          "version": "repo-file-v1:sha256:782278eefae9ddef14dda790324bcf7df3eb9f37244e105c41e47a897f80ad71"
+        }
+      ]
+    },
+    {
+      "id": "claim_41f42de4e4754f9a90cda17f3fe5a1ee",
+      "statement": "attach_wiki_contract.mjs appends the curation section from wiki-contract-template.md between AKSK:WIKI-CONTRACT markers to an existing openwiki/INSTRUCTIONS.md, never creates the file or removes OpenWiki-owned content, is idempotent/self-updating, and fail-fasts with exit 2 and openwiki --init when missing; stub-aware reporting for default stub.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
+          "version": "repo-file-v1:sha256:41f35665ae6e6340a623e48fab9748c980490c8fca74ef505b29f9556220e8a3"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/references/wiki-contract-template.md",
+          "version": "repo-file-v1:sha256:74fb36e2fba836d594bed925a1301ced9532c54846eb38a829b9a55de2881e00"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs",
+          "version": "repo-file-v1:sha256:cd684c5946d746b89ec10f1bd965951f271ddeb5aec9515f83d9288b8ba0ac05"
+        }
+      ]
+    },
+    {
+      "id": "claim_c62a6f4ca64443a8a4074996c1869f75",
+      "statement": "sync_wiki_indexes.mjs refreshes all OpenWiki directory indexes deterministically with no LLM and no CLI run by locating global openwiki via npm root -g, importing agent/docs-only-backend.js and okf/index-sync.js, constructing OpenWikiLocalShellBackend with docsOnly and virtualMode, and calling synchronizeWikiIndexes; exits 2 when openwiki missing or package not installed globally.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
+          "version": "repo-file-v1:sha256:41f35665ae6e6340a623e48fab9748c980490c8fca74ef505b29f9556220e8a3"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs",
+          "version": "repo-file-v1:sha256:85c6e19effcad0d70b581ea2144ded924babe38897ade26f0abf0d2668e76e58"
+        }
+      ]
+    },
+    {
+      "id": "claim_caffc11737e6455eb54767dbea784a93",
+      "statement": "Core wiring pattern: tool-native files (bootstrap files, project rules, command wrappers, local config) are wiring; .agents/ files are durable repo knowledge; never copy long-lived policy into tool-native config, point the tool at .agents/AGENTS.md, openwiki/index.md, .agents/playbooks/, and .agents/skills/.",
+      "evidence": [
+        {
+          "resource": "repo://docs/integrations/README.md",
+          "version": "repo-file-v1:sha256:42be454bcc17c52e8665bbd45c4e27a4c9c34adad7a025c2be758fd290f0da2a"
+        },
+        {
+          "resource": "repo://docs/integrations/patterns.md",
+          "version": "repo-file-v1:sha256:5d74e3de6dd6ac75bdd5874362475df5a3ceabe794a680de8b1dad2276f8cc90"
+        }
+      ]
+    },
+    {
+      "id": "claim_1cfdf69512df459cab4ea4539391fe7b",
+      "statement": "Four pattern groups are documented: root AGENTS.md native (Codex/OpenCode/Kilo/Warp/OpenClaw via AKSK:ROUTING), tool-specific bootstrap file (Claude Code CLAUDE.md, Gemini GEMINI.md), rules-based IDE wiring (Cursor .cursor/rules/, Copilot .github/copilot-instructions.md), persistent memory & runtime boundary (Hermes/Antigravity/OpenClaw/Agentic Sandbox) with session export to .agents/sessions/.",
+      "evidence": [
+        {
+          "resource": "repo://docs/integrations/claude-code.md",
+          "version": "repo-file-v1:sha256:1a782320ef5455abefbae6d4959eb48d2aaf92d709e5bf8c6d48f16249ff2513"
+        },
+        {
+          "resource": "repo://docs/integrations/codex.md",
+          "version": "repo-file-v1:sha256:6ed46b1dc736b8d88310e41303938fa0d2f72fb347976f9c4e52b7ba8d3c2fe3"
+        },
+        {
+          "resource": "repo://docs/integrations/cursor.md",
+          "version": "repo-file-v1:sha256:f22a01603f8b539013a739cc58db31d12376d066ecb6cb9d942f02bad7ccc8db"
+        },
+        {
+          "resource": "repo://docs/integrations/patterns.md",
+          "version": "repo-file-v1:sha256:5d74e3de6dd6ac75bdd5874362475df5a3ceabe794a680de8b1dad2276f8cc90"
+        }
+      ]
+    },
+    {
+      "id": "claim_652ea16335f74096a3dab46c9dc6dd9b",
+      "statement": "Session export rule and gitignore contract: native memory stays local, closeout bundles (.agents/sessions/<folder>/ with summary.json canonical task_id) are the shared task boundary for any later tool to distill; only sessions/README.md is tracked (sessions/* plus !sessions/README.md) enforced via git ls-files and git status --ignored.",
+      "evidence": [
+        {
+          "resource": "repo://docs/integrations/patterns.md",
+          "version": "repo-file-v1:sha256:5d74e3de6dd6ac75bdd5874362475df5a3ceabe794a680de8b1dad2276f8cc90"
+        },
+        {
+          "resource": "repo://.agents/.gitignore",
+          "version": "repo-file-v1:sha256:9d3e8002bee34dc78f45dbda50b0668070123c114e1bf70f2f902a61fa049353"
+        },
+        {
+          "resource": "repo://scripts/check-agents-structure.sh",
+          "version": "repo-file-v1:sha256:3e4540194712f502f811a64d86a32c4e44d0a262a4ffebd018c8b867d96abe12"
+        }
+      ]
+    },
+    {
+      "id": "claim_a5eea7d05d9641d5ae28256c5b80687e",
+      "statement": "check-agents-structure.sh validates any .agents tree for required files (AGENTS.md, .gitignore, playbooks/README, sessions/README, four SKILL.md and task-closeout bundle files), session tracking, SKILL.md frontmatter, and JSON via jq; check-publish.sh composes it plus remark formatting, markdown-link-check excluding example/, rg leakage and doubled .agents/.agents hygiene; both degrade gracefully when optional tools absent.",
+      "evidence": [
+        {
+          "resource": "repo://package.json",
+          "version": "repo-file-v1:sha256:2daf434a993f024a4baa7b8bb1f60d9b40a48388f9b63486f038fbb72bf7c55a"
+        },
+        {
+          "resource": "repo://scripts/check-agents-structure.sh",
+          "version": "repo-file-v1:sha256:3e4540194712f502f811a64d86a32c4e44d0a262a4ffebd018c8b867d96abe12"
+        },
+        {
+          "resource": "repo://scripts/check-publish.sh",
+          "version": "repo-file-v1:sha256:0fbbd52ac81d5128e679aed263b53b2b308202e05ffc654d94ea104ff8e92d8f"
+        }
+      ]
+    },
+    {
+      "id": "claim_2f3bb32bed77429895f553f940d44858",
+      "statement": "Integration guides live under docs/integrations/ not .agents/, currently 14 product guides plus patterns and README; each is a quick reference with filenames/snippets/caveats while shared concepts live once in patterns.md; planned VS Code extensions only after verification.",
+      "evidence": [
+        {
+          "resource": "repo://docs/integrations/README.md",
+          "version": "repo-file-v1:sha256:42be454bcc17c52e8665bbd45c4e27a4c9c34adad7a025c2be758fd290f0da2a"
+        },
+        {
+          "resource": "repo://docs/integrations/copilot.md",
+          "version": "repo-file-v1:sha256:ddef68443840fe0f14b28279289026cc59a0c4e0e8f3c813d4eecdb808927238"
+        },
+        {
+          "resource": "repo://docs/integrations/patterns.md",
+          "version": "repo-file-v1:sha256:5d74e3de6dd6ac75bdd5874362475df5a3ceabe794a680de8b1dad2276f8cc90"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.4.3",
+    "at": "2026-08-29T04:18:18.736Z"
+  }
+}

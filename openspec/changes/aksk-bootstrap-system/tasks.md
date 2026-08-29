@@ -1,17 +1,17 @@
 ## 1. Prerequisites and experiments
 
 - [ ] 1.1 Verify `adopt-openspec-openwiki` is applied and its dogfood validation (contract attached, distill/lint validated in-repo) passed before starting implementation.
-- [ ] 1.2 Run open question experiments OQ1-OQ3 (bare `openwiki mcp` stdio mode; tag-pinned `npx skills add` + `skills update` behavior; add-mcp codex TOML idempotency) and record findings as troubleshooting entries.
+- [ ] 1.2 Run open question experiments for v0.4.3 (verify `openwiki mcp --host <codex|claude|opencode>` stdio, `openwiki integrations install` idempotency/`modified` detection/`--force` backup, and `openwiki integrations list` status reporting) and record findings as troubleshooting entries — OQ1-OQ3 resolved/obsolete per design.md.
 
 ## 2. Bootstrap script and skill
 
-- [ ] 2.1 Create deterministic Python bootstrap script per `python-preference-for-consumer-scripts`: preflight detection (Node >= 22, tools on PATH, `.agents/`, `openspec/`, `openwiki/`, receipts) with state report.
-- [ ] 2.2 Implement global lane: once-per-user `npm i -g @fission-ai/openspec@latest openwiki`, skipping installed tools.
+- [ ] 2.1 Create deterministic JS bootstrap script per `js-preference-for-consumer-scripts` (Node >=22, `*.mjs`): preflight detection (Node >= 22, tools on PATH, `.agents/`, `openspec/`, `openwiki/`, receipts) with state report.
+- [ ] 2.2 Implement global lane: once-per-user `npm i -g @fission-ai/openspec@latest openwiki@latest` (Node >=22), skipping installed tools; verify via `openwiki integrations list` that the `openwiki` command resolves before registering MCP.
 - [ ] 2.3 Implement per-repo lane: `openspec init` when missing, minimal `.agents/` scaffold copying the finalized kit templates, curation-contract attachment via the `adopt-openspec-openwiki` merge semantics, idempotent routing-block merge into root `AGENTS.md` preserving any OpenWiki-managed block.
 - [ ] 2.4 Implement never-half-install guard: failed step prints exact remaining commands and exits clean without partial state.
-- [ ] 2.5 Implement integration spread: agent detection, lane ladder selection (official claude/codex -> add-mcp/skills CLI -> headless), receipt-based ownership partition skips, post-registration verification, per-agent result report including tool warnings verbatim.
+- [ ] 2.5 Implement integration spread: agent detection, lane ladder selection (`openwiki integrations install <codex|claude|opencode>` -> headless `openwiki --init -p`/`--update -p`), receipt-based ownership partition skips (`.openwiki-install.json` `installed`/`modified` via `openwiki integrations list`), post-registration verification, per-agent result report (lane, outcome, backup path).
 - [ ] 2.6 Add idempotency tests: re-run on fully bootstrapped fixture changes nothing; re-run on partially bootstrapped fixture completes only missing steps.
-- [ ] 2.7 Write `.agents/skills/aksk-bootstrap/SKILL.md` delegating to the script (EXECUTE lane) and falling back to printed commands (INSTRUCT lane).
+- [ ] 2.7 Write `.agents/skills/aksk-bootstrap/SKILL.md` delegating to the JS script (EXECUTE lane: `node .agents/skills/aksk-bootstrap/scripts/bootstrap.mjs`) and falling back to printed commands (INSTRUCT lane).
 
 ## 3. Docs and example
 

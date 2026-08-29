@@ -28,6 +28,7 @@
 - [Python preference for consumer-facing scripts](python-preference-for-consumer-scripts.md) - Consumer-facing scripts and tooling in the repository should be implemented in Python to ensure cross-platform compatibility and consistent development experience.
 - [Regenerate `example/` when the portable kit or bootstrap changes](regenerate-example-when-portable-kit-changes.md) - When portable `.agents/` templates or bootstrap behavior change, refresh the generated `example/` tree so the illustrated consumer install stays accurate.
 
+- [Root-anchored .openwikiignore for generated trees](root-anchored-openwikiignore-for-generated-trees.md) - Use anchored /example/ and explicit .agents/sessions/ withREADME re-include in .openwikiignore to keep generated demo and ephemeral session bundles out of wiki evidence.
 - [Sessions directory: tracked README with ignored bundles](sessions-directory-tracked-readme-with-ignored-bundles.md) - Track only `.agents/sessions/README.md` in git while per-task bundle folders stay ignored so temporary closeout evidence does not pollute history.
 
 - [Shared integration patterns belong in `docs/integrations/patterns.md`](shared-integration-patterns-belong-in-docs-integrations-patterns-md.md) - Cross-vendor patterns that are not kit-specific belong in `docs/integrations/patterns.md` instead of duplicating them across agent trees.
