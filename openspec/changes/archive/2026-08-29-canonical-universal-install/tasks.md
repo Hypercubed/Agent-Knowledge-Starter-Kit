@@ -16,5 +16,5 @@
 
 ## 4. Verification and closeout
 
-- [ ] 4.1 Run `bash .agents/skills/verify-install/scripts/run.sh` (default user-scope lanes) and `bash scripts/check-agents-structure.sh ~/.agents/skills 2>&1 | head` (user target) plus `bash scripts/check-agents-structure.sh .agents` and `openspec validate canonical-universal-install --strict`.
-- [ ] 4.2 Close out task per `task-closeout` (bundle under `.agents/sessions/`) and plan `learning-distill` for decision on canonical `~/.agents/skills` + Codex/universal.
+- [x] 4.1 Run `bash .agents/skills/verify-install/scripts/run.sh` (default user-scope lanes) and `bash scripts/check-agents-structure.sh ~/.agents/skills 2>&1 | head` (user target) plus `bash scripts/check-agents-structure.sh .agents` and `openspec validate canonical-universal-install --strict`.
+- [x] 4.2 Close out task per `task-closeout` (bundle under `.agents/sessions/`) and plan `learning-distill` for decision on canonical `~/.agents/skills` + Codex/universal.

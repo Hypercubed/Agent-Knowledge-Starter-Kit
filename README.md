@@ -42,12 +42,13 @@ Give your agent this prompt:
 ```text
 Install the Agent Knowledge Starter Kit into this repo:
 
-1. npx skills add -g -a <self-reported> Hypercubed/Agent-Knowledge-Starter-Kit --skill aksk-bootstrap
-   (or npx skills add -g -a <self-reported> <path-to-kit> --skill aksk-bootstrap with a local checkout;
-   <self-reported> is your host id, universal is ~/.agents/skills, npx required)
-2. Run the aksk-bootstrap skill.
+1. npx skills add -g -a <self-reported> Hypercubed/Agent-Knowledge-Starter-Kit#develop  (use #develop until v2.0 is published; omit #develop after publish)
+   (or npx skills add -g -a <self-reported> <path-to-kit> with a local checkout;
+   <self-reported> is your host id, universal is ~/.agents/skills, npx required; this installs all skills)
+2. Run the aksk-bootstrap skill (global: npm i -g for openspec/openwiki, global skills).
+3. Then run the aksk-init skill (per-repo: scaffold .agents/ + AGENTS.md baseline first, then openspec/openwiki init, routing/lifecycle, wiki contract).
 
-See INSTALL.md for overrides. Everything else (peer tools, openspec/openwiki init, routing/contract, integration spread) is owned by aksk-bootstrap.
+See INSTALL.md for overrides. aksk-bootstrap owns global setup; aksk-init owns per-repo setup.
 ```
 
 ### Manual install
@@ -55,13 +56,20 @@ See INSTALL.md for overrides. Everything else (peer tools, openspec/openwiki ini
 From the target repo:
 
 ```bash
-npx skills add -g Hypercubed/Agent-Knowledge-Starter-Kit --skill aksk-bootstrap
-# or: npx skills add -g <path-to-kit> --skill aksk-bootstrap
+npm i -g @fission-ai/openspec openwiki
+npx skills add -g Hypercubed/Agent-Knowledge-Starter-Kit#develop  # add #develop until v2.0 is published
+# or: npx skills add -g <path-to-kit>  # local checkout, installs all skills
 ```
 
-Add `-a <your-agent>` (e.g. `-a codex`) if you also want the host-specific mirror alongside `~/.agents/skills` ( `-g` already targets `~/.agents/skills` ).
+Add `-a <your-agent>` (e.g. `-a codex`) if you also want the host-specific mirror alongside `~/.agents/skills`.
 
-Then run the `aksk-bootstrap` skill. See [INSTALL.md](INSTALL.md) for overrides and [`.agents/skills/aksk-bootstrap/SKILL.md`](.agents/skills/aksk-bootstrap/SKILL.md) for the full contract.
+Then run `aksk-init` — via the skill (interactive) or the script:
+
+```bash
+node ~/.agents/skills/aksk-init/scripts/bootstrap-repo.mjs [repo-root]
+```
+
+See [INSTALL.md](INSTALL.md) for overrides and [`.agents/skills/aksk-init/SKILL.md`](.agents/skills/aksk-init/SKILL.md) for the full contract.
 
 ## How to use this kit
 

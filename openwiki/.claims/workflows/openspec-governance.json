@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:3f31913a840e0a9e8d4d006d340092acd66bb19338427e372d193d9db2b4b083",
+  "pageVersion": "sha256:cf6a87b1ff90bab4cc946a1ca1c9a7649ebfd2c5c5790a9a034c85f7823400cf",
   "claims": [
     {
       "id": "claim_1cac42cc404d4a7083bad7e557eb6a96",
@@ -274,111 +274,119 @@
     },
     {
       "id": "claim_2300ce0dd8a040818d025b30c93a62b2",
-      "statement": "openspec/changes/canonical-universal-install is Proposal-only: its delta specs (ADDED canonical-user-skills-scope, MODIFIED aksk-bootstrap and agent-integration-spread) are not yet graduated; openspec/specs/** remains truth and still describes the repo-local default until opsx:archive sync promotes the deltas.",
+      "statement": "openspec/changes/archive/2026-08-29-canonical-universal-install is graduated: its deltas (ADDED canonical-user-skills-scope, MODIFIED agent-integration-spread) have been promoted to openspec/specs/** which now describes the user-scoped ~/.agents/skills default; repo-local ./.agents/skills is now an explicit override and openspec/specs/** remains truth.",
       "evidence": [
         {
-          "resource": "repo://openspec/changes/canonical-universal-install/.openspec.yaml",
+          "resource": "repo://openspec/changes/archive/2026-08-29-canonical-universal-install/.openspec.yaml",
           "version": "repo-file-v1:sha256:f4a1a5ebcaf832a382f8bba53f7c81d9fa7e1a92b3d01f6b7d8fc34e77619b07"
         },
         {
-          "resource": "repo://openspec/changes/canonical-universal-install/design.md",
-          "version": "repo-file-v1:sha256:436b515cabebd46beab15d25de2401ac1c0b0e0ba6a24030e57da4c37d4ebcac"
-        },
-        {
-          "resource": "repo://openspec/changes/canonical-universal-install/proposal.md",
+          "resource": "repo://openspec/changes/archive/2026-08-29-canonical-universal-install/proposal.md",
           "version": "repo-file-v1:sha256:641920026ae4713d450f9df8bceefc01cbdb00526ae6e06fa68c6be14f16fe29"
         },
         {
-          "resource": "repo://openspec/specs/closeout-change-linking/spec.md",
-          "version": "repo-file-v1:sha256:b5ca10a3db5605ffcf5a66efb0ac6bb98f0a3c1ef0d9617ce888db3ae4354e60"
+          "resource": "repo://openspec/specs/agent-integration-spread/spec.md",
+          "version": "repo-file-v1:sha256:4d10190096ddb3db819a96eb0a7ca25686b391348f3d827a12b65fdaf4e72f2f"
+        },
+        {
+          "resource": "repo://openspec/specs/canonical-user-skills-scope/spec.md",
+          "version": "repo-file-v1:sha256:f1160ef5df943f07c1740ae68b9ea54161d45bfbeed0bda140b10bab9de2ff64"
         }
       ]
     },
     {
       "id": "claim_cf9d07c3ad0f4fa4a6c1eb4ff2737c69",
-      "statement": "The canonical-universal-install proposal makes ~/.agents/skills (universal, Codex default) plus the self-reported current host the canonical skill store via npx skills add -g -a <self-reported> <source> for Hypercubed/Agent-Knowledge-Starter-Kit and langchain-ai/openwiki (--full-depth); extra -a <other> or --all only when the user explicitly asked at install time, with no persistent consent artifact.",
+      "statement": "The graduated canonical-user-skills-scope makes ~/.agents/skills (universal, Codex default) plus the self-reported current host the canonical skill store via npx skills add -g -a <self-reported> <source> for Hypercubed/Agent-Knowledge-Starter-Kit and langchain-ai/openwiki (--full-depth); extra -a <other> or --all only when the user explicitly asked at install time, with no persistent consent artifact.",
       "evidence": [
         {
-          "resource": "repo://openspec/changes/canonical-universal-install/design.md",
+          "resource": "repo://openspec/changes/archive/2026-08-29-canonical-universal-install/design.md",
           "version": "repo-file-v1:sha256:436b515cabebd46beab15d25de2401ac1c0b0e0ba6a24030e57da4c37d4ebcac"
         },
         {
-          "resource": "repo://openspec/changes/canonical-universal-install/proposal.md",
+          "resource": "repo://openspec/changes/archive/2026-08-29-canonical-universal-install/proposal.md",
           "version": "repo-file-v1:sha256:641920026ae4713d450f9df8bceefc01cbdb00526ae6e06fa68c6be14f16fe29"
         },
         {
-          "resource": "repo://openspec/changes/canonical-universal-install/specs/canonical-user-skills-scope/spec.md",
+          "resource": "repo://openspec/specs/canonical-user-skills-scope/spec.md",
           "version": "repo-file-v1:sha256:f1160ef5df943f07c1740ae68b9ea54161d45bfbeed0bda140b10bab9de2ff64"
         }
       ]
     },
     {
       "id": "claim_1e50befbe7da492c89933ab655b56110",
-      "statement": "The canonical-universal-install proposal removes the git clone --depth 1 && cp -r .agents/skills fallback lane and makes npx required; bootstrap reports missing npx as a prerequisite in the INSTRUCT lane rather than silently copying.",
+      "statement": "The graduated canonical-user-skills-scope removes the git clone --depth 1 && cp -r .agents/skills fallback lane and makes npx required; bootstrap reports missing npx as a prerequisite in the INSTRUCT lane rather than silently copying.",
       "evidence": [
         {
-          "resource": "repo://openspec/changes/canonical-universal-install/design.md",
+          "resource": "repo://openspec/changes/archive/2026-08-29-canonical-universal-install/design.md",
           "version": "repo-file-v1:sha256:436b515cabebd46beab15d25de2401ac1c0b0e0ba6a24030e57da4c37d4ebcac"
         },
         {
-          "resource": "repo://openspec/changes/canonical-universal-install/proposal.md",
+          "resource": "repo://openspec/changes/archive/2026-08-29-canonical-universal-install/proposal.md",
           "version": "repo-file-v1:sha256:641920026ae4713d450f9df8bceefc01cbdb00526ae6e06fa68c6be14f16fe29"
         },
         {
-          "resource": "repo://openspec/changes/canonical-universal-install/specs/canonical-user-skills-scope/spec.md",
+          "resource": "repo://openspec/specs/canonical-user-skills-scope/spec.md",
           "version": "repo-file-v1:sha256:f1160ef5df943f07c1740ae68b9ea54161d45bfbeed0bda140b10bab9de2ff64"
         }
       ]
     },
     {
       "id": "claim_9328cf6609d5406c9372233c5c9a7e07",
-      "statement": "Skill installs under the canonical-universal-install proposal use versions read from references/versions.json via versionsFromPackageJson() (caret range, fallback @latest only when unpinned) for both the kit and langchain-ai/openwiki.",
+      "statement": "Graduated skill installs use versions read from references/versions.json via versionsFromPackageJson() (caret range, fallback @latest only when unpinned) for both the kit and langchain-ai/openwiki.",
       "evidence": [
         {
-          "resource": "repo://openspec/changes/canonical-universal-install/design.md",
+          "resource": "repo://openspec/changes/archive/2026-08-29-canonical-universal-install/design.md",
           "version": "repo-file-v1:sha256:436b515cabebd46beab15d25de2401ac1c0b0e0ba6a24030e57da4c37d4ebcac"
         },
         {
-          "resource": "repo://openspec/changes/canonical-universal-install/specs/canonical-user-skills-scope/spec.md",
+          "resource": "repo://openspec/specs/canonical-user-skills-scope/spec.md",
           "version": "repo-file-v1:sha256:f1160ef5df943f07c1740ae68b9ea54161d45bfbeed0bda140b10bab9de2ff64"
         }
       ]
     },
     {
       "id": "claim_f5d81bb346e843ffbcbe70b35797c390",
-      "statement": "Verification under the canonical-universal-install proposal treats ~/.agents/skills/<name>/SKILL.md plus the self-reported host mirror as canonical for the default lane; repo-local ./.agents/skills becomes an explicit override, not the default.",
+      "statement": "Verification under the graduated canonical-user-skills-scope treats ~/.agents/skills/<name>/SKILL.md plus the self-reported host mirror as canonical for the default lane; repo-local ./.agents/skills is an explicit override, not the default.",
       "evidence": [
         {
-          "resource": "repo://openspec/changes/canonical-universal-install/specs/canonical-user-skills-scope/spec.md",
+          "resource": "repo://openspec/specs/canonical-user-skills-scope/spec.md",
           "version": "repo-file-v1:sha256:f1160ef5df943f07c1740ae68b9ea54161d45bfbeed0bda140b10bab9de2ff64"
         }
       ]
     },
     {
       "id": "claim_7516ba08d70e40579cb6b952afcef1e7",
-      "statement": "The canonical-universal-install delta for aksk-bootstrap narrows bootstrap to two verbs (verify CLIs on PATH via npm i -g then verify skills in ~/.agents/skills plus self-reported host via npx skills add -g -a <self-reported>) and installs the openwiki lifecycle skill via openwiki integrations install <self-reported> when that host is in codex|claude|opencode, otherwise via npx plus openwiki mcp --host or npx add-mcp chooser.",
+      "statement": "The graduated agent-integration-spread and aksk-bootstrap/aksk-init split enforces universal+current by default (Codex is universal): global lane verifies CLIs on PATH via npm i -g then skills in ~/.agents/skills plus self-reported host via npx skills add -g -a <self-reported>; per-repo lane handles scaffolding via aksk-init; openwiki skill is via openwiki integrations install <self-reported> when that host is in codex|claude|opencode, otherwise via npx plus openwiki mcp --host or npx add-mcp chooser.",
       "evidence": [
         {
-          "resource": "repo://openspec/changes/canonical-universal-install/design.md",
+          "resource": "repo://openspec/changes/archive/2026-08-29-canonical-universal-install/design.md",
           "version": "repo-file-v1:sha256:436b515cabebd46beab15d25de2401ac1c0b0e0ba6a24030e57da4c37d4ebcac"
         },
         {
-          "resource": "repo://openspec/changes/canonical-universal-install/specs/aksk-bootstrap/spec.md",
-          "version": "repo-file-v1:sha256:144e0da3f210ba50679600378ac20cb00aa4e1a1f9ecab2cf06eb6b5df33b35c"
+          "resource": "repo://openspec/specs/agent-integration-spread/spec.md",
+          "version": "repo-file-v1:sha256:4d10190096ddb3db819a96eb0a7ca25686b391348f3d827a12b65fdaf4e72f2f"
+        },
+        {
+          "resource": "repo://openspec/specs/aksk-bootstrap/spec.md",
+          "version": "repo-file-v1:sha256:57bf5324e654077e03ab8fd27f2db0c993eb315dd0c77ec3a5e223fd96bf59af"
+        },
+        {
+          "resource": "repo://openspec/specs/aksk-init/spec.md",
+          "version": "repo-file-v1:sha256:a9691a718c37b39d54cd5eed8f1e8318e837d11ae4f477e67223b5cece84158c"
         }
       ]
     },
     {
       "id": "claim_0b18d7faaff04b559b281033e6a182da",
-      "statement": "The canonical-universal-install delta for agent-integration-spread collapses the spread to universal+current by default (Codex is universal) and selects per-host between openwiki integrations install <host> when supported and the unified npx skills add -g -a <self-reported> langchain-ai/openwiki --full-depth plus npx add-mcp -g -a <host> ladder otherwise, verified via openwiki integrations list (user scope) versus list --project (repo override).",
+      "statement": "The graduated agent-integration-spread collapses the spread to universal+current by default (Codex is universal) and selects per-host between openwiki integrations install <host> when supported and the unified npx skills add -g -a <self-reported> langchain-ai/openwiki --full-depth plus npx add-mcp -g -a <host> ladder otherwise, verified via openwiki integrations list (user scope) versus list --project (repo override).",
       "evidence": [
         {
-          "resource": "repo://openspec/changes/canonical-universal-install/design.md",
+          "resource": "repo://openspec/changes/archive/2026-08-29-canonical-universal-install/design.md",
           "version": "repo-file-v1:sha256:436b515cabebd46beab15d25de2401ac1c0b0e0ba6a24030e57da4c37d4ebcac"
         },
         {
-          "resource": "repo://openspec/changes/canonical-universal-install/specs/agent-integration-spread/spec.md",
-          "version": "repo-file-v1:sha256:c7823e7f1a87322932478821ba8b1c2277e9531b18be1130790d87c202ca5706"
+          "resource": "repo://openspec/specs/agent-integration-spread/spec.md",
+          "version": "repo-file-v1:sha256:4d10190096ddb3db819a96eb0a7ca25686b391348f3d827a12b65fdaf4e72f2f"
         }
       ]
     },
@@ -457,6 +465,6 @@
   ],
   "verification": {
     "by": "openwiki/0.4.3",
-    "at": "2026-08-29T21:15:47.181Z"
+    "at": "2026-08-30T01:40:39.325Z"
   }
 }

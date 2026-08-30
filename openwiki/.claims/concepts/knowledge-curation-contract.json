@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:5fb17ec52c5c4286012e1dc3f845c5dfad16dab27e8f08e4d22aabdcd582a2f9",
+  "pageVersion": "sha256:931a4ea497be213f6986c4a70eaf2321dbe0cf1a789b22b55e3612bde14c8581",
   "claims": [
     {
       "id": "claim_5abe14d0e94c4ea5a879d67cecf5a919",
       "statement": "The curated knowledge trees are decisions/, troubleshooting/, plus the root pages overview.md and maintenance-format.md; pages under them are authored directly by the distilling agent or maintainer in OKF format and their entry identity is the filename stem unique within its tree.",
       "evidence": [
         {
-          "resource": "repo://.agents/skills/aksk-bootstrap/references/wiki-contract-template.md",
+          "resource": "repo://.agents/skills/aksk-init/references/wiki-contract-template.md",
           "version": "repo-file-v1:sha256:74fb36e2fba836d594bed925a1301ced9532c54846eb38a829b9a55de2881e00"
         },
         {
@@ -25,11 +25,11 @@
       "statement": "The AKSK curation contract lives between <!-- AKSK:WIKI-CONTRACT:BEGIN --> and <!-- AKSK:WIKI-CONTRACT:END --> markers inside openwiki/INSTRUCTIONS.md; OpenWiki-owned content outside those markers takes precedence and hand-editing between them is prohibited.",
       "evidence": [
         {
-          "resource": "repo://.agents/skills/aksk-bootstrap/references/wiki-contract-template.md",
+          "resource": "repo://.agents/skills/aksk-init/references/wiki-contract-template.md",
           "version": "repo-file-v1:sha256:74fb36e2fba836d594bed925a1301ced9532c54846eb38a829b9a55de2881e00"
         },
         {
-          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs",
+          "resource": "repo://.agents/skills/aksk-init/scripts/attach_wiki_contract.mjs",
           "version": "repo-file-v1:sha256:cd684c5946d746b89ec10f1bd965951f271ddeb5aec9515f83d9288b8ba0ac05"
         },
         {
@@ -43,11 +43,11 @@
       "statement": "attach_wiki_contract.mjs appends the templated curation section to an existing openwiki/INSTRUCTIONS.md, never creates the file, preserves all OpenWiki-owned content, and fails fast with exit 2 and the verbatim prerequisite `openwiki --init` when the file is missing with no writes.",
       "evidence": [
         {
-          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
-          "version": "repo-file-v1:sha256:d1ff10af0b2478c38c764c9c67c7679d789281866375ef830eadc6aeffd9e244"
+          "resource": "repo://.agents/skills/aksk-init/SKILL.md",
+          "version": "repo-file-v1:sha256:7447c7ad965ddf91176213abed0aa8b780bf169d92827fef3699a5c745f86763"
         },
         {
-          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs",
+          "resource": "repo://.agents/skills/aksk-init/scripts/attach_wiki_contract.mjs",
           "version": "repo-file-v1:sha256:cd684c5946d746b89ec10f1bd965951f271ddeb5aec9515f83d9288b8ba0ac05"
         },
         {
@@ -61,7 +61,7 @@
       "statement": "The attachment is idempotent and self-updating: re-running when the marked section already matches the template is a no-op (reports already up to date), and when the template changed only the content between AKSK:WIKI-CONTRACT markers is refreshed in place.",
       "evidence": [
         {
-          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs",
+          "resource": "repo://.agents/skills/aksk-init/scripts/attach_wiki_contract.mjs",
           "version": "repo-file-v1:sha256:cd684c5946d746b89ec10f1bd965951f271ddeb5aec9515f83d9288b8ba0ac05"
         },
         {
@@ -75,7 +75,7 @@
       "statement": "Preserve-and-link semantics require that when openwiki --update would regenerate a page under a curated tree, the AKSK-authored page is kept and generated material links to it instead of replacing it, and all aksk_* frontmatter extension fields survive update round-trips.",
       "evidence": [
         {
-          "resource": "repo://.agents/skills/aksk-bootstrap/references/wiki-contract-template.md",
+          "resource": "repo://.agents/skills/aksk-init/references/wiki-contract-template.md",
           "version": "repo-file-v1:sha256:74fb36e2fba836d594bed925a1301ced9532c54846eb38a829b9a55de2881e00"
         },
         {
@@ -93,12 +93,12 @@
       "statement": "Descriptive lessons distilled from session bundles bypass the openwiki --update CLI; distillation authors pages directly and refreshes indexes deterministically via sync_wiki_indexes.mjs, while openwiki --update remains only the scheduled reconciliation path.",
       "evidence": [
         {
-          "resource": "repo://.agents/skills/aksk-bootstrap/references/wiki-contract-template.md",
-          "version": "repo-file-v1:sha256:74fb36e2fba836d594bed925a1301ced9532c54846eb38a829b9a55de2881e00"
-        },
-        {
           "resource": "repo://.agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs",
           "version": "repo-file-v1:sha256:85c6e19effcad0d70b581ea2144ded924babe38897ade26f0abf0d2668e76e58"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/references/wiki-contract-template.md",
+          "version": "repo-file-v1:sha256:74fb36e2fba836d594bed925a1301ced9532c54846eb38a829b9a55de2881e00"
         },
         {
           "resource": "repo://.agents/skills/learning-distill/SKILL.md",
@@ -213,6 +213,6 @@
   ],
   "verification": {
     "by": "openwiki/0.4.3",
-    "at": "2026-08-29T20:18:58.499Z"
+    "at": "2026-08-30T01:40:39.325Z"
   }
 }

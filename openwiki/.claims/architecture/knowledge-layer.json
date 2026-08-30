@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:01ff6486e5366d573af9f0cf8e90505be55d51327b0c8d2c1a3854d974c1e2e8",
+  "pageVersion": "sha256:35b9aed5be253327a668fa08d0af4d5c55982654522e01a85e93a9596c6a5288",
   "claims": [
     {
       "id": "claim_fa1401ed6e854cafb7b357b79db691a8",
@@ -47,16 +47,16 @@
       "statement": "Root AGENTS.md is a stacked marker-delimited file with isolated ownership: FerroxLabs baseline (AKSK:AGENTS-BASELINE) owned by init_agents_md.mjs/refresh_agents_baseline.mjs, OpenWiki block (OPENWIKI:START/END) owned by OpenWiki tooling, AKSK Routing (AKSK:ROUTING) and Lifecycle (AKSK:LIFECYCLE) owned by attach_section.mjs; a fully bootstrapped file contains all three families ordered baseline → OpenWiki → AKSK, refreshing one zone never rewrites another and each zone is validated independently.",
       "evidence": [
         {
-          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
-          "version": "repo-file-v1:sha256:d1ff10af0b2478c38c764c9c67c7679d789281866375ef830eadc6aeffd9e244"
-        },
-        {
           "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_section.mjs",
           "version": "repo-file-v1:sha256:782278eefae9ddef14dda790324bcf7df3eb9f37244e105c41e47a897f80ad71"
         },
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/scripts/init_agents_md.mjs",
           "version": "repo-file-v1:sha256:2d219bd05a1526cb557a4bbf977dad1ba314e6c2117c32189e0326489d036810"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/refresh_agents_baseline.mjs",
+          "version": "repo-file-v1:sha256:30e756b9d5316dc90c7718ff42776ea5be3ab2f6dc64c45eb63d2475c94e4fc7"
         },
         {
           "resource": "repo://AGENTS.md",
@@ -321,6 +321,6 @@
   ],
   "verification": {
     "by": "openwiki/0.4.3",
-    "at": "2026-08-29T21:15:47.181Z"
+    "at": "2026-08-30T00:30:05.750Z"
   }
 }

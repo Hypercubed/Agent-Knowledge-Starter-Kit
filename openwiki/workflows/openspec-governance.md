@@ -5,7 +5,7 @@ description: How OpenSpec governs intent and process — openspec.yaml and spec-
 tags: [openspec, governance, workflow, specs, changes]
 verified:
   - by: openwiki/0.4.3
-    at: 2026-08-29T21:15:47.181Z
+    at: 2026-08-30T01:40:39.325Z
 sources:
   - id: openwiki-source-5398a69cb2cf8d556809da57
     resource: repo://.agents/skills/aksk-bootstrap/scripts/attach_section.mjs
@@ -33,24 +33,26 @@ sources:
     resource: repo://openspec/changes/archive/2026-08-23-adopt-openspec-openwiki/proposal.md
   - id: openwiki-source-7eee6646ba9305e43b2f3dfe
     resource: repo://openspec/changes/archive/2026-08-23-adopt-openspec-openwiki/tasks.md
+  - id: openwiki-source-34143dd7ba62ba9e85637d98
+    resource: repo://openspec/changes/archive/2026-08-29-canonical-universal-install/.openspec.yaml
+  - id: openwiki-source-d791605efe5549a81ce1b6a0
+    resource: repo://openspec/changes/archive/2026-08-29-canonical-universal-install/design.md
+  - id: openwiki-source-1038e04a8d2ec385d7008057
+    resource: repo://openspec/changes/archive/2026-08-29-canonical-universal-install/proposal.md
   - id: openwiki-source-49be4d0097fbe26b35c8d39d
     resource: repo://openspec/changes/archive/add-knowledge-search.md
-  - id: openwiki-source-ecf3e3e6d3946148b78db293
-    resource: repo://openspec/changes/canonical-universal-install/.openspec.yaml
-  - id: openwiki-source-7ba4f01e3797f49e37ef0adc
-    resource: repo://openspec/changes/canonical-universal-install/design.md
-  - id: openwiki-source-545e83dfac0165c5342cef38
-    resource: repo://openspec/changes/canonical-universal-install/proposal.md
-  - id: openwiki-source-90838e50b13f4d86fb3f6a42
-    resource: repo://openspec/changes/canonical-universal-install/specs/agent-integration-spread/spec.md
-  - id: openwiki-source-0311402371adf5cfcd658a84
-    resource: repo://openspec/changes/canonical-universal-install/specs/aksk-bootstrap/spec.md
-  - id: openwiki-source-7c39b0010ecc4bc50c9c670f
-    resource: repo://openspec/changes/canonical-universal-install/specs/canonical-user-skills-scope/spec.md
   - id: openwiki-source-38af7bdd34d817fbd3c29077
     resource: repo://openspec/config.yaml
+  - id: openwiki-source-3916774ed58b99715e8ff081
+    resource: repo://openspec/specs/agent-integration-spread/spec.md
   - id: openwiki-source-f7767c74e12e946558d335f1
     resource: repo://openspec/specs/agents-md-bootstrap/spec.md
+  - id: openwiki-source-c23cb9e8edf20ed2740abea1
+    resource: repo://openspec/specs/aksk-bootstrap/spec.md
+  - id: openwiki-source-d682bd16449a28825541bbed
+    resource: repo://openspec/specs/aksk-init/spec.md
+  - id: openwiki-source-e057169748acea114e857ee9
+    resource: repo://openspec/specs/canonical-user-skills-scope/spec.md
   - id: openwiki-source-86a9b374cb99ed0befc3bb8d
     resource: repo://openspec/specs/closeout-change-linking/spec.md
   - id: openwiki-source-dc51f338f00dcd0763b107a6
@@ -59,7 +61,7 @@ sources:
     resource: repo://openspec/specs/distill-routing/spec.md
   - id: openwiki-source-53df649d4fbc85ef0839d164
     resource: repo://openspec/specs/wiki-contract/spec.md
-generated: { by: "openwiki/0.4.3", at: "2026-08-29T21:15:47.181Z" }
+generated: { by: "openwiki/0.4.3", at: "2026-08-30T01:40:39.325Z" }
 ---
 
 # OpenSpec Governance
@@ -132,7 +134,7 @@ openspec/changes/<kebab-name>/
 * `proposal.md` is mandatory. `design.md` and `tasks.md` are generated in dependency order via `openspec instructions <artifact> --change <name> --json`.
 * Delta specs are capability-scoped. They use delta semantics against the corresponding `openspec/specs/<capability>/spec.md` — the main spec is never edited while the change is active.
 
-Example active set (12 at time of writing): `canonical-universal-install`, `add-task-start`, `adopt-workflows-taxonomy`, `implement-operating-contract-and-triggers`, `add-integrations`, plus seven supporting proposals. Each carries the shape above.
+Example active set (11 at time of writing): `add-task-start`, `add-integrations`, `add-script-tests`, `adopt-workflows-taxonomy`, `implement-operating-contract-and-triggers`, `consumer-upgrade-path`, plus five supporting proposals. Each carries the shape above. `canonical-universal-install` has graduated and is now archived.
 
 ### Graduated versus delta specs
 
@@ -142,25 +144,25 @@ Example active set (12 at time of writing): `canonical-universal-install`, `add-
 | `openspec/specs/<cap>/spec.md` | graduated | durable SHALL requirements for the repo | `opsx:archive` sync step |
 | `openspec/changes/archive/YYYY-MM-DD-<name>/` | archived | frozen record of what shipped | `opsx:archive` move |
 
-Ten capabilities are currently graduated: `openspec-integration`, `remove-write-plan` (pre-2.0), plus `wiki-contract`, `distill-routing`, `cross-tool-lint`, `closeout-change-linking` (from `adopt-openspec-openwiki`), `install-lanes`, `aksk-bootstrap`, `agent-integration-spread`, and `agents-md-bootstrap` (from the 2026-08-29 wave). Requirements live only here — distillation never duplicates a SHALL as a wiki page; it cites the capability instead (see [Knowledge Curation Contract](../concepts/knowledge-curation-contract.md)).
+Twelve capabilities are currently graduated: `openspec-integration`, `remove-write-plan` (pre-2.0), plus `wiki-contract`, `distill-routing`, `cross-tool-lint`, `closeout-change-linking` (from `adopt-openspec-openwiki`), `install-lanes`, `aksk-bootstrap`, `agent-integration-spread`, `agents-md-bootstrap` (from the 2026-08-29 wave), `canonical-user-skills-scope` (from `canonical-universal-install`), and `aksk-init` (from `split-bootstrap-init`). Requirements live only here — distillation never duplicates a SHALL as a wiki page; it cites the capability instead (see [Knowledge Curation Contract](../concepts/knowledge-curation-contract.md)).
 
 Legacy hand-authored proposals predating the structured spec format survive as flat files under `openspec/changes/archive/*.md` with the same intent but without delta semantics.
 
-### Pending proposal: `canonical-universal-install` (Proposal-only)
+### Graduated change: `canonical-universal-install` (archived 2026-08-29)
 
-`openspec/specs/**` remains truth. `openspec/changes/canonical-universal-install/` is **not** yet graduated — do not treat its deltas as contract until archived.
+`openspec/changes/archive/2026-08-29-canonical-universal-install/` is **graduated** — its deltas have been promoted to `openspec/specs/**` and are now contract. Do not cite the archive directory as proposal; cite the graduated specs.
 
-What it proposes (BREAKING):
+What it shipped (BREAKING):
 
 * **Canonical store:** `~/.agents/skills` (universal, Codex default) plus the self-reported current host's dir (`~/.codex/skills`, `~/.claude/skills`, etc.) via `npx skills add -g -a <self-reported> <source>`. Applies to `Hypercubed/Agent-Knowledge-Starter-Kit` and `langchain-ai/openwiki` (`--full-depth` for openwiki). Extra `-a <other>` or `--all` only when the user explicitly asked at install time — no wide spread by default, no persistent consent artifact.
 * **`npx` required, clone fallback removed:** `git clone --depth 1 && cp -r .agents/skills` is deleted. Missing `npx` is reported as a prerequisite in the bootstrap INSTRUCT lane, not silently copied.
-* **Delta specs (proposal-only):** `ADDED` `canonical-user-skills-scope` with `~/.agents/skills` canonical, `npx` required, universal+current default, `references/versions.json` via `versionsFromPackageJson()` for version pins (caret, fallback `@latest`), and verification asserting `~/.agents/skills/<name>/SKILL.md`; `MODIFIED` `aksk-bootstrap` (two verbs: verify CLIs then verify skills in canonical store, `openwiki integrations install <self-reported>` when that host is in `codex|claude|opencode` else `npx` + `openwiki mcp`/`add-mcp` chooser) and `MODIFIED` `agent-integration-spread` (same universal+current scoping, `openwiki integrations install` vs `npx skills add -g` + `npx add-mcp` ladder, verified via `openwiki integrations list` vs `list --project`).
+* **Graduated specs:** `ADDED` `canonical-user-skills-scope` with `~/.agents/skills` canonical, `npx` required, universal+current default, `references/versions.json` via `versionsFromPackageJson()` for version pins (caret, fallback `@latest`), and verification asserting `~/.agents/skills/<name>/SKILL.md`; `MODIFIED` `agent-integration-spread` (same universal+current scoping, `openwiki integrations install` vs `npx skills add -g` + `npx add-mcp` ladder, verified via `openwiki integrations list` vs `list --project`). `aksk-bootstrap` is now global-only — per-repo scaffolding moved to `aksk-init` via `split-bootstrap-init`, but the canonical store invariant remains enforced by both lanes.
 
-Until `opsx:archive` promotes these deltas, the graduated specs `install-lanes`, `aksk-bootstrap`, and `agent-integration-spread` still describe the repo-local `./.agents/skills` default with clone fallback and headless `openwiki --init -p` ladder. Treat any `~/.agents/skills` language outside the proposal directory as preview.
+The graduated specs `canonical-user-skills-scope` and `agent-integration-spread` now describe the `~/.agents/skills` default with `npx` required and registry-vs-`add-mcp` ladder. Repo-local `./.agents/skills` is an explicit override (documented as override A), not the default.
 
 ### Pending proposal: `add-task-start` (Proposal-only)
 
-`openspec/specs/**` remains truth. `openspec/changes/add-task-start/` is **not** yet graduated — do not treat its deltas as contract until archived.
+`openspec/specs/**` remains truth for this capability. `openspec/changes/add-task-start/` is **not** yet graduated — do not treat its deltas as contract until archived.
 
 What it proposes:
 
@@ -251,12 +253,12 @@ Archiving freezes intent. But intent without descriptive follow-through is debt.
 
 ### The archive tree
 
-`openspec/changes/archive/` is date-prefixed (`YYYY-MM-DD-<name>/`) plus the legacy flat-file entries. Four waves are visible:
+`openspec/changes/archive/` is date-prefixed (`YYYY-MM-DD-<name>/`) plus the legacy flat-file entries. Five waves are visible:
 
 * **2026-05-16** — `add-openspec-integration` (adopted OpenSpec itself).
 * **2026-07-18/19** — five wiki-related proposals marked Overcome-By-Events by `integrate-openwiki-skills`, plus `remove-write-plan`.
 * **2026-08-23** — `adopt-openspec-openwiki` archived as fully applied (four specs graduated), plus superseded retirements (`integrate-openwiki-skills`, `aksk-install-tools`, `aksk-openspec-bridge`, `escalate-quick-reference`).
-* **2026-08-29** — `add-agents-md-bootstrap` (seed `AGENTS.md` from vendored baseline), `aksk-bootstrap-system` (orchestrator skill + deterministic `bootstrap.mjs`), and `reorder-install-lanes-drop-example` (lanes reordered, `example/` removed).
+* **2026-08-29** — `add-agents-md-bootstrap` (seed `AGENTS.md` from vendored baseline), `aksk-bootstrap-system` (orchestrator skill + deterministic `bootstrap.mjs`), `reorder-install-lanes-drop-example` (lanes reordered, `example/` removed), `canonical-universal-install` (canonical `~/.agents/skills` + universal+current, `npx` required, `canonical-user-skills-scope` ADDED), and `split-bootstrap-init` (`aksk-bootstrap` global-only, `aksk-init` per-repo).
 
 Each archived directory preserves proposal/design/tasks and delta specs as the audit trail.
 

@@ -1,27 +1,21 @@
 ---
-type: concept
-title: Knowledge Curation Contract
-description: How AKSK curates OpenWiki knowledge — curated trees, the INSTRUCTIONS.md attachment contract, preserve-and-link update semantics, aksk_* frontmatter extensions, and the descriptive versus prescriptive routing that distillation enforces.
-tags:
-- knowledge
-- curation
-- openwiki
-- distill-routing
-- wiki-contract
+type: "Reference"
+title: "Knowledge Curation Contract"
+openwiki_generated: true
 verified:
   - by: openwiki/0.4.3
-    at: 2026-08-29T20:18:58.499Z
+    at: 2026-08-30T01:40:39.325Z
 sources:
-  - id: openwiki-source-7381bbb8d2e7fd02da7469ce
-    resource: repo://.agents/skills/aksk-bootstrap/references/wiki-contract-template.md
-  - id: openwiki-source-d56b5afb22742020f2ab6b59
-    resource: repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs
   - id: openwiki-source-d1960e41bf9a48af26e81829
     resource: repo://.agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs
   - id: openwiki-source-dce50581779fda5dd507dc34
     resource: repo://.agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs
-  - id: openwiki-source-dc8872a5e7d386c22ea2f135
-    resource: repo://.agents/skills/aksk-bootstrap/SKILL.md
+  - id: openwiki-source-d786624ba23d2df437591102
+    resource: repo://.agents/skills/aksk-init/references/wiki-contract-template.md
+  - id: openwiki-source-ff2d87cb54c01d07d6371400
+    resource: repo://.agents/skills/aksk-init/scripts/attach_wiki_contract.mjs
+  - id: openwiki-source-4ab0b6cc58dd78f7a5c0603e
+    resource: repo://.agents/skills/aksk-init/SKILL.md
   - id: openwiki-source-5af7f373fcb21f142106673c
     resource: repo://.agents/skills/docs-lint/SKILL.md
   - id: openwiki-source-513536a60f0bc38be6c6d845
@@ -34,8 +28,9 @@ sources:
     resource: repo://openspec/specs/distill-routing/spec.md
   - id: openwiki-source-53df649d4fbc85ef0839d164
     resource: repo://openspec/specs/wiki-contract/spec.md
-generated: { by: "openwiki/0.4.3", at: "2026-08-29T20:18:58.499Z" }
+generated: { by: "openwiki/0.4.3", at: "2026-08-30T01:40:39.325Z" }
 ---
+
 
 # Knowledge Curation Contract
 
@@ -68,7 +63,7 @@ The contract itself lives inside `openwiki/INSTRUCTIONS.md`, bounded by marker p
 
 ### Attach mechanism
 
-`node .agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs [repo-root]` owns this section:
+`node .agents/skills/aksk-init/scripts/attach_wiki_contract.mjs [repo-root]` owns this section:
 
 * Reads the desired section verbatim from `references/wiki-contract-template.md` — markers are part of the template, not hard-coded separately.
 * If `openwiki/INSTRUCTIONS.md` does not exist, exits `2` with the verbatim prerequisite `` openwiki --init `` and performs **no writes**. This enforces that AKSK never creates a wiki; it only attaches to an already-initialized one.
@@ -166,7 +161,7 @@ Two hard boundaries cut across the table:
 
 Distillation never invokes `openwiki --update`. Its write path is:
 
-1. **Fail closed before any write.** Verify `openwiki` and `openspec` binaries on PATH via `check_peer_tools.mjs` and that `openwiki/INSTRUCTIONS.md` carries the `AKSK:WIKI-CONTRACT` markers. If the binary is absent, the check prints one error per missing tool plus the exact install commands (`npm i -g @fission-ai/openspec@latest`, `npm i -g openwiki@latest`) and exits `2`; if the contract is absent, it points to `attach_wiki_contract.mjs`. No wiki page is written on failure.
+1. **Fail closed before any write.** Verify `openwiki` and `openspec` binaries on PATH via `check_peer_tools.mjs` and that `openwiki/INSTRUCTIONS.md` carries the `AKSK:WIKI-CONTRACT` markers. If the binary is absent, the check prints one error per missing tool plus the exact install commands (`npm i -g @fission-ai/openspec@latest`, `npm i -g openwiki@latest`) and exits `2`; if the contract is absent, it points to `attach_wiki_contract.mjs` under `aksk-init`. No wiki page is written on failure.
 2. **Author the page directly.** Load authoring guidance at runtime from the globally installed package (`openwiki/dist/agent/prompt.js`, `createSystemPrompt("init" | "update")`) and validate with `openwiki/dist/okf/frontmatter.js` (`validateOkfFrontmatter`). Fix every reported frontmatter issue before continuing.
 3. **Refresh indexes deterministically.** Run `node .agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs`. The script locates the global package via `npm root -g`, dynamically imports `agent/docs-only-backend.js` and `okf/index-sync.js`, constructs `OpenWikiLocalShellBackend` with `docsOnly: true` and `virtualMode: true`, and calls `synchronizeWikiIndexes(backend, "repository")`. This keeps curated page bodies byte-identical while rebuilding `openwiki/index.md` and directory indexes. The script exits `2` with remediation hints when the wiki is uninitialized or the package is missing.
 4. **Mark distilled.** Set `distilled: true` and `distillation_status` on the bundle's `summary.json`; accountability lives in bundle flags plus git history — there is no separate log file.
@@ -183,7 +178,7 @@ Bundle discovery itself has an invariant: per-task folders under `.agents/sessio
 
 ## Operations and extension
 
-* **Verify the wiki contract:** `node .agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs` — safe to run repeatedly; re-run after kit upgrades that change the template.
+* **Verify the wiki contract:** `node .agents/skills/aksk-init/scripts/attach_wiki_contract.mjs` — safe to run repeatedly; re-run after kit upgrades that change the template.
 * **Verify peer tools:** `node .agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs openspec openwiki` — every skill that invokes `openspec` or `openwiki` should call this (or import `requireBinaries`) before use.
 * **Refresh indexes after curated edits:** `node .agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs` — the only supported way to rebuild indexes outside `openwiki --update`.
 * **Validate frontmatter:** `validateOkfFrontmatter` against `decision-frontmatter.schema.json` / `troubleshooting-frontmatter.schema.json`; `bash scripts/check-agents-structure.sh` for structural invariants.
@@ -196,5 +191,6 @@ Bundle discovery itself has an invariant: per-task folders under `.agents/sessio
 * [The Knowledge Layer](../architecture/knowledge-layer.md) — tree shape, frontmatter table, and supersession convention that implement the contract's data rules.
 * [Task Lifecycle and Session Bundles](../architecture/task-lifecycle.md) — bundle shape, `task_id` identity, `openspec_change` link, and the state machine that ends in deterministic index sync.
 * [learning-distill Skill](../skills/learning-distill.md) — the routing procedure that consumes the contract at distill time.
-* [aksk-bootstrap Skill](../skills/aksk-bootstrap.md) — peer-tool verification and contract-attachment entrypoints.
+* [aksk-init Skill](../skills/aksk-init.md) — contract-attachment and per-repo initialization entrypoints.
+* [aksk-bootstrap Skill](../skills/aksk-bootstrap.md) — peer-tool verification and global bootstrap.
 * [docs-lint Skill](../skills/docs-lint.md) — wiring versus content checks that keep the contract coherent.

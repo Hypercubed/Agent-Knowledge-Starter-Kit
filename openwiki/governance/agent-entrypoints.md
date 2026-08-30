@@ -1,20 +1,35 @@
 ---
-type: governance
-title: Agent Entrypoints and Routing
-description: How coding agents discover the knowledge layer via root AGENTS.md routing into portable .agents/AGENTS.md and JIT openwiki/index.md, including startup read order, grep-first debugging, and decision-search mandates.
-tags: [agents, entrypoints, routing, openwiki, knowledge-layer, bootstrap]
+type: "Reference"
+title: "Agent Entrypoints and Routing"
+openwiki_generated: true
 verified:
   - by: openwiki/0.4.3
-    at: 2026-08-29T20:18:58.499Z
+    at: 2026-08-30T01:40:39.325Z
 sources:
   - id: openwiki-source-221b8d1823c4691ef36ad664
     resource: repo://.agents/AGENTS.md
+  - id: openwiki-source-f62b29e03158ee0b0736e6c7
+    resource: repo://.agents/skills/aksk-bootstrap/references/agents-md-baseline-template.md
   - id: openwiki-source-da03faceacac4fd818b473f3
     resource: repo://.agents/skills/aksk-bootstrap/references/lifecycle-template.md
   - id: openwiki-source-0294ec7c02cfa2beeca87331
     resource: repo://.agents/skills/aksk-bootstrap/references/routing-note-template.md
-  - id: openwiki-source-dc8872a5e7d386c22ea2f135
-    resource: repo://.agents/skills/aksk-bootstrap/SKILL.md
+  - id: openwiki-source-c056a1ca61c0634d11844713
+    resource: repo://.agents/skills/aksk-bootstrap/references/versions.json
+  - id: openwiki-source-7381bbb8d2e7fd02da7469ce
+    resource: repo://.agents/skills/aksk-bootstrap/references/wiki-contract-template.md
+  - id: openwiki-source-5398a69cb2cf8d556809da57
+    resource: repo://.agents/skills/aksk-bootstrap/scripts/attach_section.mjs
+  - id: openwiki-source-d56b5afb22742020f2ab6b59
+    resource: repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs
+  - id: openwiki-source-78293e08bbba4e65fb2685ae
+    resource: repo://.agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs
+  - id: openwiki-source-5ffa21d5a23117c638ca72b7
+    resource: repo://.agents/skills/aksk-bootstrap/scripts/bootstrap.mjs
+  - id: openwiki-source-181fd64540d760eef80f754f
+    resource: repo://.agents/skills/aksk-bootstrap/scripts/init_agents_md.mjs
+  - id: openwiki-source-dce50581779fda5dd507dc34
+    resource: repo://.agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs
   - id: openwiki-source-ea70eb6c045047448e446296
     resource: repo://.gitignore
   - id: openwiki-source-8037e2358a2c4f9b2c722a11
@@ -25,8 +40,9 @@ sources:
     resource: repo://docs/integrations/README.md
   - id: openwiki-source-096a781fb160ef979fa31121
     resource: repo://INSTALL.md
-generated: { by: "openwiki/0.4.3", at: "2026-08-29T20:18:58.499Z" }
+generated: { by: "openwiki/0.4.3", at: "2026-08-30T01:40:39.325Z" }
 ---
+
 
 # Agent Entrypoints and Routing
 
@@ -83,7 +99,7 @@ Root `AGENTS.md` is a stacked, marker-delimited file defined in [AGENTS.md Zonin
 
 **Current state in this repo:** the behavioral baseline (sections 0–8) is hand-authored inline without `AKSK:AGENTS-BASELINE` markers. The OpenWiki and both AKSK blocks are present and ordered correctly. This is the pre-seed state described in [The Knowledge Layer](../architecture/knowledge-layer.md) — `init_agents_md.mjs` has not yet been run to vendor the baseline zone. Until it runs, baseline refresh leaves this file untouched.
 
-`attach_section.mjs` is the sole writer for `AKSK:ROUTING`/`AKSK:LIFECYCLE`: idempotent, self-updating (trimmed compare, then regex swap between markers), creates the target file if missing, never touches content outside its marker pair, and reads markers from the template at runtime via `markersOf()`. See [Packaging and Install Lanes](../distribution/packaging-and-install.md) for the deterministic bootstrap composition order (global `npm i -g` → `init_agents_md.mjs` → OpenWiki block → `attach_section.mjs`).
+`attach_section.mjs` is the sole writer for `AKSK:ROUTING`/`AKSK:LIFECYCLE`: idempotent, self-updating (trimmed compare, then regex swap between markers), creates the target file if missing, never touches content outside its marker pair, and reads markers from the template at runtime via `markersOf()`. See [Packaging and Install Lanes](../distribution/packaging-and-install.md) for the deterministic bootstrap composition order (global `npm i -g` via `bootstrap-global.mjs` → per-repo `aksk-init` → OpenWiki block → `attach_section.mjs`).
 
 ## `.agents/AGENTS.md` — Portable Prescriptive Layer
 
@@ -172,7 +188,7 @@ For adopters, the equivalent entrypoint set per tool is catalogued under `docs/i
 - **Rules-based IDE wiring:** Cursor (`.cursor/rules/`), GitHub Copilot (`.github/copilot-instructions.md`)
 - **Persistent memory / runtime boundary:** Hermes, Antigravity, Agentic Sandbox
 
-Preferred path is **EXECUTE lane** via `node .agents/skills/aksk-bootstrap/scripts/bootstrap.mjs [repo-root]` — it handles routing-block attachment, curation-contract attachment, and per-agent spread (`openwiki integrations install <codex|claude|opencode>` vs headless `openwiki --init -p` / `--update -p`). Per-tool guides are the INSTRUCT-lane/manual fallback. Do not hardcode skill paths like `~/.agents/skills/` — derive targets from `openwiki integrations install` and `openwiki integrations list`.
+Preferred path is **EXECUTE lane** via `node .agents/skills/aksk-bootstrap/scripts/bootstrap.mjs [repo-root]` — shim that runs `bootstrap-global.mjs` (global `npm i -g` lane) then `aksk-init` repo lane when present — handling routing-block attachment, curation-contract attachment, and per-agent spread (`openwiki integrations install <codex|claude|opencode>` vs headless `openwiki --init -p` / `--update -p`) with receipt-partitioned installs. Per-tool guides are the INSTRUCT-lane/manual fallback. Do not hardcode skill paths like `~/.agents/skills/` — derive targets from `openwiki integrations install` and `openwiki integrations list`.
 
 **Thin-bootstrap invariant:** tool-specific entry files route rather than duplicate. `/CLAUDE.md` in this repo demonstrates it — entire body is an `OPENWIKI:START/END` block linking to `AGENTS.md` (decision `use-the-routing-pattern-for-agentic-tool-bootstrap-files`). Ten integration guides were converted to the `attach_section.mjs` instruction during dogfood task 5.4.
 
@@ -183,7 +199,7 @@ Preferred path is **EXECUTE lane** via `node .agents/skills/aksk-bootstrap/scrip
 - **`OPENWIKI:START/END` never hand-edited.** Lint verifies presence only; OpenWiki tooling owns the content.
 - **AKSK managed blocks refreshed only via `attach_section.mjs`.** Hand edits are corrected by rerunning the owning script.
 - **Concurrency guard.** Before editing when `openwiki` may be active, check `test -f openwiki/.run.json && echo "openwiki running: $(jq -r .phase openwiki/.run.json)"`; if running, wait or notify — editing mid-run leaves `openwiki/.last-update.json: status: "interrupted"` and forces the next run to re-plan.
-- **Missing prerequisites fail closed with remediation.** Missing `openwiki --init` or missing `openspec`/`openwiki` binary exits 2 with the exact install command (`npm i -g @fission-ai/openspec@... openwiki@...`); verification never attempts silent installation beyond the deterministic global lane of `bootstrap.mjs`.
+- **Missing prerequisites fail closed with remediation.** Missing `openwiki --init` or missing `openspec`/`openwiki` binary exits 2 with the exact install command (`npm i -g @fission-ai/openspec@... openwiki@...`); verification never attempts silent installation beyond the deterministic global lane of `bootstrap-global.mjs`.
 
 ## Operations and Focused Validation
 

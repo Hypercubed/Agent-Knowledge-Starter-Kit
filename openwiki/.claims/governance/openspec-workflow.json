@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:65a9ea14927110234233c4100a76b59f2cd1d88afeeb4662604ef20cc026b85d",
+  "pageVersion": "sha256:410c2a57c6e553086b75f40113e524aa2fa68bc16174f7deb6ce0c4763b968e0",
   "claims": [
     {
       "id": "claim_fe534ca7f2554e8eac1040e992646716",
@@ -11,8 +11,8 @@
           "version": "repo-file-v1:sha256:995f99110b1bf362ab6caeaa0d0d0b9a68e72225875a41bb49a2013a2158ec57"
         },
         {
-          "resource": "repo://openspec/specs/aksk-bootstrap/spec.md",
-          "version": "repo-file-v1:sha256:e77c17daefa5454ea64591838d3fdaf7f6c1c39dfe5d51291c556c132e30df14"
+          "resource": "repo://openspec/specs/canonical-user-skills-scope/spec.md",
+          "version": "repo-file-v1:sha256:f1160ef5df943f07c1740ae68b9ea54161d45bfbeed0bda140b10bab9de2ff64"
         },
         {
           "resource": "repo://openspec/specs/closeout-change-linking/spec.md",
@@ -32,7 +32,7 @@
     },
     {
       "id": "claim_196eb625fc02402c808d731ef7f55473",
-      "statement": "openspec/config.yaml selects schema: spec-driven and defines context plus per-artifact rules for proposal, design, and tasks that bind every change to task-start → task-closeout → learning-distill → docs-lint.",
+      "statement": "openspec/config.yaml selects schema: spec-driven and defines context plus per-artifact rules for proposal, design, and tasks that bind every change to task-closeout → learning-distill → docs-lint (task-start is pending via add-task-start).",
       "evidence": [
         {
           "resource": "repo://openspec/config.yaml",
@@ -45,12 +45,12 @@
       "statement": "An active change directory holds .openspec.yaml with schema and created date, mandatory proposal.md, generated design.md and tasks.md, and optional capability-scoped delta specs at specs/<capability>/spec.md using ADDED/MODIFIED delta semantics against graduated specs.",
       "evidence": [
         {
-          "resource": "repo://openspec/changes/add-task-start/specs/task-start/spec.md",
-          "version": "repo-file-v1:sha256:152355639b97c963756eca910de7e41e01b8d70b5ea9cbb484382fa95f8cd51d"
+          "resource": "repo://openspec/changes/add-integrations/.openspec.yaml",
+          "version": "repo-file-v1:sha256:1301b2edceae216222c5459139422cde7ba1cbf0639f4d24f47a9318d1ab57dc"
         },
         {
-          "resource": "repo://openspec/changes/canonical-universal-install/.openspec.yaml",
-          "version": "repo-file-v1:sha256:f4a1a5ebcaf832a382f8bba53f7c81d9fa7e1a92b3d01f6b7d8fc34e77619b07"
+          "resource": "repo://openspec/changes/add-task-start/specs/task-start/spec.md",
+          "version": "repo-file-v1:sha256:152355639b97c963756eca910de7e41e01b8d70b5ea9cbb484382fa95f8cd51d"
         },
         {
           "resource": "repo://openspec/config.yaml",
@@ -60,11 +60,11 @@
     },
     {
       "id": "claim_6bbadd9665214c299724c4b47ee75a56",
-      "statement": "Graduated specs live under openspec/specs/<capability>/spec.md as durable SHALL requirements; ten capabilities are now graduated including aksk-bootstrap, agents-md-bootstrap, install-lanes, agent-integration-spread plus wiki-contract, distill-routing, cross-tool-lint, closeout-change-linking, openspec-integration and remove-write-plan.",
+      "statement": "Graduated specs live under openspec/specs/<capability>/spec.md as durable SHALL requirements; 12 capabilities are now graduated including aksk-bootstrap (global-only), aksk-init, agents-md-bootstrap, install-lanes, agent-integration-spread, canonical-user-skills-scope plus wiki-contract, distill-routing, cross-tool-lint, closeout-change-linking, openspec-integration and remove-write-plan.",
       "evidence": [
         {
           "resource": "repo://openspec/specs/agent-integration-spread/spec.md",
-          "version": "repo-file-v1:sha256:1a056445a40a54a1a3133332b90af43f52e521d7aa38f8726cf7333f79740618"
+          "version": "repo-file-v1:sha256:4d10190096ddb3db819a96eb0a7ca25686b391348f3d827a12b65fdaf4e72f2f"
         },
         {
           "resource": "repo://openspec/specs/agents-md-bootstrap/spec.md",
@@ -72,7 +72,15 @@
         },
         {
           "resource": "repo://openspec/specs/aksk-bootstrap/spec.md",
-          "version": "repo-file-v1:sha256:e77c17daefa5454ea64591838d3fdaf7f6c1c39dfe5d51291c556c132e30df14"
+          "version": "repo-file-v1:sha256:57bf5324e654077e03ab8fd27f2db0c993eb315dd0c77ec3a5e223fd96bf59af"
+        },
+        {
+          "resource": "repo://openspec/specs/aksk-init/spec.md",
+          "version": "repo-file-v1:sha256:a9691a718c37b39d54cd5eed8f1e8318e837d11ae4f477e67223b5cece84158c"
+        },
+        {
+          "resource": "repo://openspec/specs/canonical-user-skills-scope/spec.md",
+          "version": "repo-file-v1:sha256:f1160ef5df943f07c1740ae68b9ea54161d45bfbeed0bda140b10bab9de2ff64"
         },
         {
           "resource": "repo://openspec/specs/install-lanes/spec.md",
@@ -82,7 +90,7 @@
     },
     {
       "id": "claim_50bf3c56f3c84cffbd36e7ee648b5f3c",
-      "statement": "add-task-start introduces a proactive task-start that creates .agents/sessions/YYYYMMDD-HHMMSS-short-topic/ and seeds summary.json with task_id, created_at, status in_progress and optional openspec_change; task-closeout finalizes the same file preserving task_id and openspec_change and appending completed_at, final status and validation, falling back to generation when no seed exists.",
+      "statement": "add-task-start (proposal-only) introduces a proactive task-start that creates .agents/sessions/YYYYMMDD-HHMMSS-short-topic/ and seeds summary.json with task_id, created_at, status in_progress and optional openspec_change; task-closeout finalizes the same file preserving task_id and openspec_change and appending completed_at, final status and validation, falling back to generation when no seed exists.",
       "evidence": [
         {
           "resource": "repo://openspec/changes/add-task-start/design.md",
@@ -110,18 +118,14 @@
     },
     {
       "id": "claim_fb0723415a644058be47a98523409152",
-      "statement": "canonical-universal-install makes ~/.agents/skills (universal Codex default) plus the self-reported current host via npx skills add -g -a <self-reported> <source> the canonical store for AKSK and langchain-ai/openwiki; extra -a <other> or --all only with explicit user request at install time.",
+      "statement": "canonical-user-skills-scope (graduated from canonical-universal-install) makes ~/.agents/skills (universal Codex default) plus the self-reported current host via npx skills add -g -a <self-reported> <source> the canonical store for AKSK and langchain-ai/openwiki; extra -a <other> or --all only with explicit user request at install time.",
       "evidence": [
         {
-          "resource": "repo://openspec/changes/canonical-universal-install/design.md",
-          "version": "repo-file-v1:sha256:436b515cabebd46beab15d25de2401ac1c0b0e0ba6a24030e57da4c37d4ebcac"
+          "resource": "repo://openspec/changes/archive/2026-08-29-canonical-universal-install/specs/canonical-user-skills-scope/spec.md",
+          "version": "repo-file-v1:sha256:f1160ef5df943f07c1740ae68b9ea54161d45bfbeed0bda140b10bab9de2ff64"
         },
         {
-          "resource": "repo://openspec/changes/canonical-universal-install/proposal.md",
-          "version": "repo-file-v1:sha256:641920026ae4713d450f9df8bceefc01cbdb00526ae6e06fa68c6be14f16fe29"
-        },
-        {
-          "resource": "repo://openspec/changes/canonical-universal-install/specs/canonical-user-skills-scope/spec.md",
+          "resource": "repo://openspec/specs/canonical-user-skills-scope/spec.md",
           "version": "repo-file-v1:sha256:f1160ef5df943f07c1740ae68b9ea54161d45bfbeed0bda140b10bab9de2ff64"
         }
       ]
@@ -131,36 +135,40 @@
       "statement": "The clone fallback git clone --depth 1 && cp -r .agents/skills is removed; npx is required and the bootstrap INSTRUCT lane reports missing npx as a prerequisite instead of silently copying.",
       "evidence": [
         {
-          "resource": "repo://openspec/changes/canonical-universal-install/specs/canonical-user-skills-scope/spec.md",
+          "resource": "repo://openspec/specs/canonical-user-skills-scope/spec.md",
           "version": "repo-file-v1:sha256:f1160ef5df943f07c1740ae68b9ea54161d45bfbeed0bda140b10bab9de2ff64"
         }
       ]
     },
     {
       "id": "claim_c22073cc9ef64ba682e8b95f2c03e292",
-      "statement": "Bootstrap is tightened to two verbs: verify CLIs (openspec/openwiki on PATH, npm i -g in user scope with caret from references/versions.json via versionsFromPackageJson) then verify skills (~/.agents/skills/<name>/SKILL.md presence and npx skills add -g -a <self-reported> if missing) with openwiki two-track for MCP.",
+      "statement": "The global lane (aksk-bootstrap) is tightened to two verbs: verify CLIs (openspec/openwiki on PATH, npm i -g in user scope with caret from references/versions.json via versionsFromPackageJson) then verify skills (~/.agents/skills/<name>/SKILL.md presence and npx skills add -g -a <self-reported> if missing) with openwiki two-track for MCP; per-repo scaffolding is now owned by aksk-init.",
       "evidence": [
         {
-          "resource": "repo://openspec/changes/canonical-universal-install/specs/aksk-bootstrap/spec.md",
-          "version": "repo-file-v1:sha256:144e0da3f210ba50679600378ac20cb00aa4e1a1f9ecab2cf06eb6b5df33b35c"
-        },
-        {
-          "resource": "repo://openspec/changes/canonical-universal-install/specs/canonical-user-skills-scope/spec.md",
-          "version": "repo-file-v1:sha256:f1160ef5df943f07c1740ae68b9ea54161d45bfbeed0bda140b10bab9de2ff64"
-        },
-        {
           "resource": "repo://openspec/specs/aksk-bootstrap/spec.md",
-          "version": "repo-file-v1:sha256:e77c17daefa5454ea64591838d3fdaf7f6c1c39dfe5d51291c556c132e30df14"
+          "version": "repo-file-v1:sha256:57bf5324e654077e03ab8fd27f2db0c993eb315dd0c77ec3a5e223fd96bf59af"
+        },
+        {
+          "resource": "repo://openspec/specs/aksk-init/spec.md",
+          "version": "repo-file-v1:sha256:a9691a718c37b39d54cd5eed8f1e8318e837d11ae4f477e67223b5cece84158c"
+        },
+        {
+          "resource": "repo://openspec/specs/canonical-user-skills-scope/spec.md",
+          "version": "repo-file-v1:sha256:f1160ef5df943f07c1740ae68b9ea54161d45bfbeed0bda140b10bab9de2ff64"
         }
       ]
     },
     {
       "id": "claim_c8219eed87bd4a2d95c605f06cf256ed",
-      "statement": "Bootstrap invariants include preflight detection of Node major version (>=22), openspec/openwiki on PATH, .agents/openspec/openwiki trees and .openwiki-install.json receipts before any write, once-per-user global lane, per-repo scaffolding via openspec init, minimal .agents scaffold, append-only contract attachment and routing merge preserving any existing OpenWiki block, never-half-install clean exit without partial state, and idempotent re-run.",
+      "statement": "Bootstrap invariants are split: aksk-bootstrap handles preflight detection of Node major version (>=22), openspec/openwiki on PATH and receipts, once-per-user global lane, never-half-install clean exit and idempotent global re-run; aksk-init handles per-repo preflight (fail-fast to aksk-bootstrap), .agents scaffold with AGENTS.md baseline first, openspec init, minimal scaffold, append-only contract attachment and routing merge, and partitioned INSTRUCT. Both lanes are non-interactive with skills prompting [Y/n/skip] and supporting --yes/AKSK_YES=1.",
       "evidence": [
         {
           "resource": "repo://openspec/specs/aksk-bootstrap/spec.md",
-          "version": "repo-file-v1:sha256:e77c17daefa5454ea64591838d3fdaf7f6c1c39dfe5d51291c556c132e30df14"
+          "version": "repo-file-v1:sha256:57bf5324e654077e03ab8fd27f2db0c993eb315dd0c77ec3a5e223fd96bf59af"
+        },
+        {
+          "resource": "repo://openspec/specs/aksk-init/spec.md",
+          "version": "repo-file-v1:sha256:a9691a718c37b39d54cd5eed8f1e8318e837d11ae4f477e67223b5cece84158c"
         }
       ]
     },
@@ -189,12 +197,8 @@
       "statement": "Agent integration spread selects per host: openwiki integrations install <codex|claude|opencode> when supported (skill+MCP atomically with .openwiki-install.json receipt) otherwise npx skills add --full-depth plus npx add-mcp/openwiki mcp --host; any target already holding .openwiki-install.json is skipped as owned by the official lane.",
       "evidence": [
         {
-          "resource": "repo://openspec/changes/canonical-universal-install/specs/agent-integration-spread/spec.md",
-          "version": "repo-file-v1:sha256:c7823e7f1a87322932478821ba8b1c2277e9531b18be1130790d87c202ca5706"
-        },
-        {
           "resource": "repo://openspec/specs/agent-integration-spread/spec.md",
-          "version": "repo-file-v1:sha256:1a056445a40a54a1a3133332b90af43f52e521d7aa38f8726cf7333f79740618"
+          "version": "repo-file-v1:sha256:4d10190096ddb3db819a96eb0a7ca25686b391348f3d827a12b65fdaf4e72f2f"
         }
       ]
     },
@@ -265,10 +269,46 @@
           "version": "repo-file-v1:sha256:79a6e2a286f683115ddd172d2f0d25be4c53c42d9ab0524a0c8b59ab2f0c13ae"
         }
       ]
+    },
+    {
+      "id": "claim_bab573e8636940d6a03689a285bad683",
+      "statement": "aksk-init provides idempotent per-repo initialization: verifies global prerequisites (Node >=22, openspec/openwiki on PATH) failing fast to aksk-bootstrap, scaffolds .agents/ and seeds AGENTS.md baseline via init_agents_md.mjs first, creates openspec/ via openspec init, attaches routing+lifecycle and wiki contract (wrapping openwiki --init when missing, noting harness vs CLI OPENAI_API_KEY needs), defaults to global skills and uses --local-skills for repo-local installs, and versions come from aksk-bootstrap/references/versions.json.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/specs/aksk-init/spec.md",
+          "version": "repo-file-v1:sha256:a9691a718c37b39d54cd5eed8f1e8318e837d11ae4f477e67223b5cece84158c"
+        }
+      ]
+    },
+    {
+      "id": "claim_4b310432536d4f28ad937470b6bd7891",
+      "statement": "Bootstrap is now two executables: aksk-bootstrap/scripts/bootstrap-global.mjs (global lane) and aksk-init/scripts/bootstrap-repo.mjs (per-repo lane) with bootstrap.mjs as backward-compat shim; shared references/versions.json is single source, INSTRUCT is partitioned per lane (global failures print only global commands, repo failures only repo commands), and host integrations (openwiki integrations install <host>) remain manual opt-in outside the global lane.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/changes/archive/2026-08-29-split-bootstrap-init/proposal.md",
+          "version": "repo-file-v1:sha256:262570d0ccdd7030fdff9ed6554329847c119d6b3399304910fff57f12512961"
+        },
+        {
+          "resource": "repo://openspec/changes/archive/2026-08-29-split-bootstrap-init/specs/aksk-bootstrap/spec.md",
+          "version": "repo-file-v1:sha256:9d5831770e20352c79862d208e3a3cca7e4b0edc38bc65a7b8dce72e74ed6c4d"
+        },
+        {
+          "resource": "repo://openspec/changes/archive/2026-08-29-split-bootstrap-init/specs/aksk-init/spec.md",
+          "version": "repo-file-v1:sha256:bbf705cf9a1ab188bca4c71433d2aa728cd2532ed9f12a90963a6582b7ffc99e"
+        },
+        {
+          "resource": "repo://openspec/specs/aksk-bootstrap/spec.md",
+          "version": "repo-file-v1:sha256:57bf5324e654077e03ab8fd27f2db0c993eb315dd0c77ec3a5e223fd96bf59af"
+        },
+        {
+          "resource": "repo://openspec/specs/aksk-init/spec.md",
+          "version": "repo-file-v1:sha256:a9691a718c37b39d54cd5eed8f1e8318e837d11ae4f477e67223b5cece84158c"
+        }
+      ]
     }
   ],
   "verification": {
     "by": "openwiki/0.4.3",
-    "at": "2026-08-29T20:18:58.499Z"
+    "at": "2026-08-30T01:40:39.325Z"
   }
 }

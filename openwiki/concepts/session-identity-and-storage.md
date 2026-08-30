@@ -3,9 +3,6 @@ type: concept
 title: Session Identity and Storage
 description: How task-closeout identifies sessions via task_id in summary.json, stores temporary bundles under .agents/sessions with gitignore and openwikiignore rules, supports optional prior_session chaining, and keeps bundles repo-local until distillation promotes lessons to durable .agents/ or openwiki/.
 tags: [sessions, task-closeout, gitignore, task-id, storage]
-verified:
-  - by: openwiki/0.4.3
-    at: 2026-08-29T21:15:47.181Z
 sources:
   - id: openwiki-source-62bd4cb693e4e881b3f88f6b
     resource: repo://.agents/.gitignore
@@ -34,6 +31,9 @@ sources:
   - id: openwiki-source-86a9b374cb99ed0befc3bb8d
     resource: repo://openspec/specs/closeout-change-linking/spec.md
 generated: { by: "openwiki/0.4.3", at: "2026-08-29T21:15:47.181Z" }
+verified:
+  - by: openwiki/0.4.3
+    at: 2026-08-29T21:15:47.181Z
 ---
 
 # Session Identity and Storage

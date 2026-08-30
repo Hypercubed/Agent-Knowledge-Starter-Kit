@@ -20,6 +20,7 @@
     "./.agents/skills/task-closeout",
     "./.agents/skills/learning-distill",
     "./.agents/skills/docs-lint",
-    "./.agents/skills/aksk-bootstrap"
+    "./.agents/skills/aksk-bootstrap",
+    "./.agents/skills/aksk-init"
   ]
 }

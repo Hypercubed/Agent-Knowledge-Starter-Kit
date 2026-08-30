@@ -111,8 +111,8 @@ git config user.email 'test@test.com'
 git config user.name 'Test'
 echo '--- discovery ---'
 npx --yes skills add /kit -l 2>&1 | tail -n 30
-if ! npx --yes skills add /kit -l 2>&1 | grep -q 'Found 4 skills'; then
-  echo 'FAIL: expected Found 4 skills via /kit plugin.json' >&2
+if ! npx --yes skills add /kit -l 2>&1 | grep -q 'Found 5 skills'; then
+  echo 'FAIL: expected Found 5 skills via /kit plugin.json' >&2
   exit 1
 fi
 echo '--- add ---'
@@ -121,7 +121,8 @@ test -f .agents/skills/aksk-bootstrap/SKILL.md || { echo 'missing aksk-bootstrap
 test -f .agents/skills/docs-lint/SKILL.md || { echo 'missing docs-lint' >&2; exit 1; }
 test -f .agents/skills/learning-distill/SKILL.md || { echo 'missing learning-distill' >&2; exit 1; }
 test -f .agents/skills/task-closeout/SKILL.md || { echo 'missing task-closeout' >&2; exit 1; }
-test -f .agents/skills/aksk-bootstrap/scripts/bootstrap.mjs || { echo 'missing bootstrap.mjs' >&2; exit 1; }
+test -f .agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs || { echo 'missing bootstrap-global.mjs' >&2; exit 1; }
+test -f .agents/skills/aksk-init/scripts/bootstrap-repo.mjs || { echo 'missing bootstrap-repo.mjs' >&2; exit 1; }
 test -f .agents/skills/aksk-bootstrap/references/versions.json || { echo 'missing versions.json' >&2; exit 1; }
 echo '--- Skill init (INSTALL.md) ---'
 mkdir -p .agents/sessions .agents/playbooks
@@ -135,8 +136,8 @@ if node .agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs openspec open
 else
   echo 'check_peer_tools correctly failed (tools missing)'
 fi
-echo '--- bootstrap.mjs (global lane should npm i -g) ---'
-if ! timeout 300 node .agents/skills/aksk-bootstrap/scripts/bootstrap.mjs /tmp/target 2>&1 | tee /tmp/b_fresh.log | tail -n 100; then
+echo '--- bootstrap-global.mjs (global lane) ---'
+if ! timeout 300 node .agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs /tmp/target 2>&1 | tee /tmp/b_fresh.log | tail -n 100; then
   cat /tmp/b_fresh.log | head -n 50
 fi
 if grep -q 'ECONNRESET' /tmp/b_fresh.log 2>/dev/null; then
@@ -146,7 +147,10 @@ fi
 cat /tmp/b_fresh.log 2>/dev/null | head -n 5
 which openspec && openspec --version
 which openwiki && openwiki --help 2>&1 | head -5
+echo '--- bootstrap-repo.mjs (per-repo lane) ---'
+timeout 60 node .agents/skills/aksk-init/scripts/bootstrap-repo.mjs /tmp/target 2>&1 | tail -n 100
 test -f /tmp/target/AGENTS.md || { echo 'missing AGENTS.md baseline' >&2; exit 1; }
+timeout 60 node .agents/skills/aksk-init/scripts/bootstrap-repo.mjs /tmp/target 2>&1 | tail -n 30
 grep -q 'AKSK:AGENTS-BASELINE' /tmp/target/AGENTS.md || { echo 'baseline marker missing' >&2; exit 1; }
 grep -q 'AKSK:ROUTING' /tmp/target/AGENTS.md || { echo 'routing marker missing' >&2; exit 1; }
 test -d /tmp/target/openspec || { echo 'missing openspec/' >&2; exit 1; }
@@ -185,12 +189,13 @@ if [ ! -f .agents/playbooks/README.md ]; then cp .agents/skills/learning-distill
 if [ ! -f .agents/AGENTS.md ]; then cp .agents/skills/learning-distill/bootstrap/AGENTS.md .agents/AGENTS.md; fi
 echo '--- check_peer_tools should pass now ---'
 node .agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs openspec openwiki
-echo '--- bootstrap (global lane should SKIP) ---'
-if ! timeout 120 node .agents/skills/aksk-bootstrap/scripts/bootstrap.mjs /tmp/target 2>&1 | tee /tmp/b.log | grep -q 'skipping user-scope install'; then
+echo '--- bootstrap-global (should SKIP) ---'
+if ! timeout 120 node .agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs /tmp/target 2>&1 | tee /tmp/b.log | grep -q 'skipping install\|tools present'; then
   echo 'expected bootstrap skip message not found' >&2
   cat /tmp/b.log
   exit 1
 fi
+timeout 60 node .agents/skills/aksk-init/scripts/bootstrap-repo.mjs /tmp/target 2>&1 | tail -n 30
 grep -q 'AKSK:AGENTS-BASELINE' /tmp/target/AGENTS.md
 git add -f .agents/sessions/README.md .agents/.gitignore .agents/playbooks/README.md .agents/AGENTS.md 2>/dev/null || true
 bash /kit/scripts/check-agents-structure.sh .agents
@@ -207,7 +212,7 @@ mkdir -p /tmp/target && cd /tmp/target
 git init -q
 # From target, npx skills add /kit -l should find 4
 npx --yes skills add /kit -l 2>&1 | tee /tmp/l_kit.log | tail -n 20
-if ! grep -q 'Found 4 skills' /tmp/l_kit.log; then echo 'Expected Found 4 via /kit' >&2; exit 1; fi
+if ! grep -q 'Found 5 skills' /tmp/l_kit.log; then echo 'Expected Found 5 via /kit' >&2; exit 1; fi
 # Demonstrate that bare npx skills add . from target without kit path is not equivalent
 # (it would source from target itself, which has no plugin.json — Found 0 or error)
 echo '--- bare . probe (informational, not failure) ---'

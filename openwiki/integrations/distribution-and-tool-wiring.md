@@ -1,16 +1,10 @@
 ---
-type: distribution
-title: Distribution and Tool Wiring
-description: How the kit ships as content, verifies Node >=22 and per-user caret-pinned openspec/openwiki globals plus openwiki --init, and wires product configs to the single .agents source of truth.
-tags:
-- distribution
-- tool-wiring
-- peer-dependencies
-- skills-cli
-- integrations
+type: "Reference"
+title: "Distribution and Tool Wiring"
+openwiki_generated: true
 verified:
   - by: openwiki/0.4.3
-    at: 2026-08-29T20:18:58.499Z
+    at: 2026-08-30T01:40:39.325Z
 sources:
   - id: openwiki-source-62bd4cb693e4e881b3f88f6b
     resource: repo://.agents/.gitignore
@@ -24,14 +18,28 @@ sources:
     resource: repo://.agents/skills/aksk-bootstrap/scripts/attach_section.mjs
   - id: openwiki-source-d56b5afb22742020f2ab6b59
     resource: repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs
+  - id: openwiki-source-78293e08bbba4e65fb2685ae
+    resource: repo://.agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs
   - id: openwiki-source-5ffa21d5a23117c638ca72b7
     resource: repo://.agents/skills/aksk-bootstrap/scripts/bootstrap.mjs
   - id: openwiki-source-d1960e41bf9a48af26e81829
     resource: repo://.agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs
+  - id: openwiki-source-181fd64540d760eef80f754f
+    resource: repo://.agents/skills/aksk-bootstrap/scripts/init_agents_md.mjs
   - id: openwiki-source-dce50581779fda5dd507dc34
     resource: repo://.agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs
   - id: openwiki-source-dc8872a5e7d386c22ea2f135
     resource: repo://.agents/skills/aksk-bootstrap/SKILL.md
+  - id: openwiki-source-944a38bc18074fe81ed45b1f
+    resource: repo://.agents/skills/aksk-init/scripts/attach_section.mjs
+  - id: openwiki-source-ff2d87cb54c01d07d6371400
+    resource: repo://.agents/skills/aksk-init/scripts/attach_wiki_contract.mjs
+  - id: openwiki-source-9930f2885b3cb73d38a9300a
+    resource: repo://.agents/skills/aksk-init/scripts/bootstrap-repo.mjs
+  - id: openwiki-source-5a97b1d59b72f21589de6133
+    resource: repo://.agents/skills/aksk-init/scripts/init_agents_md.mjs
+  - id: openwiki-source-4ab0b6cc58dd78f7a5c0603e
+    resource: repo://.agents/skills/aksk-init/SKILL.md
   - id: openwiki-source-115b2dad781e2a2c5b5a980d
     resource: repo://docs/architecture.md
   - id: openwiki-source-5368c3f7dc2d30e7d29a8985
@@ -54,8 +62,9 @@ sources:
     resource: repo://scripts/check-agents-structure.sh
   - id: openwiki-source-5d609834bdc11b93524d04a9
     resource: repo://scripts/check-publish.sh
-generated: { by: "openwiki/0.4.3", at: "2026-08-29T20:18:58.499Z" }
+generated: { by: "openwiki/0.4.3", at: "2026-08-30T01:40:39.325Z" }
 ---
+
 
 # Distribution and Tool Wiring
 
@@ -65,7 +74,7 @@ The Agent Knowledge Starter Kit ships **content** (markdown layout, conventions,
 
 `package.json` name `agent-knowledge-starter` v2.0.0 declares no runtime `dependencies`. `devDependencies` are `skills` (the Skills CLI), `remark-cli` + frontmatter/GFM plugins, `markdown-link-check`, plus pinned `@fission-ai/openspec@^1.11.0` and `openwiki@^0.4.3`. Scripts are `format` (`remark ".agents/**/*.md" --output`) and `check` (`bash scripts/check-publish.sh`); `test` intentionally errors.
 
-The distributable surface is root `.agents/`: four portable skills (`aksk-bootstrap`, `task-closeout`, `learning-distill`, `docs-lint`) plus shared templates and playbooks. The curated wiki trees under `openwiki/` are this repo's knowledge base; consumers initialize their own wiki with `openwiki --init`.
+The distributable surface is root `.agents/`: four portable skills (`aksk-bootstrap`, `aksk-init`, `task-closeout`, `learning-distill`, `docs-lint`) plus shared templates and playbooks. The curated wiki trees under `openwiki/` are this repo's knowledge base; consumers initialize their own wiki with `openwiki --init`.
 
 Registration surfaces:
 
@@ -79,11 +88,11 @@ Registration surfaces:
 
 The kit is glue over two peer CLIs plus Node:
 
-- **Node >= 22** (`MIN_NODE_MAJOR = 22` in `bootstrap.mjs`)
+- **Node >= 22** (`MIN_NODE_MAJOR = 22` in `bootstrap-global.mjs`)
 - `npm i -g @fission-ai/openspec@^1.11.0 openwiki@^0.4.3` — caret ranges from `references/versions.json` (and `package.json` `devDependencies` when present), per-user `npm i -g`, not repo-local `npx` or `node_modules`
-- plus one-time per-repo `openwiki --init` and `openspec init --tools none` when those trees are missing
+- plus one-time per-repo `openwiki --init` and `openspec init --tools none` when those trees are missing (now owned by `aksk-init`)
 
-Invariant: **only `aksk-bootstrap` may install**. `bootstrap.mjs` owns the global lane; `docs-lint`, `task-closeout`, `learning-distill` and other scripts never auto-install — they fail fast with the exact `npm i -g` command.
+Invariant: **only `aksk-bootstrap` may install**. `bootstrap-global.mjs` (via the `bootstrap.mjs` shim) owns the global lane; `docs-lint`, `task-closeout`, `learning-distill` and other scripts never auto-install — they fail fast with the exact `npm i -g` command. `aksk-init` verifies globals are present and instructs to run `aksk-bootstrap` first when missing.
 
 `.agents/skills/aksk-bootstrap/references/versions.json` is the single source for the caret versions:
 
@@ -94,17 +103,17 @@ Invariant: **only `aksk-bootstrap` may install**. `bootstrap.mjs` owns the globa
 }
 ```
 
-`bootstrap.mjs:versionsFromPackageJson()` resolves versions by trying `package.json` (`devDependencies`/`dependencies`) first to allow local override, then the bundled `references/versions.json`. `_note` documents `C` (caret) — bump via `npm install --save-dev` then copy here. When unpinned the fallback is `npm i -g @fission-ai/openspec@latest` / `npm i -g openwiki@latest`. `INSTALL.md` and `README.md` state the prerequisite; `docs/architecture.md` enforces it.
+It also pins `@ferroxlabs/agents-md` SHA for the vendored baseline (updated via `refresh_agents_baseline.mjs`). `bootstrap-global.mjs:versionsFromPackageJson()` resolves versions by trying `package.json` (`devDependencies`/`dependencies`) first to allow local override, then the bundled `references/versions.json`. `_note` documents `C` (caret) — bump via `npm install --save-dev` then copy here. When unpinned the fallback is `npm i -g @fission-ai/openspec@latest` / `npm i -g openwiki@latest`. `INSTALL.md` and `README.md` state the prerequisite; `docs/architecture.md` enforces it.
 
 Flow:
 
 ```text
 flowchart LR
-    A["Consumer runs bootstrap or skill"] --> B["bootstrap.mjs: Node >=22? tools on PATH? .agents/openspec/openwiki receipts?"]
+    A["Consumer runs bootstrap or skill"] --> B["bootstrap-global.mjs: Node >=22? tools on PATH? receipts?"]
     B -- "tools missing, bootstrap lane" --> C["npm i -g @fission-ai/openspec@^1.11.0 openwiki@^0.4.3 (caret from versions.json)"]
     B -- "other skill, tools missing" --> D["check_peer_tools.mjs stderr: error per tool + exact npm i -g lines"]
     D --> E["exit 2, no writes, no install attempt"]
-    B -- "all present" --> F["per-repo lane: openspec init, .agents scaffold, contract/routing, integrations spread"]
+    B -- "all present" --> F["aksk-init per-repo lane: .agents scaffold + AGENTS.md baseline, openspec init, openwiki --init, routing/lifecycle, wiki contract"]
 ```
 
 ### Verification helper
@@ -122,39 +131,42 @@ import { requireBinaries } from "./check_peer_tools.mjs";
 requireBinaries(["openspec", "openwiki"]); // exits 2 with install commands if absent
 ```
 
-`bootstrap.mjs` builds caret-pinned `INSTALL_COMMANDS` (`npm i -g @fission-ai/openspec@^1.11.0` etc.) and attempts a combined `npm i -g` when both are missing; if `npm` is absent or the install fails it prints an `INSTRUCT` lane with the exact remaining commands and exits clean without partial state from that step. `attach_wiki_contract.mjs` and `sync_wiki_indexes.mjs` add their own fail-fast checks (missing `openwiki/INSTRUCTIONS.md` → exit 2 with `openwiki --init`; missing `openwiki/` or global package → exit 2 with remediation). The `wiki-contract` spec requires every skill that invokes `openspec`/`openwiki` to verify first and never attempt installation.
+`bootstrap-global.mjs` builds caret-pinned `INSTALL_COMMANDS` (`npm i -g @fission-ai/openspec@^1.11.0` etc.) and attempts a combined `npm i -g` when both are missing; if `npm` is absent or the install fails it prints an `INSTRUCT` lane with the exact remaining commands and exits clean without partial state from that step. `attach_wiki_contract.mjs` and `sync_wiki_indexes.mjs` add their own fail-fast checks (missing `openwiki/INSTRUCTIONS.md` → exit 2 with `openwiki --init`; missing `openwiki/` or global package → exit 2 with remediation). The `wiki-contract` spec requires every skill that invokes `openspec`/`openwiki` to verify first and never attempt installation.
 
 ## Bootstrap orchestrator
 
-Skill: `.agents/skills/aksk-bootstrap/SKILL.md` (idempotent orchestrator — preflight detection, per-user global installs, per-repo scaffolding, contract/routing attachment, OpenWiki agent-integration spread). Script: `.agents/skills/aksk-bootstrap/scripts/bootstrap.mjs`.
+Skill: `.agents/skills/aksk-bootstrap/SKILL.md` (idempotent orchestrator — preflight detection, per-user global installs, verification of global skill spread, OpenWiki integration receipts). Script: `.agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs` (global lane) with shim `.agents/skills/aksk-bootstrap/scripts/bootstrap.mjs` that sequentially runs `bootstrap-global.mjs` then `aksk-init/scripts/bootstrap-repo.mjs` when present. Per-repo sequencing now lives in `.agents/skills/aksk-init/SKILL.md` / `bootstrap-repo.mjs`.
 
-Two lanes, both idempotent by detection:
+Two lanes, split since `aksk-init` extraction:
 
-1. **EXECUTE** — `node .agents/skills/aksk-bootstrap/scripts/bootstrap.mjs [repo-root] [--force] [--json]` runs locally: verify Node >=22, verify/install globals (skip when present, verify `openwiki` resolves before MCP registration), verify skills under `~/.agents/skills` plus host dir, then per-repo `openspec init --tools none` if `openspec/` missing, minimal `.agents/` scaffold if missing, `attach_wiki_contract.mjs`, `init_agents_md.mjs` (FerroxLabs baseline zone), `attach_section.mjs` for `AKSK:ROUTING`/`AKSK:LIFECYCLE`, and `openwiki integrations install <host>` per lane ladder (`codex|claude|opencode` atomically, others headless via `openwiki --init -p`). `detectState()` snapshots tools, trees, markers, and `openwiki integrations list --project` receipts before acting; `printState()` reports it.
+1. **EXECUTE — global** — `node .agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs [repo-root] [--force] [--json]` runs locally: verify Node >=22, verify/install globals (skip when present, verify `openwiki` resolves before MCP registration), verify skills under `~/.agents/skills` plus host dir. `detectState()` snapshots tools, trees, markers, and `openwiki integrations list --project` receipts before acting; `printState()` reports it. Non-interactive auto-install; skill prompts before invoking.
 
-2. **INSTRUCT** — when any step cannot run locally (no `npm`, no write, sandboxed worker), the script prints the exact remaining commands and exits clean. Completed steps remain; the failed step leaves no partial state.
+2. **EXECUTE — per-repo** — `node .agents/skills/aksk-init/scripts/bootstrap-repo.mjs [repo-root] [--yes]` verifies globals (exits 2 with `INSTRUCT: npm i -g ...` if missing — run `aksk-bootstrap` first), then `.agents/` scaffold if missing, `init_agents_md.mjs` (FerroxLabs baseline zone) first, `openspec init --tools none` if `openspec/` missing, `openwiki --init` if `openwiki/` missing, `attach_section.mjs` for `AKSK:ROUTING`/`AKSK:LIFECYCLE`, and `attach_wiki_contract.mjs`. Each step prompts `[Y/n/skip]`; `--yes` / `--non-interactive` / `AKSK_YES=1` uses defaults; no TTY falls back to INSTRUCT.
+
+3. **INSTRUCT** — when any step cannot run locally (no `npm`, no write, sandboxed worker), the script prints the exact remaining commands and exits clean. Completed steps remain; the failed step leaves no partial state.
 
 ```
 INSTRUCT lane — run these commands manually (versions from references/versions.json, caret-pinned):
   npm i -g @fission-ai/openspec@^1.11.0 openwiki@^0.4.3
   openspec init --tools none
-  node .agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs
-  node .agents/skills/aksk-bootstrap/scripts/attach_section.mjs . AGENTS.md routing-note-template.md
+  node .agents/skills/aksk-init/scripts/attach_wiki_contract.mjs
+  node .agents/skills/aksk-init/scripts/attach_section.mjs . AGENTS.md routing-note-template.md
   openwiki integrations install codex
 ```
 
-Re-running on a fully bootstrapped repo reports no changes; on a partially bootstrapped repo it completes only missing steps.
+Re-running on a fully bootstrapped repo reports no changes; on a partially bootstrapped repo it completes only missing steps. The shim `bootstrap.mjs` preserves the old entrypoint by running global then repo lanes in sequence; `aksk-init not found - global lane complete. Run aksk-init separately.` when the second skill is absent.
 
 ## Skills CLI distribution
 
-Adoption is skill-first. `INSTALL.md` defines the two supported lanes (preferred agent-assisted via `aksk-bootstrap`, fallback manual via `npx skills add`):
+Adoption is skill-first. `INSTALL.md` defines the two supported lanes (preferred agent-assisted via `aksk-bootstrap` + `aksk-init`, fallback manual via `npx skills add`):
 
-1. `npx skills add -g -a <self-reported> Hypercubed/Agent-Knowledge-Starter-Kit --skill aksk-bootstrap` in the target repo to place shared skills under `~/.agents/skills` plus your host dir (`universal` is `~/.agents/skills`; `<self-reported>` is your host id; `npx` required; caret versions from `references/versions.json`, `@latest` only when unpinned; for openwiki use `--full-depth` or `openwiki integrations install <self-reported>` when that host is supported). Alternative: `npx skills add -g <path-to-kit> --skill aksk-bootstrap`. Override A without `-g` keeps repo-local `./.agents/skills` when you intend that override. Preserve each skill folder layout, including any `bootstrap/` subdirectory — initialization copies *from* `bootstrap/` and idempotent re-runs and peer skills expect that path. Initialization steps only copy from `bootstrap/`; they never remove it.
+1. `npx skills add -g -a <self-reported> Hypercubed/Agent-Knowledge-Starter-Kit --skill aksk-bootstrap` in the target repo to place shared skills under `~/.agents/skills` plus your host dir (`universal` is `~/.agents/skills`; `<self-reported>` is your host id; `npx` required; caret versions from `references/versions.json`, `@latest` only when unpinned; for openwiki use `--full-depth` or `openwiki integrations install <self-reported>` when that host is supported). Alternative: `npx skills add -g <path-to-kit> --skill aksk-bootstrap`. Override A without `-g` keeps repo-local `./.agents/skills` when you intend that override. Preserve each skill folder layout, including any `bootstrap/` subdirectory — initialization copies *from* `bootstrap/` and idempotent re-runs and peer skills expect that path. Initialization steps only copy from `bootstrap/`; they never remove it. `README.md` Quick start now runs `aksk-bootstrap` (global) then `aksk-init` (per-repo) instead of a monolithic bootstrap.
 2. Open each installed `SKILL.md` and run its **Skill initialization** once (copy-missing-only, never overwrite existing content). Suggested order: closeout-only → `task-closeout` init; distillation/linting → `learning-distill` init first (scaffolds `sessions/`, `playbooks/`, template `.agents/AGENTS.md` when missing and runs wiki prerequisites); lint-only without distill → no separate init needed.
 3. The bootstrap skill handles routing-note and lifecycle attachment; manually you can attach the routing note:
 
 ```bash
-node .agents/skills/aksk-bootstrap/scripts/attach_section.mjs . AGENTS.md
+node .agents/skills/aksk-init/scripts/attach_section.mjs . AGENTS.md
+# also available as .agents/skills/aksk-bootstrap/scripts/attach_section.mjs (identical template)
 ```
 
 4. Register `SKILL.md` paths in the editor/product if required. Keep `.agents/.gitignore` tracked (`sessions/*` + `!sessions/README.md`) or replicate at repo root if `.agents/` is not tracked.
@@ -203,12 +215,13 @@ Available product guides under `docs/integrations/`: Agentic Sandbox, Antigravit
 
 ## Wiring mechanics: attachment scripts
 
-All marker-delimited sections are owned by `.agents/skills/aksk-bootstrap/scripts/` — they never duplicate long policy, they route.
+All marker-delimited sections are owned by `.agents/skills/aksk-bootstrap/scripts/` and mirrored in `aksk-init/scripts/` — they never duplicate long policy, they route. `aksk-bootstrap` remains the precondition owner; `aksk-init` re-exports the same scripts for per-repo use.
 
 ### `attach_section.mjs` — root router sections
 
 ```bash
-node .agents/skills/aksk-bootstrap/scripts/attach_section.mjs [repo-root] [target-file-name] [template-name]
+node .agents/skills/aksk-init/scripts/attach_section.mjs [repo-root] [target-file-name] [template-name]
+# or .agents/skills/aksk-bootstrap/scripts/attach_section.mjs (identical)
 ```
 
 One mechanism for N sections; markers are read from the template, not hard-coded:
@@ -225,7 +238,7 @@ Product pages that previously hand-wrote routing blocks were converted to call t
 ### `attach_wiki_contract.mjs` — curated wiki contract
 
 ```bash
-node .agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs [repo-root]
+node .agents/skills/aksk-init/scripts/attach_wiki_contract.mjs [repo-root]
 ```
 
 Appends the curation section from `references/wiki-contract-template.md` between `<!-- AKSK:WIKI-CONTRACT:BEGIN/END -->` markers to an **existing** `openwiki/INSTRUCTIONS.md`. Never creates the file, never replaces OpenWiki-owned content, never removes outside material. Idempotent and self-updating with the same no-op-or-refresh semantics. Fail-fast: missing file exits 2 naming `openwiki --init` with no writes. Stub-aware: attaching below the default stub (`A code wiki for this repository.`) is reported; downstream skills treat a file without the markers as no-contract.
@@ -241,12 +254,12 @@ Refreshes all OpenWiki directory indexes with no LLM and no CLI run. Requires `o
 ### `init_agents_md.mjs` — FerroxLabs baseline
 
 ```bash
-node .agents/skills/aksk-bootstrap/scripts/init_agents_md.mjs [repo-root]          # seed when missing
-node .agents/skills/aksk-bootstrap/scripts/init_agents_md.mjs [repo-root] --replace # overwrite baseline zone
-node .agents/skills/aksk-bootstrap/scripts/init_agents_md.mjs [repo-root] --combine # stage for LLM merge
+node .agents/skills/aksk-init/scripts/init_agents_md.mjs [repo-root]          # seed when missing
+node .agents/skills/aksk-init/scripts/init_agents_md.mjs [repo-root] --replace # overwrite baseline zone
+node .agents/skills/aksk-init/scripts/init_agents_md.mjs [repo-root] --combine # stage for LLM merge
 ```
 
-Seeds the `AKSK:AGENTS-BASELINE` zone from `references/agents-md-baseline-template.md` (vendored FerroxLabs `AGENTS.md` with provenance header). Missing `AGENTS.md` → creates it. Existing file with matching baseline block (whitespace-normalized) → no-op. Non-matching file with no flag → exits 2 with remediation (use `--replace` or `--combine` which stages `existing.md`/`baseline.md`/`COMBINE.md` under `.agents/sessions/agents-md-combine/<timestamp>/`). Bootstrap runs this before OpenWiki/ AKSK zones to enforce `baseline → OpenWiki → AKSK` order.
+Seeds the `AKSK:AGENTS-BASELINE` zone from `references/agents-md-baseline-template.md` (vendored FerroxLabs `AGENTS.md` with provenance header). Missing `AGENTS.md` → creates it. Existing file with matching baseline block (whitespace-normalized) → no-op. Non-matching file with no flag → exits 2 with remediation (use `--replace` or `--combine` which stages `existing.md`/`baseline.md`/`COMBINE.md` under `.agents/sessions/agents-md-combine/<timestamp>/`). Bootstrap composition runs this first before OpenWiki/AKSK zones to enforce `baseline → OpenWiki → AKSK` order. Also available as `aksk-bootstrap/scripts/init_agents_md.mjs`; `refresh_agents_baseline.mjs` fetches upstream and swaps only the baseline zone.
 
 ## Validation
 
@@ -258,7 +271,7 @@ Two bash validators under `scripts/` enforce the distribution contract. Both deg
 
 ## Invariants and failure semantics
 
-- **Bootstrap owns installs; others never install.** `bootstrap.mjs` is the only place that runs `npm i -g` (per-user, caret-pinned). Every other missing-peer-tool path prints the exact caret-pinned remediation and exits without writing. `references/versions.json` is the single source for those version strings; `check_peer_tools.mjs` `INSTALL_COMMANDS` is the fallback (`@latest`) for fail-fast messages.
+- **Bootstrap owns installs; others never install.** `bootstrap-global.mjs` (via shim) is the only place that runs `npm i -g` (per-user, caret-pinned). Every other missing-peer-tool path prints the exact caret-pinned remediation and exits without writing. `references/versions.json` remains the single source for those version strings; `check_peer_tools.mjs` `INSTALL_COMMANDS` is the fallback (`@latest`) for fail-fast messages. `aksk-init` enforces the ordering: missing globals → exit 2 instructing to run `aksk-bootstrap`.
 - **Append-only, idempotent attachment.** Content outside `AKSK:*` markers is never touched; re-runs are no-ops when current and in-place refreshes when the template changed. Hand-edits between markers are corrected by rerunning. Zoned order is enforced: baseline → OpenWiki → AKSK.
 - **Never half-install.** A failed bootstrap step prints the exact remaining commands (`INSTRUCT` lane) and exits clean without partial state from that step; completed steps remain.
 - **Single source of truth.** Durable guidance lives once under `.agents/` and curated wiki trees. Copying that guidance into every tool's native config creates forks; routing preserves portability when tools change.
@@ -267,6 +280,6 @@ Two bash validators under `scripts/` enforce the distribution contract. Both deg
 
 ## Extension points
 
-- **New managed section:** add a template under `.agents/skills/aksk-bootstrap/references/` carrying unique `<!-- AKSK:<NAME>:BEGIN -->`/`<!-- AKSK:<NAME>:END -->` markers; attach via `attach_section.mjs <root> <target> <template>`; extend `docs-lint` wiring checks similarly; validate with two runs (second is no-op) plus structure check.
+- **New managed section:** add a template under `.agents/skills/aksk-bootstrap/references/` (mirrored to `aksk-init/references/`) carrying unique `<!-- AKSK:<NAME>:BEGIN -->`/`<!-- AKSK:<NAME>:END -->` markers; attach via `attach_section.mjs <root> <target> <template>`; extend `docs-lint` wiring checks similarly; validate with two runs (second is no-op) plus structure check.
 - **New tool integration:** map the product's native structures against `docs/integrations/patterns.md`, apply the Routing Pattern for high-precedence root files, include a concrete two-tool workflow, verify claims by reproduction, and keep durable knowledge out of vendor config. Guides belong in `docs/integrations/`, not under `.agents/`.
 - **New portable skill:** needs `SKILL.md` frontmatter with `name`/`description` plus `CONTRACT.md`; maintainer-only automation must set `metadata.internal: true` so `npx skills add` skips it.

@@ -22,11 +22,11 @@ Use it after touching `README.md`, `INSTALL.md`, `.claude-plugin/plugin.json`, `
 
 ## What it proves
 
-- Discovery finds the 4 consumer skills (`aksk-bootstrap`, `learning-distill`, `task-closeout`, `docs-lint`) via `.claude-plugin/plugin.json` and that each carries its `scripts/*.mjs` + `references/`.
+- Discovery finds the 5 consumer skills (`aksk-bootstrap`, `aksk-init`, `learning-distill`, `task-closeout`, `docs-lint`) via `.claude-plugin/plugin.json` and that each carries its `scripts/*.mjs` + `references/`.
 - Agent-assisted `npx skills add <kit>` from the **target** repo works, and that `npx skills add .` does not (it reinstalls into the kit itself).
 - `npx` is required; no `git clone --depth 1 && cp -r` fallback (INSTRUCT prints prerequisite).
 - Scope is `~/.agents/skills` (universal) + self-reported host via `-g -a <self-reported>`; `-g` → only `~/.agents/skills`, `--all` wide is negative case.
-- Tool lane: fresh has no `openspec`/`openwiki` → `bootstrap.mjs` runs `npm i -g` (caret from `references/versions.json`); present → skips; openwiki two-track: `openwiki integrations install <self-reported>` when that host is supported else `npx skills add -g` + `npx add-mcp`.
+- Tool lane: fresh has no `openspec`/`openwiki` → `bootstrap-global.mjs` runs `npm i -g` and `bootstrap-repo.mjs` scaffolds repo (caret from `references/versions.json`); present → skips; openwiki two-track: `openwiki integrations install <self-reported>` when that host is supported else `npx skills add -g` + `npx add-mcp`.
 - Final tree passes `bash /kit/scripts/check-agents-structure.sh .agents` and the per-target `AGENTS.md` baseline is present.
 
 ## Quick use
@@ -53,7 +53,7 @@ bash .agents/skills/verify-install/scripts/run.sh -v
 
 | # | Name | How it exercises the README/INSTALL prompt | Success signal |
 |---|------|----------------------------------------------|----------------|
-| 1 | `fresh` | `npx --yes skills add -g,codex /kit -y --copy` from blank `node:24` (`which openspec` → not found) | Found 4 under `~/.agents/skills` + `~/.codex/skills`, `bootstrap.mjs` does `npm i -g` and seeds `AGENTS.md`/`openspec/` |
+| 1 | `fresh` | `npx --yes skills add -g,codex /kit -y --copy` from blank `node:24` (`which openspec` → not found) | Found 5 under `~/.agents/skills` + `~/.codex/skills`, `bootstrap-global.mjs` does `npm i -g` and seeds `AGENTS.md`/`openspec/` |
 | 2 | `fresh-skip` | same as 1 but `openspec`/`openwiki` already on PATH → global lane skipped | bootstrap logs `skipping user-scope install` and still seeds `AGENTS.md` + `openspec/` |
 | 3 | `user-scope` | `npx --yes skills add -g /kit` → only `~/.agents/skills` | `~/.agents/skills/*/SKILL.md` present, `~/.codex/skills` not written |
 | 4 | `local-path` | `npx skills add /kit` vs `npx skills add .` — probes cwd bug | `/kit -l` → Found 4; `npx skills add .` from target without kit path → not equivalent (documents that `<path-to-kit>` must be used when a checkout is present) |

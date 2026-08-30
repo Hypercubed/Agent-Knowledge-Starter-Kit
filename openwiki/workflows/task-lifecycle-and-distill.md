@@ -5,7 +5,7 @@ description: Traces the task-closeout bundle lifecycle through learning-distill 
 tags: [task-lifecycle, task-closeout, learning-distill, curation-contract, sync-wiki-indexes]
 verified:
   - by: openwiki/0.4.3
-    at: 2026-08-29T21:15:47.181Z
+    at: 2026-08-30T01:40:39.325Z
 sources:
   - id: openwiki-source-d56b5afb22742020f2ab6b59
     resource: repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs

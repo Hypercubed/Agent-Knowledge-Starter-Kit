@@ -10,7 +10,7 @@ tags:
 - cross-tool
 verified:
   - by: openwiki/0.4.3
-    at: 2026-08-29T21:15:47.181Z
+    at: 2026-08-30T01:40:39.325Z
 sources:
   - id: openwiki-source-df46a321fce7026f92166a02
     resource: repo://.agents/playbooks/pre-publish.md

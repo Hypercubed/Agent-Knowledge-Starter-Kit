@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:41f5003eee3751e5488377c4b1d70ca1b32847d1fab6e844c9c3d536f40fe5b5",
+  "pageVersion": "sha256:c4c2a98a1539eeb87eedbd18a9145ae16c02653c409a537822cf09587ddf5fbc",
   "claims": [
     {
       "id": "claim_d742f69f1891457c871b563d39b05ac5",
@@ -61,8 +61,12 @@
           "version": "repo-file-v1:sha256:d85b5e6cae3cc52731325e8b6193efdec270ec9f479e32f6c253b716dc994ed3"
         },
         {
-          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
-          "version": "repo-file-v1:sha256:d1ff10af0b2478c38c764c9c67c7679d789281866375ef830eadc6aeffd9e244"
+          "resource": "repo://.agents/skills/aksk-bootstrap/references/wiki-contract-template.md",
+          "version": "repo-file-v1:sha256:74fb36e2fba836d594bed925a1301ced9532c54846eb38a829b9a55de2881e00"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs",
+          "version": "repo-file-v1:sha256:85c6e19effcad0d70b581ea2144ded924babe38897ade26f0abf0d2668e76e58"
         },
         {
           "resource": "repo://AGENTS.md",
@@ -75,8 +79,12 @@
       "statement": "Root AGENTS.md zoning order is FerroxLabs baseline (AKSK:AGENTS-BASELINE) → OpenWiki (OPENWIKI:START/END) → AKSK routing (AKSK:ROUTING) → AKSK lifecycle (AKSK:LIFECYCLE); in this repo baseline sections 0-8 are hand-authored inline without markers — the pre-seed state before init_agents_md.mjs vendors the baseline zone.",
       "evidence": [
         {
-          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
-          "version": "repo-file-v1:sha256:d1ff10af0b2478c38c764c9c67c7679d789281866375ef830eadc6aeffd9e244"
+          "resource": "repo://.agents/skills/aksk-bootstrap/references/agents-md-baseline-template.md",
+          "version": "repo-file-v1:sha256:450140a0e73fa5256e1102d65d931985a5d8087d401e7bba9a4717b039677081"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/init_agents_md.mjs",
+          "version": "repo-file-v1:sha256:2d219bd05a1526cb557a4bbf977dad1ba314e6c2117c32189e0326489d036810"
         },
         {
           "resource": "repo://AGENTS.md",
@@ -89,16 +97,16 @@
       "statement": "attach_section.mjs is the sole writer for AKSK:ROUTING and AKSK:LIFECYCLE blocks: it reads markers from the template at runtime via markersOf(), is idempotent and self-updating (trimmed compare then regex swap between markers), creates the target file if missing, and never touches content outside its marker pair.",
       "evidence": [
         {
-          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
-          "version": "repo-file-v1:sha256:d1ff10af0b2478c38c764c9c67c7679d789281866375ef830eadc6aeffd9e244"
-        },
-        {
           "resource": "repo://.agents/skills/aksk-bootstrap/references/lifecycle-template.md",
           "version": "repo-file-v1:sha256:0d6f5afce645ff08c1747173471603c8c78dc0f488cca0bf032c02057af0924b"
         },
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/references/routing-note-template.md",
           "version": "repo-file-v1:sha256:7daa0b08b9a8cae6510c448134bfb4f7b1373132970b66916e7c6076c353e683"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_section.mjs",
+          "version": "repo-file-v1:sha256:782278eefae9ddef14dda790324bcf7df3eb9f37244e105c41e47a897f80ad71"
         }
       ]
     },
@@ -160,11 +168,19 @@
     },
     {
       "id": "claim_2d6ec0deda3541a9a103b0c6240a296d",
-      "statement": "Bootstrap composition order is deterministic: global npm i -g lane (Node >=22, openspec/openwiki caret from references/versions.json) → init_agents_md.mjs seeds baseline zone → OpenWiki tooling attaches OPENWIKI block → attach_section.mjs appends ROUTING then LIFECYCLE, each script idempotent so reruns only touch changed zones.",
+      "statement": "Bootstrap composition order is deterministic: bootstrap-global.mjs global lane (Node >=22, openspec/openwiki caret from references/versions.json via versionsFromPackageJson()) → aksk-init repo lane via bootstrap.mjs shim when present → OpenWiki tooling attaches OPENWIKI block → attach_section.mjs appends ROUTING then LIFECYCLE, each script idempotent so reruns only touch changed zones.",
       "evidence": [
         {
-          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
-          "version": "repo-file-v1:sha256:d1ff10af0b2478c38c764c9c67c7679d789281866375ef830eadc6aeffd9e244"
+          "resource": "repo://.agents/skills/aksk-bootstrap/references/versions.json",
+          "version": "repo-file-v1:sha256:8c3f99ea217c8a4123b06dc3dce364bb8ceed59b76097b502cdb33853437831a"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs",
+          "version": "repo-file-v1:sha256:9ddd71d7ded8c507f4fa510fb753587fa6f752b99b21e4a166bf895c296f33fb"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap.mjs",
+          "version": "repo-file-v1:sha256:0d68c80e4777ba424bca94051d78181e48b93c60b48cc25fff9ad2da8fc5da90"
         },
         {
           "resource": "repo://INSTALL.md",
@@ -191,8 +207,12 @@
       "statement": "Consumer tool integrations under docs/integrations/ follow the same thin-router invariant: keep native files thin and point at .agents/; preferred path is EXECUTE lane via bootstrap.mjs handling routing-block and curation-contract attachment and per-agent spread, with per-tool guides as INSTRUCT manual fallback and without hardcoding skill paths.",
       "evidence": [
         {
-          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
-          "version": "repo-file-v1:sha256:d1ff10af0b2478c38c764c9c67c7679d789281866375ef830eadc6aeffd9e244"
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs",
+          "version": "repo-file-v1:sha256:9ddd71d7ded8c507f4fa510fb753587fa6f752b99b21e4a166bf895c296f33fb"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap.mjs",
+          "version": "repo-file-v1:sha256:0d68c80e4777ba424bca94051d78181e48b93c60b48cc25fff9ad2da8fc5da90"
         },
         {
           "resource": "repo://docs/integrations/README.md",
@@ -205,18 +225,54 @@
       "statement": "Marker ownership is strict: content between any AKSK:* markers and OPENWIKI:START/END is owned by its writer and hand edits are corrected by rerunning the owning script; docs-lint enforces exactly one block per family, byte-intact routing/lifecycle, OPENWIKI presence-only, and baseline→OpenWiki→AKSK order.",
       "evidence": [
         {
-          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
-          "version": "repo-file-v1:sha256:d1ff10af0b2478c38c764c9c67c7679d789281866375ef830eadc6aeffd9e244"
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_section.mjs",
+          "version": "repo-file-v1:sha256:782278eefae9ddef14dda790324bcf7df3eb9f37244e105c41e47a897f80ad71"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/init_agents_md.mjs",
+          "version": "repo-file-v1:sha256:2d219bd05a1526cb557a4bbf977dad1ba314e6c2117c32189e0326489d036810"
         },
         {
           "resource": "repo://AGENTS.md",
           "version": "repo-file-v1:sha256:afe5a9d27b2def63d734ef9e34b69605bb23975c953c1276b0fbba98797192ea"
         }
       ]
+    },
+    {
+      "id": "claim_735c9c6a04614fbb96f014a67809c474",
+      "statement": "openwiki/INSTRUCTIONS.md AKSK:WIKI-CONTRACT is attached by attach_wiki_contract.mjs: idempotent and self-updating (trimmed compare then regex swap between markers), never creates the file, fails fast with openwiki --init prerequisite if missing, and encodes preserve-and-link for curated trees, aksk_* frontmatter survival, and distill-authored pages bypassing the CLI via deterministic index sync.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/references/wiki-contract-template.md",
+          "version": "repo-file-v1:sha256:74fb36e2fba836d594bed925a1301ced9532c54846eb38a829b9a55de2881e00"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs",
+          "version": "repo-file-v1:sha256:cd684c5946d746b89ec10f1bd965951f271ddeb5aec9515f83d9288b8ba0ac05"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs",
+          "version": "repo-file-v1:sha256:9ddd71d7ded8c507f4fa510fb753587fa6f752b99b21e4a166bf895c296f33fb"
+        }
+      ]
+    },
+    {
+      "id": "claim_600477da158a4702a396d321349ea876",
+      "statement": "sync_wiki_indexes.mjs deterministically rebuilds OpenWiki directory indexes without LLM or CLI run by driving the installed global openwiki package's okf/index-sync helper (docsOnly: true, virtualMode: true) via npm root -g lookup, failing closed when openwiki is missing or uninitialized.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/AGENTS.md",
+          "version": "repo-file-v1:sha256:d85b5e6cae3cc52731325e8b6193efdec270ec9f479e32f6c253b716dc994ed3"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs",
+          "version": "repo-file-v1:sha256:85c6e19effcad0d70b581ea2144ded924babe38897ade26f0abf0d2668e76e58"
+        }
+      ]
     }
   ],
   "verification": {
     "by": "openwiki/0.4.3",
-    "at": "2026-08-29T20:18:58.499Z"
+    "at": "2026-08-30T01:40:39.325Z"
   }
 }

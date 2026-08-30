@@ -5,7 +5,7 @@ description: How AKSK splits durable knowledge between prescriptive .agents file
 tags: [knowledge-layer, agents, openwiki, curation, distillation]
 verified:
   - by: openwiki/0.4.3
-    at: 2026-08-29T21:15:47.181Z
+    at: 2026-08-30T00:30:05.750Z
 sources:
   - id: openwiki-source-62bd4cb693e4e881b3f88f6b
     resource: repo://.agents/.gitignore
@@ -27,10 +27,10 @@ sources:
     resource: repo://.agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs
   - id: openwiki-source-181fd64540d760eef80f754f
     resource: repo://.agents/skills/aksk-bootstrap/scripts/init_agents_md.mjs
+  - id: openwiki-source-67d81b3c5bf101f8b3eb3d2a
+    resource: repo://.agents/skills/aksk-bootstrap/scripts/refresh_agents_baseline.mjs
   - id: openwiki-source-dce50581779fda5dd507dc34
     resource: repo://.agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs
-  - id: openwiki-source-dc8872a5e7d386c22ea2f135
-    resource: repo://.agents/skills/aksk-bootstrap/SKILL.md
   - id: openwiki-source-5af7f373fcb21f142106673c
     resource: repo://.agents/skills/docs-lint/SKILL.md
   - id: openwiki-source-513536a60f0bc38be6c6d845

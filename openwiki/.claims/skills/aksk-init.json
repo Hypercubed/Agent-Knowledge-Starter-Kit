@@ -1,0 +1,196 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:3dbe3d91c72ce2fb2c8e1fcab4b33e7447cf112a40802e8b68bc2251cc22fee6",
+  "claims": [
+    {
+      "id": "claim_03fe5f3fc44340bf98169eacdd45daa3",
+      "statement": "aksk-init is the per-repo lane that verifies global prerequisites (Node >=22, openspec/openwiki on PATH) before any repo write and never performs global installs; on missing tools it fails fast exit 2 directing to aksk-bootstrap",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-init/SKILL.md",
+          "version": "repo-file-v1:sha256:7447c7ad965ddf91176213abed0aa8b780bf169d92827fef3699a5c745f86763"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/bootstrap-repo.mjs",
+          "version": "repo-file-v1:sha256:cfd7354f4209083d188fec9c41db0d3d80508c859df1306eec7b58ea4482bebb"
+        },
+        {
+          "resource": "repo://openspec/specs/aksk-init/spec.md",
+          "version": "repo-file-v1:sha256:a9691a718c37b39d54cd5eed8f1e8318e837d11ae4f477e67223b5cece84158c"
+        }
+      ]
+    },
+    {
+      "id": "claim_08423df530cb4b3db867789b54c6e0e1",
+      "statement": "bootstrap-repo.mjs orchestrates a fixed idempotent sequence: scaffold .agents/skills and .agents/sessions plus seed AGENTS.md baseline first, then openspec init --tools none when openspec/ missing, then openwiki --init when openwiki/ missing, then attach_section for routing-note-template.md and lifecycle-template.md, then attach_wiki_contract; re-running on a fully initialized repo is a no-op",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/bootstrap-repo.mjs",
+          "version": "repo-file-v1:sha256:cfd7354f4209083d188fec9c41db0d3d80508c859df1306eec7b58ea4482bebb"
+        },
+        {
+          "resource": "repo://openspec/specs/aksk-init/spec.md",
+          "version": "repo-file-v1:sha256:a9691a718c37b39d54cd5eed8f1e8318e837d11ae4f477e67223b5cece84158c"
+        }
+      ]
+    },
+    {
+      "id": "claim_1376c664d56546c9a88252068beab323",
+      "statement": "Preflight version diagnostics read caret ranges from aksk-bootstrap/references/versions.json as single source and print INSTRUCT: npm i -g @fission-ai/openspec@<range> openwiki@<range>; aksk-init does not maintain its own versions.json or hard-code @latest",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/references/versions.json",
+          "version": "repo-file-v1:sha256:8c3f99ea217c8a4123b06dc3dce364bb8ceed59b76097b502cdb33853437831a"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/bootstrap-repo.mjs",
+          "version": "repo-file-v1:sha256:cfd7354f4209083d188fec9c41db0d3d80508c859df1306eec7b58ea4482bebb"
+        },
+        {
+          "resource": "repo://openspec/specs/aksk-init/spec.md",
+          "version": "repo-file-v1:sha256:a9691a718c37b39d54cd5eed8f1e8318e837d11ae4f477e67223b5cece84158c"
+        }
+      ]
+    },
+    {
+      "id": "claim_a5dc93f6f80442159a823494017f1c39",
+      "statement": "Repo lane execution model: the aksk-init skill is the interactive orchestrator prompting [Y/n/skip] and the script bootstrap-repo.mjs is non-interactive, never blocks on stdin, supports --yes/--non-interactive/AKSK_YES=1 and falls back to INSTRUCT when no TTY",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-init/SKILL.md",
+          "version": "repo-file-v1:sha256:7447c7ad965ddf91176213abed0aa8b780bf169d92827fef3699a5c745f86763"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/bootstrap-repo.mjs",
+          "version": "repo-file-v1:sha256:cfd7354f4209083d188fec9c41db0d3d80508c859df1306eec7b58ea4482bebb"
+        },
+        {
+          "resource": "repo://openspec/specs/aksk-init/spec.md",
+          "version": "repo-file-v1:sha256:a9691a718c37b39d54cd5eed8f1e8318e837d11ae4f477e67223b5cece84158c"
+        }
+      ]
+    },
+    {
+      "id": "claim_f3e60c594f7a4ac79848a99de76fcb26",
+      "statement": "openwiki --init handling documents two paths (harness via agent+openwiki MCP/skill needs no extra key vs CLI needs OPENAI_API_KEY) and on non-zero exit logs CLI failed remediation but continues to marker attachments",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/bootstrap-repo.mjs",
+          "version": "repo-file-v1:sha256:cfd7354f4209083d188fec9c41db0d3d80508c859df1306eec7b58ea4482bebb"
+        }
+      ]
+    },
+    {
+      "id": "claim_df618d5e60874db5b97cc0badc84798d",
+      "statement": "init_agents_md.mjs seeds root AGENTS.md from vendored references/agents-md-baseline-template.md when missing, wraps it in AKSK:AGENTS-BASELINE markers with provenance header (source URL, capture date, MIT notice, refresh pointer), and is idempotent via trailing-whitespace-per-line and newline-at-EOF normalization",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-init/references/agents-md-baseline-template.md",
+          "version": "repo-file-v1:sha256:450140a0e73fa5256e1102d65d931985a5d8087d401e7bba9a4717b039677081"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/init_agents_md.mjs",
+          "version": "repo-file-v1:sha256:2d219bd05a1526cb557a4bbf977dad1ba314e6c2117c32189e0326489d036810"
+        }
+      ]
+    },
+    {
+      "id": "claim_76f8f516764b4c6faa38670778ae0e1e",
+      "statement": "init_agents_md.mjs fail-closed behavior: existing non-matching AGENTS.md with no flag exits 2 with no writes and prints replace-vs-combine prompt naming --replace and --combine; --replace overwrites with baseline; --combine never mutates original and stages existing.md, baseline.md and COMBINE.md under .agents/sessions/agents-md-combine/<timestamp>/",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/init_agents_md.mjs",
+          "version": "repo-file-v1:sha256:2d219bd05a1526cb557a4bbf977dad1ba314e6c2117c32189e0326489d036810"
+        }
+      ]
+    },
+    {
+      "id": "claim_68f255675da64e109790634382289789",
+      "statement": "init_agents_md.mjs reads BEGIN/END markers from the template at runtime via markersOf() and validates them; directory target or mutually exclusive --replace+--combine or missing template exits 2 with no writes",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/init_agents_md.mjs",
+          "version": "repo-file-v1:sha256:2d219bd05a1526cb557a4bbf977dad1ba314e6c2117c32189e0326489d036810"
+        }
+      ]
+    },
+    {
+      "id": "claim_7fcafe4f9b1b488e85e5701f0c3d18df",
+      "statement": "attach_section.mjs is a generic N-section mechanism: template carries its own AKSK:<NAME>:BEGIN/END markers read at runtime, preserves all content outside markers, is idempotent and self-updating via trimmed compare then regex slice refresh, creates missing target file with only the section, and exits 2 on unknown template or missing marker pair",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-init/references/lifecycle-template.md",
+          "version": "repo-file-v1:sha256:0d6f5afce645ff08c1747173471603c8c78dc0f488cca0bf032c02057af0924b"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/references/routing-note-template.md",
+          "version": "repo-file-v1:sha256:7daa0b08b9a8cae6510c448134bfb4f7b1373132970b66916e7c6076c353e683"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/attach_section.mjs",
+          "version": "repo-file-v1:sha256:782278eefae9ddef14dda790324bcf7df3eb9f37244e105c41e47a897f80ad71"
+        }
+      ]
+    },
+    {
+      "id": "claim_2391f52a8e8e483cbc0f34915dc19c36",
+      "statement": "attach_wiki_contract.mjs appends the AKSK:WIKI-CONTRACT section from references/wiki-contract-template.md between AKSK:WIKI-CONTRACT markers to an existing openwiki/INSTRUCTIONS.md below existing content, never creates the file, is idempotent and self-updating via regex refresh, and fails fast exit 2 with verbatim prerequisite openwiki --init when file is missing",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-init/references/wiki-contract-template.md",
+          "version": "repo-file-v1:sha256:74fb36e2fba836d594bed925a1301ced9532c54846eb38a829b9a55de2881e00"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/attach_wiki_contract.mjs",
+          "version": "repo-file-v1:sha256:cd684c5946d746b89ec10f1bd965951f271ddeb5aec9515f83d9288b8ba0ac05"
+        }
+      ]
+    },
+    {
+      "id": "claim_0edc0a8912734e65a25a6f19bc1ea8d0",
+      "statement": "attach_wiki_contract.mjs is stub-aware: attaching below OpenWiki's default stub 'A code wiki for this repository.' is reported distinctly, and downstream skills treat a file without AKSK:WIKI-CONTRACT markers as no-contract; content outside markers is never replaced",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/attach_wiki_contract.mjs",
+          "version": "repo-file-v1:sha256:cd684c5946d746b89ec10f1bd965951f271ddeb5aec9515f83d9288b8ba0ac05"
+        }
+      ]
+    },
+    {
+      "id": "claim_0aa5fbd6879c48eda189588eebd0b451",
+      "statement": "Fully bootstrapped AGENTS.md zoning is baseline (AKSK:AGENTS-BASELINE by init_agents_md.mjs) → OpenWiki (OPENWIKI:START/END by OpenWiki tooling) → AKSK routing (AKSK:ROUTING) and lifecycle (AKSK:LIFECYCLE) by attach_section.mjs, each zone owned by one writer and ordered upstream-first",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-init/SKILL.md",
+          "version": "repo-file-v1:sha256:7447c7ad965ddf91176213abed0aa8b780bf169d92827fef3699a5c745f86763"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/attach_section.mjs",
+          "version": "repo-file-v1:sha256:782278eefae9ddef14dda790324bcf7df3eb9f37244e105c41e47a897f80ad71"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/init_agents_md.mjs",
+          "version": "repo-file-v1:sha256:2d219bd05a1526cb557a4bbf977dad1ba314e6c2117c32189e0326489d036810"
+        }
+      ]
+    },
+    {
+      "id": "claim_1639c65595a34401a7d61c79bd8cfa6a",
+      "statement": "Optional repo-local skills default to inheriting global store (~/.agents/skills); with --local-skills the lane installs repo-locally via npx skills add without -g and records receipts, and partitioned INSTRUCT on failure prints only repo-scoped remaining commands without global-lane install commands",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-init/SKILL.md",
+          "version": "repo-file-v1:sha256:7447c7ad965ddf91176213abed0aa8b780bf169d92827fef3699a5c745f86763"
+        },
+        {
+          "resource": "repo://openspec/specs/aksk-init/spec.md",
+          "version": "repo-file-v1:sha256:a9691a718c37b39d54cd5eed8f1e8318e837d11ae4f477e67223b5cece84158c"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.4.3",
+    "at": "2026-08-30T01:40:39.325Z"
+  }
+}
