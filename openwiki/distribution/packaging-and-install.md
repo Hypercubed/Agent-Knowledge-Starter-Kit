@@ -294,7 +294,7 @@ Or `import { requireBinaries } from "./check_peer_tools.mjs"`. Only `openspec`/`
 Proposed selection per host, verified via `openwiki integrations list` (user scope) vs `list --project` (repo override):
 
 - **Supported host** (`codex|claude|opencode` in v0.4.3 registry) → `openwiki integrations install <host>` — skill + `openwiki mcp --host <target>` installed atomically with `.openwiki-install.json` receipt. Receipt partitions ownership; already-installed is skipped, modified requires `--force` (backup created).
-- **Unsupported host** → `npx skills add -g -a <self-reported> langchain-ai/openwiki --full-depth` for the lifecycle skill plus `npx --yes add-mcp -g -a <self-reported> openwiki` (neon-solutions/add-mcp) or `openwiki mcp --host <target>` for the MCP.
+- **Unsupported host** → `npx skills add -g -a <self-reported> langchain-ai/openwiki --full-depth` for the lifecycle skill plus `npx --yes add-mcp "openwiki mcp --host <self-reported>" -g -a <self-reported> --name openwiki` (command form; args form `npx --yes add-mcp openwiki -g -a <self-reported> --args mcp --args --host --args <self-reported> --name openwiki`; neon-solutions/add-mcp) or `openwiki mcp --host <target>` for the MCP — bare `npx add-mcp openwiki` is invalid.
 - Default would be universal + current; extra hosts only on explicit install-time request.
 - Headless lane (no supported integration) remains `openwiki --init -p` / `openwiki --update -p`.
 

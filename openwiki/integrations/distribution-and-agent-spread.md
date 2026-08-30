@@ -103,7 +103,7 @@ The previous wide default (`-g` fanning to many mirrors) and the repo-local defa
 | Lane | When | Command | What it does |
 |------|------|---------|--------------|
 | **Registry lane** | Host is `codex`, `claude`, or `opencode` | `openwiki integrations install <codex\|claude\|opencode>` | Atomically copies skill bundle to host skill directory **and** edits host MCP config; writes `.openwiki-install.json` receipt; verifiable via `openwiki integrations list` |
-| **Unified npx lane** | Any other host (no supported `openwiki integrations install` entry) | `npx skills add -g -a <self-reported> langchain-ai/openwiki --full-depth` plus `npx --yes add-mcp -g -a <host> openwiki` (neon-solutions/add-mcp) or `openwiki mcp --host <target>` | Installs lifecycle skill to universal + host via the Skills CLI, then registers the MCP via `add-mcp` chooser or the `openwiki mcp` command |
+| **Unified npx lane** | Any other host (no supported `openwiki integrations install` entry) | `npx skills add -g -a <self-reported> langchain-ai/openwiki --full-depth` plus `npx --yes add-mcp "openwiki mcp --host <host>" -g -a <host> --name openwiki` (command form; args form `npx --yes add-mcp openwiki -g -a <host> --args mcp --args --host --args <host> --name openwiki`; neon-solutions/add-mcp) or `openwiki mcp --host <target>` | Installs lifecycle skill to universal + host via the Skills CLI, then registers the MCP via `add-mcp` chooser or the `openwiki mcp` command |
 
 The former headless ladder (`openwiki --init -p` / `--update -p` driven directly by the agent with no MCP registration) is retired for the lifecycle skill; the unified `npx` + `add-mcp` ladder replaces it. `npx skills add -g -a <self-reported> langchain-ai/openwiki` yields three skills (`openwiki`, `mermaid-diagrams`, `write-connector`); the lifecycle `openwiki` skill requires `--full-depth`.
 
@@ -139,7 +139,8 @@ When the self-reported host is outside `codex|claude|opencode`, the spread does 
 
 ```bash
 npx skills add -g -a <self-reported> langchain-ai/openwiki --full-depth
-npx --yes add-mcp -g -a <self-reported> openwiki
+npx --yes add-mcp "openwiki mcp --host <self-reported>" -g -a <self-reported> --name openwiki
+# command form above; equivalent args form: npx --yes add-mcp openwiki -g -a <self-reported> --args mcp --args --host --args <self-reported> --name openwiki
 # or when the host supports it: openwiki mcp --host <self-reported>
 ```
 
@@ -282,7 +283,7 @@ Focused probes mirror the openspec verification matrix:
 | Partial fixture convergence | Re-run on partially bootstrapped fixture | Completes only missing steps |
 | Canonical store idempotency | `npx skills add -g -a <self-reported> <source>` twice | Second run is no-op; both `~/.agents/skills/<name>` and host mirror intact |
 | Supported host install idempotency | `openwiki integrations install <host>` twice | Second run `unchanged` / no-op; codex TOML `replaceableEntry` detection holds |
-| Unsupported host fallback | `npx skills add -g -a <other> langchain-ai/openwiki --full-depth` plus `npx add-mcp -g -a <other> openwiki` | Lifecycle skill and MCP land in universal + host without registry lane |
+| Unsupported host fallback | `npx skills add -g -a <other> langchain-ai/openwiki --full-depth` plus `npx add-mcp "openwiki mcp --host <other>" -g -a <other> --name openwiki` (command form; args form `npx add-mcp openwiki -g -a <other> --args mcp --args --host --args <other> --name openwiki`) | Lifecycle skill and MCP land in universal + host without registry lane |
 | Modified detection | Hand-edit a file in skill dir, then `openwiki integrations list` | Reports `modified`; install refuses without `--force` |
 | Force with backup | `openwiki integrations install <host> --force` | Overwrites, creates backup, reports backup path |
 | Consent gating | `npx skills add -g <source>` vs `npx skills add -g -a <other>` vs `npx skills add -g --all` | Bare `-g` writes only universal; explicit `-a` / `--all` writes extra hosts |
