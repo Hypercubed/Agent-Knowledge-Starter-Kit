@@ -42,9 +42,10 @@ Give your agent this prompt:
 ```text
 Install the Agent Knowledge Starter Kit into this repo:
 
-1. npx skills add -g -a <self-reported> Hypercubed/Agent-Knowledge-Starter-Kit#develop  (use #develop until v2.0 is published; omit #develop after publish)
-   (or npx skills add -g -a <self-reported> <path-to-kit> with a local checkout;
-   <self-reported> is your host id, universal is ~/.agents/skills, npx required; this installs all skills)
+1. npx skills add Hypercubed/Agent-Knowledge-Starter-Kit#develop -g -a <agent>
+   (or npx skills add <path-to-kit> -g -a <agent> with a local checkout;
+   <agent> is your host id — opencode, codex, claude, or * (`-g --all` for universal ~/.agents/skills); positional <source> must come first — npx skills add -g -a <source> fails with Missing required argument: source; npx required; this installs all skills)
+   e.g. npx skills add Hypercubed/Agent-Knowledge-Starter-Kit#develop -g -a opencode or npx skills add Hypercubed/Agent-Knowledge-Starter-Kit -g --all
 2. Run the aksk-bootstrap skill (global: npm i -g for openspec/openwiki, global skills).
 3. Then run the aksk-init skill (per-repo: scaffold .agents/ + AGENTS.md baseline first, then openspec/openwiki init, routing/lifecycle, wiki contract).
 
@@ -57,8 +58,8 @@ From the target repo:
 
 ```bash
 npm i -g @fission-ai/openspec openwiki
-npx skills add -g Hypercubed/Agent-Knowledge-Starter-Kit#develop  # add #develop until v2.0 is published
-# or: npx skills add -g <path-to-kit>  # local checkout, installs all skills
+npx skills add Hypercubed/Agent-Knowledge-Starter-Kit#develop -g  # add #develop until v2.0 is published; positional <source> must come first
+# or: npx skills add <path-to-kit> -g  # local checkout, installs all skills
 ```
 
 Add `-a <your-agent>` (e.g. `-a codex`) if you also want the host-specific mirror alongside `~/.agents/skills`.
