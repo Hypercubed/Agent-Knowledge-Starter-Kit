@@ -26,4 +26,34 @@ maintainer in OKF format following upstream OpenWiki guidance.
 3. **Distill-authored pages bypass the CLI:** descriptive lessons distilled
    from session bundles are written by the host agent with deterministic index
    refresh; `openwiki --update` remains the scheduled reconciliation path.
+
+### Documentation budget
+
+OpenWiki is an agent navigation aid, not a comprehensive reference.
+Prefer a small number of high-signal pages over broad coverage.
+
+Keep:
+
+- Repository map and package ownership.
+- Top-level architecture and major runtime/data flows.
+- Cross-cutting conventions and extension points.
+- Non-obvious invariants evidenced in source/tests.
+- Links to source locations and canonical `openspec/specs/**` specs.
+
+Do not generate:
+
+- Restatements of `openspec/specs/**` requirements or scenarios.
+- Per-function/per-class/per-file summaries.
+- Detailed API references already generated elsewhere.
+- Release notes, task lists, or change-history narratives.
+- Documentation for generated/vendor/build-output directories.
+- Pages whose sole purpose is to paraphrase source code.
+
+Update threshold:
+
+- Update a page only when a change alters a public integration boundary,
+  a module ownership boundary, a major data/control flow, a durable
+  codebase convention, or a non-obvious architectural invariant.
+- For feature behavior, link to the canonical OpenSpec spec rather than
+  duplicating its requirements.
 <!-- AKSK:WIKI-CONTRACT:END -->
