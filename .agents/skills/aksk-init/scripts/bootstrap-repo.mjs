@@ -37,6 +37,12 @@ for (const a of argv) {
 }
 repoRoot = path.resolve(repoRoot);
 
+if (argv.includes("--help") || argv.includes("-h")) {
+  console.log("Usage: node bootstrap-repo.mjs [repo-root] [--yes]");
+  console.log("Per-repo AKSK init: scaffold .agents, openspec/openwiki init, attach routing/lifecycle/contract, install .openwikiignore. Non-interactive; re-running is a no-op.");
+  process.exit(0);
+}
+
 const major = parseInt(process.versions.node.split(".")[0], 10);
 if (major < MIN_NODE_MAJOR) {
   console.error(`Node ${major} < ${MIN_NODE_MAJOR}`);
@@ -94,6 +100,12 @@ for (const tmpl of ["routing-note-template.md", "lifecycle-template.md"]) {
   const sc = path.join(path.dirname(fileURLToPath(import.meta.url)), "attach_wiki_contract.mjs");
   const r = run("node", [sc, repoRoot], { encoding: "utf8" });
   console.log(` contract: ${(r.stdout || r.stderr || "").trim().split("\n").slice(-1)[0]}`);
+}
+
+{
+  const sc = path.join(path.dirname(fileURLToPath(import.meta.url)), "init_openwikiignore.mjs");
+  const r = run("node", [sc, repoRoot], { encoding: "utf8" });
+  console.log(` openwikiignore: ${(r.stdout || r.stderr || "").trim().split("\n").slice(-1)[0]}`);
 }
 
 console.log("Repo init complete.");

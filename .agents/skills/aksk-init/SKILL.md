@@ -14,6 +14,7 @@ Per-repo initialization. Verifies global tools (Node >=22, openspec/openwiki via
 3. `openwiki --init` — (a) via harness (agent+openwiki MCP/skill, no extra key) or (b) CLI (requires OPENAI_API_KEY)
 4. Attach routing + lifecycle (`attach_section.mjs`)
 5. Attach wiki contract (`attach_wiki_contract.mjs`)
+6. Install `.openwikiignore` (`init_openwikiignore.mjs`, merge-not-clobber)
 
 Each step prompts `[Y/n/skip]`; `--yes` / `--non-interactive` / `AKSK_YES=1` uses defaults; no TTY falls back to INSTRUCT (print commands, no writes).
 
