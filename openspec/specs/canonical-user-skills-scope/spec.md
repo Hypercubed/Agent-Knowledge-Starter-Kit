@@ -19,6 +19,16 @@ The system MUST treat `~/.agents/skills` (universal, Codex default) plus the cur
 - **WHEN** the user explicitly asked for `-a <other>` or `--all` at the `npx` call
 - **THEN** the skills also appear under that other agent's skill dir in addition to the universal + self-reported pair
 
+#### Scenario: Universal + host mirror holds kit and OpenSpec skills
+
+- **WHEN** bootstrap has completed globally
+- **THEN** `~/.agents/skills/` contains both kit skills (`aksk-*`, `task-closeout`, etc.) and `openspec-*` skills, mirrored to the self-reported host directory, and all are resolved from the canonical store
+
+#### Scenario: Local override
+
+- **WHEN** user requests a specific agent or `--local-skills`
+- **THEN** the install targets that agent's directory or the repo-local `.agents/skills/` respectively, rather than the universal store
+
 ### Requirement: npx skills is required, clone fallback removed
 `npx` SHALL be treated as required. The documentation SHALL NOT present a `git clone --depth 1 && cp -r .agents/skills` fallback lane. When `npx` is unavailable the bootstrap SHALL report it as a prerequisite (INSTRUCT lane prints `npm i -g` / `npx` required) and not silently fall back to a copy.
 
