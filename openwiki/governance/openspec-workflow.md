@@ -1,60 +1,12 @@
 ---
-type: "Reference"
-title: "OpenSpec Workflow"
-openwiki_generated: true
+type: Reference
+title: OpenSpec Workflow
+description: How OpenSpec specs, changes, and archive govern intent and process in this repository — configuration, lifecycle, and graduation rules.
+tags: [openspec, governance, specs, changes, workflow]
 verified:
-  - by: openwiki/0.4.3
-    at: 2026-08-30T01:40:39.325Z
-sources:
-  - id: openwiki-source-df46a321fce7026f92166a02
-    resource: repo://.agents/playbooks/pre-publish.md
-  - id: openwiki-source-75cf85a44e08ef6c1c96b347
-    resource: repo://openspec.yaml
-  - id: openwiki-source-ce9c6fa422edfe6d8c0a16ae
-    resource: repo://openspec/changes/add-integrations/.openspec.yaml
-  - id: openwiki-source-30179ef0180d39bd7ef5bef7
-    resource: repo://openspec/changes/add-task-start/design.md
-  - id: openwiki-source-c13ebc2b6ebca535d0e7e2e3
-    resource: repo://openspec/changes/add-task-start/proposal.md
-  - id: openwiki-source-bfc58f79a96e2ed041bc3436
-    resource: repo://openspec/changes/add-task-start/specs/task-start/spec.md
-  - id: openwiki-source-1611464d292180a472498834
-    resource: repo://openspec/changes/archive/2026-08-29-canonical-universal-install/specs/canonical-user-skills-scope/spec.md
-  - id: openwiki-source-6d68533449d90d69bc412375
-    resource: repo://openspec/changes/archive/2026-08-29-split-bootstrap-init/proposal.md
-  - id: openwiki-source-9f96bcfc863dad6387706711
-    resource: repo://openspec/changes/archive/2026-08-29-split-bootstrap-init/specs/aksk-bootstrap/spec.md
-  - id: openwiki-source-287201707e8924698f8d616b
-    resource: repo://openspec/changes/archive/2026-08-29-split-bootstrap-init/specs/aksk-init/spec.md
-  - id: openwiki-source-38af7bdd34d817fbd3c29077
-    resource: repo://openspec/config.yaml
-  - id: openwiki-source-3916774ed58b99715e8ff081
-    resource: repo://openspec/specs/agent-integration-spread/spec.md
-  - id: openwiki-source-f7767c74e12e946558d335f1
-    resource: repo://openspec/specs/agents-md-bootstrap/spec.md
-  - id: openwiki-source-c23cb9e8edf20ed2740abea1
-    resource: repo://openspec/specs/aksk-bootstrap/spec.md
-  - id: openwiki-source-d682bd16449a28825541bbed
-    resource: repo://openspec/specs/aksk-init/spec.md
-  - id: openwiki-source-e057169748acea114e857ee9
-    resource: repo://openspec/specs/canonical-user-skills-scope/spec.md
-  - id: openwiki-source-86a9b374cb99ed0befc3bb8d
-    resource: repo://openspec/specs/closeout-change-linking/spec.md
-  - id: openwiki-source-dc51f338f00dcd0763b107a6
-    resource: repo://openspec/specs/cross-tool-lint/spec.md
-  - id: openwiki-source-eeb2cc49563df1de1086bb7e
-    resource: repo://openspec/specs/distill-routing/spec.md
-  - id: openwiki-source-c16c0a8de8d2a3a0385db0af
-    resource: repo://openspec/specs/install-lanes/spec.md
-  - id: openwiki-source-53df649d4fbc85ef0839d164
-    resource: repo://openspec/specs/wiki-contract/spec.md
-  - id: openwiki-source-2361cff43709905e22758cbb
-    resource: repo://scripts/check-agents-structure.sh
-  - id: openwiki-source-5d609834bdc11b93524d04a9
-    resource: repo://scripts/check-publish.sh
-generated: { by: "openwiki/0.4.3", at: "2026-08-30T01:40:39.325Z" }
+  - by: openwiki/0.5.0
+    at: 2026-09-04T04:19:45.757Z
 ---
-
 
 # OpenSpec Workflow
 
@@ -137,7 +89,7 @@ Six pre-2.0 plus six 2.0 capabilities now graduated:
 | --- | --- |
 | `openspec-integration` | Adoption of OpenSpec itself (first wave) |
 | `remove-write-plan` | Deletion of write-plan skill while retaining plans directory |
-| `wiki-contract` | Append-only AKSK curation contract in `openwiki/INSTRUCTIONS.md`, peer-tool preconditions |
+| `wiki-contract` | Append-only AKSK curation contract in `openwiki/INSTRUCTIONS.md`, peer-tool preconditions, Documentation budget (Keep / Do-not-generate / Update-threshold), and root-anchored `.openwikiignore` ownership |
 | `distill-routing` | Descriptive → OpenWiki OKF pages; prescriptive → `.agents/` |
 | `cross-tool-lint` | Routing-block integrity, archived-change ↔ wiki coverage pairing, stale-page detection |
 | `closeout-change-linking` | `openspec_change` in `summary.json`; spec updates at archive time, never at closeout |
@@ -150,18 +102,21 @@ Six pre-2.0 plus six 2.0 capabilities now graduated:
 
 Requirements live only here — distillation cites the capability instead of duplicating a SHALL as a wiki page (see [Knowledge Curation Contract](../concepts/knowledge-curation-contract.md)).
 
-## Active changes (11)
+The `wiki-contract` budget constrains OpenWiki to an agent navigation aid: Keep (repository map and ownership, top-level architecture and major flows, conventions and extension points, non-obvious invariants, links to sources and canonical specs); Do-not-generate (restatements of `openspec/specs/**`, per-function/class/file summaries, redundant API references, release notes and task lists, generated/vendor directory docs, pure paraphrase pages); Update-threshold (update only on public-boundary, ownership, major-flow, convention, or invariant change — otherwise link to the canonical spec). The brief lives inside the existing `AKSK:WIKI-CONTRACT` markers so `attach_wiki_contract.mjs` refresh distributes it. The companion `.openwikiignore` requirement keeps `openspec/specs/**` and `openspec/changes/archive/**` citeable while excluding generated, vendor, and machine-local trees via anchored `/example/` and merge-not-clobber `AKSK:OPENWIKIIGNORE` markers.
 
-Each folder carries `.openspec.yaml` plus `proposal.md` (+ `design.md`/`tasks.md` for larger ones) and optional delta specs.
+## Active changes
+
+Each folder carries `.openspec.yaml` plus `proposal.md` (+ `design.md`/`tasks.md` for larger ones) and optional delta specs. At time of writing 16 changes are active, including:
 
 | Change | Theme |
 | --- | --- |
 | `add-task-start` | Proactive `task-start` skill seeding `summary.json` (`task_id`, `created_at`, `status: in_progress`); closeout finalizes existing bundle |
+| `aksk-init-doc-budget` | Phase 2 of the documentation budget: bake the brief and `.openwikiignore` installer into `aksk-init` so new consumer repos start budget-constrained (proposal-only) |
 | `adopt-workflows-taxonomy` | Merge `playbooks/` into `workflows/` under unified terminology |
 | `implement-operating-contract-and-triggers` | `OPERATING_CONTRACT.md` (<50 lines) + `.agents/triggers.yaml` event system; spec updates bound to `/opsx:archive`, not closeout |
-| `add-integrations`, `add-script-tests`, `consumer-upgrade-path`, `formalize-superseded-obsolete`, `out-of-repo-trees`, `rules-in-scaffold`, `ship-structure-check-script`, `worked-lifecycle-example` | Docs coverage, pytest suite for scripts, upgrade guidance, deprecation triple-lock (`aksk_status` + lint), overlay trees, `.agents/rules/` taxonomy, structure-script distribution, worked loop example |
+| `add-integrations`, `add-script-tests`, `consumer-upgrade-path`, `formalize-superseded-obsolete`, `out-of-repo-trees`, `rules-in-scaffold`, `ship-structure-check-script`, `worked-lifecycle-example`, `dedupe-integration-guides`, `dedupe-skill-internals`, `eliminate-bootstrap-shim`, `install-openspec-skills-global` | Docs coverage, pytest suite for scripts, upgrade guidance, deprecation triple-lock (`aksk_status` + lint), overlay trees, `.agents/rules/` taxonomy, structure-script distribution, worked loop example, guide/skill deduplication, shim removal, global OpenSpec skills |
 
-The two 2.0 bootstrap changes (`aksk-bootstrap-system`, `add-agents-md-bootstrap`), `reorder-install-lanes-drop-example`, `canonical-universal-install`, and `split-bootstrap-init` are now archived as applied; their specs graduated (see below).
+The two 2.0 bootstrap changes (`aksk-bootstrap-system`, `add-agents-md-bootstrap`), `reorder-install-lanes-drop-example`, `canonical-universal-install`, `split-bootstrap-init`, and `adopt-doc-budget` are now archived as applied; their specs graduated (see below).
 
 ### `add-task-start` — proactive task initialization (proposal-only)
 
@@ -195,6 +150,10 @@ This proposal was **archived 2026-08-29** and graduated to `openspec/specs/canon
 - **OpenWiki two-track**: `openwiki integrations install <self-reported>` (skill + MCP atomically, `.openwiki-install.json` receipt) when the host is in the `codex|claude|opencode` registry, otherwise `npx skills add -g` + `npx add-mcp` (neon-solutions/add-mcp) or `openwiki mcp --host` as backup.
 - **Verification retargeted**: `verify-install` now asserts `~/.agents/skills/<name>` plus host mirror as canonical; repo-local `./.agents/skills` is override.
 
+### `adopt-doc-budget` — now graduated into `wiki-contract`
+
+Phase 1 was **archived 2026-09-03** and graduated Documentation-budget plus `.openwikiignore` requirements into `openspec/specs/wiki-contract/spec.md`. It expanded `references/wiki-contract-template.md` and `openwiki/INSTRUCTIONS.md` inside the existing `AKSK:WIKI-CONTRACT` markers (Option A, no new markers), expanded root `.openwikiignore` to the anchored commented starter list with merge-not-clobber semantics, and kept `openspec/changes/archive/**` citeable. Phase 2 (`aksk-init-doc-budget`) remains proposal-only: add `references/openwikiignore-template.md` plus an `init_openwikiignore.mjs` installer wired into `bootstrap-repo.mjs` after `openwiki --init` and contract attach, so every new `aksk-init` distributes the budget by default.
+
 ## Bootstrap invariants and entrypoints (split)
 
 `split-bootstrap-init` (archived 2026-08-29) partitioned the former monolithic `aksk-bootstrap` into two lanes. Both are non-interactive scripts prompted by their skills with `[Y/n/skip]`:
@@ -224,15 +183,16 @@ Ownership partition during spread: any target skill dir already holding `.openwi
 
 ## Archived changes — the supersession lineage
 
-`openspec/changes/archive/` is dated and tells five waves:
+`openspec/changes/archive/` is dated and tells six waves:
 
 1. **2026-05-16 · `add-openspec-integration`** — adopted OpenSpec itself; produced spec `openspec-integration`.
 2. **2026-07-18/19 batch** — five wiki-related proposals (`add-docs-capture-skill`, `introduce-docs-manifest`, `living-architecture-intent-capture`, `repo-centric-wiki-tooling`, `wiki-system`) were marked Overcome-By-Events by `integrate-openwiki-skills`, which proposed extracting OpenWiki's internal prompts into native AKSK skills. Also here: `remove-write-plan` (deleted write-plan skill; merged spec graduated).
 3. **2026-08-23 batch** — six proposals archived as superseded or applied: `integrate-openwiki-skills`, `aksk-install-tools`, and `aksk-openspec-bridge` closed superseded — their scope was re-cut into graduated specs (upstream skill bundles replace prompt extraction, native `openspec init` replaces forks, installation moved into `aksk-bootstrap`). `escalate-quick-reference` closed without implementation. `adopt-openspec-openwiki` itself was archived here **as fully applied** — its four capability specs graduated to `openspec/specs/`.
 4. **2026-08-29 batch A** — `add-agents-md-bootstrap`, `aksk-bootstrap-system`, and `reorder-install-lanes-drop-example` were each archived as applied. Their deltas became graduated specs `agents-md-bootstrap`, `aksk-bootstrap (+ agent-integration-spread)`, and `install-lanes` respectively.
 5. **2026-08-29 batch B** — `canonical-universal-install` and `split-bootstrap-init` were archived as applied. Their deltas became graduated specs `canonical-user-skills-scope` (plus refinements to `aksk-bootstrap` and `agent-integration-spread`) and `aksk-init` (with `aksk-bootstrap` narrowed to global-only). `canonical-universal-install` superseded the install-lane shape from batch A; `split-bootstrap-init` explains why global and per-repo lanes are now distinct executables.
+6. **2026-09-03 · `adopt-doc-budget`** — archived as applied. Its deltas became the Documentation-budget and `.openwikiignore` requirements in `wiki-contract`. Phase 2 (`aksk-init-doc-budget`) is still active and will extend `aksk-init` with the ignore installer.
 
-Reading order for anyone tracing why current tooling exists: wave 2 explains the ripgrep-era design of the now-deleted `docs-search`/`docs-compile`; wave 3 explains why they were retired in favor of upstream tooling and where each step-1 requirement is now codified; wave 4–5 explain why consumer `AGENTS.md` is seeded from a vendored baseline, why skill installs default to `~/.agents/skills`, and why bootstrap is now `bootstrap-global.mjs` + `bootstrap-repo.mjs`.
+Reading order for anyone tracing why current tooling exists: wave 2 explains the ripgrep-era design of the now-deleted `docs-search`/`docs-compile`; wave 3 explains why they were retired in favor of upstream tooling and where each step-1 requirement is now codified; waves 4–6 explain why consumer `AGENTS.md` is seeded from a vendored baseline, why skill installs default to `~/.agents/skills`, why bootstrap is now `bootstrap-global.mjs` + `bootstrap-repo.mjs`, and why OpenWiki runs under a documentation budget with a root-anchored ignore.
 
 ## The four opsx workflows
 
@@ -274,6 +234,7 @@ Per `closeout-change-linking`, spec sync happens at `/opsx:archive` time, not at
 - **Peer tools verified before use**: every skill/script that invokes `openspec` or `openwiki` verifies the binary resolves first and fails with the exact install command when it does not.
 - **No durable writes at task boundaries**: `task-start` and `task-closeout` only write under `.agents/sessions/<bundle>/` (plus idempotent `README.md`/`.gitignore`); spec and wiki mutations are deferred to `opsx:archive` and `learning-distill` respectively.
 - **Coverage invariant**: each archived change should have wiki coverage (directly or via recorded deferral); lint fails otherwise.
+- **Budget and ignore guardrails**: wiki updates that only restate `openspec/specs/**` or paraphrase source without a boundary, ownership, flow, convention, or invariant change violate the Documentation budget; excluding `openspec/specs/**` or `openspec/changes/archive/**` from discovery via `.openwikiignore` breaks evidence citations and is forbidden.
 
 ## Extension points and operations
 
@@ -283,4 +244,4 @@ Per `closeout-change-linking`, spec sync happens at `/opsx:archive` time, not at
 - **Validation before publish**: run `node .agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs` after curated wiki edits, then `docs-lint`, then `bash scripts/check-publish.sh` (which delegates to `check-agents-structure.sh` plus Markdown, link, leakage, and hygiene checks). `openspec validate <change> --strict` gates archival. See `.agents/playbooks/pre-publish.md` for the full readiness sequence.
 - **Install-scope override**: default is `-g -a <self-reported>` (universal `~/.agents/skills` + caller host). Repo-local `./.agents/skills` is override with explicit `--local-skills` on the repo lane; extra `-a <other>`/`--all` with explicit user consent is the wide override.
 
-**Truthfulness horizon for wiki readers:** pages describing `docs-lint`, `learning-distill`, `task-closeout`, `aksk-bootstrap`, and `aksk-init` document shipped behavior; the `.agents/workflows/opsx-*` copy definitions describe content whose retirement is pending; `canonical-user-skills-scope`, `agent-integration-spread`, and `install-lanes` document shipped install behavior; everything under `add-task-start` and the other 10 active `openspec/changes/**` is proposal-only until archived.
+**Truthfulness horizon for wiki readers:** pages describing `docs-lint`, `learning-distill`, `task-closeout`, `aksk-bootstrap`, and `aksk-init` document shipped behavior; the `.agents/workflows/opsx-*` copy definitions describe content whose retirement is pending; `canonical-user-skills-scope`, `agent-integration-spread`, `install-lanes`, and the `wiki-contract` Documentation-budget plus `.openwikiignore` rules document shipped install and wiki behavior; everything under `add-task-start`, `aksk-init-doc-budget`, and the other active `openspec/changes/**` is proposal-only until archived.

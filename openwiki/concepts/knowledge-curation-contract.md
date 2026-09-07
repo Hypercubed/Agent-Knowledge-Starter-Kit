@@ -1,40 +1,16 @@
 ---
-type: "Reference"
-title: "Knowledge Curation Contract"
-openwiki_generated: true
+type: Reference
+title: Knowledge Curation Contract
+description: AKSK attachment, preserve-and-link, frontmatter lifecycle, distill bypass, documentation budget, and ignore guard that keep curated OpenWiki trees authoritative.
+tags: [aksk, curation, openwiki, distill-routing, documentation-budget]
 verified:
-  - by: openwiki/0.4.3
-    at: 2026-08-30T01:40:39.325Z
-sources:
-  - id: openwiki-source-d1960e41bf9a48af26e81829
-    resource: repo://.agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs
-  - id: openwiki-source-dce50581779fda5dd507dc34
-    resource: repo://.agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs
-  - id: openwiki-source-d786624ba23d2df437591102
-    resource: repo://.agents/skills/aksk-init/references/wiki-contract-template.md
-  - id: openwiki-source-ff2d87cb54c01d07d6371400
-    resource: repo://.agents/skills/aksk-init/scripts/attach_wiki_contract.mjs
-  - id: openwiki-source-4ab0b6cc58dd78f7a5c0603e
-    resource: repo://.agents/skills/aksk-init/SKILL.md
-  - id: openwiki-source-5af7f373fcb21f142106673c
-    resource: repo://.agents/skills/docs-lint/SKILL.md
-  - id: openwiki-source-513536a60f0bc38be6c6d845
-    resource: repo://.agents/skills/learning-distill/references/CONTRACT.md
-  - id: openwiki-source-6780607585e38503f5da5e5e
-    resource: repo://.agents/skills/learning-distill/references/decision-frontmatter.schema.json
-  - id: openwiki-source-7fe0106a3a83528f5b3d3755
-    resource: repo://.agents/skills/learning-distill/SKILL.md
-  - id: openwiki-source-eeb2cc49563df1de1086bb7e
-    resource: repo://openspec/specs/distill-routing/spec.md
-  - id: openwiki-source-53df649d4fbc85ef0839d164
-    resource: repo://openspec/specs/wiki-contract/spec.md
-generated: { by: "openwiki/0.4.3", at: "2026-08-30T01:40:39.325Z" }
+  - by: openwiki/0.5.0
+    at: 2026-09-04T04:19:45.757Z
 ---
-
 
 # Knowledge Curation Contract
 
-The knowledge curation contract is the boundary agreement between AKSK and OpenWiki. It declares which wiki trees AKSK authors directly, how those pages survive scheduled reconciliation, what lifecycle metadata they carry, and which alternative write path keeps agent-behavior rules out of the wiki. The contract is enforced at three moments: attachment time, distill time, and lint time.
+The knowledge curation contract is the boundary agreement between AKSK and OpenWiki. It declares which wiki trees AKSK authors directly, how those pages survive scheduled reconciliation, what lifecycle metadata they carry, which write path keeps agent-behavior rules out of the wiki, and what OpenWiki is allowed to generate. The contract is enforced at three moments: attachment time, distill time, and lint time.
 
 ## Curated trees
 
@@ -57,19 +33,20 @@ The contract itself lives inside `openwiki/INSTRUCTIONS.md`, bounded by marker p
 
 ```
 <!-- AKSK:WIKI-CONTRACT:BEGIN -->
-... curated page trees, curation rules ...
+... curated page trees, curation rules, documentation budget ...
 <!-- AKSK:WIKI-CONTRACT:END -->
 ```
 
 ### Attach mechanism
 
-`node .agents/skills/aksk-init/scripts/attach_wiki_contract.mjs [repo-root]` owns this section:
+`node .agents/skills/aksk-init/scripts/attach_wiki_contract.mjs [repo-root]` owns this section (byte-identical copy at `node .agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs`; either path works):
 
 * Reads the desired section verbatim from `references/wiki-contract-template.md` — markers are part of the template, not hard-coded separately.
 * If `openwiki/INSTRUCTIONS.md` does not exist, exits `2` with the verbatim prerequisite `` openwiki --init `` and performs **no writes**. This enforces that AKSK never creates a wiki; it only attaches to an already-initialized one.
 * If the file exists but lacks the marker pair, appends the templated section below existing content (all OpenWiki-owned content above is preserved). When the existing file is the default OpenWiki stub (`A code wiki for this repository.`), the message is stub-aware.
 * If the marker pair already exists, the operation is **idempotent and self-updating**: when the marked section already equals the template (after trimming), it reports a no-op; when the template changed (kit upgrade), only the content between markers is refreshed in place — nothing outside the markers is touched.
 * Re-running the attachment is therefore safe and reports `already up to date` on the second run.
+* The Documentation budget below lives inside the same `AKSK:WIKI-CONTRACT` markers (Option A) and participates in the same idempotence: a template change refreshes only the marked block.
 
 ```mermaid
 flowchart TB
@@ -102,6 +79,20 @@ The second half of the contract declares the update invariant:
 3. **Distill-authored pages bypass the CLI** — descriptive lessons distilled from session bundles are written by the host agent with deterministic index refresh; `openwiki --update` remains the scheduled reconciliation path but is never the distill write path.
 
 In practice this means a wiki update run is read-mostly with respect to curated trees: it may rebuild global catalogs and non-curated content, but it treats AKSK-authored pages as the source of truth for their own bodies. The safety consequence is that a missing contract must not be treated as "nothing curated" — distillation fails closed before any wiki write when the contract markers are absent, because otherwise the next update could silently regenerate away curated pages.
+
+## Documentation budget
+
+The same marked block constrains OpenWiki to an agent navigation aid. Prefer a small number of high-signal pages over broad coverage.
+
+**Keep** — repository map and package ownership; top-level architecture and major runtime/data flows; cross-cutting conventions and extension points; non-obvious invariants evidenced in source/tests; links to source locations and canonical `openspec/specs/**` specs.
+
+**Do not generate** — restatements of `openspec/specs/**` requirements or scenarios; per-function/per-class/per-file summaries; detailed API references already generated elsewhere; release notes, task lists, or change-history narratives; documentation for generated/vendor/build-output directories; pages whose sole purpose is to paraphrase source code.
+
+**Update threshold** — update a page only when a change alters a public integration boundary, a module ownership boundary, a major data/control flow, a durable codebase convention, or a non-obvious architectural invariant. For feature behavior, link to the canonical OpenSpec spec (`openspec/specs/<capability>/spec.md`) rather than duplicating its requirements. When a change touches only internal implementation, no wiki page is updated.
+
+## Discovery guard (`.openwikiignore`)
+
+The repository root carries a `.openwikiignore` that keeps generated, vendor, and machine-local paths out of OpenWiki discovery and Claim evidence. It uses anchored `/example/` (root only, not bare `example/`), preserves `.agents/sessions/` exclusion with a `!.agents/sessions/README.md` exception, and carries commented categories for dependencies/build products/caches (`node_modules/`, `dist/`, `build/`, `coverage/`, `.tmp/`, `.cache/`, `.next/`, `.vite/`), generated/vendor artifacts (`**/*.generated.*`, `vendor/`, `third_party/`), and machine-local/secrets (`.env*`, `secrets/`, `*.pem`, `*.key`). It never excludes `openspec/specs/**` or `openspec/changes/archive/**`, which stay citable as contract and history. The file is merge-not-clobber: a missing file is created from the template, an existing file without AKSK markers gets the tagged section appended, and when markers exist only the tagged section refreshes — user content outside the markers is never removed.
 
 ## Frontmatter extensions and identity
 

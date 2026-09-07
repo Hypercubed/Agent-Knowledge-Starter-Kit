@@ -1,0 +1,835 @@
+{
+  "schemaVersion": 1,
+  "runId": "ac67de32-81dd-475a-95d3-d1606dc4fb9a",
+  "mode": "update",
+  "phase": "generating",
+  "startedAt": "2026-09-04T04:19:45.757Z",
+  "language": "en",
+  "languageChanged": false,
+  "requiredRewritePages": [],
+  "initialPages": [
+    "/openwiki/architecture/knowledge-layer.md",
+    "/openwiki/architecture/overview.md",
+    "/openwiki/architecture/task-lifecycle.md",
+    "/openwiki/concepts/agents-md-zoning.md",
+    "/openwiki/concepts/knowledge-curation-contract.md",
+    "/openwiki/concepts/session-identity-and-storage.md",
+    "/openwiki/decisions/adopt-upstream-tools-over-reimplementation.md",
+    "/openwiki/decisions/agent-tool-ownership-partition.md",
+    "/openwiki/decisions/agents-do-not-stage-or-commit-changes.md",
+    "/openwiki/decisions/docs-search-remains-canonical-over-host-native-search.md",
+    "/openwiki/decisions/docs-tooling-scripts-resolve-target-from-override-then-nearest-agents.md",
+    "/openwiki/decisions/github-copilot-as-rules-based-ide-wiring-tool.md",
+    "/openwiki/decisions/integration-guides-belong-in-docs-integrations-not-agents.md",
+    "/openwiki/decisions/kit-installation-guidance-lives-in-root-docs.md",
+    "/openwiki/decisions/knowledge-consolidation-into-openwiki.md",
+    "/openwiki/decisions/maintainer-skills-mark-internal-in-frontmatter.md",
+    "/openwiki/decisions/node-single-runtime-for-kit-scripts.md",
+    "/openwiki/decisions/openspec-documentation-enforcement.md",
+    "/openwiki/decisions/openspec-openwiki-aksk-division-of-labor.md",
+    "/openwiki/decisions/openwiki-integration-distribution-stack.md",
+    "/openwiki/decisions/optional-prior-session-in-session-summary-json.md",
+    "/openwiki/decisions/pin-global-tool-versions-via-caret-and-bundled-versions-json.md",
+    "/openwiki/decisions/plans-live-under-docs-plans-not-agents-plans.md",
+    "/openwiki/decisions/python-preference-for-consumer-scripts.md",
+    "/openwiki/decisions/regenerate-example-when-portable-kit-changes.md",
+    "/openwiki/decisions/root-anchored-openwikiignore-for-generated-trees.md",
+    "/openwiki/decisions/sessions-directory-tracked-readme-with-ignored-bundles.md",
+    "/openwiki/decisions/shared-integration-patterns-belong-in-docs-integrations-patterns-md.md",
+    "/openwiki/decisions/single-tree-architecture-agents.md",
+    "/openwiki/decisions/use-docs-capture-for-ad-hoc-durable-docs.md",
+    "/openwiki/decisions/use-the-routing-pattern-for-agentic-tool-bootstrap-files.md",
+    "/openwiki/distribution/packaging-and-install.md",
+    "/openwiki/distribution/tool-integrations.md",
+    "/openwiki/governance/agent-entrypoints.md",
+    "/openwiki/governance/openspec-workflow.md",
+    "/openwiki/integrations/distribution-and-agent-spread.md",
+    "/openwiki/integrations/distribution-and-tool-wiring.md",
+    "/openwiki/inventory/repository-inventory.md",
+    "/openwiki/maintenance-format.md",
+    "/openwiki/operations/validation-and-lint.md",
+    "/openwiki/operations/validation-and-release.md",
+    "/openwiki/operations/validation-scripts.md",
+    "/openwiki/overview.md",
+    "/openwiki/quickstart.md",
+    "/openwiki/skills/aksk-bootstrap.md",
+    "/openwiki/skills/aksk-init.md",
+    "/openwiki/skills/docs-lint.md",
+    "/openwiki/skills/learning-distill.md",
+    "/openwiki/skills/task-closeout.md",
+    "/openwiki/troubleshooting/agent-stuck-in-explanation-loop.md",
+    "/openwiki/troubleshooting/antigravity-lessons-learned-aren-t-visible-to-teammate-s-agents.md",
+    "/openwiki/troubleshooting/browser-subagent-filesystem-access-error.md",
+    "/openwiki/troubleshooting/clean-git-status-but-you-need-touched-paths-for-closeout.md",
+    "/openwiki/troubleshooting/codex-cannot-write-under-agents-during-closeout-or-distill.md",
+    "/openwiki/troubleshooting/docs-tooling-resolves-wrong-project-root-in-nested-example-or-global-installs.md",
+    "/openwiki/troubleshooting/gemini-cli-not-following-durable-guidance.md",
+    "/openwiki/troubleshooting/github-copilot-chat-context-not-in-focus.md",
+    "/openwiki/troubleshooting/hermes-agent-specific-dual-skill-namespace-skill-view-returns-wrong-file.md",
+    "/openwiki/troubleshooting/hermes-agent-specific-suspected-tool-anomaly-from-a-single-weak-run.md",
+    "/openwiki/troubleshooting/index-compilation-drops-human-edits.md",
+    "/openwiki/troubleshooting/maintainer-plans-files-placed-under-skill-bootstrap.md",
+    "/openwiki/troubleshooting/maintainer-skill-lives-under-agents-skills-by-mistake.md",
+    "/openwiki/troubleshooting/npm-install-from-github-fails-without-package-json.md",
+    "/openwiki/troubleshooting/npx-skills-add-internal-skills.md",
+    "/openwiki/troubleshooting/openwiki-evidence-path-excluded-by-ignore.md",
+    "/openwiki/troubleshooting/openwiki-update-aborts-in-agent-shells.md",
+    "/openwiki/troubleshooting/overlapping-session-bundles-for-one-initiative.md",
+    "/openwiki/troubleshooting/remark-or-bulk-markdown-rewrite-unwanted-paths.md",
+    "/openwiki/troubleshooting/session-discovery-fails-during-distillation-or-closeout.md",
+    "/openwiki/troubleshooting/stalled-maintenance-scripts.md",
+    "/openwiki/troubleshooting/unexpected-files-under-agents-sessions-in-git-status.md",
+    "/openwiki/troubleshooting/windows-ripgrep-path-separators.md",
+    "/openwiki/troubleshooting/windows-to-wsl-tool-path-failures.md",
+    "/openwiki/troubleshooting/zo-ui-skills-discovery-requires-manual-mirror.md",
+    "/openwiki/workflows/bootstrap-and-attachment.md",
+    "/openwiki/workflows/openspec-governance.md",
+    "/openwiki/workflows/task-lifecycle-and-distill.md"
+  ],
+  "sourceFingerprint": "sha256:473f57ea4b0d4c9f0ee04880233b66fc4f4da4f470c16194dcd49dfc0ce4708f",
+  "targetGitHead": "bf846c384bcf2165b141a3199c8ea4c337a661d1",
+  "actor": {
+    "producerActor": "openwiki/0.5.0",
+    "metadataModel": "meta/muse-spark-1.3-contributor"
+  },
+  "previousLastUpdate": {
+    "updatedAt": "2026-08-30T02:33:18.822Z",
+    "command": "update",
+    "gitHead": "6ad6bc3c44aa511ee9c07969adec90f1710954bf",
+    "model": "meta/muse-spark-1.2-contributor",
+    "status": "complete",
+    "language": "en"
+  },
+  "baseGitHead": "6ad6bc3c44aa511ee9c07969adec90f1710954bf",
+  "wikiGoal": "A code wiki for this repository.\n\n## OpenSpec source of truth\n\n- `openspec/specs/**` is the current contract. Cite it as evidence for shipped behavior. Each `spec.md` under `openspec/specs/<capability>/` is the authoritative requirement set for that capability.\n- `openspec/changes/**` are pending proposals — not current behavior. When a wiki page cites evidence from `openspec/changes/<name>/`, label it **Proposal-only (not yet in `openspec/specs/**`)** and do not present delta requirements (`ADDED`/`MODIFIED`/`REMOVED`) as shipped behavior.\n- `openspec/changes/archive/**` is historical. Only cite an archived change as source of truth after `openspec archive <name>` has graduated its specs to `openspec/specs/**`.\n\n## Generated demo output\n\nTreat `example/` at the repository root as a generated consumer-install illustration — not source truth. Do not cite files under `example/` as evidence for shipped behavior, and do not present its contents as canonical implementation. OpenWiki ignores only the root `example/` via `.openwikiignore` (`/example/`); nested `example/` folders are not ignored.\n\n## Temporary session evidence\n\nTreat `.agents/sessions/` as temporary closeout bundles — not source truth. Do not cite files under `.agents/sessions/` (except `.agents/sessions/README.md`) as evidence for shipped behavior, and do not present bundle contents as canonical implementation. Bundles are local working memory until distilled; OpenWiki ignores them via `.openwikiignore`.\n\n<!-- AKSK:WIKI-CONTRACT:BEGIN -->\n## AKSK curation contract\n\nThis section is owned by the Agent Knowledge Starter Kit (AKSK). OpenWiki-owned\ncontent outside these markers takes precedence on conflict. Do not edit between\nthe markers by hand; rerun the kit's contract attachment after kit upgrades.\n\n### Curated page trees\n\n- `decisions/` - durable decision records with `aksk_status` lifecycle fields.\n- `troubleshooting/` - recurring failure patterns and fixes.\n- Root pages `overview.md` and `maintenance-format.md` - curated entry point\n  and schema reference.\n\nAll pages under these trees are authored directly by the distilling agent or\nmaintainer in OKF format following upstream OpenWiki guidance.\n\n### Curation rules\n\n1. **Preserve-and-link:** when a wiki update run would regenerate a page under\n   a curated tree, keep the AKSK-authored page and link generated material to\n   it instead of replacing its content.\n2. **Frontmatter extensions survive round-trips:** AKSK-specific extension\n   fields on curated pages (prefixed `aksk_`) are meaningful and must be\n   preserved by update runs.\n3. **Distill-authored pages bypass the CLI:** descriptive lessons distilled\n   from session bundles are written by the host agent with deterministic index\n   refresh; `openwiki --update` remains the scheduled reconciliation path.\n\n### Documentation budget\n\nOpenWiki is an agent navigation aid, not a comprehensive reference.\nPrefer a small number of high-signal pages over broad coverage.\n\nKeep:\n\n- Repository map and package ownership.\n- Top-level architecture and major runtime/data flows.\n- Cross-cutting conventions and extension points.\n- Non-obvious invariants evidenced in source/tests.\n- Links to source locations and canonical `openspec/specs/**` specs.\n\nDo not generate:\n\n- Restatements of `openspec/specs/**` requirements or scenarios.\n- Per-function/per-class/per-file summaries.\n- Detailed API references already generated elsewhere.\n- Release notes, task lists, or change-history narratives.\n- Documentation for generated/vendor/build-output directories.\n- Pages whose sole purpose is to paraphrase source code.\n\nUpdate threshold:\n\n- Update a page only when a change alters a public integration boundary,\n  a module ownership boundary, a major data/control flow, a durable\n  codebase convention, or a non-obvious architectural invariant.\n- For feature behavior, link to the canonical OpenSpec spec rather than\n  duplicating its requirements.\n<!-- AKSK:WIKI-CONTRACT:END -->",
+  "beforeContentSnapshot": "8783b3105fc6f1b7459102ed2013580de4ce0670847c415aaa0fbfac40d6caa4",
+  "preparedWiki": {
+    "generatedProvenance": [
+      {
+        "page": "/openwiki/architecture/knowledge-layer.md",
+        "bodyHash": "98ecddd85e6c266231dc9f06b25f666667eb9e8ab57c70baded29148ca00229c",
+        "generated": {
+          "by": "openwiki/0.4.3",
+          "at": "2026-08-29T21:15:47.181Z"
+        }
+      },
+      {
+        "page": "/openwiki/architecture/overview.md",
+        "bodyHash": "f4b9e1991da6353816d6b70731b7f290c7104ca5aff566de91a87973cb45b92d",
+        "generated": {
+          "by": "openwiki/0.4.3",
+          "at": "2026-08-30T01:40:39.325Z"
+        }
+      },
+      {
+        "page": "/openwiki/architecture/task-lifecycle.md",
+        "bodyHash": "0bd9eaad8fd6bbe4707cb70d1e2ec07ac34aca19b4a2c1aa4c4f47db765f0014",
+        "generated": {
+          "by": "openwiki/0.4.3",
+          "at": "2026-08-29T20:18:58.499Z"
+        }
+      },
+      {
+        "page": "/openwiki/concepts/agents-md-zoning.md",
+        "bodyHash": "a2affbdf2d043197aacbf38b837a9c8ff8d35770a1f03aa382ef4a469da65526",
+        "generated": {
+          "by": "openwiki/0.4.3",
+          "at": "2026-08-30T01:40:39.325Z"
+        }
+      },
+      {
+        "page": "/openwiki/concepts/knowledge-curation-contract.md",
+        "bodyHash": "f1fb85d64d23efadec810d60d9837b8b73b7c94b44bf172887817cb46c273653",
+        "generated": {
+          "by": "openwiki/0.4.3",
+          "at": "2026-08-30T01:40:39.325Z"
+        }
+      },
+      {
+        "page": "/openwiki/concepts/session-identity-and-storage.md",
+        "bodyHash": "3e9a63468102c08195901b961dc1fdb160c7b1d23dbee2826511d4ad161312ce",
+        "generated": {
+          "by": "openwiki/0.4.3",
+          "at": "2026-08-29T21:15:47.181Z"
+        }
+      },
+      {
+        "page": "/openwiki/decisions/adopt-upstream-tools-over-reimplementation.md",
+        "bodyHash": "350a229dcc95d18c1036d71fc70bf3208a283f83672aa73c7a00b3e09286747b"
+      },
+      {
+        "page": "/openwiki/decisions/agent-tool-ownership-partition.md",
+        "bodyHash": "d47c2b20a9d5f3cf36f57bcb60afcad188401864ab28d60b7ce6050f90ef358a"
+      },
+      {
+        "page": "/openwiki/decisions/agents-do-not-stage-or-commit-changes.md",
+        "bodyHash": "00b25046a44904d45b9c992995ade2adc49b1decd2bfa884a80f54e02a1f1722"
+      },
+      {
+        "page": "/openwiki/decisions/docs-search-remains-canonical-over-host-native-search.md",
+        "bodyHash": "4314c8702e14bbb45d56b74314e0068c67216cb54628d956dfbf8c27f932acf8"
+      },
+      {
+        "page": "/openwiki/decisions/docs-tooling-scripts-resolve-target-from-override-then-nearest-agents.md",
+        "bodyHash": "559d4440e94a5f791d78295ebd85832a221d468537682377cff4313d05aa7798"
+      },
+      {
+        "page": "/openwiki/decisions/github-copilot-as-rules-based-ide-wiring-tool.md",
+        "bodyHash": "fa893a9d93733adbd4be178cae7ab3252d11a6c1cd7a79f9b2f7d5224b8b05de"
+      },
+      {
+        "page": "/openwiki/decisions/integration-guides-belong-in-docs-integrations-not-agents.md",
+        "bodyHash": "f4d851b04b3fcc2605b0cb0df915c06d234f668d154458a3d89e00a94e8629be"
+      },
+      {
+        "page": "/openwiki/decisions/kit-installation-guidance-lives-in-root-docs.md",
+        "bodyHash": "1faa2f1aa2775bda0edf37fa71e48280d0a4f2a25cabf45cfb6077af38715b01"
+      },
+      {
+        "page": "/openwiki/decisions/knowledge-consolidation-into-openwiki.md",
+        "bodyHash": "91cb9137d5c74e5109091d7d9bc4560b593400ffd0306fc85f8a7e8abc1284e9"
+      },
+      {
+        "page": "/openwiki/decisions/maintainer-skills-mark-internal-in-frontmatter.md",
+        "bodyHash": "91264e8b2d0d39ec07ed6a3a4aa679adc1f1450fad3fab55b68dd955979c70f8",
+        "generated": {
+          "by": "openwiki/0.4.3",
+          "at": "2026-08-29T20:18:58.499Z"
+        }
+      },
+      {
+        "page": "/openwiki/decisions/node-single-runtime-for-kit-scripts.md",
+        "bodyHash": "df458770ac0349fe2ae162995d50cfa18c3b9ab385bdd877dc8eeb55851197ce"
+      },
+      {
+        "page": "/openwiki/decisions/openspec-documentation-enforcement.md",
+        "bodyHash": "f9a9f4288db2c992fe2e062ea4823a6fb46927dea23469d72e48aec17c2ead7d"
+      },
+      {
+        "page": "/openwiki/decisions/openspec-openwiki-aksk-division-of-labor.md",
+        "bodyHash": "58f152f64cff696a32346785dbdde8a63f15f046573f38affaa6bb83fb2fbdbf"
+      },
+      {
+        "page": "/openwiki/decisions/openwiki-integration-distribution-stack.md",
+        "bodyHash": "a332f3b3632154a2c2a8df7546a1092f987e4f5eca1f0116d32f07d94e192e66"
+      },
+      {
+        "page": "/openwiki/decisions/optional-prior-session-in-session-summary-json.md",
+        "bodyHash": "5f5d0498f26157c1c8c072fc3359718ac6fcdae6ba034c70f480b5e90054081d"
+      },
+      {
+        "page": "/openwiki/decisions/pin-global-tool-versions-via-caret-and-bundled-versions-json.md",
+        "bodyHash": "90849e77064da3ec14cff7845db46da841944532b2c5580cff303117d2d5831d"
+      },
+      {
+        "page": "/openwiki/decisions/plans-live-under-docs-plans-not-agents-plans.md",
+        "bodyHash": "68955c96af68c72a34f1773320be629fa98412e9615bfa3b2188b81dda4ec8bc"
+      },
+      {
+        "page": "/openwiki/decisions/python-preference-for-consumer-scripts.md",
+        "bodyHash": "d4942105e736fc6040c7ff3c13e6a13eb06a411354938bfaea11590c6ec5fc1f"
+      },
+      {
+        "page": "/openwiki/decisions/regenerate-example-when-portable-kit-changes.md",
+        "bodyHash": "299f96fcaed548e2d479d8125aaf80ecf1497b599d60eb902b010ee7830c5ad5",
+        "generated": {
+          "by": "openwiki/0.4.3",
+          "at": "2026-08-29T20:18:58.499Z"
+        }
+      },
+      {
+        "page": "/openwiki/decisions/root-anchored-openwikiignore-for-generated-trees.md",
+        "bodyHash": "43bb24851ba248089a25c6b53d3ab18acc8e8919c83e75cc06fe7e1bb7894253"
+      },
+      {
+        "page": "/openwiki/decisions/sessions-directory-tracked-readme-with-ignored-bundles.md",
+        "bodyHash": "a40b43984c6616fc1c5bc5464dcc58454b2385f60e4955bdd1b116a4218bada4"
+      },
+      {
+        "page": "/openwiki/decisions/shared-integration-patterns-belong-in-docs-integrations-patterns-md.md",
+        "bodyHash": "f5cf913c7ab4095a173195297124170cc098e7bd86dfd3cbc8214f7f12d4c524"
+      },
+      {
+        "page": "/openwiki/decisions/single-tree-architecture-agents.md",
+        "bodyHash": "4a48ad813703facaa0312bbd11e1088e18de9537f37fa516634e39be450f341d"
+      },
+      {
+        "page": "/openwiki/decisions/use-docs-capture-for-ad-hoc-durable-docs.md",
+        "bodyHash": "69de663187e07c716f3078c8a4a851dd7f0462bd0587bad3cb8e13524d721e68"
+      },
+      {
+        "page": "/openwiki/decisions/use-the-routing-pattern-for-agentic-tool-bootstrap-files.md",
+        "bodyHash": "4e979a2f4c6d2ee4f85c51e689ae2b5eeb4036c81fc249f7a5acbeb68b67e343"
+      },
+      {
+        "page": "/openwiki/distribution/packaging-and-install.md",
+        "bodyHash": "92aefb29be587f717a1be79e14741de699e81fb123de15725dd68d45d7ed5b88",
+        "generated": {
+          "by": "openwiki/0.4.3",
+          "at": "2026-08-30T01:40:39.325Z"
+        }
+      },
+      {
+        "page": "/openwiki/distribution/tool-integrations.md",
+        "bodyHash": "be649b86e9072efb750d59ed553d0f59d02fd009f7f148df905ea5e0f97775d5"
+      },
+      {
+        "page": "/openwiki/governance/agent-entrypoints.md",
+        "bodyHash": "21d4356dcdcb681592665bb911d76bd164c375cf5d4aaa480bf43580ef936069",
+        "generated": {
+          "by": "openwiki/0.4.3",
+          "at": "2026-08-30T01:40:39.325Z"
+        }
+      },
+      {
+        "page": "/openwiki/governance/openspec-workflow.md",
+        "bodyHash": "bf40a760c96dface42eceea957686888ed6f754e42e2effff2121918ec8fcdd6",
+        "generated": {
+          "by": "openwiki/0.4.3",
+          "at": "2026-08-30T01:40:39.325Z"
+        }
+      },
+      {
+        "page": "/openwiki/integrations/distribution-and-agent-spread.md",
+        "bodyHash": "f4b8c090bb6d44c286f6443e776dfaeba6eb7552e3da0977334a737032ebc52e",
+        "generated": {
+          "by": "openwiki/0.4.3",
+          "at": "2026-08-30T01:40:39.325Z"
+        }
+      },
+      {
+        "page": "/openwiki/integrations/distribution-and-tool-wiring.md",
+        "bodyHash": "8a787e1249af7729063dec4d90c1a77b81c8f1f2ac0103a957c733f22449ad4c",
+        "generated": {
+          "by": "openwiki/0.4.3",
+          "at": "2026-08-30T01:40:39.325Z"
+        }
+      },
+      {
+        "page": "/openwiki/inventory/repository-inventory.md",
+        "bodyHash": "a92486a29ed5b4e077c3652624bc61dda3b2f72c941f56dbddb7d7ea7154ecc5",
+        "generated": {
+          "by": "openwiki/0.4.3",
+          "at": "2026-08-30T01:40:39.325Z"
+        }
+      },
+      {
+        "page": "/openwiki/maintenance-format.md",
+        "bodyHash": "1b3c32460b9c369318906f15dacaf2d85aa4135668a91112856767dd21da7b8c"
+      },
+      {
+        "page": "/openwiki/operations/validation-and-lint.md",
+        "bodyHash": "db85c3182aaf21ba5714915a3f6d58d22775d72ea0f8004acaa36f25c03e6ffc",
+        "generated": {
+          "by": "openwiki/0.4.3",
+          "at": "2026-08-29T21:15:47.181Z"
+        }
+      },
+      {
+        "page": "/openwiki/operations/validation-and-release.md",
+        "bodyHash": "911e3a40ba636d8cbb1ecb165e98571a131b7948ca1d0f0b450049632094447c",
+        "generated": {
+          "by": "openwiki/0.4.3",
+          "at": "2026-08-29T20:18:58.499Z"
+        }
+      },
+      {
+        "page": "/openwiki/operations/validation-scripts.md",
+        "bodyHash": "e781af63c7c667c676e99382d65fd079cf63666753475de69db36bc8fc7469c0",
+        "generated": {
+          "by": "openwiki/0.4.3",
+          "at": "2026-08-29T20:18:58.499Z"
+        }
+      },
+      {
+        "page": "/openwiki/overview.md",
+        "bodyHash": "a6c294996af33a949344d2f6ee8301b2577671f51f28f643e5be14d53ab5d780",
+        "generated": {
+          "by": "openwiki/0.4.3",
+          "at": "2026-08-29T20:18:58.499Z"
+        }
+      },
+      {
+        "page": "/openwiki/quickstart.md",
+        "bodyHash": "c3e5d84652b60db8d3ff07adeaf2d5734f41064a2b9873c8d38f79805065e9de",
+        "generated": {
+          "by": "openwiki/0.4.3",
+          "at": "2026-08-30T01:40:39.325Z"
+        }
+      },
+      {
+        "page": "/openwiki/skills/aksk-bootstrap.md",
+        "bodyHash": "c2af677e1c24dade3ea2de0f8a3be383a0eff6907066a04c09fbd6ec624fb320",
+        "generated": {
+          "by": "openwiki/0.4.3",
+          "at": "2026-08-30T01:40:39.325Z"
+        }
+      },
+      {
+        "page": "/openwiki/skills/aksk-init.md",
+        "bodyHash": "31ead4efb8d9fcb8a74fbcd8860307e495dcfa7a22907310a61dd6e041bd68e9",
+        "generated": {
+          "by": "openwiki/0.4.3",
+          "at": "2026-08-30T01:40:39.325Z"
+        }
+      },
+      {
+        "page": "/openwiki/skills/docs-lint.md",
+        "bodyHash": "dce11ae4c891494998aac2775955b5d38c33aab56648233e99b27710f101ba0d",
+        "generated": {
+          "by": "openwiki/0.4.3",
+          "at": "2026-08-29T20:18:58.499Z"
+        }
+      },
+      {
+        "page": "/openwiki/skills/learning-distill.md",
+        "bodyHash": "d8b1c0626d056d7323cdd32964b10c1b3661a63c56f08201e3ad38297aa6f27c",
+        "generated": {
+          "by": "openwiki/0.4.3",
+          "at": "2026-08-29T20:18:58.499Z"
+        }
+      },
+      {
+        "page": "/openwiki/skills/task-closeout.md",
+        "bodyHash": "ca7dd39db37ef0a1766691f3508eb8a8a18e3249ec7784a6e541a0388fd35c39",
+        "generated": {
+          "by": "openwiki/0.4.3",
+          "at": "2026-08-29T20:18:58.499Z"
+        }
+      },
+      {
+        "page": "/openwiki/troubleshooting/agent-stuck-in-explanation-loop.md",
+        "bodyHash": "de4385de6e1ca90e6972a689bee37dad2695316595b330db85509de26fadb5ac"
+      },
+      {
+        "page": "/openwiki/troubleshooting/antigravity-lessons-learned-aren-t-visible-to-teammate-s-agents.md",
+        "bodyHash": "4aef9c6551bc5c065c24a62b59ab75f9c3002d456c5932342644a89daafe68c6"
+      },
+      {
+        "page": "/openwiki/troubleshooting/browser-subagent-filesystem-access-error.md",
+        "bodyHash": "c5312ed744c477aff678b183f1ee3783b5cb7fe8eb71582a31150dae6fdc2b9e"
+      },
+      {
+        "page": "/openwiki/troubleshooting/clean-git-status-but-you-need-touched-paths-for-closeout.md",
+        "bodyHash": "ca70ad62b9763c9e46f4bf53190b69612af7072d954cbb65acdd5f5c32e80e40"
+      },
+      {
+        "page": "/openwiki/troubleshooting/codex-cannot-write-under-agents-during-closeout-or-distill.md",
+        "bodyHash": "f092ee4db3532860fc542003518a1a6f8c54376d952854f2213632babf88fdb3"
+      },
+      {
+        "page": "/openwiki/troubleshooting/docs-tooling-resolves-wrong-project-root-in-nested-example-or-global-installs.md",
+        "bodyHash": "bc5bdfb49ceab8996f3770e796bb6813aefe685020b14220a9ce0fc5e5fc4687"
+      },
+      {
+        "page": "/openwiki/troubleshooting/gemini-cli-not-following-durable-guidance.md",
+        "bodyHash": "65691f8660c4e8dc97fe48fb8e2ba683e744782af43bf3180c3def41d60ea33c"
+      },
+      {
+        "page": "/openwiki/troubleshooting/github-copilot-chat-context-not-in-focus.md",
+        "bodyHash": "1ff4d007ad581c034e1474d3a264881f1260ddcba2c1d1ef6be81b41ef048dcf"
+      },
+      {
+        "page": "/openwiki/troubleshooting/hermes-agent-specific-dual-skill-namespace-skill-view-returns-wrong-file.md",
+        "bodyHash": "2a761cb196cec5dccfdcf56dce643d84034ff402fcb9455da328e286a6d0ce69"
+      },
+      {
+        "page": "/openwiki/troubleshooting/hermes-agent-specific-suspected-tool-anomaly-from-a-single-weak-run.md",
+        "bodyHash": "eb44275770e45c78f7c6f8cc65ba7773f3079493bca3d00f6de7ec93494db232"
+      },
+      {
+        "page": "/openwiki/troubleshooting/index-compilation-drops-human-edits.md",
+        "bodyHash": "ddf0b1e229d3b94d7ae14ef48a1071570bd2d29273b1c821147eb3579f320c63"
+      },
+      {
+        "page": "/openwiki/troubleshooting/maintainer-plans-files-placed-under-skill-bootstrap.md",
+        "bodyHash": "385504ad2fa326f8bc5abe2a90e106632fc2e4d4550b84f0d0dee68c5543b239"
+      },
+      {
+        "page": "/openwiki/troubleshooting/maintainer-skill-lives-under-agents-skills-by-mistake.md",
+        "bodyHash": "36e9c6f90ac82ba7ad987d9e8db3bced7c45af29ce4ac38340742c6fb2a41c5e"
+      },
+      {
+        "page": "/openwiki/troubleshooting/npm-install-from-github-fails-without-package-json.md",
+        "bodyHash": "4bd0c509bddedc326bf5fd031f7293dab203cdbfc31c592ab7abb3d3b42dcd8c"
+      },
+      {
+        "page": "/openwiki/troubleshooting/npx-skills-add-internal-skills.md",
+        "bodyHash": "2e8fe087f6f4fbee754557fc45135bbc6b60dedd73ef17af9264b7481e7fcd84"
+      },
+      {
+        "page": "/openwiki/troubleshooting/openwiki-evidence-path-excluded-by-ignore.md",
+        "bodyHash": "8916e2998b8899935bc8e435547498a86b3165183ba80ee74d07771be13409aa"
+      },
+      {
+        "page": "/openwiki/troubleshooting/openwiki-update-aborts-in-agent-shells.md",
+        "bodyHash": "6c15234ac62749c06e2b36b5d0269921ee5badd5062082df9c96b1cd2b1eea6e"
+      },
+      {
+        "page": "/openwiki/troubleshooting/overlapping-session-bundles-for-one-initiative.md",
+        "bodyHash": "4de7dda485e1e89af24563bc5f6b9fed169fe445e612f365193ad5628cb89af9"
+      },
+      {
+        "page": "/openwiki/troubleshooting/remark-or-bulk-markdown-rewrite-unwanted-paths.md",
+        "bodyHash": "f9cf683bd521dff14c9d0f29bbf0206f50c62de5762c53a3cbe262d5ed2a1f3e"
+      },
+      {
+        "page": "/openwiki/troubleshooting/session-discovery-fails-during-distillation-or-closeout.md",
+        "bodyHash": "606dbe636d290b29455ef825955f15187caa7ead844777d95aa45329595f451a"
+      },
+      {
+        "page": "/openwiki/troubleshooting/stalled-maintenance-scripts.md",
+        "bodyHash": "06e193a7714df54d1ad4a20e3dc4b58d5ca9ea4ab791dc5b7b3206a98c562f78"
+      },
+      {
+        "page": "/openwiki/troubleshooting/unexpected-files-under-agents-sessions-in-git-status.md",
+        "bodyHash": "89af6e73e54d1cb4794c057d878878f54ec5ff65e002f72f82466f108528754b"
+      },
+      {
+        "page": "/openwiki/troubleshooting/windows-ripgrep-path-separators.md",
+        "bodyHash": "e346844d323901167afc76e5770e2a2c9d6fb43de2c1e4a43ee1655ae2bc82dc"
+      },
+      {
+        "page": "/openwiki/troubleshooting/windows-to-wsl-tool-path-failures.md",
+        "bodyHash": "3c6ccf8c5646fb192e22afd2958d3ca7caeb57eff67d3989a23a48208bddaa12"
+      },
+      {
+        "page": "/openwiki/troubleshooting/zo-ui-skills-discovery-requires-manual-mirror.md",
+        "bodyHash": "657d9ebfab5a286c0efd5238b40c7b819ef371474aa06934341f969664c55c62"
+      },
+      {
+        "page": "/openwiki/workflows/bootstrap-and-attachment.md",
+        "bodyHash": "b50c203a2ce47795ca87ac2fa8d86d8dd88ba80178cd731a281daaafb682a9bc",
+        "generated": {
+          "by": "openwiki/0.4.3",
+          "at": "2026-08-30T01:40:39.325Z"
+        }
+      },
+      {
+        "page": "/openwiki/workflows/openspec-governance.md",
+        "bodyHash": "2678e07784564bbb4afe1abc75a54cb23cdedc3b5394d7e6f6e799af93112496",
+        "generated": {
+          "by": "openwiki/0.4.3",
+          "at": "2026-08-30T01:40:39.325Z"
+        }
+      },
+      {
+        "page": "/openwiki/workflows/task-lifecycle-and-distill.md",
+        "bodyHash": "f5b34450a7cb188fa4959b965171377cec3b459484c2527b365e0415bb592df6",
+        "generated": {
+          "by": "openwiki/0.4.3",
+          "at": "2026-08-29T20:18:58.499Z"
+        }
+      }
+    ]
+  },
+  "plan": {
+    "pages": [
+      {
+        "id": "aaef520c-ab7f-4ce6-8867-6cd9462240cc",
+        "path": "/openwiki/architecture/knowledge-layer.md",
+        "title": "Knowledge Layer Architecture",
+        "purpose": "Compiled knowledge layer (.agents plus openwiki plus openspec) and temporary vs durable split.",
+        "seedPaths": [
+          "docs/architecture.md",
+          "openspec/specs/wiki-contract/spec.md"
+        ],
+        "relatedPages": [
+          "/openwiki/architecture/overview.md",
+          "/openwiki/concepts/knowledge-curation-contract.md"
+        ],
+        "instructions": [],
+        "status": "complete",
+        "completedBy": "openwiki/0.5.0"
+      },
+      {
+        "id": "57f98894-7765-4d9c-94c8-409eef922bcf",
+        "path": "/openwiki/architecture/overview.md",
+        "title": "Architecture Overview",
+        "purpose": "Top-level system map: kit as glue over peer tools, global vs per-repo lanes, owned trees.",
+        "seedPaths": [
+          ".agents/skills/aksk-bootstrap/SKILL.md",
+          "INSTALL.md",
+          "openspec/specs/aksk-bootstrap/spec.md"
+        ],
+        "relatedPages": [
+          "/openwiki/architecture/knowledge-layer.md",
+          "/openwiki/inventory/repository-inventory.md",
+          "/openwiki/quickstart.md"
+        ],
+        "instructions": [],
+        "status": "complete",
+        "completedBy": "openwiki/0.5.0"
+      },
+      {
+        "id": "2414d5c6-f883-4cef-bc0b-684134507d24",
+        "path": "/openwiki/concepts/agents-md-zoning.md",
+        "title": "AGENTS.md Zoning",
+        "purpose": "Root AGENTS.md vs .agents/AGENTS.md zoning and routing-block attachment.",
+        "seedPaths": [
+          ".agents/skills/aksk-init/references/wiki-contract-template.md",
+          "AGENTS.md"
+        ],
+        "relatedPages": [
+          "/openwiki/concepts/knowledge-curation-contract.md",
+          "/openwiki/skills/aksk-init.md"
+        ],
+        "instructions": [],
+        "status": "complete",
+        "completedBy": "openwiki/0.5.0"
+      },
+      {
+        "id": "2a2396d9-025d-4412-9fd0-0b0be03f6fc0",
+        "path": "/openwiki/concepts/knowledge-curation-contract.md",
+        "title": "Knowledge Curation Contract",
+        "purpose": "AKSK curation contract: curated trees, preserve-and-link, doc budget.",
+        "seedPaths": [
+          "openspec/specs/wiki-contract/spec.md",
+          "openwiki/INSTRUCTIONS.md"
+        ],
+        "relatedPages": [
+          "/openwiki/architecture/knowledge-layer.md",
+          "/openwiki/operations/validation-and-lint.md"
+        ],
+        "instructions": [],
+        "status": "complete",
+        "completedBy": "openwiki/0.5.0"
+      },
+      {
+        "id": "2e0cc01e-493f-495f-b5ca-34caf71128cc",
+        "path": "/openwiki/concepts/session-identity-and-storage.md",
+        "title": "Session Identity and Storage",
+        "purpose": "Task identity via task_id plus temporary bundle storage vs durable layer.",
+        "seedPaths": [
+          ".agents/sessions/README.md",
+          ".openwikiignore"
+        ],
+        "relatedPages": [
+          "/openwiki/architecture/knowledge-layer.md"
+        ],
+        "instructions": [],
+        "status": "complete",
+        "completedBy": "openwiki/0.5.0"
+      },
+      {
+        "id": "feb47f0c-413b-4a37-91bc-621557257caa",
+        "path": "/openwiki/distribution/packaging-and-install.md",
+        "title": "Packaging and Install",
+        "purpose": "User-scope packaging: npm global installs, caret versions, skill-first lanes.",
+        "seedPaths": [
+          "INSTALL.md",
+          "openspec/specs/aksk-bootstrap/spec.md",
+          "package.json"
+        ],
+        "relatedPages": [
+          "/openwiki/integrations/distribution-and-tool-wiring.md",
+          "/openwiki/quickstart.md"
+        ],
+        "instructions": [],
+        "status": "complete",
+        "completedBy": "openwiki/0.5.0"
+      },
+      {
+        "id": "5b7cec63-4c9b-47c0-9839-4e2f8448bd7f",
+        "path": "/openwiki/governance/agent-entrypoints.md",
+        "title": "Agent Entrypoints",
+        "purpose": "Agent entrypoints: root file, portable layer, skill invocation order.",
+        "seedPaths": [
+          ".agents/skills/aksk-init/SKILL.md",
+          "AGENTS.md",
+          "INSTALL.md"
+        ],
+        "relatedPages": [
+          "/openwiki/concepts/agents-md-zoning.md",
+          "/openwiki/quickstart.md"
+        ],
+        "instructions": [],
+        "status": "complete",
+        "completedBy": "openwiki/0.5.0"
+      },
+      {
+        "id": "3c862f15-507a-45c2-ab7f-1da9d0268e00",
+        "path": "/openwiki/governance/openspec-workflow.md",
+        "title": "OpenSpec Workflow Governance",
+        "purpose": "OpenSpec specs vs changes vs archive governance lifecycle.",
+        "seedPaths": [
+          "openspec/specs/agent-integration-spread/spec.md",
+          "openspec/specs/wiki-contract/spec.md"
+        ],
+        "relatedPages": [
+          "/openwiki/workflows/openspec-governance.md"
+        ],
+        "instructions": [],
+        "status": "complete",
+        "completedBy": "openwiki/0.5.0"
+      },
+      {
+        "id": "7d68a62b-2181-4c4a-b052-92b55d2db0ba",
+        "path": "/openwiki/integrations/distribution-and-agent-spread.md",
+        "title": "Distribution and Agent Spread",
+        "purpose": "Host spread: global skills install and OpenWiki integrations.",
+        "seedPaths": [
+          "INSTALL.md",
+          "openspec/specs/agent-integration-spread/spec.md"
+        ],
+        "relatedPages": [
+          "/openwiki/distribution/packaging-and-install.md",
+          "/openwiki/integrations/distribution-and-tool-wiring.md"
+        ],
+        "instructions": [],
+        "status": "pending"
+      },
+      {
+        "id": "12451ea6-eba1-4660-a1d5-52938bd875ec",
+        "path": "/openwiki/integrations/distribution-and-tool-wiring.md",
+        "title": "Distribution and Tool Wiring",
+        "purpose": "Peer-tool wiring: Node preflight, verification, per-host integration install.",
+        "seedPaths": [
+          ".agents/skills/aksk-bootstrap/SKILL.md",
+          "INSTALL.md",
+          "docs/integrations/patterns.md"
+        ],
+        "relatedPages": [
+          "/openwiki/quickstart.md",
+          "/openwiki/workflows/bootstrap-and-attachment.md"
+        ],
+        "instructions": [],
+        "status": "pending"
+      },
+      {
+        "id": "5e34628e-7efd-4e18-a113-446ad027b8ac",
+        "path": "/openwiki/inventory/repository-inventory.md",
+        "title": "Repository Inventory",
+        "purpose": "Repository map: manifests, owned trees, entrypoints.",
+        "seedPaths": [
+          ".openwikiignore",
+          "package.json",
+          "scripts/check-publish.sh"
+        ],
+        "relatedPages": [
+          "/openwiki/architecture/overview.md",
+          "/openwiki/quickstart.md"
+        ],
+        "instructions": [],
+        "status": "pending"
+      },
+      {
+        "id": "81045404-3823-4ed5-8f33-00253a25a13d",
+        "path": "/openwiki/operations/validation-and-lint.md",
+        "title": "Validation and Lint",
+        "purpose": "Docs-lint and validation loop over the knowledge layer.",
+        "seedPaths": [
+          ".agents/skills/docs-lint/SKILL.md",
+          "scripts/check-publish.sh"
+        ],
+        "relatedPages": [
+          "/openwiki/concepts/knowledge-curation-contract.md"
+        ],
+        "instructions": [],
+        "status": "pending"
+      },
+      {
+        "id": "5c0f7404-44a9-4738-9260-5473a5da4f89",
+        "path": "/openwiki/skills/aksk-bootstrap.md",
+        "title": "aksk-bootstrap Skill",
+        "purpose": "Global lane: preflight, user-scope installs, global skill spread.",
+        "seedPaths": [
+          ".agents/skills/aksk-bootstrap/SKILL.md",
+          "openspec/specs/aksk-bootstrap/spec.md"
+        ],
+        "relatedPages": [
+          "/openwiki/skills/aksk-init.md",
+          "/openwiki/workflows/bootstrap-and-attachment.md"
+        ],
+        "instructions": [],
+        "status": "pending"
+      },
+      {
+        "id": "9f416bdd-69c6-4714-b9f5-66e10eac2f6c",
+        "path": "/openwiki/skills/aksk-init.md",
+        "title": "aksk-init Skill",
+        "purpose": "Per-repo lane: scaffold .agents, attach routing and wiki contract.",
+        "seedPaths": [
+          ".agents/skills/aksk-init/SKILL.md",
+          "openspec/specs/aksk-init/spec.md"
+        ],
+        "relatedPages": [
+          "/openwiki/skills/aksk-bootstrap.md",
+          "/openwiki/workflows/bootstrap-and-attachment.md"
+        ],
+        "instructions": [],
+        "status": "pending"
+      },
+      {
+        "id": "aa2137fe-abc6-4ca0-b7b1-8c594f2446c9",
+        "path": "/openwiki/skills/docs-lint.md",
+        "title": "docs-lint Skill",
+        "purpose": "Maintenance role: coherence checks over compiled layer.",
+        "seedPaths": [
+          ".agents/skills/docs-lint/SKILL.md",
+          "openspec/specs/cross-tool-lint/spec.md"
+        ],
+        "relatedPages": [
+          "/openwiki/operations/validation-and-lint.md"
+        ],
+        "instructions": [],
+        "status": "pending"
+      },
+      {
+        "id": "3c7b4a02-7ef4-47e2-9ce0-5edb288d14c3",
+        "path": "/openwiki/workflows/bootstrap-and-attachment.md",
+        "title": "Bootstrap and Attachment Workflow",
+        "purpose": "End-to-end bootstrap to attach flow: preflight, install, scaffold, attach.",
+        "seedPaths": [
+          ".agents/skills/aksk-bootstrap/SKILL.md",
+          ".agents/skills/aksk-init/scripts/bootstrap-repo.mjs"
+        ],
+        "relatedPages": [
+          "/openwiki/quickstart.md",
+          "/openwiki/skills/aksk-bootstrap.md",
+          "/openwiki/skills/aksk-init.md"
+        ],
+        "instructions": [],
+        "status": "pending"
+      },
+      {
+        "id": "9c70486e-6bb5-44f4-8d04-9830c2f34884",
+        "path": "/openwiki/workflows/openspec-governance.md",
+        "title": "OpenSpec Governance Workflow",
+        "purpose": "Propose to archive governance loop and wiki spec division.",
+        "seedPaths": [
+          "openspec/specs/agent-integration-spread/spec.md",
+          "openspec/specs/wiki-contract/spec.md"
+        ],
+        "relatedPages": [
+          "/openwiki/governance/openspec-workflow.md",
+          "/openwiki/quickstart.md"
+        ],
+        "instructions": [],
+        "status": "pending"
+      },
+      {
+        "id": "ac20991f-bb7c-4348-b6a2-0ef46ef70e44",
+        "path": "/openwiki/quickstart.md",
+        "title": "Quickstart",
+        "purpose": "Intent-routed entry point: install, initialize, run task lifecycle, validate with links into owned systems.",
+        "seedPaths": [
+          ".agents/skills/aksk-bootstrap/SKILL.md",
+          "INSTALL.md",
+          "README.md",
+          "openspec/specs/aksk-bootstrap/spec.md",
+          "package.json"
+        ],
+        "relatedPages": [
+          "/openwiki/architecture/overview.md",
+          "/openwiki/inventory/repository-inventory.md",
+          "/openwiki/workflows/bootstrap-and-attachment.md",
+          "/openwiki/workflows/openspec-governance.md"
+        ],
+        "instructions": [],
+        "status": "pending"
+      }
+    ],
+    "deletePages": []
+  }
+}

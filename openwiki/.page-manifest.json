@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "pages": {
+    "/openwiki/architecture/knowledge-layer.md": {
+      "gitHead": "bf846c384bcf2165b141a3199c8ea4c337a661d1",
+      "sourceFingerprint": "sha256:473f57ea4b0d4c9f0ee04880233b66fc4f4da4f470c16194dcd49dfc0ce4708f",
+      "pageVersion": "sha256:77b56fe243de88374fdcfd07eaf86a3a86c309a1b84fcd89cfc5e82b09c3f2a5",
+      "completedBy": "openwiki/0.5.0",
+      "completedRunId": "ac67de32-81dd-475a-95d3-d1606dc4fb9a"
+    },
+    "/openwiki/architecture/overview.md": {
+      "gitHead": "bf846c384bcf2165b141a3199c8ea4c337a661d1",
+      "sourceFingerprint": "sha256:473f57ea4b0d4c9f0ee04880233b66fc4f4da4f470c16194dcd49dfc0ce4708f",
+      "pageVersion": "sha256:0a1f091a0c8a5e89bf11f3bb8839b9befe436cd3d222757db8f7a0ea9ebb3889",
+      "completedBy": "openwiki/0.5.0",
+      "completedRunId": "ac67de32-81dd-475a-95d3-d1606dc4fb9a"
+    },
+    "/openwiki/architecture/task-lifecycle.md": {
+      "gitHead": "6ad6bc3c44aa511ee9c07969adec90f1710954bf",
+      "pageVersion": "sha256:ac2e6ef5b5d359990e4544e0b3b3c9aba12dc56fc7b5c6f87b33b52555b728cb"
+    },
+    "/openwiki/concepts/agents-md-zoning.md": {
+      "gitHead": "bf846c384bcf2165b141a3199c8ea4c337a661d1",
+      "sourceFingerprint": "sha256:473f57ea4b0d4c9f0ee04880233b66fc4f4da4f470c16194dcd49dfc0ce4708f",
+      "pageVersion": "sha256:55ece38c410f563637fe8d22f7fb7bdb8b3861926ebc1890329d688b0fdb2cab",
+      "completedBy": "openwiki/0.5.0",
+      "completedRunId": "ac67de32-81dd-475a-95d3-d1606dc4fb9a"
+    },
+    "/openwiki/concepts/knowledge-curation-contract.md": {
+      "gitHead": "bf846c384bcf2165b141a3199c8ea4c337a661d1",
+      "sourceFingerprint": "sha256:473f57ea4b0d4c9f0ee04880233b66fc4f4da4f470c16194dcd49dfc0ce4708f",
+      "pageVersion": "sha256:8da983590d6d192d7fbb1badd56096d1e23b035b28d15088d43e3103da2e53e8",
+      "completedBy": "openwiki/0.5.0",
+      "completedRunId": "ac67de32-81dd-475a-95d3-d1606dc4fb9a"
+    },
+    "/openwiki/concepts/session-identity-and-storage.md": {
+      "gitHead": "bf846c384bcf2165b141a3199c8ea4c337a661d1",
+      "sourceFingerprint": "sha256:473f57ea4b0d4c9f0ee04880233b66fc4f4da4f470c16194dcd49dfc0ce4708f",
+      "pageVersion": "sha256:38d70039999e446d707d48a5c7c343b1797bc16fd8ea379bb1177a79e223e8d8",
+      "completedBy": "openwiki/0.5.0",
+      "completedRunId": "ac67de32-81dd-475a-95d3-d1606dc4fb9a"
+    },
+    "/openwiki/distribution/packaging-and-install.md": {
+      "gitHead": "bf846c384bcf2165b141a3199c8ea4c337a661d1",
+      "sourceFingerprint": "sha256:473f57ea4b0d4c9f0ee04880233b66fc4f4da4f470c16194dcd49dfc0ce4708f",
+      "pageVersion": "sha256:dfa20a8a103aedf9592bb3f82c595485042ce42c52a4452e1f96d28af9b31421",
+      "completedBy": "openwiki/0.5.0",
+      "completedRunId": "ac67de32-81dd-475a-95d3-d1606dc4fb9a"
+    },
+    "/openwiki/governance/agent-entrypoints.md": {
+      "gitHead": "bf846c384bcf2165b141a3199c8ea4c337a661d1",
+      "sourceFingerprint": "sha256:473f57ea4b0d4c9f0ee04880233b66fc4f4da4f470c16194dcd49dfc0ce4708f",
+      "pageVersion": "sha256:dfb16a72c2869e093342e18171caeb14c9db8bafb428ed9f004052cd0bef39da",
+      "completedBy": "openwiki/0.5.0",
+      "completedRunId": "ac67de32-81dd-475a-95d3-d1606dc4fb9a"
+    },
+    "/openwiki/governance/openspec-workflow.md": {
+      "pageVersion": "sha256:2e22fbca5d4f4e61325ea9c6cf9767aad662228fed3d731da2335ebd8844e5ac",
+      "completedBy": "openwiki/0.5.0",
+      "completedRunId": "ac67de32-81dd-475a-95d3-d1606dc4fb9a",
+      "gitHead": "bf846c384bcf2165b141a3199c8ea4c337a661d1",
+      "sourceFingerprint": "sha256:473f57ea4b0d4c9f0ee04880233b66fc4f4da4f470c16194dcd49dfc0ce4708f"
+    },
+    "/openwiki/integrations/distribution-and-tool-wiring.md": {
+      "gitHead": "6ad6bc3c44aa511ee9c07969adec90f1710954bf",
+      "pageVersion": "sha256:7102b08f3d00102af18873b1df7b71093bc821d676e1f536f67367875605ac41"
+    },
+    "/openwiki/inventory/repository-inventory.md": {
+      "gitHead": "6ad6bc3c44aa511ee9c07969adec90f1710954bf",
+      "pageVersion": "sha256:43f61402836da1c6e608c65fc0cb49562d615fa56f4de7d2fbb5ac6f3b205551"
+    },
+    "/openwiki/operations/validation-and-lint.md": {
+      "gitHead": "6ad6bc3c44aa511ee9c07969adec90f1710954bf",
+      "pageVersion": "sha256:75aa2250218c375858ed6a3c0afd2a1fd62ac7cb5ef276f74e84aae6ca336e8c"
+    },
+    "/openwiki/operations/validation-and-release.md": {
+      "gitHead": "6ad6bc3c44aa511ee9c07969adec90f1710954bf",
+      "pageVersion": "sha256:69d280afd3c6a52ec268bf394ae25078701e5458763fa287551ca6957a30510d"
+    },
+    "/openwiki/operations/validation-scripts.md": {
+      "gitHead": "6ad6bc3c44aa511ee9c07969adec90f1710954bf",
+      "pageVersion": "sha256:2e4e88d390b034468c2f40f88cb4c35f907d3bdced5b47e7fffbc40bfb2be32e"
+    },
+    "/openwiki/quickstart.md": {
+      "gitHead": "6ad6bc3c44aa511ee9c07969adec90f1710954bf",
+      "pageVersion": "sha256:a8972bd3ff852df55b7decdca1d620b3635501ebf9a606fe45e63b5d10275523"
+    },
+    "/openwiki/skills/aksk-bootstrap.md": {
+      "gitHead": "6ad6bc3c44aa511ee9c07969adec90f1710954bf",
+      "pageVersion": "sha256:596efa4f4c164efff358225a58fcdda86d8628c49aa088cd92392766d3fd7f6e"
+    },
+    "/openwiki/skills/aksk-init.md": {
+      "gitHead": "6ad6bc3c44aa511ee9c07969adec90f1710954bf",
+      "pageVersion": "sha256:3dbe3d91c72ce2fb2c8e1fcab4b33e7447cf112a40802e8b68bc2251cc22fee6"
+    },
+    "/openwiki/skills/docs-lint.md": {
+      "gitHead": "6ad6bc3c44aa511ee9c07969adec90f1710954bf",
+      "pageVersion": "sha256:af316a08a275440ffd77f76eb6cf964524240d6117182f497be6b1eb4daa1590"
+    },
+    "/openwiki/skills/learning-distill.md": {
+      "gitHead": "6ad6bc3c44aa511ee9c07969adec90f1710954bf",
+      "pageVersion": "sha256:53f5cf525f72711f84b386b28e1fe4c9f985e8e54e581e35a6e3032577fc91d9"
+    },
+    "/openwiki/skills/task-closeout.md": {
+      "gitHead": "6ad6bc3c44aa511ee9c07969adec90f1710954bf",
+      "pageVersion": "sha256:a77202856aa5c1ab3c838a45d15ae33c72bebd1ea9e06bcfb96e974df1f851e4"
+    },
+    "/openwiki/workflows/bootstrap-and-attachment.md": {
+      "gitHead": "6ad6bc3c44aa511ee9c07969adec90f1710954bf",
+      "pageVersion": "sha256:ff7e5c0fab655f4b4bc5a669117b912fc68f98ebeb93bda6f0ef80dcc4a1bc9d"
+    },
+    "/openwiki/workflows/openspec-governance.md": {
+      "gitHead": "6ad6bc3c44aa511ee9c07969adec90f1710954bf",
+      "pageVersion": "sha256:cf6a87b1ff90bab4cc946a1ca1c9a7649ebfd2c5c5790a9a034c85f7823400cf"
+    },
+    "/openwiki/workflows/task-lifecycle-and-distill.md": {
+      "gitHead": "6ad6bc3c44aa511ee9c07969adec90f1710954bf",
+      "pageVersion": "sha256:25a5ce234de2fc24ebe742bbf68d096ff95b4024dfaf62e82bf9783c9e53ba64"
+    }
+  }
+}

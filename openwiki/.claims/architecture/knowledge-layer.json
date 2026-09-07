@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:35b9aed5be253327a668fa08d0af4d5c55982654522e01a85e93a9596c6a5288",
+  "pageVersion": "sha256:77b56fe243de88374fdcfd07eaf86a3a86c309a1b84fcd89cfc5e82b09c3f2a5",
   "claims": [
     {
       "id": "claim_fa1401ed6e854cafb7b357b79db691a8",
@@ -86,7 +86,7 @@
         },
         {
           "resource": "repo://openspec/specs/wiki-contract/spec.md",
-          "version": "repo-file-v1:sha256:419a050c5007c1916753365f2ad64108e320e9af160426e7fb4cc38c0508a5be"
+          "version": "repo-file-v1:sha256:f20c08afe4ccc4b8bbbc3a5f2423ba89ea430d0c9ca2ab164147d1952b0cc4ea"
         }
       ]
     },
@@ -150,7 +150,7 @@
     },
     {
       "id": "claim_7eaf47c278be41f794a7b991f6a12cd1",
-      "statement": "The curation contract lives inside openwiki/INSTRUCTIONS.md between AKSK:WIKI-CONTRACT:BEGIN/END markers and is owned by .agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs which appends the template from references/wiki-contract-template.md below existing content, never creates the file, never removes OpenWiki content, is idempotent and self-updating (re-running is a no-op unless template changed, then only between markers); if INSTRUCTIONS.md does not exist it exits 2 with openwiki --init prerequisite and no writes.",
+      "statement": "The curation contract lives inside openwiki/INSTRUCTIONS.md between AKSK:WIKI-CONTRACT:BEGIN/END markers and is owned by attach_wiki_contract.mjs (canonical copy under aksk-bootstrap, byte-identical copy under aksk-init) which appends the template from references/wiki-contract-template.md below existing content, never creates the file, never removes OpenWiki content, is idempotent and self-updating (re-running is a no-op unless template changed, then only between markers); if INSTRUCTIONS.md does not exist it exits 2 with openwiki --init prerequisite and no writes.",
       "evidence": [
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/references/wiki-contract-template.md",
@@ -161,8 +161,12 @@
           "version": "repo-file-v1:sha256:cd684c5946d746b89ec10f1bd965951f271ddeb5aec9515f83d9288b8ba0ac05"
         },
         {
+          "resource": "repo://.agents/skills/aksk-init/scripts/attach_wiki_contract.mjs",
+          "version": "repo-file-v1:sha256:cd684c5946d746b89ec10f1bd965951f271ddeb5aec9515f83d9288b8ba0ac05"
+        },
+        {
           "resource": "repo://openspec/specs/wiki-contract/spec.md",
-          "version": "repo-file-v1:sha256:419a050c5007c1916753365f2ad64108e320e9af160426e7fb4cc38c0508a5be"
+          "version": "repo-file-v1:sha256:f20c08afe4ccc4b8bbbc3a5f2423ba89ea430d0c9ca2ab164147d1952b0cc4ea"
         }
       ]
     },
@@ -317,10 +321,38 @@
           "version": "repo-file-v1:sha256:b4cdbb24ec28ec8c391f1e06e8afd8fdda22a80dab3209ebd8a7a52b01ebc344"
         }
       ]
+    },
+    {
+      "id": "claim_c9375d87c2eb4e3c91a3ddd47eb329f8",
+      "statement": "The AKSK curation contract section also carries a Documentation budget inside the AKSK:WIKI-CONTRACT markers constraining OpenWiki to an agent navigation aid: keep repository map, top-level architecture and flows, conventions, extension points, non-obvious invariants and links to specs; do not generate restatements of openspec/specs requirements, per-function/class/file summaries, API references, release notes or paraphrase pages; update a page only when a public boundary, ownership, flow, convention or invariant changes, linking to the canonical spec for feature behavior.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-init/references/wiki-contract-template.md",
+          "version": "repo-file-v1:sha256:f4b37c8d7f1288d6697a6469eb195a25e980cb9317766827fd341e56a01561fc"
+        },
+        {
+          "resource": "repo://openspec/specs/wiki-contract/spec.md",
+          "version": "repo-file-v1:sha256:f20c08afe4ccc4b8bbbc3a5f2423ba89ea430d0c9ca2ab164147d1952b0cc4ea"
+        }
+      ]
+    },
+    {
+      "id": "claim_ead89e6bfb7f418f86434b46250625c5",
+      "statement": "The repository root .openwikiignore enforces the temporary-vs-durable split for OpenWiki discovery with anchored commented rules excluding .agents/sessions/ (with !.agents/sessions/README.md exception), root-only /example/, dependencies/build/caches, generated/vendor artifacts and machine-local secrets, while never excluding openspec/specs/** or openspec/changes/archive/**; the file is merge-not-clobber with user content outside AKSK:OPENWIKIIGNORE markers preserved.",
+      "evidence": [
+        {
+          "resource": "repo://.openwikiignore",
+          "version": "repo-file-v1:sha256:632606b4a6a1fd34db6b31a6cf057b5f469b799c6c0cac3fa402314ad59d4d57"
+        },
+        {
+          "resource": "repo://openspec/specs/wiki-contract/spec.md",
+          "version": "repo-file-v1:sha256:f20c08afe4ccc4b8bbbc3a5f2423ba89ea430d0c9ca2ab164147d1952b0cc4ea"
+        }
+      ]
     }
   ],
   "verification": {
-    "by": "openwiki/0.4.3",
-    "at": "2026-08-30T00:30:05.750Z"
+    "by": "openwiki/0.5.0",
+    "at": "2026-09-04T04:19:45.757Z"
   }
 }

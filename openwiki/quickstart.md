@@ -3,9 +3,6 @@ type: guide
 title: AKSK Quickstart
 description: Intent-routed entry point for the glue-over-peer-tools kit (Node >=22, openspec/openwiki per-user) → bootstrap vs init vs lifecycle vs validation routes.
 tags: [quickstart, navigation, routing, aksk]
-verified:
-  - by: openwiki/0.4.3
-    at: 2026-08-30T01:40:39.325Z
 sources:
   - id: openwiki-source-221b8d1823c4691ef36ad664
     resource: repo://.agents/AGENTS.md

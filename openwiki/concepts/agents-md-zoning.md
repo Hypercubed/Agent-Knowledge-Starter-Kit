@@ -1,40 +1,12 @@
 ---
-type: "Reference"
-title: "AGENTS.md Zoning and Routing"
-openwiki_generated: true
+type: Reference
+title: AGENTS.md Zoning and Routing
+description: Root AGENTS.md marker zones versus .agents/AGENTS.md repo knowledge, and how the baseline, OpenWiki, routing, lifecycle, and wiki-contract blocks attach.
+tags: [agents-md, zoning, routing, aksk, openwiki]
 verified:
-  - by: openwiki/0.4.3
-    at: 2026-08-30T01:40:39.325Z
-sources:
-  - id: openwiki-source-78293e08bbba4e65fb2685ae
-    resource: repo://.agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs
-  - id: openwiki-source-67d81b3c5bf101f8b3eb3d2a
-    resource: repo://.agents/skills/aksk-bootstrap/scripts/refresh_agents_baseline.mjs
-  - id: openwiki-source-b7d2caf3a5a306ccd41f0115
-    resource: repo://.agents/skills/aksk-init/references/agents-md-baseline-template.md
-  - id: openwiki-source-93c78d1dd46b76df62cef2f6
-    resource: repo://.agents/skills/aksk-init/references/routing-note-template.md
-  - id: openwiki-source-d786624ba23d2df437591102
-    resource: repo://.agents/skills/aksk-init/references/wiki-contract-template.md
-  - id: openwiki-source-944a38bc18074fe81ed45b1f
-    resource: repo://.agents/skills/aksk-init/scripts/attach_section.mjs
-  - id: openwiki-source-ff2d87cb54c01d07d6371400
-    resource: repo://.agents/skills/aksk-init/scripts/attach_wiki_contract.mjs
-  - id: openwiki-source-9930f2885b3cb73d38a9300a
-    resource: repo://.agents/skills/aksk-init/scripts/bootstrap-repo.mjs
-  - id: openwiki-source-5a97b1d59b72f21589de6133
-    resource: repo://.agents/skills/aksk-init/scripts/init_agents_md.mjs
-  - id: openwiki-source-4ab0b6cc58dd78f7a5c0603e
-    resource: repo://.agents/skills/aksk-init/SKILL.md
-  - id: openwiki-source-5af7f373fcb21f142106673c
-    resource: repo://.agents/skills/docs-lint/SKILL.md
-  - id: openwiki-source-8037e2358a2c4f9b2c722a11
-    resource: repo://AGENTS.md
-  - id: openwiki-source-f7767c74e12e946558d335f1
-    resource: repo://openspec/specs/agents-md-bootstrap/spec.md
-generated: { by: "openwiki/0.4.3", at: "2026-08-30T01:40:39.325Z" }
+  - by: openwiki/0.5.0
+    at: 2026-09-04T04:19:45.757Z
 ---
-
 
 # AGENTS.md Zoning and Routing
 
@@ -47,16 +19,28 @@ Root `AGENTS.md` is a stacked, marker-delimited file with isolated ownership and
 | 3a | AKSK routing | `<!-- AKSK:ROUTING:BEGIN -->` / `<!-- AKSK:ROUTING:END -->` | `.agents/skills/aksk-init/scripts/attach_section.mjs` + `routing-note-template.md` | Thin discovery pointers into `.agents/` and `openwiki/` |
 | 3b | AKSK lifecycle | `<!-- AKSK:LIFECYCLE:BEGIN -->` / `<!-- AKSK:LIFECYCLE:END -->` | `attach_section.mjs` + `lifecycle-template.md` | Self-improvement loop mandate (closeout → distill → prune) |
 
-A **fully bootstrapped** file per `openspec/specs/agents-md-bootstrap/spec.md` contains exactly one block per family ordered **baseline → OpenWiki → AKSK**. The vendored template at `.agents/skills/aksk-init/references/agents-md-baseline-template.md` (mirrored under `aksk-bootstrap/references/` for backwards compatibility) is the offline source of truth — its body is wrapped in `AKSK:AGENTS-BASELINE` markers. In this repo `AGENTS.md` already contains the baseline sections 0–8 at the top followed by `OPENWIKI:START/END` and the two `AKSK:*` blocks; a fresh repo with no `AGENTS.md` would be seeded with the marker-wrapped baseline on the next `init_agents_md.mjs` run, and an existing file whose baseline block does not match triggers the fail-closed prompt.
+A **fully bootstrapped** file per `openspec/specs/agents-md-bootstrap/spec.md` contains exactly one block per family ordered **baseline → OpenWiki → AKSK**. The vendored template at `.agents/skills/aksk-init/references/agents-md-baseline-template.md` (mirrored under `aksk-bootstrap/references/` for backwards compatibility) is the offline source of truth — its body is wrapped in `AKSK:AGENTS-BASELINE` markers. In this repo root `AGENTS.md` carries hand-authored behavioral content (sections 0–8) without `AKSK:AGENTS-BASELINE` markers, followed by `OPENWIKI:START/END` and the two `AKSK:*` blocks; this is the pre-seed state, so a no-flag `init_agents_md.mjs` run fails closed with the replace-vs-combine prompt instead of seeding.
 
-<!-- openwiki: mermaid parse failed and this diagram was converted to a text fence so it does not break rendering. Fix the diagram source and restore the mermaid fence. Parser error: Heuristic: an unescaped angle bracket inside a label breaks rendering; rephrase the label. -->
-```text
+```mermaid
 flowchart TB
-  B["Zone 1 - FerroxLabs baseline<br>AKSK:AGENTS-BASELINE<br>init_agents_md / refresh_agents_baseline"] --> O["Zone 2 - OpenWiki<br>OPENWIKI:START/END<br>OpenWiki tooling"]
-  O --> R["Zone 3a - AKSK Routing<br>AKSK:ROUTING"]
-  R --> L["Zone 3b - AKSK Lifecycle<br>AKSK:LIFECYCLE"]
-  L --> C["Optional - Wiki Contract<br>AKSK:WIKI-CONTRACT<br>openwiki/INSTRUCTIONS.md"]
+  Baseline["Zone 1 FerroxLabs baseline"]
+  OpenWikiBlock["Zone 2 OpenWiki block"]
+  Routing["Zone 3a AKSK Routing"]
+  Lifecycle["Zone 3b AKSK Lifecycle"]
+  WikiContract["Optional Wiki Contract in INSTRUCTIONS"]
+  Baseline --> OpenWikiBlock
+  OpenWikiBlock --> Routing
+  Routing --> Lifecycle
+  Lifecycle --> WikiContract
 ```
+
+*Caption: stacked zone order in root AGENTS.md plus the optional wiki-contract block in openwiki INSTRUCTIONS.*
+
+## Root versus `.agents/AGENTS.md`
+
+Root `AGENTS.md` is the checkout entrypoint agents load: behavioral operating contract on top, knowledge routing in the middle, self-improvement loop at the bottom. `.agents/AGENTS.md` is the portable repo-knowledge file with no marker zones: routing directives, project learnings, and the full self-improvement loop.
+
+`.agents/AGENTS.md` carries startup routing (read `openwiki/index.md` and `.agents/AGENTS.md` before file modifications), knowledge exploration (start from `openwiki/index.md` and the `decisions/` and `troubleshooting/` indexes), debug-first search (`grep -ri "<symptom>"` across `.agents/` and `openwiki/`), and consult-recorded-decisions before architectural changes, plus the four-step loop (analyze, closeout, distill, prune). The root `AKSK:ROUTING` block points at it (`Read .agents/AGENTS.md for durable repo guidance`) and the root `AKSK:LIFECYCLE` summary points at it for the full loop, keeping one source of truth per instruction: how the agent works lives in the root baseline, what the agent should know about this repo lives in `.agents/AGENTS.md`.
 
 ## Vendored baseline template
 

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:8aa6984203c4e9b4e7403002d0b2b3f3357d8d07438dfc4e72d048ee339822fb",
+  "pageVersion": "sha256:55ece38c410f563637fe8d22f7fb7bdb8b3861926ebc1890329d688b0fdb2cab",
   "claims": [
     {
       "id": "claim_aeaec157b10041778c72aa7f1df72ed0",
@@ -140,17 +140,53 @@
         },
         {
           "resource": "repo://.agents/skills/aksk-init/references/wiki-contract-template.md",
-          "version": "repo-file-v1:sha256:74fb36e2fba836d594bed925a1301ced9532c54846eb38a829b9a55de2881e00"
+          "version": "repo-file-v1:sha256:f4b37c8d7f1288d6697a6469eb195a25e980cb9317766827fd341e56a01561fc"
         },
         {
           "resource": "repo://.agents/skills/aksk-init/scripts/attach_wiki_contract.mjs",
           "version": "repo-file-v1:sha256:cd684c5946d746b89ec10f1bd965951f271ddeb5aec9515f83d9288b8ba0ac05"
         }
       ]
+    },
+    {
+      "id": "claim_674ca7243b304c249c590ae8a49cf62c",
+      "statement": "In this checkout root AGENTS.md carries hand-authored behavioral content without AKSK:AGENTS-BASELINE markers followed by OPENWIKI and AKSK blocks, which is the pre-seed state where a no-flag init_agents_md.mjs run fails closed with the replace-vs-combine prompt instead of seeding.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/init_agents_md.mjs",
+          "version": "repo-file-v1:sha256:2d219bd05a1526cb557a4bbf977dad1ba314e6c2117c32189e0326489d036810"
+        },
+        {
+          "resource": "repo://AGENTS.md",
+          "version": "repo-file-v1:sha256:afe5a9d27b2def63d734ef9e34b69605bb23975c953c1276b0fbba98797192ea"
+        }
+      ]
+    },
+    {
+      "id": "claim_a030db32031740e896a99481e831cf81",
+      "statement": "Root AGENTS.md is the agent entrypoint whose AKSK:ROUTING block routes durable repo guidance to .agents/AGENTS.md and whose AKSK:LIFECYCLE summary defers to .agents/AGENTS.md for the full loop, while .agents/AGENTS.md itself is marker-free portable repo knowledge holding routing directives, project learnings, and the analyze-closeout-distill-prune loop.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/AGENTS.md",
+          "version": "repo-file-v1:sha256:d85b5e6cae3cc52731325e8b6193efdec270ec9f479e32f6c253b716dc994ed3"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/references/lifecycle-template.md",
+          "version": "repo-file-v1:sha256:0d6f5afce645ff08c1747173471603c8c78dc0f488cca0bf032c02057af0924b"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/references/routing-note-template.md",
+          "version": "repo-file-v1:sha256:7daa0b08b9a8cae6510c448134bfb4f7b1373132970b66916e7c6076c353e683"
+        },
+        {
+          "resource": "repo://AGENTS.md#L134-L153",
+          "version": "repo-lines-v1:sha256:09e3c54c087a397f849a319a78afd68d0f04fdba70ced1119abfa83510cf6bee:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc0YWEzNzhjZGRjMzk4MzkyNWUyNDdjMDcxMGJkNWQwOTM4MTQ3ZjNjM2JiYjllMGMxOTIyZTViMzdhNjJkNjMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJmZjRkMTUzMzFmNGRlNGEzZWMwOTczZTdhM2M2NTQwMjc5Mjg1OGVlMDc2NGY0MDg1NmYwOWJmMGIxYzY4MjIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjY5MzkxMmNkM2MzM2VkZmQyM2QzNzY0ZTE3YWIyOTc0N2IzNzkzNzQyMzZjNjRhNzZiMGE1ZmZlNDhhZDM4MGUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoyLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjMxNmRlZWIyODg5MmIxY2RlYmZlNWMxMmMyY2Q2MjBiNWI4ZjI5Mjg5YzFmZmUzZDRmNWZjMWIyZTZhNGVhN2QifQ"
+        }
+      ]
     }
   ],
   "verification": {
-    "by": "openwiki/0.4.3",
-    "at": "2026-08-30T01:40:39.325Z"
+    "by": "openwiki/0.5.0",
+    "at": "2026-09-04T04:19:45.757Z"
   }
 }

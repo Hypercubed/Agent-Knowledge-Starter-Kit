@@ -4,56 +4,8 @@ title: 'The Knowledge Layer: .agents/ and Curated Wiki Trees'
 description: How AKSK splits durable knowledge between prescriptive .agents files and descriptive curated OpenWiki trees, plus ephemeral session bundles, preserve-and-link semantics, and lifecycle.
 tags: [knowledge-layer, agents, openwiki, curation, distillation]
 verified:
-  - by: openwiki/0.4.3
-    at: 2026-08-30T00:30:05.750Z
-sources:
-  - id: openwiki-source-62bd4cb693e4e881b3f88f6b
-    resource: repo://.agents/.gitignore
-  - id: openwiki-source-221b8d1823c4691ef36ad664
-    resource: repo://.agents/AGENTS.md
-  - id: openwiki-source-7a71f2c05c7f7289570ac205
-    resource: repo://.agents/playbooks/major-version-release.md
-  - id: openwiki-source-df46a321fce7026f92166a02
-    resource: repo://.agents/playbooks/pre-publish.md
-  - id: openwiki-source-a05132b6a7d8998425d82b03
-    resource: repo://.agents/playbooks/writing-integration-guides.md
-  - id: openwiki-source-7381bbb8d2e7fd02da7469ce
-    resource: repo://.agents/skills/aksk-bootstrap/references/wiki-contract-template.md
-  - id: openwiki-source-5398a69cb2cf8d556809da57
-    resource: repo://.agents/skills/aksk-bootstrap/scripts/attach_section.mjs
-  - id: openwiki-source-d56b5afb22742020f2ab6b59
-    resource: repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs
-  - id: openwiki-source-d1960e41bf9a48af26e81829
-    resource: repo://.agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs
-  - id: openwiki-source-181fd64540d760eef80f754f
-    resource: repo://.agents/skills/aksk-bootstrap/scripts/init_agents_md.mjs
-  - id: openwiki-source-67d81b3c5bf101f8b3eb3d2a
-    resource: repo://.agents/skills/aksk-bootstrap/scripts/refresh_agents_baseline.mjs
-  - id: openwiki-source-dce50581779fda5dd507dc34
-    resource: repo://.agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs
-  - id: openwiki-source-5af7f373fcb21f142106673c
-    resource: repo://.agents/skills/docs-lint/SKILL.md
-  - id: openwiki-source-513536a60f0bc38be6c6d845
-    resource: repo://.agents/skills/learning-distill/references/CONTRACT.md
-  - id: openwiki-source-6780607585e38503f5da5e5e
-    resource: repo://.agents/skills/learning-distill/references/decision-frontmatter.schema.json
-  - id: openwiki-source-20b14eec3201468748607f5c
-    resource: repo://.agents/skills/learning-distill/references/troubleshooting-frontmatter.schema.json
-  - id: openwiki-source-7fe0106a3a83528f5b3d3755
-    resource: repo://.agents/skills/learning-distill/SKILL.md
-  - id: openwiki-source-bc5af49c81a8aed294e3b8b0
-    resource: repo://.agents/skills/task-closeout/CONTRACT.md
-  - id: openwiki-source-764361c18355af2544814f55
-    resource: repo://.agents/skills/task-closeout/SKILL.md
-  - id: openwiki-source-8037e2358a2c4f9b2c722a11
-    resource: repo://AGENTS.md
-  - id: openwiki-source-115b2dad781e2a2c5b5a980d
-    resource: repo://docs/architecture.md
-  - id: openwiki-source-eeb2cc49563df1de1086bb7e
-    resource: repo://openspec/specs/distill-routing/spec.md
-  - id: openwiki-source-53df649d4fbc85ef0839d164
-    resource: repo://openspec/specs/wiki-contract/spec.md
-generated: { by: "openwiki/0.4.3", at: "2026-08-29T21:15:47.181Z" }
+  - by: openwiki/0.5.0
+    at: 2026-09-04T04:19:45.757Z
 ---
 
 # The Knowledge Layer: `.agents/` and Curated Wiki Trees
@@ -73,9 +25,8 @@ Durable knowledge lives in two complementary layers. **Prescriptive** guidance �
 │   └── writing-integration-guides.md
 ├── sessions/                     # ephemeral bundles (gitignored except README.md)
 │   └── README.md
-├── workflows/opsx-*.md           # OpenSpec command definitions
-└── skills/                       # task-closeout, learning-distill, docs-lint,
-                                  #   aksk-bootstrap, generate-example (internal)
+└── skills/                       # aksk-bootstrap, aksk-init, task-closeout,
+                                  #   learning-distill, docs-lint, openspec-*, verify-install
 
 openwiki/                         # descriptive layer (curated OKF concept pages)
 ├── INSTRUCTIONS.md               # OpenWiki-owned scope brief + AKSK curation contract
@@ -141,11 +92,11 @@ The curation contract attached to [`openwiki/INSTRUCTIONS.md`](../INSTRUCTIONS.m
 
 ```html
 <!-- AKSK:WIKI-CONTRACT:BEGIN -->
-... curated page trees, curation rules ...
+... curated page trees, curation rules, documentation budget ...
 <!-- AKSK:WIKI-CONTRACT:END -->
 ```
 
-Attachment is owned by `node .agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs` (see [Knowledge Curation Contract](../concepts/knowledge-curation-contract.md)): it appends the templated section from `references/wiki-contract-template.md` below existing content, never creates the file, never removes OpenWiki-owned sections, and is idempotent/self-updating (re-running when markers exist is a no-op unless the template changed, in which case only content between markers refreshes). If `INSTRUCTIONS.md` does not exist, it exits 2 with `openwiki --init` and performs no writes.
+Attachment is owned by `node .agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs` (byte-identical copy at `node .agents/skills/aksk-init/scripts/attach_wiki_contract.mjs`; either path works — see [Knowledge Curation Contract](../concepts/knowledge-curation-contract.md)): it appends the templated section from `references/wiki-contract-template.md` below existing content, never creates the file, never removes OpenWiki-owned sections, and is idempotent/self-updating (re-running when markers exist is a no-op unless the template changed, in which case only content between markers refreshes). If `INSTRUCTIONS.md` does not exist, it exits 2 with `openwiki --init` and performs no writes.
 
 Once attached, the contract declares three invariants enforced at update time:
 
@@ -153,7 +104,13 @@ Once attached, the contract declares three invariants enforced at update time:
 2. **Frontmatter extensions survive round-trips** — every `aksk_*` field is meaningful and must be preserved by the update reconciler.
 3. **Distill-authored pages bypass the CLI** — descriptive lessons are written by the host agent with deterministic index refresh; `openwiki --update` remains the scheduled reconciliation path but is never the distill write path.
 
+The same marked section carries the **Documentation budget** that constrains OpenWiki to an agent navigation aid: keep the repository map and package ownership, top-level architecture and major runtime/data flows, cross-cutting conventions and extension points, non-obvious invariants evidenced in source/tests, and links to source locations and canonical OpenSpec specs; do not generate restatements of `openspec/specs/**` requirements, per-function/per-class/per-file summaries, standalone API references, release notes or change-history narratives, generated/vendor/build-output documentation, or pages that only paraphrase source. The update threshold is that a page changes only when a public integration boundary, module ownership boundary, major data/control flow, durable convention, or non-obvious invariant changes — for feature behavior, link to the canonical OpenSpec spec rather than duplicating it.
+
 Distillation fails closed before any wiki write when the contract is absent — treating absence as "nothing curated" could silently regenerate away hand-curated pages (design decision D3, now spec'd under `distill-routing`).
+
+## Discovery guard (`.openwikiignore`)
+
+The temporary-vs-durable split is enforced for OpenWiki discovery by the root `.openwikiignore`. Its `AKSK:OPENWIKIIGNORE` section excludes `.agents/sessions/` (with a `!.agents/sessions/README.md` exception so the folder survives fresh clones), the root-anchored `/example/` illustration tree, dependencies and build products/caches, generated/vendor artifacts, and machine-local secrets — while never excluding `openspec/specs/**` or `openspec/changes/archive/**`, which stay citable as contract and history. The file is merge-not-clobber: a missing file is created from the template, an existing file without markers gets the tagged section appended, and when markers exist only the tagged section refreshes; user content outside the markers is never removed.
 
 ## Playbooks
 
@@ -175,22 +132,21 @@ Per-task closeout bundles live under `.agents/sessions/YYYYMMDD-HHMMSS-short-top
 
 Bundle discovery must be ignore-blind (`ls`/`find` or `rg --no-ignore-vcs`), because gitignored paths are invisible to ignore-aware searches — see troubleshooting entry `session-discovery-fails-during-distillation-or-closeout`.
 
-<!-- openwiki: mermaid parse failed and this diagram was converted to a text fence so it does not break rendering. Fix the diagram source and restore the mermaid fence. Parser error: Heuristic: an unescaped angle bracket inside a label breaks rendering; rephrase the label. -->
-```text
+```mermaid
 flowchart LR
-    Bundle["Session bundle<br>.agents/sessions folder"] --> Classify{"Classify lesson"}
+    Bundle["Session bundle - sessions folder"] --> Classify{"Classify lesson"}
     Classify -->|ephemeral| Drop["Keep in bundle only"]
-    Classify -->|prescriptive AGENTS| Agents[".agents/AGENTS.md<br>concise actionable rule"]
-    Classify -->|prescriptive playbook| Playbook[".agents/playbooks folder"]
-    Classify -->|descriptive decision| Decision["openwiki decisions slug<br>aksk_status plus OKF"]
-    Classify -->|descriptive troubleshooting| Trouble["openwiki troubleshooting slug"]
-    Classify -->|descriptive topical| Topical["openwiki topic page"]
-    Decision --> Sync["sync_wiki_indexes.mjs"]
+    Classify -->|prescriptive AGENTS| Agents["AGENTS guidance - concise rule"]
+    Classify -->|prescriptive playbook| Playbook["playbooks folder"]
+    Classify -->|descriptive decision| Decision["decisions slug - status plus OKF"]
+    Classify -->|descriptive troubleshooting| Trouble["troubleshooting slug"]
+    Classify -->|descriptive topical| Topical["topic page"]
+    Decision --> Sync["sync wiki indexes"]
     Trouble --> Sync
     Topical --> Sync
     Agents --> Sync
     Playbook --> Sync
-    Sync --> Flagged["Bundle marked distilled<br>summary flags plus git history"]
+    Sync --> Flagged["Bundle marked distilled"]
 ```
 
 *Caption: distillation routing from ephemeral bundle through classification to durable homes and deterministic index sync.*

@@ -1,90 +1,12 @@
 ---
-type: "Reference"
-title: "AKSK Architecture Overview"
-openwiki_generated: true
+type: Reference
+title: AKSK Architecture Overview
+description: Top-level system map of the Agent Knowledge Starter Kit as glue over peer tools, with global versus per-repo lanes and owned trees.
+tags: [architecture, overview, bootstrap, knowledge-layer]
 verified:
-  - by: openwiki/0.4.3
-    at: 2026-08-30T01:40:39.325Z
-sources:
-  - id: openwiki-source-62bd4cb693e4e881b3f88f6b
-    resource: repo://.agents/.gitignore
-  - id: openwiki-source-221b8d1823c4691ef36ad664
-    resource: repo://.agents/AGENTS.md
-  - id: openwiki-source-d14430fd7f922c01d2d4c9b4
-    resource: repo://.agents/playbooks/README.md
-  - id: openwiki-source-c056a1ca61c0634d11844713
-    resource: repo://.agents/skills/aksk-bootstrap/references/versions.json
-  - id: openwiki-source-5398a69cb2cf8d556809da57
-    resource: repo://.agents/skills/aksk-bootstrap/scripts/attach_section.mjs
-  - id: openwiki-source-d56b5afb22742020f2ab6b59
-    resource: repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs
-  - id: openwiki-source-78293e08bbba4e65fb2685ae
-    resource: repo://.agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs
-  - id: openwiki-source-5ffa21d5a23117c638ca72b7
-    resource: repo://.agents/skills/aksk-bootstrap/scripts/bootstrap.mjs
-  - id: openwiki-source-d1960e41bf9a48af26e81829
-    resource: repo://.agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs
-  - id: openwiki-source-181fd64540d760eef80f754f
-    resource: repo://.agents/skills/aksk-bootstrap/scripts/init_agents_md.mjs
-  - id: openwiki-source-67d81b3c5bf101f8b3eb3d2a
-    resource: repo://.agents/skills/aksk-bootstrap/scripts/refresh_agents_baseline.mjs
-  - id: openwiki-source-dce50581779fda5dd507dc34
-    resource: repo://.agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs
-  - id: openwiki-source-dc8872a5e7d386c22ea2f135
-    resource: repo://.agents/skills/aksk-bootstrap/SKILL.md
-  - id: openwiki-source-944a38bc18074fe81ed45b1f
-    resource: repo://.agents/skills/aksk-init/scripts/attach_section.mjs
-  - id: openwiki-source-ff2d87cb54c01d07d6371400
-    resource: repo://.agents/skills/aksk-init/scripts/attach_wiki_contract.mjs
-  - id: openwiki-source-9930f2885b3cb73d38a9300a
-    resource: repo://.agents/skills/aksk-init/scripts/bootstrap-repo.mjs
-  - id: openwiki-source-5a97b1d59b72f21589de6133
-    resource: repo://.agents/skills/aksk-init/scripts/init_agents_md.mjs
-  - id: openwiki-source-a32706bb92393653e69338b7
-    resource: repo://.agents/skills/docs-lint/CONTRACT.md
-  - id: openwiki-source-5af7f373fcb21f142106673c
-    resource: repo://.agents/skills/docs-lint/SKILL.md
-  - id: openwiki-source-7fe0106a3a83528f5b3d3755
-    resource: repo://.agents/skills/learning-distill/SKILL.md
-  - id: openwiki-source-bc5af49c81a8aed294e3b8b0
-    resource: repo://.agents/skills/task-closeout/CONTRACT.md
-  - id: openwiki-source-764361c18355af2544814f55
-    resource: repo://.agents/skills/task-closeout/SKILL.md
-  - id: openwiki-source-8037e2358a2c4f9b2c722a11
-    resource: repo://AGENTS.md
-  - id: openwiki-source-115b2dad781e2a2c5b5a980d
-    resource: repo://docs/architecture.md
-  - id: openwiki-source-096a781fb160ef979fa31121
-    resource: repo://INSTALL.md
-  - id: openwiki-source-c13ebc2b6ebca535d0e7e2e3
-    resource: repo://openspec/changes/add-task-start/proposal.md
-  - id: openwiki-source-1038e04a8d2ec385d7008057
-    resource: repo://openspec/changes/archive/2026-08-29-canonical-universal-install/proposal.md
-  - id: openwiki-source-38af7bdd34d817fbd3c29077
-    resource: repo://openspec/config.yaml
-  - id: openwiki-source-f7767c74e12e946558d335f1
-    resource: repo://openspec/specs/agents-md-bootstrap/spec.md
-  - id: openwiki-source-c23cb9e8edf20ed2740abea1
-    resource: repo://openspec/specs/aksk-bootstrap/spec.md
-  - id: openwiki-source-d682bd16449a28825541bbed
-    resource: repo://openspec/specs/aksk-init/spec.md
-  - id: openwiki-source-e057169748acea114e857ee9
-    resource: repo://openspec/specs/canonical-user-skills-scope/spec.md
-  - id: openwiki-source-eeb2cc49563df1de1086bb7e
-    resource: repo://openspec/specs/distill-routing/spec.md
-  - id: openwiki-source-c16c0a8de8d2a3a0385db0af
-    resource: repo://openspec/specs/install-lanes/spec.md
-  - id: openwiki-source-53df649d4fbc85ef0839d164
-    resource: repo://openspec/specs/wiki-contract/spec.md
-  - id: openwiki-source-5b54a58d1b51cd490b0e7162
-    resource: repo://package.json
-  - id: openwiki-source-2361cff43709905e22758cbb
-    resource: repo://scripts/check-agents-structure.sh
-  - id: openwiki-source-5d609834bdc11b93524d04a9
-    resource: repo://scripts/check-publish.sh
-generated: { by: "openwiki/0.4.3", at: "2026-08-30T01:40:39.325Z" }
+  - by: openwiki/0.5.0
+    at: 2026-09-04T04:19:45.757Z
 ---
-
 
 # AKSK Architecture Overview
 
@@ -97,7 +19,7 @@ AKSK is glue over two globally installed tools it never installs implicitly:
 - **OpenSpec** (`@fission-ai/openspec`) — owns the intent and process layer under `openspec/`.
 - **OpenWiki** (`openwiki`, plus one-time `openwiki --init` per repo) — owns the descriptive knowledge layer under `openwiki/`.
 
-Skills verify these prerequisites before acting via `node .agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs openspec openwiki` and fail fast on exit code 2 printing exact `npm i -g` install commands. Caret ranges are resolved from `references/versions.json` (fallback to `@latest` when unpinned) via `versionsFromPackageJson()` in the global orchestrator. Only the deterministic global lane (`bootstrap-global.mjs` under `aksk-bootstrap`) performs per-user `npm i -g`; all other skills and the per-repo lane (`aksk-init`) only verify. Per `openspec/specs/aksk-bootstrap/spec.md` the global lane is restricted to per-user operations and per `openspec/specs/aksk-init/spec.md` the repo lane fails fast to `aksk-bootstrap` when tools are missing and never attempts global installs.
+Skills verify these prerequisites before acting via `node .agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs openspec openwiki` and fail fast on exit code 2 printing exact `npm i -g` install commands (`@latest` fallback in that verifier; caret-pinned commands come from the global orchestrator). Caret ranges (`@fission-ai/openspec@^1.11.0`, `openwiki@^0.4.3`) are resolved from `references/versions.json` (consumer `package.json` override checked first, then bundled file) via `versionsFromPackageJson()` in the global orchestrator. Only the deterministic global lane (`bootstrap-global.mjs` under `aksk-bootstrap`) performs per-user `npm i -g`; all other skills and the per-repo lane (`aksk-init`) only verify. Per `openspec/specs/aksk-bootstrap/spec.md` the global lane is restricted to per-user operations and host integrations are manual opt-in, and per `openspec/specs/aksk-init/spec.md` the repo lane fails fast directing to `aksk-bootstrap` when tools are missing and never attempts global installs.
 
 Node >= 22 is the single kit runtime for all `.mjs` scripts under `.agents/skills/aksk-bootstrap/scripts/` and `.agents/skills/aksk-init/scripts/` — `bootstrap-global.mjs`, `bootstrap.mjs` (shim), `check_peer_tools.mjs`, `attach_wiki_contract.mjs`, `attach_section.mjs`, `sync_wiki_indexes.mjs`, `init_agents_md.mjs`, `refresh_agents_baseline.mjs`, and `bootstrap-repo.mjs`.
 
@@ -139,7 +61,7 @@ Owns behavior rules that travel with the repo when tools change. Contents that m
 - `.agents/AGENTS.md` — compact, portable routing directives and project learnings. Must stay small per design principle 2; no session history, long rationale, or one-off debugging details.
 - `.agents/playbooks/` — durable multi-step procedures (for example `pre-publish`, `major-version-release`). Prescriptive lessons that require ordered steps land here, not in `AGENTS.md`.
 - `.agents/sessions/` — gitignored temporary evidence. Only `.agents/sessions/README.md` is tracked, enforced by `.agents/.gitignore` (`sessions/*` plus `!sessions/README.md`) and verified by `check-agents-structure.sh`. Each session folder holds one task-closeout bundle.
-- `.agents/skills/` — portable skills plus one maintainer-internal skill. Portable skills ship a `CONTRACT.md` so an agent that receives only that folder still knows entrypoints, flags, and file shapes:
+- `.agents/skills/` — portable skills plus maintainer-internal skills. Portable skills ship a `CONTRACT.md` so an agent that receives only that folder still knows entrypoints, flags, and file shapes:
   - `aksk-bootstrap` — per-user global lane: Node check, `npm i -g` for peer tools from `references/versions.json`, PATH verification, and global skill spread; never touches per-repo files except receipts verification per `openspec/specs/aksk-bootstrap/spec.md`.
   - `aksk-init` — per-repo lane: `.agents/` scaffold and baseline seeding first, `openspec init`, `openwiki --init`, and contract/routing attachment per `openspec/specs/aksk-init/spec.md`.
   - `task-closeout` — capture-only; writes only under `.agents/sessions/`.
@@ -174,7 +96,7 @@ All are plain ESM `.mjs` on Node >= 22, idempotent, and non-installing except th
 
 **`bootstrap.mjs [repo-root] [--force] [--json]` (shim)** — runs `bootstrap-global.mjs` then, if present, `aksk-init/scripts/bootstrap-repo.mjs` sequentially via `spawnSync`. Exits with the first non-zero status; if `aksk-init` is absent it reports global lane complete and directs the user to run `aksk-init` separately.
 
-**`bootstrap-global.mjs [repo-root] [--force] [--json]`** — deterministic global orchestrator per `openspec/specs/aksk-bootstrap/spec.md` with preflight detection (Node major, tools on PATH, `.agents/`/`openspec/`/`openwiki/` presence, `openwiki integrations list` receipts) and a state report before acting. Two verbs: (1) **Verify CLIs** — `npm i -g @fission-ai/openspec@^1.11.0 openwiki@^0.4.3` in user scope per caret from `references/versions.json` via `versionsFromPackageJson()`, skipping any tool already present at compatible version, bumping caret via `npm install --save-dev` sync; (2) **Verify skills** — ensure `~/.agents/skills/<name>/SKILL.md` plus current host dir via `npx skills add -g -a <self-reported>` (requires `npx`, no clone fallback when shipped), host integration spread is manual opt-in. **Never half-installs**: a failed step prints exact remaining commands (INSTRUCT lane) and exits clean without partial state from that step. Non-interactive; the `aksk-bootstrap` skill prompts `[Y/n/skip]` before invoking.
+**`bootstrap-global.mjs [repo-root] [--force] [--json]`** — deterministic global orchestrator per `openspec/specs/aksk-bootstrap/spec.md` with preflight detection (Node major, tools on PATH, `.agents/`/`openspec/`/`openwiki/` presence, `openwiki integrations list --project` receipts best-effort) and a state report before acting. It verifies CLIs — `npm i -g @fission-ai/openspec@^1.11.0 openwiki@^0.4.3` in user scope per caret from `references/versions.json` via `versionsFromPackageJson()` (consumer `package.json` checked first for local override, then bundled file; `@latest` only when unpinned) — skipping any tool already present at a compatible version and reporting detected versions via `--version`. Skill spread (`npx skills add <source> -g -a <agent>` into `~/.agents/skills` plus self-reported host) is orchestrated by the `aksk-bootstrap` skill agent per `openspec/specs/canonical-user-skills-scope/spec.md` (`npx` required, no clone fallback); host integrations (`openwiki integrations install <host>`) are manual opt-in and not auto-installed by the script. **Never half-installs**: a failed step prints exact remaining commands (INSTRUCT lane) and exits clean without partial state from that step. Non-interactive; the `aksk-bootstrap` skill prompts `[Y/n/skip]` before invoking.
 
 **`bootstrap-repo.mjs [repo-root] [--yes] [--local-skills]`** — per-repo orchestrator per `openspec/specs/aksk-init/spec.md`. Preflight verifies Node >= 22 and `openspec`/`openwiki` on PATH, failing fast with `npm i -g` remediation directing to `aksk-bootstrap` and never attempting global installs. Idempotent sequence: (1) scaffold `.agents/` + baseline via `init_agents_md.mjs` first, (2) `openspec init --tools none` when `openspec/` missing, (3) `openwiki --init` when `openwiki/` missing (documents harness path needs no extra key, CLI needs `OPENAI_API_KEY`), (4) attach routing + lifecycle via `attach_section.mjs`, (5) attach wiki contract via `attach_wiki_contract.mjs`. Version diagnostics read from `aksk-bootstrap/references/versions.json` as single source. Supports `--local-skills` to install repo-local via `npx skills add` without `-g`; partitioned INSTRUCT prints only repo-scoped commands on failure.
 
@@ -198,9 +120,7 @@ All are plain ESM `.mjs` on Node >= 22, idempotent, and non-installing except th
 
 ## Installation lanes (shipped)
 
-Preferred lanes are agent-assisted via `npx skills add Hypercubed/Agent-Knowledge-Starter-Kit` (universal `~/.agents/skills` plus self-reported host via `-g -a <self-reported>`, `npx` required) and deterministic `node .agents/skills/aksk-bootstrap/scripts/bootstrap.mjs [repo-root]` (EXECUTE/INSTRUCT) which delegates to `bootstrap-global.mjs` then `bootstrap-repo.mjs`. Fallback/manual lane is `npx skills add` with per-skill initialization per `openspec/specs/install-lanes/spec.md`. Documentation, playbooks, and shell scripts do not reference `example/` as an install path or validation target — `example/` is not a supported distribution artifact.
-
-> **Proposal-only (not shipped):** `openspec/changes/canonical-universal-install` (archived at `openspec/changes/archive/2026-08-29-canonical-universal-install`, graduated to `openspec/specs/canonical-user-skills-scope/spec.md`) proposed a canonical user store `~/.agents/skills` (universal agent plus self-reported host via `npx skills add -g -a <self-reported>`) with `npx` required and no clone fallback, and host-dependent `openwiki integrations install` vs `add-mcp` ladder. Until that change ships, the lanes above remain the contract (version pins still come from `references/versions.json`).
+Preferred lanes are agent-assisted via `npx skills add Hypercubed/Agent-Knowledge-Starter-Kit` into the canonical user store (`~/.agents/skills` universal plus self-reported host via `-g -a <self-reported>`, `npx` required, no clone fallback per `openspec/specs/canonical-user-skills-scope/spec.md`) and deterministic `node .agents/skills/aksk-bootstrap/scripts/bootstrap.mjs [repo-root]` (EXECUTE/INSTRUCT) which delegates to `bootstrap-global.mjs` then `bootstrap-repo.mjs`. Fallback/manual lane is `npx skills add` with per-skill initialization per `openspec/specs/install-lanes/spec.md`. Documentation, playbooks, and shell scripts do not reference `example/` as an install path or validation target — `example/` is not a supported distribution artifact.
 
 > **Proposal-only (not shipped):** `openspec/changes/add-task-start` proposes a `task-start` skill that seeds the session folder and `summary.json` (`task_id`, `created_at`, `status=in_progress`, `openspec_change`) before work begins, with `task-closeout` finalizing the same bundle. Shipped behavior remains `task-closeout` creating the bundle and `summary.json` from scratch.
 

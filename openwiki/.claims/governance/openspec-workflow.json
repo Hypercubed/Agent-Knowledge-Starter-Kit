@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:410c2a57c6e553086b75f40113e524aa2fa68bc16174f7deb6ce0c4763b968e0",
+  "pageVersion": "sha256:2e22fbca5d4f4e61325ea9c6cf9767aad662228fed3d731da2335ebd8844e5ac",
   "claims": [
     {
       "id": "claim_fe534ca7f2554e8eac1040e992646716",
@@ -64,7 +64,7 @@
       "evidence": [
         {
           "resource": "repo://openspec/specs/agent-integration-spread/spec.md",
-          "version": "repo-file-v1:sha256:4d10190096ddb3db819a96eb0a7ca25686b391348f3d827a12b65fdaf4e72f2f"
+          "version": "repo-file-v1:sha256:8d103d884358150f795d761d8dd6928d1ebd437614a3e1cd9577938f364b9e88"
         },
         {
           "resource": "repo://openspec/specs/agents-md-bootstrap/spec.md",
@@ -198,7 +198,7 @@
       "evidence": [
         {
           "resource": "repo://openspec/specs/agent-integration-spread/spec.md",
-          "version": "repo-file-v1:sha256:4d10190096ddb3db819a96eb0a7ca25686b391348f3d827a12b65fdaf4e72f2f"
+          "version": "repo-file-v1:sha256:8d103d884358150f795d761d8dd6928d1ebd437614a3e1cd9577938f364b9e88"
         }
       ]
     },
@@ -228,7 +228,7 @@
       "evidence": [
         {
           "resource": "repo://openspec/specs/wiki-contract/spec.md",
-          "version": "repo-file-v1:sha256:419a050c5007c1916753365f2ad64108e320e9af160426e7fb4cc38c0508a5be"
+          "version": "repo-file-v1:sha256:f20c08afe4ccc4b8bbbc3a5f2423ba89ea430d0c9ca2ab164147d1952b0cc4ea"
         }
       ]
     },
@@ -305,10 +305,78 @@
           "version": "repo-file-v1:sha256:a9691a718c37b39d54cd5eed8f1e8318e837d11ae4f477e67223b5cece84158c"
         }
       ]
+    },
+    {
+      "id": "claim_8c3d76fa167a42f08ecce8fbca3fe880",
+      "statement": "wiki-contract requires the AKSK curation contract to include a Documentation budget brief (Keep / Do not generate / Update threshold) inside the existing AKSK:WIKI-CONTRACT markers, so wiki pages link to openspec/specs instead of restating requirements and update only on boundary, ownership, flow, convention, or invariant changes.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-init/references/wiki-contract-template.md",
+          "version": "repo-file-v1:sha256:f4b37c8d7f1288d6697a6469eb195a25e980cb9317766827fd341e56a01561fc"
+        },
+        {
+          "resource": "repo://openspec/changes/archive/2026-09-03-adopt-doc-budget/specs/wiki-contract/spec.md",
+          "version": "repo-file-v1:sha256:48d3d438da0c86219e85bfbcb1cb3270efbef53726dcd6c0b0256ee44823b9b2"
+        },
+        {
+          "resource": "repo://openspec/specs/wiki-contract/spec.md",
+          "version": "repo-file-v1:sha256:f20c08afe4ccc4b8bbbc3a5f2423ba89ea430d0c9ca2ab164147d1952b0cc4ea"
+        }
+      ]
+    },
+    {
+      "id": "claim_956a97074feb44dca76a809d13105573",
+      "statement": "wiki-contract requires a root .openwikiignore with anchored commented rules that exclude generated, vendor, and machine-local trees via anchored /example/ while preserving .agents/sessions exclusion with README exception, never excluding openspec/specs or openspec/changes/archive, with merge-not-clobber marker semantics.",
+      "evidence": [
+        {
+          "resource": "repo://.openwikiignore",
+          "version": "repo-file-v1:sha256:632606b4a6a1fd34db6b31a6cf057b5f469b799c6c0cac3fa402314ad59d4d57"
+        },
+        {
+          "resource": "repo://openspec/specs/wiki-contract/spec.md",
+          "version": "repo-file-v1:sha256:f20c08afe4ccc4b8bbbc3a5f2423ba89ea430d0c9ca2ab164147d1952b0cc4ea"
+        }
+      ]
+    },
+    {
+      "id": "claim_9a236550e4bf4c3ab0574d82cd92bb97",
+      "statement": "adopt-doc-budget was archived 2026-09-03 as applied and graduated Documentation-budget plus .openwikiignore requirements into wiki-contract using Option A expansion inside existing markers with no new markers.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/changes/archive/2026-09-03-adopt-doc-budget/design.md",
+          "version": "repo-file-v1:sha256:c3ca2b5271ba1d7323ef7d01923364386c9a51f77ab10f58b5d2ce0674ef426f"
+        },
+        {
+          "resource": "repo://openspec/changes/archive/2026-09-03-adopt-doc-budget/proposal.md",
+          "version": "repo-file-v1:sha256:905a6a383aadcfc874610c473403f889a443dded19f5356a33902c555a702439"
+        },
+        {
+          "resource": "repo://openspec/specs/wiki-contract/spec.md",
+          "version": "repo-file-v1:sha256:f20c08afe4ccc4b8bbbc3a5f2423ba89ea430d0c9ca2ab164147d1952b0cc4ea"
+        }
+      ]
+    },
+    {
+      "id": "claim_0154cb309a9d411fb45332bc0b657d71",
+      "statement": "aksk-init-doc-budget is an active proposal-only Phase 2 change that bakes the Documentation budget into aksk-init via an openwikiignore template plus a merge-not-clobber init_openwikiignore installer wired into bootstrap-repo.mjs after openwiki --init and contract attach, idempotent and non-interactive.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/changes/aksk-init-doc-budget/design.md",
+          "version": "repo-file-v1:sha256:358fffc29bcda5dc773b2852fecf31eb158be84b5aa67f2579a5807516c9be3e"
+        },
+        {
+          "resource": "repo://openspec/changes/aksk-init-doc-budget/proposal.md",
+          "version": "repo-file-v1:sha256:c2e52ed37e9669cf76d0d7bf9bd13f7b959eb77203e939d25d0fc29f166101c9"
+        },
+        {
+          "resource": "repo://openspec/changes/aksk-init-doc-budget/tasks.md",
+          "version": "repo-file-v1:sha256:8c93a61629473be2688b7c5fdd456a6bcfb4f93fbbc6fb3b558d217b97ce9003"
+        }
+      ]
     }
   ],
   "verification": {
-    "by": "openwiki/0.4.3",
-    "at": "2026-08-30T01:40:39.325Z"
+    "by": "openwiki/0.5.0",
+    "at": "2026-09-04T04:19:45.757Z"
   }
 }

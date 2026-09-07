@@ -1,68 +1,16 @@
 ---
-type: "Reference"
-title: "Packaging and Install Lanes"
-openwiki_generated: true
+type: Reference
+title: Packaging and Install Lanes
+description: User-scope packaging (npm globals, caret versions, skill-first install) and the aksk-bootstrap global plus aksk-init per-repo lanes.
+tags: [packaging, install, skills, bootstrap, npm, user-scope]
 verified:
-  - by: openwiki/0.4.3
-    at: 2026-08-30T01:40:39.325Z
-sources:
-  - id: openwiki-source-c056a1ca61c0634d11844713
-    resource: repo://.agents/skills/aksk-bootstrap/references/versions.json
-  - id: openwiki-source-d56b5afb22742020f2ab6b59
-    resource: repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs
-  - id: openwiki-source-78293e08bbba4e65fb2685ae
-    resource: repo://.agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs
-  - id: openwiki-source-5ffa21d5a23117c638ca72b7
-    resource: repo://.agents/skills/aksk-bootstrap/scripts/bootstrap.mjs
-  - id: openwiki-source-d1960e41bf9a48af26e81829
-    resource: repo://.agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs
-  - id: openwiki-source-67d81b3c5bf101f8b3eb3d2a
-    resource: repo://.agents/skills/aksk-bootstrap/scripts/refresh_agents_baseline.mjs
-  - id: openwiki-source-dc8872a5e7d386c22ea2f135
-    resource: repo://.agents/skills/aksk-bootstrap/SKILL.md
-  - id: openwiki-source-944a38bc18074fe81ed45b1f
-    resource: repo://.agents/skills/aksk-init/scripts/attach_section.mjs
-  - id: openwiki-source-ff2d87cb54c01d07d6371400
-    resource: repo://.agents/skills/aksk-init/scripts/attach_wiki_contract.mjs
-  - id: openwiki-source-9930f2885b3cb73d38a9300a
-    resource: repo://.agents/skills/aksk-init/scripts/bootstrap-repo.mjs
-  - id: openwiki-source-5a97b1d59b72f21589de6133
-    resource: repo://.agents/skills/aksk-init/scripts/init_agents_md.mjs
-  - id: openwiki-source-4ab0b6cc58dd78f7a5c0603e
-    resource: repo://.agents/skills/aksk-init/SKILL.md
-  - id: openwiki-source-d8d723e96d55a86c0b91977c
-    resource: repo://.claude-plugin/plugin.json
-  - id: openwiki-source-096a781fb160ef979fa31121
-    resource: repo://INSTALL.md
-  - id: openwiki-source-d791605efe5549a81ce1b6a0
-    resource: repo://openspec/changes/archive/2026-08-29-canonical-universal-install/design.md
-  - id: openwiki-source-e7a53fbe57dabb5de7be9f05
-    resource: repo://openspec/changes/archive/2026-08-29-canonical-universal-install/specs/agent-integration-spread/spec.md
-  - id: openwiki-source-1611464d292180a472498834
-    resource: repo://openspec/changes/archive/2026-08-29-canonical-universal-install/specs/canonical-user-skills-scope/spec.md
-  - id: openwiki-source-c23cb9e8edf20ed2740abea1
-    resource: repo://openspec/specs/aksk-bootstrap/spec.md
-  - id: openwiki-source-e057169748acea114e857ee9
-    resource: repo://openspec/specs/canonical-user-skills-scope/spec.md
-  - id: openwiki-source-c16c0a8de8d2a3a0385db0af
-    resource: repo://openspec/specs/install-lanes/spec.md
-  - id: openwiki-source-5b54a58d1b51cd490b0e7162
-    resource: repo://package.json
-  - id: openwiki-source-23775c3de52f3ab95a13cb8b
-    resource: repo://README.md
-  - id: openwiki-source-2361cff43709905e22758cbb
-    resource: repo://scripts/check-agents-structure.sh
-  - id: openwiki-source-5d609834bdc11b93524d04a9
-    resource: repo://scripts/check-publish.sh
-generated: { by: "openwiki/0.4.3", at: "2026-08-30T01:40:39.325Z" }
+  - by: openwiki/0.5.0
+    at: 2026-09-04T04:19:45.757Z
 ---
-
 
 # Packaging and Install Lanes
 
-The kit ships content (markdown layout and conventions) rather than a runtime library. After `reorder-install-lanes-drop-example` the only supported adoption paths are two `aksk-bootstrap`/`aksk-init`-owned lanes that both end in the same per-repo scaffold. `example/.agents` and the maintainer-only `generate-example` skill are removed, `git clone --depth 1 && cp -r` fallback is removed, and skill initialization copies **from** `bootstrap/` without deleting or renaming it.
-
-> Proposal-only: `openspec/changes/canonical-universal-install/**` (canonical `~/.agents/skills` scope, `npx` required, caret-version skill installs, verification scope, and `agent-integration-spread` ladder) is a proposal. This page labels those deltas as proposed and does not present them as shipped. Shipped lanes are defined by `openspec/specs/install-lanes/spec.md` and `openspec/specs/aksk-bootstrap/spec.md`.
+The kit ships content (markdown layout and conventions) rather than a runtime library. The only supported adoption paths are two skill-owned lanes that end in the same per-repo scaffold: `aksk-bootstrap` (per-user global) then `aksk-init` (per-repo). There is no `cp example/.agents` path — `example/` and its `generate-example` skill/playbook were removed — and bootstrap templates are the source of truth.
 
 ## What the package is
 
@@ -92,26 +40,26 @@ The kit is glue over two peer tools it never installs implicitly except through 
 - **Node >= 22** (`MIN_NODE_MAJOR = 22`)
 - `npm i -g @fission-ai/openspec@^1.11.0 openwiki@^0.4.3` — caret ranges read from `references/versions.json` via `versionsFromPackageJson()` (repo `package.json` override checked first, then bundled fallback at `.agents/skills/aksk-bootstrap/references/versions.json`), `@latest` only when unpinned; per-user global (`npm i -g`), not repo-local `npx` or `node_modules`.
 
-`aksk-bootstrap` owns verification (`check_peer_tools.mjs`): `requireBinaries(["openspec","openwiki"])` checks PATH resolution only, prints one error per missing tool plus the exact `npm i -g` commands, and exits 2. Unknown tool names also exit 2 naming the unknown tool. Other skills import rather than reimplement. `bootstrap-global.mjs` re-verifies before any host spread and `bootstrap-repo.mjs` fails fast with `Missing tools — run aksk-bootstrap first` if `openspec`/`openwiki` are not on PATH.
+`aksk-bootstrap` owns verification (`check_peer_tools.mjs`): `requireBinaries(["openspec","openwiki"])` checks PATH resolution only, prints one error per missing tool plus the exact `npm i -g` commands, and exits 2. Unknown tool names also exit 2 naming the unknown tool. The standalone checker prints `@latest` commands from its hardcoded `INSTALL_COMMANDS`; the caret-pinned commands come from `bootstrap-global.mjs` via `versionsFromPackageJson()`. Other skills import rather than reimplement. `bootstrap-global.mjs` re-verifies before acting and `bootstrap-repo.mjs` fails fast with `Missing tools — run aksk-bootstrap first` if `openspec`/`openwiki` are not on PATH.
 
 ## Registration surfaces
 
 | Surface | File / command | Content |
 | --- | --- | --- |
-| Skills CLI (canonical) | `npx skills add -g -a <self-reported> Hypercubed/Agent-Knowledge-Starter-Kit` | installs to `~/.agents/skills/<name>/SKILL.md` plus current host's dir (`~/.<host>/skills`); `--full-depth` when source is `langchain-ai/openwiki` |
-| Skills CLI override A (repo-local) | `npx skills add Hypercubed/Agent-Knowledge-Starter-Kit` (without `-g`) | writes `./.agents/skills/` — documented override, not default |
+| Skills CLI (canonical) | `npx skills add <source> -g -a <self-reported>` (e.g. `npx skills add Hypercubed/Agent-Knowledge-Starter-Kit -g -a <self-reported>`) | installs to `~/.agents/skills/<name>/SKILL.md` plus current host's dir (`~/.<host>/skills`); `--full-depth` when source is `langchain-ai/openwiki` |
+| Skills CLI override A (repo-local) | `npx skills add <source>` (without `-g`) | writes `./.agents/skills/` — documented override, not default |
 | Claude Code plugin | `.claude-plugin/plugin.json` v2.0.0 | registers exactly five paths: `aksk-bootstrap`, `aksk-init`, `task-closeout`, `learning-distill`, `docs-lint`; remote without ref fetches `main`, use `@develop` until merged |
 | Local receipts (gitignored) | `.openwiki-install.json` and `openwiki integrations list` | ownership partition for `openwiki integrations install`; `list` without `--project` is user scope, `--project` is repo override |
 
-The Skills CLI flag `--all` fans out to every known agent directory; use it only when the user explicitly asked at install time.
+Positional `<source>` must come first: `-a` consumes the next token, so `npx skills add -g -a <source>` fails with `Missing required argument: source`. Use `npx skills add <source> -g -a <agent>` or `npx skills add <source> -g --all` (shorthand for universal `~/.agents/skills`). The Skills CLI flag `--all` fans out to every known agent directory; use it only when the user explicitly asked at install time.
 
-## Canonical user store (Proposal — canonical-universal-install)
+## Canonical user store (shipped)
 
-> This section describes `openspec/changes/canonical-universal-install/specs/canonical-user-skills-scope/spec.md` as proposed. Shipped documentation still presents the two lanes via `aksk-bootstrap` without mandating the universal-plus-self-reported pair as the only default.
+Defined by `openspec/specs/canonical-user-skills-scope/spec.md` (graduated from the `canonical-universal-install` change).
 
-Proposed canonical store: `~/.agents/skills` (universal, Codex default) plus the self-reported host mirror via `npx skills add -g -a <self-reported> <source>`; extra hosts or `--all` only on explicit user request at install time; verification would treat `~/.agents/skills/<name>/SKILL.md` as canonical.
+Canonical store: `~/.agents/skills` (universal, Codex default) plus the self-reported host mirror via `npx skills add -g -a <self-reported> <source>`; extra hosts or `--all` only on explicit user request at install time; verification treats `~/.agents/skills/<name>/SKILL.md` as canonical.
 
-Proposed invariants:
+Shipped invariants:
 
 ```
 npx skills add -g -a <self-reported> <source>
@@ -121,9 +69,8 @@ npx skills add -g -a <self-reported> <source>
 - `<self-reported>` = calling agent's own host id. Self-report wins over env sniffing.
 - Applies to both the kit and `langchain-ai/openwiki` (`--full-depth` yields three skills: `openwiki`, `mermaid-diagrams`, `write-connector`; lifecycle skill + MCP must both be made available).
 - Extra hosts (`-a <other>` or `--all`) only when the user explicitly asked at install time; no persistent consent artifact.
-- `npx` is required — the `git clone --depth 1 && cp -r .agents/skills` lane was removed. When `npx` is missing, bootstrap reports it as prerequisite and prints the INSTRUCT commands without fallback copy.
-
-Proposed versioning: skill installs would also read `references/versions.json` via `versionsFromPackageJson()` (same path the global `npm i -g` lane uses), keeping `~/.agents/skills` and `./.agents/skills` in sync without hardcoding `@latest`. `verify-install` would assert `~/.agents/skills/<name>/SKILL.md` plus the self-reported host mirror as canonical; repo-local `./.agents/skills` would be treated as an override case.
+- `npx` is required — the `git clone --depth 1 && cp -r .agents/skills` lane is not presented as a lane. When `npx` is missing, bootstrap reports it as prerequisite and prints the INSTRUCT commands without fallback copy. `INSTALL.md` retains a manual copy of `.agents/skills/` into the same user-scoped locations as a last-resort alternative; `openspec/specs/install-lanes/spec.md` still documents the agent clone-to-temp fallback when `npx` is unavailable, which the canonical scope supersedes.
+- Versioning: skill installs read `references/versions.json` via `versionsFromPackageJson()` (same path the global `npm i -g` lane uses), keeping `~/.agents/skills` and `./.agents/skills` in sync without hardcoding `@latest`. `verify-install` asserts `~/.agents/skills/<name>/SKILL.md` plus the self-reported host mirror as canonical; repo-local `./.agents/skills` is treated as an override case.
 
 ## Two supported lanes (shipped)
 
@@ -134,13 +81,13 @@ Give your agent this prompt (or local checkout variant):
 ```text
 Install the Agent Knowledge Starter Kit into this repo:
 
-1. npx skills add -g -a <self-reported> Hypercubed/Agent-Knowledge-Starter-Kit --skill aksk-bootstrap
-   (or npx skills add -g -a <self-reported> <path-to-kit> --skill aksk-bootstrap)
+1. npx skills add Hypercubed/Agent-Knowledge-Starter-Kit -g -a <self-reported> --skill aksk-bootstrap
+   (or npx skills add <path-to-kit> -g -a <self-reported> --skill aksk-bootstrap)
 2. Run the aksk-bootstrap skill (global lane).
 3. Then run the aksk-init skill (per-repo lane).
 ```
 
-`aksk-bootstrap` is now strictly per-user global; per-repo scaffolding lives in `aksk-init`. The shim `.agents/skills/aksk-bootstrap/scripts/bootstrap.mjs` preserves the old entrypoint by running `bootstrap-global.mjs` then `bootstrap-repo.mjs` if `aksk-init` is present:
+`aksk-bootstrap` is strictly per-user global; per-repo scaffolding lives in `aksk-init`. The shim `.agents/skills/aksk-bootstrap/scripts/bootstrap.mjs` preserves the old entrypoint by running `bootstrap-global.mjs` then `bootstrap-repo.mjs` if `aksk-init` is present:
 
 ```bash
 node .agents/skills/aksk-bootstrap/scripts/bootstrap.mjs [repo-root] [--force] [--json]
@@ -151,7 +98,7 @@ node .agents/skills/aksk-bootstrap/scripts/bootstrap.mjs [repo-root] [--force] [
 **EXECUTE lane — run locally**
 
 1. **Verify CLIs (global, `bootstrap-global.mjs`)** — Node >=22, `openspec`/`openwiki` on PATH. If missing and `npm` is on PATH, `npm i -g` with caret from `references/versions.json` (single combined install when both missing, else per-tool); skip when present. If `npm` missing, print INSTRUCT and exit clean. Never half-installs; failed step leaves no partial state from that step.
-2. **Verify skills (global)** — ensure `~/.agents/skills/<name>/SKILL.md` plus host dir; if missing `npx skills add -g -a <self-reported> <source>` for the kit and for `langchain-ai/openwiki` when needed (`@latest` only when unpinned). Host integrations via `openwiki integrations install <host>` are manual opt-in, not part of the global lane auto-spread.
+2. **Verify skills (global, skill orchestrator)** — ensure `~/.agents/skills/<name>/SKILL.md` plus host dir; if missing `npx skills add <source> -g -a <self-reported>` for the kit and for `langchain-ai/openwiki --full-depth` when that lifecycle skill is needed, otherwise `openwiki integrations install <self-reported>` when that host is supported. Host integrations via `openwiki integrations install <host>` are manual opt-in, not auto-spread by `bootstrap-global.mjs`.
 3. **Per-repo lane (`aksk-init/scripts/bootstrap-repo.mjs`)** — fails fast if global tools missing; then scaffold `.agents/` + seed `AGENTS.md` baseline first, `openspec init --tools none` when `openspec/` missing, `openwiki --init` (harness path needs no extra key, CLI path needs `OPENAI_API_KEY`), then `attach_section.mjs` for `routing-note-template.md` + `lifecycle-template.md`, then `attach_wiki_contract.mjs`.
 
 **INSTRUCT lane — no local execution bridge (no `npm`, no write, sandboxed worker):**
@@ -173,7 +120,7 @@ sequenceDiagram
   participant BootG as bootstrap-global.mjs
   participant BootR as bootstrap-repo.mjs
   participant Repo as target repo
-  Agent->>CLI: npx skills add -g -a self-reported kit --skill aksk-bootstrap
+  Agent->>CLI: npx skills add kit -g -a self-reported --skill aksk-bootstrap
   CLI->>Repo: ~/.agents/skills/aksk-bootstrap/SKILL.md + host mirror
   Agent->>BootG: node bootstrap-global.mjs [repo-root]
   BootG->>BootG: detectState() — tools, .agents/openspec/openwiki, receipts
@@ -200,8 +147,8 @@ Re-running on a fully bootstrapped fixture changes nothing; on a partially boots
 For humans without an agent (or when the agent hit INSTRUCT):
 
 ```bash
-npx skills add -g -a <self-reported> Hypercubed/Agent-Knowledge-Starter-Kit
-# or: npx skills add -g -a <self-reported> <path-to-kit> --skill aksk-bootstrap
+npx skills add Hypercubed/Agent-Knowledge-Starter-Kit -g -a <self-reported>
+# or: npx skills add <path-to-kit> -g -a <self-reported> --skill aksk-bootstrap
 # override A (repo-local): omit -g
 # extra hosts only with explicit consent: -a <other> / --all
 ```
@@ -273,8 +220,8 @@ node .agents/skills/aksk-init/scripts/init_agents_md.mjs [repo-root] --combine #
 Refresh is explicit and networked:
 
 ```bash
-node .agents/skills/aksk-init/scripts/refresh_agents_baseline.mjs        # fetch upstream + swap baseline zone
-node .agents/skills/aksk-init/scripts/refresh_agents_baseline.mjs --check # validate upstream without writing
+node .agents/skills/aksk-bootstrap/scripts/refresh_agents_baseline.mjs        # fetch upstream + swap baseline zone
+node .agents/skills/aksk-bootstrap/scripts/refresh_agents_baseline.mjs --check # validate upstream without writing
 ```
 
 Validates fetch is non-empty and contains anchors (`Non-negotiables`, `Before writing code`, `Surgical changes`, `Goal-driven execution`), then swaps only content between `AKSK:AGENTS-BASELINE` markers in the vendored template, updating capture date. Offline/failure exits non-zero; previously vendored baseline stays byte-identical.
@@ -287,16 +234,17 @@ node .agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs openspec openwik
 
 Or `import { requireBinaries } from "./check_peer_tools.mjs"`. Only `openspec`/`openwiki` are accepted.
 
-## Integration spread (lane ladder — Proposal)
+## Integration spread (shipped lane ladder)
 
-> Proposed via `openspec/changes/canonical-universal-install/specs/agent-integration-spread/spec.md`. Not shipped as default in `aksk-bootstrap` global lane; `bootstrap-global.mjs` explicitly does not auto-install host integrations. Until merged, run integrations manually.
+Defined by `openspec/specs/agent-integration-spread/spec.md`. `bootstrap-global.mjs` explicitly does not auto-install host integrations — until the user asks, run integrations manually.
 
-Proposed selection per host, verified via `openwiki integrations list` (user scope) vs `list --project` (repo override):
+Selection per host, verified via `openwiki integrations list` (user scope) vs `list --project` (repo override):
 
 - **Supported host** (`codex|claude|opencode` in v0.4.3 registry) → `openwiki integrations install <host>` — skill + `openwiki mcp --host <target>` installed atomically with `.openwiki-install.json` receipt. Receipt partitions ownership; already-installed is skipped, modified requires `--force` (backup created).
 - **Unsupported host** → `npx skills add -g -a <self-reported> langchain-ai/openwiki --full-depth` for the lifecycle skill plus `npx --yes add-mcp "openwiki mcp --host <self-reported>" -g -a <self-reported> --name openwiki` (command form; args form `npx --yes add-mcp openwiki -g -a <self-reported> --args mcp --args --host --args <self-reported> --name openwiki`; neon-solutions/add-mcp) or `openwiki mcp --host <target>` for the MCP — bare `npx add-mcp openwiki` is invalid.
-- Default would be universal + current; extra hosts only on explicit install-time request.
+- Default is universal + current; extra hosts only on explicit install-time request.
 - Headless lane (no supported integration) remains `openwiki --init -p` / `openwiki --update -p`.
+- Before spreading into any agent dir, skip any target that already holds an `.openwiki-install.json` receipt (official lane owns it) and report the skip.
 
 ## Before editing / new install checklist
 
@@ -310,7 +258,7 @@ Proposed selection per host, verified via `openwiki integrations list` (user sco
 
 ## Existing .agents/ merge checklist
 
-Never replace wholesale unless confirmed disposable. Preserve repo-specific `rules/`, `playbooks/`, `skills/` first; add missing kit skills with `npx skills add -g -a <self-reported>` and run initializations; hand-merge `.agents/AGENTS.md` keeping it concise; prefer kit-default ignore patterns; update `openwiki/index.md` discovery via index sync so preserved assets stay discoverable.
+Never replace wholesale unless confirmed disposable. Preserve repo-specific `rules/`, `playbooks/`, `skills/` first; add missing kit skills with `npx skills add <source> -g -a <self-reported>` and run initializations; hand-merge `.agents/AGENTS.md` keeping it concise; prefer kit-default ignore patterns; update `openwiki/index.md` discovery via index sync so preserved assets stay discoverable.
 
 ## Root vs portable AGENTS relationship
 
@@ -329,5 +277,7 @@ When both exist: root `AGENTS.md` = agent entrypoint for that checkout (zoned: b
 | Removed | Replacement |
 | --- | --- |
 | `example/.agents/` copy path and `cp example/.agents` instructions | Two lanes above; bootstrap templates are source of truth — no `example/` directory as install method |
-| `git clone --depth 1 && cp -r .agents/skills` fallback | `npx skills add -g -a <self-reported>` required; INSTRUCT prints commands when `npx`/`npm` missing |
+| `git clone --depth 1 && cp -r .agents/skills` fallback as a lane | `npx skills add <source> -g -a <self-reported>` required; INSTRUCT prints commands when `npx`/`npm` missing |
 | Per-repo scaffolding inside `aksk-bootstrap/bootstrap.mjs` | `aksk-init/scripts/bootstrap-repo.mjs` owns per-repo steps; `bootstrap.mjs` is now a shim |
+
+See also [Distribution and Tool Wiring](/openwiki/integrations/distribution-and-tool-wiring.md) for host wiring and [Quickstart](/openwiki/quickstart.md) for the intent-routed entry point.

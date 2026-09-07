@@ -12,9 +12,6 @@ tags:
 - lifecycle
 - openspec
 - openwiki
-verified:
-  - by: openwiki/0.4.3
-    at: 2026-08-30T01:40:39.325Z
 sources:
   - id: openwiki-source-c056a1ca61c0634d11844713
     resource: repo://.agents/skills/aksk-bootstrap/references/versions.json

@@ -3,9 +3,6 @@ type: workflow
 title: OpenSpec Governance
 description: How OpenSpec governs intent and process — openspec.yaml and spec-driven config, change anatomy, the four opsx workflows, graduated versus delta specs, and archived-change to wiki coverage.
 tags: [openspec, governance, workflow, specs, changes]
-verified:
-  - by: openwiki/0.4.3
-    at: 2026-08-30T01:40:39.325Z
 sources:
   - id: openwiki-source-5398a69cb2cf8d556809da57
     resource: repo://.agents/skills/aksk-bootstrap/scripts/attach_section.mjs

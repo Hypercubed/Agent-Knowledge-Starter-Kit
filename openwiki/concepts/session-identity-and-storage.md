@@ -3,37 +3,9 @@ type: concept
 title: Session Identity and Storage
 description: How task-closeout identifies sessions via task_id in summary.json, stores temporary bundles under .agents/sessions with gitignore and openwikiignore rules, supports optional prior_session chaining, and keeps bundles repo-local until distillation promotes lessons to durable .agents/ or openwiki/.
 tags: [sessions, task-closeout, gitignore, task-id, storage]
-sources:
-  - id: openwiki-source-62bd4cb693e4e881b3f88f6b
-    resource: repo://.agents/.gitignore
-  - id: openwiki-source-487bc271e3b8801f2a7a4226
-    resource: repo://.agents/sessions/README.md
-  - id: openwiki-source-7fe0106a3a83528f5b3d3755
-    resource: repo://.agents/skills/learning-distill/SKILL.md
-  - id: openwiki-source-bc5af49c81a8aed294e3b8b0
-    resource: repo://.agents/skills/task-closeout/CONTRACT.md
-  - id: openwiki-source-ab214531734b77501b26a485
-    resource: repo://.agents/skills/task-closeout/example/task-bundle/active-task.md
-  - id: openwiki-source-2ec3bae65cecf83d96542186
-    resource: repo://.agents/skills/task-closeout/example/task-bundle/summary.json
-  - id: openwiki-source-764361c18355af2544814f55
-    resource: repo://.agents/skills/task-closeout/SKILL.md
-  - id: openwiki-source-e119253b3c3737247dc63f2a
-    resource: repo://.openwikiignore
-  - id: openwiki-source-115b2dad781e2a2c5b5a980d
-    resource: repo://docs/architecture.md
-  - id: openwiki-source-30179ef0180d39bd7ef5bef7
-    resource: repo://openspec/changes/add-task-start/design.md
-  - id: openwiki-source-c13ebc2b6ebca535d0e7e2e3
-    resource: repo://openspec/changes/add-task-start/proposal.md
-  - id: openwiki-source-bfc58f79a96e2ed041bc3436
-    resource: repo://openspec/changes/add-task-start/specs/task-start/spec.md
-  - id: openwiki-source-86a9b374cb99ed0befc3bb8d
-    resource: repo://openspec/specs/closeout-change-linking/spec.md
-generated: { by: "openwiki/0.4.3", at: "2026-08-29T21:15:47.181Z" }
 verified:
-  - by: openwiki/0.4.3
-    at: 2026-08-29T21:15:47.181Z
+  - by: openwiki/0.5.0
+    at: 2026-09-04T04:19:45.757Z
 ---
 
 # Session Identity and Storage

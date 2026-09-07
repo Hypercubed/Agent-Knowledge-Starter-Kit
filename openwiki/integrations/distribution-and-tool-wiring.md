@@ -2,9 +2,6 @@
 type: "Reference"
 title: "Distribution and Tool Wiring"
 openwiki_generated: true
-verified:
-  - by: openwiki/0.4.3
-    at: 2026-08-30T01:40:39.325Z
 sources:
   - id: openwiki-source-62bd4cb693e4e881b3f88f6b
     resource: repo://.agents/.gitignore

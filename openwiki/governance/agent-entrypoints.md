@@ -1,48 +1,12 @@
 ---
-type: "Reference"
-title: "Agent Entrypoints and Routing"
-openwiki_generated: true
+type: Reference
+title: Agent Entrypoints and Routing
+description: Root AGENTS.md router, portable dot-agents knowledge layer, and JIT OpenWiki lookup with startup order and bootstrap composition.
+tags: [agents-md, routing, entrypoints, aksk, openwiki, bootstrap]
 verified:
-  - by: openwiki/0.4.3
-    at: 2026-08-30T01:40:39.325Z
-sources:
-  - id: openwiki-source-221b8d1823c4691ef36ad664
-    resource: repo://.agents/AGENTS.md
-  - id: openwiki-source-f62b29e03158ee0b0736e6c7
-    resource: repo://.agents/skills/aksk-bootstrap/references/agents-md-baseline-template.md
-  - id: openwiki-source-da03faceacac4fd818b473f3
-    resource: repo://.agents/skills/aksk-bootstrap/references/lifecycle-template.md
-  - id: openwiki-source-0294ec7c02cfa2beeca87331
-    resource: repo://.agents/skills/aksk-bootstrap/references/routing-note-template.md
-  - id: openwiki-source-c056a1ca61c0634d11844713
-    resource: repo://.agents/skills/aksk-bootstrap/references/versions.json
-  - id: openwiki-source-7381bbb8d2e7fd02da7469ce
-    resource: repo://.agents/skills/aksk-bootstrap/references/wiki-contract-template.md
-  - id: openwiki-source-5398a69cb2cf8d556809da57
-    resource: repo://.agents/skills/aksk-bootstrap/scripts/attach_section.mjs
-  - id: openwiki-source-d56b5afb22742020f2ab6b59
-    resource: repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs
-  - id: openwiki-source-78293e08bbba4e65fb2685ae
-    resource: repo://.agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs
-  - id: openwiki-source-5ffa21d5a23117c638ca72b7
-    resource: repo://.agents/skills/aksk-bootstrap/scripts/bootstrap.mjs
-  - id: openwiki-source-181fd64540d760eef80f754f
-    resource: repo://.agents/skills/aksk-bootstrap/scripts/init_agents_md.mjs
-  - id: openwiki-source-dce50581779fda5dd507dc34
-    resource: repo://.agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs
-  - id: openwiki-source-ea70eb6c045047448e446296
-    resource: repo://.gitignore
-  - id: openwiki-source-8037e2358a2c4f9b2c722a11
-    resource: repo://AGENTS.md
-  - id: openwiki-source-a2371d6362e5db4bc834ad03
-    resource: repo://CLAUDE.md
-  - id: openwiki-source-d37bb090eddfcd3c233c8f14
-    resource: repo://docs/integrations/README.md
-  - id: openwiki-source-096a781fb160ef979fa31121
-    resource: repo://INSTALL.md
-generated: { by: "openwiki/0.4.3", at: "2026-08-30T01:40:39.325Z" }
+  - by: openwiki/0.5.0
+    at: 2026-09-04T04:19:45.757Z
 ---
-
 
 # Agent Entrypoints and Routing
 
@@ -61,15 +25,14 @@ Coding agents entering this repository have one primary entrypoint and two JIT k
 
 Relationship prose: root `AGENTS.md` points **into** `.agents/AGENTS.md` and `openwiki/index.md`; `.agents/AGENTS.md` points **outward** to `openwiki/index.md` + `openwiki/decisions/` + `.agents/playbooks/`; `openwiki/index.md` is rebuilt deterministically and indexes everything else. See [The Knowledge Layer](../architecture/knowledge-layer.md).
 
-<!-- openwiki: mermaid parse failed and this diagram was converted to a text fence so it does not break rendering. Fix the diagram source and restore the mermaid fence. Parser error: Heuristic: an unescaped angle bracket inside a label breaks rendering; rephrase the label. -->
-```text
+```mermaid
 flowchart LR
-  Root["/AGENTS.md<br>router + baseline"] --> Portable[".agents/AGENTS.md<br>portable directives"]
-  Root --> Index["openwiki/index.md<br>generated catalog"]
-  Portable --> Decisions["openwiki/decisions/<br>troubleshooting/"]
-  Portable --> Playbooks[".agents/playbooks/"]
+  Root["Root AGENTS router plus baseline"] --> Portable["Portable directives in dot-agents"]
+  Root --> Index["Generated catalog index"]
+  Portable --> Decisions["Decisions and troubleshooting"]
+  Portable --> Playbooks["Dot-agents playbooks"]
   Index --> Decisions
-  CLAUDE["/CLAUDE.md<br>thin pointer"] -.-> Root
+  CLAUDE["Thin CLAUDE pointer"] -.-> Root
 ```
 
 *Caption: entrypoint routing — root delegates to portable and generated indexes; tool pointers delegate to root.*
@@ -124,31 +87,32 @@ Neither file is startup-required reading verbatim — `openwiki/` is optional JI
 
 - **`openwiki/index.md`** — OpenWiki-owned generated catalog (rebuilds deterministically via `sync_wiki_indexes.mjs` with `docsOnly: true, virtualMode: true`). Never hand-edit. Entry point for any knowledge search: grep the catalog, then open the relevant page.
 - **`openwiki/overview.md`** — Curated entry point that indexes the two durable trees (`decisions/`, `troubleshooting/`) plus reference pages (`maintenance-format.md`). Preserved across update runs (curated tree; see `openwiki/INSTRUCTIONS.md` `AKSK:WIKI-CONTRACT`).
-
-`openwiki/INSTRUCTIONS.md` carries the curation contract (`AKSK:WIKI-CONTRACT:BEGIN/END`): preserve-and-link semantics for curated trees, `aksk_*` frontmatter survives round-trips, and distill-authored pages bypass the CLI via direct write + deterministic index sync.
+- **`openwiki/INSTRUCTIONS.md`** carries the curation contract (`AKSK:WIKI-CONTRACT:BEGIN/END`): preserve-and-link semantics for curated trees, `aksk_*` frontmatter survives round-trips, and distill-authored pages bypass the CLI via direct write + deterministic index sync.
 
 ## Control Flow: Startup, JIT Lookup, and Mandated Searches
 
 ```mermaid
 sequenceDiagram
   participant Agent
-  participant Root as /AGENTS.md
-  participant Portable as .agents/AGENTS.md
-  participant Index as openwiki/index.md
-  participant Decisions as openwiki/decisions/
-  participant Knowledge as openwiki/<br>.agents/ grep
+  participant Root as Root AGENTS
+  participant Portable as Portable AGENTS
+  participant Index as Wiki Index
+  participant Decisions as Decisions Tree
+  participant Knowledge as Knowledge Search
   Agent->>Root: open entrypoint
-  Root-->>Agent: behavioral baseline + AKSK:ROUTING pointers
+  Root-->>Agent: behavioral baseline plus routing pointers
   Agent->>Portable: MUST read before any file modification
   Agent->>Index: MUST read before any file modification
   Note over Agent,Index: Startup gate complete
-  Agent->>Index: JIT: scan catalog when knowledge needed
-  Index-->>Agent: page list + tags
-  Agent->>Decisions: BEFORE architectural change — search decisions
-  Agent->>Knowledge: WHEN debugging — grep -ri symptom .agents/ openwiki/
-  Knowledge-->>Agent: prior decision / fix pattern or no hit
-  Agent->>Agent: proceed with edit (source/tests authoritative)
+  Agent->>Index: JIT scan catalog when knowledge needed
+  Index-->>Agent: page list plus tags
+  Agent->>Decisions: BEFORE architectural change search decisions
+  Agent->>Knowledge: WHEN debugging grep symptom in knowledge layer
+  Knowledge-->>Agent: prior decision or fix pattern or no hit
+  Agent->>Agent: proceed with edit with source as authority
 ```
+
+*Caption: startup gate then JIT lookup with mandated decisions and debugging searches.*
 
 ### Startup Read Order (Mandatory)
 
@@ -200,31 +164,3 @@ Preferred path is **EXECUTE lane** via `node .agents/skills/aksk-bootstrap/scrip
 - **AKSK managed blocks refreshed only via `attach_section.mjs`.** Hand edits are corrected by rerunning the owning script.
 - **Concurrency guard.** Before editing when `openwiki` may be active, check `test -f openwiki/.run.json && echo "openwiki running: $(jq -r .phase openwiki/.run.json)"`; if running, wait or notify — editing mid-run leaves `openwiki/.last-update.json: status: "interrupted"` and forces the next run to re-plan.
 - **Missing prerequisites fail closed with remediation.** Missing `openwiki --init` or missing `openspec`/`openwiki` binary exits 2 with the exact install command (`npm i -g @fission-ai/openspec@... openwiki@...`); verification never attempts silent installation beyond the deterministic global lane of `bootstrap-global.mjs`.
-
-## Operations and Focused Validation
-
-| Check | Command |
-| --- | --- |
-| Portable structure + session tracking | `bash scripts/check-agents-structure.sh .agents` |
-| Peer tools present | `node .agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs openspec openwiki` |
-| Contract attached | `grep -c "AKSK:WIKI-CONTRACT" openwiki/INSTRUCTIONS.md` / `node .agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs` |
-| Baseline upstream valid | `node .agents/skills/aksk-bootstrap/scripts/refresh_agents_baseline.mjs --check` |
-| Routing blocks idempotent | `node .agents/skills/aksk-bootstrap/scripts/attach_section.mjs . AGENTS.md routing-note-template.md` |
-| Index freshness after curated-page writes | `node .agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs` |
-| Full pre-publish hygiene | `bash scripts/check-publish.sh` (format, links, leakage, doubled-path `rg '\.agents/\.agents/'`) |
-| Knowledge search (debug/architecture) | `grep -ri "<symptom>" openwiki/ .agents/` and `grep -ri "<decision>" openwiki/decisions/` |
-
-`.github` is currently listed in `.gitignore` (bare `.github` line) and `.github/workflows/` is absent on disk — the scheduled `openwiki code --update` workflow described in earlier revisions is not tracked and does not run on fresh clones. Wiki updates happen via local `openwiki --update` / `sync_wiki_indexes.mjs` runs; those runs abort when launched from agent shells with command timeouts (see `openwiki --update aborts when run from agent shells`).
-
-## Extension Points
-
-- **New integration:** add a guide under `docs/integrations/` following the pattern in `docs/integrations/patterns.md`; keep repo-consumable durable knowledge in `.agents/`.
-- **New marker family:** add `references/<name>-template.md` with its `AKSK:NAME:BEGIN/END` pair — `attach_section.mjs` picks it up via `markersOf()` with no code change, then extend `docs-lint`'s routing-block table.
-- **New baseline source:** keep the `AKSK:` prefix; update only the provenance header inside the block and `refresh_agents_baseline.mjs` anchors.
-
-## Related
-
-- [The Knowledge Layer](../architecture/knowledge-layer.md) — durable vs ephemeral layers, tree shape, and distillation routing.
-- [AGENTS.md Zoning](../concepts/agents-md-zoning.md) — marker-delimited zones, `init_agents_md.mjs` / `attach_section.mjs` control flow.
-- [Packaging and Install Lanes](../distribution/packaging-and-install.md) — bootstrap composition order and per-repo wiring guarantees.
-- [Integration Guides](../../docs/integrations/README.md) — per-tool wiring patterns and lane ladder.

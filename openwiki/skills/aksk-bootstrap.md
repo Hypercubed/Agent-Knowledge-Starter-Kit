@@ -10,9 +10,6 @@ tags:
 - wiki-contract
 - peer-tools
 - universal-store
-verified:
-  - by: openwiki/0.4.3
-    at: 2026-08-30T01:40:39.325Z
 sources:
   - id: openwiki-source-da03faceacac4fd818b473f3
     resource: repo://.agents/skills/aksk-bootstrap/references/lifecycle-template.md

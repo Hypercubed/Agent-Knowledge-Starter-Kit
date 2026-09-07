@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:931a4ea497be213f6986c4a70eaf2321dbe0cf1a789b22b55e3612bde14c8581",
+  "pageVersion": "sha256:8da983590d6d192d7fbb1badd56096d1e23b035b28d15088d43e3103da2e53e8",
   "claims": [
     {
       "id": "claim_5abe14d0e94c4ea5a879d67cecf5a919",
@@ -8,7 +8,7 @@
       "evidence": [
         {
           "resource": "repo://.agents/skills/aksk-init/references/wiki-contract-template.md",
-          "version": "repo-file-v1:sha256:74fb36e2fba836d594bed925a1301ced9532c54846eb38a829b9a55de2881e00"
+          "version": "repo-file-v1:sha256:f4b37c8d7f1288d6697a6469eb195a25e980cb9317766827fd341e56a01561fc"
         },
         {
           "resource": "repo://.agents/skills/learning-distill/SKILL.md",
@@ -26,7 +26,7 @@
       "evidence": [
         {
           "resource": "repo://.agents/skills/aksk-init/references/wiki-contract-template.md",
-          "version": "repo-file-v1:sha256:74fb36e2fba836d594bed925a1301ced9532c54846eb38a829b9a55de2881e00"
+          "version": "repo-file-v1:sha256:f4b37c8d7f1288d6697a6469eb195a25e980cb9317766827fd341e56a01561fc"
         },
         {
           "resource": "repo://.agents/skills/aksk-init/scripts/attach_wiki_contract.mjs",
@@ -52,7 +52,7 @@
         },
         {
           "resource": "repo://openspec/specs/wiki-contract/spec.md",
-          "version": "repo-file-v1:sha256:419a050c5007c1916753365f2ad64108e320e9af160426e7fb4cc38c0508a5be"
+          "version": "repo-file-v1:sha256:f20c08afe4ccc4b8bbbc3a5f2423ba89ea430d0c9ca2ab164147d1952b0cc4ea"
         }
       ]
     },
@@ -66,7 +66,7 @@
         },
         {
           "resource": "repo://openspec/specs/wiki-contract/spec.md",
-          "version": "repo-file-v1:sha256:419a050c5007c1916753365f2ad64108e320e9af160426e7fb4cc38c0508a5be"
+          "version": "repo-file-v1:sha256:f20c08afe4ccc4b8bbbc3a5f2423ba89ea430d0c9ca2ab164147d1952b0cc4ea"
         }
       ]
     },
@@ -76,7 +76,7 @@
       "evidence": [
         {
           "resource": "repo://.agents/skills/aksk-init/references/wiki-contract-template.md",
-          "version": "repo-file-v1:sha256:74fb36e2fba836d594bed925a1301ced9532c54846eb38a829b9a55de2881e00"
+          "version": "repo-file-v1:sha256:f4b37c8d7f1288d6697a6469eb195a25e980cb9317766827fd341e56a01561fc"
         },
         {
           "resource": "repo://.agents/skills/learning-distill/SKILL.md",
@@ -98,7 +98,7 @@
         },
         {
           "resource": "repo://.agents/skills/aksk-init/references/wiki-contract-template.md",
-          "version": "repo-file-v1:sha256:74fb36e2fba836d594bed925a1301ced9532c54846eb38a829b9a55de2881e00"
+          "version": "repo-file-v1:sha256:f4b37c8d7f1288d6697a6469eb195a25e980cb9317766827fd341e56a01561fc"
         },
         {
           "resource": "repo://.agents/skills/learning-distill/SKILL.md",
@@ -174,7 +174,7 @@
         },
         {
           "resource": "repo://openspec/specs/wiki-contract/spec.md",
-          "version": "repo-file-v1:sha256:419a050c5007c1916753365f2ad64108e320e9af160426e7fb4cc38c0508a5be"
+          "version": "repo-file-v1:sha256:f20c08afe4ccc4b8bbbc3a5f2423ba89ea430d0c9ca2ab164147d1952b0cc4ea"
         }
       ]
     },
@@ -209,10 +209,52 @@
           "version": "repo-file-v1:sha256:068c1f19b3331e7774301a2cce84932ba0170dee621b49f7f8c15e4bd371ca6e"
         }
       ]
+    },
+    {
+      "id": "claim_9b5e5d25dbe64e0dbf5d7ff54f2c36c5",
+      "statement": "The Documentation budget inside the AKSK:WIKI-CONTRACT block constrains OpenWiki to an agent navigation aid: Keep repository map, architecture/flows, conventions/extension points, invariants, and links to specs; Do not generate spec restatements, per-file summaries, API references, release notes, generated/vendor docs, or paraphrase-only pages; update a page only on boundary/flow/convention/invariant changes and link to openspec/specs/<capability>/spec.md for feature behavior.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-init/references/wiki-contract-template.md",
+          "version": "repo-file-v1:sha256:f4b37c8d7f1288d6697a6469eb195a25e980cb9317766827fd341e56a01561fc"
+        },
+        {
+          "resource": "repo://openspec/specs/wiki-contract/spec.md",
+          "version": "repo-file-v1:sha256:f20c08afe4ccc4b8bbbc3a5f2423ba89ea430d0c9ca2ab164147d1952b0cc4ea"
+        }
+      ]
+    },
+    {
+      "id": "claim_c2f79d381df94487b3e11880518734b8",
+      "statement": "The repo-root .openwikiignore uses anchored /example/ plus .agents/sessions/ with !.agents/sessions/README.md exception, commented dependency/build/cache, generated/vendor, and secrets categories, never excludes openspec/specs/** or openspec/changes/archive/**, and is merge-not-clobber (missing creates, no markers appends, markers refresh only).",
+      "evidence": [
+        {
+          "resource": "repo://.openwikiignore",
+          "version": "repo-file-v1:sha256:632606b4a6a1fd34db6b31a6cf057b5f469b799c6c0cac3fa402314ad59d4d57"
+        },
+        {
+          "resource": "repo://openspec/specs/wiki-contract/spec.md",
+          "version": "repo-file-v1:sha256:f20c08afe4ccc4b8bbbc3a5f2423ba89ea430d0c9ca2ab164147d1952b0cc4ea"
+        }
+      ]
+    },
+    {
+      "id": "claim_c3b36b8400664d2c84adf9781e6e6d8e",
+      "statement": "The wiki-contract attachment is available at both .agents/skills/aksk-init/scripts/attach_wiki_contract.mjs and .agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs with the same marker-driven append/refresh behavior; either path attaches or refreshes the AKSK:WIKI-CONTRACT block.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs",
+          "version": "repo-file-v1:sha256:cd684c5946d746b89ec10f1bd965951f271ddeb5aec9515f83d9288b8ba0ac05"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/attach_wiki_contract.mjs",
+          "version": "repo-file-v1:sha256:cd684c5946d746b89ec10f1bd965951f271ddeb5aec9515f83d9288b8ba0ac05"
+        }
+      ]
     }
   ],
   "verification": {
-    "by": "openwiki/0.4.3",
-    "at": "2026-08-30T01:40:39.325Z"
+    "by": "openwiki/0.5.0",
+    "at": "2026-09-04T04:19:45.757Z"
   }
 }
