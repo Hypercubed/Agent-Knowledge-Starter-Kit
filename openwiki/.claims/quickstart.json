@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:830f54fdcc745a74c4a70b0c171c70d737406ab2fc21f276fb4cd8999acd1e22",
+  "pageVersion": "sha256:be5dbf84250d54fcd5206b7adcb98e78e60c20728256249008670654736ef303",
   "claims": [
     {
       "id": "claim_5b20dafb766448ba810433f05bd68263",
@@ -8,7 +8,7 @@
       "evidence": [
         {
           "resource": "repo://README.md",
-          "version": "repo-file-v1:sha256:d49a0bf4e0655d8055523102efd6fc18f36731009466fe3277a12427fdc52ef8"
+          "version": "repo-file-v1:sha256:76bb3138f7626a43d70a0e80f24c381f3175dd16d5a3db776814653c6978356c"
         },
         {
           "resource": "repo://package.json",
@@ -22,7 +22,7 @@
       "evidence": [
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
-          "version": "repo-file-v1:sha256:e490b5b8c5fe9bb1556a5fe431e8c3c181129b78c51bd7fbe8090a6ff3de8a35"
+          "version": "repo-file-v1:sha256:b72576bcb57458b179cfca96bd219d66b9beacf2089aa69a5a3269a7e99923f1"
         },
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/references/versions.json",
@@ -112,7 +112,7 @@
         },
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap.mjs",
-          "version": "repo-file-v1:sha256:0d68c80e4777ba424bca94051d78181e48b93c60b48cc25fff9ad2da8fc5da90"
+          "version": "repo-file-v1:sha256:5f6112a4410e5b146bfc32ad3aedfbca44c4b4db9933d2a3fffb729e0aec0ceb"
         },
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs",
@@ -186,7 +186,7 @@
       "evidence": [
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
-          "version": "repo-file-v1:sha256:e490b5b8c5fe9bb1556a5fe431e8c3c181129b78c51bd7fbe8090a6ff3de8a35"
+          "version": "repo-file-v1:sha256:b72576bcb57458b179cfca96bd219d66b9beacf2089aa69a5a3269a7e99923f1"
         },
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs",
@@ -202,11 +202,11 @@
         },
         {
           "resource": "repo://INSTALL.md",
-          "version": "repo-file-v1:sha256:b5a2f79f8aef83b87ed9e80d70e991bc9c1e8ef60e2f90497e961d3644bfd238"
+          "version": "repo-file-v1:sha256:365b09df49e29b098f6c32c6fb0bddeea79a730939d47d9caa8e79494115796a"
         },
         {
           "resource": "repo://README.md",
-          "version": "repo-file-v1:sha256:d49a0bf4e0655d8055523102efd6fc18f36731009466fe3277a12427fdc52ef8"
+          "version": "repo-file-v1:sha256:76bb3138f7626a43d70a0e80f24c381f3175dd16d5a3db776814653c6978356c"
         }
       ]
     },
@@ -264,7 +264,7 @@
         },
         {
           "resource": "repo://openspec/specs/wiki-contract/spec.md",
-          "version": "repo-file-v1:sha256:419a050c5007c1916753365f2ad64108e320e9af160426e7fb4cc38c0508a5be"
+          "version": "repo-file-v1:sha256:f20c08afe4ccc4b8bbbc3a5f2423ba89ea430d0c9ca2ab164147d1952b0cc4ea"
         }
       ]
     },
@@ -274,7 +274,7 @@
       "evidence": [
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
-          "version": "repo-file-v1:sha256:e490b5b8c5fe9bb1556a5fe431e8c3c181129b78c51bd7fbe8090a6ff3de8a35"
+          "version": "repo-file-v1:sha256:b72576bcb57458b179cfca96bd219d66b9beacf2089aa69a5a3269a7e99923f1"
         },
         {
           "resource": "repo://.agents/skills/aksk-init/SKILL.md",
@@ -300,7 +300,7 @@
         },
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap.mjs",
-          "version": "repo-file-v1:sha256:0d68c80e4777ba424bca94051d78181e48b93c60b48cc25fff9ad2da8fc5da90"
+          "version": "repo-file-v1:sha256:5f6112a4410e5b146bfc32ad3aedfbca44c4b4db9933d2a3fffb729e0aec0ceb"
         },
         {
           "resource": "repo://.agents/skills/aksk-init/scripts/bootstrap-repo.mjs",
@@ -328,7 +328,7 @@
     }
   ],
   "verification": {
-    "by": "openwiki/0.4.3",
-    "at": "2026-08-30T01:40:39.325Z"
+    "by": "openwiki/0.5.0",
+    "at": "2026-09-04T04:19:45.757Z"
   }
 }

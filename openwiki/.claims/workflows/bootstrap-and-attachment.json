@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:86a3491b98f7f020c7ac6d6cb63e65a8b71a0a70ce58eaf830662f2507649f0c",
+  "pageVersion": "sha256:cd4f6911d94367a1bce30c56974cbea0496a16e5601260cbc27a596dad401f89",
   "claims": [
     {
       "id": "claim_76d4be37d8ec4eef91d1f945edc67b80",
@@ -8,7 +8,7 @@
       "evidence": [
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
-          "version": "repo-file-v1:sha256:e490b5b8c5fe9bb1556a5fe431e8c3c181129b78c51bd7fbe8090a6ff3de8a35"
+          "version": "repo-file-v1:sha256:b72576bcb57458b179cfca96bd219d66b9beacf2089aa69a5a3269a7e99923f1"
         },
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs",
@@ -16,7 +16,7 @@
         },
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap.mjs",
-          "version": "repo-file-v1:sha256:0d68c80e4777ba424bca94051d78181e48b93c60b48cc25fff9ad2da8fc5da90"
+          "version": "repo-file-v1:sha256:5f6112a4410e5b146bfc32ad3aedfbca44c4b4db9933d2a3fffb729e0aec0ceb"
         },
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs",
@@ -286,19 +286,11 @@
     },
     {
       "id": "claim_c3e7c2ef7bc34737af3a0b822b5089e0",
-      "statement": "OpenWiki host integration is manual opt-in, not part of the global lane: supported hosts codex/claude/opencode use openwiki integrations install <host> (atomic skill plus MCP config with receipt) while other agents use the headless ladder openwiki --init -p / --update -p directly, with no intermediate add-mcp plus npx skills add lane.",
+      "statement": "Host spread is manual opt-in outside the global lane: supported hosts codex/claude/opencode use openwiki integrations install <host> (atomic skill plus MCP config with receipt), while all other hosts use the unified fallback of lifecycle skill via npx skills add -g -a <self-reported> langchain-ai/openwiki --full-depth plus MCP via npx add-mcp or openwiki mcp --host <target>.",
       "evidence": [
         {
-          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
-          "version": "repo-file-v1:sha256:e490b5b8c5fe9bb1556a5fe431e8c3c181129b78c51bd7fbe8090a6ff3de8a35"
-        },
-        {
-          "resource": "repo://.agents/skills/aksk-init/SKILL.md",
-          "version": "repo-file-v1:sha256:7447c7ad965ddf91176213abed0aa8b780bf169d92827fef3699a5c745f86763"
-        },
-        {
-          "resource": "repo://openspec/specs/aksk-bootstrap/spec.md",
-          "version": "repo-file-v1:sha256:57bf5324e654077e03ab8fd27f2db0c993eb315dd0c77ec3a5e223fd96bf59af"
+          "resource": "repo://openspec/specs/agent-integration-spread/spec.md#L15-L17",
+          "version": "repo-lines-v1:sha256:1d464d697904e51d6df6518b69c0193e871a8450a6970fbb48d970f29be44886:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMmNlYTZiZTRmNmQxZTFiOWNiOWNjNDdmYjY4OThiNmM1ODAzNTAyZTA0Y2IxODNkYzVkOTZiNmYxYTRkYmJhYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzEyOGFkNDI5M2MwNzBlMDc5MThkMGU5ZGQxOTQ1ZWQwYmQ5ODQ3ZDBlODI2NGIyYTM4YzU1OThkNzI3NDRkZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMGE2ZjdkMzYwOThhZjc1MDM4N2IyYTZiMDQ3N2YxMTc1NjRjNjBiMjg4OTAzM2Q1YmVjYmM0NTZjZDU3NDU3NCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDNlMGJhMGFjOTQzMGI3MmJiNTRlNGYzOWM3YjE5OWFlYTNmMWI2MmExZGI1YTZlMDJjYTk4MmE1MmQzNjE4MiJ9"
         }
       ]
     },
@@ -308,7 +300,7 @@
       "evidence": [
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
-          "version": "repo-file-v1:sha256:e490b5b8c5fe9bb1556a5fe431e8c3c181129b78c51bd7fbe8090a6ff3de8a35"
+          "version": "repo-file-v1:sha256:b72576bcb57458b179cfca96bd219d66b9beacf2089aa69a5a3269a7e99923f1"
         },
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs",
@@ -320,20 +312,6 @@
       "id": "claim_549155a183924684b12b668fc11bbfe3",
       "statement": "The installer produces a per-host report via openwiki integrations list showing installed/unchanged/modified status and, on --force, the backup path.",
       "evidence": [
-        {
-          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs",
-          "version": "repo-file-v1:sha256:9ddd71d7ded8c507f4fa510fb753587fa6f752b99b21e4a166bf895c296f33fb"
-        }
-      ]
-    },
-    {
-      "id": "claim_d7b3c099dabd41a5af4dbf0834310d56",
-      "statement": "Registry bundle source is the locally installed npm package at <npm-root>/openwiki/integrations/openwiki not a tag-pinned URL; the receipt records package, version, target, SHA-256 hashes and exact mcpServerCommand, update is npm i -g openwiki@latest then re-run integrations install idempotent, with transactional staging and symlink rejection.",
-      "evidence": [
-        {
-          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
-          "version": "repo-file-v1:sha256:e490b5b8c5fe9bb1556a5fe431e8c3c181129b78c51bd7fbe8090a6ff3de8a35"
-        },
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs",
           "version": "repo-file-v1:sha256:9ddd71d7ded8c507f4fa510fb753587fa6f752b99b21e4a166bf895c296f33fb"
@@ -374,7 +352,7 @@
         },
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap.mjs",
-          "version": "repo-file-v1:sha256:0d68c80e4777ba424bca94051d78181e48b93c60b48cc25fff9ad2da8fc5da90"
+          "version": "repo-file-v1:sha256:5f6112a4410e5b146bfc32ad3aedfbca44c4b4db9933d2a3fffb729e0aec0ceb"
         },
         {
           "resource": "repo://openspec/specs/aksk-bootstrap/spec.md",
@@ -388,7 +366,7 @@
       "evidence": [
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
-          "version": "repo-file-v1:sha256:e490b5b8c5fe9bb1556a5fe431e8c3c181129b78c51bd7fbe8090a6ff3de8a35"
+          "version": "repo-file-v1:sha256:b72576bcb57458b179cfca96bd219d66b9beacf2089aa69a5a3269a7e99923f1"
         },
         {
           "resource": "repo://.agents/skills/aksk-init/SKILL.md",
@@ -452,7 +430,7 @@
     }
   ],
   "verification": {
-    "by": "openwiki/0.4.3",
-    "at": "2026-08-30T01:40:39.325Z"
+    "by": "openwiki/0.5.0",
+    "at": "2026-09-04T04:19:45.757Z"
   }
 }

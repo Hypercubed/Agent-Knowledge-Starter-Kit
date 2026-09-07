@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:f40bfc0deb51ca5d75362319151f4468115576db0005c305add57c575f7c77b3",
+  "pageVersion": "sha256:2859496ccb8429f6f5f44b69c86c18a5df78d0f6062b42dc1341bca3989ffc04",
   "claims": [
     {
       "id": "claim_7445282c16954c01a98dbae63d7fed9a",
@@ -28,7 +28,7 @@
       "evidence": [
         {
           "resource": "repo://openspec/specs/agent-integration-spread/spec.md",
-          "version": "repo-file-v1:sha256:4d10190096ddb3db819a96eb0a7ca25686b391348f3d827a12b65fdaf4e72f2f"
+          "version": "repo-file-v1:sha256:8d103d884358150f795d761d8dd6928d1ebd437614a3e1cd9577938f364b9e88"
         }
       ]
     },
@@ -38,7 +38,7 @@
       "evidence": [
         {
           "resource": "repo://openspec/specs/agent-integration-spread/spec.md",
-          "version": "repo-file-v1:sha256:4d10190096ddb3db819a96eb0a7ca25686b391348f3d827a12b65fdaf4e72f2f"
+          "version": "repo-file-v1:sha256:8d103d884358150f795d761d8dd6928d1ebd437614a3e1cd9577938f364b9e88"
         }
       ]
     },
@@ -48,7 +48,7 @@
       "evidence": [
         {
           "resource": "repo://openspec/specs/agent-integration-spread/spec.md",
-          "version": "repo-file-v1:sha256:4d10190096ddb3db819a96eb0a7ca25686b391348f3d827a12b65fdaf4e72f2f"
+          "version": "repo-file-v1:sha256:8d103d884358150f795d761d8dd6928d1ebd437614a3e1cd9577938f364b9e88"
         }
       ]
     },
@@ -58,7 +58,7 @@
       "evidence": [
         {
           "resource": "repo://openspec/specs/agent-integration-spread/spec.md",
-          "version": "repo-file-v1:sha256:4d10190096ddb3db819a96eb0a7ca25686b391348f3d827a12b65fdaf4e72f2f"
+          "version": "repo-file-v1:sha256:8d103d884358150f795d761d8dd6928d1ebd437614a3e1cd9577938f364b9e88"
         }
       ]
     },
@@ -68,7 +68,7 @@
       "evidence": [
         {
           "resource": "repo://openspec/specs/agent-integration-spread/spec.md",
-          "version": "repo-file-v1:sha256:4d10190096ddb3db819a96eb0a7ca25686b391348f3d827a12b65fdaf4e72f2f"
+          "version": "repo-file-v1:sha256:8d103d884358150f795d761d8dd6928d1ebd437614a3e1cd9577938f364b9e88"
         }
       ]
     },
@@ -78,7 +78,7 @@
       "evidence": [
         {
           "resource": "repo://openspec/specs/agent-integration-spread/spec.md",
-          "version": "repo-file-v1:sha256:4d10190096ddb3db819a96eb0a7ca25686b391348f3d827a12b65fdaf4e72f2f"
+          "version": "repo-file-v1:sha256:8d103d884358150f795d761d8dd6928d1ebd437614a3e1cd9577938f364b9e88"
         },
         {
           "resource": "repo://openspec/specs/aksk-bootstrap/spec.md",
@@ -102,7 +102,7 @@
       "evidence": [
         {
           "resource": "repo://openspec/specs/agent-integration-spread/spec.md",
-          "version": "repo-file-v1:sha256:4d10190096ddb3db819a96eb0a7ca25686b391348f3d827a12b65fdaf4e72f2f"
+          "version": "repo-file-v1:sha256:8d103d884358150f795d761d8dd6928d1ebd437614a3e1cd9577938f364b9e88"
         }
       ]
     },
@@ -122,7 +122,7 @@
       "evidence": [
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
-          "version": "repo-file-v1:sha256:e490b5b8c5fe9bb1556a5fe431e8c3c181129b78c51bd7fbe8090a6ff3de8a35"
+          "version": "repo-file-v1:sha256:b72576bcb57458b179cfca96bd219d66b9beacf2089aa69a5a3269a7e99923f1"
         },
         {
           "resource": "repo://openspec/specs/canonical-user-skills-scope/spec.md",
@@ -154,7 +154,7 @@
       "evidence": [
         {
           "resource": "repo://openspec/specs/agent-integration-spread/spec.md",
-          "version": "repo-file-v1:sha256:4d10190096ddb3db819a96eb0a7ca25686b391348f3d827a12b65fdaf4e72f2f"
+          "version": "repo-file-v1:sha256:8d103d884358150f795d761d8dd6928d1ebd437614a3e1cd9577938f364b9e88"
         },
         {
           "resource": "repo://openspec/specs/canonical-user-skills-scope/spec.md",
@@ -168,7 +168,7 @@
       "evidence": [
         {
           "resource": "repo://openspec/specs/agent-integration-spread/spec.md",
-          "version": "repo-file-v1:sha256:4d10190096ddb3db819a96eb0a7ca25686b391348f3d827a12b65fdaf4e72f2f"
+          "version": "repo-file-v1:sha256:8d103d884358150f795d761d8dd6928d1ebd437614a3e1cd9577938f364b9e88"
         }
       ]
     },
@@ -178,7 +178,7 @@
       "evidence": [
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
-          "version": "repo-file-v1:sha256:e490b5b8c5fe9bb1556a5fe431e8c3c181129b78c51bd7fbe8090a6ff3de8a35"
+          "version": "repo-file-v1:sha256:b72576bcb57458b179cfca96bd219d66b9beacf2089aa69a5a3269a7e99923f1"
         },
         {
           "resource": "repo://openspec/specs/aksk-bootstrap/spec.md",
@@ -214,7 +214,7 @@
       "evidence": [
         {
           "resource": "repo://INSTALL.md",
-          "version": "repo-file-v1:sha256:b5a2f79f8aef83b87ed9e80d70e991bc9c1e8ef60e2f90497e961d3644bfd238"
+          "version": "repo-file-v1:sha256:365b09df49e29b098f6c32c6fb0bddeea79a730939d47d9caa8e79494115796a"
         },
         {
           "resource": "repo://openspec/specs/install-lanes/spec.md",
@@ -260,13 +260,13 @@
         },
         {
           "resource": "repo://.openwikiignore",
-          "version": "repo-file-v1:sha256:effd958d13169f8643fddd94488d617c0694235d3221a8c7f28fb82a8182c939"
+          "version": "repo-file-v1:sha256:632606b4a6a1fd34db6b31a6cf057b5f469b799c6c0cac3fa402314ad59d4d57"
         }
       ]
     }
   ],
   "verification": {
-    "by": "openwiki/0.4.3",
-    "at": "2026-08-30T01:40:39.325Z"
+    "by": "openwiki/0.5.0",
+    "at": "2026-09-04T04:19:45.757Z"
   }
 }

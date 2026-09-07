@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:6ac8d498f8845b8f1995432ec6cb9bd77fd4720b37f56fa87ec7736e9ed3bf76",
+  "pageVersion": "sha256:74b46dd8c1cb9883051828c5041780e81beb1dfc9bc05d8822aef166bea0e2cb",
   "claims": [
     {
       "id": "claim_123653ee98fd45a4b112d23a6a5bf29f",
@@ -62,7 +62,7 @@
         },
         {
           "resource": "repo://.agents/skills/aksk-init/references/wiki-contract-template.md",
-          "version": "repo-file-v1:sha256:74fb36e2fba836d594bed925a1301ced9532c54846eb38a829b9a55de2881e00"
+          "version": "repo-file-v1:sha256:f4b37c8d7f1288d6697a6469eb195a25e980cb9317766827fd341e56a01561fc"
         },
         {
           "resource": "repo://.agents/skills/aksk-init/scripts/attach_wiki_contract.mjs",
@@ -84,7 +84,7 @@
         },
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap.mjs",
-          "version": "repo-file-v1:sha256:0d68c80e4777ba424bca94051d78181e48b93c60b48cc25fff9ad2da8fc5da90"
+          "version": "repo-file-v1:sha256:5f6112a4410e5b146bfc32ad3aedfbca44c4b4db9933d2a3fffb729e0aec0ceb"
         },
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs",
@@ -136,7 +136,7 @@
       "evidence": [
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
-          "version": "repo-file-v1:sha256:e490b5b8c5fe9bb1556a5fe431e8c3c181129b78c51bd7fbe8090a6ff3de8a35"
+          "version": "repo-file-v1:sha256:b72576bcb57458b179cfca96bd219d66b9beacf2089aa69a5a3269a7e99923f1"
         },
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs",
@@ -154,7 +154,7 @@
       "evidence": [
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
-          "version": "repo-file-v1:sha256:e490b5b8c5fe9bb1556a5fe431e8c3c181129b78c51bd7fbe8090a6ff3de8a35"
+          "version": "repo-file-v1:sha256:b72576bcb57458b179cfca96bd219d66b9beacf2089aa69a5a3269a7e99923f1"
         },
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs",
@@ -162,7 +162,7 @@
         },
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap.mjs",
-          "version": "repo-file-v1:sha256:0d68c80e4777ba424bca94051d78181e48b93c60b48cc25fff9ad2da8fc5da90"
+          "version": "repo-file-v1:sha256:5f6112a4410e5b146bfc32ad3aedfbca44c4b4db9933d2a3fffb729e0aec0ceb"
         },
         {
           "resource": "repo://.agents/skills/aksk-init/scripts/bootstrap-repo.mjs",
@@ -242,7 +242,7 @@
         },
         {
           "resource": "repo://.openwikiignore",
-          "version": "repo-file-v1:sha256:effd958d13169f8643fddd94488d617c0694235d3221a8c7f28fb82a8182c939"
+          "version": "repo-file-v1:sha256:632606b4a6a1fd34db6b31a6cf057b5f469b799c6c0cac3fa402314ad59d4d57"
         },
         {
           "resource": "repo://scripts/check-agents-structure.sh",
@@ -284,7 +284,7 @@
     }
   ],
   "verification": {
-    "by": "openwiki/0.4.3",
-    "at": "2026-08-30T01:40:39.325Z"
+    "by": "openwiki/0.5.0",
+    "at": "2026-09-04T04:19:45.757Z"
   }
 }

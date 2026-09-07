@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:4b1e54f522ed7a9ddd8f84d3c394ab0d526684ba131f46c9968b417934a7fc1e",
+  "pageVersion": "sha256:09619abf3436ac70824a7c1740586b34e5fe59ff93beb09933a65ce2a1fe013d",
   "claims": [
     {
       "id": "claim_0654682c923844d3b670552d005254f5",
@@ -106,7 +106,7 @@
       "evidence": [
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
-          "version": "repo-file-v1:sha256:e490b5b8c5fe9bb1556a5fe431e8c3c181129b78c51bd7fbe8090a6ff3de8a35"
+          "version": "repo-file-v1:sha256:b72576bcb57458b179cfca96bd219d66b9beacf2089aa69a5a3269a7e99923f1"
         },
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs",
@@ -128,7 +128,7 @@
         },
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap.mjs",
-          "version": "repo-file-v1:sha256:0d68c80e4777ba424bca94051d78181e48b93c60b48cc25fff9ad2da8fc5da90"
+          "version": "repo-file-v1:sha256:5f6112a4410e5b146bfc32ad3aedfbca44c4b4db9933d2a3fffb729e0aec0ceb"
         }
       ]
     },
@@ -138,7 +138,7 @@
       "evidence": [
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
-          "version": "repo-file-v1:sha256:e490b5b8c5fe9bb1556a5fe431e8c3c181129b78c51bd7fbe8090a6ff3de8a35"
+          "version": "repo-file-v1:sha256:b72576bcb57458b179cfca96bd219d66b9beacf2089aa69a5a3269a7e99923f1"
         },
         {
           "resource": "repo://openspec/specs/aksk-bootstrap/spec.md",
@@ -152,7 +152,7 @@
       "evidence": [
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
-          "version": "repo-file-v1:sha256:e490b5b8c5fe9bb1556a5fe431e8c3c181129b78c51bd7fbe8090a6ff3de8a35"
+          "version": "repo-file-v1:sha256:b72576bcb57458b179cfca96bd219d66b9beacf2089aa69a5a3269a7e99923f1"
         },
         {
           "resource": "repo://openspec/specs/aksk-bootstrap/spec.md",
@@ -294,7 +294,7 @@
       "evidence": [
         {
           "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
-          "version": "repo-file-v1:sha256:e490b5b8c5fe9bb1556a5fe431e8c3c181129b78c51bd7fbe8090a6ff3de8a35"
+          "version": "repo-file-v1:sha256:b72576bcb57458b179cfca96bd219d66b9beacf2089aa69a5a3269a7e99923f1"
         },
         {
           "resource": "repo://openspec/specs/aksk-bootstrap/spec.md",
@@ -304,7 +304,7 @@
     }
   ],
   "verification": {
-    "by": "openwiki/0.4.3",
-    "at": "2026-08-30T01:40:39.325Z"
+    "by": "openwiki/0.5.0",
+    "at": "2026-09-04T04:19:45.757Z"
   }
 }

@@ -1,7 +1,7 @@
 # Files
 
-- [aksk-bootstrap Skill](aksk-bootstrap.md) - Per-user global lane for AKSK — Node >=22 preflight, npm i -g openspec/openwiki from caret ranges in references/versions.json, PATH verification and idempotent INSTRUCT fallback; no per-repo writes, repo scaffolding lives in aksk-init.
-- [aksk-init Skill](aksk-init.md) - Per-repo lane for AKSK — scaffolds .agents/ and AGENTS.md baseline first, then openspec init, openwiki init, and routing/lifecycle plus wiki-contract attachment with idempotent marker ownership.
-- [docs-lint Skill (Cross-Tool Lint)](docs-lint.md) - Periodic coherence guard that verifies routing-block integrity in root instruction files, pairs archived OpenSpec changes with wiki coverage, flags stale curated pages, and reports duplication, broken links, and path hygiene across .agents/ and openwiki/.
-- [learning-distill Skill](learning-distill.md) - Converts a gitignored session bundle into durable knowledge routed by kind: descriptive lessons become curated OKF wiki pages under openwiki/, prescriptive lessons stay in .agents/; fail-closed prerequisites, deterministic index refresh, no log file.
-- [task-closeout Skill](task-closeout.md) - How task-closeout builds the five-file session bundle under .agents/sessions/, records canonical task_id/repo_id plus optional openspec_change and prior_session in summary.json, derives changed-files when git is clean, and emits validation evidence for later distillation.
+- [aksk-bootstrap Skill](aksk-bootstrap.md) - Per-user global lane for AKSK — Node preflight, peer-tool installs, global skill spread. Per-repo setup lives in aksk-init.
+- [aksk-init Skill](aksk-init.md) - Per-repo lane for AKSK — scaffolds .agents/ and AGENTS.md baseline first, then openspec init, openwiki init, and routing/lifecycle plus wiki-contract attachment.
+- [docs-lint Skill (Cross-Tool Lint)](docs-lint.md) - Periodic coherence guard that verifies routing-block integrity, wiki coverage pairing, and stale curated pages across .agents/ and openwiki/.
+- [learning-distill Skill](learning-distill.md) - Converts a session bundle into durable knowledge routed by kind: descriptive lessons become curated OKF wiki pages, prescriptive lessons stay in .agents/.
+- [task-closeout Skill](task-closeout.md) - Capture-only skill that freezes a five-file session bundle under .agents/sessions/ for later distillation.

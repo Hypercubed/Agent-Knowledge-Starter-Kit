@@ -1,5 +1,5 @@
 # Files
 
-- [Bootstrap and Attachment Workflow](bootstrap-and-attachment.md) - Deterministic AKSK bootstrap split into a per-user global lane (Node >=22, npm i -g via versions.json) and a per-repo lane (baseline-first scaffold, openspec init, harness vs CLI openwiki --init, marker-delimited attachment) with EXECUTE/INSTRUCT, never-half-install, and partitioned receipts.
-- [OpenSpec Governance](openspec-governance.md) - How OpenSpec governs intent and process — openspec.yaml and spec-driven config, change anatomy, the four opsx workflows, graduated versus delta specs, and archived-change to wiki coverage.
-- [Task Lifecycle and Distillation](task-lifecycle-and-distill.md) - Traces the task-closeout bundle lifecycle through learning-distill routing, curation-contract prerequisites, deterministic index sync, and lint verification — covering canonical task_id identity, openspec_change linking, Proposal-only task-start seeding, descriptive→OpenWiki versus prescriptive→.agents routing, and failure semantics.
+- [Bootstrap and Attachment Workflow](bootstrap-and-attachment.md) - End-to-end bootstrap flow — per-user global lane then per-repo lane — with EXECUTE/INSTRUCT, never-half-install, and attachment order.
+- [OpenSpec Governance](openspec-governance.md) - The propose-to-archive loop — opsx workflows, graduation via archive sync, proposal labeling, and archived-change wiki coverage.
+- [Task Lifecycle and Distillation](task-lifecycle-and-distill.md) - The closeout-to-distill loop — capture, classify, route, sync, lint — with handoffs and failure semantics.

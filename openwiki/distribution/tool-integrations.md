@@ -10,6 +10,12 @@ openwiki:
     - docs/integrations/patterns.md
     - docs/integrations/README.md
     - .agents/playbooks/writing-integration-guides.md
+verified:
+  - by: openwiki/0.5.0
+    at: 2026-09-04T04:19:45.757Z
+sources:
+  - id: openwiki-source-161a7ae8592c3bd90751661f
+    resource: repo://docs/integrations/patterns.md
 ---
 
 # Tool Integrations

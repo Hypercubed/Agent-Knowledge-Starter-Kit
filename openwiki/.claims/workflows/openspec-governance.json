@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:cc6f4d15341fc0fe8cd80740fc875330e938631fe99e3976e9a416767fcaf3c9",
+  "pageVersion": "sha256:8e772c137e142cde166231a6b2153465e96556ba0371428d4900fec9affca868",
   "claims": [
     {
       "id": "claim_1cac42cc404d4a7083bad7e557eb6a96",
@@ -146,7 +146,7 @@
         },
         {
           "resource": "repo://openspec/specs/wiki-contract/spec.md",
-          "version": "repo-file-v1:sha256:419a050c5007c1916753365f2ad64108e320e9af160426e7fb4cc38c0508a5be"
+          "version": "repo-file-v1:sha256:f20c08afe4ccc4b8bbbc3a5f2423ba89ea430d0c9ca2ab164147d1952b0cc4ea"
         }
       ]
     },
@@ -178,7 +178,7 @@
         },
         {
           "resource": "repo://openspec/specs/wiki-contract/spec.md",
-          "version": "repo-file-v1:sha256:419a050c5007c1916753365f2ad64108e320e9af160426e7fb4cc38c0508a5be"
+          "version": "repo-file-v1:sha256:f20c08afe4ccc4b8bbbc3a5f2423ba89ea430d0c9ca2ab164147d1952b0cc4ea"
         }
       ]
     },
@@ -250,7 +250,7 @@
         },
         {
           "resource": "repo://openspec/specs/wiki-contract/spec.md",
-          "version": "repo-file-v1:sha256:419a050c5007c1916753365f2ad64108e320e9af160426e7fb4cc38c0508a5be"
+          "version": "repo-file-v1:sha256:f20c08afe4ccc4b8bbbc3a5f2423ba89ea430d0c9ca2ab164147d1952b0cc4ea"
         }
       ]
     },
@@ -286,7 +286,7 @@
         },
         {
           "resource": "repo://openspec/specs/agent-integration-spread/spec.md",
-          "version": "repo-file-v1:sha256:4d10190096ddb3db819a96eb0a7ca25686b391348f3d827a12b65fdaf4e72f2f"
+          "version": "repo-file-v1:sha256:8d103d884358150f795d761d8dd6928d1ebd437614a3e1cd9577938f364b9e88"
         },
         {
           "resource": "repo://openspec/specs/canonical-user-skills-scope/spec.md",
@@ -364,7 +364,7 @@
         },
         {
           "resource": "repo://openspec/specs/agent-integration-spread/spec.md",
-          "version": "repo-file-v1:sha256:4d10190096ddb3db819a96eb0a7ca25686b391348f3d827a12b65fdaf4e72f2f"
+          "version": "repo-file-v1:sha256:8d103d884358150f795d761d8dd6928d1ebd437614a3e1cd9577938f364b9e88"
         },
         {
           "resource": "repo://openspec/specs/aksk-bootstrap/spec.md",
@@ -386,7 +386,7 @@
         },
         {
           "resource": "repo://openspec/specs/agent-integration-spread/spec.md",
-          "version": "repo-file-v1:sha256:4d10190096ddb3db819a96eb0a7ca25686b391348f3d827a12b65fdaf4e72f2f"
+          "version": "repo-file-v1:sha256:8d103d884358150f795d761d8dd6928d1ebd437614a3e1cd9577938f364b9e88"
         }
       ]
     },
@@ -464,7 +464,7 @@
     }
   ],
   "verification": {
-    "by": "openwiki/0.4.3",
-    "at": "2026-08-30T01:40:39.325Z"
+    "by": "openwiki/0.5.0",
+    "at": "2026-09-04T04:19:45.757Z"
   }
 }

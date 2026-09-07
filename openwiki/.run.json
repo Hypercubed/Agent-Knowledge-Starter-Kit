@@ -86,11 +86,11 @@
     "/openwiki/workflows/openspec-governance.md",
     "/openwiki/workflows/task-lifecycle-and-distill.md"
   ],
-  "sourceFingerprint": "sha256:473f57ea4b0d4c9f0ee04880233b66fc4f4da4f470c16194dcd49dfc0ce4708f",
-  "targetGitHead": "bf846c384bcf2165b141a3199c8ea4c337a661d1",
+  "sourceFingerprint": "sha256:277e657ce2557aa90a971e78f9727673e3ffb76af9ed6a8474ac915449337247",
+  "targetGitHead": "6c0eea9609b6b4375ca2abd65ee429db6c76ee11",
   "actor": {
-    "producerActor": "openwiki/0.5.0",
-    "metadataModel": "meta/muse-spark-1.3-contributor"
+    "producerActor": "opencode",
+    "metadataModel": "host-agent/opencode"
   },
   "previousLastUpdate": {
     "updatedAt": "2026-08-30T02:33:18.822Z",
@@ -526,24 +526,27 @@
   "plan": {
     "pages": [
       {
-        "id": "aaef520c-ab7f-4ce6-8867-6cd9462240cc",
+        "id": "b2325e49-f280-4c00-82d7-bd8592e7f731",
         "path": "/openwiki/architecture/knowledge-layer.md",
         "title": "Knowledge Layer Architecture",
         "purpose": "Compiled knowledge layer (.agents plus openwiki plus openspec) and temporary vs durable split.",
         "seedPaths": [
-          "docs/architecture.md",
+          ".agents/sessions/README.md",
           "openspec/specs/wiki-contract/spec.md"
         ],
         "relatedPages": [
           "/openwiki/architecture/overview.md",
           "/openwiki/concepts/knowledge-curation-contract.md"
         ],
-        "instructions": [],
+        "instructions": [
+          "Cite openspec/changes/** content only as Proposal-only.",
+          "Keep prose concise: link to canonical openspec/specs/** specs and curated openwiki/decisions + openwiki/troubleshooting pages instead of restating requirements or failure patterns."
+        ],
         "status": "complete",
-        "completedBy": "openwiki/0.5.0"
+        "completedBy": "opencode"
       },
       {
-        "id": "57f98894-7765-4d9c-94c8-409eef922bcf",
+        "id": "4ffd3abd-435f-4193-8041-333348920e27",
         "path": "/openwiki/architecture/overview.md",
         "title": "Architecture Overview",
         "purpose": "Top-level system map: kit as glue over peer tools, global vs per-repo lanes, owned trees.",
@@ -557,29 +560,52 @@
           "/openwiki/inventory/repository-inventory.md",
           "/openwiki/quickstart.md"
         ],
-        "instructions": [],
+        "instructions": [
+          "Keep prose concise: link to canonical openspec/specs/** specs instead of restating requirements."
+        ],
         "status": "complete",
-        "completedBy": "openwiki/0.5.0"
+        "completedBy": "opencode"
       },
       {
-        "id": "2414d5c6-f883-4cef-bc0b-684134507d24",
+        "id": "5d290e4f-dca7-4056-a9b2-92af4c6f2c6b",
+        "path": "/openwiki/architecture/task-lifecycle.md",
+        "title": "Task Lifecycle",
+        "purpose": "Task lifecycle across closeout bundles, distillation, and the durable knowledge layer.",
+        "seedPaths": [
+          ".agents/sessions/README.md",
+          ".agents/skills/task-closeout/SKILL.md"
+        ],
+        "relatedPages": [
+          "/openwiki/skills/task-closeout.md",
+          "/openwiki/workflows/task-lifecycle-and-distill.md"
+        ],
+        "instructions": [
+          "Keep prose concise and link to the canonical task-closeout and learning-distill skill contracts for detail."
+        ],
+        "status": "complete",
+        "completedBy": "opencode"
+      },
+      {
+        "id": "d1b5d565-edce-45c0-b8ad-038a7d4b22dd",
         "path": "/openwiki/concepts/agents-md-zoning.md",
         "title": "AGENTS.md Zoning",
         "purpose": "Root AGENTS.md vs .agents/AGENTS.md zoning and routing-block attachment.",
         "seedPaths": [
-          ".agents/skills/aksk-init/references/wiki-contract-template.md",
+          ".agents/skills/aksk-init/SKILL.md",
           "AGENTS.md"
         ],
         "relatedPages": [
           "/openwiki/concepts/knowledge-curation-contract.md",
           "/openwiki/skills/aksk-init.md"
         ],
-        "instructions": [],
+        "instructions": [
+          "Keep prose concise: link to curated decisions instead of re-arguing placement choices."
+        ],
         "status": "complete",
-        "completedBy": "openwiki/0.5.0"
+        "completedBy": "opencode"
       },
       {
-        "id": "2a2396d9-025d-4412-9fd0-0b0be03f6fc0",
+        "id": "8e4f237f-d52f-4b50-a07c-948b79b655c4",
         "path": "/openwiki/concepts/knowledge-curation-contract.md",
         "title": "Knowledge Curation Contract",
         "purpose": "AKSK curation contract: curated trees, preserve-and-link, doc budget.",
@@ -591,15 +617,17 @@
           "/openwiki/architecture/knowledge-layer.md",
           "/openwiki/operations/validation-and-lint.md"
         ],
-        "instructions": [],
+        "instructions": [
+          "Describe the preserve-and-link rule and doc budget briefly; link curated trees, do not duplicate their content."
+        ],
         "status": "complete",
-        "completedBy": "openwiki/0.5.0"
+        "completedBy": "opencode"
       },
       {
-        "id": "2e0cc01e-493f-495f-b5ca-34caf71128cc",
+        "id": "67345104-783b-4f71-ae0c-53a830fe6699",
         "path": "/openwiki/concepts/session-identity-and-storage.md",
         "title": "Session Identity and Storage",
-        "purpose": "Task identity via task_id plus temporary bundle storage vs durable layer.",
+        "purpose": "Task identity plus temporary bundle storage vs durable layer.",
         "seedPaths": [
           ".agents/sessions/README.md",
           ".openwikiignore"
@@ -607,12 +635,14 @@
         "relatedPages": [
           "/openwiki/architecture/knowledge-layer.md"
         ],
-        "instructions": [],
+        "instructions": [
+          "Keep prose concise."
+        ],
         "status": "complete",
-        "completedBy": "openwiki/0.5.0"
+        "completedBy": "opencode"
       },
       {
-        "id": "feb47f0c-413b-4a37-91bc-621557257caa",
+        "id": "b1398a35-b2da-4b8a-a521-69a45f172e64",
         "path": "/openwiki/distribution/packaging-and-install.md",
         "title": "Packaging and Install",
         "purpose": "User-scope packaging: npm global installs, caret versions, skill-first lanes.",
@@ -625,12 +655,33 @@
           "/openwiki/integrations/distribution-and-tool-wiring.md",
           "/openwiki/quickstart.md"
         ],
-        "instructions": [],
+        "instructions": [
+          "Link openspec specs for install-lane behavior; do not restate scenarios."
+        ],
         "status": "complete",
-        "completedBy": "openwiki/0.5.0"
+        "completedBy": "opencode"
       },
       {
-        "id": "5b7cec63-4c9b-47c0-9839-4e2f8448bd7f",
+        "id": "96312541-43ba-4b7d-9144-33720522a81a",
+        "path": "/openwiki/distribution/tool-integrations.md",
+        "title": "Tool Integrations",
+        "purpose": "Per-host tool integration installs and verification.",
+        "seedPaths": [
+          "INSTALL.md",
+          "openspec/specs/agent-integration-spread/spec.md"
+        ],
+        "relatedPages": [
+          "/openwiki/distribution/packaging-and-install.md",
+          "/openwiki/integrations/distribution-and-tool-wiring.md"
+        ],
+        "instructions": [
+          "Keep prose concise; point to per-tool integration guides under docs/integrations for detail."
+        ],
+        "status": "complete",
+        "completedBy": "opencode"
+      },
+      {
+        "id": "4e731978-a03d-4b5c-bf22-dbcc6d1b0206",
         "path": "/openwiki/governance/agent-entrypoints.md",
         "title": "Agent Entrypoints",
         "purpose": "Agent entrypoints: root file, portable layer, skill invocation order.",
@@ -643,12 +694,14 @@
           "/openwiki/concepts/agents-md-zoning.md",
           "/openwiki/quickstart.md"
         ],
-        "instructions": [],
+        "instructions": [
+          "Keep prose concise."
+        ],
         "status": "complete",
-        "completedBy": "openwiki/0.5.0"
+        "completedBy": "opencode"
       },
       {
-        "id": "3c862f15-507a-45c2-ab7f-1da9d0268e00",
+        "id": "63e5b2ca-cfb4-48aa-a730-8b70be0cb442",
         "path": "/openwiki/governance/openspec-workflow.md",
         "title": "OpenSpec Workflow Governance",
         "purpose": "OpenSpec specs vs changes vs archive governance lifecycle.",
@@ -659,12 +712,14 @@
         "relatedPages": [
           "/openwiki/workflows/openspec-governance.md"
         ],
-        "instructions": [],
+        "instructions": [
+          "Link canonical specs; label pending-change material Proposal-only."
+        ],
         "status": "complete",
-        "completedBy": "openwiki/0.5.0"
+        "completedBy": "opencode"
       },
       {
-        "id": "7d68a62b-2181-4c4a-b052-92b55d2db0ba",
+        "id": "0b7a6bb2-d9b7-48d4-9991-815916a4347b",
         "path": "/openwiki/integrations/distribution-and-agent-spread.md",
         "title": "Distribution and Agent Spread",
         "purpose": "Host spread: global skills install and OpenWiki integrations.",
@@ -676,28 +731,33 @@
           "/openwiki/distribution/packaging-and-install.md",
           "/openwiki/integrations/distribution-and-tool-wiring.md"
         ],
-        "instructions": [],
-        "status": "pending"
+        "instructions": [
+          "Keep prose concise."
+        ],
+        "status": "complete",
+        "completedBy": "opencode"
       },
       {
-        "id": "12451ea6-eba1-4660-a1d5-52938bd875ec",
+        "id": "13580870-705b-4130-8a97-581e4d6c6074",
         "path": "/openwiki/integrations/distribution-and-tool-wiring.md",
         "title": "Distribution and Tool Wiring",
         "purpose": "Peer-tool wiring: Node preflight, verification, per-host integration install.",
         "seedPaths": [
           ".agents/skills/aksk-bootstrap/SKILL.md",
-          "INSTALL.md",
-          "docs/integrations/patterns.md"
+          "INSTALL.md"
         ],
         "relatedPages": [
           "/openwiki/quickstart.md",
           "/openwiki/workflows/bootstrap-and-attachment.md"
         ],
-        "instructions": [],
-        "status": "pending"
+        "instructions": [
+          "Keep prose concise."
+        ],
+        "status": "complete",
+        "completedBy": "opencode"
       },
       {
-        "id": "5e34628e-7efd-4e18-a113-446ad027b8ac",
+        "id": "907c4bfc-92c3-403a-9adb-e4fa3482d6c9",
         "path": "/openwiki/inventory/repository-inventory.md",
         "title": "Repository Inventory",
         "purpose": "Repository map: manifests, owned trees, entrypoints.",
@@ -710,11 +770,14 @@
           "/openwiki/architecture/overview.md",
           "/openwiki/quickstart.md"
         ],
-        "instructions": [],
-        "status": "pending"
+        "instructions": [
+          "Map, don't inventory: ownership and entrypoints only, no per-file summaries."
+        ],
+        "status": "complete",
+        "completedBy": "opencode"
       },
       {
-        "id": "81045404-3823-4ed5-8f33-00253a25a13d",
+        "id": "22fa2dbe-e57e-40b3-a16f-4297f9785411",
         "path": "/openwiki/operations/validation-and-lint.md",
         "title": "Validation and Lint",
         "purpose": "Docs-lint and validation loop over the knowledge layer.",
@@ -725,11 +788,49 @@
         "relatedPages": [
           "/openwiki/concepts/knowledge-curation-contract.md"
         ],
-        "instructions": [],
-        "status": "pending"
+        "instructions": [
+          "Keep prose concise; link the docs-lint skill contract for checklist detail."
+        ],
+        "status": "complete",
+        "completedBy": "opencode"
       },
       {
-        "id": "5c0f7404-44a9-4738-9260-5473a5da4f89",
+        "id": "934b0fa0-0edc-4b28-837e-de42171f2489",
+        "path": "/openwiki/operations/validation-and-release.md",
+        "title": "Validation and Release",
+        "purpose": "Pre-publish validation and release gating.",
+        "seedPaths": [
+          "package.json",
+          "scripts/check-publish.sh"
+        ],
+        "relatedPages": [
+          "/openwiki/operations/validation-and-lint.md"
+        ],
+        "instructions": [
+          "Keep prose concise; link canonical specs."
+        ],
+        "status": "complete",
+        "completedBy": "opencode"
+      },
+      {
+        "id": "071c4d95-1552-4755-9793-8df115b839f4",
+        "path": "/openwiki/operations/validation-scripts.md",
+        "title": "Validation Scripts",
+        "purpose": "Validation scripts: entrypoints, outputs, failure signals.",
+        "seedPaths": [
+          "scripts/check-publish.sh"
+        ],
+        "relatedPages": [
+          "/openwiki/operations/validation-and-lint.md"
+        ],
+        "instructions": [
+          "Keep prose concise; no per-script API reference."
+        ],
+        "status": "complete",
+        "completedBy": "opencode"
+      },
+      {
+        "id": "69d9f2b3-4e60-433b-aad6-a6e1a7e1bfcb",
         "path": "/openwiki/skills/aksk-bootstrap.md",
         "title": "aksk-bootstrap Skill",
         "purpose": "Global lane: preflight, user-scope installs, global skill spread.",
@@ -741,11 +842,14 @@
           "/openwiki/skills/aksk-init.md",
           "/openwiki/workflows/bootstrap-and-attachment.md"
         ],
-        "instructions": [],
-        "status": "pending"
+        "instructions": [
+          "Keep prose concise; link the spec for lane behavior."
+        ],
+        "status": "complete",
+        "completedBy": "opencode"
       },
       {
-        "id": "9f416bdd-69c6-4714-b9f5-66e10eac2f6c",
+        "id": "f2d9e9ab-b681-4d12-bd24-1b7d953f18d6",
         "path": "/openwiki/skills/aksk-init.md",
         "title": "aksk-init Skill",
         "purpose": "Per-repo lane: scaffold .agents, attach routing and wiki contract.",
@@ -757,11 +861,14 @@
           "/openwiki/skills/aksk-bootstrap.md",
           "/openwiki/workflows/bootstrap-and-attachment.md"
         ],
-        "instructions": [],
-        "status": "pending"
+        "instructions": [
+          "Keep prose concise; link the spec for scaffold behavior."
+        ],
+        "status": "complete",
+        "completedBy": "opencode"
       },
       {
-        "id": "aa2137fe-abc6-4ca0-b7b1-8c594f2446c9",
+        "id": "ca5593ad-1910-4f03-86f8-0984ad5ba936",
         "path": "/openwiki/skills/docs-lint.md",
         "title": "docs-lint Skill",
         "purpose": "Maintenance role: coherence checks over compiled layer.",
@@ -772,11 +879,50 @@
         "relatedPages": [
           "/openwiki/operations/validation-and-lint.md"
         ],
-        "instructions": [],
-        "status": "pending"
+        "instructions": [
+          "Keep prose concise."
+        ],
+        "status": "complete",
+        "completedBy": "opencode"
       },
       {
-        "id": "3c7b4a02-7ef4-47e2-9ce0-5edb288d14c3",
+        "id": "84c2a004-a6d1-466f-9b41-c80ac2ac2a99",
+        "path": "/openwiki/skills/learning-distill.md",
+        "title": "learning-distill Skill",
+        "purpose": "Distillation role: session bundles to durable curated entries.",
+        "seedPaths": [
+          ".agents/skills/learning-distill/SKILL.md"
+        ],
+        "relatedPages": [
+          "/openwiki/concepts/knowledge-curation-contract.md",
+          "/openwiki/workflows/task-lifecycle-and-distill.md"
+        ],
+        "instructions": [
+          "Keep prose concise; link curated decisions and troubleshooting trees as distillation targets."
+        ],
+        "status": "complete",
+        "completedBy": "opencode"
+      },
+      {
+        "id": "b5186193-aaf3-4b83-987c-1c737e94bc09",
+        "path": "/openwiki/skills/task-closeout.md",
+        "title": "task-closeout Skill",
+        "purpose": "Closeout role: temporary session bundle capture.",
+        "seedPaths": [
+          ".agents/sessions/README.md",
+          ".agents/skills/task-closeout/SKILL.md"
+        ],
+        "relatedPages": [
+          "/openwiki/workflows/task-lifecycle-and-distill.md"
+        ],
+        "instructions": [
+          "Keep prose concise."
+        ],
+        "status": "complete",
+        "completedBy": "opencode"
+      },
+      {
+        "id": "d9823d25-a782-4f78-8b7c-2441f190c508",
         "path": "/openwiki/workflows/bootstrap-and-attachment.md",
         "title": "Bootstrap and Attachment Workflow",
         "purpose": "End-to-end bootstrap to attach flow: preflight, install, scaffold, attach.",
@@ -789,11 +935,14 @@
           "/openwiki/skills/aksk-bootstrap.md",
           "/openwiki/skills/aksk-init.md"
         ],
-        "instructions": [],
-        "status": "pending"
+        "instructions": [
+          "Keep prose concise; end-to-end flow only."
+        ],
+        "status": "complete",
+        "completedBy": "opencode"
       },
       {
-        "id": "9c70486e-6bb5-44f4-8d04-9830c2f34884",
+        "id": "c5de7340-491a-4922-980e-f571f6d8f0db",
         "path": "/openwiki/workflows/openspec-governance.md",
         "title": "OpenSpec Governance Workflow",
         "purpose": "Propose to archive governance loop and wiki spec division.",
@@ -805,11 +954,33 @@
           "/openwiki/governance/openspec-workflow.md",
           "/openwiki/quickstart.md"
         ],
-        "instructions": [],
-        "status": "pending"
+        "instructions": [
+          "Link canonical specs; label pending-change material Proposal-only."
+        ],
+        "status": "complete",
+        "completedBy": "opencode"
       },
       {
-        "id": "ac20991f-bb7c-4348-b6a2-0ef46ef70e44",
+        "id": "e3f54f7c-1d2f-4a3f-ba32-71dead6e4c1f",
+        "path": "/openwiki/workflows/task-lifecycle-and-distill.md",
+        "title": "Task Lifecycle and Distill Workflow",
+        "purpose": "Closeout to distill loop: bundles, placement, index refresh.",
+        "seedPaths": [
+          ".agents/sessions/README.md",
+          ".agents/skills/learning-distill/SKILL.md"
+        ],
+        "relatedPages": [
+          "/openwiki/skills/learning-distill.md",
+          "/openwiki/skills/task-closeout.md"
+        ],
+        "instructions": [
+          "Keep prose concise; link skill pages for operational detail."
+        ],
+        "status": "complete",
+        "completedBy": "opencode"
+      },
+      {
+        "id": "169e7c67-295b-491d-ba83-c6a348ca019f",
         "path": "/openwiki/quickstart.md",
         "title": "Quickstart",
         "purpose": "Intent-routed entry point: install, initialize, run task lifecycle, validate with links into owned systems.",
@@ -817,7 +988,6 @@
           ".agents/skills/aksk-bootstrap/SKILL.md",
           "INSTALL.md",
           "README.md",
-          "openspec/specs/aksk-bootstrap/spec.md",
           "package.json"
         ],
         "relatedPages": [
@@ -826,8 +996,11 @@
           "/openwiki/workflows/bootstrap-and-attachment.md",
           "/openwiki/workflows/openspec-governance.md"
         ],
-        "instructions": [],
-        "status": "pending"
+        "instructions": [
+          "Intent-routed, concise; link systems, do not restate them."
+        ],
+        "status": "complete",
+        "completedBy": "opencode"
       }
     ],
     "deletePages": []

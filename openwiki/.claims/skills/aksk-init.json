@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:e6ae49f1280d424efbc1b9420dc74a76cf10c4f992d82840c57e9ba73933e5ae",
+  "pageVersion": "sha256:50b50e8abf7b1ce3c60cc308c89dcdfca3ddc867980012821118bc4bdaab7ad7",
   "claims": [
     {
       "id": "claim_03fe5f3fc44340bf98169eacdd45daa3",
@@ -138,7 +138,7 @@
       "evidence": [
         {
           "resource": "repo://.agents/skills/aksk-init/references/wiki-contract-template.md",
-          "version": "repo-file-v1:sha256:74fb36e2fba836d594bed925a1301ced9532c54846eb38a829b9a55de2881e00"
+          "version": "repo-file-v1:sha256:f4b37c8d7f1288d6697a6469eb195a25e980cb9317766827fd341e56a01561fc"
         },
         {
           "resource": "repo://.agents/skills/aksk-init/scripts/attach_wiki_contract.mjs",
@@ -190,7 +190,7 @@
     }
   ],
   "verification": {
-    "by": "openwiki/0.4.3",
-    "at": "2026-08-30T01:40:39.325Z"
+    "by": "openwiki/0.5.0",
+    "at": "2026-09-04T04:19:45.757Z"
   }
 }
