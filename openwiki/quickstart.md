@@ -74,7 +74,7 @@ The skill is the interactive orchestrator (prompts `[Y/n/skip]`); the script is 
 
 | Lane | Skill → Script | Scope | What it does |
 | --- | --- | --- | --- |
-| Global | `aksk-bootstrap` → `bootstrap-global.mjs` | Per-user once | Preflight Node >= 22, `npm i -g` for missing tools (skip when present), PATH verify, idempotent INSTRUCT fallback, never half-installs. No per-repo writes. Host integrations are manual opt-in. |
+| Global | `aksk-bootstrap` → `bootstrap-global.mjs` | Per-user once | Preflight Node >= 22, `npm i -g` for missing tools (skip when present), PATH verify, `openspec-*` skill spread (`-g --all`, skipped when present), idempotent INSTRUCT fallback, never half-installs. No per-repo writes. Host integrations are manual opt-in. |
 | Per-repo | `aksk-init` → `bootstrap-repo.mjs` | Per repo | Verifies globals first (fail-fast to `aksk-bootstrap`, no global installs), scaffolds `.agents/` + baseline first, `openspec init`, `openwiki --init` (harness needs no key, CLI needs `OPENAI_API_KEY`), routing/lifecycle and wiki-contract attachment. |
 
 Adoption is skill-first: `npx skills add -g -a <self-reported> <source>` places skills under `~/.agents/skills` plus the host dir (repo-local only via override), then run each skill's initialization once. Existing repo rules, playbooks, and skills are preserved — never replace `.agents/` wholesale.

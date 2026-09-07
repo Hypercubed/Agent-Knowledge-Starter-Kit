@@ -69,7 +69,7 @@ Root `package.json` declares `agent-knowledge-starter` — description, `devDepe
 
 ## Two supported lanes
 
-**Lane 1 — agent-assisted (preferred):** `npx skills add <source> -g -a <agent> --skill aksk-bootstrap`, run the `aksk-bootstrap` skill (global: preflight, tool installs, skill spread), then the `aksk-init` skill (per-repo: scaffold `.agents/` and baseline first, `openspec init`, `openwiki --init`, routing/lifecycle/contract attachment). Without local execution the script prints exact remaining commands (INSTRUCT lane) and exits clean with no partial state — never half-installs.
+**Lane 1 — agent-assisted (preferred):** `npx skills add <source> -g -a <agent> --skill aksk-bootstrap`, run the `aksk-bootstrap` skill (global: preflight, tool installs, skill spread for the kit and `openspec-*`), then the `aksk-init` skill (per-repo: scaffold `.agents/` and baseline first, `openspec init`, `openwiki --init`, routing/lifecycle/contract attachment). Without local execution the script prints exact remaining commands (INSTRUCT lane) and exits clean with no partial state — never half-installs.
 
 **Lane 2 — manual fallback:** `npx skills add <source> -g -a <agent>` (omit `-g` for the repo-local override), then run each installed skill's **Skill initialization** once (copy-missing-only, never overwrite repo content). Then edit `.agents/AGENTS.md`, attach the routing note to the root instruction file, and register `SKILL.md` paths in the editor if required.
 

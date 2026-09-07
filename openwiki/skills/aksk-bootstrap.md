@@ -53,7 +53,7 @@ Single verb — **Verify CLIs**: Node >= 22 and `openspec`/`openwiki` on PATH; `
 
 ## Canonical store
 
-Default is the user-scoped universal store `~/.agents/skills` plus the self-reported host's directory via `npx skills add -g -a <self-reported> <source>` — for the kit and for `langchain-ai/openwiki --full-depth`, with extra hosts or `--all` only on explicit install-time request. `npx` is required; the clone-and-copy fallback is removed. Repo-local `./.agents/skills` is an override, not the default.
+Default is the user-scoped universal store `~/.agents/skills` plus the self-reported host's directory via `npx skills add -g -a <self-reported> <source>` — for the kit and for `langchain-ai/openwiki --full-depth`, with extra hosts or `--all` only on explicit install-time request. `npx` is required; the clone-and-copy fallback is removed. Repo-local `./.agents/skills` is an override, not the default. The store now also holds `openspec-*` skills, installed by the global lane (`npx skills add fission-ai/openspec -g --all -y` when probes miss, skipped when present).
 
 ## Scripts
 

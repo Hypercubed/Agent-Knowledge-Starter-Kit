@@ -18,6 +18,8 @@ Per-repo initialization. Verifies global tools (Node >=22, openspec/openwiki via
 
 Each step prompts `[Y/n/skip]`; `--yes` / `--non-interactive` / `AKSK_YES=1` uses defaults; no TTY falls back to INSTRUCT (print commands, no writes).
 
+Repo lane inherits global `openspec-*` skills by default (`openspec init` always runs with `--tools none`, no repo-local skill generation). Opt-in only: `--local-skills` installs a repo-local copy for iteration.
+
 ```bash
 node .agents/skills/aksk-init/scripts/bootstrap-repo.mjs [repo-root] [--yes] [--local-skills]
 ```

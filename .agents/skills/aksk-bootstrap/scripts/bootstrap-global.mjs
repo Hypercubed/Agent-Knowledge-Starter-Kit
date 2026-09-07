@@ -11,7 +11,7 @@
 //
 // Preflight: Node >=22, tools on PATH, .agents/ / openspec/ / openwiki/
 // receipts, then state report before acting.
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
@@ -35,7 +35,8 @@ function versionsFromPackageJson(repoRoot) {
       const deps = isPkg ? (raw.dependencies || {}) : {};
       const ospec = dev["@fission-ai/openspec"] || deps["@fission-ai/openspec"] || raw["@fission-ai/openspec"];
       const owiki = dev["openwiki"] || deps["openwiki"] || raw["openwiki"];
-      if (ospec || owiki) return { openspec: ospec, openwiki: owiki, source: cand };
+      const oskills = dev["fission-ai/openspec-skills"] || deps["fission-ai/openspec-skills"] || raw["fission-ai/openspec-skills"];
+      if (ospec || owiki || oskills) return { openspec: ospec, openwiki: owiki, openspecSkills: oskills, source: cand };
     } catch {}
   }
   return null;
@@ -111,6 +112,32 @@ function instructRemaining(steps) {
   console.log("\nNo partial state was written for the failed step.");
 }
 
+// Canonical skills pin; GitHub source id for `npx skills add` (no semver — default branch).
+const OPENSPEC_SKILLS_FALLBACK = "fission-ai/openspec";
+
+function hasGlobalOpenspecSkills() {
+  // Probe 1: file presence in the canonical store + known host mirrors.
+  const home = process.env.HOME || process.env.USERPROFILE || "";
+  const dirs = [
+    path.join(home, ".agents", "skills"),
+    path.join(home, ".config", "opencode", "skills"),
+    path.join(home, ".claude", "skills"),
+    path.join(home, ".codex", "skills"),
+  ];
+  for (const d of dirs) {
+    let entries;
+    try { entries = readdirSync(d, { withFileTypes: true }); } catch { continue; }
+    if (entries.some((e) => e.isDirectory() && e.name.startsWith("openspec-") && existsSync(path.join(d, e.name, "SKILL.md")))) return true;
+  }
+  // Probe 2: `npx skills list -g` output mentions openspec-*.
+  if (!onPath("npx")) return false;
+  try {
+    const r = run("npx", ["skills", "list", "-g"], { encoding: "utf8" });
+    if (r.status === 0 && /openspec-/m.test(r.stdout || "")) return true;
+  } catch {}
+  return false;
+}
+
 function run(cmd, args, opts = {}) {
   const r = spawnSync(cmd, args, { encoding: "utf8", ...opts });
   return r;
@@ -148,5 +175,19 @@ if(missingTools.length>0){
     state={...detectState(repoRoot), nodeOk, nodeMajor:major};
   }
 } else { console.log("\nGlobal lane: tools present — skipping install."); for(const t of ["openspec","openwiki"]){ const r=run(t,["--version"],{encoding:"utf8"}); if(r.status===0) console.log(`  ${t} ${r.stdout.trim()}`);} }
+
+// OpenSpec skills spread (global, idempotent by detection; `-g --all` covers
+// the universal store plus every host — no host detection to invent).
+const openspecSkillsSource = ver?.openspecSkills || OPENSPEC_SKILLS_FALLBACK;
+const skillsInstallCmd = `npx skills add ${openspecSkillsSource} -g --all -y`;
+if (hasGlobalOpenspecSkills()) {
+  console.log("\nGlobal lane: openspec-* skills present — skipping install.");
+} else {
+  console.log(`\nGlobal lane: openspec-* skills missing → ${skillsInstallCmd}`);
+  if (!onPath("npx")) { console.error("npx not on PATH"); instructRemaining([skillsInstallCmd]); process.exit(0); }
+  const r = run("npx", ["skills", "add", openspecSkillsSource, "-g", "--all", "-y"], { cwd: repoRoot });
+  if (r.status !== 0) { console.error(r.stderr || r.stdout); instructRemaining([skillsInstallCmd]); process.exit(0); }
+  console.log((r.stdout || "").trim().split("\n").slice(-5).join("\n"));
+}
 
 console.log("\nGlobal setup complete. Run aksk-init in a repo to scaffold it.");

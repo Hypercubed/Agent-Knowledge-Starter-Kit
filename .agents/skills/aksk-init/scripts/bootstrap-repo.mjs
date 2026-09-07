@@ -32,14 +32,18 @@ function run(cmd, args, opts = {}) {
 
 const argv = process.argv.slice(2);
 let repoRoot = process.cwd();
+let localSkills = false;
 for (const a of argv) {
-  if (!a.startsWith("-")) repoRoot = path.resolve(a);
+  if (a === "--local-skills") localSkills = true;
+  else if (!a.startsWith("-")) repoRoot = path.resolve(a);
 }
 repoRoot = path.resolve(repoRoot);
 
 if (argv.includes("--help") || argv.includes("-h")) {
-  console.log("Usage: node bootstrap-repo.mjs [repo-root] [--yes]");
+  console.log("Usage: node bootstrap-repo.mjs [repo-root] [--yes] [--local-skills]");
   console.log("Per-repo AKSK init: scaffold .agents, openspec/openwiki init, attach routing/lifecycle/contract, install .openwikiignore. Non-interactive; re-running is a no-op.");
+  console.log("  --tools none is always used for `openspec init` (no repo-local skill generation); the lane inherits global openspec-* skills.");
+  console.log("  --local-skills opts into a repo-local `npx skills add` (project scope, no -g) for iterating on unreleased skills.");
   process.exit(0);
 }
 
@@ -106,6 +110,21 @@ for (const tmpl of ["routing-note-template.md", "lifecycle-template.md"]) {
   const sc = path.join(path.dirname(fileURLToPath(import.meta.url)), "init_openwikiignore.mjs");
   const r = run("node", [sc, repoRoot], { encoding: "utf8" });
   console.log(` openwikiignore: ${(r.stdout || r.stderr || "").trim().split("\n").slice(-1)[0]}`);
+}
+
+if (localSkills) {
+  // Opt-in repo-local openspec skills (project scope, no -g) for iteration.
+  // Canonical source mirrors the aksk-bootstrap pin; default lane never runs this.
+  const skillsSrc = "fission-ai/openspec";
+  const cmd = `npx skills add ${skillsSrc} -y`;
+  console.log(`\nRepo lane: --local-skills → ${cmd} (project scope)`);
+  const r = run("npx", ["skills", "add", skillsSrc, "-y"], { cwd: repoRoot, encoding: "utf8" });
+  if (r.status !== 0) {
+    console.error(r.stderr || r.stdout);
+    console.log(`INSTRUCT lane — run manually in the repo:\n  ${cmd}\nNo partial state was written for the failed step.`);
+  } else {
+    console.log((r.stdout || "").trim().split("\n").slice(-3).join("\n"));
+  }
 }
 
 console.log("Repo init complete.");

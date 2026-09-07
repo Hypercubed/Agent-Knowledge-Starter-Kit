@@ -87,7 +87,7 @@ Node >= 22 plus global `openspec` and `openwiki` (`openwiki --init` per repo, `o
 
 ## Bootstrap composition
 
-The two lanes run explicitly: `bootstrap-global.mjs` first, then `aksk-init`'s `bootstrap-repo.mjs`. The global orchestrator snapshots state (Node major, tools on PATH, repo trees, markers, receipts), installs missing globals per-user, and never half-installs — a failed step prints exact remaining commands and exits clean. The per-repo lane scaffolds `.agents/`, seeds the baseline first, runs `openspec init` and `openwiki --init` when missing, then attaches routing, lifecycle, and wiki contract. Fully bootstrapped `AGENTS.md` is zoned baseline → OpenWiki → AKSK (see [AGENTS.md Zoning](../concepts/agents-md-zoning.md)).
+The two lanes run explicitly: `bootstrap-global.mjs` first, then `aksk-init`'s `bootstrap-repo.mjs`. The global orchestrator snapshots state (Node major, tools on PATH, repo trees, markers, receipts), installs missing globals per-user, spreads `openspec-*` skills into the canonical store when missing (skipped when present), and never half-installs — a failed step prints exact remaining commands and exits clean. The per-repo lane scaffolds `.agents/`, seeds the baseline first, runs `openspec init` and `openwiki --init` when missing, then attaches routing, lifecycle, and wiki contract. Fully bootstrapped `AGENTS.md` is zoned baseline → OpenWiki → AKSK (see [AGENTS.md Zoning](../concepts/agents-md-zoning.md)).
 
 ## Single-tree source of truth
 

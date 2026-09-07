@@ -53,7 +53,7 @@ One lane per host, chosen by registry membership:
 | **Registry lane** | Host is `codex`, `claude`, or `opencode` | `openwiki integrations install <host>` | Atomically installs skill bundle plus MCP config (`openwiki mcp --host <target>`) and writes a `.openwiki-install.json` receipt |
 | **Unified npx lane** | Any other host | `npx skills add -g -a <self-reported> langchain-ai/openwiki --full-depth` plus `npx add-mcp` or `openwiki mcp --host <target>` | Installs lifecycle skill to universal store plus host dir, then registers the MCP |
 
-Default install is `~/.agents/skills` (universal, Codex default) plus the self-reported host's directory; extra hosts or `--all` only on explicit install-time request. `npx` is required — the clone-and-copy fallback is removed; missing `npx` reports via INSTRUCT with no silent copy. A skill install without MCP registration is inert. Ordering: `openwiki` must resolve on PATH before registering `openwiki mcp --host <target>` in host configs.
+Default install is `~/.agents/skills` (universal, Codex default) plus the self-reported host's directory; extra hosts or `--all` only on explicit install-time request. The canonical store now also holds `openspec-*` skills via the `aksk-bootstrap` global lane. `npx` is required — the clone-and-copy fallback is removed; missing `npx` reports via INSTRUCT with no silent copy. A skill install without MCP registration is inert. Ordering: `openwiki` must resolve on PATH before registering `openwiki mcp --host <target>` in host configs.
 
 ## Receipt ownership partition
 

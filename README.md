@@ -46,7 +46,7 @@ Install the Agent Knowledge Starter Kit into this repo:
    (or npx skills add <path-to-kit> -g -a <agent> with a local checkout;
    <agent> is your host id — opencode, codex, claude, or * (`-g --all` for universal ~/.agents/skills); positional <source> must come first — npx skills add -g -a <source> fails with Missing required argument: source; npx required; this installs all skills)
    e.g. npx skills add Hypercubed/Agent-Knowledge-Starter-Kit#develop -g -a opencode or npx skills add Hypercubed/Agent-Knowledge-Starter-Kit -g --all
-2. Run the aksk-bootstrap skill (global: npm i -g for openspec/openwiki, global skills).
+2. Run the aksk-bootstrap skill (global: npm i -g for openspec/openwiki, global skills incl. `openspec-*`).
 3. Then run the aksk-init skill (per-repo: scaffold .agents/ + AGENTS.md baseline first, then openspec/openwiki init, routing/lifecycle, wiki contract).
 
 See INSTALL.md for overrides. aksk-bootstrap owns global setup; aksk-init owns per-repo setup.

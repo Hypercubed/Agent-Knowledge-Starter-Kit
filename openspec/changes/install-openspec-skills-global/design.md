@@ -39,6 +39,8 @@ If `npx` is missing or `npx skills add` fails, the script prints `INSTRUCT lane 
 
 **D6 — Keep shim behavior simple.**
 
+> SUPERSEDED at implementation: archived change `eliminate-bootstrap-shim` (commit `27a052b`) deleted `aksk-bootstrap/scripts/bootstrap.mjs`. There is no shim; the two lanes run explicitly. Task 4.2 dropped.
+
 `aksk-bootstrap/scripts/bootstrap.mjs` remains a thin shim: `bootstrap-global.mjs` then `bootstrap-repo.mjs` if present. No new logic in the shim; each lane owns its skill subset. This avoids breaking `INSTALL.md:18` / `openwiki/architecture/overview.md:175` callers.
 
 ```mermaid

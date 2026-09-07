@@ -2,10 +2,10 @@
 
 Makes `~/.agents/skills` (universal, Codex default) the one canonical store for every skill an agent installs, with the current self-reported agent as the second target. `npx` is required; the only documented override is an explicit user request for another agent at install time.
 
-## ADDED Requirements
+## Requirements
 
 ### Requirement: Canonical user store is ~/.agents/skills (universal + self-reported agent)
-Every skill installed by an agent SHALL be installed to the user-scoped universal store `~/.agents/skills` plus the current self-reported agent's host skill directory (e.g. Codex so both `~/.agents/skills/<name>` and `~/.codex/skills/<name>` are written), via `npx skills add -g -a <self-reported> <source>`. This default applies to the AKSK kit (`Hypercubed/Agent-Knowledge-Starter-Kit`) and to the `langchain-ai/openwiki` lifecycle skill (`--full-depth` when that source is used). Extra agents SHALL be installed only if the user explicitly asked for them at install time (`-a <other>` or `--all`); the agent self-report is the second target, not an override, and spoofing it is the agent's own failure. If the calling agent does not support universal, it SHALL prompt the user before writing to any other location.
+The system MUST treat `~/.agents/skills` (universal, Codex default) plus the current self-reported host's skill directory (e.g., `~/.config/opencode/skills` or `~/.claude/skills` when detected) as the single canonical store for every skill an agent installs, **including `openspec-*` skills installed globally via `npx skills add -g -a <agent>` by the `aksk-bootstrap` global lane**. `npx` is required; the only documented override is an explicit user request for another agent at install time or `--local-skills` for repo-local installation.
 
 #### Scenario: AKSK default via agent
 - **WHEN** a user asks the current agent (e.g. Codex) to install the kit

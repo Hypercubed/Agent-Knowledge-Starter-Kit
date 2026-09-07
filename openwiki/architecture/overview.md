@@ -108,7 +108,7 @@ Organize the repo by authority, not by tree listing. Each zone has one owner, on
 
 Each skill's `SKILL.md` plus its `CONTRACT.md` is the authority for entrypoints, flags, and file shapes; the specs are the authority for lane behavior:
 
-- `aksk-bootstrap` — per-user global lane: Node check, peer-tool installs from `references/versions.json`, PATH verification, global skill spread. Never touches per-repo files except receipts verification. See [aksk-bootstrap](../skills/aksk-bootstrap.md).
+- `aksk-bootstrap` — per-user global lane: Node check, peer-tool installs from `references/versions.json`, PATH verification, global skill spread (kit plus `openspec-*`). Never touches per-repo files except receipts verification. See [aksk-bootstrap](../skills/aksk-bootstrap.md).
 - `aksk-init` — per-repo lane: `.agents/` scaffold and baseline seeding first, then `openspec init`, `openwiki --init`, routing and contract attachment. Never attempts global installs. See [aksk-init](../skills/aksk-init.md).
 - `task-closeout` — capture-only; writes only under `.agents/sessions/`.
 - `learning-distill` — classification and promotion into `.agents/` and curated wiki trees.
