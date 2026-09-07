@@ -26,4 +26,9 @@ maintainer in OKF format following upstream OpenWiki guidance.
 3. **Distill-authored pages bypass the CLI:** descriptive lessons distilled
    from session bundles are written by the host agent with deterministic index
    refresh; `openwiki --update` remains the scheduled reconciliation path.
+4. **Verify-only queue membership:** every update plan must include all pages
+   under the curated trees as verify-only jobs — submit their prose unchanged
+   and confirm their Claims — because the run cannot finish without a record
+   for every in-scope page. Preserve-and-link governs content, not queue
+   membership.
 <!-- AKSK:WIKI-CONTRACT:END -->
