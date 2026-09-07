@@ -29,7 +29,7 @@ Similar error for any GitHub repo that is a single file (e.g., `AGENTS.md`) with
 ## Known fix
 
 - Remove the GitHub entry from `package.json` `devDependencies` — keep `openwiki`/`@fission-ai/openspec` as caret there, not the agents-md repo.
-- Pin the commit SHA in `.agents/skills/aksk-bootstrap/references/versions.json` (`@ferroxlabs/agents-md: 90c7198cfa97...`) and keep the vendored `agents-md-baseline-template.md` (with `AKSK:AGENTS-BASELINE` markers, provenance header) as the primary source. `bootstrap.mjs` reads `references/versions.json` (bundled via `npx skills add`), so consumers get the pin without needing `node_modules`.
+- Pin the commit SHA in `.agents/skills/aksk-bootstrap/references/versions.json` (`@ferroxlabs/agents-md: 90c7198cfa97...`) and keep the vendored `agents-md-baseline-template.md` (with `AKSK:AGENTS-BASELINE` markers, provenance header) as the primary source. `bootstrap-global.mjs` reads `references/versions.json` (bundled via `npx skills add`), so consumers get the pin without needing `node_modules`.
 - Refresh together: `node .agents/skills/aksk-bootstrap/scripts/refresh_agents_baseline.mjs` + bump `versions.json` SHA + regenerate `example/` (`bash .agents/skills/generate-example/run.sh` seeds baseline→AKSK).
 
 ## Prevention
@@ -39,7 +39,7 @@ Similar error for any GitHub repo that is a single file (e.g., `AGENTS.md`) with
 
 ## Validation
 
-- `npm install` succeeds without agents-md devDep; `node --check bootstrap.mjs` passes.
+- `npm install` succeeds without agents-md devDep; `node --check` passes on both lane scripts.
 - `reference/versions.json` contains `openwiki`/`openspec` caret and `agents-md` SHA; `example/.agents/skills/aksk-bootstrap/references/versions.json` matches after `generate-example`.
 - `node refresh_agents_baseline.mjs --check` validates upstream anchors; `npm view` for npm packages shows caret range allows patches.
 

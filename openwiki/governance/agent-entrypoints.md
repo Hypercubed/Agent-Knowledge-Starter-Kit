@@ -25,8 +25,6 @@ sources:
     resource: repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs
   - id: openwiki-source-78293e08bbba4e65fb2685ae
     resource: repo://.agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs
-  - id: openwiki-source-5ffa21d5a23117c638ca72b7
-    resource: repo://.agents/skills/aksk-bootstrap/scripts/bootstrap.mjs
   - id: openwiki-source-181fd64540d760eef80f754f
     resource: repo://.agents/skills/aksk-bootstrap/scripts/init_agents_md.mjs
   - id: openwiki-source-dce50581779fda5dd507dc34
@@ -74,7 +72,7 @@ Both reads happen **before executing any file modifications**. `openwiki/` is op
 
 ## Tool integration entrypoints
 
-Per-tool equivalents are catalogued under `docs/integrations/`: root-native files (Codex, OpenCode, Kilo Code, Warp, OpenClaw), tool-specific bootstrap files (Claude Code `CLAUDE.md`, Gemini `GEMINI.md`), rules-based IDE wiring (Cursor, Copilot), and persistent-memory boundaries (Hermes, Antigravity). The shared invariant is identical — native files stay thin routers pointing at `.agents/` (decision `use-the-routing-pattern-for-agentic-tool-bootstrap-files`). Preferred path is the EXECUTE lane via `bootstrap.mjs`; per-tool guides are the manual fallback.
+Per-tool equivalents are catalogued under `docs/integrations/`: root-native files (Codex, OpenCode, Kilo Code, Warp, OpenClaw), tool-specific bootstrap files (Claude Code `CLAUDE.md`, Gemini `GEMINI.md`), rules-based IDE wiring (Cursor, Copilot), and persistent-memory boundaries (Hermes, Antigravity). The shared invariant is identical — native files stay thin routers pointing at `.agents/` (decision `use-the-routing-pattern-for-agentic-tool-bootstrap-files`). Preferred path is the EXECUTE lane via the two lane scripts (`bootstrap-global.mjs`, then `bootstrap-repo.mjs`); per-tool guides are the manual fallback.
 
 ## Invariants
 

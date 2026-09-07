@@ -7,7 +7,7 @@
 // step. Global installs are per-user via `npm i -g` (user scope, not
 // repo-local `npx` or `node_modules`).
 //
-// Usage: node bootstrap.mjs [repo-root] [--force] [--json]
+// Usage: node bootstrap-global.mjs [repo-root] [--force] [--json]
 //
 // Preflight: Node >=22, tools on PATH, .agents/ / openspec/ / openwiki/
 // receipts, then state report before acting.

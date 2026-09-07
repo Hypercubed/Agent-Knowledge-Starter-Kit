@@ -25,7 +25,7 @@ Accepted
 ### Decision
 
 - **Caret in `package.json` for npm packages:** `devDependencies` pins `@fission-ai/openspec: ^1.11.0` and `openwiki: ^0.4.3` (caret, not `latest`). `^` allows patches/minors without breaking bootstrap.
-- **Bundled `references/versions.json` for delivery:** `bootstrap.mjs` reads `references/versions.json` (copied via `npx skills add`) first, then the consumer repo's `package.json` for local override, via `versionsFromPackageJson()`. The `BOTH_INSTALL`/`INSTALL_COMMANDS` are built as `npm i -g @fission-ai/openspec@^1.11.0 openwiki@^0.4.3` (user scope). Fallback is `@latest` only when both sources miss.
+- **Bundled `references/versions.json` for delivery:** `bootstrap-global.mjs` reads `references/versions.json` (copied via `npx skills add`) first, then the consumer repo's `package.json` for local override, via `versionsFromPackageJson()`. The `BOTH_INSTALL`/`INSTALL_COMMANDS` are built as `npm i -g @fission-ai/openspec@^1.11.0 openwiki@^0.4.3` (user scope). Fallback is `@latest` only when both sources miss.
 - **Non-npm GitHub sources pin by SHA, not devDep:** `FerroxLabs/agents-md` has no `package.json`, so `npm install github:FerroxLabs/agents-md#<sha>` fails `ENOENT package.json`. Keep it out of `package.json` devDeps; pin the commit SHA `90c7198cfa97ff1868f0600952098fee7fc86ef9` in `references/versions.json` (`@ferroxlabs/agents-md: 90c7198...`) plus the vendored `agents-md-baseline-template.md` (Captured 2026-08-29). Update both together via `refresh_agents_baseline.mjs` and regenerate `example/`. Single `npm install` path handles `openspec`/`openwiki`; `agents-md` refresh is file+SHA only.
 
 ### Consequences

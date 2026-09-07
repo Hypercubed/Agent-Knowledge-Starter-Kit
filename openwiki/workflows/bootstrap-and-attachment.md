@@ -21,8 +21,6 @@ sources:
     resource: repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs
   - id: openwiki-source-78293e08bbba4e65fb2685ae
     resource: repo://.agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs
-  - id: openwiki-source-5ffa21d5a23117c638ca72b7
-    resource: repo://.agents/skills/aksk-bootstrap/scripts/bootstrap.mjs
   - id: openwiki-source-d1960e41bf9a48af26e81829
     resource: repo://.agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs
   - id: openwiki-source-67d81b3c5bf101f8b3eb3d2a
@@ -63,7 +61,6 @@ Two idempotent phases take any repository from bare to fully wired without ever 
 | Layer | Owner | Scope |
 | --- | --- | --- |
 | Global lane + preflight | `bootstrap-global.mjs` | Node >= 22 check, PATH checks, receipt peek, per-user `npm i -g`; never touches per-repo files except receipt verification |
-| Shim | `bootstrap.mjs` | Runs global lane then repo lane when present |
 | Per-repo scaffold | `bootstrap-repo.mjs` + shipped helpers | `.agents/` tree, baseline-first seed, `openspec init`, `openwiki --init`, routing/lifecycle and contract attachment |
 
 Leaf scripts are deterministic Node `.mjs` that never install software and fail fast with exit 2 plus exact remediation; only the global orchestrator performs per-user installs, and never half-installs — a failed step prints exact remaining commands and exits clean. Scripts are non-interactive (no stdin); the skills prompt `[Y/n/skip]` before invoking them, with `--yes` passthrough and no-TTY falling back to partitioned INSTRUCT.

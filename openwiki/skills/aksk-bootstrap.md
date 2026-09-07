@@ -26,8 +26,6 @@ sources:
     resource: repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs
   - id: openwiki-source-78293e08bbba4e65fb2685ae
     resource: repo://.agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs
-  - id: openwiki-source-5ffa21d5a23117c638ca72b7
-    resource: repo://.agents/skills/aksk-bootstrap/scripts/bootstrap.mjs
   - id: openwiki-source-d1960e41bf9a48af26e81829
     resource: repo://.agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs
   - id: openwiki-source-181fd64540d760eef80f754f
@@ -51,7 +49,7 @@ Per-user **global lane only**. The skill is the orchestrator, `bootstrap-global.
 
 ## Global lane
 
-Single verb — **Verify CLIs**: Node >= 22 and `openspec`/`openwiki` on PATH; `npm i -g` with caret ranges from `references/versions.json` (via `versionsFromPackageJson()`, `@latest` only when unpinned) for missing tools; skip tools already present. `bootstrap.mjs` is a backward-compat shim running the global lane then the `aksk-init` repo lane when present. Failed steps print exact remaining commands and exit clean with no partial state (never half-installs); without local execution the INSTRUCT lane prints the commands verbatim. The lane script is non-interactive — the skill prompts `[Y/n/skip]` before invoking it — and host integrations are excluded from the lane (manual opt-in).
+Single verb — **Verify CLIs**: Node >= 22 and `openspec`/`openwiki` on PATH; `npm i -g` with caret ranges from `references/versions.json` (via `versionsFromPackageJson()`, `@latest` only when unpinned) for missing tools; skip tools already present. There is no combined entrypoint — run `bootstrap-global.mjs`, then `aksk-init`'s `bootstrap-repo.mjs`, explicitly. Failed steps print exact remaining commands and exit clean with no partial state (never half-installs); without local execution the INSTRUCT lane prints the commands verbatim. The lane script is non-interactive — the skill prompts `[Y/n/skip]` before invoking it — and host integrations are excluded from the lane (manual opt-in).
 
 ## Canonical store
 
@@ -62,7 +60,6 @@ Default is the user-scoped universal store `~/.agents/skills` plus the self-repo
 | Script | Role |
 | --- | --- |
 | `bootstrap-global.mjs` | Global-only orchestrator: detect state, verify CLIs, report, INSTRUCT fallback |
-| `bootstrap.mjs` | Shim: global lane then repo lane |
 | `check_peer_tools.mjs` | PATH-only verifier (allowlist `openspec`/`openwiki`, unknown names exit 2, never installs) |
 | `attach_wiki_contract.mjs` | `AKSK:WIKI-CONTRACT` → existing `openwiki/INSTRUCTIONS.md` (owned here, invoked by repo lane) |
 | `attach_section.mjs` | Generic `AKSK:*` → root files |

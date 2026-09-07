@@ -23,8 +23,6 @@ sources:
     resource: repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs
   - id: openwiki-source-78293e08bbba4e65fb2685ae
     resource: repo://.agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs
-  - id: openwiki-source-5ffa21d5a23117c638ca72b7
-    resource: repo://.agents/skills/aksk-bootstrap/scripts/bootstrap.mjs
   - id: openwiki-source-d1960e41bf9a48af26e81829
     resource: repo://.agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs
   - id: openwiki-source-dce50581779fda5dd507dc34
@@ -92,7 +90,7 @@ Peer binaries (never installed by the kit): Node >= 22 plus per-user global `@fi
 
 ## Portable prescriptive zone: `.agents/`
 
-The distributable artifact, validated by `scripts/check-agents-structure.sh`: `.agents/AGENTS.md` (compact routing directives, must stay small), `.agents/.gitignore` (`sessions/*` + `!sessions/README.md` — only the README tracked), `.agents/playbooks/` (durable procedures), `.agents/skills/` (`aksk-bootstrap` global preconditions and orchestrator, `aksk-init` per-repo initializer, `task-closeout` capture-only, `learning-distill` classification and promotion, `docs-lint` coherence pass, `verify-install` internal). The legacy `bootstrap.mjs` is a shim sequencing the global then per-repo lane; re-runs complete only missing steps and never half-install.
+The distributable artifact, validated by `scripts/check-agents-structure.sh`: `.agents/AGENTS.md` (compact routing directives, must stay small), `.agents/.gitignore` (`sessions/*` + `!sessions/README.md` — only the README tracked), `.agents/playbooks/` (durable procedures), `.agents/skills/` (`aksk-bootstrap` global preconditions and orchestrator, `aksk-init` per-repo initializer, `task-closeout` capture-only, `learning-distill` classification and promotion, `docs-lint` coherence pass, `verify-install` internal). The global lane (`bootstrap-global.mjs`) runs first, then the per-repo lane (`bootstrap-repo.mjs`); re-runs complete only missing steps and never half-install.
 
 ## Curated descriptive zone: `openwiki/`
 

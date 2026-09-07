@@ -15,7 +15,7 @@ Create or update a target repo's `.agents/` knowledge layer from this starter ki
 
 ### Agent-assisted via aksk-bootstrap (preferred)
 
-An agent clones the kit to a temporary location if needed and runs `node .agents/skills/aksk-bootstrap/scripts/bootstrap.mjs [repo-root]` (EXECUTE lane). It preflights Node >= 22, installs the peer tools once per user in user scope (`npm i -g @fission-ai/openspec@^1.11.0 openwiki@^0.4.3` (caret from `references/versions.json`) — `npm i -g` per-user, not repo-local `npx` or `node_modules`), bootstraps the repo on demand (`openspec init --tools none`, `.agents/` scaffold, curation-contract and routing-block attachment), and spreads OpenWiki integration per lane ladder. When local execution is not possible it prints the exact remaining commands (INSTRUCT lane) and exits clean without partial state. This is the recommended entry for both fresh and existing repos.
+An agent clones the kit to a temporary location if needed and runs the two lanes in order (EXECUTE lane): `node .agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs [repo-root]` for globals, then `node .agents/skills/aksk-init/scripts/bootstrap-repo.mjs [repo-root]` for per-repo scaffolding. The global lane preflights Node >= 22 and installs the peer tools once per user in user scope (`npm i -g @fission-ai/openspec@^1.11.0 openwiki@^0.4.3` (caret from `references/versions.json`) — `npm i -g` per-user, not repo-local `npx` or `node_modules`); the repo lane bootstraps the repo on demand (`openspec init --tools none`, `.agents/` scaffold, curation-contract and routing-block attachment) and spreads OpenWiki integration per lane ladder. When local execution is not possible each lane prints the exact remaining commands (INSTRUCT lane) and exits clean without partial state. This is the recommended entry for both fresh and existing repos.
 
 ### Manual fallback via npx skills add (fail-fast when bootstrap INSTRUCT lane is used)
 
@@ -25,7 +25,7 @@ The kit is glue over two peer tools. When the bootstrap INSTRUCT lane prints the
 - `npm i -g @fission-ai/openspec@latest` (OpenSpec CLI, user scope `npm i -g`)
 - `npm i -g openwiki@latest` (OpenWiki CLI, user scope `npm i -g`), plus one-time repo initialization: `openwiki --init`
 
-Skills and scripts verify these prerequisites before acting and **fail fast** with exactly the commands above when something is missing. `aksk-bootstrap` owns the checks (`check_peer_tools.mjs`), wiki setup verification (`attach_wiki_contract.mjs`), and the bootstrap orchestrator (`bootstrap.mjs`); other skills call into it rather than reimplementing.
+Skills and scripts verify these prerequisites before acting and **fail fast** with exactly the commands above when something is missing. `aksk-bootstrap` owns the checks (`check_peer_tools.mjs`), wiki setup verification (`attach_wiki_contract.mjs`), and the global lane (`bootstrap-global.mjs`); per-repo scaffolding is owned by `aksk-init` (`bootstrap-repo.mjs`); other skills call into them rather than reimplementing.
 
 ## Skill-first install (default)
 

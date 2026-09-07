@@ -87,7 +87,7 @@ run_scenario() {
   fi
 }
 
-# ---- Scenario: fresh (no tools, npx -> bootstrap does npm i -g) ----
+# ---- Scenario: fresh (no tools, npx -> bootstrap-global does npm i -g) ----
 if matches fresh && ! matches fresh-skip; then :; else
   # Single combined fresh test covers both fresh and fresh-skip via two runs;
   # keep ordering: fresh first (global lane runs), fresh-skip second (global lane skipped).
@@ -142,7 +142,7 @@ if ! timeout 300 node .agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs
 fi
 if grep -q 'ECONNRESET' /tmp/b_fresh.log 2>/dev/null; then
   echo 'npm ECONNRESET transient, retrying bootstrap...'
-  timeout 300 node .agents/skills/aksk-bootstrap/scripts/bootstrap.mjs /tmp/target 2>&1 | tail -n 100
+  timeout 300 node .agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs /tmp/target 2>&1 | tail -n 100
 fi
 cat /tmp/b_fresh.log 2>/dev/null | head -n 5
 which openspec && openspec --version

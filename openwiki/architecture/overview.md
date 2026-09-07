@@ -21,8 +21,6 @@ sources:
     resource: repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs
   - id: openwiki-source-78293e08bbba4e65fb2685ae
     resource: repo://.agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs
-  - id: openwiki-source-5ffa21d5a23117c638ca72b7
-    resource: repo://.agents/skills/aksk-bootstrap/scripts/bootstrap.mjs
   - id: openwiki-source-d1960e41bf9a48af26e81829
     resource: repo://.agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs
   - id: openwiki-source-181fd64540d760eef80f754f

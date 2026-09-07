@@ -13,8 +13,6 @@ sources:
     resource: repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs
   - id: openwiki-source-78293e08bbba4e65fb2685ae
     resource: repo://.agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs
-  - id: openwiki-source-5ffa21d5a23117c638ca72b7
-    resource: repo://.agents/skills/aksk-bootstrap/scripts/bootstrap.mjs
   - id: openwiki-source-d1960e41bf9a48af26e81829
     resource: repo://.agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs
   - id: openwiki-source-67d81b3c5bf101f8b3eb3d2a
@@ -71,7 +69,7 @@ Root `package.json` declares `agent-knowledge-starter` — description, `devDepe
 
 ## Two supported lanes
 
-**Lane 1 — agent-assisted (preferred):** `npx skills add <source> -g -a <agent> --skill aksk-bootstrap`, run the `aksk-bootstrap` skill (global: preflight, tool installs, skill spread), then the `aksk-init` skill (per-repo: scaffold `.agents/` and baseline first, `openspec init`, `openwiki --init`, routing/lifecycle/contract attachment). The `bootstrap.mjs` shim preserves the old entrypoint by running global then per-repo sequentially. Without local execution the script prints exact remaining commands (INSTRUCT lane) and exits clean with no partial state — never half-installs.
+**Lane 1 — agent-assisted (preferred):** `npx skills add <source> -g -a <agent> --skill aksk-bootstrap`, run the `aksk-bootstrap` skill (global: preflight, tool installs, skill spread), then the `aksk-init` skill (per-repo: scaffold `.agents/` and baseline first, `openspec init`, `openwiki --init`, routing/lifecycle/contract attachment). Without local execution the script prints exact remaining commands (INSTRUCT lane) and exits clean with no partial state — never half-installs.
 
 **Lane 2 — manual fallback:** `npx skills add <source> -g -a <agent>` (omit `-g` for the repo-local override), then run each installed skill's **Skill initialization** once (copy-missing-only, never overwrite repo content). Then edit `.agents/AGENTS.md`, attach the routing note to the root instruction file, and register `SKILL.md` paths in the editor if required.
 

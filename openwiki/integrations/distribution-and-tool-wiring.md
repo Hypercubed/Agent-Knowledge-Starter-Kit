@@ -21,8 +21,6 @@ sources:
     resource: repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs
   - id: openwiki-source-78293e08bbba4e65fb2685ae
     resource: repo://.agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs
-  - id: openwiki-source-5ffa21d5a23117c638ca72b7
-    resource: repo://.agents/skills/aksk-bootstrap/scripts/bootstrap.mjs
   - id: openwiki-source-d1960e41bf9a48af26e81829
     resource: repo://.agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs
   - id: openwiki-source-181fd64540d760eef80f754f
@@ -73,7 +71,7 @@ Peer-tool wiring: what must be on PATH, which script verifies or installs it, an
 
 ## Prerequisites and who installs them
 
-Node >= 22 plus global `openspec` and `openwiki` (`openwiki --init` per repo, `openspec init --tools none` per repo). Only `aksk-bootstrap` (`bootstrap-global.mjs` via the `bootstrap.mjs` shim) may install them per-user via `npm i -g` with caret ranges from `references/versions.json`; `aksk-init` verifies globals before per-repo work and never installs. All other skills and scripts only verify — missing tools fail fast printing exact `npm i -g` commands with exit 2.
+Node >= 22 plus global `openspec` and `openwiki` (`openwiki --init` per repo, `openspec init --tools none` per repo). Only `aksk-bootstrap` (`bootstrap-global.mjs`, run explicitly — no shim) may install them per-user via `npm i -g` with caret ranges from `references/versions.json`; `aksk-init` verifies globals before per-repo work and never installs. All other skills and scripts only verify — missing tools fail fast printing exact `npm i -g` commands with exit 2.
 
 ## Verification and attachment scripts
 
@@ -89,7 +87,7 @@ Node >= 22 plus global `openspec` and `openwiki` (`openwiki --init` per repo, `o
 
 ## Bootstrap composition
 
-The `bootstrap.mjs` shim runs `bootstrap-global.mjs` then `aksk-init`'s `bootstrap-repo.mjs` when present. The global orchestrator snapshots state (Node major, tools on PATH, repo trees, markers, receipts), installs missing globals per-user, and never half-installs — a failed step prints exact remaining commands and exits clean. The per-repo lane scaffolds `.agents/`, seeds the baseline first, runs `openspec init` and `openwiki --init` when missing, then attaches routing, lifecycle, and wiki contract. Fully bootstrapped `AGENTS.md` is zoned baseline → OpenWiki → AKSK (see [AGENTS.md Zoning](../concepts/agents-md-zoning.md)).
+The two lanes run explicitly: `bootstrap-global.mjs` first, then `aksk-init`'s `bootstrap-repo.mjs`. The global orchestrator snapshots state (Node major, tools on PATH, repo trees, markers, receipts), installs missing globals per-user, and never half-installs — a failed step prints exact remaining commands and exits clean. The per-repo lane scaffolds `.agents/`, seeds the baseline first, runs `openspec init` and `openwiki --init` when missing, then attaches routing, lifecycle, and wiki contract. Fully bootstrapped `AGENTS.md` is zoned baseline → OpenWiki → AKSK (see [AGENTS.md Zoning](../concepts/agents-md-zoning.md)).
 
 ## Single-tree source of truth
 

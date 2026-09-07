@@ -19,8 +19,6 @@ sources:
     resource: repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs
   - id: openwiki-source-78293e08bbba4e65fb2685ae
     resource: repo://.agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs
-  - id: openwiki-source-5ffa21d5a23117c638ca72b7
-    resource: repo://.agents/skills/aksk-bootstrap/scripts/bootstrap.mjs
   - id: openwiki-source-d1960e41bf9a48af26e81829
     resource: repo://.agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs
   - id: openwiki-source-181fd64540d760eef80f754f
@@ -72,7 +70,7 @@ The **Agent Knowledge Starter Kit (AKSK) v2.0.0** (`agent-knowledge-starter`) is
 
 ## Two lanes: global vs per-repo
 
-The skill is the interactive orchestrator (prompts `[Y/n/skip]`); the script is the non-interactive deterministic executor. `bootstrap.mjs` is a shim running the global lane then the repo lane sequentially.
+The skill is the interactive orchestrator (prompts `[Y/n/skip]`); the script is the non-interactive deterministic executor. The two lanes run explicitly: `bootstrap-global.mjs` (globals) then `aksk-init`'s `bootstrap-repo.mjs` (per-repo).
 
 | Lane | Skill → Script | Scope | What it does |
 | --- | --- | --- | --- |

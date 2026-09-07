@@ -53,8 +53,8 @@ bash .agents/skills/verify-install/scripts/run.sh -v
 
 | # | Name | How it exercises the README/INSTALL prompt | Success signal |
 |---|------|----------------------------------------------|----------------|
-| 1 | `fresh` | `npx --yes skills add -g,codex /kit -y --copy` from blank `node:24` (`which openspec` → not found) | Found 5 under `~/.agents/skills` + `~/.codex/skills`, `bootstrap-global.mjs` does `npm i -g` and seeds `AGENTS.md`/`openspec/` |
-| 2 | `fresh-skip` | same as 1 but `openspec`/`openwiki` already on PATH → global lane skipped | bootstrap logs `skipping user-scope install` and still seeds `AGENTS.md` + `openspec/` |
+| 1 | `fresh` | `npx --yes skills add -g,codex /kit -y --copy` from blank `node:24` (`which openspec` → not found) | Found 5 under `~/.agents/skills` + `~/.codex/skills`, `bootstrap-global.mjs` does `npm i -g`, then `bootstrap-repo.mjs` seeds `AGENTS.md`/`openspec/` |
+| 2 | `fresh-skip` | same as 1 but `openspec`/`openwiki` already on PATH → global lane skipped | global lane logs `skipping user-scope install`, then the repo lane still seeds `AGENTS.md` + `openspec/` |
 | 3 | `user-scope` | `npx --yes skills add -g /kit` → only `~/.agents/skills` | `~/.agents/skills/*/SKILL.md` present, `~/.codex/skills` not written |
 | 4 | `local-path` | `npx skills add /kit` vs `npx skills add .` — probes cwd bug | `/kit -l` → Found 4; `npx skills add .` from target without kit path → not equivalent (documents that `<path-to-kit>` must be used when a checkout is present) |
 | 5 | `scoping` | `-g` / `-g -a codex` / `-g --all` | universal-only vs host mirror vs wide 56 |
@@ -66,8 +66,8 @@ For each requested scenario the script does, inside the container:
 1. `mkdir -p /tmp/target && cd /tmp/target && git init -q && git config user.email/name`.
 2. Run the lane under test (see table). Report `Found X skills`.
 3. Manual Skill initialization per `INSTALL.md` (idempotent): `cp -r /kit/.agents/skills/task-closeout/bootstrap/sessions/README.md` → `.agents/sessions/README.md` when missing, `printf "sessions/*\n!sessions/README.md\n" > .agents/.gitignore` when missing, `learning-distill/bootstrap/{AGENTS.md,playbooks/README.md,sessions/README.md}` when missing.
-4. Run `node .agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs openspec openwiki` then `node .agents/skills/aksk-bootstrap/scripts/bootstrap.mjs /tmp/target` (fresh → does `npm i -g`; skip → does not).
-5. Validate: `bash /kit/scripts/check-agents-structure.sh .agents` (exit 0), `test -f .agents/skills/aksk-bootstrap/scripts/bootstrap.mjs`, `test -f AGENTS.md` (AKSK:AGENTS-BASELINE), `git status --short` shows only untracked (no `git add`).
+4. Run `node .agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs openspec openwiki`, then both lanes sequentially — `node .agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs /tmp/target` (fresh → does `npm i -g`; skip → does not), then `node .agents/skills/aksk-init/scripts/bootstrap-repo.mjs /tmp/target`.
+5. Validate: `bash /kit/scripts/check-agents-structure.sh .agents` (exit 0), `test -f .agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs`, `test -f .agents/skills/aksk-init/scripts/bootstrap-repo.mjs`, `test -f AGENTS.md` (AKSK:AGENTS-BASELINE), `git status --short` shows only untracked (no `git add`).
 6. Print per-scenario `PASS`/`FAIL` and, on failure, keep enough output to reproduce locally with the printed `docker run …` one-liner.
 
 ## Output
