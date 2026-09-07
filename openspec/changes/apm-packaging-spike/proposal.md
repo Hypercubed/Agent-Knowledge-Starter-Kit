@@ -1,6 +1,6 @@
 ## Why
 
-`npx skills add` ships only SKILL.md trees, so playbooks, rules, and AGENTS.md attachments are generated locally by init scripts instead of installed declaratively. There is no manifest or lockfile for skill content, which hurts reproducible installs. Microsoft APM (`apm.yml` + lockfile, multi-primitive distribution) may close that gap by shipping skills, workflows, and rules together.
+`npx skills add` ships only SKILL.md trees, so playbooks, rules, and AGENTS.md attachments are generated locally by init scripts instead of installed declaratively. There is no manifest or lockfile for skill content, which hurts reproducible installs. Microsoft APM (`apm.yml` + lockfile, multi-primitive distribution) may close that gap by shipping skills, workflows, and rules together. Content dedupe without a dependency manager also pushes complexity onto the consumer: `dedupe-skill-internals` replaces duplicated scripts with runtime sibling resolvers that fail closed when `aksk-bootstrap` is absent, so standalone-`init` installs break; APM would express that coupling as a declared dependency with transitive resolution instead of a runtime surprise.
 
 ## What Changes
 
