@@ -1,30 +1,54 @@
 # Deprecated Knowledge Convention Spec
 
-## Overview
-This spec formalizes the procedure for deprecating durable knowledge inside the Agent Knowledge Starter Kit (AKSK). The convention establishes a consistent way to handle superseded architectural decisions and obsolete troubleshooting patterns so that both humans and AI agents can accurately identify inactive guidance without losing historical context.
+## Purpose
 
-## Requirements
+This spec formalizes the procedure for deprecating durable knowledge inside the Agent Knowledge Starter Kit (AKSK) so that both humans and AI agents can accurately identify inactive guidance without losing historical context, under OpenWiki's generated indexes.
 
-### R1. Vocabulary Rules
-1. For architectural decisions (`openwiki/decisions/`): The term `Superseded` (and `[SUPERSEDED]`) MUST be used when deprecating a decision. The page frontmatter MUST carry the AKSK extension `aksk_status: superseded`.
-2. For troubleshooting patterns (`openwiki/troubleshooting/`): The term `Obsolete` (and `[OBSOLETE]`) MUST be used when deprecating a pattern; the page carries `aksk_status: superseded` with an `aksk_superseded_note` explaining why (troubleshooting pages otherwise omit lifecycle fields).
+## ADDED Requirements
 
-### R2. Listing Representation (Triple-Lock)
-Wherever a deprecated entry is listed (the curated overview page or other curated pages linking to it), its representation MUST conform to the following triple-lock format:
-1. **Grouping**: Deprecated entries SHOULD be grouped under a dedicated heading (`## Superseded` or `## Obsolete`) at the bottom of the listing, or carry the textual lock inline where no grouping exists.
-2. **Textual Prefix**: The list item MUST begin with a bolded textual marker (`**[SUPERSEDED]**` or `**[OBSOLETE]**`).
-3. **Markdown Strikethrough**: The markdown link to the file MUST be fully enclosed in strikethrough tags (`~~[Link Title](file.md)~~`).
+### Requirement: Vocabulary rules
+Deprecation vocabulary SHALL distinguish replaced decisions from dead troubleshooting patterns, and frontmatter keys SHALL match the `learning-distill` schemas.
 
-Example for a decision:
-```markdown
-## Superseded
+#### Scenario: Deprecating a decision
+- **WHEN** a decision under `openwiki/decisions/` is replaced by a newer decision
+- **THEN** the term `Superseded` (marker `[SUPERSEDED]`) is used and the page frontmatter carries `aksk_status: superseded` with `aksk_superseded_by` pointing at the successor page
 
-- **[SUPERSEDED]** ~~[Maintainer plans live under `.agents/docs/plans/`, not `.agents/plans/`](plans-live-under-docs-plans-not-agents-plans.md)~~
-```
+#### Scenario: Deprecating a troubleshooting pattern
+- **WHEN** a troubleshooting pattern under `openwiki/troubleshooting/` no longer applies
+- **THEN** the term `Obsolete` (marker `[OBSOLETE]`) is used and the page frontmatter carries `aksk_status: superseded` with `aksk_superseded_by` set where a successor exists
 
-### R3. File Retention
-Deprecated pages MUST remain in their respective curated directories (`openwiki/decisions/` or `openwiki/troubleshooting/`) and MUST NOT be deleted. This ensures historical context and cross-links continue to function; discovery is plain grep plus the wiki indexes (the retired `docs-search` no longer applies).
+### Requirement: Machine-readable source of truth
+The deprecation state SHALL live in page frontmatter, never only in index prose, so regeneration cannot lose it.
+
+#### Scenario: Index regeneration
+- **WHEN** `sync_wiki_indexes.mjs` regenerates the wiki indexes after a page is deprecated
+- **THEN** the deprecated state remains fully recoverable from the page frontmatter (`aksk_status`, `aksk_superseded_by`)
+
+### Requirement: Generated-index-safe representation
+Deprecated entries SHALL surface their state through generator-preserved fields (the `description`, which the index generator renders) rather than hand-edited index sections, which regeneration wipes.
+
+#### Scenario: Deprecated entry in a generated index
+- **WHEN** a deprecated page appears in a generated `index.md`
+- **THEN** its entry text begins with the bolded textual marker (`**[SUPERSEDED]**` or `**[OBSOLETE]**`) via its frontmatter `description` prefix, with no hand-written sections or strikethrough required in the index file
+
+#### Scenario: Hand-authored prose links
+- **WHEN** a hand-authored (non-generated) page links to a deprecated entry
+- **THEN** the link SHOULD carry the textual marker and MAY use strikethrough (`~~[Title](file.md)~~`) as a visual cue
+
+### Requirement: Page-body banner
+Each deprecated page SHALL carry a human-readable status banner in its body stating the deprecation and linking the successor where one exists.
+
+#### Scenario: Agent opens a deprecated page directly
+- **WHEN** a reader opens the deprecated page file itself (bypassing the index)
+- **THEN** the body banner unambiguously states the page is superseded or obsolete and points at the successor
+
+### Requirement: File retention
+Deprecated pages MUST remain in their respective curated directories (`openwiki/decisions/` or `openwiki/troubleshooting/`) and MUST NOT be deleted.
+
+#### Scenario: Historical reference
+- **WHEN** an old change, bundle, or page links to a deprecated entry
+- **THEN** the link still resolves and the page explains its own deprecated state
 
 ## Dependencies & Out of Scope
+- Out of scope: lifecycle rendering inside OpenWiki's index generator (upstream feature; this convention works without it).
 - Out of scope: Automated migration scripts to proactively sweep for obsolete troubleshooting entries.
-- Out of scope: Deprecating `.agents/docs/plans/` explicitly in this spec (that was handled by a previous change).
