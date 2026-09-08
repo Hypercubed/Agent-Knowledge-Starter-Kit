@@ -6,7 +6,7 @@ Verified against Antigravity's current behavior using the standard Antigravity t
 
 ## Setup
 
-1. Install starter skills in the target repo with `npx skills add Hypercubed/Agent-Knowledge-Starter-Kit`, then run each installed skill's initialization from its `SKILL.md` (see [`INSTALL.md`](../../INSTALL.md)).
+1. Install the kit per [Adopting the kit](./patterns.md#adopting-the-kit).
 2. Keep an optional root `AGENTS.md` bootstrap for interoperability with other tools.
 3. Treat Antigravity Knowledge Items as a local cache, not shared repo documentation.
 4. At closeout, prompt Antigravity to export final task evidence into `.agents/sessions/<folder>/`.

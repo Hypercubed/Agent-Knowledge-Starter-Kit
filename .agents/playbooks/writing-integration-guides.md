@@ -14,7 +14,7 @@ When writing an integration guide for an agent tool that has its own memory, ski
 
 4. **Use the Routing Pattern.** For tools that support a high-precedence instruction file at the project root (e.g., `CLAUDE.md`, `GEMINI.md`, `AGENTS.md`), recommend a "thin bootstrap" that points the agent to the durable knowledge under `.agents/`. This ensures a single source of truth across multiple tools.
 
-5. **Reuse shared integration patterns.** If the tool fits an existing pattern in `docs/integrations/patterns.md`, keep the product page as a quick reference: exact filenames, minimal snippets, discovery/config table, unique caveats, verification date, and references. Update `patterns.md` only when a tool introduces a new reusable pattern or comparison-matrix field.
+5. **Reuse shared integration patterns.** If the tool fits an existing pattern in `docs/integrations/patterns.md`, keep the product page as a quick reference: exact filenames, minimal snippets, discovery/config table, unique caveats, verification date, and references. Never inline the shared install block — Setup step 1 must link `[Adopting the kit](./patterns.md#adopting-the-kit)` instead of repeating the canonical sentence. Update `patterns.md` only when a tool introduces a new reusable pattern or comparison-matrix field.
 
 6. **Describe integration options.** Present three patterns with trade-offs:
    - **Kit as bridge:** Shared `.agents/` tree lets multiple tools coordinate
@@ -40,7 +40,7 @@ When writing an integration guide for an agent tool that has its own memory, ski
 - For persistent assistants with their own long-term memory or workspace files, explicitly separate personal/runtime memory from repo-local durable knowledge. Do not let repo architecture guidance drift into assistant-private memory stores.
 - Don't turn a single weak run into a product-wide claim without reproduction.
 - Don't leave incidental references to whichever guide you used as a template. Keep cross-tool comparisons only when they explain a real integration risk for the target tool.
-- Don't repeat shared "thin wiring, canonical `.agents/`" explanations in every product page. Put shared concepts in `docs/integrations/patterns.md` and link to them from quick references.
+- Don't repeat shared "thin wiring, canonical `.agents/`" explanations in every product page. Put shared concepts in `docs/integrations/patterns.md` and link to them from quick references — in particular, never inline the adopt-the-kit install sentence; link `patterns.md#adopting-the-kit` as the canonical block.
 
 ## IDE and rules-based tools (Cursor, Copilot-style)
 

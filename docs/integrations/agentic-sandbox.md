@@ -4,7 +4,7 @@ Use this page for agents operating in a sandbox with full filesystem and shell a
 
 ## Setup
 
-1. Ensure the target repo has the Agent Knowledge Starter Kit installed (see [`INSTALL.md`](../../INSTALL.md)).
+1. Install the kit per [Adopting the kit](./patterns.md#adopting-the-kit).
 2. Use the **Root `AGENTS.md`** pattern. Ensure a root `AGENTS.md` exists to route the agent into `.agents/`.
 3. If the sandbox environment allows, install Python dependencies required for scripted skills:
    ```bash

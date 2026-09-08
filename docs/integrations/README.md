@@ -4,7 +4,7 @@ This directory contains user-facing guides for connecting specific tools to the 
 
 Start with [Integration Patterns](./patterns.md) to choose the right wiring model. The product pages are quick references for exact filenames, setup snippets, caveats, and verification notes.
 
-Preferred path: run the two lanes in order (EXECUTE lane) — `node .agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs [repo-root]` for globals, then `node .agents/skills/aksk-init/scripts/bootstrap-repo.mjs [repo-root]` for per-repo setup (routing-block attachment, curation-contract attachment, and per-agent spread: `openwiki integrations install <codex|claude|opencode>` vs headless `openwiki --init -p` / `--update -p`) with receipt-partitioned installs. The per-tool guides below are the INSTRUCT-lane/manual fallback for when local execution is not possible (they remain verified against real tool behavior but are no longer the primary wiring path). Do not hardcode agent skill paths such as `~/.agents/skills/` or `~/.codex/skills/` — derive targets from `openwiki integrations install` and `openwiki integrations list` (see `aksk-bootstrap` design D3/D4).
+Preferred path: follow the "Agent-assisted via aksk-bootstrap (preferred)" lane ladder in [`INSTALL.md`](../../INSTALL.md) and the `aksk-bootstrap` skill. The per-tool guides below are the manual fallback for when local execution is not possible.
 
 Before wiring a tool manually, install shared kit skills in the target repo with `npx skills add Hypercubed/Agent-Knowledge-Starter-Kit` and follow [`INSTALL.md`](../../INSTALL.md).
 

@@ -6,7 +6,7 @@ Based on current Warp documentation reviewed on April 13, 2026. Re-check Warp an
 
 ## Setup
 
-1. Install starter skills in the target repo with `npx skills add Hypercubed/Agent-Knowledge-Starter-Kit`, then run each installed skill's initialization from its `SKILL.md` (see [`INSTALL.md`](../../INSTALL.md)).
+1. Install the kit per [Adopting the kit](./patterns.md#adopting-the-kit).
 2. Add or keep a short root `AGENTS.md`.
 3. Keep durable repo policy in `.agents/`, not duplicated across Warp global rules or root bootstrap files.
 4. Keep repo-local reusable workflows in `.agents/skills/` so Warp can discover them as project skills where supported.

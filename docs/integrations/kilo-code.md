@@ -6,7 +6,7 @@ Based on Kilo's documented configuration and discovery model plus repo-local con
 
 ## Setup
 
-1. Install starter skills in the target repo with `npx skills add Hypercubed/Agent-Knowledge-Starter-Kit`, then run each installed skill's initialization from its `SKILL.md` (see [`INSTALL.md`](../../INSTALL.md)).
+1. Install the kit per [Adopting the kit](./patterns.md#adopting-the-kit).
 2. Attach the AKSK routing note to root `AGENTS.md` (`attach_section.mjs . AGENTS.md`) so Kilo reads `.agents/AGENTS.md` and `openwiki/index.md`.
 3. Keep durable repo policy in `.agents/`, not in `.kilo/instructions.md` or agent prompts.
 4. Add `.kilo/` files only when Kilo-native commands, agents, or config add real convenience.

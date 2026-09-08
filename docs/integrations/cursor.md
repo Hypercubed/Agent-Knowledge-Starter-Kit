@@ -6,7 +6,7 @@ Written to match Cursor's documented rule behavior at verification against Curso
 
 ## Setup
 
-1. Install starter skills in the target repo with `npx skills add Hypercubed/Agent-Knowledge-Starter-Kit`, then run each installed skill's initialization from its `SKILL.md` (see [`INSTALL.md`](../../INSTALL.md)).
+1. Install the kit per [Adopting the kit](./patterns.md#adopting-the-kit).
 2. Keep root `AGENTS.md` short, or add an always-on Cursor project rule.
 3. Keep durable repo knowledge in `.agents/`.
 4. Use `.cursor/rules/` for routing, globs, and IDE-specific constraints.

@@ -6,7 +6,7 @@ Written and verified against GitHub Copilot Chat behavior in VS Code with agent 
 
 ## Setup
 
-1. Install starter skills in the target repo with `npx skills add Hypercubed/Agent-Knowledge-Starter-Kit`, then run each installed skill's initialization from its `SKILL.md` (see [`INSTALL.md`](../../INSTALL.md)).
+1. Install the kit per [Adopting the kit](./patterns.md#adopting-the-kit).
 2. Create a repository-level Copilot instruction file to route to `.agents/`.
 3. Keep durable repo policy in `.agents/`, not in instruction files or editor-profile settings.
 4. Add `.github/copilot-instructions.md` as a thin bootstrap.

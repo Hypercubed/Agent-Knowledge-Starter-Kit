@@ -15,7 +15,7 @@ Do not copy long-lived repo policy into every tool's native config. Point the to
 
 ## Adopting the kit
 
-In a target repository, install shared skills with `npx skills add Hypercubed/Agent-Knowledge-Starter-Kit`, then follow each installed skill's **Skill initialization** in its `SKILL.md`. See [`INSTALL.md`](../../INSTALL.md) for the full merge checklist.
+Install starter skills in the target repo with `npx skills add Hypercubed/Agent-Knowledge-Starter-Kit`, then run each installed skill's initialization from its `SKILL.md` (see `INSTALL.md`).
 
 ## Pattern Groups
 

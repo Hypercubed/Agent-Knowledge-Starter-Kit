@@ -37,6 +37,7 @@ Ensure the shared scaffold via **learning-distill** initialization when that ski
 ### Content checks (report, suggest)
 
 - duplication and contradictions between `.agents/AGENTS.md`, playbooks, and knowledge pages
+- inlined adopt-the-kit prose in `docs/integrations/`: flag any product page whose Setup step 1 inlines the canonical sentence instead of linking `[Adopting the kit](./patterns.md#adopting-the-kit)` — grep `Install starter skills in the target repo with` must return hits only in `docs/integrations/patterns.md`, never in a product page
 - oversized AGENTS sections
 - broken relative links within `.agents/` and `openwiki/`
 - frontmatter contract of knowledge pages: filename stem unique per tree; decision pages carry `aksk_status`; validate against `learning-distill/references/*.schema.json`

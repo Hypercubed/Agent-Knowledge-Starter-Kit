@@ -6,7 +6,7 @@ Verified against Zo Computer behavior and documentation on April 21, 2026. Re-ch
 
 ## Setup
 
-1. Install starter skills in the target repo with `npx skills add Hypercubed/Agent-Knowledge-Starter-Kit`, then run each installed skill's initialization from its `SKILL.md` (see [`INSTALL.md`](../../INSTALL.md)).
+1. Install the kit per [Adopting the kit](./patterns.md#adopting-the-kit).
 2. Keep a short root `AGENTS.md` that routes Zo into `.agents/`.
 3. Keep durable repo knowledge in `.agents/`, not scattered across Zo workspace files.
 4. Mirror skills into `/home/workspace/Skills/` for Zo UI visibility: copy (or symlink) each skill from `.agents/skills/<name>/` to `/home/workspace/Skills/<name>/`. Zo scans `/home/workspace/Skills/` for `SKILL.md` files; it does not auto-discover skills nested inside `.agents/` or other repo subdirectories.
