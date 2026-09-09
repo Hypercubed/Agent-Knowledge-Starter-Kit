@@ -1,6 +1,8 @@
-# Agent Knowledge Starter Kit v1.5
+# Agent Knowledge Starter Kit v2.0
 
 A shareable, tool-agnostic starter kit for maintaining a compiled repo knowledge layer for coding agents.
+
+Durable decisions and troubleshooting patterns live as curated OKF pages under `openwiki/decisions/` and `openwiki/troubleshooting/`, indexed by OpenWiki tooling.
 
 This pattern separates three concerns:
 
@@ -8,15 +10,13 @@ This pattern separates three concerns:
 2. **Durable repo knowledge** lives under `.agents/`.
 3. **Agent roles and skills** live in that same `.agents/` tree and describe how coding, learning, and maintenance workflows run.
 
-Important: in this repository, `scaffold/` is the published starter kit. Copy everything under `scaffold/` into `.agents/` at the root of a project that adopts the kit.
-
-The root `.agents/` directory in this repository is for maintaining this starter kit itself. Do not blindly copy it into another repo.
+Important: in this repository, adoption is skill/bootstrap-first. Install the kit skills with your Skills CLI and run each skill's **Skill initialization** once so the repo gains only the folders and template files needed for the installed skills. Default `npx skills add` often places skills under `.agents/skills/`; user or global installs are fine too—session bundles and durable knowledge still belong under this repo’s `.agents/`. Details: [INSTALL.md](INSTALL.md#skill-first-install-default).
 
 The goal is to avoid bloating a single `.agents/AGENTS.md` with temporary notes, while still preserving useful lessons from completed work.
 
 ## Disclaimer
 
-This repository and the kit under `scaffold/` were produced with the help of AI tools. Everything here is **as-is**; **use at your own risk**. Validate instructions, commands, and policies for your environment before relying on them.
+This repository and the kit under `.agents/` were produced with the help of AI tools. Everything here is **as-is**; **use at your own risk**. Validate instructions, commands, and policies for your environment before relying on them.
 
 ## Why this exists
 
@@ -35,47 +35,58 @@ This is intentionally generic. It should work with any system that supports user
 
 ## Quick start
 
-### For humans
+### Ask your agent to install (preferred)
 
-You can install the kit manually or ask an agent to do it.
-
-Manual install:
-
-1. Copy `scaffold/` into your project as `.agents/`.
-2. If the project already has `.agents/`, merge instead of replacing; preserve repo-specific `rules/`, `playbooks/`, and `skills/`.
-3. Edit `.agents/AGENTS.md` with real build, test, and project conventions.
-4. Wire `.agents/skills/*/SKILL.md` and `.agents/agents/*.md` into your editor or agent product.
-
-Agent-assisted install:
+Give your agent this prompt:
 
 ```text
-Install the Agent Knowledge Starter Kit into this repo from
-https://github.com/Hypercubed/Agent-Knowledge-Starter-Kit. Follow INSTALL.md
-from the starter kit. Preserve any existing repo-specific
-`.agents/rules/`, `.agents/playbooks/`, and `.agents/skills/`; merge
-missing kit pieces instead of replacing `.agents/` wholesale. After
-installing, summarize changed files and any manual tool-integration
-steps I still need to do.
+Install the Agent Knowledge Starter Kit into this repo:
+
+1. npx skills add Hypercubed/Agent-Knowledge-Starter-Kit#develop -g -a <agent>
+   (or npx skills add <path-to-kit> -g -a <agent> with a local checkout;
+   <agent> is your host id — opencode, codex, claude, or * (`-g --all` for universal ~/.agents/skills); positional <source> must come first — npx skills add -g -a <source> fails with Missing required argument: source; npx required; this installs all skills)
+   e.g. npx skills add Hypercubed/Agent-Knowledge-Starter-Kit#develop -g -a opencode or npx skills add Hypercubed/Agent-Knowledge-Starter-Kit -g --all
+2. Run the aksk-bootstrap skill (global: npm i -g for openspec/openwiki, global skills incl. `openspec-*`).
+3. Then run the aksk-init skill (per-repo: scaffold .agents/ + AGENTS.md baseline first, then openspec/openwiki init, routing/lifecycle, wiki contract).
+
+See INSTALL.md for overrides. aksk-bootstrap owns global setup; aksk-init owns per-repo setup.
 ```
 
-### For agents
+### Manual install
 
-Follow [INSTALL.md](INSTALL.md). Treat `scaffold/` as the source tree that becomes `.agents/` in the target repo. If `.agents/` already exists, merge conservatively and preserve existing repo-specific knowledge.
+From the target repo:
+
+```bash
+npm i -g @fission-ai/openspec openwiki
+npx skills add Hypercubed/Agent-Knowledge-Starter-Kit#develop -g  # add #develop until v2.0 is published; positional <source> must come first
+# or: npx skills add <path-to-kit> -g  # local checkout, installs all skills
+```
+
+Add `-a <your-agent>` (e.g. `-a codex`) if you also want the host-specific mirror alongside `~/.agents/skills`.
+
+Then run `aksk-init` — via the skill (interactive) or the script:
+
+```bash
+node ~/.agents/skills/aksk-init/scripts/bootstrap-repo.mjs [repo-root]
+```
+
+See [INSTALL.md](INSTALL.md) for overrides and [`.agents/skills/aksk-init/SKILL.md`](.agents/skills/aksk-init/SKILL.md) for the full contract.
 
 ## How to use this kit
 
 Use the kit as a lightweight maintenance loop around normal agent work:
 
-1. **Start with the repo knowledge layer.** Keep a short root `AGENTS.md` or tool rule that points agents to `.agents/AGENTS.md` and `.agents/docs/index.md`. Put durable repo policy in `.agents/`, not in each tool's native config.
-2. **Do the implementation work normally.** Have the coding agent read the relevant durable guidance, use playbooks or troubleshooting docs when needed, and keep tool-specific prompts as thin wiring.
+1. **Start with the repo knowledge layer.** Keep a short root `AGENTS.md` or tool rule that points agents to `.agents/AGENTS.md` and `openwiki/index.md` (the kit's `AKSK:ROUTING` block does this; attach it with `attach_section.mjs`). Put durable repo policy in `.agents/`, not in each tool's native config.
+2. **Do the implementation work normally.** Have the coding agent read the relevant durable guidance, use playbooks, or curated pages under `openwiki/troubleshooting/` when needed, and keep tool-specific prompts as thin wiring.
 3. **Close meaningful tasks with `task-closeout`.** At completion, blockage, or abandonment, invoke the repo-local `task-closeout` skill. It should write raw evidence and a structured bundle under `.agents/sessions/<folder>/`, which is usually gitignored. The canonical task/session identifier is the `task_id` field inside that bundle's `summary.json`; the folder name is only a sortable storage label.
-4. **Promote durable lessons with `learning-distill`.** After closeout, run a separate learning pass with `learning-distill`. Pass the session bundle path and use the `task_id` field in `summary.json` when referring to the task. Promote only stable, reusable lessons into `.agents/AGENTS.md`, `.agents/docs/`, or `.agents/playbooks/`; leave one-off task history in `.agents/sessions/`.
-5. **Keep the knowledge layer clean with `knowledge-lint`.** Periodically invoke `knowledge-lint` to find duplicate, stale, contradictory, oversized, or uncategorized guidance before the layer becomes noisy.
+4. **Promote durable lessons with `learning-distill`.** After closeout, run a separate learning pass with `learning-distill`. Pass the session bundle path and use the `task_id` field in `summary.json` when referring to the task. Promote only stable, reusable lessons into `.agents/AGENTS.md`, the curated wiki trees, or `.agents/playbooks/`. Leave one-off task history in `.agents/sessions/`.
+5. **Keep the knowledge layer clean with `docs-lint`.** Periodically invoke `docs-lint` to find duplicate, stale, contradictory, oversized, or uncategorized guidance before the layer becomes noisy.
 6. **Review the diff.** Treat durable knowledge changes like code: inspect what changed, make sure session bundles stayed temporary, and commit only the files that should become shared repo knowledge.
 
 ```mermaid
 flowchart LR
-    A[Code task] --> B[task-closeout]
+    A[Code task]
+    A --> B[task-closeout]
     B --> C[Session bundle<br/>.agents/sessions/&lt;folder&gt;<br/>summary.json<br/>active-task.md<br/>learning-candidate.md]
 
     C --> D[learning-distill]
@@ -83,8 +94,8 @@ flowchart LR
 
     E -->|ephemeral| F[Keep in session bundle]
     E -->|agent guidance| G[.agents/AGENTS.md]
-    E -->|troubleshooting| H[.agents/docs/troubleshooting.md]
-    E -->|repo decision| I[.agents/docs/repo-decisions.md]
+    E -->|troubleshooting| H[openwiki/troubleshooting/]
+    E -->|repo decision| I[openwiki/decisions/]
     E -->|playbook| J[.agents/playbooks/*]
 
     G --> K[index.md + log.md]
@@ -93,7 +104,7 @@ flowchart LR
     J --> K
 
     K --> L[Mark distilled]
-    L --> M[knowledge-lint]
+    L --> M[docs-lint]
     M --> N[Clean duplicates, contradictions,<br/>stale guidance, missing index coverage]
 ```
 
@@ -108,12 +119,12 @@ Do not replace an existing `.agents/` tree wholesale unless it is already dispos
 Use this checklist:
 
 1. Inventory existing `.agents/` content and mark domain-specific files to keep.
-2. Add missing starter-kit directories from `scaffold/`: `docs/`, `agents/`, and `sessions/`.
-3. Add the portable maintenance skills if they are not already present: `task-closeout`, `learning-distill`, and `knowledge-lint`.
+2. Install the skills you need with `npx skills add Hypercubed/Agent-Knowledge-Starter-Kit` (or copy selected skill folders from `.agents/skills/`) and run each skill's **Skill initialization** so missing template files and session layout are created without overwriting existing content.
+3. Add the portable maintenance skills if they are not already present: `task-closeout`, `learning-distill`, and `docs-lint`.
 4. Merge `.agents/AGENTS.md` by hand so stable repo guidance stays concise and temporary history stays out.
 5. Confirm session ignore rules. Prefer the kit default in `.agents/.gitignore`: `sessions/*` and `!sessions/README.md`. Use repo-root `.gitignore` patterns only as an alternative: `.agents/sessions/*` and `!.agents/sessions/README.md`.
-6. Record the adoption in `.agents/docs/log.md` and any durable rationale in `.agents/docs/repo-decisions.md`.
-7. Update `.agents/docs/index.md` so pre-existing repo-specific `rules/`, `playbooks/`, and `skills/` are discoverable.
+6. Record any durable rationale as a curated page under `openwiki/decisions/` (per the learning-distill contract).
+7. Run `node .agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs` so wiki indexes surface pre-existing repo-specific `rules/`, `playbooks/`, and `skills/` knowledge.
 
 If both root `AGENTS.md` and `.agents/AGENTS.md` exist, treat root `AGENTS.md` as the agent entrypoint for that checkout and `.agents/AGENTS.md` as the portable knowledge-layer file. Keep one source of truth for each instruction: root `AGENTS.md` should point agents into `.agents/` or contain only bootstrap guidance, while durable repo conventions live in `.agents/AGENTS.md`.
 
@@ -123,7 +134,7 @@ Design principles, repository layout, agent roles, durable knowledge files, task
 
 ## Tool integration
 
-This kit ships **content** (markdown, layout, and conventions), not a single vendor-specific config. You still need to register `.agents/skills/*/SKILL.md` and `.agents/agents/*.md` (or equivalent) however your stack expects. Keep the on-disk layout under `.agents/` stable so the knowledge layer stays portable when you change tools.
+This kit ships **content** (markdown, layout, and conventions), not a single vendor-specific config. You still need to register `.agents/skills/*/SKILL.md` however your stack expects. Keep the on-disk layout under `.agents/` stable so the knowledge layer stays portable when you change tools.
 
 ## Integrations
 
@@ -132,9 +143,11 @@ Tool-specific integration guides live in [`docs/integrations/`](docs/integration
 Currently available:
 
 - [Integration Patterns](docs/integrations/patterns.md)
+- [Agentic Sandbox](docs/integrations/agentic-sandbox.md)
 - [Antigravity](docs/integrations/antigravity.md)
 - [Claude Code](docs/integrations/claude-code.md)
 - [Codex](docs/integrations/codex.md)
+- [Copilot](docs/integrations/copilot.md)
 - [Cursor](docs/integrations/cursor.md)
 - [Gemini CLI](docs/integrations/gemini-cli.md)
 - [Hermes](docs/integrations/hermes.md)
@@ -142,6 +155,7 @@ Currently available:
 - [OpenClaw](docs/integrations/openclaw.md)
 - [OpenCode](docs/integrations/opencode.md)
 - [Warp](docs/integrations/warp.md)
+- [Zo Computer](docs/integrations/zo-computer.md)
 
 ---
 

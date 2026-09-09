@@ -58,20 +58,13 @@ else
 fi
 
 section "Required Files"
-required_files="
+  required_files="
 AGENTS.md
 .gitignore
-docs/MAINTENANCE.md
-docs/index.md
-docs/log.md
-docs/repo-decisions.md
-docs/troubleshooting.md
-agents/coding-agent.md
-agents/learning-agent.md
-agents/lint-agent.md
 playbooks/README.md
 sessions/README.md
-skills/knowledge-lint/SKILL.md
+skills/aksk-bootstrap/SKILL.md
+skills/docs-lint/SKILL.md
 skills/learning-distill/SKILL.md
 skills/task-closeout/SKILL.md
 skills/task-closeout/example/task-bundle/summary.json
@@ -94,22 +87,26 @@ EOF
 
 section "Session Tracking"
 if in_git_repo; then
-  expected_session_file="$target/sessions/README.md"
-  actual_session_files="$(tracked_files_under "$target/sessions" | sort)"
-  printf '%s\n' "$actual_session_files"
+  if [ -d "$target/sessions" ]; then
+    expected_session_file="$target/sessions/README.md"
+    actual_session_files="$(tracked_files_under "$target/sessions" | sort)"
+    printf '%s\n' "$actual_session_files"
 
-  if [ "$actual_session_files" = "$expected_session_file" ]; then
-    pass "Only sessions/README.md is tracked for $target."
-  else
-    fail "Tracked session files differ from expected list for $target."
-    printf '\nExpected:\n%s\n' "$expected_session_file"
-  fi
+    if [ "$actual_session_files" = "$expected_session_file" ]; then
+      pass "Only sessions/README.md is tracked for $target."
+    else
+      fail "Tracked session files differ from expected list for $target."
+      printf '\nExpected:\n%s\n' "$expected_session_file"
+    fi
 
-  ignored_sessions="$(git status --short --ignored -- "$target/sessions" | sed -n 's/^!! //p')"
-  if [ -n "$ignored_sessions" ]; then
-    printf '\nIgnored session bundles:\n%s\n' "$ignored_sessions"
+    ignored_sessions="$(git status --short --ignored -- "$target/sessions" | sed -n 's/^!! //p')"
+    if [ -n "$ignored_sessions" ]; then
+      printf '\nIgnored session bundles:\n%s\n' "$ignored_sessions"
+    else
+      printf '\nNo ignored session bundles reported.\n'
+    fi
   else
-    printf '\nNo ignored session bundles reported.\n'
+    pass "No sessions directory present for $target; skipping session tracking checks."
   fi
 else
   warn "Not inside a git work tree; skipping tracked/ignored session checks."

@@ -1,0 +1,33 @@
+schema: spec-driven
+
+context: |
+  The Agent Knowledge Starter Kit (AKSK) is a tool-agnostic system for maintaining a repository's knowledge layer.
+  Core Principles:
+  - Concise top-level instruction files (AGENTS.md).
+  - Durable rationale, tradeoffs, and architectural choices in .agents/docs/decisions/.
+  - Recurring issue patterns, causes, and validation steps in .agents/docs/troubleshooting/.
+  - Append-only log of maintenance activity in .agents/docs/log.md.
+  - Temporary session history in .agents/sessions/ (gitignored).
+  Maintenance Loop:
+  - task-closeout: Capture session artifacts.
+  - learning-distill: Promote durable lessons to .agents/ docs or AGENTS.md.
+  - docs-lint: Ensure coherence and fix contradictions.
+  Tech Stack:
+  - Markdown for all documentation.
+  - Bash/Shell scripts for kit tools (npx skills-cli).
+  - Mermaid for workflow visualization.
+
+rules:
+  proposal:
+    - Focus on how the change impacts the durable knowledge layer (.agents/ docs).
+    - Identify if the change requires new decisions or troubleshooting entries.
+    - Maintain the kit's philosophy of separation between temporary session data and durable repo knowledge.
+  design:
+    - Use Mermaid diagrams for workflow or architectural changes.
+    - Ensure new directories or files follow the `.agents/` structure (e.g., `.agents/docs/decisions/`).
+    - Explicitly address cross-tool compatibility (tool-agnostic design).
+  tasks:
+    - Always include a 'task-closeout' step at the end of meaningful implementation work.
+    - Include a 'learning-distill' step if the work uncovers reusable patterns or durable rationale.
+    - Include verification steps using `docs-lint` or relevant validation scripts.
+    - Break tasks into manageable chunks that respect the repo's single-tree architecture.

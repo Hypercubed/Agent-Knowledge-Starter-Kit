@@ -6,29 +6,26 @@ Based on current OpenCode documentation reviewed on April 12, 2026. Re-check Ope
 
 ## Setup
 
-1. Install or merge the starter kit into the target repo as `.agents/`.
+1. Install the kit per [Adopting the kit](./patterns.md#adopting-the-kit).
 2. Keep a short root `AGENTS.md` that routes OpenCode into `.agents/`.
 3. Keep durable repo policy in `.agents/`, not duplicated across `AGENTS.md`, `opencode.json`, and commands.
 4. Let OpenCode discover `.agents/skills/` natively when available.
 5. Add `.opencode/commands/` or `.opencode/agents/` only for OpenCode-specific convenience.
 
-```markdown
-# AGENTS.md
+Attach the marker-delimited `AKSK:ROUTING` section rather than hand-writing this file:
 
-This repo uses the Agent Knowledge Starter Kit.
-
-- Read `.agents/AGENTS.md` for durable repo guidance.
-- Use `.agents/docs/index.md` to find decisions, troubleshooting, and playbooks.
-- Treat `.agents/skills/*/SKILL.md` as canonical repo-local workflows.
-- Keep temporary task evidence in `.agents/sessions/`; promote only durable lessons back into `.agents/`.
+```bash
+node .agents/skills/aksk-bootstrap/scripts/attach_section.mjs . AGENTS.md
 ```
+
+The attachment appends the section below any existing content, refreshes it in place when the kit's template changes, and is idempotent on re-run. Add tool-specific notes outside the markers - never edit between them.
 
 Optional `opencode.json`:
 
 ```json
 {
   "$schema": "https://opencode.ai/config.json",
-  "instructions": [".agents/AGENTS.md", ".agents/docs/index.md"]
+  "instructions": [".agents/AGENTS.md", "openwiki/index.md"]
 }
 ```
 
@@ -47,7 +44,7 @@ Optional `opencode.json`:
 
 - Use `opencode.json` `instructions` as routing, not as a second durable policy store.
 - `.opencode/commands/` are prompt shortcuts. Keep them as pointers to `.agents/skills/` or `.agents/playbooks/`.
-- `.opencode/agents/` should define OpenCode runtime behavior; portable role guidance belongs under `.agents/agents/`.
+- `.opencode/agents/` should define OpenCode runtime behavior; portable role guidance and workflow boundaries live in `.agents/AGENTS.md`, kit skills under `.agents/skills/`, and the shared [Architecture](../../docs/architecture.md) document for this starter.
 
 ## Workflow
 

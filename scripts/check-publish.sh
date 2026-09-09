@@ -4,7 +4,7 @@
 # - Required: bash, git, find, sed
 # - Required local helper: scripts/check-agents-structure.sh
 # - Optional: timeout bounds optional npx probes when installed.
-# - Optional: globally installed or npx-available remark checks Markdown formatting.
+# - Optional: remark-cli with remark-frontmatter and remark-gfm checks Markdown formatting.
 # - Optional: .remarkrc.json configures frontmatter/GFM support and Markdown style.
 # - Optional: npx with locally available markdown-link-check validates Markdown links.
 # - Optional: rg runs publish leakage scans.
@@ -81,8 +81,7 @@ run_structure_check() {
 section "Repository"
 printf 'Root: %s\n' "$ROOT_DIR"
 
-section "Portable Agent Structure"
-run_structure_check scaffold
+section "Portable knowledge structure"
 run_structure_check .agents
 
 section "Markdown Formatting"
@@ -97,8 +96,14 @@ elif command -v remark >/dev/null 2>&1; then
   else
     fail "Remark Markdown check failed."
   fi
+elif npx_package_available remark --help; then
+  if timeout_cmd 60s npx --no-install remark $md_files --frail; then
+    pass "Remark Markdown check passed via npx."
+  else
+    fail "Remark Markdown check failed via npx."
+  fi
 else
-  warn "remark is not installed; skipping Markdown formatting check."
+  warn "remark is not installed and not available to npx without installation; skipping Markdown formatting check."
 fi
 
 section "Markdown Links"
@@ -125,22 +130,31 @@ else
   warn "markdown-link-check is not available to npx without installation; skipping link validation."
 fi
 
-section "Scaffold File List"
-find scaffold -maxdepth 4 -type f | sort
+section "Published Files List"
+find .agents -maxdepth 4 -type f | sort
 
 section "Publish Leakage Scans"
 if ! command -v rg >/dev/null 2>&1; then
   warn "rg is not installed; skipping leakage scans."
 else
   run_warning_scan \
-    "Starter-repo-only language in scaffold" \
-    'agent-knowledge-starter|dogfood|sync-scaffold|\.agents/plans' \
-    scaffold
-
-  run_warning_scan \
     "High-signal secret or local path patterns" \
     'Bearer [A-Za-z0-9._-]{20,}|sk-[A-Za-z0-9_-]{20,}|ghp_[A-Za-z0-9_]{20,}|github_pat_[A-Za-z0-9_]{20,}|AWS_ACCESS_KEY_ID|AWS_SECRET_ACCESS_KEY|-----BEGIN .*PRIVATE KEY-----|/home/[A-Za-z0-9._-]+/|C:\\Users\\' \
-    README.md INSTALL.md docs scaffold .agents
+    README.md INSTALL.md docs .agents
+fi
+
+section "Knowledge path hygiene"
+if ! command -v rg >/dev/null 2>&1; then
+  warn "rg is not installed; skipping doubled-path check."
+else
+  printf '\n-- %s --\n' "Doubled .agents/ path segments (bad global replace)"
+  # Require a path segment after the doubled root (avoids prose that cites the
+  # substring `.agents/.agents` as an anti-pattern example).
+  if rg -n --hidden --glob '!*sessions/[0-9]*' '\.agents/\.agents/' README.md INSTALL.md docs .agents; then
+    fail "Found doubled .agents/ path segments; fix bulk replace or copy/paste before publishing."
+  else
+    pass "No doubled .agents/ path segments under checked paths."
+  fi
 fi
 
 section "Summary"

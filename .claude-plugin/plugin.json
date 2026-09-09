@@ -1,6 +1,6 @@
 {
   "name": "agent-knowledge-starter-kit",
-  "version": "1.5.0",
+  "version": "2.0.0",
   "description": "Portable maintenance skills for building and curating a repo-local agent knowledge layer.",
   "author": {
     "name": "J. Harshbarger",
@@ -17,9 +17,10 @@
     "repo-maintenance"
   ],
   "skills": [
-    "./scaffold/skills/task-closeout",
-    "./scaffold/skills/learning-distill",
-    "./scaffold/skills/knowledge-lint"
-  ],
-  "agents": "./scaffold/agents/"
+    "./.agents/skills/task-closeout",
+    "./.agents/skills/learning-distill",
+    "./.agents/skills/docs-lint",
+    "./.agents/skills/aksk-bootstrap",
+    "./.agents/skills/aksk-init"
+  ]
 }

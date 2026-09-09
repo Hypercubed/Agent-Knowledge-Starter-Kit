@@ -6,11 +6,11 @@ Verified against Antigravity's current behavior using the standard Antigravity t
 
 ## Setup
 
-1. Install or merge the starter kit into the target repo as `.agents/`.
+1. Install the kit per [Adopting the kit](./patterns.md#adopting-the-kit).
 2. Keep an optional root `AGENTS.md` bootstrap for interoperability with other tools.
 3. Treat Antigravity Knowledge Items as a local cache, not shared repo documentation.
 4. At closeout, prompt Antigravity to export final task evidence into `.agents/sessions/<folder>/`.
-5. Distill durable lessons into `.agents/docs/`, `.agents/playbooks/`, or `.agents/AGENTS.md`.
+5. Distill durable lessons into the curated wiki trees, `.agents/playbooks/`, or `.agents/AGENTS.md`.
 
 ## Discovery and Config
 

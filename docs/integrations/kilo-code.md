@@ -6,22 +6,19 @@ Based on Kilo's documented configuration and discovery model plus repo-local con
 
 ## Setup
 
-1. Install or merge the starter kit into the target repo as `.agents/`.
-2. Add a short root `AGENTS.md` that tells Kilo to read `.agents/AGENTS.md` and `.agents/docs/index.md`.
+1. Install the kit per [Adopting the kit](./patterns.md#adopting-the-kit).
+2. Attach the AKSK routing note to root `AGENTS.md` (`attach_section.mjs . AGENTS.md`) so Kilo reads `.agents/AGENTS.md` and `openwiki/index.md`.
 3. Keep durable repo policy in `.agents/`, not in `.kilo/instructions.md` or agent prompts.
 4. Add `.kilo/` files only when Kilo-native commands, agents, or config add real convenience.
 5. Keep personal defaults in global Kilo config; commit only repo-specific wiring.
 
-```markdown
-# AGENTS.md
+Attach the marker-delimited `AKSK:ROUTING` section rather than hand-writing this file:
 
-This repo uses the Agent Knowledge Starter Kit.
-
-- Read `.agents/AGENTS.md` for durable repo guidance.
-- Use `.agents/docs/index.md` to find decisions, troubleshooting, and playbooks.
-- Keep raw task evidence in `.agents/sessions/`.
-- Do not duplicate long-lived policy into `.kilo/` files.
+```bash
+node .agents/skills/aksk-bootstrap/scripts/attach_section.mjs . AGENTS.md
 ```
+
+The attachment appends the section below any existing content, refreshes it in place when the kit's template changes, and is idempotent on re-run. Add tool-specific notes outside the markers - never edit between them.
 
 Example thin command:
 
@@ -52,7 +49,7 @@ Read `.agents/skills/task-closeout/SKILL.md` and follow it exactly. Keep tempora
 ## Workflow
 
 1. Start from the repo root.
-2. Read root `AGENTS.md`, then `.agents/AGENTS.md` and `.agents/docs/index.md`.
+2. Read root `AGENTS.md`, then `.agents/AGENTS.md` and `openwiki/index.md`.
 3. Use `.kilo/command/*.md` and `.kilo/agent/*.md` as convenience wrappers only.
 4. Keep raw evidence in `.agents/sessions/`, then distill stable lessons into `.agents/`.
 

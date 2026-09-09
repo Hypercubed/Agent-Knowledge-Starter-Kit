@@ -1,67 +1,22 @@
-# AGENTS.md
+## Routing Directives
 
-Consult this file first for repo-wide operational guidance.
+- **UPON STARTUP:** You MUST read `openwiki/index.md` and `.agents/AGENTS.md` before executing any file modifications. This ensures you understand the repository layout and available tools.
+- **WHEN EXPLORING KNOWLEDGE:** Start from `openwiki/index.md` and the directory indexes under `openwiki/decisions/` and `openwiki/troubleshooting/`. Indexes contain descriptions and tags that help identify relevant files.
+- **WHEN DEBUGGING:** If you encounter a failing test, build error, or runtime exception, your FIRST action MUST be to search durable knowledge for it: `grep -ri "<error or symptom>" openwiki/ .agents/` before debugging blind.
+- **BEFORE ARCHITECTURAL CHANGES:** You MUST search `openwiki/decisions/` for recorded decisions to ensure your proposed changes do not violate established design patterns.
 
-This file is template content for `.agents/AGENTS.md`.
+## Project Learnings
 
-## Disclaimer
+- **Skill renaming workflow:** When renaming a skill, use shell tools to locate all path and string references and update the SKILL.md frontmatter. Add a note under "Recurring pitfalls" in AGENTS.md for this pattern.
+- **Maintenance script feedback:** When writing scripts (especially those using `npx`), always include an initial "Starting..." message and a `--verbose` flag to prevent agents from assuming a hang during background execution.
+- **OpenWiki concurrency guard:** Before editing files when `openwiki` may be active, check `test -f openwiki/.run.json && echo "openwiki running: $(jq -r .phase openwiki/.run.json)"`; if running, wait or notify the user — editing mid-run leaves `openwiki/.last-update.json: status: "interrupted"` and forces the next run to re-plan (source fingerprint drift).
 
-This kit was produced with the help of AI tools. It is provided **as-is**; **use at your own risk**. Treat every file as a starting point: validate instructions, commands, and policies against your own project before you rely on them.
+## Self-improvement loop
 
-## Purpose
+This repository uses the AKSK knowledge loop for durable learning:
 
-This file contains concise, high-signal instructions for future agents working in this repository.
+1. **Analyze** — was a rule missing from `.agents/AGENTS.md` or ignored?
+2. **Closeout** — bundle the session under `.agents/sessions/` per `task-closeout`.
+3. **Distill** — promote stable lessons: decisions/troubleshooting to `openwiki/`, behavior rules to `.agents/AGENTS.md` or playbooks.
+4. **Prune** — remove guidance that no longer prevents mistakes.
 
-## What belongs here
-
-- build and test commands
-- architecture constraints
-- recurring high-confidence pitfalls
-- concise, actionable repo conventions
-- short validation or review checklists
-
-## What does not belong here
-
-- task history
-- long explanations
-- one-off debugging notes
-- speculative ideas
-- low-confidence lessons
-
-## Maintenance rules
-
-- Keep this file concise.
-- Prefer bullets over prose.
-- Add guidance only when it is stable and broadly useful.
-- Move rationale to `.agents/docs/repo-decisions.md`.
-- Move recurring failure details to `.agents/docs/troubleshooting.md`.
-- Move multi-step procedures to `.agents/playbooks/` (sibling of `.agents/docs/`, not inside it).
-- Keep temporary task artifacts in `.agents/sessions/`, not in durable knowledge files.
-
-## This repository (agent-knowledge-starter)
-
-- `scaffold/` in git is the **distributable kit**: it should read like a consumer’s `.agents/` tree only (no starter-repo narration inside those files).
-- An optional `.agents/` here is **maintainer dogfood** and may diverge from `scaffold/`; do not treat parity with `scaffold/` as a requirement.
-- Edit `scaffold/` when improving the generic template; use `.agents/` for lessons and workflow that apply to maintaining **this** repo.
-- **Skills:** add portable kit skills under `scaffold/skills/` (they sync into `.agents/skills/`). Add maintainer-only skills only under `.agents/skills/`, never under `scaffold/`; keep any helper script beside `SKILL.md` in that skill folder so adopters do not receive them.
-- Treat per-task bundle subfolders under `.agents/sessions/` as gitignored working memory unless deliberately force-added; a tracked `.agents/sessions/README.md` may exist per kit layout.
-
-## Placeholder sections
-
-### Build and test
-
-- Add repo-specific commands here.
-
-### Coding conventions
-
-- Add repo-specific conventions here.
-
-### Recurring pitfalls
-
-- The maintainer often mistypes `.agent/` when they mean `.agents/`. If a request mentions `.agent/`, verify whether the existing `.agents/` path is intended before creating a new `.agent/` tree.
-
-### Before submitting changes
-
-- Run relevant tests.
-- Validate generated outputs if applicable.
-- Check for updates needed in `.agents/` when durable lessons were learned.

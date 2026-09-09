@@ -1,0 +1,260 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:126d24fac9757d8a27133127b3ba60e022135e917f14b632589dd4aa6c242c87",
+  "claims": [
+    {
+      "id": "claim_5abe14d0e94c4ea5a879d67cecf5a919",
+      "statement": "The curated knowledge trees are decisions/, troubleshooting/, plus the root pages overview.md and maintenance-format.md; pages under them are authored directly by the distilling agent or maintainer in OKF format and their entry identity is the filename stem unique within its tree.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-init/references/wiki-contract-template.md",
+          "version": "repo-file-v1:sha256:f4b37c8d7f1288d6697a6469eb195a25e980cb9317766827fd341e56a01561fc"
+        },
+        {
+          "resource": "repo://.agents/skills/learning-distill/SKILL.md",
+          "version": "repo-file-v1:sha256:c9bcbfa4bd0ac7f4f20aff039397460570eac461b054ed3a303caf0ddba9683f"
+        },
+        {
+          "resource": "repo://openspec/specs/distill-routing/spec.md",
+          "version": "repo-file-v1:sha256:e28bea24fa9cd8c4b89b739d0ec8569785ad150088bd6544872fb4ded04d86a9"
+        }
+      ]
+    },
+    {
+      "id": "claim_77b718254138409e8f09726b27c38673",
+      "statement": "The AKSK curation contract lives between <!-- AKSK:WIKI-CONTRACT:BEGIN --> and <!-- AKSK:WIKI-CONTRACT:END --> markers inside openwiki/INSTRUCTIONS.md; OpenWiki-owned content outside those markers takes precedence and hand-editing between them is prohibited.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-init/references/wiki-contract-template.md",
+          "version": "repo-file-v1:sha256:f4b37c8d7f1288d6697a6469eb195a25e980cb9317766827fd341e56a01561fc"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/attach_wiki_contract.mjs",
+          "version": "repo-file-v1:sha256:cd684c5946d746b89ec10f1bd965951f271ddeb5aec9515f83d9288b8ba0ac05"
+        },
+        {
+          "resource": "repo://.agents/skills/learning-distill/SKILL.md",
+          "version": "repo-file-v1:sha256:c9bcbfa4bd0ac7f4f20aff039397460570eac461b054ed3a303caf0ddba9683f"
+        }
+      ]
+    },
+    {
+      "id": "claim_651325b4afc9449492e466492398de07",
+      "statement": "attach_wiki_contract.mjs appends the templated curation section to an existing openwiki/INSTRUCTIONS.md, never creates the file, preserves all OpenWiki-owned content, and fails fast with exit 2 and the verbatim prerequisite `openwiki --init` when the file is missing with no writes.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-init/SKILL.md",
+          "version": "repo-file-v1:sha256:7447c7ad965ddf91176213abed0aa8b780bf169d92827fef3699a5c745f86763"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/attach_wiki_contract.mjs",
+          "version": "repo-file-v1:sha256:cd684c5946d746b89ec10f1bd965951f271ddeb5aec9515f83d9288b8ba0ac05"
+        },
+        {
+          "resource": "repo://openspec/specs/wiki-contract/spec.md",
+          "version": "repo-file-v1:sha256:f20c08afe4ccc4b8bbbc3a5f2423ba89ea430d0c9ca2ab164147d1952b0cc4ea"
+        }
+      ]
+    },
+    {
+      "id": "claim_11187d87dc634a5880e8b684f7b66767",
+      "statement": "The attachment is idempotent and self-updating: re-running when the marked section already matches the template is a no-op (reports already up to date), and when the template changed only the content between AKSK:WIKI-CONTRACT markers is refreshed in place.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/attach_wiki_contract.mjs",
+          "version": "repo-file-v1:sha256:cd684c5946d746b89ec10f1bd965951f271ddeb5aec9515f83d9288b8ba0ac05"
+        },
+        {
+          "resource": "repo://openspec/specs/wiki-contract/spec.md",
+          "version": "repo-file-v1:sha256:f20c08afe4ccc4b8bbbc3a5f2423ba89ea430d0c9ca2ab164147d1952b0cc4ea"
+        }
+      ]
+    },
+    {
+      "id": "claim_75aecf84e0d14c139de4992f4cbf18eb",
+      "statement": "Preserve-and-link semantics require that when openwiki --update would regenerate a page under a curated tree, the AKSK-authored page is kept and generated material links to it instead of replacing it, and all aksk_* frontmatter extension fields survive update round-trips.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-init/references/wiki-contract-template.md",
+          "version": "repo-file-v1:sha256:f4b37c8d7f1288d6697a6469eb195a25e980cb9317766827fd341e56a01561fc"
+        },
+        {
+          "resource": "repo://.agents/skills/learning-distill/SKILL.md",
+          "version": "repo-file-v1:sha256:c9bcbfa4bd0ac7f4f20aff039397460570eac461b054ed3a303caf0ddba9683f"
+        },
+        {
+          "resource": "repo://openspec/specs/distill-routing/spec.md",
+          "version": "repo-file-v1:sha256:e28bea24fa9cd8c4b89b739d0ec8569785ad150088bd6544872fb4ded04d86a9"
+        }
+      ]
+    },
+    {
+      "id": "claim_f24917c3fd9c49ba88bebfc437bbd3fb",
+      "statement": "Descriptive lessons distilled from session bundles bypass the openwiki --update CLI; distillation authors pages directly and refreshes indexes deterministically via sync_wiki_indexes.mjs, while openwiki --update remains only the scheduled reconciliation path.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs",
+          "version": "repo-file-v1:sha256:85c6e19effcad0d70b581ea2144ded924babe38897ade26f0abf0d2668e76e58"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/references/wiki-contract-template.md",
+          "version": "repo-file-v1:sha256:f4b37c8d7f1288d6697a6469eb195a25e980cb9317766827fd341e56a01561fc"
+        },
+        {
+          "resource": "repo://.agents/skills/learning-distill/SKILL.md",
+          "version": "repo-file-v1:sha256:c9bcbfa4bd0ac7f4f20aff039397460570eac461b054ed3a303caf0ddba9683f"
+        },
+        {
+          "resource": "repo://openspec/specs/distill-routing/spec.md",
+          "version": "repo-file-v1:sha256:e28bea24fa9cd8c4b89b739d0ec8569785ad150088bd6544872fb4ded04d86a9"
+        }
+      ]
+    },
+    {
+      "id": "claim_f19bb08c5d4940a1af59ecd5d2a239b1",
+      "statement": "Curated pages extend OKF base frontmatter (type, title, description, tags, timestamp) with aksk_status required on decisions/ pages (values accepted, superseded, provisional), optional aksk_superseded_by successor slug, and optional aksk_depends_on list of qualified references decisions/<slug> or troubleshooting/<slug> where slug equals the target filename stem.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/learning-distill/SKILL.md",
+          "version": "repo-file-v1:sha256:c9bcbfa4bd0ac7f4f20aff039397460570eac461b054ed3a303caf0ddba9683f"
+        },
+        {
+          "resource": "repo://.agents/skills/learning-distill/references/CONTRACT.md",
+          "version": "repo-file-v1:sha256:49652da05170553f9da86c06f6398b071732fd109b3c4e946195f3e52e685db0"
+        },
+        {
+          "resource": "repo://.agents/skills/learning-distill/references/decision-frontmatter.schema.json",
+          "version": "repo-file-v1:sha256:068c1f19b3331e7774301a2cce84932ba0170dee621b49f7f8c15e4bd371ca6e"
+        }
+      ]
+    },
+    {
+      "id": "claim_854963d646e0420ab79c3cc025b5415f",
+      "statement": "Distillation routes by kind per distill-routing: descriptive lessons (facts, rationale, decisions, troubleshooting) become OKF pages under openwiki/{decisions,troubleshooting}/ or topical openwiki/ pages, while prescriptive lessons (agent behavior rules and multi-step procedures) stay in .agents/AGENTS.md or .agents/playbooks/; a SHALL requirement already codified in openspec/specs/ must not be duplicated as a wiki page.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/learning-distill/SKILL.md",
+          "version": "repo-file-v1:sha256:c9bcbfa4bd0ac7f4f20aff039397460570eac461b054ed3a303caf0ddba9683f"
+        },
+        {
+          "resource": "repo://.agents/skills/learning-distill/references/CONTRACT.md",
+          "version": "repo-file-v1:sha256:49652da05170553f9da86c06f6398b071732fd109b3c4e946195f3e52e685db0"
+        },
+        {
+          "resource": "repo://openspec/specs/distill-routing/spec.md",
+          "version": "repo-file-v1:sha256:e28bea24fa9cd8c4b89b739d0ec8569785ad150088bd6544872fb4ded04d86a9"
+        }
+      ]
+    },
+    {
+      "id": "claim_9f8c1b866e714aa382e36a6d64b845e1",
+      "statement": "Distillation fails closed before writing any wiki output if the openwiki/openspec peer binaries are not on PATH or if openwiki/INSTRUCTIONS.md lacks the AKSK:WIKI-CONTRACT markers (including the default stub case); on peer-tool absence it prints one error per missing tool plus the exact install commands and exits 2 without writes.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs",
+          "version": "repo-file-v1:sha256:9e84b52d6090e6714eeb102744587b00efb05412a41f5bb042cf1be47b0e3823"
+        },
+        {
+          "resource": "repo://.agents/skills/learning-distill/SKILL.md",
+          "version": "repo-file-v1:sha256:c9bcbfa4bd0ac7f4f20aff039397460570eac461b054ed3a303caf0ddba9683f"
+        },
+        {
+          "resource": "repo://openspec/specs/distill-routing/spec.md",
+          "version": "repo-file-v1:sha256:e28bea24fa9cd8c4b89b739d0ec8569785ad150088bd6544872fb4ded04d86a9"
+        }
+      ]
+    },
+    {
+      "id": "claim_c209768633d04c76aa90d152d090ac57",
+      "statement": "check_peer_tools.mjs verifies peer binaries by PATH resolution only, never attempts installation; it exports INSTALL_COMMANDS (openspec -> npm i -g @fission-ai/openspec@latest, openwiki -> npm i -g openwiki@latest), onPath, missing, and requireBinaries, rejects unknown tool names with exit 2, and prints remediation on failure.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs",
+          "version": "repo-file-v1:sha256:9e84b52d6090e6714eeb102744587b00efb05412a41f5bb042cf1be47b0e3823"
+        },
+        {
+          "resource": "repo://openspec/specs/wiki-contract/spec.md",
+          "version": "repo-file-v1:sha256:f20c08afe4ccc4b8bbbc3a5f2423ba89ea430d0c9ca2ab164147d1952b0cc4ea"
+        }
+      ]
+    },
+    {
+      "id": "claim_d75d7e006a5e453b9c35555f91e81f47",
+      "statement": "sync_wiki_indexes.mjs refreshes all directory indexes deterministically without invoking openwiki --update by locating the global package via npm root -g, dynamically importing agent/docs-only-backend.js and okf/index-sync.js, constructing OpenWikiLocalShellBackend with docsOnly true and virtualMode true, and calling synchronizeWikiIndexes; it exits 2 if openwiki is uninitialized or the package is missing.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs",
+          "version": "repo-file-v1:sha256:85c6e19effcad0d70b581ea2144ded924babe38897ade26f0abf0d2668e76e58"
+        },
+        {
+          "resource": "repo://.agents/skills/learning-distill/SKILL.md",
+          "version": "repo-file-v1:sha256:c9bcbfa4bd0ac7f4f20aff039397460570eac461b054ed3a303caf0ddba9683f"
+        }
+      ]
+    },
+    {
+      "id": "claim_03aea0b6098c414f95270f16e161aa2e",
+      "statement": "Runtime validation after authoring uses openwiki/dist/okf/frontmatter.js validateOkfFrontmatter and authoring guidance from openwiki/dist/agent/prompt.js createSystemPrompt(init|update), fixing all reported issues before continuing; filename-stem uniqueness and frontmatter conformance are also verified by docs-lint.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/docs-lint/SKILL.md",
+          "version": "repo-file-v1:sha256:856a7d6e0c608fe3bd7de1f17c0a380ecd911dd2f10cc496ab720c5e670cf172"
+        },
+        {
+          "resource": "repo://.agents/skills/learning-distill/SKILL.md",
+          "version": "repo-file-v1:sha256:c9bcbfa4bd0ac7f4f20aff039397460570eac461b054ed3a303caf0ddba9683f"
+        },
+        {
+          "resource": "repo://.agents/skills/learning-distill/references/decision-frontmatter.schema.json",
+          "version": "repo-file-v1:sha256:068c1f19b3331e7774301a2cce84932ba0170dee621b49f7f8c15e4bd371ca6e"
+        }
+      ]
+    },
+    {
+      "id": "claim_9b5e5d25dbe64e0dbf5d7ff54f2c36c5",
+      "statement": "The Documentation budget inside the AKSK:WIKI-CONTRACT block constrains OpenWiki to an agent navigation aid: Keep repository map, architecture/flows, conventions/extension points, invariants, and links to specs; Do not generate spec restatements, per-file summaries, API references, release notes, generated/vendor docs, or paraphrase-only pages; update a page only on boundary/flow/convention/invariant changes and link to openspec/specs/<capability>/spec.md for feature behavior.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-init/references/wiki-contract-template.md",
+          "version": "repo-file-v1:sha256:f4b37c8d7f1288d6697a6469eb195a25e980cb9317766827fd341e56a01561fc"
+        },
+        {
+          "resource": "repo://openspec/specs/wiki-contract/spec.md",
+          "version": "repo-file-v1:sha256:f20c08afe4ccc4b8bbbc3a5f2423ba89ea430d0c9ca2ab164147d1952b0cc4ea"
+        }
+      ]
+    },
+    {
+      "id": "claim_c2f79d381df94487b3e11880518734b8",
+      "statement": "The repo-root .openwikiignore uses anchored /example/ plus .agents/sessions/ with !.agents/sessions/README.md exception, commented dependency/build/cache, generated/vendor, and secrets categories, never excludes openspec/specs/** or openspec/changes/archive/**, and is merge-not-clobber (missing creates, no markers appends, markers refresh only).",
+      "evidence": [
+        {
+          "resource": "repo://.openwikiignore",
+          "version": "repo-file-v1:sha256:632606b4a6a1fd34db6b31a6cf057b5f469b799c6c0cac3fa402314ad59d4d57"
+        },
+        {
+          "resource": "repo://openspec/specs/wiki-contract/spec.md",
+          "version": "repo-file-v1:sha256:f20c08afe4ccc4b8bbbc3a5f2423ba89ea430d0c9ca2ab164147d1952b0cc4ea"
+        }
+      ]
+    },
+    {
+      "id": "claim_c3b36b8400664d2c84adf9781e6e6d8e",
+      "statement": "The wiki-contract attachment is available at both .agents/skills/aksk-init/scripts/attach_wiki_contract.mjs and .agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs with the same marker-driven append/refresh behavior; either path attaches or refreshes the AKSK:WIKI-CONTRACT block.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs",
+          "version": "repo-file-v1:sha256:cd684c5946d746b89ec10f1bd965951f271ddeb5aec9515f83d9288b8ba0ac05"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/attach_wiki_contract.mjs",
+          "version": "repo-file-v1:sha256:cd684c5946d746b89ec10f1bd965951f271ddeb5aec9515f83d9288b8ba0ac05"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.5.0",
+    "at": "2026-09-04T04:19:45.757Z"
+  }
+}

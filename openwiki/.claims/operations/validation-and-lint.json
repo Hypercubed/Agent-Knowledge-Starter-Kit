@@ -1,0 +1,320 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:bcfa9f28fdbfd755fcf70bbaa54595fa4eb73872b3bd2f7a1e2bf9a6712a31ff",
+  "claims": [
+    {
+      "id": "claim_0c33ebaa376c45eaba7e5fbfab9f6bd7",
+      "statement": "check-agents-structure.sh is a portable validator taking an optional target directory (default .agents) and scoping all checks to that tree; jq is optional — JSON is validated with jq empty when present and skipped with a warning when absent.",
+      "evidence": [
+        {
+          "resource": "repo://scripts/check-agents-structure.sh",
+          "version": "repo-file-v1:sha256:3e4540194712f502f811a64d86a32c4e44d0a262a4ffebd018c8b867d96abe12"
+        },
+        {
+          "resource": "repo://scripts/check-publish.sh",
+          "version": "repo-file-v1:sha256:79a6e2a286f683115ddd172d2f0d25be4c53c42d9ab0524a0c8b59ab2f0c13ae"
+        }
+      ]
+    },
+    {
+      "id": "claim_e60f9b93c08b4dc1b5f97ab41a8d86df",
+      "statement": "check-agents-structure.sh enforces a fixed required-file manifest (AGENTS.md, .gitignore, playbooks/README.md, sessions/README.md, aksk-bootstrap/docs-lint/learning-distill/task-closeout SKILL.md plus task-closeout example bundle files) and distinct sections for session tracking, skill frontmatter headers, and JSON validation.",
+      "evidence": [
+        {
+          "resource": "repo://scripts/check-agents-structure.sh",
+          "version": "repo-file-v1:sha256:3e4540194712f502f811a64d86a32c4e44d0a262a4ffebd018c8b867d96abe12"
+        }
+      ]
+    },
+    {
+      "id": "claim_d67eb6c97f1a48598bab7f190ef769bd",
+      "statement": "Session tracking in check-agents-structure.sh is git-aware: inside a git worktree it asserts only sessions/README.md is tracked via git ls-files and reports ignored bundles via git status --ignored; outside git it warns and skips.",
+      "evidence": [
+        {
+          "resource": "repo://scripts/check-agents-structure.sh",
+          "version": "repo-file-v1:sha256:3e4540194712f502f811a64d86a32c4e44d0a262a4ffebd018c8b867d96abe12"
+        }
+      ]
+    },
+    {
+      "id": "claim_d3d3d85d3a41423dbf6073dcba0f4710",
+      "statement": "check-publish.sh is the release wrapper that cds to the git top-level, delegates structure to check-agents-structure.sh on root .agents only, and adds starter-repo-only hygiene: Remark formatting, markdown-link-check, published file list, leakage scans, and doubled-path hygiene.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/playbooks/pre-publish.md",
+          "version": "repo-file-v1:sha256:372826cd967b2df96bb56bd265fd6d7fa0cc000a24bf90c0ab070bbabc43beb1"
+        },
+        {
+          "resource": "repo://package.json",
+          "version": "repo-file-v1:sha256:9345af173a6d4f9a5742118ee068537e22eb1f89df0b4abcb09b0a91d7c9b478"
+        },
+        {
+          "resource": "repo://scripts/check-publish.sh",
+          "version": "repo-file-v1:sha256:79a6e2a286f683115ddd172d2f0d25be4c53c42d9ab0524a0c8b59ab2f0c13ae"
+        }
+      ]
+    },
+    {
+      "id": "claim_4b89783466b84287a088e17ab14d3e96",
+      "statement": "Markdown checks in check-publish.sh use npx --no-install with timeout guards (15s package probe, 60s remark, 30s per file link check) and fail when violations are found; markdown-link-check is invoked with --alive 200,0 so offline status 0 does not fail external URLs.",
+      "evidence": [
+        {
+          "resource": "repo://.remarkrc.json",
+          "version": "repo-file-v1:sha256:9092eda4ced23098771881d4af0033319cba9ae2b78012129fcbf09177f43fec"
+        },
+        {
+          "resource": "repo://scripts/check-publish.sh",
+          "version": "repo-file-v1:sha256:79a6e2a286f683115ddd172d2f0d25be4c53c42d9ab0524a0c8b59ab2f0c13ae"
+        }
+      ]
+    },
+    {
+      "id": "claim_f4057f0dfdca4ee69b7855d711401e5e",
+      "statement": "Publish leakage scans (Bearer/sk-/ghp_/AWS keys/private keys/local paths) are warning-only, while the doubled .agents/.agents path hygiene check under README.md, INSTALL.md, docs and .agents hard-fails; the pattern requires a trailing path segment to avoid matching prose examples.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/docs-lint/SKILL.md",
+          "version": "repo-file-v1:sha256:856a7d6e0c608fe3bd7de1f17c0a380ecd911dd2f10cc496ab720c5e670cf172"
+        },
+        {
+          "resource": "repo://scripts/check-publish.sh",
+          "version": "repo-file-v1:sha256:79a6e2a286f683115ddd172d2f0d25be4c53c42d9ab0524a0c8b59ab2f0c13ae"
+        }
+      ]
+    },
+    {
+      "id": "claim_11ac0bfe30b445cd911ebf9db8027180",
+      "statement": "docs-lint is a procedure-and-checklist skill with no bundled executable script; its narrow mechanical pieces (doubled-path grep and frontmatter schema validation) can be run directly, while cross-tool wiring checks are performed by inspection by an agent or maintainer.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/docs-lint/CONTRACT.md",
+          "version": "repo-file-v1:sha256:3bae3d47a4602f7c79554be89a91246e6a05553720c09ce5e31949e9a5bd3d2a"
+        },
+        {
+          "resource": "repo://.agents/skills/docs-lint/SKILL.md",
+          "version": "repo-file-v1:sha256:856a7d6e0c608fe3bd7de1f17c0a380ecd911dd2f10cc496ab720c5e670cf172"
+        },
+        {
+          "resource": "repo://openspec/specs/cross-tool-lint/spec.md",
+          "version": "repo-file-v1:sha256:eada3fe878a6aee3460d00e46df16bb6ecd90d1185ace104ecea080b5819450c"
+        }
+      ]
+    },
+    {
+      "id": "claim_e7a6d39e9ab24b5e8d29b80d54410729",
+      "statement": "docs-lint reads root instruction files and their marker blocks (AGENTS.md, CLAUDE.md, GEMINI.md when present), .agents/AGENTS.md and playbooks, openwiki/INSTRUCTIONS.md and curated trees, and openspec/changes/archive/; it writes only reports and minimal edits to AKSK-owned files and never writes OpenWiki-owned indexes or run metadata.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/docs-lint/CONTRACT.md",
+          "version": "repo-file-v1:sha256:3bae3d47a4602f7c79554be89a91246e6a05553720c09ce5e31949e9a5bd3d2a"
+        },
+        {
+          "resource": "repo://.agents/skills/docs-lint/SKILL.md",
+          "version": "repo-file-v1:sha256:856a7d6e0c608fe3bd7de1f17c0a380ecd911dd2f10cc496ab720c5e670cf172"
+        },
+        {
+          "resource": "repo://openspec/specs/cross-tool-lint/spec.md",
+          "version": "repo-file-v1:sha256:eada3fe878a6aee3460d00e46df16bb6ecd90d1185ace104ecea080b5819450c"
+        }
+      ]
+    },
+    {
+      "id": "claim_6616615aae544bc6a70cdd0da4a142af",
+      "statement": "Routing-block integrity verifies all three AGENTS.md zone families — AKSK:AGENTS-BASELINE (vendored FerroxLabs baseline), OPENWIKI:START/END (presence only, never hand-edited), and AKSK:ROUTING/LIFECYCLE — each exactly once with intact markers and existing link targets; stale AKSK blocks are refreshed via attach_section.mjs reading markers from the template.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/references/lifecycle-template.md",
+          "version": "repo-file-v1:sha256:0d6f5afce645ff08c1747173471603c8c78dc0f488cca0bf032c02057af0924b"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/references/routing-note-template.md",
+          "version": "repo-file-v1:sha256:7daa0b08b9a8cae6510c448134bfb4f7b1373132970b66916e7c6076c353e683"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_section.mjs",
+          "version": "repo-file-v1:sha256:782278eefae9ddef14dda790324bcf7df3eb9f37244e105c41e47a897f80ad71"
+        },
+        {
+          "resource": "repo://.agents/skills/docs-lint/SKILL.md",
+          "version": "repo-file-v1:sha256:856a7d6e0c608fe3bd7de1f17c0a380ecd911dd2f10cc496ab720c5e670cf172"
+        },
+        {
+          "resource": "repo://AGENTS.md",
+          "version": "repo-file-v1:sha256:afe5a9d27b2def63d734ef9e34b69605bb23975c953c1276b0fbba98797192ea"
+        }
+      ]
+    },
+    {
+      "id": "claim_d1bca0579d3f46b8a50acade5185f745",
+      "statement": "The AGENTS-BASELINE is vendored offline with a provenance header (source URL, capture date, license, refresh pointer); seeding never touches the network and the refresh path is opt-in, validated, and leaves the vendored baseline intact on offline failure, while docs-lint surfaces stale capture age as informational advice.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
+          "version": "repo-file-v1:sha256:b72576bcb57458b179cfca96bd219d66b9beacf2089aa69a5a3269a7e99923f1"
+        },
+        {
+          "resource": "repo://.agents/skills/docs-lint/SKILL.md",
+          "version": "repo-file-v1:sha256:856a7d6e0c608fe3bd7de1f17c0a380ecd911dd2f10cc496ab720c5e670cf172"
+        },
+        {
+          "resource": "repo://AGENTS.md",
+          "version": "repo-file-v1:sha256:afe5a9d27b2def63d734ef9e34b69605bb23975c953c1276b0fbba98797192ea"
+        }
+      ]
+    },
+    {
+      "id": "claim_39e994d32bc64ec9814a4e7e4c184687",
+      "statement": "Wiki contract check requires openwiki/INSTRUCTIONS.md to carry AKSK:WIKI-CONTRACT markers attached by attach_wiki_contract.mjs from wiki-contract-template.md; the script is append-only, idempotent/self-updating, exits 2 with openwiki --init when the file is missing, and never replaces OpenWiki-owned content.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/references/wiki-contract-template.md",
+          "version": "repo-file-v1:sha256:74fb36e2fba836d594bed925a1301ced9532c54846eb38a829b9a55de2881e00"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs",
+          "version": "repo-file-v1:sha256:cd684c5946d746b89ec10f1bd965951f271ddeb5aec9515f83d9288b8ba0ac05"
+        },
+        {
+          "resource": "repo://.agents/skills/docs-lint/SKILL.md",
+          "version": "repo-file-v1:sha256:856a7d6e0c608fe3bd7de1f17c0a380ecd911dd2f10cc496ab720c5e670cf172"
+        }
+      ]
+    },
+    {
+      "id": "claim_5b09caec924545dca12d37610e54685d",
+      "statement": "Archived-change/wiki coverage pairing iterates openspec/changes/archive/*/ and requires descriptive outcomes to appear in openwiki/ or be exempted by a recorded deferral on the change's summary page; worked deferrals exist for 2026-08-23-aksk-openspec-bridge and the 2026-07-18 OBE batch.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/docs-lint/SKILL.md",
+          "version": "repo-file-v1:sha256:856a7d6e0c608fe3bd7de1f17c0a380ecd911dd2f10cc496ab720c5e670cf172"
+        },
+        {
+          "resource": "repo://openspec/specs/cross-tool-lint/spec.md",
+          "version": "repo-file-v1:sha256:eada3fe878a6aee3460d00e46df16bb6ecd90d1185ace104ecea080b5819450c"
+        }
+      ]
+    },
+    {
+      "id": "claim_14ade7e5f8994406bf1c84208ac6bef6",
+      "statement": "Stale curated knowledge detection flags pages under openwiki/{decisions,troubleshooting}/ that reference retired skills, carry aksk_status accepted while aksk_superseded_by is set, or have dead aksk_depends_on targets; the triple-lock convention (aksk_status superseded authoritative, plus bold [SUPERSEDED]/[OBSOLETE] and strikethrough in listings) is verified here.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/docs-lint/SKILL.md",
+          "version": "repo-file-v1:sha256:856a7d6e0c608fe3bd7de1f17c0a380ecd911dd2f10cc496ab720c5e670cf172"
+        },
+        {
+          "resource": "repo://openspec/specs/cross-tool-lint/spec.md",
+          "version": "repo-file-v1:sha256:eada3fe878a6aee3460d00e46df16bb6ecd90d1185ace104ecea080b5819450c"
+        }
+      ]
+    },
+    {
+      "id": "claim_d83ea1ff861f417980a01c0ee80f85f1",
+      "statement": "Content checks report but do not fail: duplication/contradictions between .agents/AGENTS.md, playbooks and wiki, oversized sections, broken relative links, curated frontmatter contract (filename stem identity, aksk_status, JSON Schema validation), and misplaced troubleshooting/decision pages; path hygiene shares the rg .agents/.agents pattern with check-publish.sh.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs",
+          "version": "repo-file-v1:sha256:85c6e19effcad0d70b581ea2144ded924babe38897ade26f0abf0d2668e76e58"
+        },
+        {
+          "resource": "repo://.agents/skills/docs-lint/SKILL.md",
+          "version": "repo-file-v1:sha256:856a7d6e0c608fe3bd7de1f17c0a380ecd911dd2f10cc496ab720c5e670cf172"
+        },
+        {
+          "resource": "repo://openspec/specs/cross-tool-lint/spec.md",
+          "version": "repo-file-v1:sha256:eada3fe878a6aee3460d00e46df16bb6ecd90d1185ace104ecea080b5819450c"
+        }
+      ]
+    },
+    {
+      "id": "claim_e92dcc2d12b146629e9e93874e0a2b98",
+      "statement": "Index and log ownership is out of scope for lint: directory indexes are owned by deterministic sync_wiki_indexes.mjs (OpenWikiLocalShellBackend docsOnly/virtualMode via npm root -g), and .agents/docs/log.md was deleted; index drift is reported as informational guidance to rerun sync, not as a wiring failure.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs",
+          "version": "repo-file-v1:sha256:85c6e19effcad0d70b581ea2144ded924babe38897ade26f0abf0d2668e76e58"
+        },
+        {
+          "resource": "repo://.agents/skills/docs-lint/SKILL.md",
+          "version": "repo-file-v1:sha256:856a7d6e0c608fe3bd7de1f17c0a380ecd911dd2f10cc496ab720c5e670cf172"
+        },
+        {
+          "resource": "repo://openspec/specs/cross-tool-lint/spec.md",
+          "version": "repo-file-v1:sha256:eada3fe878a6aee3460d00e46df16bb6ecd90d1185ace104ecea080b5819450c"
+        }
+      ]
+    },
+    {
+      "id": "claim_7a05fbdceae24455b60c6297073eb564",
+      "statement": "All aksk-bootstrap scripts and both bash validators are offline-safe and fail-fast: peer-tool verification via check_peer_tools.mjs checks PATH only, prints per-tool errors with exact npm i -g install commands, rejects unknown tools, and never installs; optional tools (jq, rg, npx packages) degrade to warnings and timeout-bounded skips.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs",
+          "version": "repo-file-v1:sha256:9e84b52d6090e6714eeb102744587b00efb05412a41f5bb042cf1be47b0e3823"
+        },
+        {
+          "resource": "repo://scripts/check-agents-structure.sh",
+          "version": "repo-file-v1:sha256:3e4540194712f502f811a64d86a32c4e44d0a262a4ffebd018c8b867d96abe12"
+        },
+        {
+          "resource": "repo://scripts/check-publish.sh",
+          "version": "repo-file-v1:sha256:79a6e2a286f683115ddd172d2f0d25be4c53c42d9ab0524a0c8b59ab2f0c13ae"
+        }
+      ]
+    },
+    {
+      "id": "claim_518631ca7edb414a89fb21f4fdb053e3",
+      "statement": "Staleness of the vendored FerroxLabs baseline is probed with refresh_agents_baseline.mjs --check which validates upstream without writing; a Captured date older than six months surfaces as informational advice, not a blocking failure, and the script leaves the vendored template byte-identical on network or validation failure.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
+          "version": "repo-file-v1:sha256:b72576bcb57458b179cfca96bd219d66b9beacf2089aa69a5a3269a7e99923f1"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/refresh_agents_baseline.mjs",
+          "version": "repo-file-v1:sha256:30e756b9d5316dc90c7718ff42776ea5be3ab2f6dc64c45eb63d2475c94e4fc7"
+        },
+        {
+          "resource": "repo://.agents/skills/docs-lint/SKILL.md",
+          "version": "repo-file-v1:sha256:856a7d6e0c608fe3bd7de1f17c0a380ecd911dd2f10cc496ab720c5e670cf172"
+        }
+      ]
+    },
+    {
+      "id": "claim_220b05e2095149418e35a49de86fba3a",
+      "statement": "Stale AKSK routing and lifecycle blocks are refreshed in place via attach_section.mjs which extracts markers from the template via markersOf() and replaces only the content between BEGIN/END, remaining idempotent when already current and never touching content outside markers.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/references/lifecycle-template.md",
+          "version": "repo-file-v1:sha256:0d6f5afce645ff08c1747173471603c8c78dc0f488cca0bf032c02057af0924b"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/references/routing-note-template.md",
+          "version": "repo-file-v1:sha256:7daa0b08b9a8cae6510c448134bfb4f7b1373132970b66916e7c6076c353e683"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_section.mjs",
+          "version": "repo-file-v1:sha256:782278eefae9ddef14dda790324bcf7df3eb9f37244e105c41e47a897f80ad71"
+        }
+      ]
+    },
+    {
+      "id": "claim_ac9755ffcdc045c49c13ee261384e12c",
+      "statement": "Wiki contract drift on kit upgrade is repaired by rerunning attach_wiki_contract.mjs which detects the existing AKSK:WIKI-CONTRACT markers and refreshes only the marked section from wiki-contract-template.md, remaining idempotent and append-only when absent.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/references/wiki-contract-template.md",
+          "version": "repo-file-v1:sha256:74fb36e2fba836d594bed925a1301ced9532c54846eb38a829b9a55de2881e00"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs",
+          "version": "repo-file-v1:sha256:cd684c5946d746b89ec10f1bd965951f271ddeb5aec9515f83d9288b8ba0ac05"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.5.0",
+    "at": "2026-09-04T04:19:45.757Z"
+  }
+}

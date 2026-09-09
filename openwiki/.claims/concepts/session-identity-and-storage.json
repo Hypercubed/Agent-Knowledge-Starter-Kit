@@ -1,0 +1,198 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:f0eaf63465df3109cc1649b88256926862eb60f09c619fd7a883daddbc3ff5ed",
+  "claims": [
+    {
+      "id": "claim_92092520d7204215b9d5a3137e2f352c",
+      "statement": "Session bundles are temporary working memory stored repo-local under .agents/sessions/; they are immutable after closeout except for status/distillation-related fields in summary.json, and only promoted lessons become durable under .agents/ (prescriptive) or openwiki/ (descriptive).",
+      "evidence": [
+        {
+          "resource": "repo://.agents/sessions/README.md",
+          "version": "repo-file-v1:sha256:b90fb05278a30bc00c4d6ebc9a446a869b444380d8951b57c5fb9a12db0c58c8"
+        },
+        {
+          "resource": "repo://.agents/skills/learning-distill/SKILL.md",
+          "version": "repo-file-v1:sha256:c9bcbfa4bd0ac7f4f20aff039397460570eac461b054ed3a303caf0ddba9683f"
+        },
+        {
+          "resource": "repo://.agents/skills/task-closeout/CONTRACT.md",
+          "version": "repo-file-v1:sha256:b4cdbb24ec28ec8c391f1e06e8afd8fdda22a80dab3209ebd8a7a52b01ebc344"
+        },
+        {
+          "resource": "repo://docs/architecture.md",
+          "version": "repo-file-v1:sha256:692aca26c14e1ce3f100cb1e8f43d4c5d42fd8a53b737119314cee006a96db13"
+        }
+      ]
+    },
+    {
+      "id": "claim_ce4c3e0d15394be693645e6b59281d09",
+      "statement": "The canonical task/session identifier is the task_id field inside .agents/sessions/<folder>/summary.json, not the folder name; the folder name YYYYMMDD-HHMMSS-short-topic is only a sortable storage label, one bundle per folder, with repo_id providing stable project context.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/task-closeout/CONTRACT.md",
+          "version": "repo-file-v1:sha256:b4cdbb24ec28ec8c391f1e06e8afd8fdda22a80dab3209ebd8a7a52b01ebc344"
+        },
+        {
+          "resource": "repo://.agents/skills/task-closeout/SKILL.md",
+          "version": "repo-file-v1:sha256:82cbf908b431614f53821bdd2f2a063e2705e0f31827cc893d4ff13903c042fe"
+        },
+        {
+          "resource": "repo://.agents/skills/task-closeout/example/task-bundle/summary.json",
+          "version": "repo-file-v1:sha256:16bb4bef4011e44ca320a2aa7a5f5405c608b3faf2ca5876a0930fa2640226d0"
+        },
+        {
+          "resource": "repo://docs/architecture.md",
+          "version": "repo-file-v1:sha256:692aca26c14e1ce3f100cb1e8f43d4c5d42fd8a53b737119314cee006a96db13"
+        }
+      ]
+    },
+    {
+      "id": "claim_c2a2a6119591477ea3e64891cb8b561b",
+      "statement": ".agents/.gitignore uses sessions/* paired with !sessions/README.md (relative to .agents/) so every per-task subfolder is ignored and only .agents/sessions/README.md is tracked; initialization merges these lines idempotently and falls back to .agents/sessions/* and !.agents/sessions/README.md in root .gitignore when .agents/.gitignore is not tracked.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/.gitignore",
+          "version": "repo-file-v1:sha256:9d3e8002bee34dc78f45dbda50b0668070123c114e1bf70f2f902a61fa049353"
+        },
+        {
+          "resource": "repo://.agents/skills/task-closeout/SKILL.md",
+          "version": "repo-file-v1:sha256:82cbf908b431614f53821bdd2f2a063e2705e0f31827cc893d4ff13903c042fe"
+        }
+      ]
+    },
+    {
+      "id": "claim_f03deabb9c574be58e75f47c216bbbc2",
+      "statement": "Each session folder must contain exactly five files — summary.json, active-task.md, learning-candidate.md, changed-files.txt, validation.txt — where summary.json requires task_id and optionally carries repo_id, agent, agent_session_id, openspec_change, git metadata and distilled/distillation_status; task-closeout is the sole writer of this tree and never edits openwiki/**, .agents/AGENTS.md, .agents/playbooks/**, .agents/skills/** or openspec/ for in-flight changes.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/task-closeout/CONTRACT.md",
+          "version": "repo-file-v1:sha256:b4cdbb24ec28ec8c391f1e06e8afd8fdda22a80dab3209ebd8a7a52b01ebc344"
+        },
+        {
+          "resource": "repo://.agents/skills/task-closeout/SKILL.md",
+          "version": "repo-file-v1:sha256:82cbf908b431614f53821bdd2f2a063e2705e0f31827cc893d4ff13903c042fe"
+        },
+        {
+          "resource": "repo://.agents/skills/task-closeout/example/task-bundle/summary.json",
+          "version": "repo-file-v1:sha256:16bb4bef4011e44ca320a2aa7a5f5405c608b3faf2ca5876a0930fa2640226d0"
+        }
+      ]
+    },
+    {
+      "id": "claim_29a381f953dd4ddf998c94b0ec6693a1",
+      "statement": "summary.json may contain an optional prior_session string pointing to an earlier bundle directory to chain related closeouts without merging folders; earlier packets stay append-only and distillation merges lessons using task_id, timestamps and prior_session.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/task-closeout/CONTRACT.md",
+          "version": "repo-file-v1:sha256:b4cdbb24ec28ec8c391f1e06e8afd8fdda22a80dab3209ebd8a7a52b01ebc344"
+        },
+        {
+          "resource": "repo://.agents/skills/task-closeout/example/task-bundle/summary.json",
+          "version": "repo-file-v1:sha256:16bb4bef4011e44ca320a2aa7a5f5405c608b3faf2ca5876a0930fa2640226d0"
+        },
+        {
+          "resource": "repo://docs/architecture.md",
+          "version": "repo-file-v1:sha256:692aca26c14e1ce3f100cb1e8f43d4c5d42fd8a53b737119314cee006a96db13"
+        }
+      ]
+    },
+    {
+      "id": "claim_6150ce40f7b64befb37bac2eec0d3efb",
+      "statement": "Because bundle folders are gitignored, discovery must use ignore-blind methods (filesystem ls/find or rg --no-ignore-vcs / --no-ignore) and then read task_id from summary.json to filter by distilled/status/distillation_status; ignore-aware glob/search must not be used to conclude no bundles exist.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/.gitignore",
+          "version": "repo-file-v1:sha256:9d3e8002bee34dc78f45dbda50b0668070123c114e1bf70f2f902a61fa049353"
+        },
+        {
+          "resource": "repo://.agents/sessions/README.md",
+          "version": "repo-file-v1:sha256:b90fb05278a30bc00c4d6ebc9a446a869b444380d8951b57c5fb9a12db0c58c8"
+        },
+        {
+          "resource": "repo://.agents/skills/learning-distill/SKILL.md",
+          "version": "repo-file-v1:sha256:c9bcbfa4bd0ac7f4f20aff039397460570eac461b054ed3a303caf0ddba9683f"
+        },
+        {
+          "resource": "repo://docs/architecture.md",
+          "version": "repo-file-v1:sha256:692aca26c14e1ce3f100cb1e8f43d4c5d42fd8a53b737119314cee006a96db13"
+        }
+      ]
+    },
+    {
+      "id": "claim_01dc64902ab646a380aa263d79f94e36",
+      "statement": "Agent provenance fields agent and agent_session_id are optional and independent in summary.json (mirrored as Agent / Agent Session ID sections in active-task.md); they are recorded only when the active tool supplies them and must never be invented.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/task-closeout/SKILL.md",
+          "version": "repo-file-v1:sha256:82cbf908b431614f53821bdd2f2a063e2705e0f31827cc893d4ff13903c042fe"
+        },
+        {
+          "resource": "repo://.agents/skills/task-closeout/example/task-bundle/active-task.md",
+          "version": "repo-file-v1:sha256:db5e47b15c34b110896afa9983cf6cb5475f4103da75a0f113b7b9d359a601bb"
+        },
+        {
+          "resource": "repo://.agents/skills/task-closeout/example/task-bundle/summary.json",
+          "version": "repo-file-v1:sha256:16bb4bef4011e44ca320a2aa7a5f5405c608b3faf2ca5876a0930fa2640226d0"
+        }
+      ]
+    },
+    {
+      "id": "claim_e168f9c820f0404aba72b552b238b0a4",
+      "statement": "When a session worked on an OpenSpec change its name is recorded in summary.json openspec_change; closeout never edits openspec/ for in-flight changes and defers spec updates to /opsx:archive time, with the deferral noted in learning-candidate.md.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/task-closeout/CONTRACT.md",
+          "version": "repo-file-v1:sha256:b4cdbb24ec28ec8c391f1e06e8afd8fdda22a80dab3209ebd8a7a52b01ebc344"
+        },
+        {
+          "resource": "repo://.agents/skills/task-closeout/SKILL.md",
+          "version": "repo-file-v1:sha256:82cbf908b431614f53821bdd2f2a063e2705e0f31827cc893d4ff13903c042fe"
+        },
+        {
+          "resource": "repo://.agents/skills/task-closeout/example/task-bundle/summary.json",
+          "version": "repo-file-v1:sha256:16bb4bef4011e44ca320a2aa7a5f5405c608b3faf2ca5876a0930fa2640226d0"
+        }
+      ]
+    },
+    {
+      "id": "claim_ca1fd8172ce6431b96f36e07823fe4c6",
+      "statement": "Proposal add-task-start defines task-start as creation-only (creates .agents/sessions/YYYYMMDD-HHMMSS-short-topic/, ensures README/.gitignore, seeds summary.json with canonical task_id, created_at, status in_progress and optional openspec_change/repo_id/agent) and task-closeout as finalization-only (preserves task_id and openspec_change, appends completed_at, final status and remaining bundle files); no durable writes occur at start/closeout, sequencing is strictly start → work → closeout → distill with summary.json as single source of truth and fallback generation when no seed exists, and until archived the enforced lifecycle remains work → closeout → distill.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/changes/add-task-start/design.md",
+          "version": "repo-file-v1:sha256:a4bd4394e5adacc4cf5eff661c878294f2f4670ac34fa4651aa56c32fc3d3085"
+        },
+        {
+          "resource": "repo://openspec/changes/add-task-start/proposal.md",
+          "version": "repo-file-v1:sha256:02e824d855bc2e10f7e793cb78ba79fba3f5c9e7e6312f160f38071965f7aad0"
+        },
+        {
+          "resource": "repo://openspec/changes/add-task-start/specs/task-start/spec.md",
+          "version": "repo-file-v1:sha256:152355639b97c963756eca910de7e41e01b8d70b5ea9cbb484382fa95f8cd51d"
+        },
+        {
+          "resource": "repo://openspec/specs/closeout-change-linking/spec.md",
+          "version": "repo-file-v1:sha256:b5ca10a3db5605ffcf5a66efb0ac6bb98f0a3c1ef0d9617ce888db3ae4354e60"
+        }
+      ]
+    },
+    {
+      "id": "claim_d844fbc9c6c844b0b45ca47b97b66d5d",
+      "statement": ".openwikiignore provides defense-in-depth beyond git by listing .agents/sessions/ with negation !.agents/sessions/README.md (and anchored /example/) so bundles under .agents/sessions/ are excluded from openwiki --update fingerprinting and cannot be cited as repo:// evidence — only .agents/sessions/README.md remains citable.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/.gitignore",
+          "version": "repo-file-v1:sha256:9d3e8002bee34dc78f45dbda50b0668070123c114e1bf70f2f902a61fa049353"
+        },
+        {
+          "resource": "repo://.openwikiignore",
+          "version": "repo-file-v1:sha256:632606b4a6a1fd34db6b31a6cf057b5f469b799c6c0cac3fa402314ad59d4d57"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.5.0",
+    "at": "2026-09-04T04:19:45.757Z"
+  }
+}

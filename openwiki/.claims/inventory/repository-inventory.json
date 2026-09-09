@@ -1,0 +1,290 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:74b46dd8c1cb9883051828c5041780e81beb1dfc9bc05d8822aef166bea0e2cb",
+  "claims": [
+    {
+      "id": "claim_123653ee98fd45a4b112d23a6a5bf29f",
+      "statement": "package.json is the kit manifest defining name agent-knowledge-starter 2.0.0, empty dependencies, seven devDependencies, and scripts test (intentional failure), format (remark with .remarkrc.json), and check (bash scripts/check-publish.sh).",
+      "evidence": [
+        {
+          "resource": "repo://.remarkrc.json",
+          "version": "repo-file-v1:sha256:9092eda4ced23098771881d4af0033319cba9ae2b78012129fcbf09177f43fec"
+        },
+        {
+          "resource": "repo://package.json",
+          "version": "repo-file-v1:sha256:9345af173a6d4f9a5742118ee068537e22eb1f89df0b4abcb09b0a91d7c9b478"
+        }
+      ]
+    },
+    {
+      "id": "claim_7e9ed9723feb48db940127419cda8e9a",
+      "statement": "openspec.yaml declares the AKSK Knowledge Persistence rule covering .agents/**/*.md and docs/**/*.md with action read-and-reference, while openspec/config.yaml declares schema spec-driven.",
+      "evidence": [
+        {
+          "resource": "repo://openspec.yaml",
+          "version": "repo-file-v1:sha256:1ed191ca98a0c33b10519f93ec0d475365e4b0159d1eae269db119e29d888da7"
+        },
+        {
+          "resource": "repo://openspec/config.yaml",
+          "version": "repo-file-v1:sha256:995f99110b1bf362ab6caeaa0d0d0b9a68e72225875a41bb49a2013a2158ec57"
+        }
+      ]
+    },
+    {
+      "id": "claim_ca9b594e51d348119959c4d6f0dd6085",
+      "statement": "Root AGENTS.md is the router entrypoint agents load; in a fully bootstrapped repo it contains marker-delimited managed blocks AKSK:AGENTS-BASELINE, OPENWIKI:START/END, AKSK:ROUTING, and AKSK:LIFECYCLE owned respectively by init_agents_md.mjs/refresh_agents_baseline.mjs and attach_section.mjs (canonical in aksk-init, mirrored in aksk-bootstrap). In this checkout the AKSK:AGENTS-BASELINE zone is not yet seeded and hand-authored behavioral content precedes the OpenWiki/AKSK blocks, while .agents/AGENTS.md remains the portable source of truth.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/AGENTS.md",
+          "version": "repo-file-v1:sha256:d85b5e6cae3cc52731325e8b6193efdec270ec9f479e32f6c253b716dc994ed3"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_section.mjs",
+          "version": "repo-file-v1:sha256:782278eefae9ddef14dda790324bcf7df3eb9f37244e105c41e47a897f80ad71"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/init_agents_md.mjs",
+          "version": "repo-file-v1:sha256:2d219bd05a1526cb557a4bbf977dad1ba314e6c2117c32189e0326489d036810"
+        },
+        {
+          "resource": "repo://AGENTS.md",
+          "version": "repo-file-v1:sha256:afe5a9d27b2def63d734ef9e34b69605bb23975c953c1276b0fbba98797192ea"
+        }
+      ]
+    },
+    {
+      "id": "claim_4a609dbc46c84490a319af6b66fe64a7",
+      "statement": "The AKSK curation contract between AKSK:WIKI-CONTRACT markers is appended from references/wiki-contract-template.md (canonical in aksk-init, mirrored in aksk-bootstrap) by attach_wiki_contract.mjs without creating, replacing, or removing OpenWiki-owned content, and is idempotent/self-updating.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs",
+          "version": "repo-file-v1:sha256:cd684c5946d746b89ec10f1bd965951f271ddeb5aec9515f83d9288b8ba0ac05"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/references/wiki-contract-template.md",
+          "version": "repo-file-v1:sha256:f4b37c8d7f1288d6697a6469eb195a25e980cb9317766827fd341e56a01561fc"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/attach_wiki_contract.mjs",
+          "version": "repo-file-v1:sha256:cd684c5946d746b89ec10f1bd965951f271ddeb5aec9515f83d9288b8ba0ac05"
+        }
+      ]
+    },
+    {
+      "id": "claim_a0c81fa5a5fe42b581774d43affebbe4",
+      "statement": "Peer binaries @fission-ai/openspec and openwiki plus Node >=22 are never installed by the kit; caret versions resolve from .agents/skills/aksk-bootstrap/references/versions.json (fallback @latest) and verification is via check_peer_tools.mjs which fails fast exit 2 printing exact npm i -g commands and rejecting unknown tool names, while bootstrap-global.mjs (global lane) and aksk-init bootstrap-repo.mjs (per-repo lane) own automated per-user global install; bootstrap.mjs is a shim sequencing both lanes.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/references/versions.json",
+          "version": "repo-file-v1:sha256:8c3f99ea217c8a4123b06dc3dce364bb8ceed59b76097b502cdb33853437831a"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs",
+          "version": "repo-file-v1:sha256:9ddd71d7ded8c507f4fa510fb753587fa6f752b99b21e4a166bf895c296f33fb"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap.mjs",
+          "version": "repo-file-v1:sha256:5f6112a4410e5b146bfc32ad3aedfbca44c4b4db9933d2a3fffb729e0aec0ceb"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs",
+          "version": "repo-file-v1:sha256:9e84b52d6090e6714eeb102744587b00efb05412a41f5bb042cf1be47b0e3823"
+        },
+        {
+          "resource": "repo://package.json",
+          "version": "repo-file-v1:sha256:9345af173a6d4f9a5742118ee068537e22eb1f89df0b4abcb09b0a91d7c9b478"
+        }
+      ]
+    },
+    {
+      "id": "claim_bcce90c8935b47f09ee638a89caa1376",
+      "statement": ".agents/.gitignore enforces sessions/* with exception !sessions/README.md so only sessions/README.md is tracked and every sessions/<bundle>/ remains local evidence.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/.gitignore",
+          "version": "repo-file-v1:sha256:9d3e8002bee34dc78f45dbda50b0668070123c114e1bf70f2f902a61fa049353"
+        },
+        {
+          "resource": "repo://scripts/check-agents-structure.sh",
+          "version": "repo-file-v1:sha256:3e4540194712f502f811a64d86a32c4e44d0a262a4ffebd018c8b867d96abe12"
+        }
+      ]
+    },
+    {
+      "id": "claim_3fa28e802b5a40fbb87a8bb3557938e6",
+      "statement": "scripts/check-agents-structure.sh is a portable validator scoped to a single target directory (default .agents, normalized via ${target%/}) with sections: structure existence, required-files manifest via -f, git-aware session tracking (git ls-files vs single expected README), skill frontmatter header check (--- plus name/description in first 12 lines), and JSON validation via jq empty when available.",
+      "evidence": [
+        {
+          "resource": "repo://scripts/check-agents-structure.sh",
+          "version": "repo-file-v1:sha256:3e4540194712f502f811a64d86a32c4e44d0a262a4ffebd018c8b867d96abe12"
+        }
+      ]
+    },
+    {
+      "id": "claim_3a85a96ed64b43c4a115dd12e9acc89c",
+      "statement": "scripts/check-publish.sh is the starter-repo publish wrapper (npm run check) that runs check-agents-structure.sh on root .agents then remark --frail (60s timeout via direct remark or npx --no-install), markdown-link-check --alive 200,0 per markdown file (30s timeout), a printed .agents file list, rg leakage scan and doubled .agents/.agents path check, degrading optional tools npx/rg/timeout/jq to WARN/skip.",
+      "evidence": [
+        {
+          "resource": "repo://scripts/check-publish.sh",
+          "version": "repo-file-v1:sha256:79a6e2a286f683115ddd172d2f0d25be4c53c42d9ab0524a0c8b59ab2f0c13ae"
+        }
+      ]
+    },
+    {
+      "id": "claim_7845fa813ffe499eb096dc1fd5b2613d",
+      "statement": "Node >=22 is the single runtime for all ESM helpers under .agents/skills/aksk-bootstrap/scripts and .agents/skills/aksk-init/scripts including bootstrap-global.mjs, bootstrap-repo.mjs, bootstrap.mjs shim, check_peer_tools.mjs, attach_wiki_contract.mjs, attach_section.mjs, sync_wiki_indexes.mjs, init_agents_md.mjs and refresh_agents_baseline.mjs.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
+          "version": "repo-file-v1:sha256:b72576bcb57458b179cfca96bd219d66b9beacf2089aa69a5a3269a7e99923f1"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs",
+          "version": "repo-file-v1:sha256:9ddd71d7ded8c507f4fa510fb753587fa6f752b99b21e4a166bf895c296f33fb"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/SKILL.md",
+          "version": "repo-file-v1:sha256:7447c7ad965ddf91176213abed0aa8b780bf169d92827fef3699a5c745f86763"
+        }
+      ]
+    },
+    {
+      "id": "claim_563303c0d9a2436b95f1d79f256e2431",
+      "statement": "bootstrap-global.mjs (global lane) and bootstrap-repo.mjs (per-repo lane) are deterministic idempotent orchestrators with EXECUTE lane (run locally) and INSTRUCT lane (print exact remaining commands and exit clean); re-runs complete only missing steps and a failed step leaves no partial state; bootstrap.mjs shims both lanes sequentially.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
+          "version": "repo-file-v1:sha256:b72576bcb57458b179cfca96bd219d66b9beacf2089aa69a5a3269a7e99923f1"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs",
+          "version": "repo-file-v1:sha256:9ddd71d7ded8c507f4fa510fb753587fa6f752b99b21e4a166bf895c296f33fb"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap.mjs",
+          "version": "repo-file-v1:sha256:5f6112a4410e5b146bfc32ad3aedfbca44c4b4db9933d2a3fffb729e0aec0ceb"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/bootstrap-repo.mjs",
+          "version": "repo-file-v1:sha256:cfd7354f4209083d188fec9c41db0d3d80508c859df1306eec7b58ea4482bebb"
+        }
+      ]
+    },
+    {
+      "id": "claim_f751b935b051455596143d10f546175d",
+      "statement": ".agents portable zone separates concerns: .agents/AGENTS.md stays small with concise directives, .agents/playbooks holds durable multi-step procedures (pre-publish, major-version-release), .agents/skills provides portable logic with CONTRACT.md, and .agents/sessions holds gitignored per-task bundles validated by the portable validator.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/AGENTS.md",
+          "version": "repo-file-v1:sha256:d85b5e6cae3cc52731325e8b6193efdec270ec9f479e32f6c253b716dc994ed3"
+        },
+        {
+          "resource": "repo://.agents/playbooks/pre-publish.md",
+          "version": "repo-file-v1:sha256:372826cd967b2df96bb56bd265fd6d7fa0cc000a24bf90c0ab070bbabc43beb1"
+        },
+        {
+          "resource": "repo://.agents/skills/learning-distill/SKILL.md",
+          "version": "repo-file-v1:sha256:c9bcbfa4bd0ac7f4f20aff039397460570eac461b054ed3a303caf0ddba9683f"
+        },
+        {
+          "resource": "repo://.agents/skills/task-closeout/SKILL.md",
+          "version": "repo-file-v1:sha256:82cbf908b431614f53821bdd2f2a063e2705e0f31827cc893d4ff13903c042fe"
+        }
+      ]
+    },
+    {
+      "id": "claim_670fff588cd0453f9e2c484bb89bb131",
+      "statement": "openspec/config.yaml defines spec-driven context and proposal/design/tasks rules; openspec/specs/** is the shipped contract (12 capabilities), openspec/changes/** are proposal-only deltas, and openspec/changes/archive/** is historical until openspec archive graduates specs.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/config.yaml",
+          "version": "repo-file-v1:sha256:995f99110b1bf362ab6caeaa0d0d0b9a68e72225875a41bb49a2013a2158ec57"
+        },
+        {
+          "resource": "repo://openspec/specs/aksk-bootstrap/spec.md",
+          "version": "repo-file-v1:sha256:57bf5324e654077e03ab8fd27f2db0c993eb315dd0c77ec3a5e223fd96bf59af"
+        },
+        {
+          "resource": "repo://openspec/specs/aksk-init/spec.md",
+          "version": "repo-file-v1:sha256:a9691a718c37b39d54cd5eed8f1e8318e837d11ae4f477e67223b5cece84158c"
+        }
+      ]
+    },
+    {
+      "id": "claim_c845376cb7a245808c07ca8a967a3fa1",
+      "statement": "Curated decisions/ and troubleshooting/ trees are OKF pages with aksk_status/aksk_depends_on extensions authored by learning-distill, preserved across OpenWiki updates via preserve-and-link, indexes refreshed by sync_wiki_indexes.mjs, and concurrent edits are guarded by the documented .run.json check before editing.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/AGENTS.md",
+          "version": "repo-file-v1:sha256:d85b5e6cae3cc52731325e8b6193efdec270ec9f479e32f6c253b716dc994ed3"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/references/wiki-contract-template.md",
+          "version": "repo-file-v1:sha256:74fb36e2fba836d594bed925a1301ced9532c54846eb38a829b9a55de2881e00"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs",
+          "version": "repo-file-v1:sha256:85c6e19effcad0d70b581ea2144ded924babe38897ade26f0abf0d2668e76e58"
+        },
+        {
+          "resource": "repo://.agents/skills/learning-distill/SKILL.md",
+          "version": "repo-file-v1:sha256:c9bcbfa4bd0ac7f4f20aff039397460570eac461b054ed3a303caf0ddba9683f"
+        }
+      ]
+    },
+    {
+      "id": "claim_1973e1a839614af58b0e0468bd2bba19",
+      "statement": ".openwikiignore at repo root excludes .agents/sessions/ (with !.agents/sessions/README.md exception) as generated non-canonical tree; .agents/sessions bundles are treated as temporary local evidence, not shipped behavior.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/.gitignore",
+          "version": "repo-file-v1:sha256:9d3e8002bee34dc78f45dbda50b0668070123c114e1bf70f2f902a61fa049353"
+        },
+        {
+          "resource": "repo://.openwikiignore",
+          "version": "repo-file-v1:sha256:632606b4a6a1fd34db6b31a6cf057b5f469b799c6c0cac3fa402314ad59d4d57"
+        },
+        {
+          "resource": "repo://scripts/check-agents-structure.sh",
+          "version": "repo-file-v1:sha256:3e4540194712f502f811a64d86a32c4e44d0a262a4ffebd018c8b867d96abe12"
+        }
+      ]
+    },
+    {
+      "id": "claim_037766d73f5a456786864fdaead59aae",
+      "statement": ".remarkrc.json configures markdown style (bullet -, rule -, emphasis *) with remark-frontmatter and remark-gfm plugins, and .claude-plugin/plugin.json lists the five portable user skills aksk-bootstrap, aksk-init, task-closeout, learning-distill and docs-lint.",
+      "evidence": [
+        {
+          "resource": "repo://.claude-plugin/plugin.json",
+          "version": "repo-file-v1:sha256:107b8efb5d1be77d1d9a3e1f10493b24e90cdf1b1a6150cf9049d8827b65f61b"
+        },
+        {
+          "resource": "repo://.remarkrc.json",
+          "version": "repo-file-v1:sha256:9092eda4ced23098771881d4af0033319cba9ae2b78012129fcbf09177f43fec"
+        }
+      ]
+    },
+    {
+      "id": "claim_cc3cd9ada2814466827184471075ab37",
+      "statement": ".agents/skills/verify-install is an internal maintainer skill not listed in plugin.json, while the five portable skills are validated by the required-files manifest and skill-frontmatter checks in check-agents-structure.sh.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/verify-install/SKILL.md",
+          "version": "repo-file-v1:sha256:c07aa3e3a4ba2d9eda110176b7648094a558a913e92883b0969342da94b634e6"
+        },
+        {
+          "resource": "repo://.claude-plugin/plugin.json",
+          "version": "repo-file-v1:sha256:107b8efb5d1be77d1d9a3e1f10493b24e90cdf1b1a6150cf9049d8827b65f61b"
+        },
+        {
+          "resource": "repo://scripts/check-agents-structure.sh",
+          "version": "repo-file-v1:sha256:3e4540194712f502f811a64d86a32c4e44d0a262a4ffebd018c8b867d96abe12"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.5.0",
+    "at": "2026-09-04T04:19:45.757Z"
+  }
+}

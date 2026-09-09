@@ -6,22 +6,19 @@ Written and verified against Claude Code behavior in this repository on April 12
 
 ## Setup
 
-1. Install or merge the starter kit into the target repo as `.agents/`.
-2. Add a short root `CLAUDE.md` that routes Claude Code into `.agents/`.
+1. Install the kit per [Adopting the kit](./patterns.md#adopting-the-kit).
+2. Attach the AKSK routing note to root `CLAUDE.md` (`attach_section.mjs . CLAUDE.md`) so it routes Claude Code into `.agents/`.
 3. Keep durable repo policy in `.agents/`, not in `CLAUDE.md` or auto-memory.
 4. Keep personal preferences in `~/.claude/CLAUDE.md`.
 5. Add `.claude/commands/` only as thin wrappers around repo-local skills or playbooks.
 
-```markdown
-# CLAUDE.md
+Attach the marker-delimited `AKSK:ROUTING` section rather than hand-writing this file:
 
-This repo uses the Agent Knowledge Starter Kit.
-
-- Read `.agents/AGENTS.md` for durable repo guidance.
-- Use `.agents/docs/index.md` to find decisions, troubleshooting, and playbooks.
-- For task closeout, follow `.agents/skills/task-closeout/SKILL.md`.
-- Keep temporary task evidence in `.agents/sessions/`; promote only durable lessons back into `.agents/`.
+```bash
+node .agents/skills/aksk-bootstrap/scripts/attach_section.mjs . CLAUDE.md
 ```
+
+The attachment appends the section below any existing content, refreshes it in place when the kit's template changes, and is idempotent on re-run. Add tool-specific notes outside the markers - never edit between them.
 
 Optional command wrapper:
 
@@ -42,7 +39,7 @@ Read and follow `.agents/skills/task-closeout/SKILL.md`. Write the output bundle
 ## Claude-Specific Caveats
 
 - Claude Code does not automatically load `.agents/AGENTS.md`; route from root `CLAUDE.md`.
-- Auto-memory is private to the user and outside Git. Promote shared lessons into `.agents/docs/`.
+- Auto-memory is private to the user and outside Git. Promote shared lessons into the curated wiki trees.
 - `.claude/commands/` and `.agents/skills/` are separate registries. Command files should point at repo skills, not copy them.
 - Do not commit `.claude/settings.local.json` or credential-bearing local config.
 

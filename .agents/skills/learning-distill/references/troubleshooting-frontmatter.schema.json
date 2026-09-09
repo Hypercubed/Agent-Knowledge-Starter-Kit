@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Troubleshooting Knowledge Page Schema",
+  "description": "Frontmatter for curated troubleshooting pages under openwiki/knowledge/troubleshooting/*.md",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "description": "OKF concept type."
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9_-]+$"
+      },
+      "minItems": 1
+    },
+    "timestamp": {
+      "type": "string"
+    },
+    "aksk_status": {
+      "type": "string",
+      "enum": [
+        "accepted",
+        "superseded",
+        "provisional"
+      ]
+    },
+    "aksk_superseded_by": {
+      "type": "string",
+      "pattern": "^[a-z0-9_-]+$"
+    },
+    "aksk_depends_on": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^(decisions|troubleshooting)/[a-z0-9_-]+$"
+      }
+    }
+  },
+  "required": [
+    "type",
+    "title",
+    "description",
+    "tags",
+    "timestamp"
+  ],
+  "additionalProperties": true
+}

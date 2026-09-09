@@ -1,0 +1,316 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:1f522d6923e430c194e6717d532a3c90d9da3fd65aa729400588f00fffa96686",
+  "claims": [
+    {
+      "id": "claim_acdec8ea23424d62a4b96bf2e3e49dd3",
+      "statement": "Preferred install lane is agent-assisted via aksk-bootstrap (global lane) then aksk-init (per-repo lane): npx skills add <source> -g -a <self-reported> then bootstrap-global.mjs / bootstrap-repo.mjs (shim bootstrap.mjs preserves old entrypoint by running global then repo lane) with EXECUTE/INSTRUCT; manual fallback is the same npx skills add user-scope form; no cp example/.agents path and only two lanes are supported.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
+          "version": "repo-file-v1:sha256:b72576bcb57458b179cfca96bd219d66b9beacf2089aa69a5a3269a7e99923f1"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs",
+          "version": "repo-file-v1:sha256:9ddd71d7ded8c507f4fa510fb753587fa6f752b99b21e4a166bf895c296f33fb"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap.mjs",
+          "version": "repo-file-v1:sha256:5f6112a4410e5b146bfc32ad3aedfbca44c4b4db9933d2a3fffb729e0aec0ceb"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/SKILL.md",
+          "version": "repo-file-v1:sha256:7447c7ad965ddf91176213abed0aa8b780bf169d92827fef3699a5c745f86763"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/bootstrap-repo.mjs",
+          "version": "repo-file-v1:sha256:cfd7354f4209083d188fec9c41db0d3d80508c859df1306eec7b58ea4482bebb"
+        },
+        {
+          "resource": "repo://INSTALL.md",
+          "version": "repo-file-v1:sha256:365b09df49e29b098f6c32c6fb0bddeea79a730939d47d9caa8e79494115796a"
+        },
+        {
+          "resource": "repo://README.md",
+          "version": "repo-file-v1:sha256:76bb3138f7626a43d70a0e80f24c381f3175dd16d5a3db776814653c6978356c"
+        },
+        {
+          "resource": "repo://openspec/specs/install-lanes/spec.md",
+          "version": "repo-file-v1:sha256:6844223a2824d9556c085d4b4c7dc319e38339450944cd2e0c40ea82ab76f777"
+        }
+      ]
+    },
+    {
+      "id": "claim_82a5c107f4cf400395b67c04eda4dbd1",
+      "statement": "Root package.json declares agent-knowledge-starter v2.0.0 with empty dependencies, devDependencies including skills, remark-cli, markdown-link-check, @fission-ai/openspec ^1.11.0 and openwiki ^0.4.3, and scripts test/format/check.",
+      "evidence": [
+        {
+          "resource": "repo://package.json",
+          "version": "repo-file-v1:sha256:9345af173a6d4f9a5742118ee068537e22eb1f89df0b4abcb09b0a91d7c9b478"
+        }
+      ]
+    },
+    {
+      "id": "claim_73757decb77f4d5faadc6b76017873d6",
+      "statement": ".claude-plugin/plugin.json v2.0.0 registers exactly five skills: aksk-bootstrap, aksk-init, task-closeout, learning-distill, docs-lint.",
+      "evidence": [
+        {
+          "resource": "repo://.claude-plugin/plugin.json",
+          "version": "repo-file-v1:sha256:107b8efb5d1be77d1d9a3e1f10493b24e90cdf1b1a6150cf9049d8827b65f61b"
+        }
+      ]
+    },
+    {
+      "id": "claim_eeb855b2687d4226bef00db176ff7ce1",
+      "statement": "Shipped canonical user store is ~/.agents/skills (universal, Codex default) plus self-reported host mirror via npx skills add <source> -g -a <self-reported>; extra hosts or --all only on explicit user request; verification treats ~/.agents/skills/<name>/SKILL.md as canonical.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
+          "version": "repo-file-v1:sha256:b72576bcb57458b179cfca96bd219d66b9beacf2089aa69a5a3269a7e99923f1"
+        },
+        {
+          "resource": "repo://INSTALL.md",
+          "version": "repo-file-v1:sha256:365b09df49e29b098f6c32c6fb0bddeea79a730939d47d9caa8e79494115796a"
+        },
+        {
+          "resource": "repo://openspec/specs/canonical-user-skills-scope/spec.md",
+          "version": "repo-file-v1:sha256:f1160ef5df943f07c1740ae68b9ea54161d45bfbeed0bda140b10bab9de2ff64"
+        }
+      ]
+    },
+    {
+      "id": "claim_dd00b33748dc45bdb1bb7c5244466b50",
+      "statement": "npx is required and git clone --depth 1 && cp -r .agents/skills is not presented as an install lane; bootstrap INSTRUCT reports the missing prerequisite instead of falling back to copy. openspec/specs/install-lanes/spec.md retains legacy agent clone-to-temp fallback text which the shipped canonical-user-skills-scope requirement supersedes.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs",
+          "version": "repo-file-v1:sha256:9ddd71d7ded8c507f4fa510fb753587fa6f752b99b21e4a166bf895c296f33fb"
+        },
+        {
+          "resource": "repo://openspec/specs/canonical-user-skills-scope/spec.md",
+          "version": "repo-file-v1:sha256:f1160ef5df943f07c1740ae68b9ea54161d45bfbeed0bda140b10bab9de2ff64"
+        },
+        {
+          "resource": "repo://openspec/specs/install-lanes/spec.md",
+          "version": "repo-file-v1:sha256:6844223a2824d9556c085d4b4c7dc319e38339450944cd2e0c40ea82ab76f777"
+        }
+      ]
+    },
+    {
+      "id": "claim_ecebfe0500be4d83b045f45e6613d6a2",
+      "statement": "Global npm i -g lane and skill installs both use versions from references/versions.json via versionsFromPackageJson() with caret ranges (e.g. ^1.11.0), falling back to @latest only when unpinned; standalone check_peer_tools.mjs prints @latest commands while bootstrap-global.mjs resolves the caret-pinned commands.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/references/versions.json",
+          "version": "repo-file-v1:sha256:8c3f99ea217c8a4123b06dc3dce364bb8ceed59b76097b502cdb33853437831a"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs",
+          "version": "repo-file-v1:sha256:9ddd71d7ded8c507f4fa510fb753587fa6f752b99b21e4a166bf895c296f33fb"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/bootstrap-repo.mjs",
+          "version": "repo-file-v1:sha256:cfd7354f4209083d188fec9c41db0d3d80508c859df1306eec7b58ea4482bebb"
+        },
+        {
+          "resource": "repo://openspec/specs/canonical-user-skills-scope/spec.md",
+          "version": "repo-file-v1:sha256:f1160ef5df943f07c1740ae68b9ea54161d45bfbeed0bda140b10bab9de2ff64"
+        }
+      ]
+    },
+    {
+      "id": "claim_e164d32ac4cc4c50b4965c399b1965dc",
+      "statement": "example/ directory and generate-example skill/playbook are not supported and no longer referenced as install paths; bootstrap templates are source of truth.",
+      "evidence": [
+        {
+          "resource": "repo://INSTALL.md",
+          "version": "repo-file-v1:sha256:365b09df49e29b098f6c32c6fb0bddeea79a730939d47d9caa8e79494115796a"
+        },
+        {
+          "resource": "repo://openspec/specs/install-lanes/spec.md",
+          "version": "repo-file-v1:sha256:6844223a2824d9556c085d4b4c7dc319e38339450944cd2e0c40ea82ab76f777"
+        }
+      ]
+    },
+    {
+      "id": "claim_1dff6fdfe76945e5a4d8deb2879653e9",
+      "statement": "Skill initialization copies from bootstrap/ without deleting or renaming it; bootstrap/ is preserved and idempotent re-runs and peer skills depend on the original name.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
+          "version": "repo-file-v1:sha256:b72576bcb57458b179cfca96bd219d66b9beacf2089aa69a5a3269a7e99923f1"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/SKILL.md",
+          "version": "repo-file-v1:sha256:7447c7ad965ddf91176213abed0aa8b780bf169d92827fef3699a5c745f86763"
+        },
+        {
+          "resource": "repo://INSTALL.md",
+          "version": "repo-file-v1:sha256:365b09df49e29b098f6c32c6fb0bddeea79a730939d47d9caa8e79494115796a"
+        }
+      ]
+    },
+    {
+      "id": "claim_237775f042774f958b42daa4d204aa0b",
+      "statement": "aksk-bootstrap global lane is a deterministic idempotent orchestrator (Verify CLIs via npm i -g user scope plus Verify skills at the skill-orchestrator level; bootstrap-global.mjs script performs only the CLI/global-tool half) with EXECUTE (run locally) and INSTRUCT (print exact remaining commands) modes; never half-installs and is detection-driven. Per-repo scaffolding and contract attachment live in aksk-init/bootstrap-repo.mjs; bootstrap.mjs is a shim running global then repo lane. Global lane script is non-interactive; host integrations are manual opt-in, not auto-installed by bootstrap-global.mjs.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
+          "version": "repo-file-v1:sha256:b72576bcb57458b179cfca96bd219d66b9beacf2089aa69a5a3269a7e99923f1"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs",
+          "version": "repo-file-v1:sha256:9ddd71d7ded8c507f4fa510fb753587fa6f752b99b21e4a166bf895c296f33fb"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap.mjs",
+          "version": "repo-file-v1:sha256:5f6112a4410e5b146bfc32ad3aedfbca44c4b4db9933d2a3fffb729e0aec0ceb"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/bootstrap-repo.mjs",
+          "version": "repo-file-v1:sha256:cfd7354f4209083d188fec9c41db0d3d80508c859df1306eec7b58ea4482bebb"
+        },
+        {
+          "resource": "repo://openspec/specs/aksk-bootstrap/spec.md",
+          "version": "repo-file-v1:sha256:57bf5324e654077e03ab8fd27f2db0c993eb315dd0c77ec3a5e223fd96bf59af"
+        }
+      ]
+    },
+    {
+      "id": "claim_74631d6f8a5247979d04f7a27bc645ae",
+      "statement": "check_peer_tools.mjs verifies peer tools by PATH only, never installs, prints exact npm i -g commands on missing tools and exits 2, and rejects unknown tool names with exit 2.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
+          "version": "repo-file-v1:sha256:b72576bcb57458b179cfca96bd219d66b9beacf2089aa69a5a3269a7e99923f1"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs",
+          "version": "repo-file-v1:sha256:9e84b52d6090e6714eeb102744587b00efb05412a41f5bb042cf1be47b0e3823"
+        }
+      ]
+    },
+    {
+      "id": "claim_919472f3e70d45fea78d7369f4aa7ac2",
+      "statement": "attach_wiki_contract.mjs appends the AKSK curation contract between AKSK:WIKI-CONTRACT markers to an existing openwiki/INSTRUCTIONS.md, never creates the file, is idempotent/self-updating, fail-fasts with openwiki --init when missing, and is stub-aware; owned by aksk-init with compat copy in aksk-bootstrap.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs",
+          "version": "repo-file-v1:sha256:cd684c5946d746b89ec10f1bd965951f271ddeb5aec9515f83d9288b8ba0ac05"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/SKILL.md",
+          "version": "repo-file-v1:sha256:7447c7ad965ddf91176213abed0aa8b780bf169d92827fef3699a5c745f86763"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/attach_wiki_contract.mjs",
+          "version": "repo-file-v1:sha256:cd684c5946d746b89ec10f1bd965951f271ddeb5aec9515f83d9288b8ba0ac05"
+        }
+      ]
+    },
+    {
+      "id": "claim_35ad221169af49278dad8d92fd63371f",
+      "statement": "attach_section.mjs attaches N marker-delimited AKSK sections (AKSK:ROUTING, AKSK:LIFECYCLE) where markers are read from the template, is append-only outside markers, idempotent/self-updating, creates missing target file with only the section, and exits 2 on unknown template.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-init/SKILL.md",
+          "version": "repo-file-v1:sha256:7447c7ad965ddf91176213abed0aa8b780bf169d92827fef3699a5c745f86763"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/attach_section.mjs",
+          "version": "repo-file-v1:sha256:782278eefae9ddef14dda790324bcf7df3eb9f37244e105c41e47a897f80ad71"
+        }
+      ]
+    },
+    {
+      "id": "claim_f097d7b79aa44fc18e45dfb9e18da1db",
+      "statement": "init_agents_md.mjs seeds root AGENTS.md baseline zone AKSK:AGENTS-BASELINE from vendored FerroxLabs template, is idempotent with trailing-whitespace normalization, fail-fasts with --replace/--combine prompt on non-matching existing file, --replace overwrites and --combine stages existing/baseline/COMBINE.md under .agents/sessions/agents-md-combine without modifying original.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-init/SKILL.md",
+          "version": "repo-file-v1:sha256:7447c7ad965ddf91176213abed0aa8b780bf169d92827fef3699a5c745f86763"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/init_agents_md.mjs",
+          "version": "repo-file-v1:sha256:2d219bd05a1526cb557a4bbf977dad1ba314e6c2117c32189e0326489d036810"
+        }
+      ]
+    },
+    {
+      "id": "claim_881c0e8d433b44eca4ae885ec58d93d3",
+      "statement": "refresh_agents_baseline.mjs fetches https://raw.githubusercontent.com/FerroxLabs/agents-md/main/AGENTS.md, validates non-empty and anchor presence, swaps only baseline zone content and updates capture date; offline/failure is non-zero with previous vendored baseline unchanged; --check validates without writing.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
+          "version": "repo-file-v1:sha256:b72576bcb57458b179cfca96bd219d66b9beacf2089aa69a5a3269a7e99923f1"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/refresh_agents_baseline.mjs",
+          "version": "repo-file-v1:sha256:30e756b9d5316dc90c7718ff42776ea5be3ab2f6dc64c45eb63d2475c94e4fc7"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/SKILL.md",
+          "version": "repo-file-v1:sha256:7447c7ad965ddf91176213abed0aa8b780bf169d92827fef3699a5c745f86763"
+        }
+      ]
+    },
+    {
+      "id": "claim_36197ff100714f52a50fce5eb26b9d03",
+      "statement": "Per-repo zoned order is FerroxLabs baseline (AKSK:AGENTS-BASELINE owned by init_agents_md) first via aksk-init, then openspec init / openwiki --init, then AKSK routing and lifecycle (AKSK:ROUTING/LIFECYCLE owned by attach_section) and wiki contract; OpenWiki block (OPENWIKI:START/END) remains owned by openwiki tooling.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-init/SKILL.md",
+          "version": "repo-file-v1:sha256:7447c7ad965ddf91176213abed0aa8b780bf169d92827fef3699a5c745f86763"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/bootstrap-repo.mjs",
+          "version": "repo-file-v1:sha256:cfd7354f4209083d188fec9c41db0d3d80508c859df1306eec7b58ea4482bebb"
+        }
+      ]
+    },
+    {
+      "id": "claim_d1e7f40e89ea4f51be6302e3460931dd",
+      "statement": "Shipped integration spread selects per self-reported host: openwiki integrations install <codex|claude|opencode> for supported hosts (skill+MCP+receipt atomically) otherwise npx skills add -g -a <self-reported> langchain-ai/openwiki --full-depth plus openwiki mcp --host or npx add-mcp chooser; default is universal plus current. Shipped aksk-bootstrap global lane script does NOT auto-install host integrations; they are manual opt-in.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
+          "version": "repo-file-v1:sha256:b72576bcb57458b179cfca96bd219d66b9beacf2089aa69a5a3269a7e99923f1"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs",
+          "version": "repo-file-v1:sha256:9ddd71d7ded8c507f4fa510fb753587fa6f752b99b21e4a166bf895c296f33fb"
+        },
+        {
+          "resource": "repo://openspec/specs/agent-integration-spread/spec.md",
+          "version": "repo-file-v1:sha256:8d103d884358150f795d761d8dd6928d1ebd437614a3e1cd9577938f364b9e88"
+        },
+        {
+          "resource": "repo://openspec/specs/aksk-bootstrap/spec.md",
+          "version": "repo-file-v1:sha256:57bf5324e654077e03ab8fd27f2db0c993eb315dd0c77ec3a5e223fd96bf59af"
+        }
+      ]
+    },
+    {
+      "id": "claim_450d4ef9d51c42259ffc108bd5d09f64",
+      "statement": "Validation uses bash scripts/check-agents-structure.sh .agents (requires sessions/README.md only tracked) and scripts/check-publish.sh; no example-specific bypass is required.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/specs/install-lanes/spec.md",
+          "version": "repo-file-v1:sha256:6844223a2824d9556c085d4b4c7dc319e38339450944cd2e0c40ea82ab76f777"
+        },
+        {
+          "resource": "repo://scripts/check-agents-structure.sh",
+          "version": "repo-file-v1:sha256:3e4540194712f502f811a64d86a32c4e44d0a262a4ffebd018c8b867d96abe12"
+        },
+        {
+          "resource": "repo://scripts/check-publish.sh",
+          "version": "repo-file-v1:sha256:79a6e2a286f683115ddd172d2f0d25be4c53c42d9ab0524a0c8b59ab2f0c13ae"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.5.0",
+    "at": "2026-09-04T04:19:45.757Z"
+  }
+}

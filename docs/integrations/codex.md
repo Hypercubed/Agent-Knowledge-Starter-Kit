@@ -6,22 +6,20 @@ Verified against OpenAI Codex documentation on April 12, 2026. Re-check Codex do
 
 ## Setup
 
-1. Install or merge the starter kit into the target repo as `.agents/`.
-2. Keep a short root `AGENTS.md` that routes Codex into `.agents/`.
-3. Keep durable repo policy in `.agents/`, not in Codex home or local config.
-4. Leave portable kit skills under `.agents/skills/<name>/SKILL.md` so Codex can discover them.
-5. Use `~/.codex/config.toml` only for local sandbox, approval, profile, and similar user settings.
+1. Install the kit per [Adopting the kit](./patterns.md#adopting-the-kit).
+2. For Codex hosts, install with `npx skills add -g -a <self-reported> Hypercubed/Agent-Knowledge-Starter-Kit` (where `<self-reported>` is your host id; universal is `~/.agents/skills`, which Codex reads natively; `npx` required). Extra `-a <other>`/`--all` only when the user asked.
+3. Keep a short root `AGENTS.md` that routes Codex into `.agents/`.
+4. Keep durable repo policy in `.agents/`, not in Codex home or local config.
+5. Leave portable kit skills under `.agents/skills/<name>/SKILL.md` so Codex can discover them.
+6. Use `~/.codex/config.toml` only for local sandbox, approval, profile, and similar user settings.
 
-```markdown
-# AGENTS.md
+Attach the marker-delimited `AKSK:ROUTING` section rather than hand-writing this file:
 
-This repo uses the Agent Knowledge Starter Kit.
-
-- Read `.agents/AGENTS.md` for durable repo guidance.
-- Use `.agents/docs/index.md` to find decisions, troubleshooting, and playbooks.
-- Treat `.agents/skills/*/SKILL.md` as repo-local Codex skills.
-- Keep temporary task evidence in `.agents/sessions/`; promote only durable lessons back into `.agents/`.
+```bash
+node .agents/skills/aksk-bootstrap/scripts/attach_section.mjs . AGENTS.md
 ```
+
+The attachment appends the section below any existing content, refreshes it in place when the kit's template changes, and is idempotent on re-run. Add tool-specific notes outside the markers - never edit between them.
 
 ## Discovery and Config
 
@@ -43,7 +41,7 @@ This repo uses the Agent Knowledge Starter Kit.
 
 1. Launch Codex from the repo root or target working directory.
 2. Confirm root `AGENTS.md` routes into `.agents/`.
-3. Read `.agents/AGENTS.md` and `.agents/docs/index.md` before changing conventions.
+3. Read `.agents/AGENTS.md` and `openwiki/index.md` before changing conventions.
 4. Use repo-local skills for closeout, distillation, and linting.
 5. Verify with `git status --short` and targeted reads before finishing.
 

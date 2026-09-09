@@ -1,0 +1,436 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:cd4f6911d94367a1bce30c56974cbea0496a16e5601260cbc27a596dad401f89",
+  "claims": [
+    {
+      "id": "claim_76d4be37d8ec4eef91d1f945edc67b80",
+      "statement": "Leaf bootstrap scripts are deterministic Node .mjs that never install software and fail fast with exit 2 plus exact remediation commands; only the orchestrator bootstrap-global.mjs (via shim bootstrap.mjs) performs per-user npm i -g installs and otherwise follows the same fail-fast contract, never half-installing.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
+          "version": "repo-file-v1:sha256:b72576bcb57458b179cfca96bd219d66b9beacf2089aa69a5a3269a7e99923f1"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs",
+          "version": "repo-file-v1:sha256:9ddd71d7ded8c507f4fa510fb753587fa6f752b99b21e4a166bf895c296f33fb"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap.mjs",
+          "version": "repo-file-v1:sha256:5f6112a4410e5b146bfc32ad3aedfbca44c4b4db9933d2a3fffb729e0aec0ceb"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs",
+          "version": "repo-file-v1:sha256:9e84b52d6090e6714eeb102744587b00efb05412a41f5bb042cf1be47b0e3823"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/attach_section.mjs",
+          "version": "repo-file-v1:sha256:782278eefae9ddef14dda790324bcf7df3eb9f37244e105c41e47a897f80ad71"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/attach_wiki_contract.mjs",
+          "version": "repo-file-v1:sha256:cd684c5946d746b89ec10f1bd965951f271ddeb5aec9515f83d9288b8ba0ac05"
+        }
+      ]
+    },
+    {
+      "id": "claim_7630ea70a14f40608bc9ad061a64f5f6",
+      "statement": "Templates carry their own BEGIN/END marker pairs and scripts read markers from the template at runtime via markersOf rather than hard-coding them; this makes zone renames template-only changes.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-init/references/lifecycle-template.md",
+          "version": "repo-file-v1:sha256:0d6f5afce645ff08c1747173471603c8c78dc0f488cca0bf032c02057af0924b"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/references/routing-note-template.md",
+          "version": "repo-file-v1:sha256:7daa0b08b9a8cae6510c448134bfb4f7b1373132970b66916e7c6076c353e683"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/attach_section.mjs",
+          "version": "repo-file-v1:sha256:782278eefae9ddef14dda790324bcf7df3eb9f37244e105c41e47a897f80ad71"
+        }
+      ]
+    },
+    {
+      "id": "claim_1032c5967e7f48209f589c16b1cb2bae",
+      "statement": "attach_section.mjs is append-only outside markers, idempotent and self-updating via in-place refresh when the template changed, creates a missing target file containing only the attached section, and exits 2 on unknown template name or when the target is a directory.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_section.mjs",
+          "version": "repo-file-v1:sha256:782278eefae9ddef14dda790324bcf7df3eb9f37244e105c41e47a897f80ad71"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/attach_section.mjs",
+          "version": "repo-file-v1:sha256:782278eefae9ddef14dda790324bcf7df3eb9f37244e105c41e47a897f80ad71"
+        }
+      ]
+    },
+    {
+      "id": "claim_91e46289ced443b6a7f3100e61163a8f",
+      "statement": "attach_wiki_contract.mjs never creates openwiki/INSTRUCTIONS.md; if missing it exits 2 naming the verbatim prerequisite openwiki --init with no writes, otherwise appends the wiki-contract section below existing content stub-aware, and is idempotent by refreshing only content between AKSK:WIKI-CONTRACT markers.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs",
+          "version": "repo-file-v1:sha256:cd684c5946d746b89ec10f1bd965951f271ddeb5aec9515f83d9288b8ba0ac05"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/attach_wiki_contract.mjs",
+          "version": "repo-file-v1:sha256:cd684c5946d746b89ec10f1bd965951f271ddeb5aec9515f83d9288b8ba0ac05"
+        }
+      ]
+    },
+    {
+      "id": "claim_9a7c977d71484c2c8048c2049f172ba4",
+      "statement": "check_peer_tools.mjs verifies peer binaries via PATH directory scan with PATHEXT on Windows, exports INSTALL_COMMANDS mapping openspec to npm i -g @fission-ai/openspec@latest and openwiki to npm i -g openwiki@latest, rejects unknown tool names with exit 2 before lookup, and on missing tools prints one error per tool plus install commands then exits 2.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs",
+          "version": "repo-file-v1:sha256:9e84b52d6090e6714eeb102744587b00efb05412a41f5bb042cf1be47b0e3823"
+        }
+      ]
+    },
+    {
+      "id": "claim_22a71aa43c4e45938f652b1492ee9878",
+      "statement": "sync_wiki_indexes.mjs refreshes OpenWiki directory indexes deterministically with no LLM and no CLI run by locating the global package via npm root -g and dynamically importing OpenWikiLocalShellBackend with docsOnly true and virtualMode true plus synchronizeWikiIndexes; it exits 2 with remediation when openwiki/ is missing or the package is not installed globally.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs",
+          "version": "repo-file-v1:sha256:85c6e19effcad0d70b581ea2144ded924babe38897ade26f0abf0d2668e76e58"
+        }
+      ]
+    },
+    {
+      "id": "claim_36fc3c515d884a4db8f7b0ce127daaac",
+      "statement": "Bootstrap attachments are idempotent via trailing-whitespace and newline-at-EOF normalized byte-compare; re-running when the marked section already matches the template is a no-op without rewrite.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/attach_section.mjs",
+          "version": "repo-file-v1:sha256:782278eefae9ddef14dda790324bcf7df3eb9f37244e105c41e47a897f80ad71"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/attach_wiki_contract.mjs",
+          "version": "repo-file-v1:sha256:cd684c5946d746b89ec10f1bd965951f271ddeb5aec9515f83d9288b8ba0ac05"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/init_agents_md.mjs",
+          "version": "repo-file-v1:sha256:2d219bd05a1526cb557a4bbf977dad1ba314e6c2117c32189e0326489d036810"
+        }
+      ]
+    },
+    {
+      "id": "claim_e9f6033d3b174ff1a00ebaad53077942",
+      "statement": "When root AGENTS.md already exists and does not match the vendored baseline, init_agents_md.mjs does not write, exits 2 naming the conflict and printing the verbatim question Replace AGENTS.md with the FerroxLabs baseline, or combine both using the LLM? plus --replace and --combine flags, without using stdin.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/init_agents_md.mjs#L180-L191",
+          "version": "repo-lines-v1:sha256:3befe34458a7d4bbc37b9a201ac7fe3a13a2d93ba5acfac888e7ae8009a330ee:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdmZmFkNzhlZDRhZTI1OTNmODIxYThhNjRlMDkxZjZlMjRhNzRlM2Q1NTJiNDFlYWJkNjk2OWYxZWE0MjVmYWEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdlMDk0ZWU0MzRmOTllNDQ5M2Q5NGEzY2ZhOGUzZGFiZGQyYzRhNjFjZGY1MmM0ZTIyYzY5OTIxNDA4MGQxODciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhmZjVkNjBjNjhmZjM4YzEzOWQ3MWJkMTljN2YyYzJmMTMxNGJkNjUzNWIzNGZmNjhkMjEyNTk2MWEwZDdlZDgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_05b2118784b2468d89fc5e23740c2d6a",
+      "statement": "With --replace, init_agents_md.mjs overwrites root AGENTS.md with the vendored baseline wrapped in AKSK:AGENTS-BASELINE markers including the provenance header.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/init_agents_md.mjs#L128-L133",
+          "version": "repo-lines-v1:sha256:650b137abc055747aafa22b9e0e8e3d9d7b2abccad912e1aec6f089171f45f86:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYmFhZGVhNmM4N2IxNmZjNGExYWQ5ZWM3Y2U2MzIyMWQ2ZWUyYjZkZWY2NzBkNTk2ZDRmYWQyYTY5OGY4YTgwOCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDg1MzNkNmMwZmJkMjBiZDUxMmUwNTAwMmM1MjMzNjJiNWViNzJmMjY0ZWZhY2IwM2ZhYzk3NjhlODc5NzQ4ZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZGY1YmQwYzdmMGMxYTQzNmZmNzk5M2Q5OGZjYzBkNDZhMjdhYzFjNjZmOWQ5YmNjN2JiYTBiNTM3MGI2OWE4MSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_8e31083ae5a94767bb586d7dc05e87cb",
+      "statement": "With --combine, init_agents_md.mjs never modifies the original; it stages the existing AGENTS.md, the vendored baseline, and a generated COMBINE.md merge brief side-by-side under .agents/sessions/agents-md-combine/<timestamp>/ and prints agent instructions for LLM merge.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/init_agents_md.mjs#L135-L178",
+          "version": "repo-lines-v1:sha256:ca20604654dae3d953500eb6aa801b886f4945729be6144eda53d0d6cfb46a50:eyJzZWxlY3RlZExpbmVDb3VudCI6NDQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIzYTM3NmI4OWYyM2NlZTUwNDFkYmExYmRiMTcyNGU2NmI1YWI2NDcyNmUyOTVlYjU4ZDUxMjgzNDIzY2U3ZWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhmZjVkNjBjNjhmZjM4YzEzOWQ3MWJkMTljN2YyYzJmMTMxNGJkNjUzNWIzNGZmNjhkMjEyNTk2MWEwZDdlZDgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjJlYjg0NTE0NjVjZDkwNmM5ZDBmN2RiYjRlMmFjOWQ3YjU0M2E0MmM0ZGMxMzgzZWEwZDM3MzM1YzAzODRkNzkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a3301c842130441394236757bebb492e",
+      "statement": "The FerroxLabs baseline is vendored offline at references/agents-md-baseline-template.md wrapped in AKSK:AGENTS-BASELINE markers with a provenance header containing upstream URL, capture date, MIT license notice and refresh pointer; seeding never touches the network and copies the block verbatim.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/references/versions.json",
+          "version": "repo-file-v1:sha256:8c3f99ea217c8a4123b06dc3dce364bb8ceed59b76097b502cdb33853437831a"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/init_agents_md.mjs#L100-L109",
+          "version": "repo-lines-v1:sha256:8b1b651d60f52fc574de1ca50df8df1eeb5224f33cf40deec2a028ebd121c770:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRmOWQ1MTRmNzgzYWNlOTdkZTU3YjAyMjllYjc0OTRiYzM3OThkYTQ1ZmZjNmVhY2MzMmUyNzczOGNlZTQzNTciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZhZWI2OTVkYTA1MTk3ZjMxZWE5MmJiNjEwMzI0YTMyY2M2OWQ5NDZiZDlmODY3YjE2NzMxNTdhNGY3MzI4MTIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjkzODNkYzI1ZmRmNjdkM2YwMzMzMGI0MTY2NjhjOWI4NmRmYjJhOWMxM2VkMzFkMmMwNjMyNTlkMWRmYmE4NTQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_7c9ef6ed9dad4b428da2ec64cb2be36e",
+      "statement": "refresh_agents_baseline.mjs is opt-in only: it fetches upstream to a temp file, validates non-empty and expected section anchors, swaps only content between AKSK:AGENTS-BASELINE markers in the vendored template and updates the provenance header date, leaving other zones byte-identical; offline or validation failure exits non-zero and leaves the previously vendored baseline intact.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/refresh_agents_baseline.mjs",
+          "version": "repo-file-v1:sha256:30e756b9d5316dc90c7718ff42776ea5be3ab2f6dc64c45eb63d2475c94e4fc7"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/SKILL.md",
+          "version": "repo-file-v1:sha256:7447c7ad965ddf91176213abed0aa8b780bf169d92827fef3699a5c745f86763"
+        }
+      ]
+    },
+    {
+      "id": "claim_409710b185564afc974d98664e5310b1",
+      "statement": "A fully bootstrapped AGENTS.md contains exactly one block per family ordered baseline → OpenWiki → AKSK Routing → AKSK Lifecycle with distinct markers AKSK:AGENTS-BASELINE, OPENWIKI:START/END, AKSK:ROUTING, AKSK:LIFECYCLE; refreshing one zone leaves other zones byte-identical and docs-lint checks each zone as an independent integrity unit.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-init/SKILL.md",
+          "version": "repo-file-v1:sha256:7447c7ad965ddf91176213abed0aa8b780bf169d92827fef3699a5c745f86763"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/references/lifecycle-template.md",
+          "version": "repo-file-v1:sha256:0d6f5afce645ff08c1747173471603c8c78dc0f488cca0bf032c02057af0924b"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/references/routing-note-template.md",
+          "version": "repo-file-v1:sha256:7daa0b08b9a8cae6510c448134bfb4f7b1373132970b66916e7c6076c353e683"
+        }
+      ]
+    },
+    {
+      "id": "claim_49ba0402f3814ddb9ac3b732968d6160",
+      "statement": "Supported per-repo order is deterministic and baseline-first: init_agents_md.mjs seeds baseline and scaffolds .agents first, then openspec init, then openwiki --init, then attach_section.mjs appends ROUTING and LIFECYCLE below any OPENWIKI block; seeding is a separate script from attach_section to preserve append-only invariant.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-init/SKILL.md",
+          "version": "repo-file-v1:sha256:7447c7ad965ddf91176213abed0aa8b780bf169d92827fef3699a5c745f86763"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/attach_section.mjs",
+          "version": "repo-file-v1:sha256:782278eefae9ddef14dda790324bcf7df3eb9f37244e105c41e47a897f80ad71"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/bootstrap-repo.mjs",
+          "version": "repo-file-v1:sha256:cfd7354f4209083d188fec9c41db0d3d80508c859df1306eec7b58ea4482bebb"
+        }
+      ]
+    },
+    {
+      "id": "claim_31ff3cafb0a2429a90837927d5e37f96",
+      "statement": "Combine staging uses .agents/sessions/agents-md-combine/<timestamp>/ which is gitignored where only sessions/README.md is tracked, and the generated COMBINE.md brief constrains LLM merge to preserve project-specific learnings and sections 10-11, prefer baseline structure for sections 0-9, and keep AKSK and OPENWIKI marker blocks verbatim.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/init_agents_md.mjs#L135-L170",
+          "version": "repo-lines-v1:sha256:5ad793a46dee1255a55c26432134d4c1b7052cf5f2f55c6a0fae69d26c9e730b:eyJzZWxlY3RlZExpbmVDb3VudCI6MzYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIzYTM3NmI4OWYyM2NlZTUwNDFkYmExYmRiMTcyNGU2NmI1YWI2NDcyNmUyOTVlYjU4ZDUxMjgzNDIzY2U3ZWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU3OTMzNzg3YWE0ZTVmOTVhZDZhMjJiNmFkMTJjMTBkNTgzOGUwZDliNzYwMWZiNDc4NTBlNmEwMmI2OGUwYjkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhmZjVkNjBjNjhmZjM4YzEzOWQ3MWJkMTljN2YyYzJmMTMxNGJkNjUzNWIzNGZmNjhkMjEyNTk2MWEwZDdlZDgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk0YzczYTMzMDY1NzVkZTE2YWQyNGE3MjA3M2M5M2YwZGI3OTg2YmRkZmEzOWI2ZDNkYzFiMTkzY2FlZTFlZGYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e76ddca83e65432eaf0925bd53fe737e",
+      "statement": "Bootstrap-global preflight detects before any write the Node.js major version (>=22 required), whether openspec and openwiki resolve on PATH, whether .agents/, openspec/, openwiki/ exist in the target repo, and whether OpenWiki install receipts are present via openwiki integrations list, reports this state before acting, and stops before installing on Node <22; the repo lane separately verifies Node and tools and fails fast directing to aksk-bootstrap.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs#L56-L106",
+          "version": "repo-lines-v1:sha256:114b77b8eeef45e4ee03e60c3a413dd616dfbbdd1d974605f0be89700e8857a3:eyJzZWxlY3RlZExpbmVDb3VudCI6NTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUwZTViZGI4NDU2OWE2N2ExNDM0NDEzODU3ZTQ3ODBiNDU4NWNkNDNiZTJjZTQ2ZjU1N2Q2MDc0ODZjZTBmODMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY4ZmU0MzU5MjJjNmZiZTc0MTU2ZjU2NDkxMTM0ZGYzZDBhY2YwMDNiOWFkMjFiMTk1NWZhODk5NzNkODc3YzQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg4ODQ5MzU0YjRiYzk0YjUxNGFlOTI2Yjg4YmIzMjkwMDI0NzdlZWQ2ZjZmNjMzOTM1NDg0Yzk5NThhNjIxNDkifQ"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/bootstrap-repo.mjs#L40-L51",
+          "version": "repo-lines-v1:sha256:8da70e4c87c37e5fc9ae95f93d54ca7d54f16e01683aca102c8a417080841019:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNmZjEyYzBlY2ZiYzgzNmYzODNiZTRiNWFmMDVjOTAyOTdmOTA2ZmE2M2MxYmU3NWFkNDAzYzZjZmE4YmRhMzUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZhNDQzOTg3ZWE0ZTM4MWVmNzY0YzgzNjNmZTI0OWI2MDUwMDk5ZjM1NjMyYWE0YjQ1ZGU4N2E2MTgyYWE0N2YiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM5MjQzMTUzMTFlYjIwMTQ4N2Y4NzlkMzU0YjMyMTNhODBlYzFhNjA0YWU1MGI4OGIxZjVkZmE1NGUwYjYzYTQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_ff1a022ed4014ec88e59c7e6fb2479d4",
+      "statement": "Bootstrap global lane installs @fission-ai/openspec and openwiki globally once per user via npm i -g with caret versions from aksk-bootstrap/references/versions.json via versionsFromPackageJson(), skips any tool already at a compatible version and reports detected versions; host integrations are not auto-installed by the global lane and are manual opt-in via openwiki integrations install.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/references/versions.json",
+          "version": "repo-file-v1:sha256:8c3f99ea217c8a4123b06dc3dce364bb8ceed59b76097b502cdb33853437831a"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs#L131-L150",
+          "version": "repo-lines-v1:sha256:2db062e67d51e5b5dfcb45e9d0146de5cc93dbe9de968e823ed01fc9002a300d:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxNGE0ZDBjZTVlMGVkMDNiMWI3NjJmY2FkN2E4YzAwNmI3YzgxZmU1MGFjZDM1YjU1NThmODE2OGU1MDYwNzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY3ZWY5NGI3ODU2ODIwNTMwNTU5YTU5ZGJkMGIwZWQ4ZmQ2ODIyN2FmMDQwNzVjMjRlODAzOWRjMWMwZDRjNjYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjBkYThkYzdlZTEwNTVhMWUxNDZlMzQ2ZTU4MDhlM2YzZGM1Yjc2MzVmYzk0ODk3OTI0NjM5NzM4NTQxNDgzNjYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoyLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk3ZGZkYWE5ZmNiYWJjODU1YzFlNDk5MWE2M2E4MDM0ZGQ1OWY1OWZjNDExNTQ4NGJhZDlmZmY1ZjUyNTM4MGMifQ"
+        },
+        {
+          "resource": "repo://openspec/specs/aksk-bootstrap/spec.md",
+          "version": "repo-file-v1:sha256:57bf5324e654077e03ab8fd27f2db0c993eb315dd0c77ec3a5e223fd96bf59af"
+        }
+      ]
+    },
+    {
+      "id": "claim_f1f612d7b00c4c6c9a878f7a83fba01f",
+      "statement": "Per-repo lane (aksk-init/bootstrap-repo.mjs) first scaffolds a minimal .agents/ tree and seeds the FerroxLabs baseline via init_agents_md.mjs, then runs openspec init when missing, attempts openwiki --init (noting harness needs no extra key while CLI needs OPENAI_API_KEY), and merges routing/lifecycle blocks via attach_section.mjs plus wiki contract via attach_wiki_contract.mjs; a bare repo creates all and a fully bootstrapped re-run changes nothing.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/bootstrap-repo.mjs",
+          "version": "repo-file-v1:sha256:cfd7354f4209083d188fec9c41db0d3d80508c859df1306eec7b58ea4482bebb"
+        },
+        {
+          "resource": "repo://openspec/specs/aksk-init/spec.md",
+          "version": "repo-file-v1:sha256:a9691a718c37b39d54cd5eed8f1e8318e837d11ae4f477e67223b5cece84158c"
+        }
+      ]
+    },
+    {
+      "id": "claim_0d8c6c90ab054c12a025c36519d169c8",
+      "statement": "Bootstrap never half-installs: when any step cannot be executed locally it prints the exact remaining copy-paste commands partitioned to that lane and exits clean without partial state from the failed step and without continuing past a failed prerequisite, via a two-lane EXECUTE versus INSTRUCT model; INSTRUCT is partitioned so global lane prints only npm i -g lines and repo lane prints only repo-scoped commands.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs#L108-L112",
+          "version": "repo-lines-v1:sha256:b908ea56efac9b3414a9e42bf4346c30a9da4cddca9c86f89a01c83ba041a0d2:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDU3MGJmZTQxOWZmZGVjMDg2MjliMWY5ZmNlYTVmMzg0Nzk2YTJiYzZiMDRmZmE3NjgyNDZiNDRlZWRhN2U4OSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZmI1ODBlOTY0ZjgzYTQ3M2Y0M2Q0NDM4NDYyOTQ5ZDY4YjU2MDBmZGE3ODdmMTYzNzQ1ZDAwZGU4OWNiZjM2YSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiY2Q0MWViM2NlNmI3NmIzZjFmZDhiNjAwYjk5NWQyZThkMWJiYTczZDZhYzJmYzI1ZWQxMTM2NWMwY2M4OGRjOCJ9"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/bootstrap-repo.mjs",
+          "version": "repo-file-v1:sha256:cfd7354f4209083d188fec9c41db0d3d80508c859df1306eec7b58ea4482bebb"
+        },
+        {
+          "resource": "repo://openspec/specs/aksk-init/spec.md",
+          "version": "repo-file-v1:sha256:a9691a718c37b39d54cd5eed8f1e8318e837d11ae4f477e67223b5cece84158c"
+        }
+      ]
+    },
+    {
+      "id": "claim_c3e7c2ef7bc34737af3a0b822b5089e0",
+      "statement": "Host spread is manual opt-in outside the global lane: supported hosts codex/claude/opencode use openwiki integrations install <host> (atomic skill plus MCP config with receipt), while all other hosts use the unified fallback of lifecycle skill via npx skills add -g -a <self-reported> langchain-ai/openwiki --full-depth plus MCP via npx add-mcp or openwiki mcp --host <target>.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/specs/agent-integration-spread/spec.md#L15-L17",
+          "version": "repo-lines-v1:sha256:1d464d697904e51d6df6518b69c0193e871a8450a6970fbb48d970f29be44886:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMmNlYTZiZTRmNmQxZTFiOWNiOWNjNDdmYjY4OThiNmM1ODAzNTAyZTA0Y2IxODNkYzVkOTZiNmYxYTRkYmJhYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzEyOGFkNDI5M2MwNzBlMDc5MThkMGU5ZGQxOTQ1ZWQwYmQ5ODQ3ZDBlODI2NGIyYTM4YzU1OThkNzI3NDRkZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMGE2ZjdkMzYwOThhZjc1MDM4N2IyYTZiMDQ3N2YxMTc1NjRjNjBiMjg4OTAzM2Q1YmVjYmM0NTZjZDU3NDU3NCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDNlMGJhMGFjOTQzMGI3MmJiNTRlNGYzOWM3YjE5OWFlYTNmMWI2MmExZGI1YTZlMDJjYTk4MmE1MmQzNjE4MiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_798099dcd47d422e975516631a09ef06",
+      "statement": "The openwiki integrations installer enforces ownership partition by receipt: before integrating it inspects via openwiki integrations list and skips any agent whose skill directory contains .openwiki-install.json with matching target and intact hashes, reports modified on hash drift and requires --force with backup to overwrite.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
+          "version": "repo-file-v1:sha256:b72576bcb57458b179cfca96bd219d66b9beacf2089aa69a5a3269a7e99923f1"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs",
+          "version": "repo-file-v1:sha256:9ddd71d7ded8c507f4fa510fb753587fa6f752b99b21e4a166bf895c296f33fb"
+        }
+      ]
+    },
+    {
+      "id": "claim_549155a183924684b12b668fc11bbfe3",
+      "statement": "The installer produces a per-host report via openwiki integrations list showing installed/unchanged/modified status and, on --force, the backup path.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs",
+          "version": "repo-file-v1:sha256:9ddd71d7ded8c507f4fa510fb753587fa6f752b99b21e4a166bf895c296f33fb"
+        }
+      ]
+    },
+    {
+      "id": "claim_70a7bb7d0ea44377825b828be8211a49",
+      "statement": "Global installs are per-user npm i -g, not npx or repo node_modules, with versions from aksk-bootstrap/references/versions.json caret range via versionsFromPackageJson() checking consumer package.json first then bundled versions.json; when sandboxed or npm missing, bootstrap prints exact remaining commands and exits clean with no partial state.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/references/versions.json",
+          "version": "repo-file-v1:sha256:8c3f99ea217c8a4123b06dc3dce364bb8ceed59b76097b502cdb33853437831a"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs#L20-L42",
+          "version": "repo-lines-v1:sha256:dbdaccdc9248e625ec1821764d0bff6c8e4cf5e4d3f94e029726f98d1cd32121:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM3ODMwYTNkNWI5OTY1MDQ4MGM0NzBhODM5NGRiZTg3YzBlZGI5ZmI3NDFiZGZkMTY1MWY4YmI0OWMzMGJlMjciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc0MDgzZGFkNWI4MDk4MGNlYjFhNDEyMTM3ZjI5MzNhNjI1NjllMDAxODI2ZmEzOWVmNTY2NDI3NTQxYTM0MmUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg5Y2VjY2VjMmZjMDVmN2Q1YWRhMzAzMTgwZWU5ZTNkYzNjNmUzMWI4ZjdiMWI3ODUyNGJiNTU2YTI4OTZjZmYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b45e4fa4dca84501b21478c9fb86984f",
+      "statement": "bootstrap-global.mjs preflight reports Node version, tools on PATH, repo trees, contract and routing attachment, and receipts via openwiki integrations list --project before any write, supports --json machine-readable output, and re-detects state after global lane.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs#L61-L106",
+          "version": "repo-lines-v1:sha256:57f225b6c4ca6437a225a27f2ba4f1b0afd12a503cbda5fe6add97f0fa2f0c7f:eyJzZWxlY3RlZExpbmVDb3VudCI6NDYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2NTcyMjBmYzc2NGNjM2Y1ZGQ2ZGU0N2UyMTU3Njc0Y2ZiNDVkZDAyYzJlZTFhMzFmMWZkOTQ4ZDhiMjgwYjciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImRiNGExOGNmMGNlOGM1NjQyZmEyYzAyODE5NGEwZGExYzYyOTc3ZDUzZDZmZjZkOTg4NjRmODdmMjFkZmNiNGUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg4ODQ5MzU0YjRiYzk0YjUxNGFlOTI2Yjg4YmIzMjkwMDI0NzdlZWQ2ZjZmNjMzOTM1NDg0Yzk5NThhNjIxNDkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_14c142c84d1a4f56b6e9b4bd555e6570",
+      "statement": "aksk-bootstrap global lane is restricted to per-user operations (Node check, npm i -g from caret ranges, PATH verification, receipt peek) and must not create or modify per-repo files; per-repo scaffolding, routing, and wiki contract are now owned by aksk-init, and bootstrap.mjs is a shim that runs global lane then repo lane.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs",
+          "version": "repo-file-v1:sha256:9ddd71d7ded8c507f4fa510fb753587fa6f752b99b21e4a166bf895c296f33fb"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap.mjs",
+          "version": "repo-file-v1:sha256:5f6112a4410e5b146bfc32ad3aedfbca44c4b4db9933d2a3fffb729e0aec0ceb"
+        },
+        {
+          "resource": "repo://openspec/specs/aksk-bootstrap/spec.md",
+          "version": "repo-file-v1:sha256:57bf5324e654077e03ab8fd27f2db0c993eb315dd0c77ec3a5e223fd96bf59af"
+        }
+      ]
+    },
+    {
+      "id": "claim_8faabfe05da54f208a9ce33d36513cdc",
+      "statement": "Global and repo lanes are non-interactive scripts; the aksk-bootstrap and aksk-init skills prompt [Y/n/skip] before invoking them, scripts accept --yes/--non-interactive/AKSK_YES=1 passthrough, and no TTY falls back to partitioned INSTRUCT with no writes.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/SKILL.md",
+          "version": "repo-file-v1:sha256:b72576bcb57458b179cfca96bd219d66b9beacf2089aa69a5a3269a7e99923f1"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/SKILL.md",
+          "version": "repo-file-v1:sha256:7447c7ad965ddf91176213abed0aa8b780bf169d92827fef3699a5c745f86763"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/bootstrap-repo.mjs",
+          "version": "repo-file-v1:sha256:cfd7354f4209083d188fec9c41db0d3d80508c859df1306eec7b58ea4482bebb"
+        }
+      ]
+    },
+    {
+      "id": "claim_b0c140cd55834d12bc52824740d6a142",
+      "statement": "Per-repo lane distinguishes harness vs CLI paths for openwiki --init: harness via agent+openwiki MCP/skill needs no extra key while CLI openwiki --init requires OPENAI_API_KEY; the repo script attempts CLI and notes the harness fallback on non-zero, and the skill describes both without blocking on stdin.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-init/SKILL.md",
+          "version": "repo-file-v1:sha256:7447c7ad965ddf91176213abed0aa8b780bf169d92827fef3699a5c745f86763"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/bootstrap-repo.mjs#L78-L85",
+          "version": "repo-lines-v1:sha256:e6c686e0508f4cb690d622a522de984eaed66777399d5e2bb93c43c5ebf7fe87:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNGEzNzkwNjlkMmQ0ZGYyMmZlNGNiNjg3MzFhZjllZmZjMWRiMzhlYTQ2MTQ0NjBmZDBjYzkxNGNkMGU3M2Q2NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTY4MTM1MTI0Njg1NzUyZWIyYzg1ZTBjMzg1MTcwNzZmYjM2NjAyYTdlYTExMGU2MThjZDg1NTRlYzQzMTcyYyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYmRlYzY2YWFjNmE5NTYxZDViOGI1OGM0MGZjZjIzYWM3MGU5NGUyN2Q3NjY1Njg2ODFiNmRmYzBhMDBlNmVmNSJ9"
+        },
+        {
+          "resource": "repo://openspec/specs/aksk-init/spec.md",
+          "version": "repo-file-v1:sha256:a9691a718c37b39d54cd5eed8f1e8318e837d11ae4f477e67223b5cece84158c"
+        }
+      ]
+    },
+    {
+      "id": "claim_80f3dba7242c47b397a65a83983e1215",
+      "statement": "Version source is single-sourced at aksk-bootstrap/references/versions.json; aksk-init does not duplicate versions.json and reuses it for diagnostics and repo-lane messages, and must not hard-code openwiki@latest.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/references/versions.json",
+          "version": "repo-file-v1:sha256:8c3f99ea217c8a4123b06dc3dce364bb8ceed59b76097b502cdb33853437831a"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/bootstrap-repo.mjs#L47-L48",
+          "version": "repo-lines-v1:sha256:22cca5c56721c646dcc776720a4036ca328e362cb2601766395f807e0b4f145f:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiM2U3YjBlYzUyZjdmMjY1ODBkY2JmOGM0MmRjNzA3MGQwYmM4NzhhYzk0NDI2OGQ5YzI5N2RmMjVhMjJiOGU5OSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2I1YmY3MTAyNjUzN2M3NzU1MDg4NGFhZDI2YWUyYmVlYTQzMTg5NDI3ZTE0NjBlYjAxYmE1MzNhMmI2YzRkOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzM1NThlNzkzZjExZmJjNTk0YmIzMGQzNDU3ZDM1ZDZhMjA4NGZiYTIzYTk4MDY5MTcwNGMwY2QyMWUwNTNiMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZWRkMzE5ZDcxMTA5ODRjNTQwMzRjMzY1MTkzZWFlNjg0Y2QxZjljYjI4OTEwMTBhODBlNTU1ZGQ4NmFkZjUxYSJ9"
+        },
+        {
+          "resource": "repo://openspec/specs/aksk-init/spec.md",
+          "version": "repo-file-v1:sha256:a9691a718c37b39d54cd5eed8f1e8318e837d11ae4f477e67223b5cece84158c"
+        }
+      ]
+    },
+    {
+      "id": "claim_a496d672de624e97a56de34e789447c7",
+      "statement": "Repo lane defaults to inheriting global skills and only installs repo-local skills when invoked with --local-skills (npx skills add without -g and per-project receipts).",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-init/SKILL.md",
+          "version": "repo-file-v1:sha256:7447c7ad965ddf91176213abed0aa8b780bf169d92827fef3699a5c745f86763"
+        },
+        {
+          "resource": "repo://openspec/specs/aksk-init/spec.md",
+          "version": "repo-file-v1:sha256:a9691a718c37b39d54cd5eed8f1e8318e837d11ae4f477e67223b5cece84158c"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.5.0",
+    "at": "2026-09-04T04:19:45.757Z"
+  }
+}

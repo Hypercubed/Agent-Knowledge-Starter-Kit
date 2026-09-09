@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:c05a9f231ec7612e15b24dbddcfb98511323615730b931a684d5625c1455f006",
+  "claims": [
+    {
+      "id": "claim_91084f109dbc46fcbc8e2aec482caafb",
+      "statement": "Tool-native files are wiring while .agents/ files are durable repo knowledge; integrations must point tools at .agents/AGENTS.md, openwiki/index.md, playbooks, and skills instead of copying long-lived policy into native configs.",
+      "evidence": [
+        {
+          "resource": "repo://docs/integrations/patterns.md#L9-L14",
+          "version": "repo-lines-v1:sha256:d6401921205ce77f4eacdeee5a91101ba91770c24411bd0507af00b4645691f0:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMGUxNzVlNmE4ZTBkMThmMjM1MWYyODk1ZGIyY2I4M2VmOWIyODk4YzdjY2ZlNTg0MGM4NTIwMTZjNTE4NmY4MSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjJhMDcyMjUzOWM2MTM3M2Q2MDk2YmU1NGI4NTkwNmI5ZWFlYjRmNThlY2I3NjU3YzJhZDhhZmEzMTJiOTQ5MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzFkNDEyMjhlNmUyYWU4ZGNjMTgyNDc3MjY3YzY5NjhmY2ExZmY0Nzk4ODQ2ZjI0MjU0ZmViNjNjNjAzYzBhOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOGU3NzZmMTU5NTRjMzBlZDI3YWZlZTM0Y2E3YzFlMDI2ZWUyYTViYWFjM2M2NmU4NTcxYzIwMjk0NTNhYmIzYSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_57971b01a04f4bbd86e9277ae336181b",
+      "statement": "For AGENTS.md-native tools, the AKSK:ROUTING section is attached via attach_section.mjs (append below existing content, idempotent in-place refresh) rather than hand-writing the root file.",
+      "evidence": [
+        {
+          "resource": "repo://docs/integrations/patterns.md#L26-L34",
+          "version": "repo-lines-v1:sha256:b9408eba97e98e724b773071a943e78076c81592f8aa2a17871e606d3376a38c:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWZlMzJjMmNhODc5ZGU5OTQzODJiYzhlZDVjMDk4MTJkNDkxMTMwYjFjZTBlYzU2N2RlOTRlNmE0OGMxNDE0YSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDlkMzVjM2IxZTRlMzM2ZTFiYjRkMTdkMWE3OTJhNTEzZmJlYjY3ZDliN2MxNDM1ZDAzODMxOTYzZGJhNWEzMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYWI1MGY4YzI3OTlmNjg5ZjQyMGIyMDNhOGUwOGViNjI3YWRlMTE0MmJhZDI4NmExOTEyNWMxZWE0MTI5ZDk5YyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODE1YzhkOWI1Zjc4N2RhMTBhYjQ3MWQxZTJjNTkyYmM3M2Y0NzUyZTQ0MDk2ZDhiZWUwOTIwYTE3ZjA0NjdmNCJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.5.0",
+    "at": "2026-09-04T04:19:45.757Z"
+  }
+}

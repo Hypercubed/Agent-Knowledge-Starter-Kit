@@ -9,6 +9,31 @@ description: Capture the current task into a structured temporary session bundle
 
 Create a temporary handoff packet for later learning extraction.
 
+Follow **Skill initialization** and **Procedure** below. Required filenames, `summary.json` expectations (including `openspec_change`), and write scope are in [`CONTRACT.md`](CONTRACT.md).
+
+## Skill initialization (before first closeout)
+
+Run this once per target repo after the skill files are present under `.agents/skills/task-closeout/` (for example after copying only that skill folder or after an `npx`/package install drops it there). Idempotent: safe to repeat.
+
+1. Resolve the repo root (the directory that contains `.git/` in normal layouts).
+
+2. Ensure `.agents/sessions/` exists.
+
+3. If `.agents/sessions/README.md` is missing, create it from `bootstrap/sessions/README.md` in this skill folder.
+
+4. Ensure `.agents/.gitignore` exists. If it is missing, create it with exactly:
+
+   ```gitignore
+   sessions/*
+   !sessions/README.md
+   ```
+
+   If `.agents/.gitignore` already exists, merge these two lines if they are absent; do not remove unrelated ignore rules.
+
+5. If the repo does not track `.agents/.gitignore` and the user relies on the repo root `.gitignore`, ensure equivalent patterns exist there: `.agents/sessions/*` and `!.agents/sessions/README.md`.
+
+Do not create durable knowledge files (`AGENTS.md`, `docs/`, `playbooks/`) as part of this skill; those are owned by `learning-distill` initialization or a full kit merge.
+
 ## Output location
 
 Write inside the repo to `.agents/sessions/<session-folder>/`.
@@ -33,6 +58,10 @@ Filled-in reference files live under `.agents/skills/task-closeout/example/task-
 - Record only candidate lessons in learning-candidate.md.
 - Distinguish clearly between what failed, what worked, and what is only a hypothesis.
 - Do not update `.agents/AGENTS.md` or any other durable repo knowledge file.
+- Record the associated OpenSpec change, if any, in `summary.json` under `openspec_change` (the change name from `openspec/changes/<name>/`). Omit the field when the session touched no OpenSpec change.
+- Never modify anything under `openspec/` during closeout of an in-flight change; spec updates happen at `/opsx:archive` time, not closeout time.
+- Do not edit files under `.agents/skills/` during closeout. Capture proposed skill or `MAINTENANCE.md` edits as text in the bundle; **learning-distill** applies kit-wide skill changes.
+- Treat the **whole maintainer conversation** as in-scope for `active-task.md` and `learning-candidate.md` unless the user explicitly limits closeout to one subtask (mistakes, reversals, and corrections—not only the last `git diff`).
 - Do not write narrative summaries longer than necessary.
 - Prefer concise bullet lists.
 
@@ -44,10 +73,11 @@ Filled-in reference files live under `.agents/skills/task-closeout/example/task-
 4. Keep one task-closeout bundle per session folder.
 5. Collect changed files.
 6. Collect commands run and validation results.
-7. Write active-task.md.
-8. Write learning-candidate.md.
-9. Write summary.json with status, metadata, `repo_id`, `task_id`, and optional agent identifiers when available.
-10. Mark the session bundle ready for distillation.
+7. Re-read the full session (or transcript) before drafting bundle prose so notes and lessons are not scoped to the final edit only.
+8. Write active-task.md.
+9. Write learning-candidate.md.
+10. Write summary.json with status, metadata, `repo_id`, `task_id`, `openspec_change` (when applicable), and optional agent identifiers when available.
+11. Mark the session bundle ready for distillation.
 
 ## Optional agent metadata
 
@@ -86,8 +116,9 @@ Record agent provenance whenever the active tool can supply it. Record session p
 - What failed
 - What worked
 - Reusable pattern
-- Candidate `.agents/AGENTS.md` update
+- Candidate AGENTS update
 - Candidate troubleshooting note
 - Candidate repo decision
 - Candidate playbook
+- Spec updates deferred to archive time (change name + what to fold in)
 - Confidence

@@ -1,0 +1,8 @@
+{
+  "@fission-ai/openspec": "^1.11.0",
+  "openwiki": "^0.4.3",
+  "fission-ai/openspec-skills": "fission-ai/openspec",
+  "_note": "Caret range (C) \u2014 bump via npm install --save-dev in repo root, then copy here via refresh or manual sync. Read by bootstrap-global.mjs for `npm i -g` user-scope lane.",
+  "@ferroxlabs/agents-md": "90c7198cfa97ff1868f0600952098fee7fc86ef9",
+  "_agents-md-note": "GitHub FerroxLabs/agents-md pinned SHA (repo has no package.json, cannot npm install). Vendored baseline is primary; update via refresh_agents_baseline.mjs + bump this SHA."
+}

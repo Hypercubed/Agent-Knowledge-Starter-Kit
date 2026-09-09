@@ -1,0 +1,192 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:e50ac9a549623c536e28959afb2a223af396fcb6f6f55b08354f519dfd909a27",
+  "claims": [
+    {
+      "id": "claim_aeaec157b10041778c72aa7f1df72ed0",
+      "statement": "attach_section.mjs owns the AKSK ROUTING and LIFECYCLE zones via a single N-template mechanism: markers are parsed at runtime from the template file (markersOf reading AKSK:* BEGIN/END), existing content outside markers is never replaced or removed, reruns are idempotent (no-op when section matches or in-place refresh of only that marked block), missing target file is created containing only the attached section, and unknown template name exits 2.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-init/SKILL.md",
+          "version": "repo-file-v1:sha256:7447c7ad965ddf91176213abed0aa8b780bf169d92827fef3699a5c745f86763"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/attach_section.mjs",
+          "version": "repo-file-v1:sha256:782278eefae9ddef14dda790324bcf7df3eb9f37244e105c41e47a897f80ad71"
+        }
+      ]
+    },
+    {
+      "id": "claim_7071a83745964069a8f4a879b42834e6",
+      "statement": "A fully bootstrapped root AGENTS.md is a zoned file with three marker-delimited families ordered baseline → OpenWiki → AKSK: FerroxLabs behavioral baseline inside AKSK:AGENTS-BASELINE, OpenWiki inside OPENWIKI:START/END, and AKSK routing (AKSK:ROUTING) plus lifecycle (AKSK:LIFECYCLE), each with exactly one block and strict marker ownership; in this repo AGENTS.md is already seeded with the baseline at the top followed by OPENWIKI and the two AKSK blocks.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-init/references/agents-md-baseline-template.md",
+          "version": "repo-file-v1:sha256:450140a0e73fa5256e1102d65d931985a5d8087d401e7bba9a4717b039677081"
+        },
+        {
+          "resource": "repo://AGENTS.md",
+          "version": "repo-file-v1:sha256:afe5a9d27b2def63d734ef9e34b69605bb23975c953c1276b0fbba98797192ea"
+        },
+        {
+          "resource": "repo://openspec/specs/agents-md-bootstrap/spec.md",
+          "version": "repo-file-v1:sha256:b85557c6a55d6e807f6f46c17ae73962575eda9ddb798b13025cbb8e2fe07c13"
+        }
+      ]
+    },
+    {
+      "id": "claim_e5f09d31439a43c795f3b3a738ea55d9",
+      "statement": "The FerroxLabs baseline is vendored offline at .agents/skills/aksk-init/references/agents-md-baseline-template.md (mirrored at .agents/skills/aksk-bootstrap/references/agents-md-baseline-template.md) with its body wrapped in AKSK:AGENTS-BASELINE markers and a provenance header inside the block containing upstream source URL, capture date, MIT license notice, and refresh pointer; seeding copies the vendored block verbatim with no network access.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-init/references/agents-md-baseline-template.md",
+          "version": "repo-file-v1:sha256:450140a0e73fa5256e1102d65d931985a5d8087d401e7bba9a4717b039677081"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/init_agents_md.mjs",
+          "version": "repo-file-v1:sha256:2d219bd05a1526cb557a4bbf977dad1ba314e6c2117c32189e0326489d036810"
+        },
+        {
+          "resource": "repo://openspec/specs/agents-md-bootstrap/spec.md",
+          "version": "repo-file-v1:sha256:b85557c6a55d6e807f6f46c17ae73962575eda9ddb798b13025cbb8e2fe07c13"
+        }
+      ]
+    },
+    {
+      "id": "claim_b8f5ce84680f44a4bbf5f407c18096d5",
+      "statement": "init_agents_md.mjs owns the baseline zone: it creates a missing AGENTS.md from the vendored template, is idempotent via trailing-whitespace-normalized compare (no-op when marked section matches), and on conflict with an existing non-matching file exits 2 without writes printing the replace-vs-combine question; --replace overwrites with the marked baseline including header and --combine stages existing content, baseline, and a COMBINE.md brief under .agents/sessions/agents-md-combine/<timestamp>/, never modifying the original itself.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/init_agents_md.mjs",
+          "version": "repo-file-v1:sha256:2d219bd05a1526cb557a4bbf977dad1ba314e6c2117c32189e0326489d036810"
+        },
+        {
+          "resource": "repo://openspec/specs/agents-md-bootstrap/spec.md",
+          "version": "repo-file-v1:sha256:b85557c6a55d6e807f6f46c17ae73962575eda9ddb798b13025cbb8e2fe07c13"
+        }
+      ]
+    },
+    {
+      "id": "claim_e1a02dc663654018b964a7c4a1a19e32",
+      "statement": "refresh_agents_baseline.mjs is the opt-in vendored-baseline updater: it fetches upstream to a temp file, validates non-empty and expected section anchors, swaps only content between AKSK:AGENTS-BASELINE markers and updates provenance date leaving OpenWiki and AKSK zones byte-identical; offline or validation failure exits non-zero with remediation and leaves the previously vendored baseline intact.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/refresh_agents_baseline.mjs",
+          "version": "repo-file-v1:sha256:30e756b9d5316dc90c7718ff42776ea5be3ab2f6dc64c45eb63d2475c94e4fc7"
+        },
+        {
+          "resource": "repo://openspec/specs/agents-md-bootstrap/spec.md",
+          "version": "repo-file-v1:sha256:b85557c6a55d6e807f6f46c17ae73962575eda9ddb798b13025cbb8e2fe07c13"
+        }
+      ]
+    },
+    {
+      "id": "claim_318e0afb535f4f37bea7c00a3e0986ff",
+      "statement": "Bootstrap composition order is deterministic: init_agents_md.mjs seeds the baseline first, then OpenWiki attaches its OPENWIKI:START/END block below baseline, then attach_section.mjs appends ROUTING and LIFECYCLE below OpenWiki and attach_wiki_contract.mjs appends the wiki contract to openwiki/INSTRUCTIONS.md; per-repo order is enforced by bootstrap-repo.mjs (global lane by bootstrap-global.mjs) and each script is idempotent so reruns after a template change only touch the zone whose template changed.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs",
+          "version": "repo-file-v1:sha256:9ddd71d7ded8c507f4fa510fb753587fa6f752b99b21e4a166bf895c296f33fb"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/bootstrap-repo.mjs",
+          "version": "repo-file-v1:sha256:cfd7354f4209083d188fec9c41db0d3d80508c859df1306eec7b58ea4482bebb"
+        },
+        {
+          "resource": "repo://AGENTS.md",
+          "version": "repo-file-v1:sha256:afe5a9d27b2def63d734ef9e34b69605bb23975c953c1276b0fbba98797192ea"
+        },
+        {
+          "resource": "repo://openspec/specs/agents-md-bootstrap/spec.md",
+          "version": "repo-file-v1:sha256:b85557c6a55d6e807f6f46c17ae73962575eda9ddb798b13025cbb8e2fe07c13"
+        }
+      ]
+    },
+    {
+      "id": "claim_dda516a93f51450c8b52333ab02ce50b",
+      "statement": "The behavioral baseline lives in root AGENTS.md as a scoped exception to the thin-router invariant: the routing-pattern decision requires root files to stay thin and route repo knowledge to .agents/ and openwiki/, but the FerroxLabs baseline is a behavioral operating contract not repo knowledge; routing and lifecycle blocks still attach below it to preserve single source of truth.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-init/references/routing-note-template.md",
+          "version": "repo-file-v1:sha256:7daa0b08b9a8cae6510c448134bfb4f7b1373132970b66916e7c6076c353e683"
+        },
+        {
+          "resource": "repo://openspec/specs/agents-md-bootstrap/spec.md",
+          "version": "repo-file-v1:sha256:b85557c6a55d6e807f6f46c17ae73962575eda9ddb798b13025cbb8e2fe07c13"
+        }
+      ]
+    },
+    {
+      "id": "claim_5260440be06b454f98a8e5147c9be7b6",
+      "statement": "Zone isolation and marker integrity are load-bearing: docs-lint integrity-checks each family independently (AKSK:AGENTS-BASELINE with provenance source URL, AKSK:ROUTING/LIFECYCLE exactly-one and targets exist, OPENWIKI presence-only, AKSK:WIKI-CONTRACT in openwiki/INSTRUCTIONS.md), refresh or combine keeps other zones byte-identical, combine preserves project-specific learnings and keeps marker blocks verbatim, and a stale vendored capture date (>6 months) is surfaced as informational advice.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/docs-lint/SKILL.md",
+          "version": "repo-file-v1:sha256:856a7d6e0c608fe3bd7de1f17c0a380ecd911dd2f10cc496ab720c5e670cf172"
+        },
+        {
+          "resource": "repo://openspec/specs/agents-md-bootstrap/spec.md",
+          "version": "repo-file-v1:sha256:b85557c6a55d6e807f6f46c17ae73962575eda9ddb798b13025cbb8e2fe07c13"
+        }
+      ]
+    },
+    {
+      "id": "claim_918d53791afe40a1a34a9d71087bdf6f",
+      "statement": "attach_wiki_contract.mjs owns the AKSK:WIKI-CONTRACT zone in openwiki/INSTRUCTIONS.md using the same N-template marker protocol: it never creates the file and fails fast with exit 2 and the openwiki --init prerequisite when INSTRUCTIONS.md is missing, is idempotent via trimmed compare and refreshes only the marked block in place when the template changed, never touches OpenWiki-owned content outside markers, and reports stub-aware attachment when below the default stub.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-init/SKILL.md",
+          "version": "repo-file-v1:sha256:7447c7ad965ddf91176213abed0aa8b780bf169d92827fef3699a5c745f86763"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/references/wiki-contract-template.md",
+          "version": "repo-file-v1:sha256:f4b37c8d7f1288d6697a6469eb195a25e980cb9317766827fd341e56a01561fc"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/attach_wiki_contract.mjs",
+          "version": "repo-file-v1:sha256:cd684c5946d746b89ec10f1bd965951f271ddeb5aec9515f83d9288b8ba0ac05"
+        }
+      ]
+    },
+    {
+      "id": "claim_674ca7243b304c249c590ae8a49cf62c",
+      "statement": "In this checkout root AGENTS.md carries hand-authored behavioral content without AKSK:AGENTS-BASELINE markers followed by OPENWIKI and AKSK blocks, which is the pre-seed state where a no-flag init_agents_md.mjs run fails closed with the replace-vs-combine prompt instead of seeding.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-init/scripts/init_agents_md.mjs",
+          "version": "repo-file-v1:sha256:2d219bd05a1526cb557a4bbf977dad1ba314e6c2117c32189e0326489d036810"
+        },
+        {
+          "resource": "repo://AGENTS.md",
+          "version": "repo-file-v1:sha256:afe5a9d27b2def63d734ef9e34b69605bb23975c953c1276b0fbba98797192ea"
+        }
+      ]
+    },
+    {
+      "id": "claim_a030db32031740e896a99481e831cf81",
+      "statement": "Root AGENTS.md is the agent entrypoint whose AKSK:ROUTING block routes durable repo guidance to .agents/AGENTS.md and whose AKSK:LIFECYCLE summary defers to .agents/AGENTS.md for the full loop, while .agents/AGENTS.md itself is marker-free portable repo knowledge holding routing directives, project learnings, and the analyze-closeout-distill-prune loop.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/AGENTS.md",
+          "version": "repo-file-v1:sha256:d85b5e6cae3cc52731325e8b6193efdec270ec9f479e32f6c253b716dc994ed3"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/references/lifecycle-template.md",
+          "version": "repo-file-v1:sha256:0d6f5afce645ff08c1747173471603c8c78dc0f488cca0bf032c02057af0924b"
+        },
+        {
+          "resource": "repo://.agents/skills/aksk-init/references/routing-note-template.md",
+          "version": "repo-file-v1:sha256:7daa0b08b9a8cae6510c448134bfb4f7b1373132970b66916e7c6076c353e683"
+        },
+        {
+          "resource": "repo://AGENTS.md#L134-L153",
+          "version": "repo-lines-v1:sha256:09e3c54c087a397f849a319a78afd68d0f04fdba70ced1119abfa83510cf6bee:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc0YWEzNzhjZGRjMzk4MzkyNWUyNDdjMDcxMGJkNWQwOTM4MTQ3ZjNjM2JiYjllMGMxOTIyZTViMzdhNjJkNjMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJmZjRkMTUzMzFmNGRlNGEzZWMwOTczZTdhM2M2NTQwMjc5Mjg1OGVlMDc2NGY0MDg1NmYwOWJmMGIxYzY4MjIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjY5MzkxMmNkM2MzM2VkZmQyM2QzNzY0ZTE3YWIyOTc0N2IzNzkzNzQyMzZjNjRhNzZiMGE1ZmZlNDhhZDM4MGUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoyLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjMxNmRlZWIyODg5MmIxY2RlYmZlNWMxMmMyY2Q2MjBiNWI4ZjI5Mjg5YzFmZmUzZDRmNWZjMWIyZTZhNGVhN2QifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.5.0",
+    "at": "2026-09-04T04:19:45.757Z"
+  }
+}

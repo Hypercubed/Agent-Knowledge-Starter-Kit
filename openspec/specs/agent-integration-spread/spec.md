@@ -1,0 +1,51 @@
+# agent-integration-spread Specification
+
+## Purpose
+Spreads OpenWiki's coding-agent integration across the agents detected on a user's machine using `openwiki integrations install` (v0.4.3+; skill + MCP atomically) for supported hosts and falling back to headless CLI usage for agents without a supported integration, enforcing single-owner destinations via install receipts.
+
+## Requirements
+
+### Requirement: Integration lane selection
+The integration spread SHALL select, per the self-reported current agent and the canonical universal host (`codex`), one lane for each host that should receive an integration: `openwiki integrations install <codex|claude|opencode>` (v0.4.3 registry; skill + MCP config `openwiki mcp --host <target>` installed atomically with `.openwiki-install.json` receipt) when that host is supported, otherwise the unified tooling `npx skills add -g -a <self-reported> langchain-ai/openwiki --full-depth` for the lifecycle skill plus `npx add-mcp "openwiki mcp --host <host>" -g -a <host> --name openwiki` (command form; `add-mcp` args form `npx add-mcp openwiki -g -a <host> --args mcp --args --host --args <host> --name openwiki`; neon-solutions/add-mcp) or `openwiki mcp --host <target>` for the MCP — bare `npx add-mcp openwiki` is invalid (omits `mcp --host`). The default install is `~/.agents/skills` (universal, Codex) plus the self-reported host's dir; extra hosts or `--all` occur only when the user explicitly asked at install time. The spread SHALL be verified via `openwiki integrations list` (user scope) vs `list --project` (repo override).
+
+#### Scenario: Supported host detected (codex|claude|opencode)
+- **WHEN** a supported host (codex, claude, or opencode) is detected among installed agents
+- **THEN** the spread uses `openwiki integrations install <host>` for that host rather than headless CLI
+
+#### Scenario: Agent without supported integration
+- **WHEN** a detected agent has no supported `openwiki integrations install` host (not codex|claude|opencode)
+- **THEN** the spread installs the lifecycle skill via `npx skills add -g -a <self-reported> langchain-ai/openwiki --full-depth` and the MCP via `npx add-mcp "openwiki mcp --host <target>" -g -a <target> --name openwiki` (command form; args form `npx add-mcp openwiki -g -a <target> --args mcp --args --host --args <target> --name openwiki`; neon-solutions/add-mcp) or `openwiki mcp --host <target>` rather than the headless `openwiki --init -p` ladder
+
+#### Scenario: Current host is supported by openwiki integrations
+- **WHEN** the self-reported host is one of `codex`, `claude`, or `opencode`
+- **THEN** the spread installs via `openwiki integrations install <that-host>` (skill + MCP atomically, receipt written)
+
+#### Scenario: Current host is not supported by openwiki integrations
+- **WHEN** the self-reported host is outside that set
+- **THEN** the skill is installed via `npx skills add -g -a <self-reported> langchain-ai/openwiki --full-depth` and the MCP via `npx add-mcp "openwiki mcp --host <self-reported>" -g -a <self-reported> --name openwiki` (command form; args form `npx add-mcp openwiki -g -a <self-reported> --args mcp --args --host --args <self-reported> --name openwiki`).
+
+#### Scenario: Universal plus current is the default
+- **WHEN** the install runs without an explicit `-a <other>` or `--all`
+- **THEN** only `~/.agents/skills` and the self-reported host's skills dir are written
+
+#### Scenario: Extra host was explicitly asked
+- **WHEN** the user asked for `-a <other>` or `--all` at install time
+- **THEN** that other host also receives the integration in addition to the universal+current pair
+
+### Requirement: Ownership partition by receipt
+Before spreading integration into any agent's skill directory, the spread SHALL skip any agent whose target skill directory already contains an `.openwiki-install.json` receipt, treating the official lane as the owner of that agent, and SHALL report the skip and its reason.
+
+#### Scenario: Official-lane agent skipped
+- **WHEN** an agent's skill directory already holds an `.openwiki-install.json` receipt from the official lane
+- **THEN** the spread skips that agent entirely and lists it as owned by the official lane
+
+#### Scenario: Unowned agent integrated
+- **WHEN** an agent has no receipt in its target skill directory
+- **THEN** the spread integrates that agent through its selected lane
+
+### Requirement: Spread result report
+After running, the integration spread SHALL produce a per-agent report naming each detected agent, the lane chosen (`openwiki integrations install <host>` vs headless), whether the action succeeded (`installed`/`unchanged`/`modified` via `openwiki integrations list`), and any installer output (including backup path on `--force`), so the user can verify or finish steps manually.
+
+#### Scenario: Mixed-agent machine
+- **WHEN** the spread completes on a machine with supported (codex|claude|opencode) and unsupported agents
+- **THEN** the report shows one line per agent with lane, outcome (`installed`/`unchanged`/`modified`), and installer details

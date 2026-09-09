@@ -6,22 +6,19 @@ Based on current Warp documentation reviewed on April 13, 2026. Re-check Warp an
 
 ## Setup
 
-1. Install or merge the starter kit into the target repo as `.agents/`.
+1. Install the kit per [Adopting the kit](./patterns.md#adopting-the-kit).
 2. Add or keep a short root `AGENTS.md`.
 3. Keep durable repo policy in `.agents/`, not duplicated across Warp global rules or root bootstrap files.
 4. Keep repo-local reusable workflows in `.agents/skills/` so Warp can discover them as project skills where supported.
 5. Use Warp global rules only for cross-repo preferences.
 
-```markdown
-# AGENTS.md
+Attach the marker-delimited `AKSK:ROUTING` section rather than hand-writing this file:
 
-This repo uses the Agent Knowledge Starter Kit.
-
-- Read `.agents/AGENTS.md` for durable repo guidance.
-- Use `.agents/docs/index.md` to find decisions, troubleshooting, and playbooks.
-- Treat `.agents/skills/*/SKILL.md` as canonical repo-local workflows.
-- Keep temporary task evidence in `.agents/sessions/`; promote only durable lessons back into `.agents/`.
+```bash
+node .agents/skills/aksk-bootstrap/scripts/attach_section.mjs . AGENTS.md
 ```
+
+The attachment appends the section below any existing content, refreshes it in place when the kit's template changes, and is idempotent on re-run. Add tool-specific notes outside the markers - never edit between them.
 
 ## Discovery and Config
 

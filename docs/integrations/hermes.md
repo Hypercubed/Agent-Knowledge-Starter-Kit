@@ -2,11 +2,11 @@
 
 Use this page for Hermes-specific wiring. For the shared integration model, read [Integration Patterns](./patterns.md).
 
-Based on behavior verified while working in this repo, including failure modes captured in `.agents/docs/` and `.agents/sessions/`.
+Based on behavior verified while working in this repo, including failure modes captured in the curated wiki trees and `.agents/sessions/`.
 
 ## Setup
 
-1. Use a repo that already has the starter kit or equivalent `.agents/` layout.
+1. Install the kit per [Adopting the kit](./patterns.md#adopting-the-kit).
 2. Read root `AGENTS.md` first when present, then follow it into `.agents/`.
 3. Keep repo-specific durable knowledge in `.agents/`.
 4. Use Hermes memory for cross-project user and environment facts.
@@ -18,7 +18,7 @@ Based on behavior verified while working in this repo, including failure modes c
 | ---------------- | ------------------------------------- | -------------------------------------- |
 | Repo entrypoint  | root `AGENTS.md`                      | Bootstrap into `.agents/`              |
 | Kit instructions | `.agents/AGENTS.md`                   | Durable repo guidance                  |
-| Kit docs         | `.agents/docs/`, `.agents/playbooks/` | Decisions, troubleshooting, procedures |
+| Kit docs         | `openwiki/{decisions,troubleshooting}/`, `.agents/playbooks/` | Decisions, troubleshooting, procedures |
 | Kit skills       | `.agents/skills/<name>/SKILL.md`      | Repo-local workflows                   |
 | Hermes memory    | Hermes runtime                        | User/profile continuity                |
 | Hermes skills    | Hermes skill store                    | Runtime-integrated procedures          |
@@ -44,4 +44,4 @@ Based on behavior verified while working in this repo, including failure modes c
 - [`README.md`](../../README.md)
 - [`INSTALL.md`](../../INSTALL.md)
 - [Integration Patterns](./patterns.md)
-- [`../../.agents/docs/troubleshooting.md`](../../.agents/docs/troubleshooting.md)
+- [`openwiki/troubleshooting/`](../../openwiki/troubleshooting/)

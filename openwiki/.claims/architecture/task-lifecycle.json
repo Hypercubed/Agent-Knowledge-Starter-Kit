@@ -1,0 +1,318 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:962586bcab443a2df1159b3e0c3eca6d0563db69539b21daea37d7ce0f31c816",
+  "claims": [
+    {
+      "id": "claim_b50003ce03584a45a9f1307c08fa9d46",
+      "statement": "The canonical task/session identifier is the task_id field inside .agents/sessions/<session-folder>/summary.json; the folder name (YYYYMMDD-HHMMSS-short-topic) is only a sortable storage label and must not be used to infer identity, and repo_id carries stable repository context.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/learning-distill/SKILL.md#L34-L35",
+          "version": "repo-lines-v1:sha256:4b57a68adfa432ab6752cfc1f1db61e47481fba96941ec18805e51aa5ac008d9:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYjY1Y2E5MThlM2EyODZjNzhlOTI0OWY3MGM2OTkwZDYwMmMyMDIwNWNmYzZmYmRjYTMyYjI3NjI3MmM4NTBkMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYThmOGQ5YWM3NmIxZmY5ODM2YjMzMWM4ZWY5MzdmMDI1YzE4YWFmYzI2OTNjZmQ1OGFkYzU0MjQxY2UzMTdiMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYTUxNmQ1OWFmY2I3ODg3MTY2ZmE0NmRiOTNlODIzOWM3YTA1MGRlMmY1MGIxMTJmODEzMmIyZWRkOGRlYWExNyJ9"
+        },
+        {
+          "resource": "repo://.agents/skills/task-closeout/CONTRACT.md#L13-L18",
+          "version": "repo-lines-v1:sha256:debb0d56cf4973a928caeb608d210dd1c43561e5ab4bf9ceff7e71939bae182d:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDRkYWQ0ZGFjYzk1ZDZiYTFjODYyYmJkN2QxODY1NDNjZjY5MjZlMDE4MmE2YmZkMTI0NmUwYzc1MWFlYzI2OCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjZlMzdlNWE0MDJmMDg3OGRlOWI3YWIyYTBiY2U5ZWVmNGY5ZmJjZGJiNjNlMDVlNWE3MTY5YjRhMGQ3NWFiYyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTBjZjIwNzFlYzdiMjEzOTAxMjIxODVjMzU2MzYyYjM4MTJjNzM5MDczODVmY2E5YTg0MjMzMDU0ZTg3NTJlZSJ9"
+        },
+        {
+          "resource": "repo://.agents/skills/task-closeout/SKILL.md#L41-L42",
+          "version": "repo-lines-v1:sha256:61eeb35c361721ab71523c52495de34888b4a7ae60aff852e06a12d2a99cd9a0:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWRmNGY4MmIxMTQ2MWNlM2UxMDkyNTZjYzBiMjc4ZjZmMDM0Zjk2Yzc5Mjc4ZjJjNTMyY2YwMWU2NmZhMWYzYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDhmMDY1ZmM3M2U1MjE0YmZjNDdkODA5MzNlNWE1ODIxZWIzMzY0NzU2ZWUxN2U5MGYxYWViN2VhZGFiODQ4MSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTUyY2QyNGJjYWIyZDU0YjExMDM5Mjk2MjM0NGQwMmVmZTdkODIyOWU5OWE4MzhkODkyODU2YjM5YWQ5NDVjMiJ9"
+        },
+        {
+          "resource": "repo://docs/architecture.md#L87-L106",
+          "version": "repo-lines-v1:sha256:b8350e1d5987e647a107623c0df827848ecdbdc8c380d46d8122e18958ee354c:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ3ZmY1ODQwNTk2ODc2ODIyNDUyYWEyYzRmYzIyYjRlZjdlNzE4YjIzYjZmNjkxNzdlYzY5ZmM2NmNjY2Q3OGEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ3YzA2YzU2MWQ1YzMyNzM0MzY4NTI2OGE0NmIzMzkxZjM5OThlZWU4OTBkMmJlNTFmMGQyMWNjNGE1M2FlNmQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNhMDI2MzY0MjA1NjBjNDJmNDkzZTc2ZThiMmJmZjExNzU5MmE4YjgwMmVmMjRkOTNiMmQ2MTRlODI4YTFmNTAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBhNTNjNTZiMmQwODQ1MTg2NDZmOWNlMjFhNmExNDlmYWQ3YjAzOGVkZmFmMjkxMGUzM2YxZmNhMGRhODc3NDIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_dd71c7869a854b689d8cf2efff58af62",
+      "statement": "Session summary.json may carry optional agent and agent_session_id independently when the active tool supplies them, with matching optional Agent sections in active-task.md; invention of IDs is forbidden.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/task-closeout/CONTRACT.md#L26-L27",
+          "version": "repo-lines-v1:sha256:3664b58b38b383de7564fd751a677de856bf52504130ae7705f04013670c61c0:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiODkwZjIwN2IyMGQ2MmVjZWI1OTA5NWE0NTBmMWI2NjcwN2NjMDYxNmRjNGQ3Yjc0ZDFkMTdiNzQxNTFlZTljYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiN2QxNWZlMjYzNDkwYjdiMzJkODM0MWIyZTg5MThmYzJmMWI5N2JmMjlkMWUxM2ZkOWVmN2JlY2RkN2Q1MDZkNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYmEwYmVmYTA5MzI0YzhlYjc0NDFmMGI3YjlkNjRkODYwMWI1OGNjNmQ5ZTI1N2ZjZTM3MjJjMDI0ZGE3M2Q2OCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZmIyNDIzNDRjNmMxNzFhYTU3YzljMGJkMGZjMGYyMGIyN2ZmZDFkMmU4ZWFjMjRkMmM1YTI0MmFlNDI0ZjM4OSJ9"
+        },
+        {
+          "resource": "repo://.agents/skills/task-closeout/SKILL.md#L83-L91",
+          "version": "repo-lines-v1:sha256:a7e2cf12fa5234976beac6710ac2f1dae37ef390b2a64d2cedf2840227f05133:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOWY1MmNiNDNlNTk2Nzg0MzI1YjBmOTU0NzMxMjUxMTFmNTk4NDhhMmNhN2E2ZDRhN2NhZjhjNzE5ZjA5NDc4OCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZGZlNDQ1Y2U4YTUzODRkYTY0MTI0Mzg2NDU4OGY4NGU0ZWI5OTQ2YzNjN2E0NGIzMDg5MWNmNmRmMDRmZjU5YyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYmU1MDcyYTdhMDgxYzZiMDNkZGJiZDFhNWZjNDVkYTM0MWM3ODMyZDNiNTY3ODkxOTk2YjVmMmRkNjdjNDU1ZCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_540a68068e2040e3a4da49ee3920ee08",
+      "statement": "Each task-closeout bundle must contain exactly five files: summary.json, active-task.md, learning-candidate.md, changed-files.txt, and validation.txt, with summary.json requiring task_id and the markdown files having fixed section sets.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/task-closeout/CONTRACT.md#L21-L35",
+          "version": "repo-lines-v1:sha256:15f11c4bde04c6658970759884d3ff4f1af030d3ba826b473485cbe05923e797:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjllNWJiYTFkYjg4MzVlYjU3OWJiN2QwNjNjZGViMzhhOGNkZjkyODlhMjE2NjI1MWRhMmIzMjkyYzZkZTExYmUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQzZGM0MTA1NjhhY2IyYThjMjBmMGExMjk3M2YxNzViOTJmYWI2MzdhOGI2NjZkY2NiNTMwZGRlYmRiMmJkOTIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkyYmQyZDY1ZGIzNGMyNDg1Y2U0MjgzZjcwMDdjZTk1NTFjN2I5MDkyYzM5ZTM4ODgyZjZlMTE0MjA2ZGZjOTkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI0NjQ4MTc3NzlmOGQzN2NjMTNiZmExNjdiZWJhOWYxZjg0OWQ0ZWJlZjJjNTkwMTA1MWE1NjYwMzAyNzU2NjIifQ"
+        },
+        {
+          "resource": "repo://.agents/skills/task-closeout/SKILL.md#L43-L50",
+          "version": "repo-lines-v1:sha256:f638745b580712deae318ebb7dd02221455a8ddba146039a8a484f31cbed9934:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTZhMzRjYzA5MzVmYzQwM2IxMThiZDg1ZjUxZjgwNGIzOTJkYWRhMWYwZTZlOWZhYWVjMThlMDkzMGI5ZmUzZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiN2E0MzFkYmIyMmNjOGU5MDllNzY0NzUwYmFjYjE0Y2FmZGM4NTAzNzc1YmIxOGFiY2ZkZjRkNDZlYmI1NzhkMCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDYwMDM4YjU0ODMxMTJmYmJlZDM0ZGFmNzRmMzhjMjJjYzdkMjQ0Mjk0N2Y4N2VjMzA3YzgyNTUwZTg3YmI2NyJ9"
+        },
+        {
+          "resource": "repo://docs/architecture.md#L118-L125",
+          "version": "repo-lines-v1:sha256:87346fa2151e57c76bf5119c4889822a7f200b21ccd039b329b38cfcf2a3fc6d:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTcxNmFkODJiZTNlMjQ5YmMyNTkyNGE3NGRjMzZkOTE3ZWUzYzYwOWE1Yjc1YWUwNTFkNGRlNWUwMzIwMWEyNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYmUzMGU0YmM3MDU4YTc0N2M0Y2E3MjZkNzQ3Y2Y0M2Y1YjZkYjgyNzJiMDZiMWI0MmJiZmQxMDQyZGMzNzQ1OCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZGJiZWJkOTdjZWY5YjBlZTcxYTRjOTI5N2RlNjYyOTUwMTcwYWUwYzZiMzYwNzBkMGQ0ZDE5ZTkxMDBhY2YwNiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_07fcca789ebb4beb9a122e1efcf058b3",
+      "statement": "When a session worked on an OpenSpec change, task-closeout SHALL record its name in summary.json openspec_change; when no change was involved the field is absent or null and closeout succeeds.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/task-closeout/SKILL.md#L60-L62",
+          "version": "repo-lines-v1:sha256:9942daff65c04923e7b3c64fcd564a3ad09f6218813a574517a749936ec8daec:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNmQ5ZmFhZjA3YmQ0ZjQwZDliYzc3MmZkNWMyNDU2ODVjMDNjNTJiMDU4MmE4MzE1ZWU3MTE3YmM3ZmZkNTMwMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzhlNzE3MjJhNzMxMjdkZmYzNTM1MWNlY2UyNzE3OGJkNGFjM2I2N2FmZTczODQ2MmI0ODkzNzE4NDMyMDRiNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWJkZWVhNGIyMThkZTU3Njc2MjU2N2RkYmRlOGQ4YTE0YjMzOWNiYzY5OWFiNWQ0YzYyNmVkOGQzMDk1Y2ZhZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDJhMWMyMGQ2YThmNjc3MWFiNDIxNDg3OWQ4MzEzMjAwODc3ZGU3YTg0MjVlMzA2OTBmZWU4N2IxMTA4NWFmYyJ9"
+        },
+        {
+          "resource": "repo://.agents/skills/task-closeout/example/task-bundle/summary.json#L14-L14",
+          "version": "repo-lines-v1:sha256:412ca345ccf75bf9c0806bce695be8de808b79984251a7a54d202cf6101dd451:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiY2IzZTk3MDQ3MDVlMTc3ZjA5ZGVjOWM3YjdlODU4MWNkMDZmNWJjMWVkNTJiZjA2MmNhODU3MjBkZWM1MzgwZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        },
+        {
+          "resource": "repo://openspec/specs/closeout-change-linking/spec.md#L7-L17",
+          "version": "repo-lines-v1:sha256:f56368f903f2e280af073442d42aa51da594f1e0564aff035953104779c7b7c6:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFjNjc0YjFkZWRjZjdhNWNjNjMxMjc1ODE5NDg3OWJhOGU4ZDY4MGU0ZWJkNDU5OTU4YWJkOGUwOWVlYmU5MzEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU3NjM2OTI0MmM4MmFiM2M1YjU2MjYxODllMzdiODljZGNiMjY3YmEwNWYyNWE2ZTE2MjRhOTJlNzIxM2FjOWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImIyM2JjZGQ1NjI5OGViZTY0N2I2NDNlODhkMjI0NWUwMWE5YTlkZWUwY2RiZGIyZmE2NmMxZjFiZDllY2QzYmMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_cd5dff355e654691bbe8feb2ae8c6378",
+      "statement": "Task closeout never modifies files under openspec/ for in-flight changes; spec updates are deferred to /opsx:archive time and pending updates are noted in learning-candidate.md as Spec updates deferred to archive time.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/task-closeout/CONTRACT.md#L35-L36",
+          "version": "repo-lines-v1:sha256:4a0137d727964255db3319023966d63b9eb241ce4fc57425b2c169c9df80da7c:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDNkYzQxMDU2OGFjYjJhOGMyMGYwYTEyOTczZjE3NWI5MmZhYjYzN2E4YjY2NmRjY2I1MzBkZGViZGIyYmQ5MiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzkxYzM4NDAxZDVlYzYzNzMwNjc5YWMyMDAwMjdlYjZmZjI1NzMyOWFkMmVkNzJjOTQ4YTYyMmJmMjNlMzQ4NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiM2E3YzM1NzU1NjFiOWM2N2ZlMWY1ZGIzZjNkNWRhNTk1YmM3NzYzZTVlNTZlYjljMTJmNzU3ODc1NzgyZGI2MCJ9"
+        },
+        {
+          "resource": "repo://.agents/skills/task-closeout/SKILL.md#L61-L62",
+          "version": "repo-lines-v1:sha256:9306066b6c3324f7f51230220741030dc1b46d459d88a6f2cedbc2926601b8ab:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMGQ3ZjI0M2JkNzQ1MTdhMjQ5OTM2N2M4ZTg0NTE3NDQyOGUxYmUxNDA2MDM3NjZmNmM5OWNhOTM4ZGMyYjIyMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzhlNzE3MjJhNzMxMjdkZmYzNTM1MWNlY2UyNzE3OGJkNGFjM2I2N2FmZTczODQ2MmI0ODkzNzE4NDMyMDRiNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiM2Q0ODA2OTQzMmVhMWUyOGE5NmIwMzQ2YjI0YWM5OGZiYWM1ZTY0YjAxOGQwYjNlNzZlZjYwMmU5NGRhMGM5YyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDJhMWMyMGQ2YThmNjc3MWFiNDIxNDg3OWQ4MzEzMjAwODc3ZGU3YTg0MjVlMzA2OTBmZWU4N2IxMTA4NWFmYyJ9"
+        },
+        {
+          "resource": "repo://openspec/specs/closeout-change-linking/spec.md#L18-L23",
+          "version": "repo-lines-v1:sha256:dc964de580b30980efc83454743fda23321384ee427d93a33c9aee8b7d37ca5e:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNGJhODk3OWU2MWMxMmEyNDFmM2VhYzdlMTZkNzUxNGFiNzM1NDRkNTE5ODg4ZmE2NjIzMzZmZDYyOGFjNzQzMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZDkwNmI4M2I1Yzc4OWE3OGFlN2EzMzRiNzhmNDRhNzlmYzcxMDZlZTBkMzFlZDIzNWFmYTYzY2NiZDhmNTUyMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzg2NmI3Y2ViM2UxZDAxNGUxNjg4ZmM1ZjRmNTgxYjIxNzRkNGRiN2MwZmI5NzAyMzEyM2RkODhlNjdjYjNmMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_9f4000e10a674d06bbae006ff073b59c",
+      "statement": "Write-scope separation: task-closeout writes only under .agents/sessions/<session-folder>/ and never creates or edits .agents/AGENTS.md, openwiki/**, .agents/playbooks/**, .agents/skills/**, or openspec/; durable updates are owned by learning-distill.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/learning-distill/references/CONTRACT.md#L10-L19",
+          "version": "repo-lines-v1:sha256:290956cfe36b9fed2818c03b9005e65f3683c23b8e75916dc5ef4e6df302c9d7:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRkMTIwODhhNjc2OTg5ZjIzN2Q3ZDJmZjY3NjNhNmVjZjYyMGEzODlkMDQ0MDQ2MDJhMzc3ZjAwNzFmZDVjNjAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU1MzNmZGE2ZDBhOWM5ZjM2NjE2MzMyOGZjODNjZDZlZGI2MGUzMDhjNTBkZTIyMGUzNDVmZmY0ZGZiNDU2ZmQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNhYzkxZWQxYmIwZTQ4ZGNkZjYwZWJhOTgyNWQwMTIwYzY0MThkYWQzY2I1MDlmNWY1NzFiZTNiMDcwMmUyNTAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzNWI5ZjU4NTczZGNlZGRiNDc3NTY1ZmRmM2ZhZjYwYmMyOWZjMWI4N2M3MDgxZmQwODFiODJlMTFjM2U4MmMifQ"
+        },
+        {
+          "resource": "repo://.agents/skills/task-closeout/CONTRACT.md#L5-L12",
+          "version": "repo-lines-v1:sha256:7c94d4032fffa7429f2ced5523cac773adc100af9139c60e51fe4a4cef1bfda4:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMjgyZGQzZmUwNGExYzExMDYwNGM3OWI0MDkwYmQ0ODdhY2Q2NTkwZWRiZmIwZWFkMTVhZTE2ZTlmYTc0MmNjZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDc3ZjQxMTllMmJjNDllY2ZlMjgzMzUxZWViZTM1MjFmYzY2ODVhYTNlNmZhZTNmZWM3Y2I2NGU3N2UzY2RlZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZWYzN2Y4NzhkNzU3MzYzNDM3NGU5ZmMxOGZkMzE4OTc2MzJjZDUzNDM5ODI3OWNjZmFkNTRhMjQyYTMwNDUyOCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_1386667b43af437f87ff820f036ae142",
+      "statement": "After closeout the bundle is immutable except for status/distillation-related fields in summary.json (distilled, distillation_status) that later tools update; all other files remain frozen.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/learning-distill/references/CONTRACT.md#L21-L23",
+          "version": "repo-lines-v1:sha256:775543c05eb10d6305884ea51c909ffd6be4fb8d1fce4cc0a6410ee12037ee34:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZmUyMmFkMzEzODg5N2M4YzBkOTY3YzBjYjNiZjFiYWU5ZGMxY2I5MzI4Nzg0MDRkZDY3ZjY0NDVkMWU3MjFmZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYmEyYWI2ODc2ZTBkNzllOTgwNmM1NTMwMmI0YWRhZjRjZGExMmU3YzFiYzUzNzY3OWZiODI0ZWVjOTU1MjYxOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODBmNjkyZTliMWQwMzJlMThjYWM5OWI2ZWJkZTNiODdlYmY4MzkzODk5MWI3MjJmM2Y1OWVjMjc2ZTMyZjE5ZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMjkyN2ExYmZiYzA5MjgxZmU3YmI5YjU3MmQ0NGMzMWE1YmRmMTNlYjU0OWNjOGUwYzc1MjNjM2UzM2Q4NzE3MiJ9"
+        },
+        {
+          "resource": "repo://.agents/skills/task-closeout/CONTRACT.md#L37-L38",
+          "version": "repo-lines-v1:sha256:d5e960af4e128ee9355afe3025e8e1fa781c57ec7477765de82e08846a50fb2f:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiN2MxOWVhNDBiOWYyMmNiNzNiMTdjYzAyMTFhNzI2OTM5MmQwZjQwNTdmZmYwMWE3NWFiZGRjNGVmZjU1OThmNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNWVlYmE5NDVmN2IwMDE0OTllYjMwMjM2NGRhNzhiMTI4N2U2MzA2YzAxZTQxOTVhNzAwNTgxZTNhOTcyZmJiYiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMmNmMjEwZjJkMDA0ZTg3ZGExMGU2NzhmOTNkYzdjYWIxNDk0YzUzZWVjMTNhOGJmZWJjOWFjM2MyNjc5YTJkNiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_3166803b9f4f4a05b222ffd7049a2bbc",
+      "statement": ".agents/sessions is gitignored via sessions/* with exception !sessions/README.md; only README.md is tracked and per-task bundle folders stay local working memory.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/.gitignore",
+          "version": "repo-file-v1:sha256:9d3e8002bee34dc78f45dbda50b0668070123c114e1bf70f2f902a61fa049353"
+        },
+        {
+          "resource": "repo://.agents/skills/learning-distill/SKILL.md#L44-L49",
+          "version": "repo-lines-v1:sha256:c3bb65a2b67e0e18f2e728a3aff9f296387ede7dfbf74b51542ffab83f0bdb39:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiM2U3MDM4OGI4Y2QxMjg3ZmQyMTc2MzI0ODI2ZWVkMzVjNGJlMDg0YzE5MDY4NTdhZTllMzdlNGVkNzg4ZDIxMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDU5NmY2YjkzM2Q2YmEwMTg4NDY2ZjQwZWQ5YWEwNjlhM2FlNTlhNmNhMDYyZmE3ZGE0ZDhjMjEzOGM3YmM1NiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTY4NzA0MDMxZDI0ZGE4OTIyYzg4YzAwOWYxNzU1YjlhYzJmZmZjNDk2ZWE2NDk4ZjQ0ODE4ZWRlOTFiYmVhZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMWYxNzk4ODRkNTZiY2QxMDlmZTY4ODQyNzhhYjA0YjZlYTZiMTk1Njc1ZDhiMjNjODYxYjNkNTk1NzFlNDhhZiJ9"
+        },
+        {
+          "resource": "repo://.agents/skills/task-closeout/SKILL.md#L24-L31",
+          "version": "repo-lines-v1:sha256:3a5c5405728eb232965e9324813c359fc10d3d2274464fb6d92de410f442e0e6:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzc2OGI1MGViYmVhZDEyNzg0Zjg1YWZhYWU1MzlkYmM3MmNiZjAxZDkyMmRiNjRmMDQzMzk0YzZlYjA2NGM4YSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiN2E5N2ZkNDY4NDUwZmJmZDVmMjFiNDUyZjEyNDc2ZWQwZWQzMzgwNzlhM2ZmNzc0MDI2ZDA0OWRhOTExMGY1OCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYzJmYzgyMTM1YTMyMTBiNjdjOWIwODQ0NjJjMGUyZWJhYTBlZTk4MWU2MmFjNmM5ODg1NjljYzMyNWY1NTk4YSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDI0OTgxZjFhN2IwYTA2MmQzNWI3MjRjNjlmYjJkMzA2N2NhNDI1NTM0NzI2NmE4ZmRjYzQ0NDVjMWY0NzJmNiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_33e1f5b6dac14e0fa80deb8436568806",
+      "statement": "Because sessions/* is gitignored, discovery must not conclude no bundles exist from an ignore-aware search; bundles must be located with at least one ignore-blind method (filesystem ls/find or ripgrep --no-ignore-vcs) then filtered by summary.json task_id and state flags.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/learning-distill/SKILL.md#L76-L83",
+          "version": "repo-lines-v1:sha256:6a909f80c0c7e3e7984cb5befd0e18e11b1d56565310c8e3326dcaa0583d77f5:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDNiMGVkZGNhYzQ4NDhjODJhZDI3OWE0YzQyYjM4MDJiZGM4YzlmMmZlZjdkMzU3MTk0MDIwMGI3ODk0YmY0MCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNmFmNGQzZjVkYTg1OTg2NDA5MzljNDMyNjAwNGE0ZWMxNTUxYmJmNWU5YTY4YmEzNjBmYTBkNGI3YzFhMjc3MCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTdmN2ZlOTk4OTlmODE3Yzk5OGRlZmY0Zjc3NzI4MGZjNGQwNmVlYTEzMDk5Zjg5ZGVlMWY0MTExZGIxZmUyYiJ9"
+        },
+        {
+          "resource": "repo://docs/architecture.md#L128-L130",
+          "version": "repo-lines-v1:sha256:e268d4fde1b831dc4e0e2cb24963a6fd04c4100b2d3210db562c1c5c601ea69b:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTE2Mzk4ZDQ5YWM1ODMyOWVlYzFhOGMxNTFkMWY2OGZlMGM5MjczNTZhN2MwOGExNDg2MjdhNDYyMTcxZGUzMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNmU1OGEyN2NiMTllN2UzZWRiNzBlNDk3YWUzOWFjMTU2OGExZDc1NWQ5YjBmMjBlZjYxZDM0MGMyMjhiZDg3ZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjM3Nzk4ZDcxMzdhY2Q1Njc4Y2JjOGQyYTIwNGMxMjFiN2I3MzgwN2M4NWM0YmQzNmVlYTI1OTJhYWE3NDg5NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMmUwYzNjNTcxNmQ4OGE1NDc2MmUyMzRlODFkZTA2ODM2ZWVkNGYwMWRmZTcwNzIyNDZjZjI3ZDdlOGY1NTQ1MSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_b38eb831d0764f4aa4e2673e0e396360",
+      "statement": "Task lifecycle ordering is coding -> task-closeout (writes 5 files, status complete/blocked/abandoned) -> learning-distill (reads bundle via task_id, classifies, routes) -> deterministic sync_wiki_indexes.mjs -> mark distilled -> periodic docs-lint; state machine distinguishes Captured/ReadyForDistill/Distilling/Distilled/ProposedOnly with no activity log.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/learning-distill/SKILL.md#L84-L122",
+          "version": "repo-lines-v1:sha256:814d4e3e8da57bcb95b07447588b414e8d11072225956d82d7e1816d774bc7b3:eyJzZWxlY3RlZExpbmVDb3VudCI6MzksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk1MDNhMjdlNDQ2MDM2ZTI1ZjdkNDQwNDY2ZjdjMjc0NTliZGI0YzMzOGQxNWRiNjExYjk0YmVmNWJiZDhjZTAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM5MWNkZmM4ZDY4MTFjOTVlZDU1YjI3ZjMwZjYxODkyYTU5NDkxOWY0ZTA0MDYwNTEzOTBiNzhlNjMzM2Y1ZmEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNhOTM4M2U3YzFkNTE4MDUwNmI4NzczZWVhZTY2NjQ3NmI5NjAwZjI1N2QzNmFkMDY3NjBmNzk0ODY4MjEyMzQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjIzMzYzYjBjMjViZWZiNDRiYzFmMzVjNjc2ODdkNjE0ZDIzNDJhM2RlMDljMzc1YTViNmI2NGFlODZlOWQwNTUifQ"
+        },
+        {
+          "resource": "repo://docs/architecture.md#L203-L213",
+          "version": "repo-lines-v1:sha256:e53ab97d0fb9b62d41b47b5952737a08f3cadccb35096ae3eaf924d199baf481:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU5OWUzMjc3YjU0NDgyYWZmMWJlZmNiNGU3ZTdmN2QzYmM0OGEzOTRhM2U5NWEyNTVjYmQxY2Y1YzcyZjk1ODgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY3MmI0NzE1ZjBkNjRiMmIyODk4N2Q4MmFlM2E2ZmVlMGNhYzRkODU3M2VlMjgyY2Q3MTUxYjM3YjZkOGZiMGIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAwMWYyZWMxNzU5M2MxMDU0ZWI0NjM2N2Q4NDUzZWYyNGExNzNjZTk2YjcxMTdkOTFmOWE2OGQ0NGZlZjhiMDEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImZlYmIyNmM4NzllNGY2YzJiMThhOWE0MjdmM2MxN2NmZDdlYzE3ZDMzNTE2OWE3MTRkYzEwZDE1YjNhMGZmMjIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_fb3e2478d97d485aa26ebdb08dd995c4",
+      "statement": "Learning-distill fails closed before any wiki write: it verifies openspec and openwiki binaries on PATH via check_peer_tools.mjs and that openwiki/INSTRUCTIONS.md exists with AKSK:WIKI-CONTRACT markers; on failure it stops without writing and prints remediation.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/learning-distill/SKILL.md#L17-L26",
+          "version": "repo-lines-v1:sha256:19d3fd03b5e895e1ceddce665697f739ea6bf34655fdfa254ec7f8bc2343d6f2:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjEzNDQ0YjZlN2IxOWI3ZDU0NjZiYzRjN2VkNDZjNTYyZGZhZTJjMDFmMzgyYjk5NjZhMGFkMTJkMDZiY2YwMzEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM5MDE1NmM5NDI1MWE1ZjI0ZjQ1OWZkNGU1NjY2NDBhNmE2MWFkNDVhYzQ4MTBmMjUxMGYwYzExYjMwZGE4YmQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjlkMzZjZDZjMTM4NmU3ZTNlZTlmMzg2ZTNlMGFhMDk5NTIxOTI0OTY3OGJiOTZhODU5YTgxYmFmOGZmMWQwNzYifQ"
+        },
+        {
+          "resource": "repo://openspec/specs/distill-routing/spec.md#L35-L44",
+          "version": "repo-lines-v1:sha256:9410d3d18f11929ebb6cfd8a63305ac754804b46ec32bf3e53ca338ecab13e39:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBjZmMxOWNlODhjNDZlN2I0MTQzYjRlZjI5YTU1NmNmNmFjYWVlZTg2NjBmYjQ5OTZjMWEyNWIxNjdkN2YxZDQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg1NGQzMDA4MzA5ZGE3MjRkY2FmMTM5NjNkY2E4MTA3YTBhYTk3NWNlMzZlODllYjE3MzUwNmQzMDQ1MzY0ZmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjliNDhhZjRiNjZiNDYxNzk5NjI4NmZmNzIwNzFhZjg4ODBiMzdmZGIyM2E4YzU0ODc5NDE2YjZlZTg2YjU1ZDUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_6a4db72a7b1e49e597d4ab7e556804c1",
+      "statement": "check_peer_tools.mjs verifies peer binaries by scanning PATH directories (not shell lookup), prints one error per missing tool plus exact install commands (npm i -g @fission-ai/openspec@latest and npm i -g openwiki@latest), and exits 2; unknown tool names also exit 2.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs#L12-L45",
+          "version": "repo-lines-v1:sha256:810ae093efe8cb31155329bd7fa2b5e9c6b3301374d9f4e7508f23a42d34217e:eyJzZWxlY3RlZExpbmVDb3VudCI6MzQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNlYWUzN2ZjNzAzNDBhMzY1YjZjOTkyZjQwNzNjZTg4ZDZiZWNkZGMxY2YyMzVhNjQwMTgwNDQzZTFkN2Y0NTkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjMyMTEzZmVhYTRlYzQ2NzY2YWRiYzNhMjFmYzMxOWU4YzdhZTZjMzQ2YWMyNzg3NGFjNzFmZTJhMWRlZjY3NTgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjcyYWQ5ZjZlZTc0Mzk0Y2JhN2Q5OTZjNGU4MDc3YWUwYjY1MTU0MzNhNmJjNGY0YmQ1MDg1MjZjNDM2NDA3YjkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_5f03baa17508487dae5479624fa1e5b7",
+      "statement": "attach_wiki_contract.mjs attaches the AKSK curation contract bounded by <!-- AKSK:WIKI-CONTRACT:BEGIN -->/END in openwiki/INSTRUCTIONS.md from references/wiki-contract-template.md; it fails with openwiki --init if the file is missing, appends below existing content (stub-aware), and is idempotent refreshing only between markers.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/attach_wiki_contract.mjs#L16-L60",
+          "version": "repo-lines-v1:sha256:6e35283c373e6b93b7626d36b2ded72d30cc374b2c0a2df38804e489ca4585da:eyJzZWxlY3RlZExpbmVDb3VudCI6NDUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU1NzI5NzNkZWUzOTQ0YzI1MDhmMGE2YTU5MjBhMTI2ZjQ5NTNkMWU4M2I1ZjFiNjEyZWFkNzE2OWQ3MTkyZTkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ5OTY3ZWMxZWQzODM2ZjhlYjE3YWZmMTcyYjViZmVmN2RlNjA0ODVhNDM5YzZjYTExYzU5MWUxNzU1NzM5YWUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJmOGI4ZmZjYjkyNTk2ZmUxMmZkM2U5ZTExMzU2ZDA2NGJiMjI5YmI2OGI5NjU5NjM4NGRiNjUxYjU5ZDcyYmIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_5bde100491c049988809fa80ba875618",
+      "statement": "Distillation classifies each candidate lesson and routes by kind: ephemeral stays in bundle, prescriptive AGENTS guidance to .agents/AGENTS.md (high confidence, broadly useful, likely to recur, concise, actionable) or playbook to .agents/playbooks/, descriptive decision/troubleshooting/topical to openwiki/{decisions,troubleshooting,topic}; descriptive never goes to .agents and prescriptive never to wiki.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/learning-distill/SKILL.md#L54-L75",
+          "version": "repo-lines-v1:sha256:f689bfe7bd90552a908a3553cb55ce358e4eb0de712fe50aafba901a66bbdbb4:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVlMTZkNmUzM2VjZjczNWE3MDg4MWI2NWQzYWMxYmRkODMzMTY0ZGQyNzBlNjRlMDMyN2U3OGExZmVjZjYxYjIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI5MWI3MzRkZTFmODlhZjgzOTExM2Y2YjM2OWNmMDU2MDM1MWFkOGE2YTE5NDBmMTllN2IyNjkzNWRmMDg2NWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImE5ZjUxMmQwZTU0MjI3ZWI0MDlkNTRjNzJmYThiNjkxNWU4M2FkZjgyMjVhNTZkOTNjNGFmYWM2MmU1YWViMTUifQ"
+        },
+        {
+          "resource": "repo://.agents/skills/learning-distill/references/CONTRACT.md#L5-L19",
+          "version": "repo-lines-v1:sha256:5be017882943c54e3c60709859573645423f5d69a1dbd703f54301eff9ef1eca:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJmZWVjOGNiMzkzMTY1ZTk1MTgxMTk3ZWJlZmVjYTQ0YTQyNTZiZWY2ZjRjZmMxMGRlNjg4NDMxMzVkMWVjYjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU1MzNmZGE2ZDBhOWM5ZjM2NjE2MzMyOGZjODNjZDZlZGI2MGUzMDhjNTBkZTIyMGUzNDVmZmY0ZGZiNDU2ZmQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY1ZDBkZTIxY2QyYWMyYjU2OGM4NzlhZTFkOTc2MDZkZDUyZjRjNzY0M2NkYTIzZjhhNTRiMjc5M2IyZDJiNGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzNWI5ZjU4NTczZGNlZGRiNDc3NTY1ZmRmM2ZhZjYwYmMyOWZjMWI4N2M3MDgxZmQwODFiODJlMTFjM2U4MmMifQ"
+        },
+        {
+          "resource": "repo://openspec/specs/distill-routing/spec.md#L7-L27",
+          "version": "repo-lines-v1:sha256:3c3091b14be80a7ab8987512a3d98e1938d019c7505c170140dd2debf5948a55:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMxODQ4MDNlMjJkNjlhYzAxOTc4NmZlNjFhYjA0MmQ2M2E5OTNkZmEyOWI0M2U1MGExMjA2Nzk3YWQwMzRiYTIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFiN2UyN2NlODYxODUzNTg4MzY3NzkyNDkwMTA5N2M3MTQ0YzgwNWI2MjFjNzhkNDA4MGQ0MGIxMDVkOTQ4OTMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjUwMjVmZjczNDBjNjAwM2RlMGVjYzNmMmU5MDg1MjQwM2IzZDRiMDNiZmU4ZWJiNGVhZDVmNzcyNGI1NWMzNmMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d5e65b96dda947f4b24130284e14f620",
+      "statement": "Distillation must not duplicate requirements already codified as SHALL in openspec/specs/ as wiki pages; it cites the spec capability instead, and curated trees marked in INSTRUCTIONS.md are preserve-and-link targets where AKSK-authored content and aksk_* frontmatter survive update round-trips.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/learning-distill/SKILL.md#L72-L73",
+          "version": "repo-lines-v1:sha256:4d1939d6eefc6867f1ee5bfd1a96bb54502b05c2d996833e1d57af7318166486:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOWFmNmNkMTdkOTRlYzQ3YWY0ZTY3YzAyOTE3ZTIyNmEzY2Q3NjQ2NGMxZmExODg5NDMxNWM4ZGNjZDg2NzE2ZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjM4ZTUxNzdlNmU4MmYxMjhhZjI0NDg1NTA2ZDFiYmYwN2Q1NDMxZjRjNTA1ODE3OWVjY2I1MWNlZWM4MjFmMiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjRlMzk4YzBkMGQ4MWE2NjI5MmUzYzNlY2Y0YWI2NGU3NGIzYWE1NDdkMTgyMjZkYWM2M2ZhM2I1MmRmZGQwOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiM2ZmYTEwOWQ1N2RiMTlkZDQzZjM4YTJiNjRkYTU2MmU2MjQwOGRlMTllMGIyMWNiYTQ1ZjdiNDkyMTVmMzNhZSJ9"
+        },
+        {
+          "resource": "repo://openspec/specs/distill-routing/spec.md#L28-L34",
+          "version": "repo-lines-v1:sha256:890e34a5b4f93b414e4d0c27e0ca80b884fbe424ef74ebdef90990a5118249c4:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzFmOTRmZDI3MzlkMjRjZWNhNmIxZjA1NWUyZGZkZTEwZTE1Mzc1YmJhZTRhZGM4Y2Y5ZWM5ODc2N2U3YmM5OSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTBkZWMwNjQ3NjU2OWYyN2NiOGVhNzdkMmJmMTliMGUwNjJhMzUxOThhNWU2YjhjOTk2YWRiNDc2N2E4OGE4YSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDU2YjYwMzhmOTVhNzRhNDlmNWJhNmQ1MTBlMjQ2MzIxOTc3YTVjNjBkODFhZTZjMDU4NmNiYjFlZmE0OWI3NiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_2fb95c6ef5944c40af0b9d68c262de6b",
+      "statement": "Curated wiki pages use OpenWiki OKF base frontmatter (type, title, description, tags, timestamp) plus AKSK extensions aksk_status (accepted/superseded/provisional) on decisions, optional aksk_superseded_by and aksk_depends_on with qualified slugs; filename stem is entry identity unique within its tree.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/learning-distill/SKILL.md#L68-L71",
+          "version": "repo-lines-v1:sha256:f286cbc12f33a02484d6541f890ce65c92cc9f963c002fd8205686dcbe23e80e:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjIwZDJiZWJlYzRhZWFhMzBlNGFiZTM3NjAzZTU2MmViYjBmYzlhZGMyODFkNDZlODdlMGU5NTYxMGMxZDFmNiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2JjZGE2N2I5MzMzZWUzZjlkNjk1ODljNmQ4MTc2NDE0OTYzNzU0ZjEzNDRjYzdiNTdiOGZiZDMwZWFiNDM1ZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTM1MjdlNGQ1OTg5M2IyNzdhZWJlODY3ODY5YjA3YzE5ZTRkOTRiNDkxYTVmNGY0ODliMTdkN2I3NGM2MDM1MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDU5MmUzZmRjYWNkMmVlZmFhNzY0MDJkYzczZWYwN2IwMTMwMTU1YTIzYzJiMDI5NmMzNDViYjFiYjM3NzJmMiJ9"
+        },
+        {
+          "resource": "repo://.agents/skills/learning-distill/references/CONTRACT.md#L25-L35",
+          "version": "repo-lines-v1:sha256:fdcc0be77f09506602bd7ea07b3772a2346ded566ae0e21be7d6f6514d0cb265:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFjNTcyNmU0MTZkNDMzMGM3Mjc3ODE2NTQ1ODA0ZTAzNzNkYTM5MGZmOWZjYjk1ZWQzYTQ0MjY0OWIyOWZmNmQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM5YTFhZDIyM2U2MmUyNjcxYWI3YjkyOGE3MzFhYjY3N2NmMDk0ODU0NjM0YmVkMmNlZDA4OGU5MjE0NTgyMzgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk5M2EwZmQzYTRhOThlMDgwYjMwMmZiOWZmMDMxNTVhM2RjOTEwNTYyMDZhZThiYmZlYjRlZWVlYWM4OTlhODMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e9d6040aa9b74a8fb04ae0cea364cfe0",
+      "statement": "Deterministic index refresh is performed only via node .agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs, which verifies openwiki/ exists, locates global openwiki/dist via npm root -g, imports OpenWikiLocalShellBackend (docsOnly:true, virtualMode:true) and synchronizeWikiIndexes, keeping curated bodies byte-identical; distillation never invokes openwiki --update.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/aksk-bootstrap/scripts/sync_wiki_indexes.mjs#L20-L46",
+          "version": "repo-lines-v1:sha256:272c74e0278ae63c34c3fbd3ccff0ddfa7c289764d42d927d995b8cce66e8987:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc4YjljOThmMDYyN2UxZjUyMjk4ODcxNTI2OTdjNGZjYmNhYzA4ZmQ0ZTQyMmE3YTg0NGNiNGQxYjBkOTc4MWUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVlZDY4YmQ0Yjk1Njc5ZjExMGM0NmRlYmYyYzA4MTlmNmU1MjE5OTNiMjA5ZmI1MzkzM2JhMDk3NzVmNWU3OGEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZhZWI2OTVkYTA1MTk3ZjMxZWE5MmJiNjEwMzI0YTMyY2M2OWQ5NDZiZDlmODY3YjE2NzMxNTdhNGY3MzI4MTIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjlkOTViYTM0MzQ5NWNhYmI4YmU2MDM4ZjQxN2E2Nzc0MGIyYzYxMzgwMzEwZmMxMjRmMWFlMWRiZjI1NDAxMTAifQ"
+        },
+        {
+          "resource": "repo://.agents/skills/learning-distill/SKILL.md#L15-L16",
+          "version": "repo-lines-v1:sha256:a62cdd3bd6efc343671844bf9683d94f119dd53393433cb5c589539a8d5c0f61:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNWM4ZTE2YTg5YTJmNThmN2UzMWNmY2NkNzAyZTZjMjVlNGIyYTZhZjgwYzRlNDMzOWJiOGY0ODE4MmM3OTViNiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjRiZWQ3ZDU1MzMzMWU3ZTc3NGU1NTI0MjBjOTExY2RlYmNlMzk2MDgxYWQwNTA5ZDE2ZjFmMzUxYmZmMDgwMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiN2UwNjRmZWIxMTlkNmNjYzUxYWZmMmVhNjMyYjQ5NmRlZGNlNGNkNGJiNTg4NjI2MjY3YjkwNWVjM2ZlOGQ1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_633ce123e816454daf5510aff99e5287",
+      "statement": "There is no activity log to append after distillation; accountability lives in bundle summary.json flags (distilled, distillation_status) plus git history, and the former .agents/docs/log.md path was deleted in the consolidation.",
+      "evidence": [
+        {
+          "resource": "repo://.agents/skills/learning-distill/SKILL.md#L120-L123",
+          "version": "repo-lines-v1:sha256:1612e867dcdac89b6932db1f91dff016a96a917079d59872c3a9ecc762e7de5b:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYjAxNWZlMTI5NDg3M2QzYmY2MDQ0ZjU4YjllZmMxNDEyNTE5MjdjMmVhYTZjYjY1ZTlhYzE4MDlhMTRlMmE2NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiN2MwYjg1NTFmYzQ1NTFjZTI5M2MzZDM5YzMwY2JiZWE5NGY2MDE0OWYxY2IxMDAyNWNjNjIxMWMzYTBmOTgxYiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDYxYjY5OGE1NTA0YzRjYzk2OGQxMjMzYjVjNTdmZDQ0ODA0YmFhYmQ2YWI2ZDNhNzQzM2I1OWYxYzNjMzY4MSJ9"
+        },
+        {
+          "resource": "repo://.agents/skills/learning-distill/references/CONTRACT.md#L21-L23",
+          "version": "repo-lines-v1:sha256:775543c05eb10d6305884ea51c909ffd6be4fb8d1fce4cc0a6410ee12037ee34:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZmUyMmFkMzEzODg5N2M4YzBkOTY3YzBjYjNiZjFiYWU5ZGMxY2I5MzI4Nzg0MDRkZDY3ZjY0NDVkMWU3MjFmZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYmEyYWI2ODc2ZTBkNzllOTgwNmM1NTMwMmI0YWRhZjRjZGExMmU3YzFiYzUzNzY3OWZiODI0ZWVjOTU1MjYxOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODBmNjkyZTliMWQwMzJlMThjYWM5OWI2ZWJkZTNiODdlYmY4MzkzODk5MWI3MjJmM2Y1OWVjMjc2ZTMyZjE5ZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMjkyN2ExYmZiYzA5MjgxZmU3YmI5YjU3MmQ0NGMzMWE1YmRmMTNlYjU0OWNjOGUwYzc1MjNjM2UzM2Q4NzE3MiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_41666858b8a04af1a2884e29d3298957",
+      "statement": "add-task-start is Proposal-only until archived to specs: its capability lives under openspec/changes/add-task-start/ (proposal.md, specs/task-start/spec.md, design.md) and has not been promoted to openspec/specs/task-start/; it must be labeled Proposal-only.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/changes/add-task-start/design.md#L1-L10",
+          "version": "repo-lines-v1:sha256:07623049b755146b942c2e716e422d91d6f35a39c3d321540a4241fbb8c371eb:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRlMzYzNGRiYjgwMWE3M2I3MGU4OWVkNzc1NDZjNzdiMTA5M2JiODhjOWU0NzkxOGU5NjY1OTRkYTQ5OTRhZjkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUxNjdhMTJlNmY4N2FkMDMxZWMwMTVjNmY4M2VhY2ZjODZkMWY2YWFiNTZiNTZhYjhmZWY5MWQxMDFmNGJlNTgifQ"
+        },
+        {
+          "resource": "repo://openspec/changes/add-task-start/proposal.md",
+          "version": "repo-file-v1:sha256:02e824d855bc2e10f7e793cb78ba79fba3f5c9e7e6312f160f38071965f7aad0"
+        },
+        {
+          "resource": "repo://openspec/changes/add-task-start/specs/task-start/spec.md",
+          "version": "repo-file-v1:sha256:152355639b97c963756eca910de7e41e01b8d70b5ea9cbb484382fa95f8cd51d"
+        }
+      ]
+    },
+    {
+      "id": "claim_a9643996121d4678b4409bc0094dad66",
+      "statement": "Exclusive mutation ownership: task-start owns creation by seeding .agents/sessions/YYYYMMDD-HHMMSS-short-topic/summary.json with task_id, created_at, status in_progress and optional openspec_change/repo_id/agent, and task-closeout owns finalization by preserving task_id and openspec_change while adding completed_at, final status, git metadata and distillation flags plus the remaining four bundle files; no other writer mutates the bundle, with fallback generation when no seed exists, and neither writes durable openwiki/.agents/AGENTS.md.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/changes/add-task-start/design.md#L17-L22",
+          "version": "repo-lines-v1:sha256:6e2c1c0df79639c6de4354513ce15b8d0fef158fe4f90fe22e3ca2bc4d7a3865:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMWY2ZGNmZDI5OWZmNDcxMzI4OWYzZDJmMWYyNzM1ODhlMGUzN2UwNTZiNmI1NTA2NjViZWZlZDI0YTljYTE3ZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMmMzN2QyNWUzYWIwMTMwM2EwOGM5MTE3MmNiNDViNzEyMDQ5YTJmZGFkNzE2NzJkMzMxYjI4NTI5MjAxMTk4ZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMGM2MWNiMmNkNmMwZDIzNWMwZTQwODhjNjM2YzVmMTVlZjg0ZjkzMjhlMDhmODk3YTE2OWNjNzViMjIyNjNiNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiY2UwYTY3ZjY1ZDFiODZhOWVlMTEwMGI0ZTJkOTNlM2Q2NjY4ZWJlZDBiMWM2ZTM0MzQ0MDNkMTFhYzZmYWEyMSJ9"
+        },
+        {
+          "resource": "repo://openspec/changes/add-task-start/proposal.md#L16-L25",
+          "version": "repo-lines-v1:sha256:135a2b92b450961a6b9dbd00a6701f51debbfb31df75c278b292f417d75bd5cc:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNlNzZkZWJiODAwYjQ3OTJhNTdlZGY1YWIyNDMyZjJhMGZhZmY5YjVjNjRiNTUxOTJjODBlNDBlZTQyMWMzNjIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMxMjllNTBmNDI1NmI3NWI0MzMxMDg2YTEyYmNiYWUwMGVlYTBiMDM3ODI2NTJkODEwMWQ4NjU5ZjUwMjdkNDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImYyMTY2NGE2MjgzNmJlMDE0ZmRjMzk2ZmVjZDIyM2ZhMDAyYjViNDY1NTgxZWI3MmZmMTZkY2Q5NjY4NWIxZGUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://openspec/changes/add-task-start/specs/task-start/spec.md#L3-L29",
+          "version": "repo-lines-v1:sha256:65117203557dd5bf98ddcccb37f7ac50870a2bcc9f258482d4bdc634da6351ea:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNhZDc3NjZlMzkzZWU0OTJlZjc4NGIzMGJlMWI4ODJiYmQ1ZmJiMGEyNDE0N2U2Mzg3NTJjMDg2MmU0ZTlkYmUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI1ZTQ1MmJmNDkxZmI1ZDg1OGJiNGMzMjJkMTEzNGNiNTUzYWMxMzBmNjk3MmE5ZDE0NGUyMTc2NzRmMmJlZDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjoyLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFjOTdjNjg1MTMwMjY2NGUyZDg1YWJjODQ5ZDM0YmMwZDgxMTJmNDFkZjg3ZDZkZjAyNGEwMzhiYjMxYTU0MTIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.5.0",
+    "at": "2026-09-04T04:19:45.757Z"
+  }
+}

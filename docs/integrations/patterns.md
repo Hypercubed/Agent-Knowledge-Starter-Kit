@@ -11,7 +11,11 @@ Keep one source of truth:
 - **Tool-native files** are wiring: root bootstrap files, project rules, command wrappers, local config, and runtime preferences.
 - **`.agents/` files** are durable repo knowledge: project guidance, decisions, troubleshooting, playbooks, portable skills, and session bundles.
 
-Do not copy long-lived repo policy into every tool's native config. Point the tool at `.agents/AGENTS.md`, `.agents/docs/index.md`, `.agents/playbooks/`, and `.agents/skills/` instead.
+Do not copy long-lived repo policy into every tool's native config. Point the tool at `.agents/AGENTS.md`, `openwiki/index.md`, `.agents/playbooks/`, and `.agents/skills/` instead.
+
+## Adopting the kit
+
+Install starter skills in the target repo with `npx skills add Hypercubed/Agent-Knowledge-Starter-Kit`, then run each installed skill's initialization from its `SKILL.md` (see `INSTALL.md`).
 
 ## Pattern Groups
 
@@ -21,16 +25,13 @@ Tools: [Codex](./codex.md), [OpenCode](./opencode.md), [Kilo Code](./kilo-code.m
 
 Use a short root `AGENTS.md` as the repo entrypoint:
 
-```markdown
-# AGENTS.md
+Attach the marker-delimited `AKSK:ROUTING` section rather than hand-writing this file:
 
-This repo uses the Agent Knowledge Starter Kit.
-
-- Read `.agents/AGENTS.md` for durable repo guidance.
-- Use `.agents/docs/index.md` to find decisions, troubleshooting, and playbooks.
-- Treat `.agents/skills/*/SKILL.md` as canonical repo-local workflows.
-- Keep temporary task evidence in `.agents/sessions/`; promote only durable lessons back into `.agents/`.
+```bash
+node .agents/skills/aksk-bootstrap/scripts/attach_section.mjs . AGENTS.md
 ```
+
+The attachment appends the section below any existing content, refreshes it in place when the kit's template changes, and is idempotent on re-run. Add tool-specific notes outside the markers - never edit between them.
 
 Product-specific config such as `opencode.json`, `kilo.json`, Warp global rules, or OpenClaw startup/memory files should only add runtime behavior or point back to the canonical repo files.
 
@@ -43,7 +44,7 @@ Use the tool's root instruction file as a thin router:
 - Claude Code: root `CLAUDE.md`
 - Gemini CLI: root `GEMINI.md`
 
-The bootstrap should say where the real repo knowledge lives. Native memory such as Claude auto-memory or Gemini `save_memory` is user-local and should not replace `.agents/docs/`.
+The bootstrap should say where the real repo knowledge lives. Native memory such as Claude auto-memory or Gemini `save_memory` is user-local and should not replace the curated wiki knowledge.
 
 ### Rules-Based IDE Wiring
 
@@ -55,11 +56,11 @@ This pattern should also fit future rules-based IDE guides such as VS Code exten
 
 ### Persistent Memory and Runtime Boundary
 
-Tools: [Hermes](./hermes.md), [Antigravity](./antigravity.md), [OpenClaw](./openclaw.md)
+Tools: [Hermes](./hermes.md), [Antigravity](./antigravity.md), [OpenClaw](./openclaw.md), [Agentic Sandbox](./agentic-sandbox.md)
 
 Persistent assistants may have private memory, session recall, artifacts, automation, or runtime skills. Use those systems for local continuity and orchestration, not as the only copy of repo policy.
 
-At task boundaries, export durable evidence into `.agents/sessions/<folder>/` and run a later learning pass to promote stable lessons into `.agents/AGENTS.md`, `.agents/docs/`, or `.agents/playbooks/`.
+At task boundaries, export durable evidence into `.agents/sessions/<folder>/` and run a later learning pass to promote stable lessons into `.agents/AGENTS.md`, the curated wiki trees, or `.agents/playbooks/`.
 
 ## Quick Matrix
 
@@ -76,9 +77,10 @@ At task boundaries, export durable evidence into `.agents/sessions/<folder>/` an
 | OpenClaw    | Root `AGENTS.md` plus startup files           | `SOUL.md`, `USER.md`, `MEMORY.md`, automation               | Memory, sessions, heartbeat, cron                      | Native and repo-local skill layers can overlap                     | Do not move repo policy into OpenClaw memory or automation text |
 | OpenCode    | Root `AGENTS.md`                              | `opencode.json`, `.opencode/agents/`, `.opencode/commands/` | Product/runtime dependent                              | Can load `.agents/skills/` natively                                | Keep commands and agents as convenience wrappers                |
 | Warp        | Root `AGENTS.md` or `WARP.md`                 | Warp Drive rules, slash commands, Oz                        | Local/cloud agent context                              | Discovers supported skill directories, including `.agents/skills/` | `WARP.md` can take priority over `AGENTS.md`                    |
+| Agentic Sandbox | Root `AGENTS.md`                          | Shell, filesystem, and native tools                         | Volatile sandbox environment                           | Execute `SKILL.md` via tool calls or run scripts directly          | Requires dependencies (PyYAML) for scripted skills              |
 
 ## Session Export Rule
 
 Native memory is useful during work, but `.agents/sessions/` is the shared task boundary. A closeout bundle should capture the important commands, changed files, validation, and learning candidates so another tool can distill durable knowledge later.
 
-Keep `.agents/sessions/` temporary and usually gitignored. Commit the promoted durable changes in `.agents/AGENTS.md`, `.agents/docs/`, and `.agents/playbooks/`.
+Keep `.agents/sessions/` temporary and usually gitignored. Commit the promoted durable changes in `.agents/AGENTS.md`, the curated wiki trees, and `.agents/playbooks/`.
