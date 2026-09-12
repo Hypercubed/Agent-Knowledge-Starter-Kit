@@ -35,6 +35,24 @@ This is intentionally generic. It should work with any system that supports user
 
 ## Quick start
 
+### Which setup step do I need?
+
+`aksk-bootstrap` and `aksk-init` cover different scopes. You often need only one of them:
+
+| Situation | Run |
+| --- | --- |
+| New machine or new user (first time on this host) | `aksk-bootstrap` — global, once per user: `npm i -g` for openspec/openwiki plus global skills (incl. `openspec-*`). |
+| New or existing repo on an already-bootstrapped machine | `aksk-init` only — per-repo: scaffold `.agents/` + `AGENTS.md` baseline, then openspec/openwiki init, routing/lifecycle, wiki contract. Re-running bootstrap here is harmless but unnecessary (it is idempotent). |
+| This starter-kit repo itself (the source, not a consumer) | Neither — do not run `aksk-init` here; it would scaffold a consumer `.agents/` into the kit source. |
+
+`aksk-bootstrap` owns global setup; `aksk-init` owns per-repo setup. See [INSTALL.md](INSTALL.md) for overrides.
+
+### A note on `-a <agent>` and `--all`
+
+- `-a` takes your Skills-CLI host id (e.g. `opencode`, `codex`, `claude`); use `'*'` only when you mean every integration. Confirm what landed with `npx skills list -g`.
+- `--all` is shorthand for `--skill '*' --agent '*' -y`: it installs **every** skill into **every** agent integration the CLI knows about — many product-specific directories, not just `~/.agents/skills/`. Prefer `-a <one-agent>` (e.g. `-a opencode`) for a minimal tree; use `--all` only when you intend that wide layout.
+- These host ids are Skills-CLI integration names, not local binary names. (There is no `pi` command — the binary on PATH is `prime-agent`, which reads skills via its `~/.pi/agent/skills` symlinks.)
+
 ### Ask your agent to install (preferred)
 
 Give your agent this prompt:
@@ -43,11 +61,11 @@ Give your agent this prompt:
 Install the Agent Knowledge Starter Kit into this repo:
 
 1. npx skills add Hypercubed/Agent-Knowledge-Starter-Kit#develop -g -a <agent>
-   (or npx skills add <path-to-kit> -g -a <agent> with a local checkout;
-   <agent> is your host id — opencode, codex, claude, or * (`-g --all` for universal ~/.agents/skills); positional <source> must come first — npx skills add -g -a <source> fails with Missing required argument: source; npx required; this installs all skills)
-   e.g. npx skills add Hypercubed/Agent-Knowledge-Starter-Kit#develop -g -a opencode or npx skills add Hypercubed/Agent-Knowledge-Starter-Kit -g --all
-2. Run the aksk-bootstrap skill (global: npm i -g for openspec/openwiki, global skills incl. `openspec-*`).
-3. Then run the aksk-init skill (per-repo: scaffold .agents/ + AGENTS.md baseline first, then openspec/openwiki init, routing/lifecycle, wiki contract).
+   (or npx skills add <path-to-kit> -g -a <agent> with a local checkout; keep `#develop` until v2.0 is tagged — latest tag is v1.5)
+   <agent> is your host id — opencode, codex, claude (confirm with `npx skills list -g`); `-g --all` (shorthand for `--skill '*' --agent '*' -y`) installs every skill into every agent integration, so prefer `-a <one-agent>` unless you intend the wide layout; positional <source> must come first — npx skills add -g -a <source> fails with Missing required argument: source; npx required; this installs all skills)
+   e.g. npx skills add Hypercubed/Agent-Knowledge-Starter-Kit#develop -g -a opencode
+2. New machine/user? Run the aksk-bootstrap skill (global: npm i -g for openspec/openwiki, global skills incl. `openspec-*`). Already bootstrapped? Skip to 3.
+3. Then run the aksk-init skill (per-repo: scaffold .agents/ + AGENTS.md baseline first, then openspec/openwiki init, routing/lifecycle, wiki contract). Skip this when you are working in the kit repo itself — it is the source, not a consumer.
 
 See INSTALL.md for overrides. aksk-bootstrap owns global setup; aksk-init owns per-repo setup.
 ```

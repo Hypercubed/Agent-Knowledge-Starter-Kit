@@ -13,6 +13,8 @@ Create or update a target repo's `.agents/` knowledge layer from this starter ki
 
 ## Prerequisites
 
+Run only the lane you need: `aksk-bootstrap` is global (once per user/machine — new machine setup); `aksk-init` is per-repo (each new consumer repo on an already-bootstrapped machine). The two lanes are often run in order below, but re-running bootstrap on a bootstrapped machine is a harmless no-op, and init must be skipped when working in the kit repo itself (the source, not a consumer).
+
 ### Agent-assisted via aksk-bootstrap (preferred)
 
 An agent clones the kit to a temporary location if needed and runs the two lanes in order (EXECUTE lane): `node .agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs [repo-root]` for globals, then `node .agents/skills/aksk-init/scripts/bootstrap-repo.mjs [repo-root]` for per-repo scaffolding. The global lane preflights Node >= 22 and installs the peer tools once per user in user scope (`npm i -g @fission-ai/openspec@^1.11.0 openwiki@^0.4.3` (caret from `references/versions.json`) — `npm i -g` per-user, not repo-local `npx` or `node_modules`); the repo lane bootstraps the repo on demand (`openspec init --tools none`, `.agents/` scaffold, curation-contract and routing-block attachment) and spreads OpenWiki integration per lane ladder. The global lane also spreads `openspec-*` skills into the canonical store (`npx skills add fission-ai/openspec -g --all -y` when missing, skipped when present), so every repo inherits them without per-repo installs. When local execution is not possible each lane prints the exact remaining commands (INSTRUCT lane) and exits clean without partial state. This is the recommended entry for both fresh and existing repos.
