@@ -2,34 +2,18 @@
 #
 # Tool requirements:
 # - Required: bash, sed, grep, find
+# - Required local helper: scripts/utils.sh (shared logging).
 # - Required for git-aware session tracking: git
 # - Optional: jq validates JSON when installed; otherwise JSON validation is skipped.
 
 set -u
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=utils.sh
+. "$SCRIPT_DIR/utils.sh"
+
 target="${1:-.agents}"
 target="${target%/}"
-
-failures=0
-warnings=0
-
-section() {
-  printf '\n== %s ==\n' "$1"
-}
-
-fail() {
-  failures=$((failures + 1))
-  printf 'FAIL: %s\n' "$1"
-}
-
-warn() {
-  warnings=$((warnings + 1))
-  printf 'WARN: %s\n' "$1"
-}
-
-pass() {
-  printf 'PASS: %s\n' "$1"
-}
 
 in_git_repo() {
   git rev-parse --is-inside-work-tree >/dev/null 2>&1

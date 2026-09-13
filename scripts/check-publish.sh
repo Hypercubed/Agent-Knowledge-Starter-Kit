@@ -2,7 +2,8 @@
 #
 # Tool requirements:
 # - Required: bash, git, find, sed
-# - Required local helper: scripts/check-agents-structure.sh
+# - Required local helper: scripts/utils.sh (shared logging) and
+#   scripts/check-agents-structure.sh (structure check).
 # - Optional: timeout bounds optional npx probes when installed.
 # - Optional: remark-cli with remark-frontmatter and remark-gfm checks Markdown formatting.
 # - Optional: .remarkrc.json configures frontmatter/GFM support and Markdown style.
@@ -12,29 +13,12 @@
 
 set -u
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=utils.sh
+. "$SCRIPT_DIR/utils.sh"
+
 ROOT_DIR="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
 cd "$ROOT_DIR" || exit 1
-
-failures=0
-warnings=0
-
-section() {
-  printf '\n== %s ==\n' "$1"
-}
-
-fail() {
-  failures=$((failures + 1))
-  printf 'FAIL: %s\n' "$1"
-}
-
-warn() {
-  warnings=$((warnings + 1))
-  printf 'WARN: %s\n' "$1"
-}
-
-pass() {
-  printf 'PASS: %s\n' "$1"
-}
 
 timeout_cmd() {
   seconds="$1"
@@ -85,19 +69,23 @@ section "Portable knowledge structure"
 run_structure_check .agents
 
 section "Markdown Formatting"
-md_files="$(git ls-files '*.md')"
+# NUL-delimited: filenames with spaces or newlines survive intact.
+md_files=()
+while IFS= read -r -d '' md_file; do
+  md_files+=("$md_file")
+done < <(git ls-files -z '*.md')
 if ! command -v npx >/dev/null 2>&1; then
   warn "npx is not installed; skipping Remark Markdown check."
-elif [ -z "$md_files" ]; then
+elif [ "${#md_files[@]}" -eq 0 ]; then
   pass "No tracked Markdown files found."
 elif command -v remark >/dev/null 2>&1; then
-  if timeout_cmd 60s remark $md_files --frail; then
+  if timeout_cmd 60s remark "${md_files[@]}" --frail; then
     pass "Remark Markdown check passed."
   else
     fail "Remark Markdown check failed."
   fi
 elif npx_package_available remark --help; then
-  if timeout_cmd 60s npx --no-install remark $md_files --frail; then
+  if timeout_cmd 60s npx --no-install remark "${md_files[@]}" --frail; then
     pass "Remark Markdown check passed via npx."
   else
     fail "Remark Markdown check failed via npx."
@@ -109,19 +97,14 @@ fi
 section "Markdown Links"
 if ! command -v npx >/dev/null 2>&1; then
   warn "npx is not installed; skipping markdown-link-check."
-elif [ -z "$md_files" ]; then
+elif [ "${#md_files[@]}" -eq 0 ]; then
   pass "No tracked Markdown files found."
 elif npx_package_available markdown-link-check --help; then
-  link_failed=0
-  while IFS= read -r md_file; do
-    [ -z "$md_file" ] && continue
-    if ! timeout_cmd 30s npx --no-install markdown-link-check --alive 200,0 "$md_file"; then
-      link_failed=1
-    fi
-  done <<EOF
-$md_files
-EOF
-  if [ "$link_failed" -eq 0 ]; then
+  # One invocation for all files: a single npx boot instead of one per file.
+  # Budget scales with file count (5s per file, floor 120s).
+  link_budget=$(( ${#md_files[@]} * 5 ))
+  if [ "$link_budget" -lt 120 ]; then link_budget=120; fi
+  if timeout_cmd "${link_budget}s" npx --no-install markdown-link-check --alive 200,0 "${md_files[@]}"; then
     pass "Markdown link check passed."
   else
     fail "Markdown link check failed."
