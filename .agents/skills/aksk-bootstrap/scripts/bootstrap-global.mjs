@@ -167,7 +167,7 @@ function run(cmd, args, opts = {}) {
 const argv = process.argv.slice(2);
 let repoRoot = process.cwd();
 let force=false, json=false, agent=null;
-for(let i=0;i<argv.length;i++){ const a=argv[i]; if(a==="--force") force=true; else if(a==="--json") json=true; else if(a==="--agent"){ agent=(argv[++i]||"").trim()||null; } else if(a.startsWith("--agent=")){ agent=a.slice(8).trim()||null; } else if(a==="--help"||a==="-h"){ console.log("Usage: node bootstrap-global.mjs [repo-root] [--agent <id>] [--force] [--json]"); console.log("  --agent <id>: scope the openspec-skills install to one host (e.g. opencode) via -a <id> instead of --all. Pass the same host used for the kit skills so both land together."); process.exit(0);} else if(!a.startsWith("-")) repoRoot=path.resolve(a); }
+for(let i=0;i<argv.length;i++){ const a=argv[i]; if(a==="--force") force=true; else if(a==="--json") json=true; else if(a==="--agent"){ agent=(argv[++i]||"").trim()||null; } else if(a.startsWith("--agent=")){ agent=a.slice(8).trim()||null; } else if(a==="--help"||a==="-h"){ console.log("Usage: node bootstrap-global.mjs [repo-root] [--agent <id>] [--force] [--json]"); console.log("  --agent <id>: scope the openspec-skills install to one host (e.g. opencode) instead of every agent (-a '*'). Pass the same host used for the kit skills so both land together."); process.exit(0);} else if(!a.startsWith("-")) repoRoot=path.resolve(a); }
 repoRoot=path.resolve(repoRoot);
 const {major, ok:nodeOk} = hasNode();
 let state={...detectState(repoRoot), nodeOk, nodeMajor:major};
@@ -196,14 +196,15 @@ if(missingTools.length>0){
 } else { console.log("\nGlobal lane: tools present — skipping install."); for(const t of ["openspec","openwiki"]){ const r=run(t,["--version"],{encoding:"utf8"}); if(r.status===0) console.log(`  ${t} ${r.stdout.trim()}`);} }
 
 // OpenSpec skills spread (global, idempotent by detection). Consumer workflow
-// skills only (repeated -s; bare --all would also pull the openspec repo's own
-// maintainer skills). Scoped with -a <agent> when --agent is passed so the
-// openspec skills land next to the kit skills; without --agent the previous
-// --all behavior is kept.
+// skills only (repeated -s). Never use bare `--all`: it expands to
+// `--skill '*'`, which silently overrides the -s filter and installs all 16
+// skills including the openspec repo's own maintainer skills (verified live).
+// Default scope is `-a '*'` (every agent, filtered skills); `--agent <id>`
+// narrows to one host so the openspec skills land next to the kit skills.
 const openspecSkillsSource = ver?.openspecSkills || OPENSPEC_SKILLS_FALLBACK;
 const skillFilterArgs = CONSUMER_OPENSPEC_SKILLS.flatMap((s) => ["-s", s]);
-const skillsScopeArgs = agent ? ["-a", agent] : ["--all"];
-const skillsInstallCmd = `npx skills add ${openspecSkillsSource} -g ${agent ? `-a ${agent}` : "--all"} ${CONSUMER_OPENSPEC_SKILLS.map((s) => `-s ${s}`).join(" ")} -y`;
+const skillsScopeArgs = agent ? ["-a", agent] : ["-a", "*"];
+const skillsInstallCmd = `npx skills add ${openspecSkillsSource} -g ${agent ? `-a ${agent}` : "-a '*'"} ${CONSUMER_OPENSPEC_SKILLS.map((s) => `-s ${s}`).join(" ")} -y`;
 if (hasGlobalOpenspecSkills()) {
   console.log("\nGlobal lane: openspec-* skills present — skipping install.");
 } else {
