@@ -16,7 +16,7 @@ The skill is the orchestrator; the JS script is the deterministic executor. Othe
 ### EXECUTE lane — run locally
 
 ```bash
-node .agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs  # global lane (interactive) [repo-root] [--force]
+node ~/.agents/skills/aksk-bootstrap/scripts/bootstrap-global.mjs  # global lane (interactive) [repo-root] [--force]
 ```
 
 Global lane (non-interactive; skill is interactive) (idempotent by detection):
@@ -45,7 +45,7 @@ Re-running on a fully bootstrapped fixture changes nothing; re-running on a part
 Standalone:
 
 ```bash
-node .agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs openspec openwiki
+node ~/.agents/skills/aksk-bootstrap/scripts/check_peer_tools.mjs openspec openwiki
 ```
 
 From Python (sibling skills may import; import from this scripts directory):

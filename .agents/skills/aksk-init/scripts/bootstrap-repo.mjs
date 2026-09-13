@@ -86,10 +86,10 @@ if (!s.trees.openspec) {
 }
 
 if (!s.trees.openwiki) {
-  console.log(" openwiki/ missing -> openwiki --init (or use harness: no extra key; CLI needs OPENAI_API_KEY)");
+  console.log(" openwiki/ missing -> openwiki --init (CLI needs OPENAI_API_KEY; without a key, skip — rerun init after a keyed openwiki --init)");
   const r = run("openwiki", ["--init"], { cwd: repoRoot, encoding: "utf8" });
   console.log((r.stdout || r.stderr || "").trim().split("\n").slice(-5).join("\n"));
-  if (r.status !== 0) console.log("  CLI failed: set OPENAI_API_KEY or use harness path");
+  if (r.status !== 0) console.log("  CLI failed: set OPENAI_API_KEY and rerun `openwiki --init`, then rerun this script to attach contract/routing/ignore");
 } else {
   console.log(" openwiki/ present");
 }
