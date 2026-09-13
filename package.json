@@ -1,6 +1,6 @@
 {
   "name": "agent-knowledge-starter",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "A shareable, tool-agnostic starter kit for maintaining a compiled repo knowledge layer for coding agents.",
   "keywords": [
     "ai",

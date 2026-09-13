@@ -11,7 +11,7 @@ Per-repo initialization. Verifies global tools (Node >=22, openspec/openwiki via
 
 1. Scaffold `.agents/` + seed `AGENTS.md` baseline (`init_agents_md.mjs`)
 2. `openspec init`
-3. `openwiki --init` — (a) via harness (agent+openwiki MCP/skill, no extra key) or (b) CLI (requires OPENAI_API_KEY)
+3. `openwiki --init` — CLI, requires `OPENAI_API_KEY`. Without a key, skip this step: the contract, routing, and ignore steps below attach once `openwiki/` exists, so rerun init after a keyed `openwiki --init`. (There is no keyless CLI path; do not go looking for a "harness" — an OpenWiki-MCP-equipped agent may scaffold `openwiki/` conversationally, but that is outside this scripted lane.)
 4. Attach routing + lifecycle (`attach_section.mjs`)
 5. Attach wiki contract (`attach_wiki_contract.mjs`)
 6. Install `.openwikiignore` (`init_openwikiignore.mjs`, merge-not-clobber)
@@ -21,7 +21,7 @@ Each step prompts `[Y/n/skip]`; `--yes` / `--non-interactive` / `AKSK_YES=1` use
 Repo lane inherits global `openspec-*` skills by default (`openspec init` always runs with `--tools none`, no repo-local skill generation). Opt-in only: `--local-skills` installs a repo-local copy for iteration.
 
 ```bash
-node .agents/skills/aksk-init/scripts/bootstrap-repo.mjs [repo-root] [--yes] [--local-skills]
+node ~/.agents/skills/aksk-init/scripts/bootstrap-repo.mjs [repo-root] [--yes] [--local-skills]
 ```
 
 ## Wiki Contract
@@ -38,7 +38,7 @@ This section is the original precondition provider now owned by the bootstrap ch
 ### Contract attachment
 
 ```bash
-node .agents/skills/aksk-init/scripts/attach_wiki_contract.mjs [repo-root]
+node ~/.agents/skills/aksk-init/scripts/attach_wiki_contract.mjs [repo-root]
 ```
 
 Behavior contract:
@@ -57,7 +57,7 @@ Behavior contract:
 ### Managed-section attachment
 
 ```bash
-node .agents/skills/aksk-init/scripts/attach_section.mjs [repo-root] [target-file-name] [template-name]
+node ~/.agents/skills/aksk-init/scripts/attach_section.mjs [repo-root] [target-file-name] [template-name]
 ```
 
 One mechanism for N marker-delimited AKSK sections in root agent instruction files. Each template under `references/` carries its own `<!-- AKSK:<NAME>:BEGIN/END -->` markers; markers are read from the template, not hard-coded.
@@ -96,9 +96,9 @@ Zoned layout in a fully bootstrapped `AGENTS.md` (each zone owned by one writer,
 ### Seed initializer
 
 ```bash
-node .agents/skills/aksk-init/scripts/init_agents_md.mjs [repo-root]          # seed when missing → exit 0
-node .agents/skills/aksk-init/scripts/init_agents_md.mjs [repo-root] --replace # overwrite with baseline
-node .agents/skills/aksk-init/scripts/init_agents_md.mjs [repo-root] --combine # stage for LLM merge
+node ~/.agents/skills/aksk-init/scripts/init_agents_md.mjs [repo-root]          # seed when missing → exit 0
+node ~/.agents/skills/aksk-init/scripts/init_agents_md.mjs [repo-root] --replace # overwrite with baseline
+node ~/.agents/skills/aksk-init/scripts/init_agents_md.mjs [repo-root] --combine # stage for LLM merge
 ```
 
 Behavior contract:
@@ -114,8 +114,8 @@ Template lives at `references/agents-md-baseline-template.md` (markers read from
 ### Baseline refresh
 
 ```bash
-node .agents/skills/aksk-init/scripts/refresh_agents_baseline.mjs        # fetch upstream + swap baseline zone
-node .agents/skills/aksk-init/scripts/refresh_agents_baseline.mjs --check # validate upstream without writing
+node ~/.agents/skills/aksk-init/scripts/refresh_agents_baseline.mjs        # fetch upstream + swap baseline zone
+node ~/.agents/skills/aksk-init/scripts/refresh_agents_baseline.mjs --check # validate upstream without writing
 ```
 
 Fetches `https://raw.githubusercontent.com/FerroxLabs/agents-md/main/AGENTS.md` to temp, validates (non-empty, contains anchors `Non-negotiables`, `Before writing code`, `Surgical changes`, `Goal-driven execution`), then swaps only the content between `AKSK:AGENTS-BASELINE` markers in the vendored template, updating the capture date. Other zones byte-identical (template has only the baseline). Offline/failure → exits non-zero with remediation, previously vendored baseline remains byte-identical.
