@@ -7,7 +7,7 @@
 // step. Global installs are per-user via `npm i -g` (user scope, not
 // repo-local `npx` or `node_modules`).
 //
-// Usage: node bootstrap-global.mjs [repo-root] [--force] [--json]
+// Usage: node bootstrap-global.mjs [repo-root] [--agent <id>] [--force] [--json]
 //
 // Preflight: Node >=22, tools on PATH, .agents/ / openspec/ / openwiki/
 // receipts, then state report before acting.
@@ -115,6 +115,25 @@ function instructRemaining(steps) {
 // Canonical skills pin; GitHub source id for `npx skills add` (no semver — default branch).
 const OPENSPEC_SKILLS_FALLBACK = "fission-ai/openspec";
 
+// Consumer openspec workflow skills. The fission-ai/openspec package also ships
+// repo-maintainer skills (release-openspec, *-openspec-docs) for the openspec
+// project itself — bare `--all` pulls those in too, so installs filter to this
+// list via repeated `-s` (comma-joined `-s a,b` does NOT match; verified).
+const CONSUMER_OPENSPEC_SKILLS = [
+  "openspec-propose",
+  "openspec-explore",
+  "openspec-new-change",
+  "openspec-ff-change",
+  "openspec-continue-change",
+  "openspec-apply-change",
+  "openspec-update-change",
+  "openspec-sync-specs",
+  "openspec-verify-change",
+  "openspec-archive-change",
+  "openspec-bulk-archive-change",
+  "openspec-onboard",
+];
+
 function hasGlobalOpenspecSkills() {
   // Probe 1: file presence in the canonical store + known host mirrors.
   const home = process.env.HOME || process.env.USERPROFILE || "";
@@ -147,8 +166,8 @@ function run(cmd, args, opts = {}) {
 
 const argv = process.argv.slice(2);
 let repoRoot = process.cwd();
-let force=false, json=false;
-for(const a of argv){ if(a==="--force") force=true; else if(a==="--json") json=true; else if(a==="--help"||a==="-h"){ console.log("Usage: node bootstrap-global.mjs [repo-root] [--yes] [--force] [--json]"); process.exit(0);} else if(!a.startsWith("-")) repoRoot=path.resolve(a); }
+let force=false, json=false, agent=null;
+for(let i=0;i<argv.length;i++){ const a=argv[i]; if(a==="--force") force=true; else if(a==="--json") json=true; else if(a==="--agent"){ agent=(argv[++i]||"").trim()||null; } else if(a.startsWith("--agent=")){ agent=a.slice(8).trim()||null; } else if(a==="--help"||a==="-h"){ console.log("Usage: node bootstrap-global.mjs [repo-root] [--agent <id>] [--force] [--json]"); console.log("  --agent <id>: scope the openspec-skills install to one host (e.g. opencode) via -a <id> instead of --all. Pass the same host used for the kit skills so both land together."); process.exit(0);} else if(!a.startsWith("-")) repoRoot=path.resolve(a); }
 repoRoot=path.resolve(repoRoot);
 const {major, ok:nodeOk} = hasNode();
 let state={...detectState(repoRoot), nodeOk, nodeMajor:major};
@@ -176,16 +195,21 @@ if(missingTools.length>0){
   }
 } else { console.log("\nGlobal lane: tools present — skipping install."); for(const t of ["openspec","openwiki"]){ const r=run(t,["--version"],{encoding:"utf8"}); if(r.status===0) console.log(`  ${t} ${r.stdout.trim()}`);} }
 
-// OpenSpec skills spread (global, idempotent by detection; `-g --all` covers
-// the universal store plus every host — no host detection to invent).
+// OpenSpec skills spread (global, idempotent by detection). Consumer workflow
+// skills only (repeated -s; bare --all would also pull the openspec repo's own
+// maintainer skills). Scoped with -a <agent> when --agent is passed so the
+// openspec skills land next to the kit skills; without --agent the previous
+// --all behavior is kept.
 const openspecSkillsSource = ver?.openspecSkills || OPENSPEC_SKILLS_FALLBACK;
-const skillsInstallCmd = `npx skills add ${openspecSkillsSource} -g --all -y`;
+const skillFilterArgs = CONSUMER_OPENSPEC_SKILLS.flatMap((s) => ["-s", s]);
+const skillsScopeArgs = agent ? ["-a", agent] : ["--all"];
+const skillsInstallCmd = `npx skills add ${openspecSkillsSource} -g ${agent ? `-a ${agent}` : "--all"} ${CONSUMER_OPENSPEC_SKILLS.map((s) => `-s ${s}`).join(" ")} -y`;
 if (hasGlobalOpenspecSkills()) {
   console.log("\nGlobal lane: openspec-* skills present — skipping install.");
 } else {
   console.log(`\nGlobal lane: openspec-* skills missing → ${skillsInstallCmd}`);
   if (!onPath("npx")) { console.error("npx not on PATH"); instructRemaining([skillsInstallCmd]); process.exit(0); }
-  const r = run("npx", ["skills", "add", openspecSkillsSource, "-g", "--all", "-y"], { cwd: repoRoot });
+  const r = run("npx", ["skills", "add", openspecSkillsSource, "-g", ...skillsScopeArgs, ...skillFilterArgs, "-y"], { cwd: repoRoot });
   if (r.status !== 0) { console.error(r.stderr || r.stdout); instructRemaining([skillsInstallCmd]); process.exit(0); }
   console.log((r.stdout || "").trim().split("\n").slice(-5).join("\n"));
 }
